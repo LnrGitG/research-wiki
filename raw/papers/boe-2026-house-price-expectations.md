@@ -1,9 +1,3 @@
----
-source_url: sci-hub/web
-ingested: 2026-07-16
-sha256: 12f9aa2f3602b3c7
----
-
 House price expectations and inflation expectations: evidence from survey data 
 
 **Staff Working Paper No. 1,169** January 2026 

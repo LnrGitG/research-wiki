@@ -2,7 +2,7 @@
 
 > Content catalog. Every wiki page listed under its type with a one-line summary.
 > Read this first to find relevant pages for any query.
-> Last updated: 2026-07-16 | Total pages: 16
+> Last updated: 2026-07-16 | Total pages: 17
 
 ## Entities
 
@@ -32,3 +32,4 @@
 - [[mirovoi-obzor-investitsii-vypusk-modeli|Мировой обзор: инвестиции, выпуск, модели жилищного рынка]] — 37 работ: DiPasquale-Wheaton 4QD, Topel-Rosen Tobin's Q, Saiz supply elasticity, 3 tiers для загрузки
 - [[zhilishchnye-cikly-i-monetarnaya-politika|Жилищные циклы и монетарная политика (Taylor, 2007)]] — counterfactual analysis: Fed Funds rate deviation 2002-2005 → housing boom-bust, semi-elasticity -8.3
 - [[monetarnaya-politika-i-rynok-zhilya-kompleksnaya-bibliografiya|Монетарная политика и рынок жилья: комплексная библиография]] — 13 исследований (2007-2025): международные теории (Iacoviello, Taylor, Mishkin, Chodorow-Reich), российские эмпирики (Sinyakov, Demidova, Zvereva, Smirnova), макропруденциальная политика (Kuttner & Shim, ЦБ РФ, Лаптева)
+- [[sintez-monetarnaya-politika-i-rynok-zhilya|Синтез: Монетарная политика и рынок жилья — комплексный анализ]] — финальная синтез всех 8 концепций, key results, connections, policy implications для ЦБ РФ

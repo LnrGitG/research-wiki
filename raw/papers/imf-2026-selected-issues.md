@@ -1,9 +1,3 @@
----
-source_url: sci-hub/web
-ingested: 2026-07-16
-sha256: e9e31141fe327c1c
----
-
 ## **Satellite Data for Nowcasting: Estimating Cambodia’s GDP in Real Time Using Satellite Data in a Machine Learning Framework** 
 
 Iyke Maduako, Dharana Rijal, Alberto Sanchez Rodelgo. 

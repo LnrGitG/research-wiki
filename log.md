@@ -56,7 +56,33 @@
 - Pages created:
   - concepts/macroprudentialnaya-politika-rynok-zhilya.md — synthesis of international + Russian experience, policy comparison
 - SCHEMA.md: added tags macroprudential (not needed, existing tags sufficient)
-- Updated index.md (total: 15 pages) and log.md
+- Updated index.md (total: 16 pages) and log.md
+
+## [2026-07-16] step 5 | Role of expectations in monetary-housing transmission
+- Created conceptual page synthesizing expectations channel across all 8 papers
+- Key findings:
+  * Household inflation expectations positively correlated with loan demand (Sinyakov 2025)
+  * "Irrational exuberance" particularly strong in Russia (Smirnova 2025): housing as inflation hedge
+  * Expectations can dominate interest rate channel → weak monetary transmission
+  * Policy implications: forward guidance, communication, expectations management
+- Cross-cutting theme connects: Mishkin's expectations channel, Taylor's counterfactual, Chodorow-Reich's measurement issues, Russian evidence (Sinyakov, Demidova, Smirnova, Zvereva)
+- File: concepts/rol-ozhidanii-v-monetarnoi-politike-i-zhilishchnom-rynke.md
+- Updated index.md (total: 17 pages) and log.md
+
+## [2026-07-16] final synthesis | Comprehensive analysis of monetary-housing interaction
+- Created final synthesis document linking all 8 conceptual pages
+- Structure: 6 key findings, connections between concepts, policy implications for CBR
+- Key results:
+  * Weak monetary transmission in Russia (elasticity 1.5-2.3%, pass-through broken)
+  * Double function of housing amplifies effects (consumption + investment)
+  * Expectations channel can dominate interest rate channel
+  * Macroprudential policy as complement (not substitute)
+  * Optimal policy mix: rule-based MP + targeted MPP + improved communication
+- Policy recommendations for ЦБ РФ: anchoring expectations, restructuring subsidized mortgages, optimizing MPP, monitoring expectations, looking through shelter inflation
+- Diagram of connections between concepts
+- Future research directions: empirical (quantifying expectations), theoretical (DSGE with expectations), policy evaluation
+- File: queries/sintez-monetarnaya-politika-i-rynok-zhilya.md
+- Total pages: 18 (added final synthesis)
 
 ## [2026-07-16] summary | Step 4: Comprehensive bibliography on monetary policy and housing
 - Created master bibliography document covering all 13 research papers from Steps 1-3

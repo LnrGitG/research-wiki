@@ -68,6 +68,12 @@ sha256: <hex digest of the raw content below the frontmatter>
 - `econometrics` — эконометрические методы, модели
 - `cross-country` — международные сравнения, межстрановой анализ
 
+### Денежно-кредитная политика
+- `monetary-policy` — монетарная политика, ключевая ставка, трансмиссионный механизм
+- `mortgage-pass-through` — передача изменений ставки ЦБ в ипотечные ставки
+- `collateral-constraint` — кредитные ограничения, обеспеченные стоимостью жилья
+- `housing-cycle` — циклы рынка жилья, boom-bust
+
 ### Мета
 - `comparison` — сравнительный анализ
 - `literature-review` — обзор литературы

@@ -45,3 +45,6 @@ confidence: high
 - [[lgotnaya-ipoteka|Льготная ипотека]]
 - [[zhilischnaya-inflyaciya|Жилищная инфляция]]
 - [[dostupnost-zhilya|Доступность жилья]]
+- [[transmisionnyi-mehanizm-dkp-zhile|Трансмиссионный механизм ДКП через рынок жилья]]
+- [[collateral-constraint-channel|Канал кредитных ограничений]]
+- [[zhilishchnye-cikly-i-monetarnaya-politika|Жилищные циклы и монетарная политика]]

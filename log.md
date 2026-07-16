@@ -24,3 +24,15 @@
 - **Comparisons (1):** subsidirovanie-mezhdunarodnyi-opyt.md
 - Total: 8 pages with cross-references
 - All pages added to index.md
+
+## [2026-07-16] ingest | Academic literature: monetary policy and housing market
+- Sources: 4 seminal papers (Iacoviello 2005, Taylor 2007, Mishkin 2007, Chodorow-Reich & Mehrotra 2026)
+- Extracted via pymupdf4llm → raw/papers/workpapers-monetary-policy/
+- SCHEMA.md updated: added 4 new tags (monetary-policy, mortgage-pass-through, collateral-constraint, housing-cycle)
+- Pages created:
+  - concepts/transmisionnyi-mehanizm-dkp-zhile.md — 6 channels Mishkin (2007)
+  - concepts/collateral-constraint-channel.md — Iacoviello (2005) DSGE model
+  - concepts/shelter-inflation-optimal-monetary-policy.md — Chodorow-Reich & Mehrotra (2026) "unorthodox view"
+  - queries/zhilishchnye-cikly-i-monetarnaya-politika.md — Taylor (2007) counterfactual analysis
+- Total: 4 new pages, updated 3 existing pages (zhilischnaya-inflyaciya, dostupnost-zhilya, bank-rossii)
+- All pages added to index.md (total: 13 pages)

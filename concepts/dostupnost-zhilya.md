@@ -57,6 +57,8 @@ Damen, Goeyvaerts (2023, Бельгия): каждый евро снижения
 ## Связанные страницы
 - [[lgotnaya-ipoteka|Льготная ипотека]]
 - [[zhilischnaya-inflyaciya|Жилищная инфляция]]
-- [[effekt-zamescheniya|Эффект замещения]]
+- [[effekt-zamesheniya|Эффект замещения]]
+- [[collateral-constraint-channel|Канал кредитных ограничений]]
+- [[transmisionnyi-mehanizm-dkp-zhile|Трансмиссионный механизм ДКП через рынок жилья]]
 - [[regionalnaya-differenciaciya|Региональная дифференциация]]
 - [[subsidirovanie-mezhdunarodnyi-opyt|Международный опыт субсидирования]]

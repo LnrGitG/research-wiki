@@ -53,9 +53,20 @@ confidence: high
 
 Кейс Кузбасса: при губернаторе Тулееве — сдерживание цен на социально значимые товары; при Цивилеве — ускоренная инфляция из-за эффекта конвергенции.
 
-## Международный контекст
+## Международный контекст (монетарная политика)
 
-### BIS: H-CPI как «последняя миля» дезинфляции
+### Chodorow-Reich & Mehrotra (2026): "unorthodox view"
+Шоки 2022-2024 показали: mortgage rates удвоились, но shelter inflation не отразил этот рост. 
+Авторы оспаривают три ортодоксальные тезиса:
+1. CPI/PCE дают substantial weight rent → ЦБ должен реагировать
+2. House prices и mortgage rates НЕ входят в consumer price index → только OER
+3. Housing supply policy не влияет на conduct of monetary policy
+
+**Вывод**: optimal monetary policy должна игнорировать shelter inflation → focus on non-housing inflation. 
+
+См. подробнее: [[shelter-inflation-optimal-monetary-policy]]
+
+### BIS: H-CPI как «последняя миля» disinflation
 
 Бюллетень BIS №89 (Banerjee et al., 2024): жилищный компонент ИПЦ остаётся повышенным (~4,5%) и высокоустойчивым в развитых экономиках. Причины:
 - Измерительные лаги (~6 месяцев)

@@ -2,7 +2,7 @@
 
 > Content catalog. Every wiki page listed under its type with a one-line summary.
 > Read this first to find relevant pages for any query.
-> Last updated: 2026-07-16 | Total pages: 17
+> Last updated: 2026-07-16 | Total pages: 18
 
 ## Entities
 
@@ -21,6 +21,7 @@
 - [[shelter-inflation-optimal-monetary-policy|Shelter inflation и оптимальная монетарная политика]] — Chodorow-Reich & Mehrotra (2026): "unorthodox view" — optimal policy should ignore shelter inflation due to search frictions
 - [[rossiyskie-issledovaniya-transmissii-dkp|Российские исследования трансмиссии ДКП к рынку жилья]] — Sinyakov 2023/2025, Demidova 2025, Zvereva 2025, Smirnova 2025: эластичность спроса слабая, pass-through нарушен субсидиями, двойственная функция жилья
 - [[macroprudentialnaya-politika-rynok-zhilya|Макропруденциальная политика на рынке жилья]] — Kuttner & Shim 2013 (BIS), ЦБ РФ (2025), Лаптева (2025): DSTI limits, МПЛ, макропруденциальные надбавки
+- [[econometric-models-housing-market|Эконометрические модели жилищного рынка]] — 11 классов: Stock-flow, User cost, Tobin's Q, ECM/VECM, VAR/SVAR, DSGE, Panel FE, Spatial, DFM, Hedonic, Sentiment (LLM), тренды 1980s→2020s, применение к РФ
 
 ## Comparisons
 

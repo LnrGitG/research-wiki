@@ -2,7 +2,7 @@
 
 > Content catalog. Every wiki page listed under its type with a one-line summary.
 > Read this first to find relevant pages for any query.
-> Last updated: 2026-07-16 | Total pages: 8
+> Last updated: 2026-07-16 | Total pages: 9
 
 ## Entities
 
@@ -22,4 +22,5 @@
 - [[subsidirovanie-mezhdunarodnyi-opyt|Международный опыт субсидирования ипотеки]] — 8 стран (РФ, Колумбия, Бельгия, UK, Германия, США, Китай), уроки pass-through и капитализации
 
 ## Queries
-*No saved queries yet.*
+
+- [[ekonometricheskie-issledovaniya-rynka-nedvizhimosti-2020-2026|Обзор эконометрических исследований рынка недвижимости (2020–2026)]] — 10 статей: методы (DID, IV/GMM, FE-panel, структурные модели, Random Forest), результаты, методологические проблемы

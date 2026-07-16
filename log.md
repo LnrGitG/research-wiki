@@ -47,3 +47,21 @@
 - Pages created:
   - concepts/rossiyskie-issledovaniya-transmissii-dkp.md — synthesis of 4 Russian papers
 - Total: 1 new page, total becomes 14 pages
+
+## [2026-07-16] ingest | Macroprudential policy on housing market (Step 3)
+- Sources:
+  - Kuttner & Shim (2013, BIS WP433): 57 countries, 9 policy tools, DSTI limits most effective for credit, housing taxes for prices
+  - ЦБ РФ press release (April 2025): МПЛ and надбавки on mortgages, consumer credit, auto credit
+  - Лаптева Е.В. (2025, HSE Economic Journal): GMM dynamic panel, 591 banks, 2015-2021, MPP dampens credit growth with 2-quarter lag
+- Pages created:
+  - concepts/macroprudentialnaya-politika-rynok-zhilya.md — synthesis of international + Russian experience, policy comparison
+- SCHEMA.md: added tags macroprudential (not needed, existing tags sufficient)
+- Updated index.md (total: 15 pages) and log.md
+
+## [2026-07-16] summary | Step 4: Comprehensive bibliography on monetary policy and housing
+- Created master bibliography document covering all 13 research papers from Steps 1-3
+- Organized by: (1) International theories, (2) Russian empirical studies, (3) Macroprudential policy
+- File: queries/monetarnaya-politika-i-rynok-zhilya-kompleksnaya-bibliografiya.md
+- Links to all 6 conceptual pages + raw papers inventory
+- Key synthesis: monetary policy less effective in Russia (weak transmission, subsidized mortgages), macroprudential tools become primary risk-management instrument
+- Updated index.md (total: 16 pages) and log.md

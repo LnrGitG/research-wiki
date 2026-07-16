@@ -2,7 +2,7 @@
 
 > Content catalog. Every wiki page listed under its type with a one-line summary.
 > Read this first to find relevant pages for any query.
-> Last updated: 2026-07-16 | Total pages: 13
+> Last updated: 2026-07-16 | Total pages: 14
 
 ## Entities
 
@@ -19,6 +19,7 @@
 - [[transmisionnyi-mehanizm-dkp-zhile|Трансмиссионный механизм ДКП через рынок жилья]] — 6 каналов Mishkin (2007): user cost, expectations, supply, wealth effect, balance sheet, credit channel
 - [[collateral-constraint-channel|Канал кредитных ограничений (collateral constraint)]] — DSGE-модель Iacoviello (2005): borrowing capacity tied to house prices, amplification of demand shocks
 - [[shelter-inflation-optimal-monetary-policy|Shelter inflation и оптимальная монетарная политика]] — Chodorow-Reich & Mehrotra (2026): "unorthodox view" — optimal policy should ignore shelter inflation due to search frictions
+- [[rossiyskie-issledovaniya-transmissii-dkp|Российские исследования трансмиссии ДКП к рынку жилья]] — Sinyakov 2023/2025, Demidova 2025, Zvereva 2025, Smirnova 2025: эластичность спроса слабая, pass-through нарушен субсидиями, двойственная функция жилья
 
 ## Comparisons
 

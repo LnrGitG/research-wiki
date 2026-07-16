@@ -36,3 +36,14 @@
   - queries/zhilishchnye-cikly-i-monetarnaya-politika.md — Taylor (2007) counterfactual analysis
 - Total: 4 new pages, updated 3 existing pages (zhilischnaya-inflyaciya, dostupnost-zhilya, bank-rossii)
 - All pages added to index.md (total: 13 pages)
+
+## [2026-07-16] ingest | Russian research cluster: monetary policy transmission to housing
+- Sources: 4 Russian papers
+  - Sinyakov & Shelovanova (2023, ЦБ РФ WP120 → RJE 2025): interest rate elasticity weak (1.5-2.3% per 1pp)
+  - Demidova & Shchankina (2025, HSE/RAS): ECM for 85 regions — transmission broke in COVID/SWO (from 76 to 4 regions)
+  - Zvereva (2025, CBR+HSE, RJMF): regional asymmetry + spatial spillovers
+  - Smirnova (2025, Econs.online): double function of housing, 5 transmission channels, "irrational exuberance"
+- Extracted via web_extract + pymupdf4llm → raw/papers/russian-monetary-policy-housing/
+- Pages created:
+  - concepts/rossiyskie-issledovaniya-transmissii-dkp.md — synthesis of 4 Russian papers
+- Total: 1 new page, total becomes 14 pages

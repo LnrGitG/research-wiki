@@ -29,13 +29,14 @@ confidence: medium
 | **Asset-market (User cost)** | Structural | 1-2 | Quarterly, national | Poterba 1984 |
 | **Tobin's Q** | Structural | 2-3 | Quarterly, national | Topel-Rosen 1988, Madsen 2011 |
 | **Error correction (ECM)** | Time-series | 1-2 | Quarterly, MSA/metro | Wheaton 2014, DiPasquale-Wheaton 1994 (VECM) |
-| **VAR / SVAR** | Time-series | 5-7 | Quarterly, national/metro | ECB 2025 (SBVAR), Yunus 2012 (VECM, 10 стран) |
+| **VAR / SVAR / BVAR** | Time-series | 5-7 | Quarterly, national/metro | ECB 2025 (SBVAR), Yunus 2012 (VECM, 10 стран), **Лысенко 2025** (BVAR со знаковыми ограничениями, 7 шоков, РФ) |
 | **DSGE + VECM** | Structural hybrid | 5-10 | Quarterly, national | Brookes et al. 2011 (DSGE housing in VECM) |
 | **Panel FE/RE** | Panel | 1-2 | Annual/metro | Green-Malpezzi-Mayo 2005 (45 MSA) |
 | **Diffusion/Spatial** | Spatial econometrics | 1-3 | Quarterly, metro | Hilber-Vermeulen 2016 (England+Wales) |
 | **Dynamic factor (DFM)** | Time-series | 50+ series | Monthly, national | RBNZ 2025 (nowcasting) |
 | **Cross-section (hedonic)** | Structural | 1 | Annual/metro | Saiz 2010 (26 metro IV) |
 | **Sentiment (LLM)** | ML-based | 1-2 | Text + monthly | Rogoff-Yang 2026 (China-Japan) |
+| **Agent-Based Model (ABM)** | Computational | Много агентов | Quarterly, national | Bardoscia et al. 2025 (Bank of Spain WP 2502: UK housing + prudential) |
 
 ## Классификация по горизонтам прогноза
 
@@ -72,7 +73,7 @@ confidence: medium
 1. **1980s-1990s**: Structural models (stock-flow, asset-market, Tobin's Q)
 2. **2000s**: Time-series (ECM, VAR) + Panel (FE/RE, hedonic)
 3. **2010s**: Spatial econometrics, DSGE, cross-country comparisons
-4. **2020s**: ML (LLM sentiment), Dynamic factor models, SBVAR
+4. **2020s**: ML (LLM sentiment), Dynamic factor models, SBVAR, **BVAR со знаковыми ограничениями** (Лысенко 2025), Agent-Based Models (Bardoscia et al. 2025)
 
 ## Проблемы идентификации
 

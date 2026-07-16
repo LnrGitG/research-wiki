@@ -3,8 +3,8 @@ title: Трансмиссионный механизм ДКП через рын�
 created: 2026-07-16
 updated: 2026-07-16
 type: concept
-tags: [monetary-policy, mortgage, housing-prices, macroeconomic-factors]
-sources: [raw/papers/workpapers-monetary-policy/mishkin-2007-housing-monetary-transmission.md]
+tags: [monetary-policy, mortgage, housing-prices, macroeconomic-factors, BVAR]
+sources: [raw/papers/workpapers-monetary-policy/mishkin-2007-housing-monetary-transmission.md, raw/papers/monetary-transmission-through-the-housing-sector (1).md, raw/papers/VEK_2025_01_03.md, raw/papers/PEK_2015_02_01_BVAR.md]
 confidence: high
 ---
 
@@ -57,4 +57,16 @@ confidence: high
 Канал 4 (wealth effect) пересекается с [[dostupnost-zhilya|доступностью жилья]] —
 рост цен повышает богатство владельцев, но ухудшает доступность для новых покупателей.
 
-^[raw/papers/workpapers-monetary-policy/mishkin-2007-housing-monetary-transmission.md]
+## Эмпирические оценки для России
+
+### Ломиворотов (2015) — BVAR для ДКП в России
+- Bayesian VAR для оценки трансмиссии ДКП ЦБ РФ
+- Превосходит стандартную VAR и FAVAR по точности прогнозов
+- Позволяет устойчивые оценки при малых выборках
+
+### Лысенко (2025) — BVAR со знаковыми ограничениями, 7 шоков
+- ДКП шок объясняет до 30% вариации жилищных кредитов
+- Exchange rate объясняет до 43% вариации жилищных кредитов
+- Oil shock → demand channel: через реальные доходы → спрос на жильё
+
+^[raw/papers/workpapers-monetary-policy/mishkin-2007-housing-monetary-transmission.md, raw/papers/monetary-transmission-through-the-housing-sector (1).md, raw/papers/VEK_2025_01_03.md, raw/papers/PEK_2015_02_01_BVAR.md]

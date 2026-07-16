@@ -2,7 +2,7 @@
 
 > Content catalog. Every wiki page listed under its type with a one-line summary.
 > Read this first to find relevant pages for any query.
-> Last updated: 2026-07-16 | Total pages: 18
+> Last updated: 2026-07-16 | Total pages: 21 | Papers: ~60 (34 PDF+MD pairs + workpapers)
 
 ## Entities
 
@@ -16,12 +16,14 @@
 - [[ozhidaniya-ceny-zhilya|Ожидания и цены на жильё (США)]] — эндогенные ожидания как драйвер цен (Джекобсон, Fed 2022), противоречие со структурными моделями
 - [[regionalnaya-differenciaciya|Региональная дифференциация рынка жилья]] — кластеры регионов, концентрация господдержки (84% в 3 регионах), конвергенция цен, индекс конкурентоспособности
 - [[zhilischnaya-inflyaciya|Жилищная инфляция]] — феномен роста цен при стагнации доходов, драйверы, измерение (ИПЦ vs стройинфляция), Svensson: PTI vs UCTI
-- [[transmisionnyi-mehanizm-dkp-zhile|Трансмиссионный механизм ДКП через рынок жилья]] — 6 каналов Mishkin (2007): user cost, expectations, supply, wealth effect, balance sheet, credit channel
+- [[transmisionnyi-mehanizm-dkp-zhile|Трансмиссионный механизм ДКП через рынок жилья]] — 6 каналов Mishkin (2007): user cost, expectations, supply, wealth effect, balance sheet, credit channel; расширение: BVAR со знаковыми ограничениями (Лысенко 2025, 7 шоков), Bank of England WP1115 (Albuquerque et al.)
+- [[macroeconomic-shocks-housing|Макроэкономические шоки и цены на жилье]] — Лысенко (2025): 7 шоков (жильё спрос/предложение, потребительский спрос/предложение, ДКП, кредит, нефть, курс). Нефть → +доходы → +спрос на жильё (1% нефть → +0.01% отн. цен); курс объясняет 43% вариации кредитов; housing supply shock → +CPI
 - [[collateral-constraint-channel|Канал кредитных ограничений (collateral constraint)]] — DSGE-модель Iacoviello (2005): borrowing capacity tied to house prices, amplification of demand shocks
-- [[shelter-inflation-optimal-monetary-policy|Shelter inflation и оптимальная монетарная политика]] — Chodorow-Reich & Mehrotra (2026): "unorthodox view" — optimal policy should ignore shelter inflation due to search frictions
-- [[rossiyskie-issledovaniya-transmissii-dkp|Российские исследования трансмиссии ДКП к рынку жилья]] — Sinyakov 2023/2025, Demidova 2025, Zvereva 2025, Smirnova 2025: эластичность спроса слабая, pass-through нарушен субсидиями, двойственная функция жилья
-- [[macroprudentialnaya-politika-rynok-zhilya|Макропруденциальная политика на рынке жилья]] — Kuttner & Shim 2013 (BIS), ЦБ РФ (2025), Лаптева (2025): DSTI limits, МПЛ, макропруденциальные надбавки
-- [[econometric-models-housing-market|Эконометрические модели жилищного рынка]] — 11 классов: Stock-flow, User cost, Tobin's Q, ECM/VECM, VAR/SVAR, DSGE, Panel FE, Spatial, DFM, Hedonic, Sentiment (LLM), тренды 1980s→2020s, применение к РФ
+- [[shelter-inflation-optimal-monetary-policy|Shelter inflation и оптимальная монетарная политика]] — Chodorow-Reich & Mehrotra (2026): "unorthodox view" — optimal policy should ignore shelter inflation due to search frictions; BIS Bulletin 89 (Banerjee et al., 2024): housing cost как последнее препятствие disinflation
+- [[rossiyskie-issledovaniya-transmissii-dkp|Российские исследования трансмиссии ДКП к рынку жилья]] — Sinyakov 2023/2025, Demidova 2025, Zvereva 2025, Smirnova 2025, Лысенко 2025, Жирнов 2025, Гафарова 2023, Ломиворотов 2015: эластичность спроса слабая, pass-through нарушен субсидиями, BVAR для РФ, гетерогенность рефинансирования
+- [[macroprudentialnaya-politika-rynok-zhilya|Макропруденциальная политика на рынке жилья]] — Kuttner & Shim 2013 (BIS), ЦБ РФ (2025), Лаптева (2025), Bank of Spain ABM (Bardoscia et al., 2025): DSTI limits, МПЛ, LTI caps, capital requirements
+- [[construction-productivity-regulation|Производительность строительства и регуляция]] — D'Amico, Glaeser, Gyourko, Kerr, Ponzetto (2023): land-use regulation → smaller builders → less tech investment; АКРА (2024): российские девелоперы; НРА (2024): рынок после отмены льготной ипотеки
+- [[econometric-models-housing-market|Эконометрические модели жилищного рынка]] — 12 классов: Stock-flow, User cost, Tobin's Q, ECM/VECM, VAR/SVAR/BVAR, DSGE, Panel FE, Spatial, DFM, Hedonic, Sentiment (LLM), **ABM** (Bank of Spain 2025), тренды 1980s→2020s, применение к РФ; BVAR со знаковыми ограничениями (Ломиворотов 2015, Лысенко 2025)
 
 ## Comparisons
 

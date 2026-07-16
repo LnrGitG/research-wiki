@@ -2,7 +2,7 @@
 
 > Content catalog. Every wiki page listed under its type with a one-line summary.
 > Read this first to find relevant pages for any query.
-> Last updated: 2026-07-16 | Total pages: 9
+> Last updated: 2026-07-16 | Total pages: 10
 
 ## Entities
 
@@ -24,3 +24,4 @@
 ## Queries
 
 - [[ekonometricheskie-issledovaniya-rynka-nedvizhimosti-2020-2026|Обзор эконометрических исследований рынка недвижимости (2020–2026)]] — 10 статей: методы (DID, IV/GMM, FE-panel, структурные модели, Random Forest), результаты, методологические проблемы
+- [[mirovoi-obzor-investitsii-vypusk-modeli|Мировой обзор: инвестиции, выпуск, модели жилищного рынка]] — 37 работ: DiPasquale-Wheaton 4QD, Topel-Rosen Tobin's Q, Saiz supply elasticity, 3 tiers для загрузки

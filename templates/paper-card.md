@@ -1,0 +1,11 @@
+## file-name.md
+- title:
+- authors:
+- year:
+- method:
+- data:
+- key_result:
+- relevance: medium
+- status: new
+- used_in:
+- notes:

@@ -119,3 +119,10 @@
   - Шулекин, Шулекина: цифровая трансформация регулирования жилищного строительства
 - Concepts updated: econometric-models-housing-market.md, transmisionnyi-mehanizm-dkp-zhile.md
 - Index and log updated. Total papers in raw/papers: ~60 (34 PDF+MD pairs + additional workpapers)
+
+## [2026-07-25] create | Economical wiki maintenance scaffold
+- Added warm-layer catalog: raw/papers/_catalog.md (short card per extracted source; no page per PDF).
+- Added templates: templates/concept.md, templates/query.md, templates/paper-card.md.
+- Added scripts: scripts/convert_pdfs.py (idempotent PDF→MD, skips _archive/Workpapers, flags error-page/image-only) and scripts/lint_wiki.py (non-blocking by default; --strict fails on broken wikilinks).
+- Cleanup: moved two bad extracted sources to _archive/rejected/2026-07-25/ (chodorow-reich-2025-cpi-housing = access denied; dipasquale-wheaton-1992 = image-only/empty extraction).
+- Verified: convert_pdfs.py --no-recursive → converted=0 skipped=33 failed=0; lint_wiki.py → problems=0 warnings=170 (mostly missing catalog cards for existing raw sources).

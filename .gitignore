@@ -2,6 +2,9 @@
 raw/papers/Workpapers/
 *.pdf
 
+# Local/archive material not for mobile sync
+_archive/
+
 # Obsidian
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json

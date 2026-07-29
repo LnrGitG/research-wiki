@@ -37,8 +37,9 @@ confidence: medium
 | **Panel FE/RE** | Panel | 1-2 | Annual/metro | Green-Malpezzi-Mayo 2005 (45 MSA), **Glindro 2008 (9 стран АТР)** |
 | **Diffusion/Spatial** | Spatial econometrics | 1-3 | Quarterly, metro | Hilber-Vermeulen 2016, **Bailey 2014 (spatio-temporal, strong/weak dependence)**, **Kaas 2024 (housing boom)**, **Mattera 2025 (spatio-temporal clustering)** |
 | **Cross-section (hedonic)** | Structural | 1 | Annual/metro | Saiz 2010 (26 metro IV) |
-| **Sentiment (LLM)** | ML-based | 1-2 | Text + monthly | Rogoff-Yang 2026 (China-Japan) |
-| **Machine Learning** | ML-based | 1 | Cross-section/panel | **Qiongwei-Ye 2024 (Ames, Iowa)**, **Hao (prediction model)** |
+|| **Sentiment (LLM)** | ML-based | 1-2 | Text + monthly | Rogoff-Yang 2026 (China-Japan) ||
+|| **Sentiment (Boolean/Keyword)** | Rule-based | 1-2 | Text + daily/weekly/monthly | **Horvath et al. 2026 (MNB WP 2026/3, Hungary SFSI)** ||
+|| **Machine Learning** | ML-based | 1 | Cross-section/panel | **Qiongwei-Ye 2024 (Ames, Iowa)**, **Hao (prediction model)** ||
 | **Nowcasting** | Mixed-frequency | 10-100 series | Daily/monthly | **Koop et al. 2019 (MF-VAR, UK regional)**, **Zubarev (MFBVAR, ВВП РФ)**, **Tallman-Zaman 2020 (BVAR + surveys)**, **Entropic Tilting (BVAR + nowcasts)** |
 | **Agent-Based Model (ABM)** | Computational | Много агентов | Quarterly, national | Bardoscia et al. 2025 (Bank of Spain WP 2502) |
 | **Growth-at-Risk (GaR)** | Quantile regressions | 1-3 | Quarterly | **Adrian 2020 (IMF, downside risks house prices)** |

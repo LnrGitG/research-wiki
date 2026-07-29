@@ -86,3 +86,4 @@ cluster_size: 17
 
 - [[concepts/econometric-models-housing-market]]
 - [[reviews/rossiyskie-issledovaniya-rynka-zhilya]]
+- [[reviews/mnb-wp-2026-3-sentiment-fsi-hungary]]  # SFSI — sentiment-based stress index, complements FISS (factor-based)

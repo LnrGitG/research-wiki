@@ -34,7 +34,7 @@ confidence: medium
 | **FAVAR** | Time-series factor | 50-100+ series | Quarterly/monthly | **Bernanke 2003 (классика)**, **Eickmeier 2011 (TV-FAVAR)**, **Mumtaz 2011 (UK)**, **Gupta 2009 (house price inflation)**, **Gao 2022 (региональные цены)**, **Paccagnini 2017**, **Soares 2011 (ЕА)**, **Lin (high-dimensional)** |
 | **Dynamic factor (DFM)** | Time-series | 50+ series | Monthly, national | RBNZ 2025, **Das 2010 (DFM vs VAM)**, **Ng (иерархический факторный анализ США)**, **Smith 2025 (NZ)**, **Yarui 2011 (DFM vs LBVAR)** |
 | **DSGE + VECM** | Structural hybrid | 5-10 | Quarterly, national | Brookes et al. 2011, **Paries (DSGE, ДКП и жильё США/ЕА)** |
-| **Panel FE/RE** | Panel | 1-2 | Annual/metro | Green-Malpezzi-Mayo 2005 (45 MSA), **Glindro 2008 (9 стран АТР)** |
+| **Price-to-Cost (Tobin's q)** | Structural | 1 | Quarterly, metro | **Glaeser-Gyourko 2018 (JEP, housing supply q-ratio)** |
 | **Diffusion/Spatial** | Spatial econometrics | 1-3 | Quarterly, metro | Hilber-Vermeulen 2016, **Bailey 2014 (spatio-temporal, strong/weak dependence)**, **Kaas 2024 (housing boom)**, **Mattera 2025 (spatio-temporal clustering)** |
 | **Cross-section (hedonic)** | Structural | 1 | Annual/metro | Saiz 2010 (26 metro IV) |
 || **Sentiment (LLM)** | ML-based | 1-2 | Text + monthly | Rogoff-Yang 2026 (China-Japan) ||

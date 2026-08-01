@@ -1,0 +1,202 @@
+version: 1
+sources:
+  - id: cbr_mortgage_new_loans
+    name: "Новые ипотечные кредиты (ЦБ РФ, 02_04)"
+    type: api
+    url: "https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_04_New_loans_ind.xlsx"
+    format: xlsx
+    schedule: "0 7 * * *"  # ежедневно 07:00
+    table: cbr_mortgage_new_loans
+    primary_key: [period, region, metric, currency]
+    description: "Объём и количество новых ипотечных кредитов по регионам РФ (млн руб., шт.) - 3 листа: в рублях, в валюте, итого"
+    # sheet не указан = все листы
+    header_row: null  # обрабатываем структуру вручную
+
+  - id: cbr_usd_rate
+    name: "Курс USD (ЦБ РФ, динамика)"
+    type: api
+    url: "https://cbr.ru/scripts/XML_dynamic.asp?date_req1=01/01/2015&date_req2=31/12/2026&VAL_NM_RQ=R01235"
+    format: xml
+    schedule: "0 8 * * *"
+    table: cbr_usd_rate
+    primary_key: date
+    description: "Динамика курса USD по данным ЦБ РФ"
+
+  - id: cbr_eur_rate
+    name: "Курс EUR (ЦБ РФ, динамика)"
+    type: api
+    url: "https://cbr.ru/scripts/XML_dynamic.asp?date_req1=01/01/2015&date_req2=31/12/2026&VAL_NM_RQ=R01239"
+    format: xml
+    schedule: "0 8 * * *"
+    table: cbr_eur_rate
+    primary_key: date
+    description: "Динамика курса EUR по данным ЦБ РФ"
+
+  # DOM.RF sources (manual export)
+  - id: domrf_housing_starts
+    name: "Ввод жилья (ДОМ.РФ, статистические ряды)"
+    type: local_file
+    path: "data/raw/domrf"
+    format: csv
+    file_pattern: "*ввод*жилья*.csv"
+    data_type: housing_starts
+    schedule: manual
+    table: domrf_housing_starts
+    primary_key: [region, period, metric]
+    description: "Объём ввода жилья по регионам (тыс. кв.м) - ручной экспорт из ЕИСЖС"
+
+  - id: domrf_apartment_sales
+    name: "Реализация квартир (ДОМ.РФ, статистические ряды)"
+    type: local_file
+    path: "data/raw/domrf"
+    format: csv
+    file_pattern: "*реализац*квартир*.csv"
+    data_type: sales
+    schedule: manual
+    table: domrf_apartment_sales
+    primary_key: [region, period, metric]
+    description: "Реализация квартир по регионам (шт., млн руб) - ручной экспорт из ЕИСЖС"
+
+  - id: domrf_construction
+    name: "Показатели жилищного строительства (ДОМ.РФ)"
+    type: local_file
+    path: "data/raw/domrf"
+    format: csv
+    file_pattern: "*показател*жилищ*строительств*.csv"
+    data_type: construction
+    schedule: manual
+    table: domrf_construction
+    primary_key: [region, period, metric]
+    description: "Основные показатели ЖС (ввод, в стройке, введено) - ручной экспорт"
+
+  - id: domrf_prices
+    name: "Цены на жилье (ДОМ.РФ)"
+    type: local_file
+    path: "data/raw/domrf"
+    format: csv
+    file_pattern: "*цен*жиль*.csv"
+    data_type: prices
+    schedule: manual
+    table: domrf_prices
+    primary_key: [region, period, metric]
+    description: "Цены на жилье по регионам (руб/кв.м) - ручной экспорт"
+
+  # Rosstat sources
+  - id: rosstat_cpi
+    name: "ИПЦ (Потребительские цены) Росстат"
+    type: api
+    url: "https://rosstat.gov.ru/storage/mediabank/ind_potr_cen.csv"
+    format: csv
+    schedule: "0 9 1 * *"  # 1-е число месяца
+    table: rosstat_cpi
+    primary_key: [period, category]
+    description: "Индекс потребительских цен по категориям (месячный)"
+
+  - id: rosstat_construction
+    name: "Объёмы строительных работ Росстат"
+    type: api
+    url: "https://rosstat.gov.ru/storage/mediabank/stroit.csv"
+    format: csv
+    schedule: "0 9 1 * *"
+    table: rosstat_construction
+    primary_key: [period, region, metric]
+    description: "Объёмы строительных работ по регионам (млн руб)"
+
+  - id: rosstat_income
+    name: "Денежные доходы населения Росстат"
+    type: api
+    url: "https://rosstat.gov.ru/storage/mediabank/dohod.csv"
+    format: csv
+    schedule: "0 9 1 * *"
+    table: rosstat_income
+    primary_key: [period, region]
+    description: "Среднедушевые денежные доходы по регионам (руб/мес)"
+
+  # ЕИСЖС / ДОМ.РФ from Yandex Disk (full statistical series)
+  - id: eiszhk_construction_stock
+    name: "Строящиеся дома 214-ФЗ (запас, ЕИСЖС)"
+    type: local_file
+    path: "data/raw/domrf/yandex_disk_import"
+    format: xlsx
+    file_pattern: "*01_01_stockvariablesexsales.xlsx"
+    schedule: manual
+    table: eiszhk_construction_stock
+    primary_key: [region, period, metric]
+    description: "Кол-во домов, общая/жилая площадь, кол-во квартир по регионам (на дату)"
+
+  - id: eiszhk_construction_flow
+    name: "Проектные декларации (поток, ЕИСЖС)"
+    type: local_file
+    path: "data/raw/domrf/yandex_disk_import"
+    format: xlsx
+    file_pattern: "*01_02_flowvariables.xlsx"
+    schedule: manual
+    table: eiszhk_construction_flow
+    primary_key: [region, period, metric]
+    description: "Проекты, размещённые за период: кол-во домов, площадь по регионам"
+
+  - id: eiszhk_dd_contracts
+    name: "ДДУ (действующие договоры, ЕИСЖС)"
+    type: local_file
+    path: "data/raw/domrf/yandex_disk_import"
+    format: xlsx
+    file_pattern: "*01_03_sales.xlsx"
+    schedule: manual
+    table: eiszhk_dd_contracts
+    primary_key: [region, period, metric]
+    description: "Действующие ДДУ: кол-во, площадь квартир по регионам (на дату)"
+
+  - id: eiszhk_permits_flow
+    name: "Разрешения на строительство (поток, ЕИСЖС)"
+    type: local_file
+    path: "data/raw/domrf/yandex_disk_import"
+    format: xlsx
+    file_pattern: "*01_04_flowvariables.xlsx"
+    schedule: manual
+    table: eiszhk_permits_flow
+    primary_key: [region, period, metric]
+    description: "Выданные разрешения за период: кол-во домов, площадь по регионам"
+
+  - id: eiszhk_permits_stock
+    name: "Разрешения на строительство (запас, ЕИСЖС)"
+    type: local_file
+    path: "data/raw/domrf/yandex_disk_import"
+    format: xlsx
+    file_pattern: "*действующих на дату*.xlsx"
+    schedule: manual
+    table: eiszhk_permits_stock
+    primary_key: [region, period, metric]
+    description: "Действующие разрешения на дату: кол-во домов, площадь по регионам"
+
+  - id: eiszhk_complex_dev
+    name: "Комплексное развитие территорий (ЕИСЖС)"
+    type: local_file
+    path: "data/raw/domrf/yandex_disk_import"
+    format: xlsx
+    file_pattern: "*комплексного развития*.xlsx"
+    schedule: manual
+    table: eiszhk_complex_dev
+    primary_key: [region, period, metric]
+    description: "Дома по договорам КРТ: кол-во, площадь по регионам"
+
+  - id: eiszhk_summary
+    name: "Сводные данные строящегося жилья (ЕИСЖС)"
+    type: local_file
+    path: "data/raw/domrf/yandex_disk_import"
+    format: xlsx
+    file_pattern: "*Сводные данные*.xlsx"
+    schedule: manual
+    table: eiszhk_summary
+    primary_key: [region, period, metric]
+    description: "Реализация, стройготовность, плановые сроки ввода по РФ/регионам/городам/застройщикам"
+
+  - id: eiszhk_mortgage_izhs
+    name: "ИЖК на цели ИЖС (ЕИСЖС/ДОМ.РФ)"
+    type: local_file
+    path: "data/raw/domrf/yandex_disk_import"
+    format: xlsx
+    file_pattern: "*ИЖК*ИЖС*.xlsx"
+    schedule: manual
+    table: eiszhk_mortgage_izhs
+    primary_key: [period, metric]
+    description: "Кол-во/объём ИЖК на ИЖС, новые/переуступки, оценки ДОМ.РФ"

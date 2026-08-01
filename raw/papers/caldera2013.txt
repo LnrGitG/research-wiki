@@ -1,0 +1,4906 @@
+The price responsiveness of housing supply in OECD countries
+Aida Caldera ⇑, Åsa Johansson
+OECD, Economics Department, 2 Rue André Pascal, 75775 Paris CEDEX 16, France
+a r t i c l e
+i n f o
+Article history:
+Received 9 January 2012
+Available online 25 May 2013
+JEL classiﬁcation codes:
+R31
+R21
+R38
+H11
+Keywords:
+Housing supply
+Housing markets
+House prices
+Land use regulation
+a b s t r a c t
+The responsiveness of housing supply to changes in prices bears important implications for
+the evolution of housing prices and the speed of adjustment of housing markets. Based on a
+stock-ﬂow model of the housing market estimated within an error correction framework,
+this paper estimates the long-run price elasticity of new housing supply in 21 OECD coun-
+tries. Estimates suggest that the responsiveness of housing supply to price changes varies
+substantially across countries. It is relatively more ﬂexible in North America and some Nor-
+dic countries, while it is more rigid in continental European countries and in the United
+Kingdom. The responsiveness of housing supply depends not only on national geographical
+and urban characteristics but also on policies, such as land use and planning regulations.
+ 2013 Elsevier Inc. All rights reserved.
+1. Introduction
+The responsiveness of housing supply to changes in
+prices is a crucial factor in the functioning of housing mar-
+kets. It determines the extent to which the housing market
+responds to demand shocks with increased construction or
+higher prices. This has potential implications for the evolu-
+tion of key housing market outcomes such as housing prices
+and affordability. For instance, existing evidence suggests
+that in supply-constrained markets, most of the adjustment
+occurs in the price of housing rather than in expanding
+housing supply (Glaeser et al., 2008; Gyourko, 2009). Other
+evidence suggests that regions with high supply responsive-
+ness have relatively small price rises following demand
+shocks (e.g. Grimes and Aitken, 2006). Housing price ‘‘bub-
+bles’’ are more common and last longer in areas where sup-
+ply is inelastic Glaeser et al. (2008). Supply conditions also
+matter for house price volatility and aggregate economic
+stability. An unresponsive housing supply can increase the
+sensitivity of house prices to demand shocks and, thus,
+inﬂuence private consumption patterns and residential
+investment. For instance, in the short to medium term, an
+increase in housing demand will translate into lower in-
+creases in real house prices in areas with more responsive
+housing supply. However, the ﬂip side is that in ﬂexible-sup-
+ply areas, housing investment adjusts more rapidly to great-
+er changes in demand contributing to more cyclical swings
+in economic growth, as witnessed by recent developments.
+A quantiﬁcation of the responsiveness of housing supply
+with respect to prices can, therefore, shed light on the trend
+evolution and volatility of house prices in OECD countries. It
+can also provide valuable information for housing policy re-
+forms aimed at dampening housing price volatility and
+increasing macroeconomic resilience to shocks.
+Despite its importance for the analysis of housing mar-
+kets and policy, very little cross-country empirical evi-
+dence exists on the responsiveness of supply with respect
+to prices, partly reﬂecting data constraints. This paper aims
+to ﬁll this gap, by estimating the long-run price elasticity of
+new housing supply for 21 OECD countries for which data
+1051-1377/$ - see front matter  2013 Elsevier Inc. All rights reserved.
+http://dx.doi.org/10.1016/j.jhe.2013.05.002
+⇑Corresponding author. Fax: +33 1 44 30 63 83.
+E-mail addresses: aida.calderasanchez@oecd.org (A. Caldera), Asa.
+Johansson@oecd.org (Å. Johansson).
+Journal of Housing Economics 22 (2013) 231–249
+Contents lists available at SciVerse ScienceDirect
+Journal of Housing Economics
+journal homepage: www.elsevier.com/locate/jhec
+
+
+are available. The analysis is based on a stock-ﬂow model
+of the housing market. The price-elasticity of new housing
+supply is estimated separately for each country over the
+period from the early 1980s to mid-2000s, as the price
+coefﬁcient on a long-run supply equation, which is jointly
+estimated with a long-run price equation in an error
+correction framework.1 This empirical approach has the
+advantage of being simple enough, so that comparable esti-
+mates can be obtained for a large number of OECD countries,
+and be grounded on sound theoretical foundations. Ample
+evidence suggests that housing markets only adjust slowly
+to changes in market conditions due to, among other factors,
+product heterogeneity and costly search and transaction
+costs. The error correction framework employed in this pa-
+per takes into account such slow adjustment of housing
+markets.
+The empirical results suggest that housing responsive-
+ness varies substantially across countries, with potential
+consequences for the speed of adjustment of housing mar-
+kets. New housing supply tends to be relatively ﬂexible in
+North America and some Nordic countries, while it is more
+rigid in continental European countries and in the United
+Kingdom. For instance, long-run supply elasticities in the
+United States, Canada, Sweden and Denmark are above
+unity, implying that in response to a demand shock, hous-
+ing output will increase relatively more than prices. On the
+other hand, the responsiveness of housing supply tends to
+be quite low in countries such as Switzerland, the Nether-
+lands, Austria or Italy. These estimates are broadly in line
+with casual and early evidence (e.g. Swank et al., 2002).
+The responsiveness of housing supply depends not only
+on national geographical and urban characteristics but also
+on policies, such as land use, planning and rental regula-
+tions. While the link is hard to establish empirically due
+to data limitations, we present some suggestive evidence
+that cumbersome land use and planning regulations across
+OECD countries are associated with a less responsive hous-
+ing supply in the long-run.
+The remainder of the paper is organised as follows. Sec-
+tion 2 presents the theoretical framework used to analyse
+the housing sector. Section 3, describes the approach to
+estimate the price-elasticity of new housing supply and
+the data. Section 4 presents the empirical results and com-
+pares the estimates of the responsiveness of housing sup-
+ply with those of other studies. Section 5 discusses
+potential drivers of differences in the responsiveness of
+housing supply across countries. Section 6 concludes and
+discusses policy options to enhance the responsiveness of
+housing supply.
+2. A model of the housing sector
+This section presents the conceptual framework under-
+lying the estimation of the long-run price elasticity of new
+housing supply. The empirical approach builds on a stock-
+ﬂow model of the housing sector to estimate the elasticity
+of new housing supply with respect to price. This model
+has long been used in the literature as the main theoretical
+framework to describe the housing sector (see Di Pasquale
+and Wheaton (1994) for a review). It has the key advantage
+of considering the dual role of housing as a capital invest-
+ment and consumption good, as well as to distinguish be-
+tween the stock of housing and the ﬂow of housing
+investment. One important feature of the housing market
+is that the housing stock adjusts slowly to changes in de-
+mand: housing investment is lumpy as building takes time
+and depreciation of the housing stock is slow. Thus, hous-
+ing markets can clear rapidly only if prices react strongly to
+tensions between demand and supply. However, the heter-
+ogeneity of housing generates search and transaction costs
+which make it difﬁcult for households to react swiftly to
+price signals (Di Pasquale and Wheaton, 1994). Hence,
+stock equilibrium is achieved only in the long-run.
+In the long-run, two important drivers will inﬂuence
+housing demand (Meen, 2002). First, expected or perma-
+nent income and developments in the age and structure
+of the population will determine the quantity of housing
+demanded. Second, the user cost of holding the housing as-
+set, which is in turn inﬂuenced by interest rates, taxation
+and expected capital gains of owning the house also mat-
+ters for demand. Housing demand can be expressed as a
+function of exogenous factors such as, income, demo-
+graphic characteristics and the user cost of housing (sum-
+marised in X1), and the real price level of housing (P). In the
+long run, the demand for housing (D) determines the equi-
+librium price that will clear the stock of housing (S), as gi-
+ven by the following equation:
+DðX1; PÞ ¼ S ¼
+Z T
+0
+dS
+ð1Þ
+On the supply side, the stock of housing slowly depreci-
+ates over time, at a depreciation rate @, and expands grad-
+ually with new residential investment (I) as given by the
+differential Eq. (2):
+dS ¼ IðX2; PÞ  @S
+ð2Þ
+The stock equilibrium demand, given by Eq. (1) leads to
+long-run adjustments in the rate of growth of the housing
+stock through investment in new construction. Residential
+investment is, in turn, a function of cost shifters, such as
+costs of production in terms of land, labour and materials,
+and housing policies summarised in the vector X2, as well
+as real house prices. Because house prices affect the incen-
+tives to build new housing and/or maintain the existing
+stock of housing they have an effect on residential
+investment.
+Inverting the demand function (1) (assuming a log-lin-
+ear relationship between the variables) and adding an er-
+ror term ep
+t , the observed price, pt can be expressed as a
+function of the equilibrium price p
+t (determined by the
+housing stock and demand shifters):
+pt ¼ a0  a1st þ a’
+3X1 þ ep
+t ¼ p
+t þ ep
+t
+ð3Þ
+where all the variables are expressed in logs (and denoted
+in small letters) and the subscript t denotes time. Similarly,
+long-run residential investment can be expressed as
+1 The analysis is macro in nature, essentially treating each country as a
+single housing market. Although in reality housing markets are typically
+local or regional, country-level estimates give a sense of differences in the
+overall responsiveness of housing supply across countries.
+232
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+
+
+follows, where the coefﬁcient b1 denotes the long-run elas-
+ticity of investment with respect to prices2:
+it ¼ b0 þ b1pt þ b’
+2X2 þ ei
+t ¼ i
+
+t þ ei
+t
+ð4Þ
+Taking into account the slow adjustment of housing mar-
+kets the model further incorporates an error correction pro-
+cess in both the demand and supply sides. Ample evidence
+suggests that the housing market adjusts gradually to
+shocks due to, among other factors, transaction costs (e.g.
+Di Pasquale and Wheaton, 1994; Mayer and Somerville,
+2000). For instance, Di Pasquale and Wheaton (1994) sug-
+gest that product heterogeneity and costly searches imply
+that the anticipated time for selling a house can be long
+and exhibit signiﬁcant variance leading to a slow clearing
+of the housing market. Speciﬁcally, if the housing market
+is in equilibrium and a shock occurs, this creates a disequi-
+librium causing a wedge between the equilibrium price
+and the actual price level (ptpt
+⁄) due to such rigidities.
+For instance, if the desired level of the housing stock is high-
+er than the existing supply, a negative wedge will appear be-
+tween the actual housing and equilibrium price, and actual
+house prices will gradually rise spurring new residential
+investment until the equilibrium levels are reached.
+The following short-run demand equation summarises
+the dynamics of house prices and their reaction to housing
+market imbalances:
+Dpt ¼ /0 þ /1ep
+t1 þ /0
+2DX1 þ up
+t
+ð5Þ
+where D denotes the ﬁrst difference of a variable and ep
+t
+captures the disequilibrium between actual and equilib-
+rium house price. The speed of price adjustment to equilib-
+rium is captured by /1 and is expected to be negative
+reﬂecting the convergence between actual prices and equi-
+librium prices over time. Furthermore, changes in house
+prices are a function of changes in other factors such as
+household income or the user cost, summarised in X1 and
+up
+t is an error term.
+The dynamics of residential investment are, in turn, de-
+scribed by the following equation, where the error correc-
+tion term ei
+t tracks the level of over or under investment.
+Dit ¼ d0 þ d1ei
+t1 þ d0
+2DX2 þ ui
+t
+ð6Þ
+Eq. (6) indicates that a fraction d1 of the deviations in
+investment from equilibrium are corrected over the fol-
+lowing period, at a speed of adjustment d1 (with d1 < 0 to
+ensure convergence). The vector X2 in turn captures factors
+which inﬂuence changes in residential investment, such as
+variations in the costs of construction and ui
+t is an error
+term.
+3. Estimation and data
+3.1. Econometric model
+Building on the theoretical framework outlined above
+and on work by Hüfner and Lundsgaard (2007) and Rae
+and van den Noord (2006), the following long-run price
+and investment equations are estimated in an error correc-
+tion framework employing the Engle and Granger (1987)
+two-step estimation procedure. In order to obtain an esti-
+mate of the long-run price-elasticity of new housing sup-
+ply for each country, the following system of equations is
+estimated separately for each OECD country using quar-
+terly data:
+Pt ¼ a0 þ a1y1 þ a2Rt þ a3st þ a4dt þ ct þ ECTp
+t
+ð7Þ
+it ¼ b0 þ b1pt1 þ b2cct1 þ b3dt þ ct þ ECTi
+t
+ð8Þ
+The dependent variable in the demand equation is real
+house prices, pt, while the dependent variable in the supply
+equation is real gross residential investment, it. With re-
+spect to prices, the coefﬁcient of interest in these equations
+is b1, which measures the long-run elasticity of housing
+investment, or new housing supply. As a robustness check
+the investment equations were also estimated separately
+from the price equation. The resulting elasticity estimates
+and the country ranking in terms of responsiveness are in
+line with system results. The system approach is preferred
+as it allows for feedback between supply and demand and
+is a more efﬁcient estimation approach.
+The explanatory variables in the price equation include
+real income (yt), the real interest rate (Rt), the stock of res-
+idential dwellings (st), and a demographic variable (dt) cap-
+turing the share of the age cohort 25–44 in population, i.e.
+those who are more likely to buy housing. The real interest
+rate is a simple measure of the user cost, which measures
+the opportunity cost of capital tied up in the property or ta-
+ken on credit. The coefﬁcients on the stock of housing and
+interest rates are expected to be negative, while the coefﬁ-
+cient on income and demographics are expected to be po-
+sitive.
+The
+explanatory
+variables
+in
+the
+investment
+equation include real residential construction costs (cct1),
+real house prices (pt1) and the same demographic vari-
+ables included in the ﬁrst equation (dt), as the size and
+structure of the population is expected to inﬂuence the
+incentives to build. The coefﬁcients on construction costs
+are expected to be negative, while the coefﬁcients on
+prices and the demographic variable are expected to be po-
+sitive. All the variables are in logs, except the real interest
+rate. Both construction costs and real house prices enter
+lagged in the equation to reﬂect the nature of the construc-
+tion industry, where there is typically a lag between price
+signals and investment in housing, and to avoid potential
+endogeneity. In addition, both equations include a set of
+quarterly dummies ct to control for seasonal effects.
+The estimated residuals ECTp
+t and ECTi
+t are then in-
+cluded as error correction terms, in the following equa-
+tions explaining the short-term evolution of prices and
+investment:
+Dpt ¼ /0 þ /1Dyt þ /2DRt þ /3Dst þ /4Ddt
+þ /5ECTp
+t1 þ ct þ et
+ð9Þ
+Dit ¼ d0 þ d1Dcct1 þ d2Dpt1 þ d3Ddt þ d4ECTi
+t1
+þ ct þ tt
+ð10Þ
+2 The b1 parameter can be interpreted as the elasticity of the ﬂow of
+residential investment (or new supply) with respect to prices. The elasticity
+b1 divided by the depreciation rate ð@Þ of the housing stock.
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+233
+
+
+where ECTt1 is the error-correction term, i.e. the resid-
+ual from the long-run equation, lagged one period. The
+coefﬁcients /5 and d4 measure the (quarterly) speed of
+adjustment to the long term equilibrium. The parameter
+/5 is expected to be negative, as disequilibrium in prices
+in previous periods will adjust back to equilibrium over
+the next periods. Similarly the speed of adjustment in
+investment (d4) is expected to be negative as disequilib-
+rium in investment in the previous period should have a
+positive effect on investment in the next period; that is if
+the actual ﬂow of housing investment is lower than that
+predicted by fundamentals, investment will rise.
+Both systems of equations, the long-run relationships
+given by Eqs. (7) and (8) and the short-run relationships gi-
+ven by Eqs. (9) and (10), are jointly estimated using seem-
+ingly
+unrelated
+regressions
+(SUR),
+to
+account
+for
+heteroskedasticity and contemporaneous serial correla-
+tions in the error terms across equations.
+3.2. Data
+The estimation period differs across countries depending
+on data availability; however, the typical timeframe is from
+the 1980s to the mid-/late-2000s. Data deﬁnitions and
+sources are as follows. Real prices are inﬂation-adjusted
+nominal prices sourced from the OECD or from national data
+sources. The measure of housing supply is real residential
+investment, more precisely deﬁned as gross ﬁxed capital
+formation in the housing sector expressed in volume indi-
+ces, sourced from the OECD. The stock of housing is the total
+number of dwellings in a given country sourced from the
+United Nations Economic Commission for Europe (UNECE).
+The other variables involved in the estimation include, real
+income per capita, interest rates, population and construc-
+tion costs, which are sourced from different OECD dat-
+abases. Income is measured by either GDP per capita,
+deﬂated by the national GDP deﬂator, or by real household
+disposable income, depending on data availability. Interest
+rates are measured by the long or short-term real interest
+rate (to the extent that households are short-sighted; the
+short-term interest rate can inﬂuence their decision to buy
+a house), depending on the predominant type of mortgage
+loan interest readjustment in each country. Population is
+measured by the share of the 25–44 years old cohort in total
+population, or the total national population in that age co-
+hort depending on which variable gives the best model ﬁt.
+A detailed description of the variables and their sources is
+provided in the Data Appendix.
+Fig. 1 plots the evolution of real house prices over the
+sample period for the OECD countries included in the anal-
+ysis. Real house prices rose strongly in a majority of OECD
+countries since the mid-1980s. In several countries, prices
+have increased by more than 90% since the early 1980s (e.g.
+Ireland, Spain, the United Kingdom, the Netherlands, Bel-
+gium etc.). However, in a few countries real house prices
+remained stable or even decreased (e.g. Japan, Switzerland
+and Germany etc.).
+However, the increase in real house prices was accom-
+panied by increased housing investment in several coun-
+tries. Fig. 2 plots the real value of residential investment,
+which comprises major additions and renovations as well
+as new units, for the countries for which data are available.
+From the mid-1990s until 2006 investment grew rapidly in
+Spain, Ireland and the Nordic countries, while it was stag-
+nant or even declining in Germany, Switzerland, Japan and
+Austria. Despite the fact that the data used in the analysis
+do not allow to distinguish between the different compo-
+nents of residential investment, other sources indicate that
+in all countries new construction tends to constitute the
+largest share of housing investment 80% on average in
+2004 in countries for which data are available (Bulletin
+Housing). Only in Sweden, the United Kingdom and Poland
+does maintenance and repairs of existing dwellings ac-
+count for at least 30% of investment, possibly reﬂecting a
+relatively old stock of housing in these countries.
+4. Empirical results
+Tables 1 and 2 below report estimation results for the
+21 OECD countries, for which the data are available, show-
+ing the results for the long-run and short-run price and
+investment relationships respectively. Panel A summarises
+the results for the long-run relationships, while Panel B
+summarises the estimates for short-run dynamics.
+As a ﬁrst step, the order of integration of the series in-
+volved in the estimation of the long-run relationship is ver-
+iﬁed using the standard Augmented Dickey Fuller (ADF)
+test for the presence of unit roots. The tests include a con-
+stant, thus assuming that the overall mean is not zero, and
+a deterministic trend. The optimal lag length was chosen
+based on the Modiﬁed Akaike Information Criterion (MAIC)
+of Ng and Perron (2001). The results reported in the Appen-
+dix Table A1 provide evidence that, with a few exceptions,3
+the long run relationships are integrated of order one. While
+the use of quarterly data can mitigate the well known low
+power of such unit root tests in short data samples, some
+caution is needed in the interpretation of these unit root re-
+sults. Alternative Dickey-Fuller GLS tests, with higher power
+and better overall performance in terms of sample size than
+the standard ADF, yielded similar results. Then, the exis-
+tence of a long-run relationship between real house prices
+or investment and the explanatory variables in Eqs. (7)
+and (8) is veriﬁed including the error correction terms de-
+rived from the long-run relationship into the dynamic
+regressions (9) and (10). Each of the error correction terms
+has a negative sign and is statistically signiﬁcant, suggesting
+that Eqs. (7) and (8) can indeed be interpreted as long-run
+relationships. In the standard Engle Granger approach the
+existence of a co-integration relationship between the series
+would be tested by verifying the stationarity of the residuals
+from the long-run relationships. In this set-up the long-run
+relationships are, however, estimated employing seemingly
+unrelated regressions (SUR) rather than OLS, so the standard
+ADF tests of the residuals are not valid. The alternative test
+based on the signiﬁcance of the error correction term in
+the short-run equation is, therefore, used (see Banarjee
+et al., 1993).
+3 The only exception being that the population and price series tend to be
+stationary in levels for Italy, Spain and the United Kingdom, and investment
+is stationary in levels for Australia and United States.
+234
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+
+
+Nominal prices deflated by the consumer priceindex, index, 2000=100
+40
+60
+80
+100
+120
+140
+160
+180
+200
+Ireland
+United Kingdom
+Netherlands
+Spain
+France
+Belgium
+40
+60
+80
+100
+120
+140
+160
+180
+200
+Finland
+Norway
+Sweden
+Denmark
+40
+60
+80
+100
+120
+140
+160
+180
+200
+Australia
+Canada
+New Zealand
+United States
+Italy
+40
+60
+80
+100
+120
+140
+160
+180
+200
+220
+240
+260
+Switzerland
+Germany
+Japan
+Austria
+Israel
+Poland
+Fig. 1. Real house prices over time. Sources: National sources and OECD Economic Outlook No. 87.
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+235
+
+
+Volume indices, Index, 2000=100, logarithm scale 
+10
+100
+1000
+Ireland
+United Kingdom
+Netherlands
+Spain
+France
+Belgium
+10
+100
+1000
+Finland
+Norway
+Sweden
+Denmark
+10
+100
+1000
+Australia
+Canada
+New Zealand
+United States
+Italy
+10
+100
+1000
+Switzerland
+Germany
+Japan
+Austria
+Israel
+Poland
+Fig. 2. Residential investment over time. Source: OECD Economic Outlook No. 87.
+236
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+
+
+Table 1
+Demand equations by country: regression results.a Source: Authors’ estimates.
+Dependent variable: log real house prices 
+Australia2
+Austria3
+Belgium
+Canada
+Denmark
+Finland
+France
+Germany
+Ireland
+Israel
+Italy
+Income t
+1.942
+1.104
+1.613
+1.531
+2.905
+1.634
+4.355
+0.663
+0.615
+0.798
+1.762
+(0.208)***
+(0.386)***
+(0.129)***
+(0.224)***
+(0.629)***
+(0.207)***
+(0.374)***
+(0.152)***
+(0.078)***
+(0.173)***
+(0.511)***
+Dwelling stock t
+-9.093
+-2.050
+-2.199
+-1.093
+1.811
+-14.928
+-7.332
+-1.367
+-0.739
+-0.415
+-2.906
+(0.738)***
+(0.309)***
+(0.329)***
+(0.249)***
+(0.784)**
+(2.394)***
+(0.760)***
+(0.198)***
+(0.447)
+(0.167)**
+(0.491)***
+Interest rate t
+-0.000
+-0.005
+0.001
+-0.005
+-0.013
+-0.001
+-0.012
+0.004
+-0.014
+-0.003
+-0.009
+(0.003)
+(0.008)
+(0.002)
+(0.004)
+(0.005)***
+(0.003)
+(0.007)*
+(0.002)**
+(0.003)***
+(0.004)
+(0.005)*
+Population t
+13.510
+2.669
+16.233
+0.700
+..
+-1.208
+3.488
+1.076
+6.366
+-0.074
+..
+(1.114)***
+(1.920)
+(0.836)***
+(0.171)***
+..
+(1.783)
+(1.341)***
+(0.148)***
+(1.422)***
+(0.121)
+..
+Constant
+-80.875
+-13.534
+-154.667
+-33.107
+18.291
+-225.570
+-40.848
+-2.768
+-53.291
+0.213
+5.301
+(4.606)***
+(6.544)**
+(5.433)***
+(4.143)***
+(11.994)
+(93.819)**
+(3.315)***
+(1.526)
+(8.915)***
+(3.322)
+(10.552)
+Number of observations
+109
+69
+93
+101
+109
+69
+89
+151
+109
+48
+53
+B. Short run house price relationships by country
+Dependent variable: 1st difference log real house prices  
+Australia2
+Austria3
+Belgium
+Canada
+Denmark
+Finland
+France
+Germany
+Ireland
+Israel
+Italy
+Δ Income t
+0.550
+-0.131
+0.736
+0.364
+0.074
+0.285
+0.280
+0.232
+1.025
+0.859
+0.261
+(0.240)**
+-0.896
+(0.338)**
+(0.208)*
+(0.241)
+(0.250)
+(0.226)
+(0.071)***
+(0.228)***
+(0.493)*
+(0.377)
+Δ Dwelling stock t
+-8.882
+-1.494
+0.183
+0.342
+0.204
+-2.002
+-0.360
+0.665
+0.436
+0.137
+-0.959
+(1.637)***
+(0.551)***
+(0.642)
+(0.798)
+(0.398)
+(4.549)
+(1.370)
+(0.394)*
+(0.416)
+(0.565)
+(0.859)
+Δ Interest rate t
+0.002
+0.001
+0.000
+0.003
+-0.002
+0.000
+0.000
+0.000
+-0.001
+-0.002
+-0.000
+(0.001)**
+(0.004)
+(0.001)
+(0.001)**
+(0.001)**
+(0.001)
+(0.001)
+(0.000)
+(0.000)**
+(0.003)
+(0.001)
+Δ Population t
+9.276
+-0.924
+17.278
+-0.166
+..
+8.180
+0.993
+1.036
+2.720
+2.875
+..
+(4.077)**
+(8.125)
+(4.870)***
+(0.663)
+..
+(2.932)***
+(2.667)
+(0.203)***
+(2.019)
+(5.569)
+..
+ECT t-1 
+-0.058
+-0.299
+-0.110
+-0.054
+-0.027
+-0.130
+-0.054
+-0.035
+-0.071
+0.017
+-0.050
+(0.029)**
+(0.078)***
+(0.052)**
+(0.029)*
+(0.015)*
+(0.048)***
+(0.027)*
+(0.013)***
+(0.029)**
+(0.031)
+(0.027)*
+Number of observations
+108
+68
+92
+100
+108
+68
+88
+150
+108
+42
+52
+Estimation period
+1982q2:2009q2
+1986q4:2003q4
+1984q4:2007q4
+1980q4:2005q4
+1980q4:2007q4
+1988q4-2005q4
+1983q4:2005q4
+1970q2:2007q4
+1980q4-2007q4
+1995q2:2009q1
+1990q4:2003q4
+A. Long run house price relationships by country
+(continued on next page)
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+237
+
+
+Table 1 (continued)
+Dependent variable: log real house prices 
+Japan
+Netherlands
+New Zealand
+Norway
+Poland
+Spain
+Sweden
+Switzerland
+United Kingdom
+United States
+Income t
+2.015
+2.516
+0.982
+1.191
+3.483
+1.600
+2.825
+3.289
+3.585
+0.832
+(0.116)***
+(0.298)***
+(0.498)**
+(0.067)***
+(0.679)***
+(0.148)***
+(0.168)***
+(0.268)***
+(0.387)***
+(0.262)***
+Dw elling stock t
+-2.875
+-6.606
+-15.186
+..
+-5.955
+1.411
+-3.007
+-3.381
+-11.055
+-0.207
+(0.181)***
+(0.331)***
+(2.799)***
+..
+(2.219)**
+(0.649)**
+(0.235)***
+(0.202)***
+(1.129)***
+(0.479)
+Interest rate t
+-0.003
+-0.005
+0.002
+0.004
+-0.002
+-0.006
+-0.007
+-0.008
+-0.003
+-0.009
+(0.003)
+(0.002)**
+(0.007)
+(0.003)
+(0.004)
+(0.003)**
+(0.003)***
+(0.004)*
+(0.004)
+(0.004)*
+Population t
+0.917
+14.219
+24.199
+..
+-0.176
+..
+4.326
+11.038
+17.205
+..
+(1.332)
+(1.370)***
+(4.221)***
+..
+(39.285)
+..
+(2.037)**
+(1.260)***
+(2.265)***
+..
+Constant
+-9.606
+-118.456
+-108.570
+-16.317
+5.609
+-37.394
+-49.770
+-28.162
+-133.893
+-7.163
+(12.458)
+(7.330)***
+(12.877)***
+(1.168)***
+(441.582)
+(4.658)***
+(3.536)***
+(3.243)***
+(19.964)***
+(1.630)***
+Number of 
+observations
+97
+108
+54
+122
+31
+130
+133
+97
+101
+113
+B. Short run house price relationships by country
+Dependent variable: 1st difference log real house prices  
+Japan
+Netherlands
+New Zealand
+Norway
+Poland
+Spain
+Sweden
+Switzerland
+United Kingdom
+United States
+Δ Income t
+0.105
+0.841
+0.518
+0.347
+2.241
+-0.043
+-0.126
+0.224
+1.501
+0.182
+(0.051)**
+(0.236)***
+(0.205)**
+(0.155)**
+(2.140)
+(0.228)
+(0.120)
+(0.341)
+(0.366)***
+(0.113)
+Δ Dw elling stock t
+0.965
+-1.871
+-0.296
+..
+2.991
+..
+-1.878
+-4.262
+4.466
+0.715
+(1.061)
+(0.801)**
+(3.476)
+..
+(4.258)
+..
+(0.803)**
+(3.488)
+(5.587)
+(0.446)
+Δ Interest rate t
+0.002
+-0.001
+0.001
+0.000
+-0.001
+0.001
+0.000
+-0.001
+0.000
+0.001
+(0.000)***
+(0.001)
+(0.001)
+(0.000)
+(0.002)
+(0.000)**
+(0.000)
+(0.001)
+(0.001)
+(0.001)*
+Δ Population t
+1.357
+30.625
+13.924
+..
+521.143
+-0.709
+4.722
+8.204
+25.567
+..
+(1.257)
+(8.548)***
+(3.797)***
+..
+(328.478)
+(2.322)
+(3.751)
+(6.369)
+(6.245)***
+..
+ECT t-1 
+-0.027
+-0.079
+-0.085
+-0.043
+-0.776
+-0.032
+-0.034
+-0.048
+-0.123
+-0.040
+(0.013)**
+(0.035)**
+(0.027)***
+(0.014)***
+(0.218)***
+(0.011)***
+(0.014)**
+(0.029)*
+(0.024)***
+(0.014)***
+Number of 
+observations
+96
+107
+53
+121
+30
+129
+132
+96
+100
+112
+Estimation period
+1981q4:2005q4
+1981q1:2007q4
+1994:q3:2007:q4
+1979q1:2009:q2
+1999q2:2006q4
+1977:Q1:2009:q2
+1975q4:2008:q4
+1980q4:2004:q4
+1980q4:2005q4
+1980q4-2008q4
+A. Long run house price relationships by country
+a Results from the long-run and short-run price relationships, estimated jointly with the investment equations, employing a seemingly unrelated regression (SUR) model. All the speciﬁcations include a full set
+of quarterly dummies. Standard errors are reported in parentheses. ⁄⁄⁄, ⁄⁄, ⁄denote signiﬁcance at the 1%, 5% and 10%.
+b The stock is lagged 1 year.
+c The model for Austria includes, in addition to the current stock, the stock lagged 1 year because the ﬁt of the model is superior. The coefﬁcients for the 1 year lag are signiﬁcant at the 1% but are not reported for
+brevity.
+238
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+
+
+Table 2
+Supply equations by country: regression results.a Source: Authors’ estimates.
+Dependent variable: log real residential investment
+Australia
+Austria
+Belgium
+Canada
+Denmark
+Finland
+France
+Germany
+Ireland
+Israel
+Italy
+Real house price t-1
+0.528
+0.234
+0.315
+1.187
+1.206
+0.988
+0.363
+0.428
+0.631
+0.379
+0.258
+(0.054)***
+(0.057)***
+(0.028)***
+(0.198)***
+(0.053)***
+(0.037)***
+(0.055)***
+(0.172)**
+(0.045)***
+(0.185)**
+(0.050)***
+Real construction cost t-1
+-0.678
+-2.600
+1.851
+-0.276
+-0.410
+-0.313
+0.287
+1.923
+-0.413
+0.743
+-0.275
+(0.416)
+(0.854)***
+(0.274)***
+(0.272)
+(0.132)***
+(0.273)
+(0.218)
+(0.255)***
+(0.291)
+(0.108)***
+(0.118)**
+Population t
+1.697
+6.574
+13.530
+-0.288
+3.837
+-0.130
+1.366
+5.764
+9.775
+-1.947
+3.459
+(0.290)***
+(1.208)***
+(0.747)***
+(0.319)
+(1.583)**
+(0.166)
+(0.293)***
+(1.360)***
+(1.819)***
+(0.121)***
+(1.161)***
+Constant
+10.612
+-25.001
+9.719
+23.126
+20.019
+20.452
+6.912
+-50.541
+19.512
+39.432
+-13.165
+(1.223)***
+(7.486)***
+(1.277)***
+(3.177)***
+(0.656)***
+(0.818)***
+(3.601)*
+(15.836)***
+(1.010)***
+(1.096)***
+(12.943)
+Number of observations
+109
+69
+93
+101
+109
+69
+89
+151
+109
+48
+53
+Panel B: Short run residential investment relationships by country
+Dependent variable: 1st difference log real residential investment
+Australia
+Austria
+Belgium
+Canada
+Denmark
+Finland
+France
+Germany
+Ireland
+Israel
+Italy
+Δ Real house price t-1
+1.205
+0.04
+0.244
+0.392
+0.749
+0.803
+0.441
+0.466
+0.238
+0.061
+0.102
+(0.208)***
+-0.035
+(0.163)
+(0.152)***
+(0.174)***
+(0.132)***
+(0.092)***
+(0.758)
+(0.118)**
+(0.159)
+(0.234)
+Δ Real construction cost t-1
+-0.628
+0.723
+0.690
+-0.083
+-0.725
+0.457
+0.023
+1.246
+-0.028
+-0.935
+-0.282
+(0.537)
+(0.356)**
+(0.315)**
+(0.258)
+(0.456)
+(0.469)
+(0.120)
+(0.648)*
+(0.192)
+(6.014)*
+(0.260)
+Δ Population t
+0.291
+18.743
+14.520
+1.130
+-4.944
+-3.736
+-8.280
+13.697
+16.366
+-10.961
+10.389
+(1.765)
+(3.815)***
+(3.189)***
+(3.229)
+(9.202)
+(2.909)
+(5.093)
+(10.394)
+(12.617)
+(0.159)
+(6.609)
+ECT t-1 
+-0.166
+0.068
+-0.105
+-0.058
+-0.216
+-0.310
+-0.052
+-0.200
+-0.113
+-0.323
+-0.622
+(0.048)***
+(0.027)**
+(0.047)**
+(0.034)*
+(0.068)***
+(0.094)***
+(0.024)**
+(0.052)***
+(0.047)**
+(0.097)***
+(0.127)***
+Number of observations
+108
+68
+93
+100
+108
+68
+88
+150
+108
+42
+52
+Estimation period
+1982q2:2009q2 1986q4:2003q4 1984q4:2007q4 1980q4:2005q4 1980q4:2007q4 1988q4-2005q4 1983q4:2005q4 1970q2:2007q4 1980q4-2007q4 1995q2:2009q1 1990q4:2003q4
+A. Long run residential investment relationships by country
+(continued on next page)
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+239
+
+
+Table 2 (continued)
+Dependent variable: log real residential investment
+Japan
+Netherlands
+New Zealand
+Norway
+Poland
+Spain
+Sweden
+Switzerland
+United Kingdom
+United States
+Real house price t-1
+0.993
+0.186
+0.705
+0.486
+0.442
+0.452
+1.381
+0.146
+0.395
+2.014
+(0.074)***
+(0.061)***
+(0.145)***
+(0.024)***
+(0.122)***
+(0.051)***
+(0.193)***
+(0.055)***
+(0.029)***
+(0.376)***
+Real construction cost t-1
+0.059
+-0.542
+-1.040
+-1.039
+-1.275
+0.126
+-0.275
+-0.066
+0.374
+-3.459
+(0.230)
+(0.208)**
+(0.381)***
+(0.116)***
+(0.782)
+(0.192)
+(0.497)
+(0.020)***
+(0.078)***
+(0.600)***
+Population t
+1.425
+3.016
+0.537
+..
+-6.566
+0.024
+36.232
+7.485
+3.935
+6.909
+(0.391)***
+(0.384)***
+(0.691)
+..
+(6.800)
+(0.371)
+(5.713)***
+(1.356)***
+(0.916)***
+(0.795)***
+Constant
+9.068
+-3.647
+19.527
+27.534
+29.500
+21.103
+10.108
+20.740
+20.029
+-66.341
+(4.258)**
+(3.572)
+(5.120)***
+(0.575)***
+(2.701)***
+(3.860)***
+(1.631)***
+(0.380)***
+(0.443)***
+(10.903)***
+Number of observations
+97
+108
+54
+122
+31
+130
+133
+97
+101
+113
+B. Short run residential investment relationships by country
+Dependent variable: 1st difference log real residential investment
+Japan
+Netherlands
+New Zealand
+Norway
+Poland
+Spain
+Sweden
+Switzerland
+United Kingdom
+United States
+Δ Real house price t-1
+0.668
+0.470
+1.411
+0.399
+0.079
+0.236
+0.479
+0.040
+0.810
+2.497
+(0.342)*
+(0.284)
+(0.530)***
+(0.119)***
+(0.093)
+(0.080)***
+(0.158)***
+(0.041)
+(0.237)***
+(0.396)***
+Δ Real construction cost t-1
+-0.204
+0.482
+0.241
+-0.162
+0.593
+-0.053
+-0.185
+0.003
+0.137
+-1.625
+(0.519)
+(0.335)
+(0.721)
+(0.156)
+(0.546)
+(0.228)
+(0.277)
+(0.012)
+(0.098)
+(0.713)**
+Δ Population t
+-7.258
+26.029
+24.244
+..
+10.251
+3.169
+5.001
+-0.465
+6.201
+5.038
+(7.946)
+(28.812)
+(17.089)
+..
+(14.382)
+(3.387)
+(8.285)
+(1.624)
+(9.610)
+(11.250)
+ECT t-1 
+-0.136
+-0.775
+-0.429
+-0.162
+-0.300
+-0.076
+-0.126
+-0.087
+-0.277
+-0.072
+(0.041)***
+(0.094)***
+(0.113)***
+(0.039)***
+(0.126)**
+(0.030)**
+(0.018)***
+(0.014)***
+(0.078)***
+(0.031)**
+Number of observations
+96
+107
+53
+121
+30
+129
+132
+96
+100
+112
+Estimation period
+1981q4:2005q1
+1981q1:2007q4
+1994q3:2007q4
+1979q1:2009:q2
+1999q2:2006q4
+1977q1:2009q2
+1975q4:2008:q4
+1980q4:2004:q4
+1980q4:2005q4
+1980q4-2008q4
+A. Long run residential investment relationships by country
+a Results from the long-run and short-run investment relationships, which are estimated jointly with the price equations, employing a seemingly unrelated regression (SUR) model. All the speciﬁcations
+include a full set of quarterly dummies. Standard errors are reported in parentheses. ⁄⁄⁄, ⁄⁄, ⁄ denote signiﬁcance at the 1%, 5% and 10%.
+240
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+
+
+4.1. Long-run estimates
+Most explanatory variables have coefﬁcients that are
+signiﬁcant and consistent with priors. In the price equa-
+tions (Table 1), income and the variable capturing the
+structure of the population have a positive effect on prices.
+House prices tend to increase with households’ disposable
+income and population as income and population growth
+generates higher demand for housing. As the coefﬁcients
+in Table 1 indeed show, in the long-run, the elasticity of
+real house prices with respect to real income are close to
+or above unity in most countries.
+Turning to the effect of the housing stock and real inter-
+est rates, they have a dampening effect on house prices.
+The housing stock tends to have a negative and signiﬁcant
+effect on prices, in line with the theoretical prediction that
+increases in the stock of housing, and thus larger supply,
+lead to lower prices in the long-run.4 The small effect of
+interest rates on prices is in line with previous evidence sug-
+gesting that declining interest rates have had a modest im-
+pact
+on
+real
+house prices
+after controlling
+for
+other
+demand and supply factors (See Andrews et al., 2011). In
+the supply equation (Table 2), lagged prices and the demo-
+graphic variable have a positive effect on investment while
+construction costs have a negative effect. Real construction
+costs have, however, a positive and signiﬁcant effect on
+investment in Belgium, Germany and the United Kingdom,
+which could be accounted for poor quality data on construc-
+tion costs.
+Fig. 3 plots the coefﬁcient on lagged prices in the long-
+run investment equation, i.e. the price-elasticity of new
+housing supply which captures the responsiveness of
+new supply to changes in prices. There are remarkable dif-
+ferences in the responsiveness of new housing supply
+across countries. In some countries new housing supply
+appears to be quite responsive to prices. Supply elasticities
+in Sweden, the United States, Denmark, Canada, Japan and
+Finland are at, or above, unity implying that in response to
+a demand shock housing output will increase proportion-
+ally more than prices. On the other hand, there are several
+countries with particularly low elasticities of supply,
+including Switzerland, the Netherlands, Austria and Italy.
+Housing supply is particularly unresponsive to prices in
+Switzerland relative to other countries, about three times
+less responsive than in countries like France or Germany,
+and more than ten times less responsive than in the United
+States and Sweden where supply is the most responsive
+among the countries in the sample. These estimates are
+in line with the scarce cross-country evidence available,
+which is discussed in detail in the next section.
+4.2. Short-run estimates
+Turning to the short-run adjustment equations, in the
+price equation the growth rates of income and population
+have a positive effect on price inﬂation, while increases in
+the housing stock lead to house price deﬂation. The effect
+of interest rates changes on price is typically non signiﬁ-
+cant and when signiﬁcant yields a counterintuitive positive
+4 The stock of housing is, however, positive and signiﬁcant in 2/20
+speciﬁcations (i.e. Spain and Denmark). A possible reason for this counter-
+intuitive result is that the stock of housing is picking up the effect of
+population on house prices, which is not included in the equation as
+population is highly correlated with the dwelling stock. As a robustness
+check, including population divided by the dwelling stock, gives a negative
+and signiﬁcant coefﬁcient for Spain and non signiﬁcant for Denmark, while
+the long-run price elasticities of new housing supply are close to the
+baseline results.
+Estimates of the long-run price-elasticity of new housing supply 
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+1. Estimates of the long-run price elasticity of new housing supply where new supply is measured by residential investments (i.e. the 
+coefficient on lagged prices in the long-run investment equation as reported in Table 1). All elasticities are significant at least at the 10% level. 
+The estimation period is from early 1980s to mid-2000s. In the case of Spain, restricting the sample to the period 1995-2007, which would 
+reflect recent developments in housing markets (such as the large stock of unsold houses resulting from the construction boom starting in 
+2000 and peaking in 2007-09), only slightly increases the estimate of the elasticity of housing supply from 0.45 to 0.58.
+Fig. 3. Price responsiveness of housing supply: selected countries. Source: Authors’ estimates.
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+241
+
+
+effect on price growth for some countries (5 of them),
+which may indicate that the estimation framework is un-
+able to control for the potential simultaneity bias between
+interest rates and house prices. The coefﬁcients on the er-
+ror correction term in the price equation are signiﬁcant
+and range between 0.027 and 0.776, suggesting that
+there are wide differences across countries in the implied
+speed of price adjustment.5 Prices adjust fast to shocks in
+countries like Poland and Austria, where almost 100% of
+the gap between actual and equilibrium price is closed with-
+in a year, whereas the reaction of prices is slower in, for in-
+stance, Japan and Denmark where approximately 10% of the
+gap is closed within a year.
+On the supply side, estimates of the short-run invest-
+ment equation for the different countries indicate that
+the growth in lagged prices has a signiﬁcant positive effect
+on the growth of investment. However, the other explana-
+tory variables are only signiﬁcant for few countries.
+Changes in construction costs and population do not typi-
+cally inﬂuence changes in investment, which may be ex-
+plained
+by
+the
+fact
+that
+typically
+in
+the
+short-run
+changes in construction costs and population are not large.
+The coefﬁcients on the error-correction term have the ex-
+pected negative sign and are signiﬁcant ranging from
+0.052 (France) to 0.775 (the Netherlands).6 These esti-
+mates imply that between 20% and over 100% of the differ-
+ences between actual and equilibrium investment are closed
+within a year depending on the country. There appears to be
+a positive relationship between the price-responsiveness of
+housing supply and the speed of adjustment of investment
+for countries with a very responsive housing supply (e.g.
+the United States and Sweden) and for countries with a
+low responsiveness of housing supply (e.g. Switzerland and
+Belgium). The relationship between the long-term respon-
+siveness of housing supply and the speed of adjustment is
+more tenuous for the rest of countries. On average invest-
+ment and prices appear to adjust in similar fashion to
+shocks.
+4.3. Comparison of the ﬁndings relative to other studies
+Various studies have estimated the price elasticity of
+housing supply for a reduced number of countries (See
+e.g. Vermeulen and Rouwendal, 2007a for a review), mostly
+focusing on the United States and the United Kingdom.
+Even though, as discussed above, the stock-ﬂow model is
+the theoretical framework typically used to analyse the
+housing sector, its empirical implementation widely differs
+across studies. This implies that comparisons of estimates
+across studies are problematic due to differences in analyt-
+ical frameworks, speciﬁcation of the supply function
+(stock, new dwellings or construction permits etc.) and
+period coverage. Even so, evidence from other studies can
+serve as a rough benchmark for the estimates of the
+long-term elasticity of supply reported here. Table 3 sum-
+marises these elasticity estimates, together with the speed
+of adjustment of investment estimates to facilitate the
+discussion.
+In order to draw comparisons between the estimates re-
+ported in Table 3 and other studies, countries can be
+grouped into three categories depending on how price-
+responsive supply is:
+Highly responsive: New housing supply appears to be
+highly responsive to prices in the United States, Canada,
+Sweden and Denmark. With the above-mentioned caveats
+in mind, the available evidence, broadly, conﬁrms our ﬁnd-
+ings. For the United States, the empirical evidence is some-
+what mixed with the magnitude of the estimated elasticity
+depending on the estimation period and analytical frame-
+work. Whereas a number of earlier studies ﬁnd evidence
+of perfectly elastic supply (Follain, 1979; Malpezzi and
+Maclennan, 2001; Muth, 1960; Stover, 1986), in general
+more recent studies tend to ﬁnd estimates ranging from
+0.5 to 3 (e.g. Blackley, 1999; Di Pasquale and Wheaton
+1994; Harter-Dreiman, 2004; Poterba, 1984; Mayo and
+Sheppard, 1996; Topel and Rosen, 1988). It is, however,
+not straightforward to infer from these studies that there
+has been a decrease in the elasticity of supply in the United
+States over time, since the estimation approach differs sub-
+stantially across studies, potentially affecting the compara-
+bility of the ﬁndings. For instance, Follain (1979), Muth
+(1960) and Stover (1986) combine housing supply and de-
+mand into a single reduced-form ﬂow equation. While sev-
+eral of the more recent studies estimate the supply of
+housing relying on a stock-adjustment approach similar
+to the one in this paper. Comparing both approaches, Mal-
+pezzi and Maclennan (2001) ﬁnd that based on a stock-
+adjustment model the elasticity estimate for the United
+States is lower (in the range of 1–6) than that obtained
+based on a ﬂow model. Given that adjustment in housing
+markets takes time, for instance due to the durable nature
+of housing, time to construct and high transaction cost,
+estimation approaches that explicitly take this into ac-
+count, such as the stock adjustment model, may be prefer-
+able. In any case, from an international comparative
+perspective, the United States shows a high degree of
+responsiveness of housing supply to price changes. For
+Sweden, Hüfner and Lundsgaard (2007) also ﬁnd a high
+responsiveness of new housing supply (1.4 compared to
+1.38 found in this study). By contrast, for Denmark, evi-
+dence reported in Swank et al. (2002) points to a much
+lower elasticity of supply (0.66) than the one found in this
+study. The difference in the estimates may stem not only
+from the different estimation frameworks but also from
+the much longer period covered by our study.
+Fairly unresponsive: Housing supply appears to be quite
+unresponsive to prices in Switzerland and the Netherlands
+and fairly rigid in Austria, Italy, Belgium, France and the
+United Kingdom. Evidence for this group of countries is
+5 The size of the error correction term in the price equation for Poland
+seems implausibly large (0.776) implying that 300% of the difference
+between the actual and the equilibrium price is closed within a year. The
+error-correction term in the price equation for Israel is not signiﬁcant,
+which could be due to the short time series data available.
+6 Austria stands out as the only country with a positive yet statistically
+signiﬁcant adjustment term in the short run investment equation, implying
+basically no adjustment. A possible reason for this result may be high
+construction costs, given that the time to obtain a building permit is
+somewhat longer in Austria than in other OECD countries (Andrews et al.,
+2011). There is also some evidence that during the nineties there was lack
+of competition in the Austrian construction industry (OECD, 2001).
+Although the regression is well behaved; it could also be due to the short
+time series of available data.
+242
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+
+
+only available for the United Kingdom and the Nether-
+lands. It suggests that housing supply is particularly inelas-
+tic
+in
+these
+countries,
+translating
+into
+poor
+supply
+responses to demand shocks and strong rises in house
+prices (e.g. André, 2010; Barker, 2004; Vermeulen and Rou-
+wendal, 2007a,b). While econometric evidence on the price
+responsiveness of housing supply for Austria, Italy, Bel-
+gium and France is lacking, Figs. 1 and 2 show that prices
+have risen more than investment in these countries over
+the
+recent
+past,
+suggesting
+relatively
+low
+supply
+responsiveness.
+Responsive: A last group of countries display intermedi-
+ate housing supply responsiveness, including New Zealand,
+Ireland, Australia, Norway and Spain. Evidence for this
+group of countries is only available for New Zealand and
+Spain. For New Zealand, Grimes (2007) ﬁnds a elasticity
+of housing supply between 0.5 and 1.1, in line with the evi-
+dence reported here (0.71). For Spain, Taltavull de la Paz
+(2008) ﬁnds that, despite the great amount of residential
+construction carried out since the mid-1990s, the long-
+run elasticity of housing supply over a longer time period
+(from 1987 to 2004) is not as high as could be expected
+– around 0.47 – and slightly lower than the one found here
+of 0.57 over 1977–2009.
+Most studies on the responsiveness of housing supply
+are conducted at the national, and in some limited cases
+regional levels, as opposed to local housing markets. Using
+more disaggregated data is desirable, as it can help to un-
+cover, for instance, variations in the timing of housing cy-
+cles
+across
+local
+markets
+or
+inter-metropolitan
+area
+movements in population. Nonetheless, data constraints
+typically difﬁcult such analyses. Some evidence, however,
+exists on differences in supply elasticity across local hous-
+ing markets in the US. For instance, Saiz (2010) ﬁnds based
+on US metropolitan data that elasticity ranges from 0.60 in
+Miami to 5.45 in Wichita, and that differences in supply
+elasticity are a function of both land-use regulations and
+natural geography. This conﬁrms the ﬁnding by Gyurko
+and Saiz (2006) that land markets explain the wide
+divergence in housing supply elasticity, and ultimately,
+home values across US metropolitan areas. Some evi-
+dence
+also
+exists
+for
+Australia,
+where
+Mc
+Laughlin
+(2012) ﬁnds that there is a signiﬁcant variation in hous-
+ing supply elasticity, both across housing types, as well
+as across capital cities.
+5. Which factors inﬂuence the responsiveness of
+housing supply to prices?
+Cross-country differences in the long-run price respon-
+siveness of housing supply are related to both policy and
+non-policy factors. First, geographical and demographic
+conditions, such as physical limitations on land for devel-
+opment, can restrict the supply of land in certain areas
+and have a negative impact on the supply of housing in
+the long run. Indeed, a simple cross-country correlation
+shows that the estimated housing supply elasticity is lower
+in more densely populated countries (Fig. 4, Panel A). The
+same appears to be true within countries. For instance,
+based on existing estimates by Green et al. (2005) on the
+responsiveness of housing supply for US cities, Panel B in
+the same ﬁgure suggests that supply is more rigid in cities
+with a greater population density.
+But, government policies can also inﬂuence housing
+supply. For instance, land-use and planning policies are in-
+tended to reduce negative externalities that can be associ-
+ated with new housing construction, but if they are poorly
+designed they may also restrict supply responsiveness. For
+instance, Fig. 5 shows that housing supply responsiveness
+tends to be lower in countries where it takes longer to
+Table 3
+Price responsiveness of housing supply and speed of supply response. Source: Authors’ estimates.
+Price responsiveness of housing supplya
+Speed of supply responseb
+Australia
+0.528 (0.054)⁄⁄⁄
+0.166 (0.048)⁄⁄⁄
+Austria
+0.234 (0.057)⁄⁄⁄
+0.068 (0.027)⁄⁄
+Belgium
+0.315 (0.028)⁄⁄⁄
+0.105 (0.047)⁄⁄
+Canada
+1.187 (0.198)⁄⁄⁄
+0.058 (0.034)⁄
+Denmark
+1.206 (0.053)⁄⁄⁄
+0.216 (0.068)⁄⁄⁄
+Finland
+0.988 (0.037)⁄⁄⁄
+0.310 (0.094)⁄⁄⁄
+France
+0.363 (0.055)⁄⁄⁄
+0.052 (0.024)⁄⁄
+Germany
+0.428 (0.172)⁄⁄
+0.200 (0.052)⁄⁄⁄
+Ireland
+0.631 (0.045)⁄⁄⁄
+0.113 (0.047)⁄⁄
+Israel
+0.379 (0.185)⁄⁄
+0.323 (0.097)⁄⁄⁄
+Italy
+0.258 (0.050)⁄⁄⁄
+0.622 (0.127)⁄⁄⁄
+Japan
+0.993 (0.074)⁄⁄⁄
+0.136 (0.041)⁄⁄⁄
+Netherlands
+0.186 (0.061)⁄⁄⁄
+0.775 (0.094)⁄⁄⁄
+New Zealand
+0.705 (0.145)⁄⁄⁄
+0.429 (0.113)⁄⁄⁄
+Norway
+0.486 (0.024)⁄⁄⁄
+0.162 (0.039)⁄⁄⁄
+Poland
+0.442 (0.122)⁄⁄⁄
+0.300 (0.126)⁄⁄
+Spain
+0.452 (0.051)⁄⁄⁄
+0.076 (0.030)⁄⁄
+Sweden
+1.381 (0.193)⁄⁄⁄
+0.126 (0.018)⁄⁄⁄
+Switzerland
+0.146 (0.055)⁄⁄⁄
+0.087 (0.014)⁄⁄⁄
+United Kingdom
+0.395 (0.029)⁄⁄⁄
+0.277 (0.078)⁄⁄⁄
+United States
+2.014 (0.376)⁄⁄⁄
+0.072 (0.031)⁄⁄
+a Coefﬁcient on lagged prices in the long-run investment equation.
+b Coefﬁcient on the error correction term in the short-run investment equation.
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+243
+
+
+acquire a building permit.7 Interpreting this correlation
+causally, an efﬁcient design and enforcement of land-use
+regulation would have the potential for making housing
+supply more responsive to prices. This illustrative ﬁnding
+is also evident across cities in the United States, providing
+further support for the notion that housing supply respon-
+siveness is related to regulations on land-use and planning.
+However, while there is an emerging consensus that lo-
+cal land-use regulations in some countries have become a
+binding constraint on the supply of new housing units,
+7 This correlation is robust to controlling for scarcity of land in a simple
+regression explaining the elasticity of supply with land-use regulation and
+scarcity of land. In addition, the correlation is also evident if the lifespan of
+building permits are used as a regulatory measure instead of the waiting
+time for obtaining a building permit.
+A. Cross-country correlation
+B. Correlation across United States cities
+Che
+Nld
+Aut
+Ita
+Bel
+Fra
+Gbr
+Deu
+Pol
+Esp
+Nor
+Aus
+Irl
+Nzl
+Fin
+Jpn
+Can
+Dnk
+Swe
+Usa
+Isr
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+0
+50
+100
+150
+200
+250
+300
+350
+400
+450
+Population density 2
+Correlation coefficient: -0.45**
+Supply responsiveness¹
+-5
+0
+5
+10
+15
+20
+25
+30
+0
+500
+1000
+1500
+2000
+2500
+Supply responsiveness¹
+Correlation coefficient: -0.33**
+Population density 3
+1. Authors’ estimates of country-specific supply responsiveness and estimates of supply responsiveness for United States cities taken 
+from Green et al. (2005). ** Denotes significance at the 5% level.  
+2. Population density measured as population per km2. 
+3. Population density measured as population per square mile. 
+Fig. 4. Price responsiveness of supply and scarcity of land. Sources: Authors’ estimates, United Nations Population Database and Green et al. (2005).
+244
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+
+
+there is much less of a consensus on the magnitude of the
+impact (e.g., Gyourko, 2009 for an overview). Apart from
+regulations on land-use, the provision of infrastructure
+and other public services complementary to housing, such
+as road junctions or water drainage, is also likely to inﬂu-
+ence supply, though hard evidence of this link is not avail-
+able (e.g. Barker, 2008, for a discussion).
+Housing supply responsiveness is also potentially af-
+fected by the degree of competition in the residential con-
+struction
+industry
+(Barker,
+2004).
+Available
+studies
+typically ﬁnd that average mark-ups in the construction
+industry are low relative to other non-manufacturing
+industries (Molnár and Bottini, 2010; Bouis and Klein,
+2009), although the extent of competition varies across
+countries (See Andrews et al., 2011). In most countries,
+the construction industry is typically characterised by a
+large number of relatively small ﬁrms. However, thinking
+of construction as an atomistic industry may be misleading
+A. Cross-country correlation
+B. Correlation across United States cities
+Che
+Nld
+Aut
+Ita
+Bel
+Fra
+Gbr
+Deu
+Pol
+Esp
+Nor
+Aus
+Irl
+Nzl
+Fin
+Jpn
+Can
+Dnk
+Swe
+Usa
+Isr
+0
+0.5
+1
+1.5
+2
+2.5
+0
+50
+100
+150
+200
+250
+Number of days to obtain a building permit²
+Supply responsiveness¹
+Correlation coefficient: 
+-0.56***
+-5
+0
+5
+10
+15
+20
+25
+30
+10
+12
+14
+16
+18
+20
+22
+24
+26
+28
+30
+Regulation index³
+Correlation coefficient: 
+-0.46***
+Supply responsiveness¹
+1. Authors’ estimates of country-specific supply responsiveness and estimates of supply responsiveness for United States cities taken 
+from Green et al. (2005). *** Denotes significance at the 1% level. 
+2. The number of days to obtain a building permit is obtained from the World Bank Doing Business indicators. 
+3.  The land-use regulation index captures approval time of building permits, available land for residential housing and access to 
+adequate infrastructure and ranges between 7-35 (increasing in regulation) (see Malpezzi, 1996).  
+Fig. 5. Price responsiveness of supply and land-use regulations. Sources: Authors’ estimates, World Bank Doing Business indicators, Malpezzi (1996) and
+Green et al. (2005).
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+245
+
+
+as it is often the case that only a limited number of con-
+tractors are capable of managing large construction pro-
+jects. In such cases competition may be low (OECD,
+2008). In light of this evidence, implementing an effective
+competition policy that enforces anti-trust regulation and
+hinders collusive behaviour in the construction sector
+seems to be important for improving the responsiveness
+of housing supply.
+Finally, a number of studies illustrate the adverse ef-
+fects of poorly-designed rent regulations on housing sup-
+ply (e.g. Arnott, 1995; Ellingsen and Englund, 2003).
+Stringent rent regulations potentially discourage new con-
+struction and maintenance by capping the price of rentals,
+thus lowering the net return on residential investments for
+rental purposes and constraining housing supply (Arnott,
+2003; Sims, 2007). In line with this, an illustrative correla-
+tion analysis in Andrews et al. (2011) shows that across
+countries, stricter rent controls tend to be associated with
+lower quantity and quality of rental housing, as measured
+by the share of tenants lacking space and those reporting
+sub-standard housing in terms of a leaking roof.
+6. Conclusion
+This paper estimates the elasticity of new housing sup-
+ply for 21 OECD countries shedding light on the differences
+in supply conditions. Results suggest that supply respon-
+siveness is strong in North America and some Nordic coun-
+tries, while it is comparatively low in Switzerland, the
+Netherlands and Austria. A responsive housing supply is
+important to avoid bottlenecks in different segments of
+the market in response to an increase in housing demand.
+However, the ﬂip side is that in ﬂexible-supply countries,
+housing investment adjusts more rapidly to large changes
+in demand. This contributes to more cyclical swings in eco-
+nomic growth. Despite this trade-off, in the longer term a
+more ﬂexible supply of housing is desirable as it allows a
+better match of housing construction to changes in hous-
+ing demand patterns across the territory.
+Housing supply can be made more responsive through
+policy reforms, notably in the areas of housing regulations
+and taxation, which can help to avoid excessive increases
+in house prices and their negative impact on the economy.
+Efﬁcient land-use policies and regulations can ensure a
+better use of land in countries where scarcity of land re-
+stricts supply and pushes prices up. In addition, in some
+countries there may be scope for streamlining cumber-
+some licensing processes to facilitate a ﬂexible adjustment
+of housing supply to demand conditions.
+From a taxation perspective, well-designed taxes on un-
+der-used or vacant land can be imposed on landowners to
+encourage residential development in countries with a
+shortage of land for residential construction. For example,
+linking the assessment of property value for tax purposes
+to the market value may increase incentives for developing
+vacant land (Johansson et al., 2008). In countries where the
+construction industry is characterised by a few large con-
+structors, the enforcement of competition policy which
+hinders collusive behaviour is also important for a ﬂexible
+supply. The design of such policies should, however, bal-
+ance the beneﬁt of additional supply against the potential
+cost of new developments in terms of congestion and envi-
+ronmental amenity losses.
+Acknowledgments
+Aida Caldera and Åsa Johansson both at the OECD Eco-
+nomics Department. The authors would like to thank Vir-
+ginia Alonso, Christophe André, Dan Andrews, Jørgen
+Elmeskov, Giuseppe Nicoletti, Jean-Luc Schneider, Michael
+Skaarup and two anonymous referees for their valuable
+comments. The views expressed in this paper are those
+of the authors and do not necessarily reﬂect those of the
+OECD or its member countries.
+Appendix A. Data Appendix
+A.1. House prices
+House prices sourced from the OECD house price data-
+base and national data sources (for Israel) deﬂated by the
+consumer price index, sourced from the OECD Analytical
+Database (ADB).
+A.2. Construction costs
+Construction costs for residential investment sourced
+from the OECD Main Economic Indicators (MEI) database
+and national data sources (for Australia, Japan, New Zea-
+land and Israel) deﬂated by the GDP deﬂator, sourced from
+the OECD ADB.
+A.3. Dwelling stock
+A measure of the housing stock was computed for each
+country based on information on the total number of
+dwellings in each country sourced from the United Nations
+Economic Commisssion for Europe (UNECE). Data for Aus-
+tralia and Japan was not available from UNECE and was
+therefore sourced from the Reserve Bank of Australia and
+the Japan Statistics Bureau, respectively.
+A.4. Short term interest rates
+Real short-term interest rate based on the private con-
+sumption deﬂator sourced from the OECD ADB database.
+A.5. Long term interest rates
+Real long-term interest rate based on the private con-
+sumption deﬂator sourced from the OECD ADB database.
+A.6. Residential investment
+Gross ﬁxed investment in housing sourced from the
+OECD ADB database.
+246
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+
+
+Table A1
+Augmented Dickey Fuller test.a Source: Authors’ estimates.
+Level
+1st 
+difference
+Level
+1st 
+difference
+Level
+1st 
+difference
+.
+4
+- 
+9
+6
+8
+.
+0
+-
+s
+e
+cir
+p
+ 
+e
+s
+u
+o
+h
+ l
+a
+e
+r 
+g
+o
+L
+ 
+792***
+ -2.943 
+-1.682* 
+-0.729
+-1.447*
+***
+8
+6
+0
+.
+3
+- 
+8
+4
+0
+.
+3
+- 
+***
+0
+9
+4
+.
+4
+-
+ 
+0
+1
+0
+.
+2
+- 
+  ***
+6
+4
+7
+.
+6
+- 
+***
+1
+0
+3
+.
+5
+-
+t
+n
+e
+m
+t
+s
+e
+v
+ni l
+ait
+n
+e
+di
+s
+e
+r 
+g
+o
+L
+ 
+***
+8
+4
+5
+.
+3
+-
+ 
+7
+8
+1
+.
+3
+-
+***
+1
+2
+0
+.
+6
+- 
+ *
+5
+7
+1
+.
+3
+- 
+ ***
+4
+7
+2
+.
+4
+- 
+ 
+7
+8
+4
+.
+2
+- 
+P
+D
+G
+ 
+g
+o
+L
+ 
+2
+- 
+***
+1
+6
+1
+.
+4
+-
+4
+5
+0
+.
+2
+-
+a
+ti
+p
+a
+c
+ r
+e
+p
+ 
+P
+D
+G
+ 
+g
+o
+L
+ 
+.551  
+-5.922***
+-2.325 
+ -3.433*** 
+*
+8
+5
+3
+.
+4
+- 
+ 
+8
+4
+1
+.
+1
+- 
+e
+m
+o
+c
+ni 
+el
+b
+a
+s
+o
+p
+si
+d
+ 
+g
+o
+L
+ 
+** 
+ -2.320 
+ -2.974***
+ -3.236
+-3.332*** 
+ ***
+4
+0
+4
+.
+3
+-
+*
+3
+0
+2
+.
+3
+- 
+***
+9
+3
+8
+.
+2
+- 
+4
+0
+2
+.
+2
+-
+ ***
+8
+4
+1
+.
+4
+- 
+  
+2
+2
+7
+.
+0
+-
+a
+ti
+p
+a
+c
+ r
+e
+p
+ 
+e
+m
+o
+c
+ni 
+el
+b
+a
+s
+o
+p
+si
+d
+ 
+g
+o
+L
+ 
+ Weighted average short term and long term interest rates
+-1.700 
+-4.508***
+ -1.982 
+-4.334***
+-2.720 
+ -9.074*** 
+***
+8
+0
+5
+.
+4
+-
+0
+0
+7
+.
+1
+-
+s
+e
+t
+a
+r t
+s
+e
+r
+e
+t
+ni 
+m
+r
+e
+t tr
+o
+h
+S
+ 
+ 
+ -2.677
+ -8.112*** 
+ -2.058
+  -3.215***
+ ***
+0
+8
+7
+.
+8
+- 
+4
+6
+7
+.
+2
+- 
+ ***
+7
+8
+3
+.
+4
+- 
+ 
+9
+5
+1
+.
+2
+- 
+ ***
+0
+7
+0
+.
+4
+-
+ 
+6
+2
+7
+.
+1
+-
+s
+e
+t
+a
+r t
+s
+e
+r
+e
+t
+ni 
+m
+r
+e
+t 
+g
+n
+o
+L
+ 
+***
+9
+9
+2
+.
+4
+- 
+6
+1
+5
+.
+2
+- 
+s
+t
+s
+o
+c
+ 
+n
+oit
+c
+u
+rt
+s
+n
+o
+c
+ l
+a
+e
+r 
+g
+o
+L
+ 
+  
+ -2.798
+ -6.349*** 
+ -2.383
+ -7.375*** 
+4
+9
+1
+.
+1
+- 
+0
+2
+4
+.
+1
+- 
+  
+0
+0
+6
+.
+0
+- 
+**
+6
+9
+5
+.
+3
+-
+ *
+8
+8
+8
+.
+1
+-
+ 
+2
+2
+4
+.
+1
+- 
+n
+oit
+al
+u
+p
+o
+p
+ l
+a
+t
+o
+t 
+g
+o
+L
+ 
+.
+1
+- 
+ **
+0
+8
+6
+.
+3
+- 
+  
+4
+4
+-
+5
+2
+ 
+d
+e
+g
+a
+ 
+n
+oit
+al
+u
+p
+o
+p
+ 
+g
+o
+L
+ 
+087
+-4.119***
+ -1.192 
+-3.616*** 
+-0.460 
+ Share of the total population aged 25-44
+-3.962**
+-0.562
+ -2.042 
+ -0.634
+-4.059***  
+-0.541 
+Level
+1st 
+difference
+Level
+1st 
+difference
+Level
+1st 
+difference
+***
+5
+8
+9
+.
+3
+-
+2
+7
+5
+.
+2
+-
+ ***
+0
+3
+7
+.
+3
+-
+ 
+4
+2
+7
+.
+1
+-
+  ***
+2
+2
+8
+.
+2
+- 
+6
+7
+7
+.
+2
+-
+s
+e
+cir
+p
+ 
+e
+s
+u
+o
+h
+ l
+a
+e
+r 
+g
+o
+L
+ 
+***
+9
+0
+5
+.
+3
+-
+3
+9
+9
+.
+2
+-
+***
+3
+7
+2
+.
+4
+-
+7
+8
+8
+.
+1
+-
+***
+5
+2
+1
+.
+6
+- 
+ 
+9
+1
+2
+.
+2
+- 
+t
+n
+e
+m
+t
+s
+e
+v
+ni l
+ait
+n
+e
+di
+s
+e
+r 
+g
+o
+L
+ 
+***
+2
+1
+9
+.
+3
+-
+5
+6
+6
+.
+2
+  ***
+8
+7
+2
+.
+3
+-
+ 
+6
+3
+4
+.
+2
+- 
+***
+2
+3
+4
+.
+3
+- 
+8
+3
+2
+.
+2
+- 
+P
+D
+G
+ 
+g
+o
+L
+ 
+***
+7
+8
+8
+.
+3
+-
+8
+3
+6
+.
+2
+-
+***
+1
+3
+2
+.
+3
+-
+ 
+2
+7
+9
+.
+1
+- 
+ ***
+4
+7
+3
+.
+3
+- 
+2
+6
+2
+.
+2
+-
+a
+ti
+p
+a
+c
+ r
+e
+p
+ 
+P
+D
+G
+ 
+g
+o
+L
+ 
+***
+1
+1
+9
+.
+3
+-
+4
+1
+1
+.
+2
+-
+  ***
+9
+7
+5
+.
+4
+- 
+8
+4
+2
+.
+2
+- 
+ ***
+3
+8
+7
+.
+3
+- 
+ **
+2
+9
+5
+.
+3
+- 
+e
+m
+o
+c
+ni 
+el
+b
+a
+s
+o
+p
+si
+d
+ 
+g
+o
+L
+ 
+***
+4
+6
+8
+.
+3
+-
+4
+2
+1
+.
+2
+-
+***
+4
+8
+4
+.
+4
+- 
+6
+3
+1
+.
+3
+- 
+ ***
+2
+3
+8
+.
+3
+-
+*
+0
+1
+4
+.
+3
+- 
+a
+ti
+p
+a
+c
+ r
+e
+p
+ 
+e
+m
+o
+c
+ni 
+el
+b
+a
+s
+o
+p
+si
+d
+ 
+g
+o
+L
+ 
+ Weighted average short term and long term interest rates
+-2.072 
+ -8.374***  
+ -2.910 
+ -4.855***
+-2.202
+-9.314***
+***
+5
+9
+2
+.
+9
+-
+2
+.
+2
+-
+ ***
+0
+6
+6
+.
+3
+-
+1
+7
+3
+.
+2
+- 
+ ***
+4
+5
+8
+.
+5
+- 
+7
+7
+5
+.
+1
+- 
+s
+e
+t
+a
+r t
+s
+e
+r
+e
+t
+ni 
+m
+r
+e
+t tr
+o
+h
+S
+ 
+***
+3
+6
+2
+.
+9
+-
+3
+1
+3
+.
+2
+-
+***
+4
+2
+2
+.
+6
+-
+  
+7
+9
+8
+.
+1
+- 
+ ***
+9
+4
+2
+.
+8
+-
+9
+7
+0
+.
+2
+- 
+s
+e
+t
+a
+r t
+s
+e
+r
+e
+t
+ni 
+m
+r
+e
+t 
+g
+n
+o
+L
+ 
+***
+2
+5
+6
+.
+2
+-
+5
+2
+4
+.
+1
+-
+***
+8
+2
+0
+.
+5
+- 
+  
+8
+0
+0
+.
+3
+- 
+ ***
+0
+3
+1
+.
+4
+- 
+0
+9
+5
+.
+2
+- 
+s
+t
+s
+o
+c
+ 
+n
+oit
+c
+u
+rt
+s
+n
+o
+c
+ l
+a
+e
+r 
+g
+o
+L
+ 
+ *
+2
+5
+6
+.
+1
+- 
+6
+5
+9
+.
+0
+-  
+n
+oit
+al
+u
+p
+o
+p
+ l
+a
+t
+o
+t 
+g
+o
+L
+ 
+ -4.567*** 
+ -2.523*** 
+-1.429*
+-1.202
+.
+1
+- 
+**
+5
+1
+6
+.
+3
+- 
+  
+4
+4
+-
+5
+2
+ 
+d
+e
+g
+a
+ 
+n
+oit
+al
+u
+p
+o
+p
+ 
+g
+o
+L
+ 
+405 
+ -0.817
+  -0.010 
+-3.513***
+ -1.370*
+ Share of the total population aged 25-44
+-4.041***
+ -0.889 
+-1.741 
+-0.476
+ -1.370
+-1.387*
+Level
+1st 
+difference
+Level
+1st 
+difference
+Level
+1st 
+difference
+ Log real house prices
+-3.090 
+ -2.752***  
+-1.644 
+ -3.415*** 
+ -1.767 
+ -3.491*** 
+ Log residential investment
+ -2.524 
+-3.722***  
+ -2.252
+ -5.522*** 
+ -1.804
+-4.173***
+ Log GDP
+ -2.830
+ -4.208***  
+ -1.546 
+-4.153*** 
+-1.833
+-2.211***
+ Log GDP per capita
+ -2.544 
+-4.277*** 
+-1.698 
+ -4.303*** 
+ -1.864
+ -1.336*
+ Log disposable income
+ -3.086
+-4.371*** 
+-0.652
+ -2.851***
+-1.361 
+-3.755
+ Log disposable income per capita
+-3.118
+  -4.363***
+ -0.450
+-3.007***
+-1.408
+ -1.922**
+ Weighted average short term and long term interest rates
+-1.724  
+-7.461***
+ -2.591 
+ -5.720***
+ -1.625 
+-6.021***
+ Short term interest rates
+ -1.588
+  -7.400***  
+ -2.230
+ -5.884*** 
+ -1.924 
+ -5.958***
+ Long term interest rates
+-1.816 
+ -7.411*** 
+-2.591 
+-5.720***
+-2.217
+ -4.354***
+ Log real construction costs
+  -0.869
+ -2.339***
+-2.676
+-3.526***
+-2.544 
+-8.761***
+ Log total population
+ -2.113
+ -2.789*** 
+-4.154***
+-1.356 
+ -6.646***
+ -1.302
+ Log population aged 25-44  
+ -3.491*** 
+ -0.249 
+-3.135*** 
+ -0.524
+ -4.807***
+-0.440
+ Share of the total population aged 25-44
+ -3.799*** 
+-0.329
+-3.285*** 
+ -0.595
+ -3.519***
+ -0.555 
+Level
+1st 
+difference
+Level
+1st 
+difference
+Level
+1st 
+difference
+ Log real house prices
+-3.535*
+-2.592**
+-3.848**
+-2.957*** 
+ 0.223
+ -4.391***
+ Log residential investment
+ -0.294  
+-3.206***
+-2.867 
+-4.146***  
+-0.686 
+ -2.966***  
+ Log GDP
+ -2.077 
+ -2.839*** 
+ -0.767
+ -2.207*** 
+ 0.070 
+-2.823*** 
+ Log GDP per capita
+..
+..
+ 0.181  
+-2.121***
+-0.093
+-3.511*** 
+ Log disposable income
+..
+..
+ -1.830
+ -2.628*** 
+-1.225
+-2.987***
+ Log disposable income per capita
+..
+..
+ -1.310
+ -2.647***
+-1.397 
+-3.084***
+ Weighted average short term and long term interest rates
+..
+..
+ -1.825 
+ -6.029*** 
+ -1.709 
+ -4.627***
+ Short term interest rates
+ -2.925 
+ -3.416***
+-1.813
+-6.027***
+ -1.685
+ -4.695***
+ Long term interest rates
+..
+..
+ -2.182
+  -5.566***
+ -1.806
+ -4.717***
+ Log real construction costs
+-1.181
+ -1.945** 
+ -2.613 
+ -4.103***
+ -2.086 
+-1.986**
+ Log total population
+ -0.582
+ -2.596**
+ -3.237*** 
+ -1.519
+ -1.671 
+ -6.205*** 
+ Log population aged 25-44  
+..
+..
+ -3.185***
+-0.612
+ -3.292* 
+ -2.866*** 
+ Share of the total population aged 25-44
+..
+..
+-3.952*** 
+-0.876 
+-4.967***
+-1.580
+Italy
+Australia
+Austria
+Belgium
+Canada
+Israel
+Japan
+Denmark
+Finland
+France
+Germany
+Ireland
+(continued on next page)
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+247
+
+
+A.7. Population 25–44
+Population aged between 25–44 years old sourced from
+the United Nations Population database.
+A.8. Total population
+Total national population sourced from the United Na-
+tions Population database.
+A.9. GDP
+Gross Domestic Product in volume, at 2005 PPP US dol-
+lars, sourced from the OECD ADB database.
+A.10. Disposable income
+Net household disposable income in value sourced from
+the OECD ADB database.
+References
+André, C., 2010. A Bird’s Eye View of OECD Housing Markets. OECD
+Economics Department Working Papers 746, OECD, Paris.
+Andrews, D., Caldera Sánchez, A., Johansson, A., 2011. Housing markets
+and
+structural
+policies
+in
+OECD
+countries.
+OECD
+Economics
+Department Working Papers, No. 836, OECD, Paris.
+Arnott, R., 1995. Time for revisionism on rent control? Journal of
+Economic Perspectives 9 (1), 99–120.
+Table A1 (continued)
+Level
+1st 
+difference
+Level
+1st 
+difference
+Level
+1st 
+difference
+***
+9
+4
+0
+.
+3
+-
+7
+7
+9
+.
+1
+-
+***
+2
+4
+2
+.
+3
+-
+8
+7
+0
+.
+3
+-
+***
+0
+2
+9
+.
+2
+-
+8
+0
+5
+.
+2
+-
+s
+e
+cir
+p
+e
+s
+u
+o
+h
+la
+e
+r
+g
+o
+L
+.
+3
+-
+3
+3
+6
+.
+2
+-
+***
+0
+0
+0
+.
+8
+-
+0
+0
+3
+.
+2
+-
+t
+n
+e
+m
+t
+s
+e
+v
+nilait
+n
+e
+dis
+e
+r
+g
+o
+L
+141***
+ -2.058 
+-3.569***  
+***
+1
+2
+9
+.
+2
+-
+3
+1
+5
+.
+1
+-
+***
+8
+3
+7
+.
+2
+-
+4
+8
+5
+.
+2
+-
+***
+1
+6
+0
+.
+3
+-
+1
+5
+7
+.
+1
+-
+P
+D
+G
+g
+o
+L
+***
+3
+8
+1
+.
+9
+-
+6
+4
+8
+.
+1
+-
+a
+tip
+a
+c
+r
+e
+p
+P
+D
+G
+g
+o
+L
+ -2.570 
+ -2.835***
+ -0.830 
+-2.695*** 
+***
+6
+3
+1
+.
+5
+-
+0
+8
+3
+.
+1
+-
+**
+0
+4
+0
+.
+2
+-
+7
+3
+6
+.
+3
+-
+***
+3
+0
+0
+.
+3
+-
+6
+9
+7
+.
+2
+-
+e
+m
+o
+c
+ni
+elb
+a
+s
+o
+p
+sid
+g
+o
+L
+***
+8
+5
+1
+.
+5
+-
+3
+1
+6
+.
+1
+-
+**
+5
+3
+0
+.
+2
+-
+*
+1
+6
+3
+.
+3
+-
+***
+9
+5
+0
+.
+3
+-
+4
+0
+7
+.
+2
+-
+a
+tip
+a
+c
+r
+e
+p
+e
+m
+o
+c
+ni
+elb
+a
+s
+o
+p
+sid
+g
+o
+L
+ Weighted average short term and long term interest rates
+ -1.729 
+ -7.962***
+-3.082
+-8.842***
+ -3.590**   
+-4.801***
+***
+1
+0
+8
+.
+4
+-
+**
+0
+9
+5
+.
+3
+-
+***
+8
+2
+8
+.
+6
+-
+2
+2
+2
+.
+2
+-
+***
+3
+8
+5
+.
+6
+-
+2
+0
+0
+.
+2
+-
+s
+e
+t
+a
+r
+t
+s
+e
+r
+e
+t
+ni
+m
+r
+e
+t
+tr
+o
+h
+S
+9
+4
+9
+.
+7
+-
+0
+8
+7
+.
+1
+-
+s
+e
+t
+a
+r
+t
+s
+e
+r
+e
+t
+ni
+m
+r
+e
+t
+g
+n
+o
+L
+***
+-3.082
+ -8.842***
+  -1.452
+ -7.142***
+8
+4
+3
+.
+6
+-
+6
+4
+6
+.
+1
+-
+***
+2
+1
+5
+.
+4
+-
+5
+9
+3
+.
+2
+-
+st
+s
+o
+c
+n
+oit
+c
+u
+rt
+s
+n
+o
+c
+la
+e
+r
+g
+o
+L
+***    
+-2.227
+-4.860*** 
+**
+2
+9
+1
+.
+2
+-
+7
+7
+2
+.
+0
+-
+n
+oit
+alu
+p
+o
+p
+la
+t
+o
+t
+g
+o
+L
+ 
+ -6.100*** 
+ -1.923 
+ -1.827 
+-1.867** 
+.
+3
+-
+4
+4
+-
+5
+2
+d
+e
+g
+a
+n
+oit
+alu
+p
+o
+p
+g
+o
+L
+773***
+-0.036 
+ -4.061***
+ -0.081 
+ -3.806**   
+ 0.256  
+ Share of the total population aged 25-44
+ -5.789***
+ -0.599 
+-5.735***
+-1.443
+-3.192*  
+ 0.370 
+Level
+1st 
+difference
+Level
+1st 
+difference
+Level
+1st 
+difference
+3
+3
+5
+.
+2
+-
+6
+4
+5
+.
+0
+-
+s
+e
+cir
+p
+e
+s
+u
+o
+h
+la
+e
+r
+g
+o
+L
+*** 
+ -3.162*
+-2.919***
+  -1.302
+ -2.596*** 
+.
+1
+-
+5
+9
+0
+.
+3
+-
+t
+n
+e
+m
+t
+s
+e
+v
+nilait
+n
+e
+dis
+e
+r
+g
+o
+L
+689* 
+  -2.810
+  -1.673** 
+  -2.908
+-2.973***
+8
+7
+6
+.
+2
+-
+***
+3
+6
+4
+.
+6
+-
+**
+6
+7
+7
+.
+3
+-
+P
+D
+G
+g
+o
+L
+ -3.101***
+  -2.322  
+ -3.772*** 
+***
+1
+2
+8
+.
+4
+-
+4
+1
+6
+.
+2
+-
+***
+4
+5
+9
+.
+2
+-
+5
+0
+3
+.
+2
+-
+***
+2
+8
+3
+.
+6
+-
+***
+4
+2
+.
+4
+-
+a
+tip
+a
+c
+r
+e
+p
+P
+D
+G
+g
+o
+L
+.
+0
+1
+-
+***
+0
+9
+4
+.
+4
+-
+e
+m
+o
+c
+ni
+elb
+a
+s
+o
+p
+sid
+g
+o
+L
+041***
+  -2.748
+ -2.986***
+ -1.249  
+  -3.675***    
+.
+0
+1
+-
+***
+2
+4
+4
+.
+4
+-
+a
+tip
+a
+c
+r
+e
+p
+e
+m
+o
+c
+ni
+elb
+a
+s
+o
+p
+sid
+g
+o
+L
+088***
+-2.700 
+  -2.894***
+  -1.371 
+  -3.755***  
+ Weighted average short term and long term interest rates
+  -1.357   
+ -4.514*** 
+ -5.151*** 
+ -8.785***
+  -5.635***
+ -10.446***
+.
+2
+-
+***
+4
+1
+5
+.
+4
+-
+7
+5
+3
+.
+1
+-
+s
+e
+t
+a
+r
+t
+s
+e
+r
+e
+t
+ni
+m
+r
+e
+t
+tr
+o
+h
+S
+517 
+ -5.996***
+  -8.506*** 
+-17.735***  
+8
+5
+3
+.
+1
+-
+3
+2
+2
+.
+2
+-
+s
+e
+t
+a
+r
+t
+s
+e
+r
+e
+t
+ni
+m
+r
+e
+t
+g
+n
+o
+L
+*
+ -2.784  
+ -11.571***
+  -1.172
+ -5.826***
+**
+2
+6
+3
+.
+2
+-
+0
+9
+7
+.
+2
+-
+st
+s
+o
+c
+n
+oit
+c
+u
+rt
+s
+n
+o
+c
+la
+e
+r
+g
+o
+L
+  -1.981  
+-7.195***   
+  -2.672
+  -3.008***
+1
+0
+1
+.
+6
+-
+*
+4
+8
+3
+.
+1
+-
+***
+1
+5
+1
+.
+6
+-
+n
+oit
+alu
+p
+o
+p
+la
+t
+o
+t
+g
+o
+L
+***
+ -2.010** 
+  -3.832**   
+  -1.796**
+**
+5
+9
+5
+.
+1
+-
+*
+0
+2
+3
+.
+3
+-
+4
+4
+-
+5
+2
+d
+e
+g
+a
+n
+oit
+alu
+p
+o
+p
+g
+o
+L
+  -2.254 
+-1.787** 
+  -3.690**  
+ -2.312**
+ Share of the total population aged 25-44
+ -4.297***  
+  -1.978**
+  -2.505 
+ -1.304* 
+  -3.021
+-1.368*
+Level
+1st 
+difference
+Level
+1st 
+difference
+Level
+1st 
+difference
+ Log real house prices
+-2.795 
+-3.624***
+ -3.601** 
+   -3.449***
+  -1.088   
+ -3.396***
+ Log residential investment
+ -1.925 
+  -4.212***   
+  -2.621
+-3.655***     
+ -4.297*** 
+  -4.007***  
+ Log GDP
+-3.673**
+ -3.969***  
+  -2.977 
+   -3.323***
+ -2.392 
+ -4.166***
+ Log GDP per capita
+ -3.721**
+ -4.014*** 
+ -3.047 
+ -3.268***  
+   -2.096 
+  -4.292***
+ Log disposable income
+ -3.367*
+ -3.203***
+-2.440
+  -4.514*** 
+  -2.207 
+ -4.572***
+ Log disposable income per capita
+-3.249*    
+-3.278***
+  -2.215 
+  -4.482*** 
+  -1.892  
+  -4.679***
+ Weighted average short term and long term interest rates
+ -3.135    
+ -7.471***
+   -1.866   
+ -6.108***  
+    -2.524  
+ -7.798***
+ Short term interest rates
+  -3.135  
+   -7.471*** 
+   -1.844 
+ -6.103***  
+ -2.803 
+ -9.152*** 
+ Long term interest rates
+ -4.225***
+  -3.567***
+   -3.030 
+   -9.047***  
+ -2.530 
+ -7.483***
+ Log real construction costs
+  -2.004  
+ -3.905*** 
+-1.901
+ -4.437***  
+ -0.544
+-4.532***
+ Log total population
+-5.226***    
+ -1.275
+ -0.684 
+-0.648   
+ -6.637***
+   -1.751**
+ Log population aged 25-44  
+ -1.444 
+-0.429 
+    -1.410  
+ -0.084    
+-5.061*** 
+ -1.378*   
+ Share of the total population aged 25-44
+ -1.345 
+0.256    
+  -1.403
+  0.158
+ -4.492***  
+ -1.599*  
+Switzerland
+United Kingdom
+United States
+Spain
+Netherlands
+New Zealand
+Norway
+Poland
+Sweden
+a
+⁄⁄⁄Stationary at 1% level of signiﬁcance. ⁄⁄Stationary at 5% level of signiﬁcance. ⁄Stationary at 10% level of signiﬁcance.
+248
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+
+
+Arnott, R., 2003. Tenancy rent control. Swedish Economic Policy Review
+10 (10), 89–121.
+Banarjee, A., Dolado, J., Galbraight, J.W., Hendry, D., 1993. Cointegration,
+Error Correction and the Econometric Analysis of Non-Stationary
+Data. Oxford University Press.
+Barker, K., 2004. Review of Housing Supply. HM Treasury, United
+Kingdom, http://www.barkerreview.org.uk/.
+Barker, K., 2008. Planning policy, planning practice, and housing supply.
+Oxford Review of Economic Policy 24 (1), 34–49.
+Blackley, D.M., 1999. The long-run elasticity of new housing supply in the
+United States: empirical evidence for 1950–1994. Journal of Real
+Estate Finance and Economics 18 (1), 25–42.
+Bouis, R., Klein, C., 2009. ‘‘La concurrence favorise-t-elle les gains de
+productivité ? Une analyse sectorielle dans les pays de l’OCDE’’
+Économie et statistique N 419–420.
+DiPasquale, D., Wheaton, W., 1994. Housing market dynamics and the
+future of housing prices. Journal of Urban Economics 35 (1),
+1–27.
+Ellingsen, T., Englund, P., 2003. Rent regulation: an introduction. Swedish
+Economic Policy Review 10, 3–9.
+Engle, R.F., Granger, C.W.J., 1987. Cointegration and error correction:
+representation, estimation, and testing. Econometrica 55, 251–276.
+Follain, J., 1979. The price elasticity of the long run supply of new housing
+construction. Land Economics 55, 190–199.
+Glaeser, E.L., Gyurko, J., Saiz, A., 2008. ‘‘Housing Supply and Housing
+Bubbles’’, NBER Working Paper No. 14193.
+Green, R.K., Malpezzi, S., Mayo, S.K., 2005. Metropolitan-speciﬁc estimates
+of the price elasticity of supply of housing, and their sources.
+American Economic Review 95 (2), 334–339.
+Grimes, A. and A. Aitken (2006), ‘‘Housing Supply and Price Adjustment’’,
+Working Papers 06_01, Motu Economic and Public Policy Research.
+Grimes, A., 2007. Impacts of Land Availability, Housing Supply and
+Planning
+Infrastructure
+on
+New
+Zealand
+House
+Prices,
+paper
+presented to Treasury & Reserve Bank of New Zealand conference
+‘The Business Cycle, Housing and the Role of Policy’, Wellington, 10–
+11 December.
+Gyourko, J., 2009. Housing supply. Annual Review of Economics 1, 295–
+318.
+Gyurko, J., Saiz, A., 2006. Construction costs and the supply of housing
+structure. Journal of Regional Science 46, 661–680.
+Harter-Dreiman, M., 2004. Drawing inferences about housing supply
+elasticity from house price responses to income shocks. Journal of
+Urban Economics 55 (2), 316–337.
+Hüfner, F., Lundsgaard J., 2007. ‘‘The Swedish Housing Market: Better
+Allocation
+via
+Less
+Regulation’’,
+OECD
+Economics
+Department
+Working Papers No. 559, OECD, Paris.
+Johansson, Å., Heady, C., Arnold, J., Brys, B., Vartia, L., 2008. ‘‘Taxation and
+Economic Growth’’ OECD Economics Department Working Papers,
+no.620, OECD, Paris.
+Malpezzi, S., 1996. Housing prices, externalities, and regulation in U.S.
+metropolitan areas. Journal of Housing Research 7 (2), 209–241.
+Malpezzi, S., Maclennan, D., 2001. The long-run price elasticity of supply
+of new residential construction in the United States and the United
+Kingdom. Journal of Housing Economics 10, 278–306.
+Mayer,
+C.,
+Somerville,
+T.,
+2000.
+Land
+use
+regulation
+and
+new
+construction? Regional Science and Urban Economics 30 (6), 639–
+662.
+Mayo, S., Sheppard, S., 1996. Housing supply under rapid economic
+growth
+and
+varying
+regulatory
+stringency:
+an
+international
+comparison. Journal of Housing Economics 5 (3), 274–289.
+Mc Laughlin, R.B., 2012. New housing supply elasticity in Australia: a
+comparison of dwelling types. Annals of Regional Science 48, 595–
+618.
+Meen, G., 2002. The time-series behavior of house prices: a transatlantic
+divide? Journal of Housing Economics 11 (1), 1–23.
+Molnár, M., Bottini, N., 2010. How Large are Competitive Pressures in
+Services Markets? – Estimation of Mark-Ups for Selected OECD
+Countries. OECD Economic Studies, forthcoming.
+Muth, R.F., 1960. The demand for non-farm housing. In: Harberger, A.C.
+(Ed.), The Demand for Non-Durable Goods. University of Chicago
+Press, Chicago.
+Ng, S., Perron, P., 2001. Lag selection and the construction of unit root
+tests with good size and power. Econometrica 69, 1519–1554.
+OECD, 2001. Annual report on competition policy developments in
+Austria. OECD Publishing, Paris.
+OECD, 2008. Policy Roundtables, Construction Industry, Paris http://
+www.oecd.org/dataoecd/32/55/41765075.pdfg.
+Poterba, J., 1984. Tax subsidies to owner occupied housing: an asset
+market approach. Quarterly Journal of Economics 99, 729–752.
+Rae, D., van den Noord, P., 2006. Ireland’s Housing Boom: What has
+Driven it and Have Prices Overshot?’’, OECD Economics Department
+Working Papers No. 492, OECD, Paris.
+Saiz, A., 2010. The geographic determinants of housing supply. Quarterly
+Journal of Economics 125 (3), 1253–1269.
+Sims, D., 2007. Out of control: What can we learn from the end of
+massachusetts rent control? Journal of Urban Economics 61 (1), 129–
+151.
+Stover, M.E., 1986. The price elasticity of the supply of single-family
+detached urban housing. Journal of Urban Economics 20, 331–340.
+Swank, J., Kanes, J., Tieman, A., 2002. The Housing Ladder, Taxation, and
+Borrowing Constraints, Netherlands Central Bank, No. 2002-9.
+Taltavull de la Paz, P., 2008. ‘‘The Housing Supply in Spain’’, paper
+presented at the ENHR seminar on Housing Economics (Feb.),
+Copenhagen.
+Topel, R., Rosen, S., 1988. Housing investment in the United States. Journal
+of Political Economy 96 (4), 718–740.
+Vermeulen,
+W.,
+Rouwendal,
+J.,
+2007a.
+‘‘Housing
+Supply
+in
+the
+Netherlands’’, Tinbergen Institute Discussion Papers 87, 5-09-2007,
+Tinbergen Institute.
+Vermeulen, W., Rouwendal, J., 2007b. ‘‘Housing Supply and Land Use
+Regulation in the Netherlands’’, Tinbergen Institute Discussion Papers
+07–058/3, Tinbergen Institute.
+A. Caldera, Å. Johansson / Journal of Housing Economics 22 (2013) 231–249
+249
+
+

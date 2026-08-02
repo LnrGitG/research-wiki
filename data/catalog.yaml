@@ -341,3 +341,42 @@ sources:
   - construction-decline
   - '2026'
   - cmwp
+- id: alfabank_april2026
+  title: 'Альфа-Банк: Обзор по рынку недвижимости — весна 2026'
+  type: bank_research
+  date: 2026-04
+  url: https://alfabank.ru/
+  files:
+    md: papers/alfabank_april2026.md
+    txt: raw/papers/alfabank_april2026.txt
+  tags:
+  - russia
+  - alfa-bank
+  - 2026-forecast
+  - family-mortgage
+  - key-rate
+  - price-spread
+  - housing-input
+  - escrow
+  - installments
+  - public-developers
+  - m-a
+  - macro
+  - gdp
+- id: max_zbi_q1_2026
+  title: 'МАХ: I квартал 2026 — худший для рынка ЖБИ с 2016 года (-18% г/г)'
+  type: industry_analysis
+  date: 2026-04
+  url: https://max.ru/
+  files:
+    txt: raw/papers/max_zbi_q1_2026.txt
+  tags:
+  - russia
+  - zbi
+  - reinforced-concrete
+  - construction-materials
+  - q1-2026
+  - regional-breakdown
+  - price-decline
+  - demand-weakness
+  - max-analytics

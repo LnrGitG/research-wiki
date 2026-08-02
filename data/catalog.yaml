@@ -460,3 +460,19 @@ sources:
   - housing-supply
   - zoning
   - regulatory-tax
+- id: couillard_2025_build_baby_build_ru
+  title: 'Couillard (2025): Build, Baby, Build — перевод на русский'
+  type: translation
+  date: 2025-11
+  url: ''
+  files:
+    md: papers/bkc_jmp_ru.md
+  tags:
+  - translation
+  - russian
+  - fertility
+  - housing-costs
+  - policy-counterfactuals
+  - family-mortgage
+  - couillard
+  - baum-snow

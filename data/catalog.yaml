@@ -418,3 +418,23 @@ sources:
   - demographic-model
   - policy-counterfactuals
   - research-design
+- id: gis_zhkh_housing_stock_2025
+  title: 'ГИС ЖКХ: Фонд многоквартирных домов России — износ, аварийность, пробелы
+    в данных (2025)'
+  type: government_data
+  date: 2025-12
+  url: https://t.me/sq_metre
+  files:
+    txt: raw/papers/gis_zhkh_housing_stock_2025.txt
+  tags:
+  - russia
+  - housing-stock
+  - wear-and-tear
+  - emergency-housing
+  - gis-zhkh
+  - rosstat
+  - arctic-regions
+  - capital-repair
+  - data-quality
+  - methodology-change
+  - '2025'

@@ -322,3 +322,22 @@ sources:
   - nostroy
   - forum-dvizhenie
   - '2026'
+- id: cmwp_construction_debt_burden_2026
+  title: 'ЦМАКП: Долговая нагрузка строительных компаний России — критический уровень
+    (481% от EBITDA)'
+  type: macro_analysis
+  date: 2026-02
+  url: https://www.cmwp.ru/
+  files:
+    txt: raw/papers/cmwp_debt_burden_2026.txt
+  tags:
+  - russia
+  - construction-debt
+  - debt-burden
+  - ebitda
+  - interest-coverage
+  - monetary-policy
+  - mortgage-tightening
+  - construction-decline
+  - '2026'
+  - cmwp

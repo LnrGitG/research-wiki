@@ -279,3 +279,27 @@ sources:
   - small-developers
   - regulation
   - topography
+- id: macon_2025_annual_reports
+  title: 'MACON: Анализ годовых отчетов публичных застройщиков России за 2025 год'
+  type: industry_analysis
+  date: 2026-06
+  url: https://macon-realty.ru/files/uploaded/4f2149e2-1c74-4bd6-bd6c-0eac7f09e6a6.pdf
+  files:
+    md: papers/macon_4f2149e2.md
+    txt: raw/papers/macon_4f2149e2.txt
+  tags:
+  - russia
+  - public-developers
+  - financial-analysis
+  - 2025-annual-reports
+  - mortgage-share
+  - project-finance
+  - escrow-coverage
+  - debt-burden
+  - ebitda-margin
+  - macon-consulting
+  - samolyot
+  - pik
+  - lsr
+  - etalong
+  - glorax

@@ -1,14 +1,32 @@
 ---
 title: "42% наиболее обеспеченных россиян — москвичи"
-source: "tochno.st (Если быть точным)"
+source: "tochno.st (Если быть точным) / Росстат (первичные данные)"
 date: "2026-02-19"
 updated: "2026-07-17"
 type: "news"
-tags: ["russia", "income-inequality", "moscow", "regional-disparity", "housing-demand", "top-1-percent"]
+tags: ["russia", "income-inequality", "moscow", "regional-disparity", "housing-demand", "top-1-percent", "income-distribution-factor", "independent-variable"]
 url: "https://tochno.st/materials/42-naibolee-obespecennyx-rossiian-moskvici"
+data_role: "independent_variable"
+variable_type: "regional_income_distribution"
+source_primary: "Росстат (распределение доходов по регионам)"
+source_secondary: "tochno.st (PPP-коррекция, агрегация)"
 ---
 
 # 42% наиболее обеспеченных россиян — москвичи
+
+## 📊 Статус для моделирования
+
+> **Эта новость = пример фактора распределения доходов населения в регионе, влияющего на спрос на жильё.**
+> **Источник первичных данных: Росстат.**
+> **Может использоваться как независимая переменная (independent variable) в эконометрических моделях спроса на жильё по регионам.**
+
+| Роль в модели | Описание |
+|--------------|----------|
+| **Тип переменной** | Независимая (explanatory / predictor) |
+| **Уровень** | Региональный (85 субъектов РФ) |
+| **Частота** | Годовая (Росстат публикует ежегодно) |
+| **Покрытие** | 2013–2024 (доступно в Росстате) |
+| **Источник первичных данных** | Росстат: «Распределение домохозяйств по среднедушевым денежным доходам» |
 
 ## Ключевые факты
 
@@ -78,10 +96,92 @@ url: "https://tochno.st/materials/42-naibolee-obespecennyx-rossiian-moskvici"
 | **Спрос на элитное жильё (Москва)** | 42% топ-1% создают устойчивый спрос на премиум-сегмент |
 | **Ипотечный канал** | Высокие доходы → выше LTV/DSTI доступность, но ключевая ставка ограничивает |
 | **Региональная дифференциация** | ЯНАО/Чукотка — высокие доходы, но малое население; Краснодар/Ростов — предпринимательство → спрос на ИЖС |
-| **Доходы от собственности (Москва/СПб)** | Рост финансовых активов 2023–2024 → капитализация в жилье |
+| **Доходы от собственности (Москва/СПб)** | Рост финансовых активов 2023–2024 → капитализация в жильё |
 | **Неравенство доступности** | 50 регионов — 30% населения, 7% топ-1% → структурно низкий спрос на новое жильё |
 
-## Связанные концепты в базе
+---
+
+## Переменные для регрессии спроса на жильё (региональный уровень)
+
+```yaml
+# Целевые переменные (зависимые)
+dependent_vars:
+  - housing_demand_per_capita: "Спрос на жильё на душу населения (кв.м/чел)"
+  - new_housing_sales_m2: "Объём продаж нового жилья (млн кв.м)"
+  - mortgage_originations_rub: "Объём выдачи ипотеки (млрд руб)"
+  - housing_price_index: "Индекс цен на жильё (Rosstat/Cian)"
+
+# Независимые переменные — факторы распределения доходов (из этой новости)
+income_distribution_factors:
+  # Прямые меры концентрации высоких доходов
+  - top1_share_regional: "Доля жителей региона в топ-1% по доходам (Росстат)"
+  - top10_share_regional: "Доля жителей региона в топ-10% по доходам (Росстат)"
+  - top1_overrep_ratio: "top1_share_regional / population_share_regional (коэфф. перепредставленности)"
+  - top10_overrep_ratio: "top10_share_regional / population_share_regional"
+  
+  # Пороговые доходы (абсолютные уровни)
+  - top1_threshold_rub: "Порог входа в топ-1% (руб/мес на человека) — по регионам"
+  - top10_threshold_rub: "Порог входа в топ-10% (руб/мес на человека) — по регионам"
+  - median_income_rub: "Медианный доход на душу (руб/мес) — по регионам"
+  
+  # Структура доходов (источники)
+  - wage_share_income: "Доля оплаты труда в доходах населения (Росстат)"
+  - property_income_share: "Доля доходов от собственности/фин. активов (Росстат)"
+  - entrepreneurship_income_share: "Доля доходов от предпринимательства (Росстат)"
+  - social_transfers_share: "Доля социальных трансфертов (Росстат)"
+
+# Контролирующие переменные
+controls:
+  - population: "Численность населения региона"
+  - gdp_per_capita: "ГРП на душу"
+  - unemployment_rate: "Уровень безработицы"
+  - housing_stock_per_capita: "Запас жилья на душу"
+  - mortgage_rate_regional: "Средняя ипотечная ставка в регионе (ЦБ РФ)"
+  - subsidized_mortgage_share: "Доля льготной ипотеки в выдаче (ДОМ.РФ)"
+  - construction_cost_index: "Индекс строительных издержек (Росстат)"
+  - land_availability: "Доступность земли под ИЖС/МНД (ЕИСЖС/Росреестр)"
+
+# Интеракции (для нелинейных эффектов)
+interactions:
+  - top1_overrep_ratio * mortgage_rate_regional: "Эффект высоких доходов при разных ставках"
+  - property_income_share * housing_price_index_lag1: "Капитализация финансовых активов в жильё"
+  - entrepreneurship_income_share * izh_permits_share: "ИЖС как канал спроса предпринимателей"
+```
+
+### Пример спецификации (панель 85 регионов, 2013–2024)
+
+```stata
+* Базовая модель: спрос на жильё ~ концентрация высоких доходов + контролли
+xtreg housing_demand_per_capita ///
+    top1_overrep_ratio ///
+    top10_overrep_ratio ///
+    median_income_rub ///
+    wage_share_income ///
+    property_income_share ///
+    entrepreneurship_income_share ///
+    population ///
+    gdp_per_capita ///
+    mortgage_rate_regional ///
+    subsidized_mortgage_share ///
+    i.year, fe vce(cluster region)
+
+* С интеракциями для нелинейностей
+xtreg housing_demand_per_capita ///
+    top1_overrep_ratio ///
+    c.top1_overrep_ratio#c.mortgage_rate_regional ///
+    c.property_income_share#c.housing_price_index_lag1 ///
+    c.entrepreneurship_income_share#c.izh_permits_share ///
+    [controls] ///
+    i.year, fe vce(cluster region)
+
+* Квантильная регрессия для хвостов распределения (премиум vs массовый сегмент)
+qreg housing_demand_per_capita [vars], quantile(0.9)  * топ-10% спроса
+qreg housing_demand_per_capita [vars], quantile(0.5)  * медианный спрос
+```
+
+---
+
+## Методология (tochno.st)
 
 - [[concepts/regionalnaya-differenciaciya]] — региональная неоднородность спроса
 - [[concepts/transmisionnyi-mehanizm-dkp-zhile]] — трансмиссия ДКП через ипотеку по регионам

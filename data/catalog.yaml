@@ -438,3 +438,25 @@ sources:
   - data-quality
   - methodology-change
   - '2025'
+- id: couillard_2025_build_baby_build
+  title: 'Couillard (2025): Build, Baby, Build: How Housing Shapes Fertility'
+  type: working_paper
+  date: 2025-11
+  url: https://www.utoronto.ca/
+  files:
+    md: papers/bkc_jmp.md
+    txt: raw/papers/bkc_jmp.txt
+  tags:
+  - fertility
+  - housing-costs
+  - dynamic-discrete-choice
+  - micro-moments
+  - becker-quantity-quality
+  - family-friendly-housing
+  - policy-counterfactuals
+  - baum-snow
+  - us-census
+  - demographics
+  - housing-supply
+  - zoning
+  - regulatory-tax

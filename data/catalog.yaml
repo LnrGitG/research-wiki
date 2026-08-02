@@ -380,3 +380,22 @@ sources:
   - price-decline
   - demand-weakness
   - max-analytics
+- id: veb_china_real_estate_2026
+  title: 'ВЭБ/Noah Smith: Китайский кризис недвижимости — структурный сбой модели
+    (янв-фев 2026)'
+  type: comparative_analysis
+  date: 2026-02
+  url: https://veb.ru/
+  files:
+    txt: raw/papers/veb_china_real_estate_2026.txt
+  tags:
+  - china
+  - real-estate-crisis
+  - structural-crisis
+  - noah-smith
+  - comparative-analysis
+  - russia-vs-china
+  - debt-crisis
+  - local-government-finance
+  - household-savings
+  - '2026'

@@ -577,3 +577,87 @@ sources:
   - continuous-improvement
   - lean-construction
   - '2026'
+- id: volkov_2022_russian_housing_market
+  title: 'Volkov (2022): Современное состояние рынка жилой недвижимости в России'
+  type: academic_article
+  date: '2022'
+  journal: Вестник РЭУ им. Г. В. Плеханова
+  volume: '19'
+  issue: 1 (121)
+  pages: 29-41
+  doi: 10.21686/2413-2829-2022-1-29-41
+  author: А. А. Волков
+  affiliation: Вологодский научный центр РАН
+  files:
+    md: papers/volkov_2022_russian_housing_market.md
+    txt: raw/papers/1244_2067_1_SM.txt
+  tags:
+  - russia
+  - housing-market
+  - housing-affordability
+  - housing-per-capita
+  - housing-commissioning
+  - primary-market
+  - secondary-market
+  - mortgage
+  - subsidized-mortgage
+  - emergency-housing
+  - dilapidated-housing
+  - izhs
+  - individual-housing-construction
+  - low-rise-construction
+  - high-rise-construction
+  - far-east-prices
+  - north-caucasus-prices
+  - escrow-accounts
+  - rosstat
+  - cbr
+  - 2014-2019
+  - volkov
+  - vologda-science-center
+  - reu-bulletin
+- id: turner_townsend_gcmi_2026
+  title: 'Turner & Townsend: Global Construction Market Intelligence 2026'
+  type: industry_report
+  date: '2026'
+  url: https://publications.turnerandtownsend.com/global-construction-market-intelligence-2026/market-conditions
+  files:
+    txt: raw/papers/turner_townsend_gcmi_2026.txt
+    json: raw/papers/turner_townsend_gcmi_2026_full.json
+  tags:
+  - global
+  - construction-market-intelligence
+  - cost-escalation
+  - labor-shortages
+  - mep-shortages
+  - data-centers
+  - ai-adoption
+  - procurement-models
+  - collaborative-contracting
+  - fixed-price-contracts
+  - mega-projects
+  - risk-pricing
+  - energy-volatility
+  - geopolitical-risk
+  - supply-chain
+  - modular-construction
+  - digital-transformation
+  - bim
+  - cybersecurity
+  - decarbonization
+  - low-carbon-materials
+  - green-labor
+  - regional-cost-rankings
+  - tendering-conditions
+  - currency-effects
+  - north-america
+  - latin-america
+  - europe
+  - uk
+  - anz
+  - asia
+  - middle-east
+  - africa
+  - '2026'
+  - turner-townsend
+  - gcmi

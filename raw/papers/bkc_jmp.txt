@@ -1,0 +1,4733 @@
+Build, Baby, Build: How Housing Shapes Fertility
+Benjamin K. Couillard∗
+Economics Department, University of Toronto
+November 9, 2025
+Click Here For Latest Version
+Abstract
+Many developed countries face low and falling birthrates, potentially aﬀected by rising
+costs of housing. Existing evidence on the fertility-housing cost relationship typically uses
+geographic variation (raising selection issues), neglects unit size, and says little about policy. To
+progress on these fronts, I ﬁrst specify a dynamic model of the joint housing-fertility choice
+allowing choices over location and house size, estimated using US Census Bureau data. I
+extend ‘micro-moment’ techniques (Petrin, 2002; Berry et al., 2004a) both to circumvent data
+constraints and to incorporate heterogeneous residuals, which can prevent misspeciﬁcation.
+Housing choice estimates conﬁrm a Becker quantity-quality model’s predictions: large families
+are more cost-sensitive, and so rising housing costs disincentivize fertility. To study the causal
+eﬀect of rising housing costs on fertility, I vary them directly within the model, ﬁnding that
+rising costs since 1990 are responsible for 11% fewer children, 51% of the total fertility rate
+decline between the 2000s and 2010s, and 7 percentage points fewer young families in the
+2010s. Policy counterfactuals indicate that a supply shift for large units generates 2.3 times
+more births than an equal-cost shift for small units. This analysis concludes that the supply of
+housing suitable for families can meaningfully contribute to demographic sustainability.
+JEL: J13, R21, R52, J12, R312, C81
+Keywords: Fertility decline, housing aﬀordability, household formation, family-friendly housing, neigh-
+borhood sorting, housing supply, zoning/regulatory tax, dynamic discrete choice, micro-moments, iterative
+proportional ﬁtting
+∗University of Toronto Economics Department. Email: ben.couillard@mail.utoronto.ca. I thank my supervisory
+committee, Nate Baum-Snow, Stephan Heblich, Rob McMillan, & Victor Aguirregabiria, for their steadfast guidance
+and support. I also thank U of T’s urban and IO groups, and participants of the 2025 Canadian Summer Conference
+in Real Estate and Urban Economics. This research was supported in part by funding from the Social Sciences and
+Humanities Research Council of Canada, and an Ontario Graduate Scholarship. All errors and omissions are my own.
+
+
+Build, Baby, Build
+Couillard
+1
+Introduction
+Persistently low fertility brings with it a host of adverse economic consequences, including higher
+pension and healthcare costs, reduced innovation, slower growth, and population shrinkage (Bloom
+et al., 2024). Although immigration can improve demographic structure in the short run, much of
+the developing world currently has or is projected to have sub-replacement fertility (UN, 2022). To
+achieve long run demographic sustainability, policymakers should also consider how birth rates
+might be raised.
+One promising but under-studied lever involves housing. Larger families demand more housing,
+so a higher marginal cost may deter additional births, as does a high cost of child quality (e.g.,
+education) in a standard child quantity-quality model (Becker, 1960). While there is empirical
+support for this channel, prior work (i) is often aﬄicted by a geographic selection problem, as those
+with preferences for many children tend to sort into lower-cost locations, (ii) does not incorporate
+nonlinearities in the cost of housing over unit size, and (iii) does not consider the impacts of policies
+that shift housing supply.
+To advance on these fronts, I ﬁrst specify a dynamic model that captures the joint housing-
+fertility and household formation decisions. I can then ﬁnd the impact on fertility net of sorting
+by varying housing costs in a partial-equilibrium decomposition, which I then extend to general-
+equilibrium housing supply policy counterfactuals that target particular unit sizes. This model nests
+a static residential choice model in a broader dynamic ‘living arrangement’ model, which includes
+fertility choice. The residential choice component speciﬁes the choice variable as combinations of
+neighborhood and house size (number of bedrooms), and allows preferences to be heterogeneous
+over age, tenure, family/roommate households, and household size. Agents make living arrangement
+and fertility decisions knowing how they will aﬀect their housing demand, so changes in housing
+characteristics (including costs) have heterogeneous impacts on the values of living arrangement
+choices. The living arrangement decision includes living with parents or other family members, and
+so the long-run value of having children is linked to the endogenous probability that adult children
+or other family members will unilaterally choose to live in the household. This mechanism will
+be important when units are heterogeneous in size, since aﬀordable small units raise the short-run
+value of being single relative to starting a family, but also reduce the long-run cost of fertility since
+adult children are more likely to move out.
+I then estimate the housing demand model by applying and extending IO “micro-moment”
+techniques to surmount the problem of not observing the joint distribution of household counts over
+census tracts and the various dimensions of demographic heterogeneity. Since Petrin (2002) and
+Berry et al. (2004a), marginal distributions of the choice variable with individual dimensions of
+heterogeneity have been used to estimate heterogeneous parameters in discrete choice models under
+2
+
+
+Build, Baby, Build
+Couillard
+an assumption of additive separability. However, these techniques restrict the utility residual to
+be homogeneous over demographics and can thus lead to model misspeciﬁcation in some cases,
+depending on which marginal distributions are used, the number of choice options, and the number
+of parameters in the model. I show that in the case where the utility residual is unrestricted and
+there are no random coeﬃcients, the observed marginal distributions are suﬃcient statistics for the
+two-step estimator of Bayer et al. (2007).
+My housing demand results are consistent with a Beckerian (1960) quantity-quality model
+extended to include housing: larger families are more sensitive to housing costs and have stronger
+tastes for larger units. Thus, rising housing costs – whether only in the largest units, or on average –
+do contribute to declining fertility. I quantify this eﬀect in a decomposition, using fertility utility
+parameters to hold constant all non-housing determinants of fertility: if rents had not risen since
+1990, 13 million (11%) more children would have been born between 1990 and 2020, and the
+decline in fertility between the 2000s and 2010s would have been smaller by 51%. In further
+decompositions, I separately impose 1990 relative rents (letting the average rents rise) and average
+rents (letting the relative rents vary), ﬁnding that average rents have the larger eﬀect on fertility.
+Finally, I use the model and estimates to compare two potential housing supply policy counter-
+factuals, separately shifting the supply of large 3+ bedroom and small 1 bedroom units. I interpret
+these shifts as reductions in distortionary local regulatory taxes; however, to place the two policies
+on equal footing, I deﬁne the shifts as if subsidies that generate equal aggregate funding had been
+provided (5% of annual aggregate rental expenditures, assuming all agents are renters and based
+on baseline rents and quantities), so that the small-unit shift generates more total units. The small
+unit policy is de facto YIMBY policy, which focuses on small and low-cost units, while the large
+unit policy is a direct attempt at family-friendly housing policy1. In principle, the YIMBY policy
+could cause the larger fertility increase through a larger eﬀect on aggregate rents and a reduction
+in the long-run housing cost of fertility by prompting young adults to move out of their parents’
+homes, even as it would steepen the size-cost gradient. On the other hand, the large unit policy
+would generate a smaller decrease in average rents, but ﬂatten this gradient. I ﬁnd that the large unit
+policy causes 4.7 million (4%) more children to be born over three decades. Interpreting these shifts
+as a subsidy, the return is one birth per $160,000 (2022 USD), which is on the high end of estimates;
+interpreting these shifts as reductions in “regulatory taxes” on development suggests that birth rates
+can be increased at a low cost while increasing economic eﬃciency. The YIMBY policy achieves
+only 43% this number of births, because its largest eﬀect is making living alone more attractive.
+1The small unit policy mix would include speciﬁc policies like expanding micro-units and acessory dwelling units,
+easing lot subdivision, and fast-track approvals for large condo buildings with many small units. Even given “the closing
+of the suburban frontier” (Glaeser and Gyourko, 2025), a feasible large unit policy mix would build out the missing
+middle, especially when coupled with relaxed parking, stair / ﬁre safety, and bathroom rules, which distort living space
+away from the bedrooms that families value most (Stone and Fijan, 2025)
+3
+
+
+Build, Baby, Build
+Couillard
+I conclude that rising housing costs are a major cause of declining fertility, even after correcting
+for endogenous sorting. This relationship mostly results from increasing housing costs across all unit
+sizes, rather than raising the relative rents of large units. However, a large unit policy that combines
+a smaller eﬀect on average rents with a ﬂattening size-cost gradient outperforms a small unit policy
+that combines a larger eﬀect on average rents with a steepening size-cost gradient. If housing is to
+be a lever in family policy, the focus must be on producing the housing that families actually want.
+1.1
+Related Literature and Contribution
+This paper makes four contributions. My ﬁrst contribution is to provide estimates of the impact
+of housing costs on fertility that are free from selection bias. Although the negative relationship
+between income and fertility is “pervasive,” (Doepke et al., 2023), it is generated by other factors
+like a quantity-quality tradeoﬀ(Becker, 1960) and opportunity cost of women’s time. Indeed,
+a host of empirical papers show that children are a normal good (Fleisher and Rhodes, 1979;
+Borg, 1989; Heckman and Walker, 1990; Black et al., 2013; Kearney and Wilson, 2018; Autor
+et al., 2019; Cesarini et al., 2023; Tsai et al., 2022). When housing costs are high, there is less
+income available for children, and when the relative price of family-friendly housing is high then
+families will substitute away from more children, although incumbent homeowners may experience
+a countervailing positive wealth shock even as mortgage payments increase.
+The empirical literature on housing costs and fertility is consistent with these mechanisms,
+ﬁnding that high housing costs reduce renter fertility and have varying eﬀects on owner fertility
+(Dettling and Kearney, 2014; Clark and Ferrer, 2019; Lovenheim and Mumford, 2013; Pan and
+Yang, 2022; Daysal et al., 2021; Atalay et al., 2021; Liu and Zhang, 2024; Clark, 2012; Simon
+and Tamura, 2009; Dettling and Kearney, 2025; Cumming and Dettling, 2024; Fazio et al., 2025;
+Japaridze and Sayour, 2024). However, all of the aforementioned papers save Cumming and Dettling
+(2024) and Fazio et al. (2025) (which focus on housing ﬁnance) use geographic variation in housing
+costs, and provided that households simultaneously choose both fertility and housing reduced-form
+coeﬃcients will include a sorting eﬀect as high-fertility-propensity households sort into lower-cost
+locations. I explicitly account for this phenomenon by embedding a sorting model into a fertility
+choice model, and provide estimates of the impact of rising housing costs since 1990 in the ﬁrst
+decomposition, generating smaller aggregate results than an analogous reduced-form exercise.
+My second contribution is to analyze the distinct roles that small and large units play in fertility
+and household formation by incorporating them into a single framework. Young adults rarely start
+families while living with their parents. An empirical literature ﬁnds that high housing costs reduce
+household formation (B¨orsch-Supan, 1986; Haurin et al., 1993; Ermisch and Salvo, 1997; Ermisch,
+1999; Paciorek, 2013; Cooper and Luengo-Prado, 2018; Wrenn et al., 2019; Lafortune and Low,
+4
+
+
+Build, Baby, Build
+Couillard
+2023) but both this literature and the housing-fertility literature (with the exception of Clark, 2012)
+do not consider housing unit size. We would expect the aﬀordability of large units to be more
+relevant for fertility and the aﬀordability of small units to be more relevant for household formation.
+Aﬀordable small units have an ambiguous eﬀect on fertility: they may lower the long-run cost
+of fertility by inducing adult children to move out, or they may make remaining childless more
+attractive relative to starting a family2. I accommodate these mechanisms by including the number of
+bedrooms as a dimension of housing choice, and including the presence of adult children and other
+family members in the dynamic state. These mechanisms are explored in the latter decompositions
+where I alternately hold constant and let vary average and relative housing prices, ﬁnding that
+average prices matter more, as well as the housing policy counterfactuals.
+My third contribution is to analyze fertility under housing policy counterfactuals. The large
+number of reduced-form papers on the topics of housing costs, fertility, and household formation
+underlines the importance of these topics, but housing costs are endogenous and cannot be directly
+controlled by policy, calling for counterfactual analysis that shifts exogenous variables. There is
+increasing interest in using structural models to jointly analyze urban economics and demography,
+but these papers focus more on the impact of demographics on urban outcomes rather than the
+reverse (Coeurdacier et al., 2022; Ahlfeldt et al., 2025; Moreno-Maldonado and Santamar´ıa, 2024;
+Albouy and Faberman, 2025). I therefore consider regulatory tax reductions (that can also be
+understood as housing supply subsidies) in conjunction with estimated local supply elasticities
+(Baum-Snow and Han, 2024), solve for the new sorting-fertility equilibrium, and calculate fertility
+statistics for comparison, ﬁnding that subsidizing larger units is far more eﬀective in raising fertility.
+My fourth contribution is to include rich heterogeneity and microgeography in a neighbor-
+hood sorting model without conﬁdential microdata by applying IO micro-moment techniques
+(Petrin, 2002; Berry et al., 2004a), and deriving a suﬃcient statistics result to extend them to to
+accommodate heterogeneous residuals; the latter, as I show, can prevent misspeciﬁcation in some
+cases. In comparison, logit-based sorting models have been estimated with rich heterogeneity and
+microgeography using conﬁdential microdata (e.g. Bayer et al., 2007); with rich heterogeneity and
+larger geographies observable in public-use microdata (e.g. Diamond, 2016); and with limited
+heterogeneity and microgeography using public-use tabulations (e.g. Couture and Handbury, 2020).
+Instead, I employ a simple manipulation of the Bayer et al. (2007) log-likelihood under additive
+separability of preferences to show that public-use tabulations and higher-geography public-use
+microdata are together suﬃcient statistics for the model. I pursue this approach because standard IO
+tools that use the same data (like PyBLP, Conlon and Gortmaker, 2020; Conlon and Gortmaker,
+2023) to estimate demographic heterogeneity in parameters impose demographic homogeneity on
+2They may also provide young adults an intermediate step to starting a family by fostering independence and
+attractiveness on the marriage market, but this mechanism is not included in the model.
+5
+
+
+Build, Baby, Build
+Couillard
+the systematic unobserved utility ξ. As Athey and Imbens (2007) ﬁrst observed, a model with a
+single unobserved characteristic may not be able to rationalize choice data that is disaggregated by
+demographics. I show that when the number of micro-moments (marginal distributions) grows with
+the number of options J, there is a J∗such that a model with a homogeneous residual is unable
+to rationalize the data and is thus misspeciﬁed, and standard identiﬁcation and consistency results
+(Berry and Haile, 2014; Berry et al., 2004b) may not hold. However, identiﬁcation does hold when
+the utility residual varies over demographics (Berry and Haile, 2010) and consistency very likely
+extends to this case as well.
+1.2
+Outline
+In Section 2, I introduce the data and provide descriptive evidence. In Section 3, I present identifying
+variation, replicate reduced-form ﬁndings, and discuss the impact of sorting. In Section 4, motivated
+by descriptive evidence, limitations of the reduced-form, and a quantity-quality model (Becker and
+Lewis, 1973) extended to include housing, I introduce the structural model. In Section 5, I discuss
+estimation of the structural model. In Section 6, I deﬁne the partial and general equilibrium concepts
+used to solve decompositions and counterfactual scenarios respectively. In Section 7, I present the
+results of estimation, decompositions, and counterfactuals. Section 8 concludes.
+2
+Data and Descriptive Statistics
+2.1
+Data
+All data except for that used to construct one of the instruments comes from the 1990 or 2000 US
+Decennial Census or 2008-12 or 2018-22 5-year American Community Survey, by way of IPUMS
+USA (Ruggles et al., 2025) or NHGIS (Schroeder et al., 2025).
+Microdata. The fertility part of the model uses microdata and ignores its limited geographic
+information. Because fertility is part of a broader living arrangement choice, the most important
+information is related to household structure. Although the Census and ACS are cross-sectional and
+not longitudinal, I use information on the ages of children in the household, the duration of time
+spent in their current residence, and the presence of a mortgage to infer the household structure and
+tenure state a decade prior. Because the US Census, like censuses across the world, under-counts
+young children (U.S. Census Bureau, 2016), I re-weight the estimation sample so that it matches
+age-speciﬁc decadal fertility rates based on oﬃcial estimates from the US CDC (Martin et al.,
+2013; Driscoll and Hamilton, 2025), and thus the oﬃcial US total fertility rate, using the iterative
+proportional ﬁtting (IPF) algorithm. I also use microdata to construct the supplementary city-level
+6
+
+
+Build, Baby, Build
+Couillard
+geographic tabulation referred to immediately below.
+Geographic Tabulations. Housing demand estimation would be straightforward if the joint
+distribution of households over census tract, number of bedrooms in the housing unit, and
+demographics was observed. Unfortunately, it is not observable outside of US Census Bureau
+Research Data Centers. Past papers in the literature have used RDC data, compromised on geography,
+or compromised on demographic heterogeneity. Instead, I use a set of marginal distributions of
+household counts over combinations of census tract (or the city it belongs to), number of bedrooms
+in the house, and dimensions of demographic heterogeneity, which are suﬃcient statistics for the
+parameters of the model. One of these marginal distributions is over all dimensions of demographic
+heterogeneity considered, and the city that a census tract belongs to. I combine these marginal
+distributions into a single rectangular dataset using iterative proportional ﬁtting (IPF). This estimate
+of the joint distribution exactly matches the input marginals, and can thus be conveniently used
+in a computational routine requiring a rectangular dataset for an estimator for which the marginal
+distributions are suﬃcient statistics.
+To better illustrate the data used, consider the following simple example (tables shown in Section
+A1. There are four census tracts – each of which belongs to one of two cities – and two age groups
+and two sexes. This is the unobserved joint distribution, depicted in Table 5’s “Population” column.
+Because this joint distribution is unobserved, we would instead use three marginal distributions in
+Table 6: tract by age, tract by sex, and age by sex by city. These marginal distributions could be
+used directly in a bespoke maximum likelihood estimation routine, or they could ﬁrst be combined
+into a rectangular estimate of the joint distribution using IPF (Table 5’s right-most column) to be
+passed into a more standard maximum likelihood estimation routine.
+Explanatory variables used in housing demand estimation and data for reduced-form analysis –
+rents, share single-family homes, fertility rates (Section 3.1) – are also constructed using census
+tract tabulations.
+Rents. I use rents to measure housing costs, which as a ﬂow cost are more conceptually appealing
+than house prices while being highly correlated with house prices and mortgage payments. The
+Census Bureau produces tabulations of occupied housing units by census tract and nominal rent
+bins; from these I estimate the median nominal rent using a linear cumulative density function and
+convert to real terms, and I scale as necessary to match year-bedroom averages in the microdata.
+Railway Noise. Noise pollution from railways is used to construct one of two instruments for
+rents used in this paper; a discussion of identifying assumptions is deferred. The US Department of
+Transportation published the average daily noise in decibels from trains in 2018 over a ﬁne grid.
+This measure is calculated based on a noise model that takes train microdata as an input. Data is
+coded as missing if the noise is less than 45 decibels (roughly ambient background noise), which I
+replace with 40 decibels.
+7
+
+
+Build, Baby, Build
+Couillard
+Consolidated Census Tracts. Because census tracts are redrawn for each census, I construct a
+balanced panel of about 48,000 neighborhoods by minimally aggregating census tracts to create
+consistent units3. That is, if a 1990 tract is split into two for the 2000 census, I take the 1990 tract as
+the unit and aggregate as necessary in later years to generate counts for that unit.
+2.2
+Descriptive Statistics
+Housing and Fertility are Jointly Chosen. Anecdotal evidence abounds for the idea that housing
+and fertility are jointly chosen: young couples often time home purchases and moves with starting a
+family. In Figure 1, I show the results of a regression of a birth indicator on housing characteristics
+that captures the strength of this correlation. When all housing characteristics are moved from
+the non-family-friendly value to the family-friendly value, the conditional probability of giving
+birth increases from less than 1% to nearly 20%, compared with a mean of 11%. This non-causal
+relationship is economically signiﬁcant, and so we could learn a lot from a framework that respects
+this joint determination.
+The Relative Price of Family-Friendly Housing is Increasing. North American parenting
+norms dictate that each child have a separate bedroom, and so the normative demand for bedrooms
+is linear in fertility. However, in addition to the rise of housing costs in general, these larger sizes
+have been growing more expensive relative to one bedroom units. In Figure 2, I plot diﬀerences in
+year-bedroom ﬁxed eﬀects from a rent regression that controls for location. After a period of rent
+compression over 1990-2000, 2 bedroom and especially 3+ bedroom units became substantially
+more expensive than 1 bedroom units.
+Household Size Drives Housing Demand.The size of a family household does not depend
+on the presence of minor children alone. Family households may be multi-generational, include
+adult children, include other adult family members or close friends, or may be headed by a parent
+whose relationship with the other parent has ended in divorce or separation. These other dimensions
+comprise additional sources of variation in the size of the household, and the size of the household
+is a primary determinant of the amount of living space demanded. In Figure 3, I plot by family size
+the CDF of bedroom count, which varies widely.
+Household Formation is Declining, Driven by 20-29 Year Olds. Because very few children
+are conceived by parents who are themselves still living with their parents, a young adult’s decision
+to live with their parents – to not form a new household of some kind – is tantamount to a decision
+not to have children. In Figure 4, I separate all adults (left panel) and 20-29 year olds (right panel)
+3Due to small imperfections in the geospatial data representing census tracts, there are a number of tiny splits when
+comparing tract vintages that are in fact meaningless. I ignore splits that imply a tract is crossing a county border (which
+is impossible), is home to zero people (based on a spatial merge of census block population data as points), comprise
+less than 5% of the area of any of the units involved, or which cross Public Use Microdata Area (PUMA) boundaries
+(which is important for a technical estimation reason discussed in Section A9.2).
+8
+
+
+Build, Baby, Build
+Couillard
+Figure 1: Results of a regression of having given birth in the last year on a vector of housing characteristics
+and city-year-age ﬁxed eﬀects: Birthi = β Housingi + FEcity-year-age(i) + ϵi. Census and ACS microdata,
+ﬁltered to women aged 26-33 who are household heads or partners of the household head. Results are
+arranged to show how the conditional expectation of the probability of having given birth increases when all
+housing variables are cumulatively switched to the family-friendly value: starting with the constant, moving
+from 1 bedroom up to 5 bedrooms, from renter to owner, from all other structures to single-family detached,
+and having moved to the unit in the last 5 years. The conditional expectation when all housing variables are
+set to the non-family-friendly values, at the mean, and when all housing variables are set to the family-friendly
+values, are depicted with grey horizontal lines.
+into (1) the head or the partner of the head of a family household, (2) a member of a non-family
+household (or in group quarters), and (3) a member of a family household that is not the head or
+partner of the head. The shifts in the overall adult population are large: a 6pp reduction in (1) split
+roughly equally between (2) and (3). In contrast, young adults have reduced (1) by 16pp, with about
+three quarters of the decrease ﬂowing into (3) and only one quarter ﬂowing into (2). Declining
+fertility is likely caused by declining household formation to some extent, and so it is important to
+consider how housing costs may keep young adults living at home.
+The Burden of Declining Household Formation Doesn’t Just Fall on Parents. A key concept
+in the model is the “extra” family member: a co-residing adult who is not a young adult child of
+the household head. However, these people will still serve to increase the size of the household
+and cause it to demand more housing. The share of people who are extra family members has
+increased by about 3pp from 1990 to 2020, and the share of family households that are hosting
+one has increased by about 9pp to nearly 30% in 2020. Accommodating this phenomenon is an
+important technical challenge of this paper.
+9
+
+
+Build, Baby, Build
+Couillard
+Figure 2: Results of a ﬁxed eﬀects regression: Rentjbt = αbt + αjb + αjt + ϵjbt, with diﬀerences in ˆαbt
+plotted. Rent is measured in decadal rent (120 times monthly rent) in 2022 USD, the same measure used in
+structural estimation. Further details are in Section 2.1.
+Figure 3: Cumulative distribution functions over bedrooms – from studio to 5 or more bedrooms – separately
+by family size. By deﬁnition, there is no such thing as a family household with only one member. Using
+pooled Census and ACS microdata, 1990-2022.
+Non-Traditional Family Structures Are Increasing In Frequency. For centuries, Western life
+courses followed a simple sequence: birth to married parents in a two-adult household; departure in
+10
+
+
+Build, Baby, Build
+Couillard
+Figure 4: Shares of all adults (left) and 20-29 year olds in three categories: head or partner of the head of a
+family household, a member of a non-family household, or a member of a family household that is not the
+head or the partner of the head. Census and ACS microdata.
+Figure 5: Extra family members are those who are not the head, partner of the head, or child of the head
+younger than 30. Left: share of population that is an extra. Right: share of family households that host an
+extra. Census and ACS microdata.
+young adulthood; then marriage and children in another two-adult household. In recent decades
+this pattern has weakened under the “Second Demographic Transition,” marked by “sustained
+11
+
+
+Build, Baby, Build
+Couillard
+subreplacement fertility, a multitude of living arrangements other than marriage, a disconnection
+between marriage and procreation, and no stationary population” (Lesthaeghe, 2014). Figure 6
+traces the SDT’s progress since 1990 in household structure. I deﬁne: (1) a traditional family as a
+household where the head’s partner is present and the only other members are children up to age
+19; (2) a non-family household as one where no two members are married or related; and (3) a
+non-traditional family as a family household where the head’s partner is absent, a 20–29-year-old
+adult child co-resides, or an extra family member resides. The share living in a traditional family
+fell by 8pp since 1990, as 5pp shifted to non-traditional families and 3pp to non-family households.
+Traditional families, a plurality in the early 1990s, are now nearly 10pp below non-families and only
+2pp above non-traditional families.
+Absent the SDT, studying the eﬀect of housing costs on fertility would be simpler because
+families would be more homogeneous. Instead, evidence already ties rising housing costs to delayed
+household formation among young adults and plausibly contributes to more multi-adult family
+arrangements. Ignoring the SDT would either restrict analysis to an ever-smaller, unrepresentative
+minority or miscode actual household sizes, distorting housing demand. I therefore specify a
+dynamic model of housing and fertility in which departures from the traditional structure are
+endogenous4 and jointly determined with housing costs and fertility. Because unit size aﬀects
+living-arrangement and fertility decisions diﬀerently, this structure is necessary to identify the
+fertility eﬀects of policies targeting large versus small units – this paper’s central aim.
+3
+Reduced-Form Analysis
+In this section, I replicate the reduced-form negative relationship between housing costs and fertility,
+and show that fertility is more responsive to the cost of larger housing units. I use the same
+identifying variation as in structural estimation: shifts in the amenity value of substitutable locations
+that prompt equilibriating shifts in rents – the “donut IV” of Bayer et al. (2007). Finally, I discuss
+the reduced-form estimand and its limitations: even with experimental variation, the estimated
+causal eﬀect of local housing costs on local fertility includes high-fertility families sorting into
+low-cost places and away from high-cost areas.
+4Young-adult co-residence and extra family members are endogenous; partnership dissolution is exogenous and
+measured by to age-varying divorce rates over time.
+12
+
+
+Build, Baby, Build
+Couillard
+Figure 6: I use the Census Bureau deﬁnition of family households: one where at least two members are
+married or related by blood. I deﬁne “Traditional Families” as family households where the partner of the
+head is present and adult children and extra family members are not present, and “Non-Traditional Families” as
+family households where at least one of the preceding conditions does not hold. Census and ACS microdata.
+3.1
+Regression Equation and OLS Results
+I regress tract-level general fertility rates (GFR)5 on the log of local median rents for 1 and 3+
+bedroom units using the four-decade panel (1990, 2000, 2010, 2020) of consistent census tracts j
+described in Section 2.1. I present results using diﬀerent sets of ﬁxed eﬀects – state, city, county,
+and tract, each with year ﬁxed eﬀects – and standard errors clustered by tract.
+GFRjt = αFE(j),t + β ln rentb
+jt + ϵjt,
+b ∈{1, 3+}.
+(3.1)
+The results of these regressions are presented in Table 1. Coeﬃcients are stable across ﬁxed-
+eﬀects speciﬁcation until tract ﬁxed eﬀects are added, which could result from the short panel (four
+decades). In each regression, the coeﬃcient is negative and statistically signiﬁcant, and the 3+
+bedroom coeﬃcient is between 1.6 and 3.6 times larger in magnitude than the 1 bedroom coeﬃcient.
+Given an average GFR of 0.065, these correlations are relatively large: using Table 1 column (3), a
+doubling of 3+ bedroom rents is correlated with a decline in GFR that is equal to 25% of the mean.
+5The GFR is the number of births per female of reproductive age, generally taken to be 15-44. I calculate it as the
+number of infants aged [0,1) in a tract divided by the number of women aged 15-44, scaled to match oﬃcial GFR
+statistics from the CDC since the Census under-counts young children (discussed in greater detail in Section 2.1). In
+contrast, the total fertility rate (TFR) is a sum of age-varying fertility rates at a point in time, providing a measure of the
+lifetime fertility of a synthetic woman who lives her entire reproductive life at that point in time.
+13
+
+
+Build, Baby, Build
+Couillard
+Table 1: OLS regressions of the general fertility rate (GFR) on the rent of 1 and 3+ bedroom units, separately,
+with various ﬁxed eﬀects and standard errors clustered by tract.
+GFR
+Fixed Eﬀects:
+State, Year
+City, Year
+County, Year
+Tract, Year
+Ln(Med. Rent, 1Bed)
+-0.00872∗∗∗
+-0.00892∗∗∗
+-0.00864∗∗∗
+-0.000866∗∗∗
+(0.000154)
+(0.000173)
+(0.000183)
+(0.000170)
+Ln(Med. Rent, 3+Bed)
+-0.0143∗∗∗
+-0.0160∗∗∗
+-0.0165∗∗∗
+-0.00310∗∗∗
+(0.000228)
+(0.000277)
+(0.000303)
+(0.000254)
+N
+177,926
+177,926
+177,926
+177,926
+3.2
+Identifying Variation and 2SLS Results
+The endogeneity problem is severe and multidimensional. The objective is to understand the eﬀect
+of rents on fertility, but this speciﬁcation is aﬄicted by selection into treatment, heterogeneity
+over owners and renters, unobserved amenities that may disproportionately attract families or
+increase fertility, and a reverse-causal relationship as many large families increase demand for
+larger units. Although the reduced-form can address the latter two concerns, we do not observe
+separate small-area fertility rates by tenure, and even experimental variation cannot surmount the
+selection problem. Before introducing the structural model that will address selection and tenure
+heterogeneity, I introduce the identifying variation that I will use in structural estimation, and
+estimate a baseline relationship between housing costs and fertility that is causal up to those biases.
+To generate identifying variation in rents, I turn to the donut instrument, the spatial version of
+the BLP (1995) instrument that was ﬁrst introduced by Bayer et al. (2007). The donut IV is an
+average of amenities in a donut-shaped region around a focal tract. Neighborhoods suﬃciently near
+are trimmed due to endogeneity concerns: people may have preferences over amenities in a region
+around the focal tract. Neighborhoods suﬃciently distant are trimmed due to strength concerns:
+they are much less substitutable and provide little power in the ﬁrst stage6.
+The donut instrument generates identifying variation by shifting the quality of substitutable
+(nearby) locations, which shifts willingness to pay for and the market-clearing rent of the focal
+tract. If the amenity value of substitutes increases, then rents in a focal tract must decline in order
+to restore equilibrium (and vice versa), provided that housing supply is not perfectly elastic. In
+structural estimation, the exclusion restriction is mean-independence of the donut instrument and
+unobserved characteristics of the focal tract, which is satisﬁed if the donut region is distant enough
+that any spatial correlation between the donut amenity and unobserved amenities of the focal tract
+6This is similar to Gandhi and Houde (2019), who construct stronger BLPL IVs using only products nearby in
+characteristic space. Physical proximity is a heuristic for characteristic proximity due to spatial autocorrelation.
+14
+
+
+Build, Baby, Build
+Couillard
+has fallen to zero but near enough that tracts in the donut region are still substitutable with the focal
+tract. Although we cannot evaluate the spatial correlation between the instrument and the error term
+because the latter is unobservable, we can use a simple model and the facts that the median move
+distance is about 16-24km and about 75% of moves are within-metro to make an educated guess of
+about 20-30km for the median residential search radius (with details in Section A2). Too far beyond
+this distance it is implausible that the substitution mechanism is driving a ﬁrst stage, and too far
+below we run the risk of violating the exclusion restriction.
+I consider two amenities to use as the basis for a donut instrument: noise pollution from railways,
+and the share of housing units that are single-family detached homes. I also consider various
+distances over which to construct the instruments. It is important to emphasize once more that the
+identifying assumption is not that these amenities measured in the focal tract are valid instruments
+for rent in the focal tract: then the exclusion restriction would be that the amenity has no eﬀect on
+sorting utility outside of rents, which implies that it is not actually amenity and cannot form the basis
+for a donut instrument. A suitable amenity causes sorting to that location – hence the consideration
+of the share single-family, an amenity that was already in the sorting model. However, the share
+single-family is a proxy for many amenities which could be spatially correlated with the error term
+at longer distances, motivating a comparison with a more precisely-deﬁned amenity: noise pollution.
+Noise pollution is diﬃcult to consistently measure across an entire country at a ﬁne spatial scale, but
+transportation networks can be modeled such that precise local estimates of transportation-based7
+noise pollution can be formed. Because railways are lines and not points, railway noise is more
+spatially autocorrelated and thus will have stronger spatial correlations with other things in the
+regression error term and require longer distances when calculating the donut instrument.
+Given the regression speciﬁcation and instrument deﬁnition, the 2SLS estimator is characterized
+by the following system of equations:
+GFRjt = αco(j),t + β ln(rentb
+jt) + γxjt + ϵjt
+ln(rentb
+jt) = πzzD
+jt + πxxjt + πco(j),t + ηjt
+(3.2)
+zD
+jt =
+P
+k:d(j,k)∈D Hktxkt
+P
+k:d(j,k)∈D Hkt
+.
+for
+b ∈{1, 3+},
+xjt ∈{single-familyjt, rail noisej},
+D ∈{[0, 1), [1, 2), ...}.
+I show ﬁrst stage regression results in Figure 7, where standard errors are clustered by census
+tract. For each combination of endogenous variable and instrument, the focal tract amenity (blue
+dashed line) has the right sign. Although the instrument has a coeﬃcient of essentially zero when
+7Road, rail, and aviation noise are all available, but road noise instruments are weak and aviation noise instruments
+fail sign diagnostics.
+15
+
+
+Build, Baby, Build
+Couillard
+donut share single-family is used to instrument 3+ bedroom rents, all three other speciﬁcations
+have large regions where the coeﬃcient has the right sign, is stable, and is strong according the
+Olea-Pﬂueger Eﬀective F-statistic and critical values.
+Second stage results are in Figure 8. The weak ﬁrst stage when donut share single-family is used
+to instrument 3+ bedroom rents generates a very wide conﬁdence interval (including zero), which I
+omit for visual clarity. In each case, the point estimate for the 3+ bedroom rent coeﬃcient lies below
+the 1 bedroom rent coeﬃcient, and the diﬀerence is statistically signiﬁcant for distances below 25km
+when rail noise is used to construct the instrument. Coeﬃcients are generally statistically distinct
+from zero, and the 1 bedroom coeﬃcient is very similar regardless of which IV is used.
+Figure 7: First stage regression coeﬃcients (y-axis) for four models over a range of distances (x-axis). Left:
+rail noise is the IV; right: share single family is the IV; top: 3+ bedroom rents are explanatory variable;
+bottom: 1 bedroom rents are explanatory variable. The IV coeﬃcient – amenity in the donut – is in solid red,
+while the coeﬃcient on the amenity in the focal tract is in dashed blue.
+Because the individual donuts so far are all quite thin – a single kilometer in width, and a radius
+of many kilometers - I show results for consolidated donuts in Table 2. The rail noise instrument
+is strongest overall at a range of 11-15km, while the single-family instrument is strongest for 1
+bedroom rents at a range of 6-9km. These distances align with the original ﬁndings of Bayer et al.
+(2007) that amenities (particularly, housing stock and land use) at a distance greater than 5km (3mi)
+tend to reduce focal house prices8, and the idea that a wider radius is necessary when using rail
+8I discard the results that the single-family instrument is strongest for 3+ bedroom rents at a range of about 20km
+because it does not align with this pattern.
+16
+
+
+Build, Baby, Build
+Couillard
+Figure 8: 2SLS coeﬃcients (y-axis) for four models over a range of distances (x-axis). Left: rail noise is the
+IV; right: share single family is the IV. Very wide conﬁdence intervals on one model omitted for visual clarity.
+noise since it is more spatially autocorrelated.
+Baseline rail noise results are in columns 1 and 2; I add the share single-family as a control
+in columns 3 and 4, which slightly strengthens the ﬁrst stage and reduces the magnitude of the
+coeﬃcients. Baseline share single-family results are in columns 5 and 6; I add rail noise as a control
+in columns 7 and 8, which slightly strengthens the ﬁrst stage and increases precision. I add tract ﬁxed
+eﬀects (infeasible for rail noise, which does not vary over time) in columns 9 and 10, which brings
+the 3+ bedroom rent coeﬃcient into alignment with the rail noise results but causes the second stage
+coeﬃcients to have the wrong sign for 1 bedroom rents (focal share single-family has the wrong sign
+in the ﬁrst stage). In each case, the Anderson-Rubin test of signiﬁcance of endogenous regressors
+rejects the null hypothesis, even in columns 5 and 7 when the instrument is weak.
+The rail noise results suggest that, up to selection endogeneity, the semi-elasticity lies between
+-0.055 and -0.065 for large unit rents and -0.03 and -0.04 for small unit rents. The share single-family
+results, when the instrument is strong enough and ﬁrst stage coeﬃcients have the right sign (i.e.,
+ignoring columns 5, 7, and 10), indicate the same. These results are very large in magnitude relative
+to the general fertility rate average and interquartile range, 0.065 and 0.023, suggesting that sorting
+bias may be substantial.
+17
+
+
+Build, Baby, Build
+Couillard
+Table 2: Consolidated donuts based on ﬁrst stage results with preferred speciﬁcations in columns 3 and 4. Baseline models in columns 1, 2, 5, and 6. I
+add the other amenity as a control in columns 3, 4, 7, and 8, and tract ﬁxed eﬀects (feasible only for the single-family instrument) in columns 9 and 10.
+Standard errors are clustered by tract.
+(1)
+(2)
+(3)
+(4)
+(5)
+(6)
+(7)
+(8)
+(9)
+(10)
+GFR
+GFR
+GFR
+GFR
+GFR
+GFR
+GFR
+GFR
+GFR
+GFR
+Log(Median 3+ Bed Rent)
+-0.0646∗∗∗
+-0.0568∗∗∗
+-0.274
+-0.242∗
+-0.0681∗∗∗
+(0.0149)
+(0.0127)
+(0.150)
+(0.113)
+(0.0119)
+Log(Median 1 Bed Rent)
+-0.0327∗∗∗
+-0.0308∗∗∗
+-0.0406∗∗∗
+-0.0410∗∗∗
+0.0382∗∗∗
+(0.00775)
+(0.00747)
+(0.00753)
+(0.00736)
+(0.00649)
+Share Single-Family
+0.0121∗∗∗
+0.00544∗∗∗
+0.0543
+0.00598∗∗∗
+0.0471∗
+0.00610∗∗∗
+0.0128∗∗∗
+0.00564∗∗
+(0.00246)
+(0.000719)
+(0.0293)
+(0.000734)
+(0.0213)
+(0.000693)
+(0.00286)
+(0.00187)
+Avg Rail Noise (dB)
+-0.0000772
+0.0000492
+0.0000201
+0.0000816∗∗
+-0.000524
+0.0000498
+(0.0000629)
+(0.0000331)
+(0.0000419)
+(0.0000300)
+(0.000335)
+(0.0000307)
+Observations
+186309
+175035
+186309
+175035
+186225
+174984
+186225
+174984
+186166
+173945
+IV
+Rail, 11-15km
+Rail, 11-15km
+Rail, 11-15km
+Rail, 11-15km
+SF, 6-9km
+SF, 6-9km
+SF, 6-9km
+SF, 6-9km
+SF, 6-9km
+SF, 6-9km
+KP Stat
+32.92
+52.57
+44.10
+55.62
+2.889
+55.81
+4.028
+58.89
+64.34
+109.7
+p-value: AR Test
+0.00000388
+0.0000123
+0.00000530
+0.0000247
+1.59e-08
+4.62e-09
+3.64e-09
+1.19e-09
+4.33e-15
+3.97e-13
+Tract FEs
+X
+X
+Standard errors in parentheses
+∗p < 0.05, ∗∗p < 0.01, ∗∗∗p < 0.001
+18
+
+
+Build, Baby, Build
+Couillard
+3.3
+Sorting Bias and SUTVA Violation
+The reduced-form estimand is the causal eﬀect of rents on fertility rates in a neighborhood, without
+holding constant the composition of the neighborhood, because large and small families sort
+diﬀerently over rent. If we are interested in understanding the aggregate eﬀect of rents on fertility
+rates, we need a diﬀerent estimand: the causal eﬀect of rents on fertility, without a sorting bias.
+Econometrically, specifying a reduced-form relationship between local fertility and local rents
+when (1) fertility and housing are chosen jointly, (2) there are latent preferences for fertility, and
+(3) fertility changes housing demand results in a violation of the Stable Unit Treatment Value
+Assumption. Under these assumptions, local fertility rates are a weighted average of the fertility
+rates of subpopulations with diﬀerent latent preferences for fertility. The weights are determined by
+the distribution of latent fertility preferences in a location, which is determined by sorting and is a
+function of rents in other locations. When an outcome is a function of treatments in other units,
+SUTVA is violated: we are not estimating a treatment eﬀect of rents on fertility rates that holds
+everything else constant. Rents aﬀect the fertility rates of the subpopulations, but also the weight
+placed on each subpopulation since each group sorts to or away from that location at diﬀerent rates
+due to their heterogeneous preferences over rent. The full argument is in Section A3.
+I now provide empirical evidence that fertility and housing are chosen jointly in Table 3 (in
+addition to to Figure 1). First, I regress a birth indicator on a moving indicator, conditioning on
+ﬁxed eﬀects for year-age-tenure, current location, and location one year ago. This speciﬁcation
+holds constant any location-speciﬁc factors – related to where she lives now, or where she did one
+year prior – that could aﬀect fertility. I ﬁnd that a woman who moves in a given year is 0.79pp more
+likely to also give birth in that year, which is an increase of 14.5% over the sample probability. Next,
+I regress a birth indicator on indicators for duration of residence in the current home, conditioning
+on ﬁxed eﬀects for year-age-tenure-city (past location is not observed when the residence duration
+exceeds one year). Here, the coeﬃcient on moving in that year is about triple, and coeﬃcients on
+having moved 1-2 and 2-5 years prior are slightly larger, indicating that moving in anticipation of
+having children is slightly more common than moving in the same year as having children.
+I conclude that housing and fertility are chosen jointly, SUTVA is violated, and the reduced-form
+estimand includes sorting bias. I now turn to the structural model that is intended to remedy the bias.
+4
+Model
+The architecture of the structural model is motivated by the descriptive facts in Section 2, discussion
+of the reduced-form in Section 3, and now, the economics of housing and fertility. I begin by
+discussing the results of extending Becker and Lewis’s (1973) quantity-quality model to include
+19
+
+
+Build, Baby, Build
+Couillard
+Table 3: Reduced-form evidence that housing and fertility are chosen jointly. Moving is signiﬁcantly
+correlated with giving birth in that year, and in the next several years. Using ACS microdata, 2005-2022.
+Robust standard errors.
+(1)
+(2)
+Birth in Last Year
+Birth in Last Year
+Residence: [0, 1) Years
+0.00786∗∗∗
+(0.000277)
+0.0247∗∗∗
+(0.000295)
+Residence: [1, 2) Years
+0.0276∗∗∗
+(0.000353)
+Residence: [2, 5) Years
+0.0249∗∗∗
+(0.000230)
+Residence: [5,10) Years
+0.0127∗∗∗
+(0.000204)
+Observations
+11856932
+11817377
+Mean LHS
+0.0541
+0.0541
+FE1
+Year-Age-Tenure
+Year-Age-Tenure-City
+FE2
+PUMA, Current
+FE3
+PUMA, 1Yr Ago
+Standard errors in parentheses
+∗p < 0.05, ∗∗p < 0.01, ∗∗∗p < 0.001
+housing. I then show how the structural model on a broad level accommodates these takeaways and
+provides a mechanism where high housing costs disincentivize fertility. Then, I discuss the details
+of the state, choice set, and state transition, which accommodate additional dynamic mechanisms of
+rising importance during the Second Demographic Transition. I then provide details about housing
+demand.
+4.1
+Quantity-Quality With Housing
+After it was ﬁrst sketched in Becker (1960), the quantity-quality tradeoﬀwas formalized by Becker
+and Lewis (1973). The key element is that the cost of childrearing that enters the budget constraint
+is a product of the quantity of children and the pecuniary cost of the quality of children, where both
+quantity and quality also enter preferences. Then, if the income elasticity of child quality exceeds
+the income elasticity of child quantity, an increase in income will generate a reduction in fertility,
+even when the income elasticity of child quantity is positive.
+To add housing to this framework, I deﬁne the housing choice variable as housing per child h,
+which enters preferences and creates an additional quantity-quality term in total housing expenditure
+nrh, quantity of children times cost of a unit of housing times housing per child. This term joins the
+standard quantity-quality term ni in the budget constraint, where per-child investment i is mapped
+to child quality q by an increasing function f. The parent’s optimization problem is then
+max
+n,q,c,h U(n, q, c, h)
+subject to
+c + ni + nrh = y
+and
+q = f(i), f ′ > 0.
+(4.1)
+20
+
+
+Build, Baby, Build
+Couillard
+Under the assumptions that all goods are normal and have positive and declining marginal utility,
+we can easily see that the larger is the housing cost r, the more severe is the quantity-quality tradeoﬀ
+related to housing, and the higher is the shadow price of fertility rh which reduces fertility via both
+the income and substitution eﬀect.
+The following results are proven in Section A4. Adding the assumptions that fertility is weakly
+separable from the other goods and that the elasticity of h and i with respect to n exceeds -1 (i.e.,
+that total housing and investment increases with the number of children), the optimal choice of
+all other goods decreases with n: less parental consumption, less per-child quality, less per-child
+housing. Then, the agent is pushed back onto a steeper part of the utility function, and thus has a
+stronger taste for the numeraire to spend on parental consumption and child quality, a stronger taste
+for a marginal unit of housing, and greater total housing consumption. These are the very patterns
+that the structural model is intended to exploit using heterogeneity in housing demand parameters.
+4.2
+Overview
+This is a dynamic model of living arrangement (including fertility) and housing choice. Given a
+state and vector of iid preference shocks, the value is that of the best option in the choice set:
+V (x, ϵi) = max
+g∈G(x),h{vx
+gh + ϵi
+gh}
+where
+(g, h, x) = (living arrangement, housing, state)
+(4.2)
+We assume that the ﬂow of each option can be written as a sum of housing utility u and living
+arrangement utility α. We further assume that an agent’s preferences for housing options depends
+on both their state entering the period and their choice. The value of each option is the sum of ﬂow
+utility and the discounted expected future value of the option, which depends on the inclusive value
+of each future state and the probability of transitioning to each state. Notably, we assume that the
+housing choice does not aﬀect these state transition probabilities:
+vx
+gh = uτ(g,x)
+h
++ αx
+g
+|
+{z
+}
+ﬂow utility
++ δE
+
+
+X
+x′
+π(x′ | g, x)
+|
+{z
+}
+state transition
+× ln
+
+X
+h′
+X
+g′∈G(x′)
+exp(vx′
+g′h′)
+
+
+|
+{z
+}
+inclusive value
+ Wt(x)
+| {z }
+infot
+
+
+|
+{z
+}
+continuation value ≡cxg
+.
+(4.3)
+The assumptions that housing and fertility preferences are additively separable, and that the
+housing choice does not impact state transition, is essentially an assumption that moving costs on
+a decadal scale are negligible and that agents can frictionlessly re-optimize their housing choices
+in each period, which substantially improves tractability. The assumption that preferences over
+21
+
+
+Build, Baby, Build
+Couillard
+housing depend on living arrangement captures that the presence and quantity of children (and
+other dimensions of living arrangement) signiﬁcantly aﬀect how agents value housing options. We
+assume that preferences are linear over characteristics, with coeﬃcients indexed by housing demand
+type τ, which is mapped into by the living arrangement state and choice:
+uτ
+h = X′
+hβτ + ξτ
+h,
+where
+h = (neighborhood, bedrooms)
+(4.4)
+Heterogeneity in housing preferences is the means by which housing characteristics shape
+fertility choices. The quantity-quality model predicts that larger families will have a more negative
+rent coeﬃcient, and a greater taste for additional bedrooms. A shift in rents for all units, or just the
+largest units, negatively impacts the value of being a large family the most.
+However, as was shown in the descriptives section, the size of a family also depends on adult
+children and other family members, as well as whether both parents are present, and so all of these
+dimensions can also generate heterogeneity in housing preferences. If housing costs aﬀect these
+outcomes, there are additional channels that housing costs can aﬀect the value of adding to the size
+of the family through having children. Omitting these channels would then provide an incomplete
+picture, and excluding these determinants of family size would require either using an estimation
+sample that is small and shrinking through the sample period or one in which a growing proportion
+of agents are inaccurately re-coded.
+I thus specify a rich model of living arrangement choice and household formation. Adult
+children are agents that can remain with the family, form roommate households, or start families
+themselves. Agents can also choose to live in the household of some other family member. High
+housing costs disincentivize the formation of family or roommate households, causing agents to join
+other households, altering the housing preferences of the hosting decisionmakers. By increasing the
+likelihood that children remain with the family for multiple decades, high housing costs disincentivize
+having children, independently of the eﬀect of childrearing on ﬂow utility, and regardless of the
+inherent utility of having children. Likewise, starting a family increases the likelihood that other
+family members will unilaterally join the household, and high housing costs increase the probability
+of this outcome conditional on that choice, disproportionately hurting the value of having children
+through another channel. (I treat partnership dissolution as exogenous.) I describe the details of
+these dynamics in the next two subsections.
+4.3
+State and Choice Set
+The complete state is
+22
+
+
+Build, Baby, Build
+Couillard
+x = (year, foreign/native-born, family, owner, age,
+lost partner, kids aged 10-19, kids aged 20-29, extras)
+Year, foreign/native-born, age, and lost partner are exogenous; everything else is endogenous. The
+unrestricted choice set is
+G = {group quarters, with parents, with other family, alone,
+1 roommate, ..., ¯s −1 roommates, have 0 kids, have 1 kid, ..., ¯n kids, buy house}.
+The ﬁrst three options provide zero housing utility and can only be chosen in non-family,
+non-owner states. “Group quarters” means some form of institutional living (hospital, military
+barracks, college dorm, prison, etc.) and is included for completeness and to hold the tendency for
+people to live in such an environment – by choice or otherwise – constant in counterfactuals. “With
+parents” means choosing to remain with the household headed by the parents to which one was
+born; it is available only in the second and third decade of life (ﬁrst and second decade of being an
+agent with the ability to choose). “With other family” means living as an extra family member in
+some other family; availability of this option does not depend on age.
+An agent can choose to live in a non-family household – that is, alone or with unrelated
+roommates – if the state is non-family.
+Starting a family, taking a partner of the same age, and having one or more kids are all
+synonymous, and is available if the state is in the second through ﬁfth decades of life. If the state is
+family or the choice is to start a family, an agent can also buy a house9. A family that has lost one of
+the partners cannot have additional kids.
+4.4
+State Transition
+The year and age advance one decade per decade; foreign/native-born status is immutable.
+The stock of children of each age evolves according to a binomial distribution that uses the
+previous-period, previous-age stock of children and the endogenous probability that adult children
+of that type chooses to live with parents. For the number of children aged 10-19,
+Pr(n10−19 = k|x, n0−9,t−1) =
+
+n0−9,t−1!
+k!(n0−9,t−1 −k)!
+  P 10−19,t,imm(x)
+par
+k
+×
+ 1 −P 10−19,t,imm(x)
+par
+(n0−9,t−1)−k ,
+(4.5)
+9For simplicity, only families can buy a house. Otherwise, one roommate would be the owner and the other unrelated
+roommates would be paying rent – rare and diﬃcult to model.
+23
+
+
+Build, Baby, Build
+Couillard
+and analogously for those aged 20-29.
+The number of extras evolves according to a diﬀerent binomial distribution. I assume that the
+total number of extras that live with households of a certain type is the product of the total number of
+people choosing to live as extras and a time-invariant share of extras going to each household type;
+this is the number of trials. I assume that every agent in a household type has an equal probability of
+hosting each extra so that the binomial distribution probability parameter is the reciprocal of the
+number of agents in that household type. The total number of extras is:
+N t
+extras =
+X
+˜x
+N ˜xtP ˜xt
+extra.
+(4.6)
+The share of extras going to each “extras group” w(˜x) is:
+sw(˜x) =
+P
+t
+P
+˜x′:w(˜x′)=w(˜x) N ˜x′te(x′)
+P
+t
+P
+˜x′′ N ˜x′′te(x′′)
+.
+(4.7)
+The number of extras going to households of a given type is the product:
+N w(˜x),t
+extras = sw(˜x)N t
+extras.
+(4.8)
+Then the distribution uses this number of trials, and the reciprocal of the agent count in an extras
+group as the probability:
+Pr(extras = e|x) =
+
+
+N w(˜x),t
+extras !
+e!
+
+N w(˜x),t
+extras −e
+
+!
+
+
+
+1
+N w(˜x),t
+e 
+1 −
+1
+N w(˜x),t
+Nw(˜x),t
+extras
+−e
+.
+(4.9)
+There is an exogenous probability of a partnership dissolving that varies over time and age. If
+a partnership does dissolve, there is a 50% probability of being the partner that remains with the
+family, and a 50% probability of being the partner that reverts to a non-family state.
+If all children leave the household and there are no extras then both partners revert to non-family.
+If they were owners, they revert to renters.
+A non-family household may receive extras and become a family household for a decade.
+4.5
+Housing
+Given the assumptions on the structure of v, a standard residential choice model can be derived, and I
+show this in Section A5. Because preferences for housing characteristics are heterogeneous in a way
+that is linked to fertility choice, changes in housing characteristics generate heterogeneous changes
+in values of fertility options and thus heterogeneous changes in fertility behavior. Particularly, larger
+24
+
+
+Build, Baby, Build
+Couillard
+families’ stronger preferences over rent and size will combine with rising average and large-unit
+rents to generate decreases in fertility.
+The utility of tract-bedroom (j, b) = h housing option is linear in observables. I provide results
+for models with and without railway noise, but always include railway noise for exposition. Housing
+characteristics include the rent r, bedrooms b, single family share m, railway noise level x, a
+city-year-type ﬁxed eﬀect ϕ, and a demographic-varying unobserved utility ξ.
+uτ
+jbt = βτ
+r rjbt + βτ
+b + βτ
+mmjt + βτ
+xxj + ϕτ
+c(j),t + ξτ
+jbt.
+(4.10)
+Housing demand type has four dimensions, and an additively-separable structure is placed on
+the linear coeﬃcients:
+τ = (age, tenure, family/non-family, size) = (a, e, f, s),
+βτ = β + βa + βe + βf + βs (4.11)
+This structure assists with interpretability and is required for the later suﬃcient statistics results.
+Notably, it is not placed on ϕτ
+c(j)t, which is allowed to vary freely over (j, t, a, e, f, s). This ﬁxed
+eﬀect also proxies as a city-level shock to fertility utility, since it captures the value of being a large
+(or small) family in a speciﬁc city at a speciﬁc time.
+5
+Estimation
+5.1
+Housing Demand: Motivation and Discussion
+Given that the necessary data for micro-BLP estimation is available – marginal distributions of
+household counts over neighborhoods and individual dimensions of demographic heterogeneity
+– using a standard estimator would be a natural approach, and would be a contribution to urban
+economics since it has not yet been done. However, the standard estimator constrains unobservable
+utility ξj to be homogeneous over demographics, and when the number of micro-moments is large
+this implies testable restrictions that hold with zero probability when the true data-generating
+process allows ξτ
+j to vary over demographics. Instead, I use arguments pioneered by the Iterative
+Proportional Fitting (IPF) literature to show that these marginal distributions are suﬃcient statistics
+for the two-step Bayer et al. (2007) estimator when the residual varies over demographics10.
+As summarized by Conlon and Gortmaker (2023) there are many forms that micro-moments can
+take, some of which grow with the number of options J, and it is this growth with J that leads to
+model mis-speciﬁcation. The form considered in this paper, and which are used in the suﬃcient
+10I.e., the marginal distributions provides equivalent estimates to those one obtains when using microdata or the
+tabulated joint distribution.
+25
+
+
+Build, Baby, Build
+Couillard
+statistics argument, is probability of choosing an option j conditional on one of the dimensions of
+demographics D taking value d, or Pr(j|D = d). As the number of options J increases, the set
+of micro-moments increases by more than one (depending on the speciﬁcation of demographics),
+while the number of parameters is constant and the number of error terms increases by only one. At
+a certain point, the parameters and errors – the data-generating process – will be unable to generate
+the observed data. The model will then be mis-speciﬁed, and the identiﬁcation and consistency
+results that apply to correctly-speciﬁed models (Berry and Haile, 2014; Berry et al., 2004b) will not
+apply. A formal proof of this argument is available in Section A6.
+In addition to preventing mis-speciﬁcation and providing certainty that foundational identiﬁcation
+and consistency results apply, demographic-varying residuals are useful for several other reasons.
+First, abstracting from mis-speciﬁcation, models with demographic-varying residuals explain the
+data more and demand less from the extreme-value shocks ϵ. The extreme-value shocks are assumed
+to be iid over individuals, but if a demographic-varying residual is non-zero, then we can conclude
+that there is unused information in the demographics that refutes that assumption. With demographic-
+varying residuals, the extreme-value shocks are more likely to be truly idiosyncratic because we have
+conditioned on demographics to a greater extent. Second, without demographic-varying residuals,
+unobserved utility is a measure of purely vertical diﬀerentiation. Once demographic-varying
+residuals are added, unobserved utility may be primarily vertical, or diﬀerent groups may have
+diﬀerent rankings of the options – the data will determine which is true. Finally, the demographic-
+varying residual may be held constant in counterfactual analysis in order to better understand the
+diﬀerences between factual and counterfactual behavior for diﬀerent groups.
+I accommodate demographic-varying residuals – in the case where the joint distribution of
+choice and demographics is unobserved – by exploiting the suﬃciency of the marginal distributions
+for the ﬁrst-step maximum-likelihood estimator of Bayer et al. (2007)11 under additive separability
+11This estimator is analogous to that of Berry et al. (1995) but with observed heterogeneity instead of unobserved
+heterogeneity in the sense that the heterogeneity and a baseline utility ﬁxed eﬀect are estimated in a ﬁrst stage, and
+the baseline utility is decomposed to obtain the full distribution of preferences in a second step. In the case of BLP,
+we assume that the shocks on the coeﬃcients are iid; in the case of BFM we assume that the demographic residual
+relative to the baseline residual ξτ
+j −ξj is mean-independent of explanatory variables in order to consistently estimate
+heterogeneity in the ﬁrst stage – in both estimators the instrument targets endogeneity in the shared unobserved utility ξj.
+In this case, this assumption may be violated if neighborhoods that have amenities disproportionately valued by
+families (or which increase fertility) also have higher large-unit rents, or conversely if neighborhoods that have amenities
+disproportionately valued by singles (or which reduce fertility) also have higher small-unit rents. The former pattern
+would serve to reduce the extent of heterogeneity in rent-sensitivity and cause counterfactuals to be understated, while
+the latter would increase the extent of heterogeneity in rent-sensitivity and cause counterfactuals to be overstated.
+Because I include the share single-family in part to guard against this, and because it is a prior unclear which of the
+countervailing eﬀects would dominate, it does not seem to be a major concern.
+Regardless, one could avoid these concerns by estimating observed-heterogeneity logit models with 2SLS if the
+joint distribution of choices and demographics is observed and there are no ﬁnite sample zeros, or with the Poisson
+instrumental variables estimator of Mullahy (1997) if there are ﬁnite sample zeros. Although I have not proven it,
+it seems likely that the Mullahy (1997) estimator would remain consistent if the joint distribution of choices and
+26
+
+
+Build, Baby, Build
+Couillard
+of preferences (Equation 4.11). Heuristically, for any (non-error) term that enters the Poisson
+estimating equation, we must observe a count with the same indexes12. This result uses only a simple
+manipulation of the log-likelihood, illustrated in a simple example in Section A7 and applied to my
+housing model in Section A9.4. Because the baseline utilities δ are identical, the second-step 2SLS
+estimator returns identical coeﬃcients. Because the marginal distributions are suﬃcient, any joint
+distribution that aggregates into those marginal distributions provides the same estimates as those of
+the true joint distribution when passed into an estimation routine that accepts rectangular datasets. I
+thus use IPF to combine the marginal distributions into a single rectangular estimate of the joint
+distribution in a preliminary step. Because this step is equivalent to maximizing a likelihood, this
+estimated joint distribution is also suﬃcient for some linear estimators, which I show in Section A8.
+5.2
+Housing Demand: Execution
+As discussed above, I add a preliminary step to the two-step estimator of Bayer et al. (2007). I now
+discuss each step in turn: IPF estimation of the unobserved joint distribution, ML estimation of
+preference heterogeneity, and 2SLS estimation of baseline preferences.
+5.2.1
+IPF
+I obtain an estimate of the tabulation of households H over tract j, number of bedrooms b, age
+of head a, tenure e, family/non-family indicator f, and size s for each of the four decades t in the
+panel by running the IPF algorithm13 on a set of marginal distributions, where the ﬁrst four marginal
+distributions are distributions of households over a subset of those dimensions and the ﬁfth is the
+joint distribution at a higher level of geography: pt(j), the Public Use Microdata Area (PUMA)
+identiﬁer from PUMA vintage t that consistent census tract j is mapped to. I run the algorithm in
+FORTRAN90, in parallel over PUMA-years, to a tolerance of 10−10.
+ˆHaefs
+jbt
+= IPF(Hfs
+jt , Hes
+jt , Haf
+jt , He
+jbt, Haefs
+pt(j),b,t)
+(5.1)
+demographics were not observed and an IPF-estimated joint distribution were used in its place.
+12In a simpliﬁed context with options j and demographic heterogeneity over age a and sex s, the Poisson estimating
+equation is
+N as
+j
+= exp(αas + xj(β + βa + βs) + ξas
+j )
+where the ﬁxed eﬀect αas captures both the logit denominator and the total number of agents of each type N as, and
+is necessary for logit-Poisson equivalence (Figueirdo et al, 2003). By inspecting this equation, we can see what data
+is necessary: (αas, xjβ, xjβa, xjβs) =⇒(N as, Nj, N a
+j , N s
+j ), where notably N a
+j and N s
+j both aggregate into Nj
+and so only the former are required to be passed into estimation. This example shows the general pattern: we need to
+observe the marginal distributions of choice with individual dimensions of heterogeneity N a
+j and N s
+j , and the marginal
+distributions of heterogeneity but without choice N as.
+13The algorithm consists of scaling cells in a guessed joint distribution as necessary to ﬁt input marginals, looping
+over the set of marginals until convergence.
+27
+
+
+Build, Baby, Build
+Couillard
+I additionally convert estimated households ˆH to estimated decision-making agents N (Section
+A9.1) and remove some variation from rents so that the suﬃciency result applies (Section A9.2).
+5.2.2
+MLE
+For maximum-likelihood estimation of heterogeneity parameters, I exploit logit-Poisson equiva-
+lence14 (Figueiredo et al., 2003), use the total number of housing units Hjt as an exposure variable
+(Section A9.3), and collect baseline utility into a single term δjbt:
+N τ
+jbt = Hjt exp
+ βτ
+r rjbt + βτ
+b + βτ
+mmjt + βτ
+xxj + ϕτ
+c(j),t + ξτ
+jbt
+
+=
+exp
+
+δjbt + (βτ
+r −βr)rjbt + (βτ
+b −βb) + (βτ
+m −βm)mjt
+(5.2)
++ (βτ
+x −βx)xj + (ϕτ
+c(j),t −ϕc(j),t) + (ξτ
+jbt −ξjbt)
+
+.
+The exposure variable is absorbed into baseline utility. Due to computational constraints, I randomly
+divide the data into four subsets15 for estimation, obtain a consistent estimator for the linear
+heterogeneity parameters by averaging the estimate from all subsets, and then partial out these
+parameters and regressors to obtain a consistent estimator for δjbt in a ﬁnal Poisson likelihood
+maximization.
+5.2.3
+2SLS
+Because the exposure variable was absorbed into mean utility, exposure can be corrected simply
+by subtracting ln Hjt from δjbt, and so the system of equations that deﬁnes the second step16 is as
+follows:
+δjbt −ln Hjt = βrrjbt + βb + βmmjt + βxxj + ϕc(j),t + ξjbt
+rjbt = πb + πmmjt + πxxj + πzzD
+jt + πc(j),t + ηjbt
+(5.3)
+zD
+jt =
+P
+k:d(j,k)∈D Hktxk
+P
+k:d(j,k)∈D Hkt
+.
+Besides the outcome variable, there are other diﬀerences between this and the reduced-form
+14As Figueiredo et al. (2003) showed, the logit and Poisson likelihoods have the same maximizers. This is convenient
+because it means that many logit estimators can be computed using more generic and performant routines that tolerate
+ﬁnite-sample zeros. It also raises the possibility of using the Poisson instrumental variable estimator of Mullahy (1997)
+when ﬁnite-sample zeros and endogeneity are present and joint estimation is desired.
+15I thus conservatively adjust standard errors for the linear heterogeneity parameters by a factor of
+√
+4 = 2 to
+accommodate the additional variance of the estimator.
+16This system of equations describes the case where rail noise is the IV and xj is in the model. When share
+single-family is the IV, rail noise is not in the model and zD
+jt is constructed using mjt.
+28
+
+
+Build, Baby, Build
+Couillard
+speciﬁcation. Here, the outcome variable is indexed by the number of bedrooms, allowing bedroom
+ﬁxed eﬀects and the rents of diﬀerent size units to all enter the model. I allow rent to enter linearly –
+not in logs as in the reduced-form – so that preference heterogeneity captures the variation in local
+slopes that is implied by the quantity-quality model in Sections 4 and A4. I also use city ﬁxed
+eﬀects (CBSA, Core-Based Statistical Area) since the data used in IPF estimation is not suﬃcient
+for county ﬁxed eﬀects as in the reduced-form and PUMAs lack an inherent geographic concept.
+5.3
+Living Arrangement and Fertility
+The purpose of dynamic estimation is to estimate living arrangement utility αx
+g so that it may be
+held constant in decompositions and counterfactuals, thus isolating the eﬀect of the housing market
+on fertility. There are four steps: kernel-smoothing of choice probabilities so that they are strictly
+between zero and one, inverting αx
+g + cx
+g from living arrangement choices given housing utility
+uτ(g,x)
+h
+, forming estimates of the distribution of next-period values, and simulating cx
+g by taking
+draws from this distribution to ﬁnally back out αx
+g.
+5.3.1
+Kernel Smoothing
+Due to the structure placed on preferences in Equation 4.3, dynamic estimation will primarily use
+the probability of of choosing a particular living arrangement option, aggregating over housing
+choices:
+P x
+g =
+X
+h
+P x
+gh.
+(5.4)
+The Hotz-Miller inversion will require probabilities that are strictly between zero and one. Due
+to a ﬁne-grained state space, there are some states with a small number of agents and thus zero or
+one probabilities, and some states with no agents at all and undeﬁned choice probabilities. I thus
+use a triangular kernel smoothing estimator with bandwidths 1.1, 2.1, 2.1, and 1.117 over decade,
+number of children 10-19, number of children 20-29, and extras respectively. I do not smooth over
+native/foreign-born status, age, tenure, family status, or lost partner status, because of the sharply
+diﬀerent behavior of agents over these dimensions18. Hereafter, I refer to the smoothed probabilities
+17I choose bandwidths ending in 0.1 because it limits the inﬂuence of other observations when smoothing for the focal
+observation is unnecessary, while giving other observations the same inﬂuence relative to each other when smoothing
+for the focal observation is necessary.
+18Natives and foreign-born have very diﬀerent fertility patterns, as do women of diﬀerent ages. Because the focus of
+this paper is housing, I prefer to treat owners and renters as diﬀerently as possible. Families that are adding children are
+fundamentally diﬀerent from agents making the choice to start a family, and if a family has lost one of its partners then it
+is incapable of having additional children. Meanwhile, I do allow smoothing over stocks of children and extras because
+a family having diﬀerent levels of these stocks is less meaningful than some fundamental change of type. I smooth over
+decade because it seemed to be the least-bad marginal way to get all probabilities to be deﬁned and strictly between zero
+and one.
+29
+
+
+Build, Baby, Build
+Couillard
+as P x
+g to keep notation simple.
+5.3.2
+Hotz-Miller Inversion
+Due to the structure placed on preferences in Equation 4.3, we can factor fertility utility out of the
+fertility choice probability:
+P x
+g =
+X
+h
+P h
+gx =
+exp(αx
+g + cx
+g) P
+h exp(uτ(g,x)
+h
+)
+P
+h′
+P
+g′∈G(x) exp(αx
+g′ + cg′ + uτ(g′,x)
+h′
+)
+.
+(5.5)
+Then, we may log and diﬀerence with a reference choice for each state to isolate fertility utility:
+αx
+g + cx
+g = ln
+
+P zx
+g
+ X
+h exp(uτ(g,x)
+h
+)
+
+−ln
+
+P zx
+g0(x)
+ X
+h exp(uτ(g0(x),x)
+h
+)
+
+.
+(5.6)
+Because there is no option that is available in every state, the values of diﬀerent states are deﬁned
+relative to a diﬀerent option in each state. Speciﬁcally, the reference choice is living alone if the
+state is non-family, having zero children and remaining a renter if the state is renting family, and
+having zero children and remaining an owner if the state is owner family. There is one and only
+one reference choice in each state. I choose these reference choices because they are in some sense
+a default choice for each state, and the value of being a renting or owner family and having zero
+children is to some extent already contained in the value of transitioning to a renting or owner family
+by having at least one child and/or buying a house. In Section A11, I show that under an alternate
+normalization results are quantitatively diﬀerent but overall robust.
+5.3.3
+Regression-Based Forecasting
+Deﬁne the log of the living arrangement choice probability numerator as
+vzx
+g = αzx
+g + czx
+g + ln
+ X
+h
+exp(uτ(z,x,g)
+h
+)
+!
+.
+(5.7)
+Letting ˜x denote the state without time t, assume that agents forecast future values as an autoregressive
+process with a shared coeﬃcient, state-choice ﬁxed eﬀects, and state-choice time trends:
+v˜x,t+1
+g
+= ρ0v˜x,t
+g
++ ρ˜x
+g,1 + ρ˜x
+g,2t + e˜x,t+1
+g
+(5.8)
+with R2 = 0.9891. The distribution of errors will be drawn from to simulate the continuation value.
+30
+
+
+Build, Baby, Build
+Couillard
+5.3.4
+Simulating Continuation Value
+We use simulation to estimate the expectation of non-linear functions. The continuation value for a
+particular draw d – where we have also substituted vx′
+g′ in pace of vx′
+g′h′ – can be written as
+cxd
+g = δ
+X
+x′
+π(x′|g, x, d) × ln
+
+X
+g′∈G(x′)
+exp(vx′d
+g′ )
+
+,
+(5.9)
+where the draw from the value function forecast error distribution impacts the future values in a
+straightforward way and the transition matrix in a more complex way through the endogenous choice
+probabilities of adult children and extras.
+For the probability of partnership dissolution, I interpolate the divorce rate at diﬀerent ages in
+diﬀerent years to arrive at an age-varying decade-level divorce hazard rate19.
+For the probability of children remaining with the household when they are 10-19 (and
+analogously for 20-29), the draw aﬀects the probability parameter in the binomial distribution:
+Pr(n10−19 = k|x, n0−9,t−1, d) =
+
+n0−9,t−1!
+k!(n0−9,t−1 −k)!
+  P 10−19,t,imm(x),d
+par
+k
+×
+ 1 −P 10−19,t,imm(x),d
+par
+(n0−9,t−1)−k .
+(5.10)
+The case of extras is thornier. To compute the probability of hosting an extra in the future, we
+must have an estimate of the total number of extras in the future, which depends on the extra choice
+probabilities (straightforward given the forecast and draw), and on the number of agents in each state
+in the future. It is probably possible, but very burdensome, to iterate over π and include external
+data on mortality and net migration to solve this using accounting properties:
+N ˜x,t+1 =
+X
+˜x′
+X
+g∈G(x)
+π(˜x, t + 1|˜z′, x′, g, t)N ˜x′tP ˜x′t
+g
++ ∆˜x,t+1
+fertility + ∆˜x,t+1
+mortality + ∆˜x,t+1
+net migration.
+(5.11)
+Instead, I take agents to form a deterministic forecast of the period-ahead distribution of agents
+over states based on a regression similar to that used to forecast values:
+N ˜x,t+1 = ψ0N ˜xt + ψ˜x
+1 + ψ˜x
+2t + e˜x,t+1.
+(5.12)
+191990, 2010, 2012, 2015, 2017, 2019, and 2021 compiled by the National Center for Family and Marriage Research
+at Bowling Green University from CDC and ACS data (NCFMR, 2012; NCFMR, 2014; NCFMR, 2017; NCFMR, 2019;
+NCFMR, 2021; NCFMR, 2023).
+31
+
+
+Build, Baby, Build
+Couillard
+Agents then approximate
+N ˜x,t+1 ≈˜N ˜x,t+1 = ˆψ0N ˜xt + ˆψ˜x
+1 + ˆψ˜x
+2t,
+(5.13)
+which I consider to be an acceptable approximation since R2 = 0.9985. Simulation draws for value
+function errors are used in the period-ahead choice probabilities:
+˜N ˜x,t+1,d
+extras
+= sw(˜x) X
+˜x′
+˜N ˜x′,t+1P ˜x,t+1,d
+extra
+.
+(5.14)
+And ﬁnally, the probability distribution for extras conditional on an agent’s state and a vector of
+simulation draws:
+Pr(extras = e|˜x, t + 1, d) =
+
+˜N w(˜x),t+1,d
+extras
+!
+e!( ˜N w(˜x),t+1,d
+extras
+−e)!
+
+1
+˜N w(˜x),t+1
+e
+1 −
+1
+˜N w(˜x),t+1
+ ˜
+Nw(˜x),t+1,d
+extras
+−e
+.
+(5.15)
+With Pr(n10−19 = k|˜x, t + 1, d), Pr(n20−29 = k|˜x, t + 1, d), and Pr(extras = e|˜x, t + 1, d)
+known, we also know π(x′ | x, g, d), and we can ﬁnally estimate α as
+ˆαx
+g = αx
+g + cx
+g −δ
+X
+d
+1
+D
+X
+x′
+π(x′ | x, g, d) × ln
+
+X
+g′∈G(x′)
+exp
+
+ˆvx′d
+g′
+
+
+.
+(5.16)
+6
+Equilibrium
+In the decompositions, I manipulate rents directly, holding constant the intrinsic fertility utility and
+recomputing the continuation value to solve a partial equilibrium. In the counterfactuals, I add and
+shift a housing supply equation, also solving for rents in general equilibrium.
+6.1
+Partial Equilibrium and Decomposition
+A central secular trend in the last few decades in the US and other developed economies is rising
+housing costs. Since housing is often the largest part of a household’s budget, this trend has
+far-reaching consequences. Eﬀective housing policy, which has been lacking, would restrain the
+growth of housing costs by ensuring that housing supply is elastic so that new units can be built
+at low cost wherever rising demand pushes rents and prices up. Given the evidence about the
+relationship between housing costs and fertility presented thus far, the question of what fertility rates
+would be in a world where housing costs are not secularly increasing is of ﬁrst-order importance.
+32
+
+
+Build, Baby, Build
+Couillard
+The reduced-form literature attempts to answer this question using quasi-experimental variation
+in endogenous housing costs, but sorting limits the relevance of these estimands. Therefore, the ﬁrst
+set of exercises in this paper are decompositions that target rents directly and can be considered
+partial equilibrium exercises. I ﬁrst set rents equal to their values in 1990 in order to understand what
+the total eﬀect of rising housing costs is. Because agents respond in both their housing and living
+arrangement decisions, the quantity of housing units demanded changes over size and location. Since
+quantities change while rents stay ﬂat, this decomposition can also be thought of as a counterfactual
+where housing supply is perfectly elastic, and an upper bound on the extent to which housing policy
+can increase fertility. Then, I let average rents rise while relative rents are ﬁxed and vice versa to
+understand whether rising average or relative rents are more important.
+N
+π
+N ′
+P
+r
+u
+v
+v′
+P ′
+d
+ˆπ
+c
+ˆN ′
+∆
+4.10
+4.3
+5.5
+4.6-4.9
+4.5, 4.9
+5.11
+5.11
+5.11
+next period
+5.11
+5.14, 5.15
+5.13
+4.3
+5.8
+5.8
+5.5
+4.3
+5.10
+5.14
+5.15
+4.3
+Figure 9: Visual partial equilibrium deﬁnition and solution algorithm. Initial shift in orange, inner loop in
+blue, the two parts of the outer loop in purple and green, passing of the actual distribution of agents over
+states forward in time in black. Circled nodes are inputs; N is circled despite having an arrow pointing to it
+because for each decade it is an input that is an output of the prior decade.
+Figure 9 is a visual depiction of the partial equilibrium deﬁnition, showing which variables aﬀect
+which and referring to the speciﬁc equations that deﬁne each relationship (a more formal partial
+equilibrium deﬁnition is available in Section A10). To solve this partial equilibrium ﬁxed point
+problem, I ﬁrst shift rents r which aﬀects housing utility u and value functions v, shown in orange. In
+an inner loop depicted in blue, I update future values v′ based on the forecast regression parameters
+and draws from the error distribution. The future values directly aﬀect the continuation value c, but
+also aﬀect future choices P ′ in the form of the decisions of adult children and extras. These decisions
+aﬀect the predicted state transition matrix of other agents ˆπ, which also aﬀects continuation value c,
+which feeds back into current values v. Before each inner loop initiates, an outer loop completes
+an iteration of two distinct calculations. In purple, current choices P and state distribution N are
+33
+
+
+Build, Baby, Build
+Couillard
+used to form the actual state transition matrix π in order to update the actual distribution of agents
+over states N ′ in every period with an accounting relationship (including the exogenous eﬀect of
+mortality and net migration ∆, calculated as the residual between the model-predicted and actual
+distribution of agents over states from a baseline run of the decomposition using factual inputs),
+which then becomes the actual distribution of agents over states in the next period N (in black).
+Once the actual distribution of agents over states is known, it is used (in green) to form agents’
+predictions of the future distribution of agents over states ˆN ′ via a reduced-form relationship, which
+is then combined with the predicted future choice probabilities P ′ in every inner loop iteration to
+obtain the distribution of extras in the expected state transition matrix ˆπ.
+After solving the decomposition, I compute children born and cohort and total fertility rates, as
+well as household formation and housing market outcomes.
+6.2
+General Equilibrium and Counterfactuals
+Because housing costs are endogenous, they cannot be directly controlled by policy, and so to
+understand the eﬀects of policy going forward we need to consider general equilibrium counterfactuals.
+Much of the focus of housing policy reformers in recent years has been on increasing building of any
+kind, agnostic to any heterogeneity in housing units. However, regulations and market incentives
+combine to make smaller units lower cost and more proﬁtable and thus the primary result of any
+YIMBY policy, which – as has been discussed elsewhere in this paper – has an ambiguous eﬀect on
+fertility20. Thus other policy experts have advocated a more speciﬁc focus on larger units in order to
+arrest the increase in the cost of starting a family. This policy dilemma – focus on building small
+and low-cost units, or larger and more expensive units – is the focus of the policy counterfactuals.
+The policies considered are shifts in housing supply curves for 1 bedroom and 3+ bedroom units.
+These cost reductions can be thought of as developer subsidies, or reductions in the regulatory tax of
+building. To keep the policies as comparable as possible on a cost basis, I consider supply shifts that
+would result from equal expenditures – 5% of total rent expenditures in each year, treating owners as
+renters – on subsidies at initial rents and quantities.
+The housing supply equation is:
+ln rjbt = γjb + γjt + γbt + γ−1
+j
+ln Hjbt + ϵjbt.
+(6.1)
+I take the elasticities from Baum-Snow and Han (2024), and I estimate the heterogeneous intercepts
+in stages21. Fertility decisions feed back into housing quantities via the following four equations.
+20More aﬀordable small units may increase fertility by drawing singles away from large units or by reducing the
+long-run cost of fertility as adult children are prompted to move out, but may also increase the value of living in a small
+unit as a single relative to starting a family.
+21If I attempt to estimate this equation jointly (including as a regressor or partialling out γ−1
+j
+ln Hjbt) then larger units
+34
+
+
+Build, Baby, Build
+Couillard
+Reading from right to left, ﬁrst, I aggregate over dynamic states and choices to obtain the total
+number of agents for each housing demand type, then I ﬁnd the tract-bedroom distribution of each
+type using the housing choice probabilities, then I convert to households using the rule of thumb
+discussed in Section A9.1, and ﬁnally I aggregate over housing demand type to ﬁnd total housing
+demand, which enters the supply equation.
+Hjbt =
+X
+τ
+Hτ
+jbt,
+Hτ
+jbt =
+(
+N τ
+jbt/s(τ)
+if
+f(τ) = 0
+N τ
+jbt/2
+if
+f(τ) = 1,
+N τ
+jbt = P τ
+jbtN τ,
+N τ =
+X
+(g,x):τ(g,x)=τ
+P x
+g N x (6.2)
+As shown in Figure 10, the general equilibrium deﬁnition (a more formal equilibrium deﬁnition
+is available in Section A10) adds these conditions to the partial equilibrium deﬁnition, and the
+counterfactual solution algorithm adds a market-clearing loop to the decomposition solution
+algorithm. Now, after housing supply parameters γ shift rents r, housing utility u, and value
+functions v, the outer loop computes the actual and expected future distribution of agents over states
+N ′ and ˆN ′, and the inner loop ﬁnds the inner ﬁxed point v, I use the distribution of agents over
+states and types N and living arrangement and housing choice probabilities Pg and Ph to ﬁnd the
+distribution of households over housing options H, implying a new rent r. This rent shifts utility,
+housing probabilities, and the number of households, generating a new rent, etc. until convergence
+and the next outer loop iteration.
+7
+Results
+I ﬁrst present housing demand results which align with the predictions of the Becker quantity-quality
+model extended to include housing, and which govern the relationship between housing and fertility
+choices. I then illustrate the causal eﬀect of housing costs on fertility and household formation
+via a partial equilibrium decomposition. Finally, I show how alternate policies aﬀect fertility and
+household formation via two general equilibrium counterfactuals.
+7.1
+Housing Demand
+Matching theoretical predictions, structural estimates show that larger families are more sensitive
+to rents and have a stronger taste for large units. This pattern of heterogeneity ensures that rising
+rents – in general and for the largest units – reduce fertility, and is estimated in a ﬁrst step with
+have a lower intercept despite having higher rents, which is probably related in some way to the fact that the elasticity is
+constrained to be identical over size. Instead, I estimate this equation in stages. I ﬁrst include γ−1
+j
+ln Hjbt as a regressor
+to estimate the ﬁxed eﬀects, and I retain the most important one γbt, which will be targeted by counterfactuals. I then
+partial out γ−1
+j
+ln Hjbt as if it had a coeﬃcient of one and γbt before estimating the other ﬁxed eﬀects γjb and γjt. This
+way allows the tendency for larger units to have higher rents to pass through into the intercepts, while still allowing the
+other ﬁxed eﬀects and elasticity term to have some inﬂuence.
+35
+
+
+Build, Baby, Build
+Couillard
+N
+π
+N ′
+Pg
+r
+u
+v
+Ph
+H
+∆
+γ
+v′
+P ′
+g
+d
+ˆπ
+c
+ˆN ′
+6.1
+4.3
+5.5
+4.6-4.9
+4.5, 4.9
+5.11
+5.11
+5.11
+next period
+5.11
+5.13
+5.14, 5.15
+6.2
+6.2
+4.3
+5.8
+5.8
+5.5
+4.3
+5.10
+5.14
+5.15
+4.3
+4.10
+A5.3
+6.2
+6.1
+Figure 10: Visual general equilibrium deﬁnition and solution algorithm. Initial housing supply shift in black
+(γ →r), then r →u →v and outer loop initiates in purple. The actual distribution of agents over states N is
+obtained in black, then next part of outer loop in green. Inner loop in blue iterates until convergence, then rent
+loop in red initiates and upon completion another outer loop begins in purple, etc.
+maximum likelihood. The absolute values of the rent coeﬃcients determine the steepness of the
+demand curves and the quantitative magnitudes of these eﬀects, and is estimated in a second step
+with two-stage least squares.
+A type’s rent coeﬃcient is the sum of a baseline coeﬃcient and a distinct heterogeneity term for
+every level of every dimension:
+βτ
+r =
+baseline
+z}|{
+βr
++
+age
+z}|{
+βa
+r +
+tenure
+z}|{
+βe
+r +
+family
+z}|{
+βf
+r +
+size
+z}|{
+βs
+r ,
+(7.1)
+with one level of every dimension normalized to have a zero heterogeneity term. Preferences for
+bedrooms, share single family, and rail noise follow the same pattern. 22 The heterogeneity terms are
+estimated in the ﬁrst step, and the baseline coeﬃcient that shifts the entire distribution of preferences
+is estimated in a second step.
+I begin by presenting ﬁrst stage results for the 2SLS model that comprises the second step. In
+Figure 11, the top two panels depict Olea-Pﬂueger Eﬀective F-statistics, the bottom two panels
+depict ﬁrst stage coeﬃcients, the left two panels use the rail noise instrument, and the right two
+panels use the share single-family instrument, all over a range of distances used to construct the
+donut instrument. The ﬁrst stage is generally stronger than in the reduced-form analysis, but since
+errors are clustered by tract this is not merely a result of using all three bedroom sizes and thereby
+22This structure aids interpretability, but is also required to some extent when using micro-moments for identiﬁcation,
+depending on which micro-moments are used. In contrast, the city-type-year ﬁxed eﬀect ϕτ
+ct is allowed to vary freely
+over τ, because counts by city-year-type are used.
+36
+
+
+Build, Baby, Build
+Couillard
+Figure 11: First stage regression results in housing demand estimation. The IV is based on rail noise at
+left and share single-family at right. Top panels are Olea-Pﬂueger Eﬀective F-statistics, and bottom are
+coeﬃcients. Standard errors are clustered by tract.
+Figure 12: Second stage regression results in housing demand estimation. The IV is based on rail noise
+at left and share single-family at right. Top panels show the rent coeﬃcient, and bottom panels show the
+diﬀerence between the 3+ and 2 bedroom ﬁxed eﬀects. Standard errors are clustered by tract.
+37
+
+
+Build, Baby, Build
+Couillard
+increasing the sample size. For either instrument there is a range of distances where the ﬁrst stage
+coeﬃcients are stable and the Olea-Pﬂueger Eﬀective F-statistics exceed 10. As in the reduced-form
+analysis, this range is closer to a distance of zero for the share single-family instrument.
+Second stage results are presented in Figure 12. Again, the left panels show results using the rail
+noise instrument, and the right panels show results using the share single-family instrument. The
+top panels show the rent coeﬃcient, while the bottom panels show the diﬀerence between the 3+
+bedroom ﬁxed eﬀect and the 2 bedroom ﬁxed eﬀect. Results are truncated to fall within the region
+where the instrument is strong and has the right sign. There are two notable patterns in this ﬁgure.
+First, both instruments provide estimates that are quantitatively similar, despite the diﬀerences in
+how they were constructed, the range where they are strong, and the patterns of variation over
+distance. Second, the diﬀerence between the 3+ and 2 bedroom ﬁxed eﬀects is a mirror image of the
+rent coeﬃcient. Upon reﬂection, this is not surprising: since larger units have higher rents, choices
+must either be rationalized by either a taste for the good or a distaste for its cost.
+Next, I aggregate donut regions where the instruments have particularly strong and stable ﬁrst
+stages, and present OLS, ﬁrst stage, and 2SLS results in Table 4. For the rail noise instrument, I
+choose 12-24km, where the KP statistic hovers around 100 and the the donut coeﬃcient is close to
+constant. For the share single-family instrument, I choose 5-9km, which brackets the point where
+the donut is strongest and where the KP statistic is 25 or higher. I also include the single kilometer
+donut that generates the most negative rent coeﬃcient for each instrument.
+There are two OLS columns, because the two left hand side variables δjbt come from two
+maximum-likelihood estimates, one that includes focal tract rail noise and one that does not –
+however the diﬀerence is apparently very small. Turning to the ﬁrst stage estimates, using wider
+donuts tends to increase the coeﬃcient and the standard error for a net increase of the KP stat.
+Wider donuts also generate second stage coeﬃcients that are smaller in magnitude. In every 2SLS
+speciﬁcation, the Anderson-Rubin F-statistic veriﬁes the statistical signiﬁcance of the rent coeﬃcient.
+In Figure 13 I plot histograms of the parameters of interest (weighted by the frequency of agents
+of diﬀerent housing demand types) given baseline preferences as in Column 5 (rail instrument,
+14km) in Table 4, the speciﬁcation that generates the most negative rent coeﬃcient. All types have
+downward-sloping demand and value 2 bedroom units more than 1 bedroom units. However, there
+is a small mass that values 3+ bedroom units less than 2 bedroom units. As shown in Figure 12,
+there is an inverse relationship between the diﬀerence between the 3+ and 2 bedroom ﬁxed eﬀect
+and the rent coeﬃcient. Even the most negative rent coeﬃcient is insuﬃcient for all agents to value
+additional space, which we know must be true because it is an unambiguous good. I conclude that
+the true rent coeﬃcient is even larger, but take the estimate from Table 4 Column 5 as the preferred
+estimate for the decompositions and counterfactuals since it is closest to the truth. This bias reduces
+the magnitude of the decomposition and counterfactuals, making them more conservative.
+38
+
+
+Build, Baby, Build
+Couillard
+Table 4: OLS, ﬁrst stage, and second stage results using both preferred single-kilometer donuts and consolidated donuts for the two IVs. Standard
+errors clustered by census tract. Preferred speciﬁcation: Column 5.
+(1)
+(2)
+(3)
+(4)
+(5)
+(6)
+(7)
+(8)
+(9)
+(10)
+OLS
+First
+2SLS
+First
+2SLS
+OLS
+First
+2SLS
+First
+2SLS
+Rent
+-0.000139∗∗
+-0.00621∗∗∗
+-0.00899∗∗∗
+-0.000160∗∗∗
+-0.00723∗∗∗
+-0.00543∗∗∗
+(0.0000467)
+(0.000800)
+(0.00136)
+(0.0000466)
+(0.00152)
+(0.00138)
+2 Bedrooms
+1.143∗∗∗
+19.10∗∗∗
+1.259∗∗∗
+19.10∗∗∗
+1.313∗∗∗
+1.144∗∗∗
+19.10∗∗∗
+1.279∗∗∗
+19.10∗∗∗
+1.244∗∗∗
+(0.00411)
+(0.0344)
+(0.0158)
+(0.0344)
+(0.0262)
+(0.00411)
+(0.0344)
+(0.0291)
+(0.0344)
+(0.0265)
+3+ Bedrooms
+1.948∗∗∗
+39.65∗∗∗
+2.189∗∗∗
+39.65∗∗∗
+2.300∗∗∗
+1.949∗∗∗
+39.65∗∗∗
+2.230∗∗∗
+39.65∗∗∗
+2.158∗∗∗
+(0.00680)
+(0.0481)
+(0.0324)
+(0.0481)
+(0.0542)
+(0.00679)
+(0.0481)
+(0.0604)
+(0.0481)
+(0.0549)
+Share Single Family
+-0.722∗∗∗
+12.46∗∗∗
+-0.650∗∗∗
+12.23∗∗∗
+-0.617∗∗∗
+-0.726∗∗∗
+14.09∗∗∗
+-0.639∗∗∗
+13.93∗∗∗
+-0.661∗∗∗
+(0.00703)
+(0.613)
+(0.0120)
+(0.613)
+(0.0182)
+(0.00702)
+(0.624)
+(0.0209)
+(0.623)
+(0.0188)
+Rail Noise, Focal
+0.00272∗∗∗
+-0.338∗∗∗
+0.00103∗∗
+-0.322∗∗∗
+0.000258
+(0.000259)
+(0.0290)
+(0.000367)
+(0.0291)
+(0.000508)
+Rail Noise, 12-24km
+0.836∗∗∗
+(0.0608)
+Rail Noise, 14km
+0.461∗∗∗
+(0.0488)
+Share Single Family, 5-9km
+-8.342∗∗∗
+(1.157)
+Share Single Family, 7km
+-7.726∗∗∗
+(1.062)
+N
+424659
+424659
+424659
+424659
+424659
+424659
+424659
+424659
+424659
+424659
+Instrument
+Rail 12-24km
+Rail 14km
+SF 5-9km
+SF 7km
+Olea-Pﬂueger F-Statistic
+189.3
+89.21
+52.02
+52.94
+Anderson-Rubin F-Statistic
+81.48
+78.84
+34.84
+19.66
+Standard errors in parentheses
+∗p < 0.05, ∗∗p < 0.01, ∗∗∗p < 0.001
+39
+
+
+Build, Baby, Build
+Couillard
+Figure 13: The distribution of preferences over type given preferred 2SLS baseline estimates, using
+frequencies of types (age, tenure, family/roommates, size) in the data over all years.
+Next, in Figure 14 I plot rent coeﬃcients (left panel) and bedroom ﬁxed eﬀects (right panel) for
+renting families of various sizes headed by 20-29 year olds. Because both family and non-family
+households are plotted in the left panel, we can see how the assumption of additive separability
+renders a constant gap βf=1
+r
+between the two sets of coeﬃcients. As expected, family households are
+more rent-sensitive than non-family households, and households of either type are more rent-sensitive
+when they are larger. Likewise, as expected, larger families have stronger preferences for the largest
+(3+ bedroom) units, in absolute terms and relative to mid-size (2 bedroom) units.
+These results imply that rising housing costs (generally, or large units) do disincentivize fertility.
+However, quantifying this eﬀect results the full structural model. We turn to that next.
+7.2
+Decomposition
+I measure the causal eﬀect of rising rents on fertility by manipulating rents, solving the model, and
+calculating fertility. I provide results on the general fertility rate to facilitate comparisons with a
+reduced-form approach, the total number of children born, the decline in the fertility rate from the
+2000s to 2010s, and the share of 20-29 year olds that have started a family. Because fertility is
+measured in children aged 0-9 in each decade, the x-axis labels on the following line plots refer
+to the decade ending in that year, and so the large decreases in the GFR, TFR, and children born
+40
+
+
+Build, Baby, Build
+Couillard
+Figure 14: Parameters of interest for young renters. Large families are the most price-sensitive and place the
+highest value on living space.
+between the last two periods are decreases from the 2000s to the 2010s23. I show that results are
+robust to an alternate normalization in Section A11.
+In the top left panel of Figure 15, I plot the general fertility rate in the data, in the decomposition,
+and resulting from aggregating the linear predictions of the reduced-form speciﬁcation in Section 3.
+The model and reduced-form agree in 2000, but the reduced form provides larger and larger yet
+predictions in 2010 and 2020, including a small increase in the GFR from the 2000s to the 2010s.
+Assuming the decomposition is correct, the bias in the reduced-form from sorting is substantial,
+equal to 31% and 68% of the true eﬀect in the last two periods. If we took the reduced-form
+estimates at face value, it would imply that rising housing costs explain more than 100% of the
+decline in fertility from the 2000s to the 2010s. On the other hand, the decomposition provides a
+decrease in the GFR from 0.071 to 0.067 compared with a decrease in the data of 0.064 to 0.058.
+Because holding housing costs constant generates a decrease that is 58% as large, housing costs
+contribute 42% to the decline in the GFR from the 2000s to the 2010s.
+Next is the total number of children born, in the top right panel of Figure 15. Using the reduced-
+form GFR results to calculate growing future cohorts of women (placing it in an apples-to-apples
+23This decrease is not as stark as in annual plots of fertility due to this aggregation, although it is based on the same
+underlying data since I re-weight the Census and ACS micro-data to match the decadal analogues of the age-speciﬁc
+birthrates published by the CDC.
+41
+
+
+Build, Baby, Build
+Couillard
+comparison with the decomposition, which also uses fertility in cohort size evolution) results in a
+larger bias in terms of births, exceeding 50 million in the ﬁnal period where only 38 million are
+born in the data. The decomposition also predicts an increase in births from the 2000s to the 2010s,
+even as fertility rates decline, because of a growing cohort of reproductive-age women from higher
+past fertility. Across the ﬁnal three periods, the decomposition predicts an increase of 13 million
+births, which is 11% of the total number of births in this period in the data.
+In the bottom left panel of Figure 15 is the total fertility rate, which cannot be analyzed in
+the reduced-form due to data constraints. Holding housing costs ﬁxed in the 2000s results in an
+increase in fertility substantially larger than that in the data, which likely occurred due to the strong
+economy at the time24. More interestingly, the decomposition features a decrease in the TFR of 0.11
+compared with 0.21 in the data, implying that housing costs explain 51% of the decline in fertility
+from the 2000s to the 2010s.
+Finally, the share of 20-29 year olds that are the head or the partner of the head of a household
+with children is in the bottom right panel. In both the data and the decomposition, this share
+declines in each period but especially in the last one. However, the total decline is only 10pp in
+the decomposition, compared with 17pp in the data. Housing costs are responsible for 7pp of the
+decline in family formation.
+In subsequent decompositions depicted in Figure 16, I impose 1990 average rents (letting
+diﬀerence between sizes vary as in the data) and 1990 diﬀerence in rents (letting the average vary as
+in the data), in order to determine whether rising housing costs in general or the relative cost of large
+units caused declining fertility. The results show that rising average rents are the greater contributor
+to declining fertility, since reducing average rents down to 1990 levels does the most to increase
+both the total fertility rate and the number of children born, responsible for roughly 67-75%.
+7.3
+Counterfactuals
+Finally, I turn to counterfactual simulations. As discussed in Section 6, I separately shift the supply
+curve the large 3+ bedroom units and small 1 bedroom units. Although I prefer to interpret these
+supply shifts as reductions in a distortionary regulatory tax, I deﬁne the magnitude of the shifts
+as if they come from subsidies of equal expenditure of 5% baseline rental expenditures (treating
+all households as renters), allowing the lower construction costs of small units to factor into the
+comparison. Then, the small unit policy may generate a large decrease in average rents, combining
+with a greater dynamic eﬀect from getting young adults out of their parents’ houses (which shifts
+24That the local peak of the US TFR occurred in 2007 is evidence that the expansion of housing ﬁnance in this period
+played a role in increasing fertility. Because tenure is a part of the living arrangement choice in the model which is not
+shifted in the decomposition, the decomposition is telling us that had housing costs (i.e., mortgage rates) not increased
+at the same time that housing ﬁnance became easier to acquire, the fertility increase would have been even larger.
+42
+
+
+Build, Baby, Build
+Couillard
+Figure 15: Results from holding rents at their 1990 levels. The blue long-dash line is the model decomposition.
+The purple short-dash line is from using earlier reduced-form estimates. Both include cohort size changes in
+calculations of children born.
+the long-run housing cost of fertility) to potentially surmount an increase in the relative rent of large
+units to generate a larger fertility increase than the large-unit policy.
+However, as shown in Figure 17 I ﬁnd that the large unit policy increases fertility by more, as
+both the number of births (top left) and total fertility rate (top right) is higher in every period in this
+scenario. In the bottom left, we verify that the small unit policy shifts average rents more, since the
+rent of 1 bedroom units is smaller by a lot compared with the large unit policy, the reduction in the
+rent of 2 bedroom units is about double, and the reduction in the rent of 3+ bedroom units is almost
+as large. However, this is insuﬃcient to outweigh the impact of the large unit policy, which combines
+a smaller eﬀect on average rents with a ﬂattening of the gradient of rents with respect to size.
+8
+Conclusion
+In this paper, I analyze the role of the housing market in declining fertility in the US. Motivated by
+the tendency for geographic mobility to generate selection into treatment in reduced-form analyses
+of the topic, I specify a structural model of joint housing and fertility choice. The model nests
+a standard neighborhood sorting model – with an additional dimension of choice, the number of
+43
+
+
+Build, Baby, Build
+Couillard
+Figure 16: Results from imposing 1990 rents, 1990 rent diﬀerences, and 1990 average rents.
+The
+decomposition results (long-dash blue line) are driven by average rents (short-dash purple line), not rent
+diﬀerences (medium-dash orange line).
+Figure 17: Counterfactual results of equal subsidies to the supply of large (3+ bedroom) and small (1
+bedroom) units. The bottom left panel is not a time series panel; it plots 2020 rent over number of bedrooms.
+44
+
+
+Build, Baby, Build
+Couillard
+bedrooms – in a model of living arrangement choice, which chieﬂy includes fertility along with
+tenure and the option to live with parents, other family members, or unrelated roommates. The
+number of people in the household – be they the head, a partner, young children, adult children,
+or other family members – determines the preferences that the household will have over housing
+choice, generating a mechanism by which shifts in the characteristics of housing options translate
+into heterogeneous shifts in the value of having a large family. A quantity-quality model extended to
+include housing predicts, and housing demand estimates verify, that larger families will be more
+price-sensitive and have a stronger taste for living space, such that rising housing costs or a rising
+relative cost of large units disincentivize having children.
+To estimate demand for neighborhoods that is heterogeneous over age, tenure, family/roommates,
+and household size despite the joint distribution of these variables being unobservable due to
+conﬁdentiality, I utilize and extend IO “micro-moment” techniques. I show that not only is the
+necessary data for this housing demand model publicly available, it actually comprises suﬃcient
+statistics for model parameters under less restrictive assumptions than those imposed by the standard
+IO tools. In fact, the standard IO approach imposes an assumption that unobserved utility is
+homogeneous over demographics, which in some contexts will lead to misspeciﬁcation. Conditional
+on the housing demand inclusive value, dynamic living arrangement (fertility) utility is chosen to ﬁt
+non-geographic microdata exactly, so that all non-housing determinants of fertility – rising female
+education, changing culture, etc. – are held constant in decompositions and counterfactuals.
+To ﬁnd the impact of housing costs on fertility, I vary it in a partial-equilibrium counterfactual,
+and then measure fertility and living arrangement outcomes net of sorting and holding intrinsic
+living arrangement and fertility preferences constant. I ﬁnd that rising housing costs since 1990 are
+responsible for 13 million (11%) children not being born, 51% of decrease in fertility from the 2000s
+to the 2010s, and a 7pp decrease in the share of 20-29 year olds that have started families. These
+eﬀects are primarily driven by the general rise in housing costs rather than the steepining size-cost
+gradient. I thus compare the fertility eﬀects of shifting the supply of large and small units as if
+an equal aggregate subsidy had been applied to both (a reduction in distortionary local regulatory
+taxes is a more appealing interpretation and lower-cost policy, albeit one that does not provide two
+apples-to-apples supply shifts), so that a larger number of lower-cost small units could potentially
+generate a larger impact on average rents and fertility despite steepening the size cost-gradient.
+However, I ﬁnd that the large unit policy, which combines a smaller eﬀect on average rents with
+ﬂattening of the soze-cost gradient, has a 2.3 times larger impact on fertility. I conclude that
+housing, and particularly family-friendly housing, has a meaningful role in achieving demographic
+sustainability.
+45
+
+
+Build, Baby, Build
+Couillard
+References
+Ahlfeldt, Gabriel M. et al. (2025). “The Geography of Life: Evidence from Copenhagen”. Working
+paper; abstract and slides available. url: https : / / caterinasoto . github . io / PDF -
+website/Geography_of_life_presentation.pdf.
+Albouy, David and R. Jason Faberman (2025). Skills, Migration and Urban Amenities over
+the Life Cycle. NBER Working Paper 33552. National Bureau of Economic Research. doi:
+10.3386/w33552.
+Atalay, Kadir, Hsiu-Ling Li, and Shane Whelan (2021). “Housing Wealth, Fertility Intentions and
+Fertility”. In: Journal of Housing Economics 53, p. 101737. doi: 10.1016/j.jhe.2021.
+101737.
+Athey, Susan and Guido W. Imbens (2007). “Discrete Choice Models with Multiple Unobserved
+Choice Characteristics”. In: International Economic Review 48.4, pp. 1159–1192. doi: 10.
+1111/j.1468-2354.2007.00458.x.
+Autor, David, David Dorn, and Gordon Hanson (2019). “When Work Disappears: Manufacturing
+Decline and the Falling Marriage Market Value of Young Men”. In: American Economic Review:
+Insights 1.2, pp. 161–178. doi: 10.1257/aeri.20180010.
+Baum-Snow, Nathaniel and Lu Han (2024). “The Microgeography of Housing Supply”. In: Journal
+of Political Economy 132.6, pp. 1897–1946. doi: 10.1086/728110.
+Bayer, Patrick, Fernando Ferreira, and Robert McMillan (2007). “A Uniﬁed Framework for
+Measuring Preferences for Schools and Neighborhoods”. In: Journal of Political Economy 115.4,
+pp. 588–638. doi: 10.1086/522381.
+Becker, Gary S. (1960). “An Economic Analysis of Fertility”. In: Demographic and Economic
+Change in Developed Countries. Ed. by Universities-National Bureau Committee for Economic
+Research. NBER conference volume; institutional editor. Princeton, NJ: Princeton University
+Press, pp. 209–240. doi: 10.7208/9780226042659-008.
+Becker, Gary S. and H. Gregg Lewis (1973). “On the Interaction between the Quantity and Quality
+of Children”. In: Journal of Political Economy 81.2, Part 2, S279–S288. doi: 10.1086/260166.
+Berry, Steven T. and Philip A. Haile (2010). Identiﬁcation in Diﬀerentiated Products Markets Using
+Market Level Data. Cowles Foundation Discussion Paper 1744R. Cowles Foundation for Research
+in Economics. url: https://cowles.yale.edu/publications/cfdp/cfdp-1744r.
+— (2014). “Identiﬁcation in Diﬀerentiated Products Markets Using Market Level Data”. In:
+Econometrica 82.5, pp. 1749–1797. doi: 10.3982/ECTA9027.
+Berry, Steven T., James A. Levinsohn, and Ariel Pakes (July 1995). “Automobile Prices in Market
+Equilibrium”. In: Econometrica 63.4, pp. 841–890. doi: 10.2307/2171802.
+46
+
+
+Build, Baby, Build
+Couillard
+Berry, Steven T., James A. Levinsohn, and Ariel Pakes (2004a). “Diﬀerentiated Products Demand
+Systems from a Combination of Micro and Market Share Data: The New Car Market”. In:
+Journal of Political Economy 112.1, pp. 68–105. doi: 10.1086/379939.
+Berry, Steven T., Oliver B. Linton, and Ariel Pakes (2004b). “Limit Theorems for Estimating the
+Parameters of Diﬀerentiated Product Demand Systems”. In: The Review of Economic Studies
+71.3, pp. 613–654. doi: 10.1111/j.1467-937X.2004.00298.x.
+Black, Dan A. et al. (2013). “Are Children “Normal”?” In: The Review of Economics and Statistics
+95.1, pp. 21–33. doi: 10.1162/REST_a_00257.
+Bloom, David E., Michael Kuhn, and Klaus Prettner (Aug. 2024). “Fertility in High-Income
+Countries: Trends, Patterns, Determinants, and Consequences”. In: Annual Review of Economics
+16.1, pp. 159–184. doi: 10.1146/annurev-economics-081523-013750.
+Borg, Mary O. (1989). “The Income–Fertility Relationship: Eﬀect of the Net Price of a Child”. In:
+Demography 26.2, pp. 301–310. doi: 10.2307/2061527.
+B¨orsch-Supan, Axel (1986). “Household Formation, Housing Prices, and Public Policy Impacts”.
+In: Journal of Public Economics 30.2, pp. 145–164. doi: 10.1016/0047-2727(86)90005-6.
+Cesarini, David et al. (2023). Fortunate Families? The Eﬀects of Wealth on Marriage and Fertility.
+NBER Working Paper 31039. National Bureau of Economic Research. doi: 10.3386/w31039.
+url: https://www.nber.org/papers/w31039.
+Clark, Warren and Ana Ferrer (2019). “The Eﬀect of Housing Prices on Fertility: Evidence from
+Canada”. In: Economics: The Open-Access, Open-Assessment E-Journal 13.2019-38, pp. 1–31.
+doi: 10.5018/economics-ejournal.ja.2019-38.
+Clark, William A. V. (2012). “Do Women Delay Family Formation in Expensive Housing Markets?”
+In: Demographic Research 27, pp. 1–24. doi: 10.4054/DemRes.2012.27.1.
+Coeurdacier, Nicolas et al. (2022). “Fertility, Housing Costs and City Growth”. Slides and abstract
+(no draft available). url: https://floswald.github.io/project/fertility/.
+Conlon, Christopher T. and JeﬀGortmaker (2020). “Best Practices for Diﬀerentiated Products
+Demand Estimation with PyBLP”. In: RAND Journal of Economics 51.4, pp. 1108–1161. doi:
+10.1111/1756-2171.12352.
+— (2023). Incorporating Micro Data into Diﬀerentiated Products Demand Estimation with PyBLP.
+NBER Working Paper 31605. Revised September 2024. National Bureau of Economic Research.
+doi: 10.3386/w31605.
+Cooper, Daniel and Mar´ıa Jos´e Luengo-Prado (2018). “Household Formation over Time: Evidence
+from Two Cohorts of Young Adults”. In: Journal of Housing Economics 41, pp. 106–123. doi:
+10.1016/j.jhe.2018.05.004.
+Couture, Victor and Jessie Handbury (2020). “Urban Revival in America”. In: Journal of Urban
+Economics 119, p. 103267. doi: 10.1016/j.jue.2020.103267.
+47
+
+
+Build, Baby, Build
+Couillard
+Cumming, Fergus and Lisa J. Dettling (2024). “Monetary Policy and Birth Rates: The Eﬀect of
+Mortgage Rate Pass-Through on Fertility”. In: The Review of Economic Studies 91.1. First
+published online March 4, 2023, pp. 229–258. doi: 10.1093/restud/rdad034.
+Daysal, Nese Yıldız et al. (2021). “Home Prices, Fertility, and Early-Life Health Outcomes”. In:
+Journal of Public Economics 198, p. 104395. doi: 10.1016/j.jpubeco.2020.104395.
+Dettling, Lisa J. and Melissa S. Kearney (2014). “House Prices and Birth Rates: The Impact of the
+Real Estate Market on the Decision to Have a Baby”. In: Journal of Public Economics 110,
+pp. 82–100. doi: 10.1016/j.jpubeco.2013.12.009.
+— (2025). Did the Modern Mortgage Set the Stage for the U.S. Baby Boom? NBER Working Paper
+33446. National Bureau of Economic Research. doi: 10.3386/w33446.
+Diamond, Rebecca (2016). “The Determinants and Welfare Implications of US Workers’ Diverging
+Location Choices by Skill: 1980–2000”. In: American Economic Review 106.3, pp. 479–524.
+doi: 10.1257/aer.20131706.
+Doepke, Matthias et al. (2023). “The Economics of Fertility: A New Era”. In: Handbook of the
+Economics of the Family. Ed. by Shelly Lundberg and Alessandra Voena. Elsevier, pp. 1–86.
+doi: 10.1016/bs.hefam.2023.01.003.
+Driscoll, Anne K. and Brady E. Hamilton (Mar. 2025). Eﬀects of Age-speciﬁc Fertility Trends on
+Overall Fertility Trends: United States, 1990–2023. Tech. rep. 3. Hyattsville, MD: National Center
+for Health Statistics. url: https://www.cdc.gov/nchs/data/nvsr/nvsr74/nvsr74-
+3.pdf.
+Ermisch, John (1999). “Prices, Parents, and Young People’s Household Formation”. In: Journal of
+Urban Economics 45.1, pp. 47–71. doi: 10.1006/juec.1998.2081.
+Ermisch, John and Pamela Di Salvo (1997). “The Economic Determinants of Young People’s
+Household Formation”. In: Economica 64.256, pp. 627–644. doi: 10.1111/j.1468-0335.
+1997.tb00439.x.
+Fazio, Dimas et al. (2025). Housing and Fertility. Research Paper 111/2025. Also circulated as
+CEPR DP19805 (2024) and Banco Central do Brasil Working Paper 612 (2024). FEB-RN. doi:
+10.2139/ssrn.5046571. url: https://ssrn.com/abstract=5046571.
+Figueiredo, Oct´avio, Paulo Guimar˜aes, and Douglas Woodward (2003). “A Tractable Approach
+to the Firm Location Decision Problem”. In: The Review of Economics and Statistics 85.1,
+pp. 201–204. doi: 10.1162/003465303762687811.
+Fleisher, Belton M. and Jr. Rhodes George F. (1979). “Fertility, Women’s Wage Rates, and Labor
+Supply”. In: American Economic Review 69.1, pp. 14–24. doi: 10.2307/1802493.
+Gandhi, Amit and Jean-Franc¸ois Houde (Oct. 2019). Measuring Substitution Patterns in Diﬀerentiated-
+Products Industries. NBER Working Paper 26375. Introduces the ”Diﬀerentiation IVs”; revised
+48
+
+
+Build, Baby, Build
+Couillard
+November 2020. National Bureau of Economic Research. doi: 10.3386/w26375. url: https:
+//www.nber.org/papers/w26375.
+Glaeser, Edward L. and Joseph Gyourko (May 2025). America’s Housing Supply Problem: The
+Closing of the Suburban Frontier? NBER Working Paper 33876. Cambridge, MA: National
+Bureau of Economic Research. doi: 10.3386/w33876. url: https://www.nber.org/
+papers/w33876.
+Haurin, Donald R., Patric H. Hendershott, and Dongwook Kim (1993). “The Impact of Real Rents
+and Wages on Household Formation”. In: Journal of Urban Economics 35.2, pp. 178–190. doi:
+10.1006/juec.1993.1009.
+Heckman, James J. and James R. Walker (1990). “The Relationship Between Wages and Income and
+the Timing and Spacing of Births: Evidence from Swedish Longitudinal Data”. In: Econometrica
+58.6, pp. 1411–1441. doi: 10.2307/2938322.
+Japaridze, I. and N. Sayour (2024). “Housing Aﬀordability Crisis and Delayed Fertility: Evidence
+from the USA”. In: Population Research and Policy Review 43. doi: 10.1007/s11113-024-
+09865-8. url: https://doi.org/10.1007/s11113-024-09865-8.
+Kearney, Melissa S. and Riley Wilson (2018). “Male Earnings, Marriageable Men, and Nonmarital
+Fertility: Evidence from the Fracking Boom”. In: The Review of Economics and Statistics 100.4,
+pp. 678–690. doi: 10.1162/rest_a_00739.
+Lafortune, Jeanne and Corinne Low (2023). “Collateralized Marriage? Homeownership and
+the Household Formation of Young Americans”. In: American Economic Journal: Applied
+Economics 15.3, pp. 216–252. doi: 10.1257/app.20200632.
+Lesthaeghe, Ron (2014). “The Second Demographic Transition: A Review and Appraisal”. In:
+Proceedings of the National Academy of Sciences 111.51, pp. 18112–18115. doi: 10.1073/
+pnas.1420441111.
+Liu, Ziqian and Yu Zhang (2024). “The Eﬀect of House Prices on Fertility: Evidence from House
+Purchase Restrictions”. Working paper, SSRN version. url: https://ssrn.com/abstract=
+4808554.
+Lovenheim, Michael F. and Kevin J. Mumford (2013). “Do Family Wealth Shocks Aﬀect Fertility
+Choices? Evidence from the Housing Market”. In: The Review of Economics and Statistics 95.2,
+pp. 464–475. doi: 10.1162/REST_a_00331.
+Martin, Joyce A. et al. (Dec. 2013). Births: Final Data for 2012. Tech. rep. 9. Hyattsville, MD:
+National Center for Health Statistics. url: https://stacks.cdc.gov/view/cdc/26769.
+Moreno-Maldonado, Ana and Clara Santamar´ıa (2024). Delayed Childbearing and Urban Revival:
+A Structural Approach. CEPR Discussion Paper 19002. CEPR. url: https://cepr.org/
+publications/dp19002.
+49
+
+
+Build, Baby, Build
+Couillard
+Mullahy, John (1997). “Instrumental-Variable Estimation of Count Data Models: Applications to
+Models of Cigarette Smoking Behavior”. In: The Review of Economics and Statistics 79.4,
+pp. 586–593. doi: 10.1162/003465397557169.
+National Center for Family & Marriage Research (2012). Age Variation in the Divorce Rate, 1990 &
+2010. Family Proﬁle FP-12-05. Bowling Green, OH: National Center for Family & Marriage
+Research, Bowling Green State University. url: https://scholarworks.bgsu.edu/ncfmr_
+family_profiles/73/.
+— (2014). Age Variation in the Divorce Rate, 1990–2012. Family Proﬁle FP-14-16. Bowling Green,
+OH: National Center for Family & Marriage Research, Bowling Green State University. url:
+https://scholarworks.bgsu.edu/ncfmr_family_profiles/151/.
+— (2017). Age Variation in the Divorce Rate, 1990 & 2015. Family Proﬁle FP-17-20. Bowling
+Green, OH: National Center for Family & Marriage Research, Bowling Green State University.
+url: https://www.bgsu.edu/ncfmr/resources/data/family-profiles/wu-age-
+variation-divorce-rate-1990-2015-fp-17-20.html.
+— (2019). Age Variation in the Divorce Rate, 1990 & 2017. Family Proﬁle FP-19-13. Bowling
+Green, OH: National Center for Family & Marriage Research, Bowling Green State University.
+doi: 10.25035/ncfmr/fp-19-13. url: https://www.bgsu.edu/ncfmr/resources/
+data/family-profiles/allred-age-variation-divorce-rate-1990-2017-fp-19-
+13.html.
+— (2021). Age Variation in the Divorce Rate, 1990 & 2019. Family Proﬁle FP-21-16. Bowling
+Green, OH: National Center for Family & Marriage Research, Bowling Green State University.
+doi: 10.25035/ncfmr/fp-21-16. url: https://scholarworks.bgsu.edu/ncfmr_
+family_profiles/1229/.
+— (2023). Age Variation in the Divorce Rate, 1990 & 2021. Family Proﬁle FP-23-16. Bowling
+Green, OH: National Center for Family & Marriage Research, Bowling Green State University.
+doi: 10.25035/ncfmr/fp-23-16. url: https://www.bgsu.edu/ncfmr/resources/
+data/family- profiles/westrick- payne- lin- age- variation- divorce- rate-
+1990-2021-fp-23-16.html.
+Paciorek, Andrew D. (2013). The Long and the Short of Household Formation. Finance and
+Economics Discussion Series 2013-26. Board of Governors of the Federal Reserve System. url:
+https://www.federalreserve.gov/pubs/feds/2013/201326/201326pap.pdf.
+Pan, Yinghao and Hao Yang (2022). “Impacts of Housing Booms on Fertility in China: A Perspective
+From Homeownership”. In: International Regional Science Review 45.5, pp. 534–554. doi:
+10.1177/01600176211066472.
+Petrin, Amil (2002). “Quantifying the Beneﬁts of New Products: The Case of the Minivan”. In:
+Journal of Political Economy 110.4, pp. 705–729. doi: 10.1086/340779.
+50
+
+
+Build, Baby, Build
+Couillard
+Ruggles, Steven et al. (2025). IPUMS USA: Version 16.0. dataset. Minneapolis, MN: IPUMS. doi:
+10.18128/D010.V16.0. url: https://doi.org/10.18128/D010.V16.0.
+Schroeder, Jonathan et al. (2025). IPUMS National Historical Geographic Information System:
+Version 20.0. dataset. Minneapolis, MN: IPUMS. doi: 10.18128/D050.V20.0. url: https:
+//doi.org/10.18128/D050.V20.0.
+Simon, Curtis and Robert Tamura (2009). “Do Higher Rents Discourage Fertility? Evidence from
+U.S. Cities, 1940–2000”. In: Regional Science and Urban Economics 39.1, pp. 33–42. doi:
+10.1016/j.regsciurbeco.2008.06.003.
+Stone, Lyman and Bobby Fijan (Sept. 2025). Homes for Young Families Part 2. Americans Are
+Willing to Pay for Family-Friendly Apartments. Report Brief Part 2. Institute for Family Studies.
+url: https://ifstudies.org/report-brief/homes-for-young-families-part-2.
+Tsai, Yung-Yu et al. (2022). The Eﬀect of Financial Resources on Fertility: Evidence from Administra-
+tive Data on Lottery Winners. IEAS Working Paper 22-A007. Institute of Economics, Academia
+Sinica. url: https://www.econ.sinica.edu.tw/˜econ/pdfPaper/22-A007.pdf.
+U.S. Census Bureau (2016). 2020 Census Research and Testing: Investigating the 2010 Undercount
+of Young Children—Examining the Coverage of Young Mothers. Internal Research Memorandum.
+2016.08. U.S. Census Bureau.
+United Nations (2022). World Population Prospects 2022: Summary of Results. ST/ESA/SER.A/448.
+New York: United Nations, Department of Economic and Social Aﬀairs, Population Division.
+url: https://population.un.org/wpp/.
+Wrenn, Douglas H., Junjian Yi, and Bo Zhang (2019). “House Prices and Marriage Entry in China”.
+In: Regional Science and Urban Economics 74, pp. 118–130. doi: 10.1016/j.regsciurbeco.
+2018.12.001.
+51
+
+
+Build, Baby, Build
+Couillard
+Appendix Contents
+A1 Example Data: Marginal Distributions and IPF
+A-2
+A2 Radius Of Residential Search Regions
+A-3
+A3 Sorting and SUTVA in the Reduced-Form
+A-3
+A4 Quantity-Quality With Housing
+A-5
+A4.1 Main Results
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-5
+A4.2 Weak Separability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-7
+A5 Deriving Housing Demand
+A-8
+A6 Micro-BLP Mis-speciﬁcation
+A-8
+A6.1 Theorem and Proof . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-8
+A6.2 Example . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-10
+A7 Suﬃcient Statistics: Choice Models
+A-11
+A7.1 Setup
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-12
+A7.2 Theorem 1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-13
+A7.3 Proof of Theorem 1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-13
+A7.4 Corollary 1
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-14
+A7.5 Proof of Corollary 1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-14
+A8 Suﬃcient Statistics: Other Models
+A-14
+A8.1 Lemma 1
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-14
+A8.2 Proof of Lemma 1 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-15
+A8.3 Lemma 2
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-16
+A8.4 Proof of Lemma 2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-16
+A8.5 Theorem 2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-17
+A8.6 Proof of Theorem 2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-17
+A8.7 Corollary 2
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-18
+A8.8 Proof of Corollary 2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-18
+A8.9 Theorem 3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-18
+A8.10Proof of Theorem 3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-18
+52
+
+
+Build, Baby, Build
+Couillard
+A9 Housing Demand Estimation Details
+A-19
+A9.1 Agents To Households
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-19
+A9.2 Transforming Rent So Suﬃciency Results Apply
+. . . . . . . . . . . . . . . . . . A-20
+A9.3 Exposure Variable . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-20
+A9.4 Suﬃciency
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . A-21
+A10Equilibrium Deﬁnition
+A-22
+A11Identiﬁcation And Sensitivity
+A-25
+A-1
+
+
+Build, Baby, Build
+Couillard
+A1
+Example Data: Marginal Distributions and IPF
+To better illustrate the data used, consider the following simple example. There are four census
+tracts – each of which belongs to one of two cities – and two age groups and two sexes. This is
+the unobserved joint distribution, depicted in Table 5’s “Population” column. Because this joint
+distribution is unobserved, we would instead use three marginal distributions in Table 6: tract by
+age, tract by sex, and age by sex by city. These marginal distributions could be used directly in a
+bespoke maximum likelihood estimation routine, or they could ﬁrst be combined into a rectangular
+estimate of the joint distribution using IPF (Table 5’s right-most column) to be passed into a more
+standard maximum likelihood estimation routine.
+Table 5: Example: Population by City, Census Tract, Age, Sex, and IPF Estimate
+City
+Census Tract
+Age
+Sex
+Population
+IPF Estimate
+City A
+Tract 101
+Young
+Male
+520
+514.432
+City A
+Tract 101
+Young
+Female
+480
+485.568
+City A
+Tract 101
+Old
+Male
+310
+315.568
+City A
+Tract 101
+Old
+Female
+340
+334.432
+City A
+Tract 102
+Young
+Male
+450
+455.568
+City A
+Tract 102
+Young
+Female
+470
+464.432
+City A
+Tract 102
+Old
+Male
+290
+284.432
+City A
+Tract 102
+Old
+Female
+320
+325.568
+City B
+Tract 201
+Young
+Male
+610
+607.979
+City B
+Tract 201
+Young
+Female
+590
+592.021
+City B
+Tract 201
+Old
+Male
+330
+332.021
+City B
+Tract 201
+Old
+Female
+350
+347.979
+City B
+Tract 202
+Young
+Male
+500
+502.021
+City B
+Tract 202
+Young
+Female
+520
+517.979
+City B
+Tract 202
+Old
+Male
+310
+307.979
+City B
+Tract 202
+Old
+Female
+340
+342.021
+Table 6: Example: Marginal Population Distributions
+(a) By Tract and Age
+Tract
+Age
+Pop.
+101
+Young
+1000
+101
+Old
+650
+102
+Young
+920
+102
+Old
+610
+201
+Young
+1200
+201
+Old
+680
+202
+Young
+1020
+202
+Old
+650
+(b) By Tract and Sex
+Tract
+Sex
+Pop.
+101
+Male
+830
+101
+Female
+820
+102
+Male
+740
+102
+Female
+790
+201
+Male
+940
+201
+Female
+940
+202
+Male
+810
+202
+Female
+860
+(c) By City, Age, and Sex
+City
+Age
+Sex
+Pop.
+City A
+Young
+Male
+970
+City A
+Young
+Female
+950
+City A
+Old
+Male
+600
+City A
+Old
+Female
+660
+City B
+Young
+Male
+1110
+City B
+Young
+Female
+1110
+City B
+Old
+Male
+640
+City B
+Old
+Female
+690
+A-2
+
+
+Build, Baby, Build
+Couillard
+A2
+Radius Of Residential Search Regions
+Assume that with probability s movers search in a disc of radius R around their current home, and
+with probability 1 −s search in a disc of radius R centered on some point in a diﬀerent metro. The
+smallest inter-metro move is larger than the largest intra-metro move. Potential destinations are
+uniformly distributed in each disc.
+Starting with the case with s = 1 (all within-metro moves), the probability of moving a distance
+less than or equal to d is simply the area of a disk with radius d divided by the total disk area:
+Pr(D ≤d) = πd2/πR2 = (d/R)2.
+(A2.1)
+Then we can use the median distance m to solve for the radius R:
+Pr(D ≤m) = (m/R)2 = 1/2 =⇒R = m
+√
+2.
+(A2.2)
+When within-metro moves only occur with probability s, the ratio of the disk areas is now a
+conditional probability:
+Pr(D ≤d) = Pr(D ≤d|s) × s = πd2/πR2s = (d/R)2s,
+(A2.3)
+and we can use median distance m and within-metro share s to solve for the radius R:
+Pr(D ≤m) = (m/r)2s = 1/2 =⇒R = m
+√
+2s.
+(A2.4)
+Given that the median move distance was stable between 16km and 24km from 1989 to 2019
+(NAR, 2023), and that the intra-metro move share was around 0.75 and 0.8 over 2005-19 (ACS
+2005, 2010, 2015, 2019), we arrive at a ballpark
+R ∈(16 ×
+√
+2 × 0.75, 24 ×
+√
+2 × 0.8) ≈(19.6, 30.4).
+(A2.5)
+A3
+Sorting and SUTVA in the Reduced-Form
+To see the SUTVA violation, consider the following simpliﬁed model of joint sorting-fertility choice.
+Begin by positing that the utility of a joint location-fertility choice depends solely on that location’s
+rents, a heterogeneous fertility constant, and an idiosyncratic EVT1 shock. Fertility is a binary
+decision f ∈{0, 1}, and every individual i has a binary fertility type τ ∈{0, 1}, with α1
+1 > 0 and
+fertility utility 0 otherwise. If the agent chooses fertility then they must also purchase an additional
+A-3
+
+
+Build, Baby, Build
+Couillard
+unit of housing. The joint utility is:
+ui
+jf = ατ(i)
+f
++ β(1 + f)rj + ϵi
+jf.
+(A3.1)
+The probability of choosing a (j, f) option is
+P τ
+jf =
+exp(ατ
+f + β(1 + f)rj)
+P
+k exp(ατ
+0 + βrk) + exp(ατ
+1 + 2βrk).
+(A3.2)
+The fertility rate for a given type and location is
+F τ
+j =
+P τ
+j1
+P τ
+j0 + P τ
+j1
+=
+exp(ατ
+1 + 2βrj)
+exp(ατ
+0 + βrj) + exp(ατ
+1 + 2βrj),
+(A3.3)
+where notably the identical denominators cancel out of the logit choice probabilities. Although
+heterogeneous small-area fertility rates are generally unavailable, if they were observed and regressed
+on rents with a valid identiﬁcation strategy (or, if aggregate fertility rates are used with a very strong
+assumption of homogeneity of fertility preferences), then at best the estimated coeﬃcients will be a
+linear approximation to this non-linear function and large counterfactuals will be invalid.
+Most likely, heterogeneous small-area fertility rates are unavailable, and the researcher would be
+forced to use aggregate small-area fertility rates. These are a weighted average of the heterogeneous
+fertility rates, where the weights are the proportions of either type that choose to settle in j:
+Fj = W 1
+j
+P 1
+j1
+P 1
+j0 + P 1
+j1
++ (1 −W 1
+j )
+P 0
+j1
+P 0
+j0 + P 0
+j1
+.
+(A3.4)
+Although the denominators of the heterogeneous fertility rates cancel, they do not cancel out of the
+weights, since fertility types 0 and 1 have diﬀerent choice probability denominators:
+W 1
+j =
+N 1
+j
+N 0
+j + N 1
+j
+=
+Nχ(P 1
+j0 + P 1
+j1)
+N(1 −χ)(P 0
+j0 + P 0
+j1) + Nχ(P 1
+j0 + P 1
+j1),
+(A3.5)
+where N is the total number of agents and χ is the exogenous proportion of agents that are of fertility
+type 1. Because the denominators of P do not cancel out of W, W and thus F are functions of rents
+in all locations, and the reduced-form regression of F on r not only omits non-linearity but also
+violates SUTVA.
+The sorting-induced SUTVA violation biases estimation. The partial derivative of Fj with
+respect to rj picks up not just the causal impact of rj on F τ
+j , but also a sorting eﬀect as the
+composition of types changes through W. Being more fertile than the other and thus more rent-
+sensitive, the population of fertility type 1 choosing j decreases more as rj increases, and j becomes
+A-4
+
+
+Build, Baby, Build
+Couillard
+dominated by the less-fertile type 0. By implicitly making a structural assumption of no mobility, the
+reduced-form’s treatment eﬀects attribute causality to selection (and omit non-linearity) regardless
+of whatever identiﬁcation strategy is used, with the magnitude of the bias in estimates and implied
+policy counterfactuals depending on the extent to which heterogeneous preferences for fertility are
+omitted.
+A4
+Quantity-Quality With Housing
+A4.1
+Main Results
+The results that (1) larger families value living space more, and (2) larger families value the numeraire
+more (are more price-sensitive) emerge naturally from the following theoretical model, driven by
+the core idea that having more children pushes a family back onto a part of the utility curve where
+the marginal utility of living space per person and parental consumption are higher.
+The key assumptions are (1) preferences are such that fertility is weakly separable from housing,
+child quality, and parental consumption, (2) goods are goods (have positive marginal utility), (3)
+goods are weakly normal (consumption non-decreasing with income), (4) goods have declining
+marginal utility, and (5) the elasticity of per-child housing and investment with respect to fertility
+is greater than -1. In addition, I impose standard assumptions (utility continuously diﬀerentiable,
+quasi-concave, etc.).
+The consumer’s problem is
+max
+n,q,c,h U(n, q, c, h)
+subject to c + ni + nrh = y
+(A4.1)
+and q = f(i), f ′ > 0.
+Parents choose the number of children n (real-valued for simplicity), their uniform quality q, parental
+consumption c, and housing per child h. Parental consumption, total investment in children, and
+total housing expenditure must satisfy a budget constraint25. Uniform investment in children i is
+converted into child quality q by a well-behaved function f. Notably, having a larger quantity of
+children increases the cost of increasing uniform child quality and housing per child – the exact
+mechanism highlighted by Becker and Lewis (1973) for child quality, extended to housing. We can
+also easily see how an increase in housing costs r aﬀects fertility, as it increases the shadow price of
+fertility n, which is i + rh, reducing fertility via both the income and substitution eﬀects.
+25The core results would not change with a more explicit treatment of household size, for example by using a budget
+constraint (c/2) + ni + (n + 2)rh = y.
+A-5
+
+
+Build, Baby, Build
+Couillard
+Using weak separability26, we can rewrite the problem as a nested problem27, where n is taken
+as given in the inner problem and chosen in an outer problem on the basis of preferences for fertility
+per se and how it aﬀects the value of the inner problem:
+max
+n
+U(n, v(n, r, y))
+(A4.2)
+where v(n, r, y) = max
+q,c,h u(q, c, h)
+subject to c + ni + nrh = y
+and q = f(i), f ′ > 0.
+This formulation permits a clean analysis of how a shift in fertility aﬀects the other choice variables
+while still allowing fertility to be a choice variable itself.
+Consider how an increase in n aﬀects the inner problem. It raises the shadow price of h and q,
+and so the income and substitution eﬀects combine to generate h∗
+n < 0 and q∗
+n < 0. Because h and q
+have declining marginal utility, an increase in n pushes h∗and q∗down onto a steeper part of the
+utility function, and so the marginal utilities of h and q increase.
+Now consider c, where the income and substitution eﬀects go in opposite directions. Write
+optimal consumption as income not spent on optimal child quality or optimal housing, then
+diﬀerentiate:
+c∗= y −ni∗−nrh∗
+=⇒c∗
+n = −(ni∗
+n + i∗) −(nrh∗
+n + rh∗)
+(A4.3)
+= −i∗(1 + ϵi,n)
+|
+{z
+}
++
+−rh∗(1 + ϵh,n)
+|
+{z
+}
++
+< 0.
+Provided that both elasticities are greater than -1, parental consumption decreases with fertility, and
+likewise moves onto a steeper part of the utility curve.
+The assumption that these elasticities are greater than -1 is simply an assumption that total
+expenditure on child quality and housing increase with the number of children.
+d ln(nrh) = d ln n + d ln r + d ln h = d ln n
+
+1 + d ln h
+d ln n
+
+> 0 ⇐⇒ϵh,n > −1
+(A4.4)
+d ln(ni) = d ln n + d ln i
+= d ln n
+
+1 + d ln i
+d ln n
+
+> 0 ⇐⇒ϵi,n > −1
+26Becker and Lewis’s (1973) assumptions on preferences are only those that are necessary for an interior optimum to
+exist (instead focusing on the implication of quantity increasing the shadow price of quality and vice versa in the budget
+constraint), and so weak separability is not incompatible with their framework.
+27I prove this in Section A4.2.
+A-6
+
+
+Build, Baby, Build
+Couillard
+If this assumption were violated, then the family would respond to an additional child by decreasing
+the size of its house and its total expenditure on child quality. A family may reasonably keep these
+items constant in response to an additional child, but most would increase expenditure on these
+items such that on average these assumptions hold.
+Because per-child investment and parental consumption have higher marginal utility at higher
+fertility, there is also a higher marginal utility of having resources available to spend on them –
+that is, a higher marginal utility of avoiding housing costs. Larger families are thus more sensitive
+to housing costs, and in the sorting model they will have a rent coeﬃcient that is more negative.
+Additionally, they will consume a larger quantity of housing, spend more of their budget on housing,
+and have a larger marginal utility of housing.
+A4.2
+Weak Separability
+In this section I show that weak separability allows the utility maximization problem to be written
+as a nested problem, where child quality, housing, and parental consumption are chosen in an inner
+problem conditional on the number of children, and fertility is chosen in an outside problem on the
+basis of preferences for fertility per se and how it aﬀects the value of the inner problem.
+In this context, the deﬁnition of weak separability is that for any bundles z = (q, c, h), z′ =
+(q′, c′, h′)
+U(n, z) ≥U(n, z′) =⇒U(n′, z) ≥U(n′, z′) ∀n, n′.
+(A4.5)
+That is, preferences for one bundle of (q, c, h) versus another do not depend on which n is chosen.
+Then, we may deﬁne a utility function u(q, c, h) (with cardinality following from some normal-
+ization) that does not depend on n, while n does aﬀect the optimal choices of (q, c, h) through its
+inﬂuence on the budget constraint.
+Now deﬁne a function
+U(n, s) = U(n, zs)
+(A4.6)
+for any bundle zs that generates u(zs) = s. Because u is increasing in all arguments, U is increasing
+in s.
+Finally, observe that for the inner problem’s optimal bundle (q∗, c∗, h∗) and indirect utility
+v(n, r, y) = u(q∗, c∗, h∗) we have
+U(n, q∗, c∗, h∗) = U(n, u(q∗, c∗, h∗)) = U(n, v(n, r, y)),
+(A4.7)
+and hence we may maximize U by choosing n to maximize U directly and through its impact on the
+inner problem’s value.
+A-7
+
+
+Build, Baby, Build
+Couillard
+A5
+Deriving Housing Demand
+Given the structure of the overall model, we can derive a standard residential choice model that uses
+the aggregated housing choice probabilities to estimate housing utility parameters.
+To see this, write the housing choice probabilities (probability of choosing housing option h
+conditional on being type τ) as a function of the fundamental choice probabilities (probability of
+choosing housing-fertility option (g, h) conditional on being in state x):
+P τ
+h = Pr(h, τ)
+Pr(τ)
+=
+P
+(x′,g′):τ(x′,g′)=τ P x′
+g′h
+P
+(x′,g′):τ(x′,g′)=τ
+P
+h′ P x′
+g′h′
+(A5.1)
+The numerator of the fundamental choice probability in the numerator features a housing utility that
+by virtue of its index τ is common to all terms in the summation, and so can be factored out:
+X
+(g′,x′):τ(g′,x′)=τ
+exp(uτ(g′,x′)
+h
++ αx′
+g′ + cx′
+g′) = exp(uτ
+h)
+X
+(g′,x′):τ(g′,x′)=τ
+exp(αx′
+g′ + cx′
+g′).
+(A5.2)
+That utility is the sole term that is indexed by h, and so the choice probability is proportional to this
+exponentiated utility, exactly as in a standard logit model with choice over h alone:
+P τ
+h = exp(uτ
+h)Kτ.
+(A5.3)
+Provided that a type ﬁxed eﬀect is included in the model, the parameters of uτ
+h can be estimated
+with maximum likelihood or by log-linearizing.
+A6
+Micro-BLP Mis-speciﬁcation
+A6.1
+Theorem and Proof
+A standard Micro-BLP model:
+ui
+j = X′
+jβi + ξj + ϵj
+i,
+βi ∼N(β + Πyi, ΣΣ′).
+(A6.1)
+The micro-BLP estimator uses market shares s, a number of micro-moments which often but not
+always grows with J, product characteristics X, and instruments Z. Notably, unobserved utility ξ is
+constrained to be constant over demographics.
+Now consider an alternate model:
+ui
+j = X′
+jβi + ξi
+j + ϵj
+i,
+βi ∼N(β + Πyi, ΣΣ′),
+ξi
+j = ξj + Γjyi,
+(A6.2)
+A-8
+
+
+Build, Baby, Build
+Couillard
+that is, where unobservable utility is allowed to vary over demographics but follows some structure
+such that it is separately identiﬁed from ϵi
+j. Or, more concisely, each ﬁne demographic group g
+gets its own unobservable utility ξg(i)
+j
+. The following result shows that the standard Micro-BLP
+model that constrains residuals to be constant over demographics generates testable restrictions on
+micro-moments when there are suﬃciently many micro-moments, and that for generic data (that is,
+data that obeys accounting identities but which otherwise is not assumed to follow any particular
+pattern) the probability that these restrictions will be satisﬁed has measure zero.
+Theorem: for J suﬃciently large, ﬁxed demographic speciﬁcation, local identiﬁcation, and a
+micro-moment set that grows with J, the Micro-BLP DGP generates observed data with probability
+zero and is mis-speciﬁed in the population.
+Proof: Collect parameters and errors into θ = (β, Π, Σ, ξ). Collect market shares and micro-
+moments into a vector W. These parameters and errors generate the data in a system of equations
+W = f(θ).
+(A6.3)
+Let the dimensionality of θ be P, and the dimensionality of W (excluding linearly dependent
+equations) be D. The function f maps a point in the parameter space into the data space, and by
+virtue of the Micro-BLP model is continuously diﬀerentiable: f : Θ ⊂RP →RD, f ∈C1. Given
+local identiﬁcation, the Jacobian of f has full rank.
+Given these assumptions, under the Implicit Function Theorem and/or the the Constant Rank
+Theorem, the image of f is a manifold of (at most) dimension P in RD. Parameters θ span (at
+most) RP, which the non-linear function f maps into a space that is locally euclidean of (at most)
+dimension P but globally non-euclidean: a manifold.
+If D > P, the image of f has measure zero. The model generates the set of unrestricted data
+with probability zero, and so the model is mis-speciﬁed in the population.
+When the number J of products j increases by one, a single ξj is appended to θ. However, since
+the number of micro-moments grows with J, a market share sj and multiple micro-moments are
+appended to W. (Without mis-match between the market shares and micro-moments the market
+shares are sometimes functions of the micro-moments, but because the demographic shares that
+would be used to calculate the market shares from demographics are generally not passed into the
+estimation routine, they are non-redundant moments.) As J grows, D grows by more than P. Thus
+for a suﬃciently large J∗, D > P, and Micro-BLP is mis-speciﬁed in the population. QED
+The substantive assumptions in this proof are that (1) unobserved utility ξ is constant over
+demographics, and (2) the number of micro-moments increases with J. The ﬁrst assumption
+is relaxed by the alternate DGP I specify. The second is true when the micro-moments are
+“partially dis-aggregated market shares” or market shares calculated over individual dimensions
+A-9
+
+
+Build, Baby, Build
+Couillard
+of demographics Pr(j|dℓ(i)), average consumer characteristics by product E[yi|j], or covariances
+between characteristics of the ﬁrst and second choice C(xj, xk(−j)|j, k). The second assumption
+is not true when the micro-moments are average product characteristics conditional on individual
+dimensions of demographics E[xj|dℓ(i)] or covariances between product and consumer characteristics
+C(xj, yi) are used, because these aggregate over products and do not grow with the number of
+products.
+A6.2
+Example
+The threshold J∗need not be particularly large. Consider the following example with two dimensions
+of individual heterogeneity (a, s), no random coeﬃcients, and the outside option included in the
+count J:
+ui
+j = X′
+jβ(as)(i) + ξj + ϵi
+j,
+βas
+k = βk + βa
+k + βs
+k
+(A6.4)
+The dimensionality of θ is P = K(1 + A −1 + S −1) + J −1. For each characteristic, there is
+a baseline coeﬃcient, and one age group and sex group each is normalized to have a zero coeﬃcient.
+The outside option residual is normalized to zero.
+With micro-moments of the form P(j|dℓ(i)), the number of equations is D = J −1 + A(J −
+1) + S(J −1). There are aggregate and age- and sex-speciﬁc market shares, where the share for the
+outside option is a deterministic function of the others.
+We then have
+D > P ⇐⇒J −1 + A(J −1) + S(J −1) > K(A + S −1) + J −1
+⇐⇒AJ + SJ > AK + SK −K + A + S
+⇐⇒J > (A + S)(K + 1) −K
+A + S
+⇐⇒J > K + 1 −
+K
+A + S .
+(A6.5)
+For K = 1, accounting for integer constraints, we have J∗= 2: the model is mis-speciﬁed when
+there is a single inside product. Supposing there are two age groups and two sexes, there is a
+single inside market share, two age micro-moments, and two sex micro-moments, for a total of ﬁve
+moments. However, there is only the baseline coeﬃcient, a coeﬃcient for the non-default age group,
+and a coeﬃcient for the non-default sex, plus one error, for a total of a four-element parameter-error
+vector.
+Next, I depict this mis-speciﬁcation numerically.
+I let x1 = 1, β = βa1 = βs1 = 1,
+(ξa0
+1 , ξa1
+1 , ξs0
+1 , ξs1
+1 ) = (−1.5, −0.5, 0.5, 1.5), and each group equal to a quarter of the population.
+This generates an aggregate market share and four micro-moments that obey accounting identities.
+A-10
+
+
+Build, Baby, Build
+Couillard
+Figure 18
+In the ﬁgure below, I let all coeﬃcients be equal to their true values, and I let the single ξj ﬁt the
+aggregate sj. Because there are ﬁve moments plus a total of four parameters and errors, no single j
+is able to rationalize the data – the true parameters plus the single error can only rationalize a single
+moment at time.
+More product characteristics in the model increases the number of parameters, increasing J∗at
+a rate less than 1. Adding dimensions of heterogeneity pushes the rate at which J∗increases with K
+up towards 1. Adding random coeﬃcients would also increase the number of parameters, increasing
+J∗, but because the number of parameters does not grow with J there would still be ﬁnite J∗.
+A7
+Suﬃcient Statistics: Choice Models
+Because the case of an arbitrary number of dimensions of heterogeneity each with an arbitrary
+number of dimensions requires complex and opaque notation, I illustrate these principles using the
+simplest possible setting.
+A-11
+
+
+Build, Baby, Build
+Couillard
+A7.1
+Setup
+Assume a standard logit problem with a choice variable j (say, neighborhood of residence) and
+heterogeneity of preferences over two dimensions age a and sex s. There is a single characteristic
+xj. Utility up to the EVT1 shock is
+uas
+j = (˜β + ˜βa + ˜βs)xj + ξas
+j
+=⇒uas
+j = (βa + βs)xj + ξas
+j ,
+(A7.1)
+where in the ﬁrst equation we write a baseline utility ˜β with one level each of ˜βa and ˜βs normalized
+to zero, and in the second the baseline utility is absorbed into one of the heterogeneity dimensions
+such that all coeﬃcients in that dimension are shifted by ˜β and no level is normalized.
+Then, the probability of an agent with demographics (a, s) choosing j is
+P as
+j
+=
+exp((βa + βs)xj + ξas
+j )
+P
+k exp((βa + βs)xk + ξas
+k ),
+(A7.2)
+and the number of agents (the Poisson estimating equation) with demographics (a, s) choosing j is
+the product of the total number of (a, s) agents and that probability:
+N as
+j
+= P as
+j N as = exp(αas + βaxj + βsxj + ξas
+j )
+(A7.3)
+where
+exp(αas) =
+N as
+P
+j exp(βaxj + βsxj + ξas
+j ).
+(A7.4)
+As shown by Guimaraes et al (2003), after making this substitution the logit and Poisson likelihoods
+have the same maximizer ˆβ, and so this logit model (with no endogeneity) can be estimated with
+PPML, with the demographic ﬁxed eﬀect αas absorbing the choice probability denominator and the
+number of agents of group (a, s).
+Let dropped indexes denote aggregation, so that the marginal distributions are
+N a
+j =
+X
+s
+N as
+j ,
+N s
+j =
+X
+a
+N as
+j ,
+N as =
+X
+j
+N as
+j .
+(A7.5)
+These counts N a
+j , N s
+j , N as are the counts of population (or households) over tract-age, tract-sex,
+and age-sex. The ﬁrst two are published by the US Census Bureau as outputs from the Decennial
+Census and American Community Survey, whereas the last one is both published and derivable
+from microdata.
+Remark: Note that (aside from the error term) the Poisson estimating equation contains additive
+terms varying at the (a, s), (j, a), (j, s) levels, and no term (aside from the error term) varies at the
+A-12
+
+
+Build, Baby, Build
+Couillard
+(j, a, s) level. This is the critical condition for the following results that assume that N as, N a
+j , N s
+j are
+observed while N as
+j
+is not. Note that additive separability on preferences, βas = βa + βs, generates
+this condition. If we let uas
+j = βasxj + ξas
+j then we would need to observe N as
+j .
+We may also write N as
+j
+in terms of ﬁxed eﬀects (with a distinct error term since ﬁxed eﬀects
+explain at least as much as continuous explanatory variables):
+N as
+j
+= exp(µs
+j + µa
+j + µas + ηas
+j ).
+(A7.6)
+Let ˆN as
+j
+be the IPF-estimated count using the three two-dimensional marginal distributions:
+ˆN as
+j
+= IPF(N a
+j , N s
+j , N as).
+(A7.7)
+Let ˆωas
+j be the error in the IPF-estimated count:
+ˆωas
+j = N as
+j −ˆN as
+j .
+(A7.8)
+Because IPF matches the observed margins exactly, we have
+X
+j
+ˆN as
+j
+= N as,
+X
+a
+ˆN as
+j
+= N s
+j ,
+X
+s
+ˆN as
+j
+= N a
+j
+(A7.9)
+and so
+X
+j
+ˆωas
+j = 0 ∀(a, s),
+X
+a
+ˆωas
+j = 0 ∀(j, s),
+X
+s
+ˆωas
+j = 0 ∀(j, a).
+(A7.10)
+A7.2
+Theorem 1
+For any exponential conditional mean model with log-mean additively separable across the
+(j, a), (j, s), (a, s) margins, ˆN as
+j provides the same point estimates as N as
+j when used as a dependent
+variable.
+A7.3
+Proof of Theorem 1
+Let N as
+j
+= exp(λas + λa
+j + λs
+j + τ as
+j ), where each λ may be FE or coeﬃcient with explanatory
+variable.
+For count outcome N as
+j
+the log-likelihood is
+A-13
+
+
+Build, Baby, Build
+Couillard
+L =
+X
+j
+X
+a
+X
+s
+N as
+j (ˆλas + ˆλa
+j + ˆλs
+j) −exp(ˆλas + ˆλa
+j + ˆλs
+j)
+(A7.11)
+=
+X
+a
+X
+s
+N asˆλas +
+X
+j
+X
+a
+N a
+j ˆλa
+j +
+X
+j
+X
+s
+N s
+j ˆλs
+j −
+X
+j
+X
+a
+X
+s
+exp(ˆλas + ˆλa
+j + ˆλs
+j),
+where we have simply factored ˆλas out of the summation over j so that we may use P
+j N as
+j
+= N as,
+and analogously for λa
+j and λs
+j, exploiting additive separability on preferences in the Poisson
+log-likelihood (one can use the exact same manipulation on the logit log-likelihood, which has the
+same maximizers). Thus the three margins N as, N a
+j , N s
+j are suﬃcient statistics for ˆλ. QED
+A7.4
+Corollary 1
+The two-step estimator – where (1) product ﬁxed eﬀects and heterogeneous slopes are estimated,
+and then (2) the product ﬁxed eﬀect is regressed on explanatory variables to recover the baseline
+utility coeﬃcient – provides identical point estimates regardless of whether N as
+j
+or ˆN as
+j
+is used as
+the dependent variable.
+A7.5
+Proof of Corollary 1
+By the same argument as the proof of Theorem 1, Nj is suﬃcient for δj, and so the maximum
+likelihood estimator is the same regardless of whether Nj or microdata are used. Then, the second
+step 2SLS regression has the same δj, X, and Z regardless of whether Nj or microdata are used.
+Because N a
+j and N s
+j both imply Nj, the three two-way margins N a
+j , N s
+j , and N as are suﬃcient for
+the Bayer et al. (2007) estimator.
+A8
+Suﬃcient Statistics: Other Models
+Using the same setup as above.
+A8.1
+Lemma 1
+The maximizer ˆµ for the Poisson log-likelihood
+L =
+X
+a
+X
+s
+X
+j
+N as
+j (ˆµa
+j + ˆµs
+j + ˆµas) −exp(ˆµa
+j + ˆµs
+j + ˆµas)
+(A8.1)
+satisﬁes
+exp(ˆµa
+j + ˆµs
+j + ˆµas) = ˆN as
+j
+= IPF(N a
+j , N s
+j , N as).
+(A8.2)
+A-14
+
+
+Build, Baby, Build
+Couillard
+A8.2
+Proof of Lemma 1
+The IPF algorithm consists of (1) initializing cells of the unobserved joint distribution with a positive
+count (e.g., 1/N), (2) cycling through marginal distributions, updating joint distribution counts
+proportionally so that at each stage a diﬀerent marginal distribution ﬁts exactly:
+ˆN as
+j (r) = ˆN as
+j (r −1) ·
+N a
+j
+P
+s′ ˆN as′
+j (r −1)
+ˆN as
+j (r + 1) = ˆN as
+j (r)
+·
+N s
+j
+P
+a′ ˆN a′s
+j (r)
+(A8.3)
+ˆN as
+j (r + 2) = ˆN as
+j (r + 1) ·
+N as
+P
+j′ ˆN as
+j′ (r + 1)
+,
+and (3) halting upon convergence below a speciﬁed tolerance.
+Every IPF update strictly increases the log-likelihood, unless the margin already ﬁt, in which
+case the increase is zero. Consider an update of the (j, a) margin, using the deﬁnition of the update
+and the fact that the grand totals always match the data:
+L(r) −L(r −1) =
+X
+a
+X
+s
+X
+j
+N as
+j (ln ˆN as
+j (r) −ln ˆN as
+j (r −1))
+(A8.4)
++
+X
+a
+X
+s
+X
+j
+ˆN as
+j (r) −ˆN as
+j (r −1)
+=
+X
+a
+X
+s
+X
+j
+N as
+j
+ 
+ln
+ 
+N a
+j
+P
+s′ ˆN as′
+j (r −1)
+· ˆN as
+j (r −1)
+!
+−ln ˆN as
+j (r −1)
+!
++ ˆN(r) −ˆN(r −1)
+=
+X
+a
+X
+s
+X
+j
+N as
+j
+ 
+ln
+ 
+N a
+j
+P
+s′ ˆN as′
+j (r −1)
+!
++ ln ˆN as
+j (r −1) −ln ˆN as
+j (r −1)
+!
++ N −N
+=
+X
+a
+X
+s
+X
+j
+N as
+j ln
+ 
+N a
+j
+P
+s′ ˆN as′
+j (r −1)
+!
+To see that this term is positive, consider the following function:
+f(x) = x ln x −x + 1,
+f ′(x) = x
+x + ln x −1 = ln x,
+f ′′(x) = 1
+x > 0.
+(A8.5)
+This convex function achieves its unique minimum at x = 1, and therefore x ln x ≥1 −x with
+equality only at x = 1. Now, let x = N a
+j / P
+s′ ˆN as′
+j (r −1), rearrange the expression, and again use
+A-15
+
+
+Build, Baby, Build
+Couillard
+the perfectly-ﬁtting grand totals:
+N a
+j
+P
+s′ ˆN as′
+j (r −1)
+ln
+ 
+N a
+j
+P
+s′ ˆN as′
+j (r −1)
+!
+≥1 −
+N a
+j
+P
+s′ ˆN as′
+j (r −1)
+(A8.6)
+=⇒N as
+j ln
+ 
+N a
+j
+P
+s′ ˆN as′
+j (r −1)
+!
+≥
+X
+s′
+ˆN as′
+j (r −1) −N a
+j = ˆN a
+j (r −1) −N a
+j
+=⇒
+X
+a
+X
+j
+N as
+j ln
+ 
+N a
+j
+P
+s′ ˆN as′
+j (r −1)
+!
+≥ˆN(r −1) −N = 0 ∀s.
+Every update strictly increases the log-likelihood, unless the margin already ﬁts. When every margin
+ﬁts, the algorithm has converged. At this point, the gradient of the log-likelihood is zero, and the
+likelihood is maximized.
+A8.3
+Lemma 2
+Z′ˆω = 0, where Z is any stacked variable that varies (or sum of stacked variables that vary) at the
+(j, a), (j, s), (a, s) level.
+A8.4
+Proof of Lemma 2
+Collect all ﬁxed eﬀects into a single parameter vector θ. Deﬁne sets of vertical vectors Aa
+j, Bs
+j, Cas
+corresponding to the ﬁxed eﬀects µa
+j, µs
+j, µas. They have as many rows as there are counts N as
+j , with
+elements equal to 1 if the indexes match the row index and 0 otherwise. Horizontally concatenate
+them to create D, which then has as many columns as ﬁxed eﬀects. Taking a single row of D, we
+then have
+ˆN as
+j
+= exp(Das
+j · ˆθ)
+(A8.7)
+and so the log-likelihood and gradient are
+L =
+X
+a
+X
+s
+X
+j
+N as
+j Das
+j · ˆθ −exp(Das
+j · ˆθ)
+∂L
+∂ˆθ
+=
+X
+a
+X
+s
+X
+j
+N as
+j Das
+j −ˆN as
+j Das
+j
+(A8.8)
+=
+X
+a
+X
+s
+X
+j
+ˆωas
+j Das
+j ,
+A-16
+
+
+Build, Baby, Build
+Couillard
+which is equal to zero at the optimum. This condition may be rewritten as
+D′ˆω =
+
+
+
+A′ˆω
+B′ˆω
+C′ˆω
+
+
+=⃗0.
+(A8.9)
+The errors in the counts are thus orthogonal to every column of D, a well-known property of the
+Poisson estimator. In this speciﬁc case, the errors are orthogonal to the indicators that deﬁne every
+ﬁxed eﬀect that varies at the (j, a), (j, s), (a, s) level (every column of A, B, and C), and hence
+Z′ˆω =⃗0,
+(A8.10)
+where Z is any variable that varies (or sum of variables that vary) at the (j, a), (j, s), (a, s) level,
+due to collinearity of Z and D.
+A8.5
+Theorem 2
+OLS and just-identiﬁed 2SLS models where the count is the dependent variable and the conditional
+mean is additively separable across the (j, a), (j, s), (a, s) margins provide the same point estimates
+regardless of whether N as
+j
+or ˆN as
+j
+is used.
+A8.6
+Proof of Theorem 2
+Let each λ be either a ﬁxed eﬀect or a linear coeﬃcient on an explanatory variable:
+N as
+j
+= λas + λa
+j + λs
+j + τ as
+j
+=⇒
+ˆN as
+j
+= λas + λa
+j + λs
+j + τ as
+j −ˆωas
+j
+(A8.11)
+Any endogenous explanatory variable either varies at one level with heterogeneous coeﬃcients, or
+varies at two levels with a single coeﬃcient. Thus, the instrument must also vary at a maximum of two
+levels, and the ﬁrst stage conditional mean is also additively separable across the (j, a), (j, s), (a, s)
+margins.
+The diﬀerence between the parameter estimates is (letting Z = X in the case of OLS)
+ˆβN −ˆβ
+ˆ
+N = (Z′X)−1Z′ˆω.
+(A8.12)
+By Lemma 2, Z′ˆω = 0 because in the cases of OLS and 2SLS Z is additively separable across the
+(j, a), (j, s), (a, s) margins, and so ˆβN = ˆβ ˆ
+N.
+A-17
+
+
+Build, Baby, Build
+Couillard
+A8.7
+Corollary 2
+models where the log count is the dependent variable and the conditional mean is additively separable
+across the (j, a), (j, s), (a, s) margins provide the same point estimates regardless of whether N as
+j
+or ˆN as
+j
+is used, provided that the model is estimated with PPML.
+A8.8
+Proof of Corollary 2
+Proof: Follows directly from Theorem 1.
+Remark: Often in reduced-form contexts, models with log counts as dependent variable are of
+greater interest than the untransformed counts. This corollary states that ˆN as
+j
+can be used in these
+cases, but with PPML rather than OLS, since ln ˆN as
+j
+= ln(N as
+j −ˆωas
+j ) is not additive in ˆωas
+j . Such a
+model is econometrically identical to that discussed in Theorem 1, dropping only the choice model
+interpretation.
+ln(N as
+j ) = λas + λa
+j + λs
+j + τ as
+j
+=⇒
+ˆN as
+j
+= exp(λas + λa
+j + λs
+j + τ as
+j ) −ˆωas
+j
+(A8.13)
+A8.9
+Theorem 3
+OLS and just-identiﬁed 2SLS models where the dependent variable is a count as a share of an
+observed margin, and where the conditional mean is in the space of the observed margin, provide
+the same point estimates regardless of whether N as
+j
+or ˆN as
+j
+is used.
+A8.10
+Proof of Theorem 3
+Without loss, divide the counts by N a
+j . We cannot include in the conditional mean any terms indexed
+by s. λa
+j may be a ﬁxed eﬀect, a heterogeneous coeﬃcient on an explanatory variable that varies
+over one dimension, or a coeﬃcient on an explanatory variable that varies over two dimensions.
+Thus, in the case of 2SLS the instrument varies at 2 levels at most.
+N as
+j
+N a
+j
+= λa
+j + τ as
+j
+=⇒
+ˆN as
+j
+N a
+j
+= λa
+j + τ as
+j −ˆωas
+j
+N a
+j
+(A8.14)
+The diﬀerence between the parameter estimates is (letting Z = X in the case of OLS)
+ˆβN −ˆβ
+ˆ
+N = (Z′X)−1Z′
+ ˆω
+N A
+J
+
+.
+(A8.15)
+A-18
+
+
+Build, Baby, Build
+Couillard
+In summation notation,
+Z′
+ ˆω
+N A
+J
+
+=
+X
+j
+X
+a
+X
+s
+za
+j
+ˆωas
+j
+N a
+j
+=
+X
+j
+X
+a
+za
+j
+N a
+j
+X
+s
+ˆωas
+j
+| {z }
+0
+= 0
+(A8.16)
+and so ˆβN = ˆβ ˆ
+N. This argument holds when za
+j is replaced by an instrument that varies at a lower
+level, a continuous explanatory variable in the structural equation, or an indicator that deﬁnes ﬁxed
+eﬀects in the structural equation.
+Remark: We restrict the conditional mean to (j, a) space because the argument fails once a term
+indexed by s is included. To see this, consider the following model:
+ˆN as
+j
+N a
+j
+= βsxj + τ as
+j −ˆωas
+j
+N a
+j
+.
+(A8.17)
+But now, we cannot isolate ˆωas
+j in a summation over s, or j or a, because each index appears on at
+least one other term:
+X
+j
+X
+a
+X
+s
+βsxj
+ˆωas
+j
+N a
+j̸
+= 0.
+(A8.18)
+A9
+Housing Demand Estimation Details
+A9.1
+Agents To Households
+Fundamentally, we wish to understand the behavior of the adults who comprise the households,
+and so revealed-preference estimators require data on counts of adults. With the data used in
+housing demand estimation, I assume that family households are comprised of two household
+decisionmakers, with the other members being children or extras:
+N aefs
+jbt
+=
+( ˆHae0s
+jbt
+× s
+if
+f = 0
+ˆHae1s
+jbt
+× 2
+if
+f = 1.
+(A9.1)
+This is consistent with letting housing utility be zero for adult children and extras: they unilaterally
+add themselves to the host household (increasing its size and thus housing preferences) but do not
+participate in the housing decision – and since they are distinguished only in the microdata we do
+not speciﬁcally observe the housing decisions of their hosts anyway. The only assumption that
+has any bite is that data constraints require ignoring single-parent families, although these families
+are included in the fertility model. I also assume that every person in a non-family household is a
+decision-making adult, which should not be problematic because it is extremely rare for children to
+A-19
+
+
+Build, Baby, Build
+Couillard
+live without a guardian (non-blood-related guardians are treated as family relationships by the Census
+Bureau). Because not every input marginal distribution is indexed by f and s, this transformation
+can only be applied after IPF estimation.
+A9.2
+Transforming Rent So Suﬃciency Results Apply
+Substituting Equation 4.11 into Equation 4.10 and inspecting the rent term, we obtain
+βτ
+r rjbt = βrjbt + βarjbt + βerjbt + βfrjbt + βsrjbt.
+(A9.2)
+Applying the heuristic for suﬃciency, we must observe the counts Njbt, N a
+jbt, N e
+jbt, N f
+jbt, N s
+jbt.
+Unfortunately, we do not observe N a
+jbt, N f
+jbt, N s
+jbt, because the only observed tract-level marginal
+distribution over j, b, and some other dimension is N e
+jbt.
+I address this problem by constructing a rent variable that has a tract component and a
+PUMA-bedrooms component using regression:
+rjbt = ζjt + ζpt(j),b,t + νjbt =⇒ˆrj,b,t = ˆζjt + ˆζpt(j),b,t.
+(A9.3)
+Using this term in housing utility:
+βτ
+r ˆrjbt = βr ˆζjt + βr ˆζpt(j),b,t + βa
+r ˆζjt + βa
+r ˆζpt(j),b,t
+(A9.4)
++ βe
+r ˆζjt + βe
+r ˆζpt(j),b,t + βf
+r ˆζjt + βf
+r ˆζpt(j),b,t + βs
+r ˆζjt + βs
+r ˆζpt(j),b,t,
+and so the marginal distributions of tract with demographics, and of PUMA with everything (except
+tract) are suﬃcient. This is why I use PUMA as the higher-level geography in IPF estimation –
+although only city (larger than PUMA) is required for the city-type-year ﬁxed eﬀects, PUMA ﬁxed
+eﬀects ﬁt the rent regression above better and allow more geographic-bedrooms variation in rents to
+be retained. Hereafter, I refer to ˆrjbt with rjbt to keep notation simple.
+A9.3
+Exposure Variable
+A location may have a large number of agents (or a high market share) because it provides a high
+utility, or simply because it is large. Therefore, some size adjustment is necessary for location choice
+problems. Given two locations of equivalent utility but diﬀerent sizes, we would expect both to
+have the same density and for the larger one to have proportionally more people, motivating treating
+counts as proportional to size – a Poisson exposure variable. Area-based measures are diﬃcult to
+work with since one must take a stand on what sorts of land qualify – much land in the world is
+inhospitable, which could be addressed with more amenities data or a measure of “habitable” or
+A-20
+
+
+Build, Baby, Build
+Couillard
+“buildable” land, but this poses a large burden. Housing-unit-based measures can pose their own
+problems, since they are a measure of quantity that is determined in a long run equilibrium of supply
+and demand, but they can be satisfying under the assumption that supply is ﬁxed in the short run.
+A9.4
+Suﬃciency
+I show that the observed marginal distributions are suﬃcient statistics for the housing choice model
+when the decision-makers are taken to be households H28. For rents, I use rjbt = ζjt + ζpt(j),b,t as
+discussed in Section A9.2, and I use the additive separability assumption βτ −β = βa+βe+βf +βs.
+The log-likelihood for the ﬁrst stage of the housing choice model is given below, where δjbt
+absorbs baseline preferences and the exposure variable.
+L =
+X
+j
+X
+b
+X
+t
+X
+a
+X
+e
+X
+f
+X
+s
+Haefs
+jbt
+ ˆδjbt + (ˆβτ
+r −ˆβr)(ζjt + ζpt(j)bt) + (ˆβτ
+b −ˆβb)
+(A9.5)
++ (ˆβτ
+m −ˆβm)mjt + (ˆβτ
+x −ˆβx)xj + ˆϕaefs
+c(j)t
+
+We may group Haefs
+jbt
+with each term in the parenthetical, factor it out of various summations,
+and sum Haefs
+jbt
+within the summations that the other term has been factored out of.
+L =
+X
+j
+X
+b
+X
+t
+ˆδjbtHjbt
+(A9.6)
++
+X
+j
+X
+t
+X
+a
+ζjt ˆβa
+r Ha
+jt +
+X
+j
+X
+t
+X
+e
+ζjt ˆβe
+rHe
+jt +
+X
+j
+X
+t
+X
+f
+ζjt ˆβf
+r Hf
+jt +
+X
+j
+X
+t
+X
+s
+ζjt ˆβs
+rHs
+jt
++
+X
+t
+X
+pt
+X
+b
+X
+a
+ζptbt ˆβa
+r Ha
+ptbt +
+X
+t
+X
+pt
+X
+b
+X
+e
+ζptbt ˆβe
+rHe
+ptbt
++
+X
+t
+X
+pt
+X
+b
+X
+f
+ζptbt ˆβf
+r Hf
+ptbt +
+X
+t
+X
+pt
+X
+b
+X
+s
+ζptbt ˆβs
+rHs
+ptbt
++
+X
+b
+X
+a
+ˆβa
+b Ha
+b +
+X
+b
+X
+e
+ˆβe
+bHe
+b +
+X
+b
+X
+f
+ˆβf
+b Hf
+b +
+X
+b
+X
+s
+ˆβs
+bHs
+b
++
+X
+j
+X
+t
+X
+a
+mjt ˆβa
+mHa
+jt +
+X
+j
+X
+t
+X
+e
+mjt ˆβe
+mHe
+jt +
+X
+j
+X
+t
+X
+f
+mjt ˆβf
+mHf
+jt +
+X
+j
+X
+t
+X
+s
+mjt ˆβs
+mHs
+jt
++
+X
+j
+X
+a
+xj ˆβa
+xHa
+j +
+X
+j
+X
+e
+xj ˆβe
+xHe
+j +
+X
+j
+X
+f
+xj ˆβf
+xHf
+j +
+X
+j
+X
+s
+xj ˆβs
+xHs
+j
++
+X
+t
+X
+c
+X
+a
+X
+e
+X
+f
+X
+s
+ˆϕaefs
+ct
+Haefs
+ct
+28As discussed in Section A9.1, I must convert counts of households to counts of decision-making agents after IPF
+estimation and before housing demand estimation.
+A-21
+
+
+Build, Baby, Build
+Couillard
+For example, in the ﬁrst line we have used
+X
+j
+X
+b
+X
+t
+X
+a
+X
+e
+X
+f
+X
+s
+Haefs
+jbt ˆδjbt =
+X
+j
+X
+b
+X
+t
+ˆδjbt
+X
+a
+X
+e
+X
+f
+X
+s
+Haefs
+jbt
+=
+X
+j
+X
+b
+X
+t
+ˆδjbtHjbt.
+(A9.7)
+Thus, the log-likelihood can be written in terms of Hjbt, Ha
+jt, He
+jt, Hf
+jt, Hs
+jt, Ha
+ptbt, He
+ptbt, Hf
+ptbt, Hs
+ptbt,
+Ha
+b , He
+b, Hf
+b , Hs
+b, Ha
+j , He
+j , Hf
+j , Hs
+j , Haefs
+ct
+only, and so these marginal distributions are suﬃcient
+statistics for the ﬁrst step of housing demand estimation, and thus the second step as well (which uses
+ˆδjbt that are numerically equivalent). In practice, any rectangular dataset that matches these margins
+will provide numerically equivalent estimates (up to a numeric tolerance), or a bespoke estimator
+that uses the marginal distributions directly can be programmed. I opt to construct a rectangular
+dataset that matches the margins using IPF, which I then use in standard computational routines.
+A10
+Equilibrium Deﬁnition
+A partial equilibrium is an input vector of rent shifts and a vector of value functions that satisﬁes the
+following conditions.
+Housing utility is a linear function of rents.
+uτ
+jbt = βτ
+r rjbt + βτ
+b + βτ
+mmjt + βτ
+xxj + ϕτ
+c(j),t + ξτ
+jbt.
+(4.10)
+Value functions are the sum of housing utility, living arrangement utility, and the continuation
+value, where the continuation value is the discounted expectation of future values, which depends
+on the probability of transition to states given the current state and living arrangement choice and
+the inclusive value of each state.
+vx
+gh = uτ(g,x)
+h
++ αx
+g
+|
+{z
+}
+ﬂow utility
++ δE
+
+
+X
+x′
+π(x′ | g, x)
+|
+{z
+}
+state transition
+× ln
+
+X
+h′
+X
+g′∈G(x′)
+exp(vx′
+g′h′)
+
+
+|
+{z
+}
+inclusive value
+ Wt(x)
+| {z }
+infot
+
+
+|
+{z
+}
+continuation value ≡cxg
+.
+(4.3)
+Living arrangement choice probabilities are the sum of joint choice probabilities, and a function
+A-22
+
+
+Build, Baby, Build
+Couillard
+of living arrangement utilities, living arrangement continuation values, and housing inclusive values.
+P x
+g =
+X
+h
+P h
+gx =
+exp(αx
+g + cx
+g) P
+h exp(uτ(g,x)
+h
+)
+P
+h′
+P
+g′∈G(x) exp(αx
+g′ + cg′ + uτ(g′,x)
+h′
+)
+.
+(5.5)
+The distribution of agents over states in the next period is given by an accounting relationship
+that depends on the distribution of agents over states in the current period, current period living
+arrangement choice probabilities, an endogenous increase from fertility, and exogenous changes
+from mortality and net migration.
+N ˜x,t+1 =
+X
+˜x′
+X
+g∈G(x)
+π(˜x, t + 1|˜z′, x′, g, t)N ˜x′tP ˜x′t
+g
++ ∆˜x,t+1
+fertility + ∆˜x,t+1
+mortality + ∆˜x,t+1
+net migration.
+(5.11)
+Agents believe that the next period distribution of agents over states is deterministically the point
+estimate from an autoregression with ﬁxed eﬀects and time trends.
+N ˜x,t+1 ≈˜N ˜x,t+1 = ˆψ0N ˜xt + ˆψ˜x
+1 + ˆψ˜x
+2t,
+(5.13)
+The distribution of children aged 10-19 (and 20-29 analogously) in a household in the next
+period is given by a binomial distribution where the number of trials is the number of children and
+the probability is the endogenous probability of children of the relevant state choosing to live with
+their parents.
+Pr(n10−19 = k|x, n0−9,t−1) =
+
+n0−9,t−1!
+k!(n0−9,t−1 −k)!
+  P 10−19,t,imm(x)
+par
+k ×
+ 1 −P 10−19,t,imm(x)
+par
+(n0−9,t−1)−k ,
+(4.5)
+The total number of extras is the sum of all agents who choose to be extras.
+N t
+extras =
+X
+˜x
+N ˜xtP ˜xt
+extra.
+(4.6)
+Agent states (excluding year) are mapped to an “extras group” w, which receives a constant
+share of all extras that comes directly from the data.
+sw(˜x) =
+P
+t
+P
+˜x′:w(˜x′)=w(˜x) N ˜x′te(x′)
+P
+t
+P
+˜x′′ N ˜x′′te(x′′)
+.
+(4.7)
+The number of extras that an “extras group” receives is its allocated share of the total number of
+extras.
+N w(˜x),t
+extras = sw(˜x)N t
+extras.
+(4.8)
+A-23
+
+
+Build, Baby, Build
+Couillard
+The distribution of extras that an agent hosts is a binomial distribution where the number of
+trials is the number of extras that an “extras group” receives and the probability is the reciprocal of
+the number of agents in the “extras group” (every agent in the group has an equal probability).
+Pr(extras = e|x) =
+
+
+N w(˜x),t
+extras !
+e!
+
+N w(˜x),t
+extras −e
+
+!
+
+
+
+1
+N w(˜x),t
+e 
+1 −
+1
+N w(˜x),t
+Nw(˜x),t
+extras
+−e
+.
+(4.9)
+Agents form expectations of future values using an autoregression with ﬁxed eﬀects and time
+trends.
+v˜x,t+1
+g
+= ρ0v˜x,t
+g
++ ρ˜x
+g,1 + ρ˜x
+g,2t + e˜x,t+1
+g
+(5.8)
+Conditional on a vector of value function error terms d, the distribution of children aged 10-19
+(and 20-29 analogously) in a household in the next period is given by a binomial distribution where
+the number of trials is the number of children and the probability is the endogenous probability of
+children of the relevant state choosing to live with their parents which depends on the draw.
+Pr(n10−19 = k|x, n0−9,t−1, d) =
+
+n0−9,t−1!
+k!(n0−9,t−1 −k)!
+  P 10−19,t,imm(x),d
+par
+k ×
+ 1 −P 10−19,t,imm(x),d
+par
+(n0−9,t−1)−k .
+(5.10)
+Conditional on a vector of value function error terms d, the number of extras that an extras group
+believes they will receive depends on their prediction of the distribution of agents over states and the
+endogenous probabilities of agents choosing to be extras which depends on the draw.
+˜N ˜x,t+1,d
+extras
+= sw(˜x) X
+˜x′
+˜N ˜x′,t+1P ˜x,t+1,d
+extra
+.
+(5.14)
+Conditional on a vector of value function error terms d, agents believe that the distribution of
+extras that they will host is a binomial distribution where the number of trials is the number of extras
+they believe their group will receive (which depends on the draw) and the probability parameter is
+the reciprocal of the number of agents they believe will be in the extras group.
+Pr(extras = e|˜x, t + 1, d) =
+
+˜N w(˜x),t+1,d
+extras
+!
+e!( ˜N w(˜x),t+1,d
+extras
+−e)!
+
+1
+˜N w(˜x),t+1
+e
+1 −
+1
+˜N w(˜x),t+1
+ ˜
+Nw(˜x),t+1,d
+extras
+−e
+.
+(5.15)
+An equilibrium is an input vector of supply shifts and a vector of value functions that satisfy the
+conditions above, and the following conditions.
+A-24
+
+
+Build, Baby, Build
+Couillard
+Housing choice probabilities are a logit function of housing utilities.
+P τ
+h = exp(uτ
+h)Kτ.
+(A5.3)
+Right to left (recalling h = (j, b)). The number of agents in a housing type is the sum over agents
+who make living arrangement choices in states which in combination render them that housing
+type. The number of agents who are of a given housing type and choose a given housing option
+is the product of the number of agents of that housing type and the probability that agents of that
+housing type choosing that housing option. Roommate households are completely comprised of
+decisionmaking agents while family households are assumed to have two decisionmaking agents
+(even as they may host others who do not participate in the housing decision) such that the number
+of households can be obtained from inverting those functions. The total number of households of
+a given housing type choosing a housing option is a sum of the number of households of a given
+housing type who choose that option.
+Hjbt =
+X
+τ
+Hτ
+jbt,
+Hτ
+jbt =
+(
+N τ
+jbt/s(τ)
+if
+f(τ) = 0
+N τ
+jbt/2
+if
+f(τ) = 1,
+N τ
+jbt = P τ
+jbtN τ,
+N τ =
+X
+(g,x):τ(g,x)=τ
+P x
+g N x (6.2)
+Housing supply has a constant elasticity and heterogeneous intercepts.
+ln rjbt = γjb + γjt + γbt + γ−1
+j
+ln Hjbt + ϵjbt.
+(6.1)
+A11
+Identiﬁcation And Sensitivity
+The preferred normalization is that the normalized choice is living alone when the state is non-family,
+having zero children and not buying when the state is renter family, and having zero children
+when the state is owner family. The alternate normalization used for sensitivity analysis is that the
+normalized choice is living in a two-person roommate households when the state is non-family,
+having one child and not buying when the state is renter family, and having one child when the state
+is owner family. Family households that are unable to have children due to having lost a partner or
+being too old continue to have a normalized choice of zero children. The preferred normalization is
+preferred because it most closely matches intuitive notions of a default choice.
+The alternative normalization provides qualitatively similar but numerically smaller impacts
+of housing on fertility. It continues to support the conclusion that a large-unit policy is better for
+fertility. Because it provides very similar results for the share of young people that have started a
+family and for rents, it seems likely that the diﬀerences arise from the shift in default from zero to
+one child, rather than from living alone to with a single roommate for agents that have not started a
+family or some inherent instability. This is further evidence that the preferred normalization is more
+A-25
+
+
+Build, Baby, Build
+Couillard
+appropriate: zero children is much more appealing as an “outside option” than having one child.
+Figure 19: Decomposition: Children
+Figure 20: Decomposition: TFR
+A-26
+
+
+Build, Baby, Build
+Couillard
+Figure 21: Decomposition: Share Family, 20-29
+Figure 22: Counterfactual: Children
+A-27
+
+
+Build, Baby, Build
+Couillard
+Figure 23: Counterfactual: TFR
+Figure 24: Counterfactual: Share Family, 20-29
+A-28
+
+
+Build, Baby, Build
+Couillard
+Figure 25: Counterfactual: Rent, 2020
+A-29
+
+

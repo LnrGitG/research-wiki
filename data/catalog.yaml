@@ -399,3 +399,22 @@ sources:
   - local-government-finance
   - household-savings
   - '2026'
+- id: research_ideas_russia_housing
+  title: 'Research Ideas: Russian Housing Market & Developer Financial Health (Concept)'
+  type: research_concept
+  date: '2026'
+  url: ''
+  files:
+    md: concepts/research-ideas-russia-housing.md
+  tags:
+  - russia
+  - housing-market
+  - developer-financial-health
+  - supply-elasticity
+  - spark
+  - eiszhs
+  - macro-financial-linkages
+  - distress-prediction
+  - demographic-model
+  - policy-counterfactuals
+  - research-design

@@ -547,3 +547,33 @@ sources:
   - policy-impact
   - '2026'
   - mid-year-update
+- id: kaizen_global_construction_trends_2026
+  title: 'Kaizen Institute: Global Construction Trends 2026 - The Industry New Phase'
+  type: industry_article
+  date: '2026-01-22'
+  url: https://kaizen.com/insights/global-construction-trends-2026/
+  files:
+    txt: raw/papers/kaizen_global_construction_trends_2026.txt
+  tags:
+  - global
+  - construction-trends
+  - digitalization
+  - ai-adoption
+  - bim
+  - digital-twins
+  - automation
+  - robotics
+  - labor-shortage
+  - modular-construction
+  - offsite-construction
+  - sustainability
+  - esg
+  - circular-economy
+  - smart-materials
+  - low-carbon-concrete
+  - resilience
+  - climate-adaptation
+  - kaizen
+  - continuous-improvement
+  - lean-construction
+  - '2026'

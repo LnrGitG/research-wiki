@@ -501,3 +501,28 @@ sources:
   - regional-analysis
   - spb-case-study
   - '2024'
+- id: kpmg_global_construction_survey_2025_2026
+  title: 'KPMG: Global Construction Survey 2025/2026 — The Paradox of Progress'
+  type: industry_survey
+  date: 2026-03
+  url: https://kpmg.com/cn/en/insights/2026/03/global-construction-survey-2025-2026.html
+  files:
+    md: papers/kpmg_global_construction_survey_2025_2026.md
+    txt: raw/papers/kpmg_global_construction_survey_2025_2026.txt
+  tags:
+  - global
+  - construction-survey
+  - risk-delta
+  - risk-aversion
+  - supply-chain
+  - regulation
+  - sustainability
+  - talent-gaps
+  - ai-adoption
+  - delivery-models
+  - productivity
+  - water-utilities
+  - green-power
+  - infrastructure
+  - 2025-2026
+  - kpmg

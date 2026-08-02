@@ -303,3 +303,22 @@ sources:
   - lsr
   - etalong
   - glorax
+- id: stroygaz_labor_crisis_2026
+  title: 'Строительная газета: Переманивать или растить? Кадровый кризис в стройотрасли
+    (форум «Движение»)'
+  type: industry_article
+  date: '2026-06-26'
+  url: https://stroygaz.ru/publication/kadry/peremanivat-ili-rastit-na-forume-nedvizhimosti-dvizhenie-obsudili-kadrovyy-krizis-v-stroyotrasli/
+  files:
+    txt: raw/papers/stroygaz_labor_crisis_2026.txt
+  tags:
+  - russia
+  - construction-labor-crisis
+  - labor-shortage
+  - migration
+  - demographics
+  - wages
+  - productivity
+  - nostroy
+  - forum-dvizhenie
+  - '2026'

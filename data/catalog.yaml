@@ -526,3 +526,24 @@ sources:
   - infrastructure
   - 2025-2026
   - kpmg
+- id: fitch_2026_global_housing_mortgage_outlook
+  title: 'Fitch Ratings: 2026 Global Housing Mortgage Outlook — Mid-Year Update'
+  type: rating_agency_outlook
+  date: '2026-06-25'
+  url: https://www.fitchratings.com/research/structured-finance/2026-global-housing-mortgage-outlook-mid-year-update-25-06-2026
+  files:
+    txt: raw/papers/fitch_2026_housing_mortgage_outlook.txt
+  tags:
+  - global
+  - housing-mortgage-outlook
+  - fitch-ratings
+  - structured-finance
+  - mortgage-rates
+  - affordability
+  - credit-quality
+  - mbs
+  - regional-divergence
+  - household-leverage
+  - policy-impact
+  - '2026'
+  - mid-year-update

@@ -476,3 +476,28 @@ sources:
   - family-mortgage
   - couillard
   - baum-snow
+- id: smpro_housing_price_growth_2024
+  title: 'CM PRO (СМПРО): Рост стоимости жилья: причины, предложения, прогнозы'
+  type: industry_research
+  date: '2024-05-20'
+  url: https://cmpro.ru/
+  files:
+    md: papers/smpro_research.md
+    txt: raw/papers/smpro_research.txt
+  tags:
+  - russia
+  - cm-pro
+  - smpro
+  - housing-price-decomposition
+  - construction-materials
+  - non-construction-costs
+  - developer-profit
+  - land-cost
+  - engineering-connections
+  - primary-secondary-spread
+  - mortgage-driven-growth
+  - rosstat
+  - emiss
+  - regional-analysis
+  - spb-case-study
+  - '2024'

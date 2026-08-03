@@ -746,3 +746,36 @@ sources:
   - '2024'
   - non-traditional-data
   - verhulst-2026-reference
+- id: housing_balance_rf_2025_2036
+  title: 'Жилищный баланс РФ: параметры 2025 года и прогноз до 2036 года'
+  type: research_report
+  date: '2026'
+  author: Институт экономики города (Target Capital Fund)
+  files:
+    md: papers/housing_balance_rf_2025_2036.md
+  tags:
+  - russia
+  - housing-balance
+  - housing-stock
+  - demographic-forecast
+  - housing-supply
+  - housing-demand
+  - affordability
+  - national-project-infrastructure
+  - 2030-targets
+  - 2036-forecast
+  - rosstat
+  - minstroy
+  - housing-per-capita
+  - housing-commissioning
+  - housing-retirement
+  - population-forecast
+  - migration
+  - housing-affordability
+  - mortgage
+  - subsidized-mortgage
+  - family-mortgage
+  - urban-rural
+  - regional-analysis
+  - institute-of-urban-economics
+  - '2026'

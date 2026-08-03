@@ -686,3 +686,30 @@ sources:
   - verhulst-2026-reference
   - couillard-2025-reference
   - zillow-fred-integration
+- id: zillow_research_data_portal
+  title: Zillow Research Data Portal (Access Blocked - Use FRED Alternative)
+  type: data_portal
+  date: '2026'
+  url: https://www.zillow.com/research/data/
+  files:
+    txt: raw/papers/zillow_research_data_page.txt
+  tags:
+  - usa
+  - zillow
+  - zhvi
+  - zori
+  - housing-prices
+  - rent-index
+  - forecast
+  - market-reports
+  - affordability
+  - new-construction
+  - migration
+  - methodology
+  - access-blocked
+  - cloudfront
+  - perimeterx
+  - fred-alternative
+  - non-traditional-data
+  - verhulst-2026-reference
+  - couillard-2025-reference

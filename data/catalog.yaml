@@ -722,7 +722,7 @@ sources:
   source: US Census Bureau
   files:
     pdf: data/raw/census/satellite_edp_methodology.pdf
-    txt: raw/papers/census_satellite_housing_starts_methodology.txt
+    md: papers/census_satellite_methodology_pymupdf.md
   tags:
   - usa
   - census-bureau

@@ -661,3 +661,28 @@ sources:
   - '2026'
   - turner-townsend
   - gcmi
+- id: fred_zillow_zhvi_release_503
+  title: 'FRED Release 503: Zillow Home Value Index (ZHVI)'
+  type: data_release
+  date: '2026-07-16'
+  url: https://fred.stlouisfed.org/release?rid=503
+  source: Federal Reserve Bank of St. Louis (FRED) / Zillow
+  files:
+    csv: raw/data/fred_zillow_zhvi_all_homes.csv
+    txt: raw/papers/fred_zillow_zhvi_release_503.txt
+  tags:
+  - usa
+  - housing-prices
+  - zhvi
+  - zillow
+  - fred
+  - non-traditional-data
+  - home-value-index
+  - seasonally-adjusted
+  - monthly
+  - national
+  - state-level
+  - 2000-2026
+  - verhulst-2026-reference
+  - couillard-2025-reference
+  - zillow-fred-integration

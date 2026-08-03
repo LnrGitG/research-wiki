@@ -713,3 +713,36 @@ sources:
   - non-traditional-data
   - verhulst-2026-reference
   - couillard-2025-reference
+- id: census_satellite_housing_starts_2024
+  title: 'Census Bureau: Single-Family Housing Starts Using Satellite Imagery (Experimental
+    Data Product)'
+  type: methodology_documentation
+  date: '2024-12-19'
+  url: https://www.census.gov/data/experimental-data-products/single-family-housing-satellite-imagery.html
+  source: US Census Bureau
+  files:
+    pdf: data/raw/census/satellite_edp_methodology.pdf
+    txt: raw/papers/census_satellite_housing_starts_methodology.txt
+  tags:
+  - usa
+  - census-bureau
+  - experimental-data-products
+  - satellite-imagery
+  - computer-vision
+  - cnn
+  - housing-starts
+  - survey-of-construction
+  - west-south-central-division
+  - single-family
+  - convolutional-neural-networks
+  - attention-u-net
+  - resnet50
+  - aspp
+  - geohash-imputation
+  - hybrid-estimation
+  - semantic-segmentation
+  - methodology
+  - drb-approved
+  - '2024'
+  - non-traditional-data
+  - verhulst-2026-reference

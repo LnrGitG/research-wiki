@@ -779,3 +779,38 @@ sources:
   - regional-analysis
   - institute-of-urban-economics
   - '2026'
+- id: broxterman_2026_sufficient_statistic
+  title: 'Characteristics of a Sufficient Statistic to Measure City Housing Prices'
+  type: paper
+  date: '2026-03-02'
+  url: https://www.nber.org/papers/w35144
+  book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/characteristics-sufficient-statistic-measure-city-housing-prices
+  venue: 'NBER CRIW Conference on Measurement of Housing and the Housing Sector'
+  publisher: 'University of Chicago Press (Studies in Income and Wealth)'
+  authors:
+  - Daniel Broxterman (Florida State University)
+  - William Larson (US Department of the Treasury)
+  - Anthony Yezer (George Washington University)
+  jel: [R14, R31]
+  files:
+    md: papers/Broxterman-Larson-Yezer-2026-sufficient-statistic-city-housing-prices.md
+    pdf_chapter: raw/papers/Broxterman-Larson-Yezer-2026-sufficient-statistic-city-housing-prices.pdf
+    pdf_wp: raw/papers/Broxterman-Larson-Yezer-2026-w35144.pdf
+  tags:
+  - housing-price-index
+  - spatial-aggregation
+  - repeat-sales
+  - hedonic
+  - monocentric-city
+  - supply-elasticity
+  - intra-urban
+  - Baum-Snow-Han-2024
+  - Saiz-2010
+  - Glaeser-Gyourko-2005
+  - nber
+  - criw
+  - measurement
+  - US
+  - Laspeyres
+  - spatial-equilibrium
+  - submarket

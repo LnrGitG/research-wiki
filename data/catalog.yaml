@@ -814,6 +814,27 @@ sources:
   - Laspeyres
   - spatial-equilibrium
   - submarket
+- id: sherpa_2026_h1_construction
+  title: 'Sherpa Group: Строительство в российских регионах: итоги первого полугодия 2026 года'
+  type: industry_report
+  date: '2026-08-05'
+  url: https://sherpagroup.ru/analytics/pdf/e6hkwd5.pdf
+  files:
+    md: papers/sherpa_e6hkwd5.md
+    pdf: raw/papers/sherpa_e6hkwd5.pdf
+  tags:
+  - russia
+  - construction
+  - regional-analysis
+  - 2026-h1
+  - rosstat
+  - infrastructure
+  - inflation
+  - housing-starts
+  - federal-districts
+  - budget
+  - forecast
+  - sherpa
 - id: nber_criw_2026_ch2_blended_housing_starts
   title: 'A Blended Data Approach to Measuring Monthly Housing Starts: Satellite Imagery, Survey Data and More!'
   type: paper

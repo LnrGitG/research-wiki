@@ -835,6 +835,35 @@ sources:
   - budget
   - forecast
   - sherpa
+- id: cbr_2024_interest_expenses
+  title: 'ЦБ РФ: Процентные расходы российских компаний (канал издержек ДКП)'
+  type: research_report
+  date: '2024-11-14'
+  url: https://www.cbr.ru/content/document/file/169979/analytic_note_20241114_ddkp.pdf
+  publisher: 'Банк России'
+  authors: [А. Могилат, А. Москалева, С. Попова, Н. Турдыева, В. Цой]
+  files:
+    md: papers/cbr_2024_interest_expenses_companies.md
+    pdf: raw/papers/cbr_2024_interest_expenses_companies.pdf
+  tags:
+  - russia
+  - monetary-policy
+  - cost-channel
+  - price-puzzle
+  - Sims-1992
+  - VAR
+  - FAVAR
+  - TVP-VAR
+  - Shestakov-2017
+  - Bannikova-2024
+  - Borzykh-2016
+  - Kolesnik-Kartaev-Zubarev-2025
+  - interest-expenses
+  - SPARK
+  - microdata
+  - inflation
+  - cbr
+  - transmission-mechanism
 - id: nber_criw_2026_ch2_blended_housing_starts
   title: 'A Blended Data Approach to Measuring Monthly Housing Starts: Satellite Imagery, Survey Data and More!'
   type: paper

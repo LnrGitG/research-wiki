@@ -1010,3 +1010,237 @@ sources:
     pdf_chapter: raw/papers/NBER-CRIW-2026-Ch11-Kestelman-Rental-Ownership.pdf
     pdf_comment: raw/papers/NBER-CRIW-2026-Ch11-Comment.pdf
   tags: [nber, criw, rental-ownership, LLC, landlord, property-records, Business-Register, K-1, REIT, ownership-concentration, CBSA]
+
+# === Housing Market Papers Batch (Aug 2026) ===
+
+- id: louie_2026_housing_affordability_demand
+  title: 'Housing Affordability and Housing Demand'
+  type: article
+  date: '2026'
+  venue: 'FRBSF Economic Letter'
+  authors: [S. Louie, J.A. Mondragon, R. Najjar, J.F. Wieland]
+  url: https://www.frbsf.org/wp-content/uploads/el2026-03.pdf
+  files:
+    md: papers/Louie-Mondragon-2026-housing-affordability-demand-FRBSF.md
+    pdf: raw/papers/Louie-Mondragon-2026-housing-affordability-demand-FRBSF.pdf
+  tags: [housing-affordability, housing-demand, FRBSF, housing-market]
+
+- id: drechsler_2024_monetary_policy_mortgage
+  title: 'Monetary Policy and the Mortgage Market'
+  type: working_paper
+  date: '2024'
+  venue: 'Federal Reserve Bank (NYU Stern)'
+  authors: [I. Drechsler, A. Savov, P. Schnabl et al.]
+  url: https://pages.stern.nyu.edu/asavov/alexisavov/Alexi_Savov_files/DSSS_Aug_2024.pdf
+  files:
+    md: papers/Drechsler-Savov-Schnabl-2024-monetary-policy-mortgage-market.md
+    pdf: raw/papers/Drechsler-Savov-Schnabl-2024-monetary-policy-mortgage-market.pdf
+  tags: [mortgage-monetary-policy, Drechsler-Savov-Schnabl, deposit-channel, mortgage-market]
+
+- id: kolennikova_2024_housing_inequality
+  title: 'Specifics of Russians Perception of Housing Conditions and Housing Inequality'
+  type: article
+  date: '2024'
+  venue: 'Economic and Social Changes: Facts, Trends, Forecast'
+  authors: [N.D. Kolennikova]
+  url: http://library.volnc.ru/Files/articles/1732279355.pdf
+  files:
+    md: papers/Kolennikova-2024-RU-housing-inequality.md
+    pdf: raw/papers/Kolennikova-2024-RU-housing-inequality.pdf
+  tags: [russian-housing, housing-inequality, housing-perception, VolNC]
+
+- id: panova_2025_ru_mbs_pricing
+  title: 'Pricing analysis of Russian mortgage-backed securities'
+  type: article
+  date: '2025'
+  venue: 'Finance: Theory and Practice'
+  authors: [S.A. Panova, D.L. Kuimov, S.A. Perekhod]
+  url: https://financetp.fa.ru/jour/issue/download/93/101
+  files:
+    md: papers/Panova-Kuimov-2025-RU-MBS-pricing.md
+    pdf: raw/papers/Panova-Kuimov-2025-RU-MBS-pricing.pdf
+  tags: [russian-mortgage, MBS, securitization, pricing, Finance-Theory-Practice]
+
+- id: popova_2026_covid_preferential_mortgage
+  title: 'The impact of COVID-19 and preferential mortgage lending programs on mortgage lending: Evidence from Russia'
+  type: article
+  date: '2026'
+  venue: 'Journal of the New Economic Association'
+  authors: [P.A. Popova]
+  url: http://www.econorus.org/journal/pdf/NEA-71.pdf
+  files:
+    md: papers/Popova-2026-COVID-preferential-mortgage-Russia.md
+    pdf: raw/papers/Popova-2026-COVID-preferential-mortgage-Russia.pdf
+  tags: [russian-mortgage, subsidized-mortgage, COVID, preferential-lending, NEA]
+
+- id: louie_2025_supply_constraints_nber
+  title: 'Supply constraints do not explain house price and quantity growth across US cities'
+  type: working_paper
+  date: '2025'
+  venue: 'NBER Working Paper 33576'
+  authors: [S. Louie, J.A. Mondragon, J.F. Wieland]
+  url: https://www.nber.org/papers/w33576
+  files:
+    md: papers/Louie-Mondragon-Wieland-2025-supply-constraints-NBER-w33576.md
+    pdf: raw/papers/Louie-Mondragon-Wieland-2025-supply-constraints-NBER-w33576.pdf
+  tags: [supply-elasticity, supply-constraints, NBER, housing-prices, housing-quantity, WURI]
+
+- id: zhirnov_2025_supply_demand_RU_housing
+  title: 'The Contribution of Supply and Demand Factors to the Dynamics of Primary Housing Prices in Russia'
+  type: article
+  date: '2025'
+  venue: 'Studies on Russian Economic Development'
+  authors: [G.A. Zhirnov, S.V. Khatuntsev]
+  url: https://link.springer.com/article/10.1134/S1075700724700758
+  doi: 10.1134/S1075700724700758
+  files:
+    md: papers/Zhirnov-Khatuntsev-2025-supply-demand-RU-housing-prices.md
+  tags: [russian-housing, supply-demand, primary-housing-prices, Hedonic, SRED]
+
+- id: shirov_2024_russia_2035
+  title: 'Russia 2035: The New Quality of the National Economy'
+  type: article
+  date: '2024'
+  venue: 'Studies on Russian Economic Development'
+  authors: [A.A. Shirov, D.R. Belousov, A.A. Blokhin, M.S. Gusev, A. Klepach, M.N. Uzyakov]
+  url: https://link.springer.com/article/10.1134/S1075700724020151
+  doi: 10.1134/S1075700724020151
+  files:
+    md: papers/Shirov-Belousov-2024-Russia-2035.md
+  tags: [russian-macro, forecast-2035, modernization, SRED]
+
+- id: rodriguez_2026_housing_vulnerabilities_mp
+  title: 'Housing Market Vulnerabilities and Monetary Policy: Lessons From two Decades of European Data'
+  type: article
+  date: '2026'
+  venue: 'The Journal of Real Estate Finance and Economics'
+  authors: [D. Rodríguez-Asensio, A.M. López-García]
+  url: https://link.springer.com/article/10.1007/s11146-026-10047-w
+  doi: 10.1007/s11146-026-10047-w
+  files:
+    md: papers/Rodriguez-Asensio-LopezGarcia-2026-housing-vulnerabilities-MP-Europe.md
+  tags: [mortgage-monetary-policy, housing-vulnerabilities, Europe, JREFE]
+
+- id: japaridze_2024_housing_fertility
+  title: 'Housing Affordability Crisis and Delayed Fertility: Evidence from the USA'
+  type: article
+  date: '2024'
+  venue: 'Population Research and Policy Review'
+  authors: [I. Japaridze, N. Sayour]
+  url: https://link.springer.com/article/10.1007/s11113-024-09865-8
+  doi: 10.1007/s11113-024-09865-8
+  files:
+    md: papers/Japaridze-Sayour-2024-housing-fertility-delayed.md
+  tags: [demographics, housing-affordability, fertility, PRPR]
+
+- id: baum_snow_2026_canada_supply
+  title: 'Viewpoint: Housing supply and housing affordability in Canada'
+  type: article
+  date: '2026'
+  venue: 'Canadian Journal of Economics'
+  authors: [N. Baum-Snow, A. ab Iorwerth, J. Macek]
+  url: https://onlinelibrary.wiley.com/doi/abs/10.1111/caje.70054
+  doi: 10.1111/caje.70054
+  files:
+    md: papers/Baum-Snow-abIorwerth-2026-housing-supply-affordability-Canada.md
+  tags: [supply-elasticity, housing-affordability, Canada, immigration, CJE]
+
+- id: yezer_2026_land_use_regulation
+  title: 'Can Land Use Regulation Lower the Price of Housing in Cities?'
+  type: article
+  date: '2026'
+  venue: 'Journal of Regional Science'
+  authors: [A.M. Yezer]
+  url: https://onlinelibrary.wiley.com/doi/abs/10.1111/jors.70083
+  doi: 10.1111/jors.70083
+  files:
+    md: papers/Yezer-2026-land-use-regulation-housing-prices-JRS.md
+  tags: [supply-elasticity, land-use-regulation, housing-prices, JRS, urban-models]
+
+- id: glaeser_2025_suburban_frontier
+  title: "America's Housing Supply Problem: The Closing of the Suburban Frontier?"
+  type: article
+  date: '2025'
+  venue: 'Brookings Papers on Economic Activity'
+  authors: [E.L. Glaeser, J. Gyourko]
+  url: https://muse.jhu.edu/pub/1/article/978551/summary
+  files:
+    md: papers/Glaeser-Gyourko-2025-suburban-frontier-Brookings.md
+  tags: [supply-elasticity, suburban-frontier, BPEA, Glaeser-Gyourko]
+
+- id: volkova_2026_housing_demography_RU
+  title: 'Impact of Housing Affordability on Social Sustainability and Demographic Development in Russian Regions'
+  type: article
+  date: '2026'
+  venue: 'Veredas do Direito'
+  authors: [N. Volkova, T. Khalilova, A. Voronovich, A. Dudochnikov]
+  url: https://revista.domhelder.edu.br/index.php/veredas/article/view/5124
+  files:
+    md: papers/Volkova-2026-RU-housing-affordability-demography.md
+  tags: [russian-housing-demographics, housing-affordability, demography, regions]
+
+- id: matvienko_2024_sanctions_mortgage
+  title: 'Assessment of the Impact of Unilateral Restrictive Measures on the Mortgage Lending Market in the RF'
+  type: article
+  date: '2024'
+  venue: 'Economic Problems and Legal Practice'
+  authors: [G.V. Matvienko]
+  url: https://journals.eco-vector.com/2541-8025/article/view/655472
+  files:
+    md: papers/Matvienko-2024-sanctions-RU-mortgage.md
+  tags: [russian-mortgage, sanctions, mortgage-lending, financial-legal]
+
+- id: shevtsova_2026_RU_housing_policy
+  title: 'External Shocks and Multi-Level Governance Adaptation: the Case of Russian Housing Policy'
+  type: article
+  date: '2026'
+  venue: 'Russian Politics'
+  authors: [I. Shevtsova, A. Sorbale, A. Starodubtsev, D. Stremoukhov]
+  url: https://brill.com/view/journals/rupo/11/2/article-p265_5.xml
+  files:
+    md: papers/Shevtsova-2026-RU-housing-policy-external-shocks.md
+  tags: [russian-housing-policy, external-shocks, governance, sanctions]
+
+- id: hedlund_2025_mortgage_mp_inflation
+  title: 'Mortgage Market Structure and the Transmission of Monetary Policy During the Great Inflation'
+  type: working_paper
+  date: '2025'
+  venue: 'Working Paper'
+  authors: [A. Hedlund, K. Larkin, K. Mitman, S. Ozkan]
+  url: https://www.jstor.org/stable/resrep71100
+  files:
+    md: papers/Hedlund-Larkin-Mitman-Ozkan-2025-mortgage-MP-great-inflation.md
+  tags: [mortgage-monetary-policy, mortgage-market-structure, great-inflation]
+
+- id: van_nieuwerburgh_2026_great_revaluation
+  title: 'The Great Revaluation: COVID-19 and the Structural Transformation of the American Housing Market'
+  type: working_paper
+  date: '2026'
+  venue: 'SSRN Working Paper'
+  authors: [S. Van Nieuwerburgh]
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6227278
+  files:
+    md: papers/VanNieuwerburgh-2026-Great-Revaluation-COVID-housing-SSRN.md
+  tags: [housing-market, COVID, structural-transformation, SSRN]
+
+- id: koziol_2026_monetary_transmission_cpi
+  title: 'Mapping Monetary Transmission: Housing, CPI Measurement and the Two Faces of Inflation'
+  type: working_paper
+  date: '2026'
+  venue: 'SSRN Working Paper'
+  authors: [T. Koziol]
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7040338
+  files:
+    md: papers/Koziol-2026-monetary-transmission-CPI-housing-SSRN.md
+  tags: [mortgage-monetary-policy, CPI, housing-measurement, inflation, SSRN]
+
+- id: albuquerque_2025_boe_transmission
+  title: 'Monetary transmission through the housing sector'
+  type: working_paper
+  date: '2025'
+  venue: 'Bank of England Staff Working Paper'
+  authors: [D. Albuquerque, T. Lazarowicz]
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5227227
+  files:
+    md: papers/Albuquerque-Lazarowicz-2025-monetary-transmission-housing-BoE-SSRN.md
+  tags: [mortgage-monetary-policy, BoE, monetary-transmission, housing-sector]

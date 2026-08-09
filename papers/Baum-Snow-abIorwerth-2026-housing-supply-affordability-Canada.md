@@ -21,6 +21,10 @@ source: metadata-only (paywalled)
 
 Abstract Since 2000, housing markets across Canada have experienced growth rates in prices that far exceed corresponding rates of household income growth. However, rents have grown at similar rates to household incomes. In the 2015–24 period, immigration has been a central booster of housing demand and population growth, compensating for declining birth rates. Annual per capita housing unit new construction rates have grown slightly, to about 0.0075 across all types of markets for 1991–2024, even as Canada's population boomed in 2023–24, with the composition shifting markedly from single‐family homes to multifamily structures. Purpose‐built rental construction has recently risen from very low levels. To understand these patterns, we consider local regulatory environments and infrastructure provision, rental housing supports, sources of housing demand growth, and Canada's macroprudential regulatory institutions and environment.
 
+## Аннотация (RU)
+
+С 2000 г. жилищные рынки Канады переживают рост цен, значительно превышающий темпы роста доходов домохозяйств. Однако арендная плата росла темпами, сопоставимыми с ростом доходов. В период 2015–2024 гг. иммиграция была ключевым фактором роста спроса на жильё и населения, компенсируя снижение рождаемости. Годовые темпы ввода нового жилья на душу населения немного выросли — до 0,0075 для всех типов рынков в 1991–2024 гг., — даже на фоне демографического бума 2023–2024 гг., причём структура строительства заметно сместилась от односемейных домов к многоквартирным. Ввод целевой арендной недвижимости вырос с очень низкого уровня. Для понимания этих тенденций рассматриваются местная регуляторная среда и инфраструктурное обеспечение, меры поддержки арендного жилья, источники роста спроса на жильё, а также макропруденциальные институты и регуляторная среда Канады.
+
 ## Note
 
 *PDF not available (paywalled). Metadata extracted from OpenAlex/publisher page.*

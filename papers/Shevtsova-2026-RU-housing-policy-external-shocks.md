@@ -21,6 +21,10 @@ source: metadata-only (paywalled)
 
 International sanctions imposed on Russia in recent years, along with associated economic hardships, have had a significant impact on many socially important sectors.
 
+## Аннотация (RU)
+
+Международные санкции, введённые против России в последние годы, а также связанные с ними экономические трудности оказали значительное влияние на многие социально значимые секторы. Качество управления в этих сферах критически важно для поддержания экономического роста, уровня жизни и позиций правящих элит. На основе политического анализа российской жилищной политики демонстрируется, как система управления в социально значимых секторах сохраняет способность отвечать на запросы.
+
 ## Note
 
 *PDF not available (paywalled). Metadata extracted from OpenAlex/publisher page.*

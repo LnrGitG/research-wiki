@@ -1244,3 +1244,93 @@ sources:
   files:
     md: papers/Albuquerque-Lazarowicz-2025-monetary-transmission-housing-BoE-SSRN.md
   tags: [mortgage-monetary-policy, BoE, monetary-transmission, housing-sector]
+
+# === FEDS Inflation Persistence Papers (Aug 2026) ===
+
+- id: kiley_2022_anchored
+  title: 'Anchored or Not: How Much Information Does 21st Century Data Contain on Inflation Dynamics?'
+  type: working-paper
+  date: '2022'
+  venue: 'Federal Reserve Board, FEDS Working Paper 2022.016'
+  authors: [Michael T. Kiley]
+  doi: 10.17016/FEDS.2022.016
+  url: https://www.federalreserve.gov/econres/feds/anchored-or-not-how-much-information-does-21st-century-data-contain-on-inflation-dynamics.htm
+  files:
+    pdf: raw/papers/kiley_2022_anchored.pdf
+    md: papers/Kiley-2022-anchored-or-not-bayesian-inflation-persistence.md
+  tags: [inflation, bayesian, persistence, phillips-curve, monetary-policy, FED, FEDS-paper]
+
+- id: demichelis_2024_persistent
+  title: 'Has the Inflation Process Become More Persistent? Evidence from the Major Advanced Economies'
+  type: feds-note
+  date: '2024'
+  venue: 'Federal Reserve Board, FEDS Notes / NBER WP w31197'
+  authors: [Andrea De Michelis, Grace Lofstrom, Mike McHenry, Musa Orak, Albert Queraltó, Mikaël Scaramucci]
+  doi: 10.17016/2380-7172.3562
+  url: https://www.federalreserve.gov/econres/notes/feds-notes/has-the-inflation-process-become-more-persistent-evidence-from-the-major-advanced-economies-20240628.html
+  files:
+    pdf: raw/papers/michelis_2024_persistent.pdf
+    md: papers/DeMichelis-2024-inflation-process-more-persistent.md
+  tags: [inflation, persistence, advanced-economies, euro-area, backward-looking, monetary-policy, FEDS-notes]
+
+- id: amisano_2025_ensemble
+  title: 'Underlying Inflation: An Ensemble Averaging Approach'
+  type: feds-note
+  date: '2025'
+  venue: 'Federal Reserve Board, FEDS Notes'
+  authors: [Gianni Amisano, Travis J. Berge, Simon C. Smith]
+  doi: 10.17016/2380-7172.3756
+  url: https://www.federalreserve.gov/econres/notes/feds-notes/underlying-inflation-an-ensemble-averaging-approach-20250325.html
+  files:
+    md: papers/Amisano-2025-underlying-inflation-ensemble-averaging.md
+  tags: [inflation, underlying-inflation, ensemble-averaging, core-inflation, monetary-policy, FEDS-notes]
+
+- id: smith_2024_realtime
+  title: 'New tools to monitor inflation in real time'
+  type: feds-note
+  date: '2024'
+  venue: 'Federal Reserve Board, FEDS Notes'
+  authors: [Simon C. Smith, Alexander L. Wolman]
+  doi: 10.17016/2380-7172.3617
+  url: https://www.federalreserve.gov/econres/notes/feds-notes/new-tools-to-monitor-inflation-in-real-time-20241220.html
+  files:
+    md: papers/Smith-Wolman-2024-new-tools-monitor-inflation-real-time.md
+  tags: [inflation, real-time, monitoring, breadth, PCE, asymmetry, FEDS-notes]
+
+- id: hajdini_2025_pandemic
+  title: 'Inflation since the Pandemic: Lessons and Challenges'
+  type: working-paper
+  date: '2025'
+  venue: 'Federal Reserve Board, FEDS Working Paper 2025.070'
+  authors: [Ina Hajdini, Adam Hale Shapiro, Andrew Lee Smith, Daniel Villar Vallenas]
+  doi: 10.17016/feds.2025.070
+  url: https://www.federalreserve.gov/econres/feds/inflation-since-the-pandemic-lessons-and-challenges.htm
+  files:
+    pdf: raw/papers/hajdini_2025_pandemic.pdf
+    md: papers/Hajdini-2025-inflation-since-pandemic-lessons-challenges.md
+  tags: [inflation, pandemic, post-pandemic, expectations, supply-demand, monetary-policy, FEDS-paper]
+
+- id: cascaldigarcia_2023_drivers
+  title: 'Drivers of Post-pandemic Inflation in Selected Advanced Economies and Implications for the Outlook'
+  type: feds-note
+  date: '2023'
+  venue: 'Federal Reserve Board, FEDS Notes'
+  authors: [Danilo Cascaldi-Garcia, Musa Orak, Zina Saijid]
+  doi: 10.17016/2380-7172.3232
+  url: https://www.federalreserve.gov/econres/notes/feds-notes/drivers-of-post-pandemic-inflation-in-selected-advanced-economies-and-implications-for-the-outlook-20230113.html
+  files:
+    md: papers/CascaldiGarcia-2023-drivers-post-pandemic-inflation-advanced-economies.md
+  tags: [inflation, post-pandemic, advanced-economies, persistence, euro-area, FEDS-notes]
+
+- id: giannone_2024_drivers
+  title: 'The Drivers of Post-Pandemic Inflation'
+  type: working-paper
+  date: '2024'
+  venue: 'NBER Working Paper 32859'
+  authors: [Domenico Giannone, Giorgio E. Primiceri]
+  doi: 10.3386/w32859
+  url: https://www.nber.org/papers/w32859
+  files:
+    pdf: raw/papers/giannone_2024_drivers.pdf
+    md: papers/Giannone-Primiceri-2024-drivers-post-pandemic-inflation.md
+  tags: [inflation, post-pandemic, demand-shocks, supply-shocks, SVAR, NBER]

@@ -1334,3 +1334,29 @@ sources:
     pdf: raw/papers/giannone_2024_drivers.pdf
     md: papers/Giannone-Primiceri-2024-drivers-post-pandemic-inflation.md
   tags: [inflation, post-pandemic, demand-shocks, supply-shocks, SVAR, NBER]
+
+# === CBR Growth Accounting Papers (Aug 2026) ===
+
+- id: cbr_2026_economic_growth_factors
+  title: 'Экономический рост в России через призму факторов производства: прошлое и возможное будущее'
+  type: research-report
+  date: '2026'
+  venue: 'Банк России, аналитическая записка'
+  authors: [П. Вихарев, С. Ермаков, И. Зяблицкий, О. Крыжановский, М. Ляхнова]
+  url: https://cbr.ru/Content/Document/File/196274/analytic_note_20260811_20.pdf
+  files:
+    pdf: raw/papers/cbr_2026_economic_growth_factors.pdf
+    md: papers/cbr_2026_economic_growth_factors.md
+  tags: [economic-growth, growth-accounting, TFP, potential-output, demographics, Russia, CBR, labor, capital, productivity, scenarios]
+
+- id: cbr_2026_potential_output
+  title: 'Потенциальный выпуск в российской экономике: оценки 2026 года'
+  type: research-report
+  date: '2026'
+  venue: 'Банк России, аналитическая записка (приложение)'
+  authors: [П. Вихарев, И. Зяблицкий, С. Ермаков, Д. Крылов, М. Ляхнова, Д. Овечкин, Ю. Перевышин, А. Шульгин]
+  url: https://cbr.ru/Content/Document/File/197283/analytic_note_20260811_20_2.pdf
+  files:
+    pdf: raw/papers/cbr_2026_potential_output_estimates.pdf
+    md: papers/cbr_2026_potential_output_estimates.md
+  tags: [potential-output, output-gap, Russia, CBR, growth-accounting, TFP, labor, capital, scenarios]

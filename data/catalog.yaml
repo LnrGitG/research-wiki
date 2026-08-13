@@ -1373,3 +1373,15 @@ sources:
     pdf: raw/papers/expert_ra_2026_housing_developers.pdf
     md: papers/expert_ra_2026_housing_developers.md
   tags: [housing-construction, developers, financial-health, debt, EBITDA, escrow, key-rate, mortgage, Russia, Expert-RA, profitability, credit-ratings]
+
+# === Regional Developers Zero Profit (Aug 2026) ===
+
+- id: dvizhenie_2026_regional_developers_zero_profit
+  title: 'Прибыли в региональном девелопменте больше нет: застройщики работают в ноль или в убыток'
+  type: industry-news
+  date: '2026-08'
+  venue: 'Движение.ру в MAX'
+  authors: [И. Пискулин, П. Галкин (Паритет Девелопмент), С. Разуваев (GMK)]
+  files:
+    md: papers/dvizhenie_2026_regional_developers_zero_profit.md
+  tags: [housing-construction, developers, regional, profitability, cost-structure, labor-costs, land, credit-cost, break-even, Russia, zero-profit, construction-cost]

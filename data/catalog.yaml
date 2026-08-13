@@ -1360,3 +1360,16 @@ sources:
     pdf: raw/papers/cbr_2026_potential_output_estimates.pdf
     md: papers/cbr_2026_potential_output_estimates.md
   tags: [potential-output, output-gap, Russia, CBR, growth-accounting, TFP, labor, capital, scenarios]
+
+# === Expert RA Housing Developers Report (Aug 2026) ===
+
+- id: expert_ra_2026_housing_developers
+  title: 'Жилищное строительство: под давлением'
+  type: industry-report
+  date: '2026-08'
+  venue: 'АО «Эксперт РА»'
+  authors: [Г. Галиева, С. Буруева, Д. Сергиенко]
+  files:
+    pdf: raw/papers/expert_ra_2026_housing_developers.pdf
+    md: papers/expert_ra_2026_housing_developers.md
+  tags: [housing-construction, developers, financial-health, debt, EBITDA, escrow, key-rate, mortgage, Russia, Expert-RA, profitability, credit-ratings]

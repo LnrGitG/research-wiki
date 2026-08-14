@@ -1385,3 +1385,18 @@ sources:
   files:
     md: papers/dvizhenie_2026_regional_developers_zero_profit.md
   tags: [housing-construction, developers, regional, profitability, cost-structure, labor-costs, land, credit-cost, break-even, Russia, zero-profit, construction-cost]
+
+# === NBER WP w35588: AI Agents in Econometric Coding ===
+
+- id: nber_w35588_galiani_2026
+  title: 'AI Agents and Prompt Engineering in Econometric Coding'
+  type: working-paper
+  date: '2026-08'
+  venue: 'NBER Working Paper No. 35588'
+  authors: [Sebastian Galiani, Federico Ariel López, Raul A. Sosa]
+  files:
+    pdf: raw/papers/nber_w35588_galiani_2026_ai_econometric_coding.pdf
+    md: papers/nber_w35588_galiani_2026_ai_econometric_coding.md
+  pages: 31
+  jel: [C18, C87]
+  tags: [AI, LLM, econometric-coding, agents, prompt-engineering, Stata, R, Python, benchmark, Claude, GPT, reproducibility, methodology]

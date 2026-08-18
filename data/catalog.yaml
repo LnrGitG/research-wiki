@@ -1400,3 +1400,18 @@ sources:
   pages: 31
   jel: [C18, C87]
   tags: [AI, LLM, econometric-coding, agents, prompt-engineering, Stata, R, Python, benchmark, Claude, GPT, reproducibility, methodology]
+
+# === NBER WP w35604: Algorithm-Driven SVARs ===
+
+- id: nber_w35604_yang_zha_2026
+  title: 'Algorithm-Driven SVARs: Navigating the Wilderness of Big Data'
+  type: working-paper
+  date: '2026-08'
+  venue: 'NBER Working Paper No. 35604'
+  authors: [Yucheng Yang, Tao Zha]
+  doi: '10.3386/w35604'
+  files:
+    md: papers/nber_w35604_yang_zha_2026_svar_bigdata.md
+  status: stub  # PDF gated by NBER
+  programs: [Money and Interest Rates, Economic Fluctuations and Growth, International Finance and Macroeconomics]
+  tags: [SVAR, Bayesian, monetary-policy, credit-spread, housing, transmission, big-data, variable-selection, proxy-SVAR, methodology]

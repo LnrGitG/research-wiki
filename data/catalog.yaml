@@ -1411,7 +1411,9 @@ sources:
   authors: [Yucheng Yang, Tao Zha]
   doi: '10.3386/w35604'
   files:
+    pdf: raw/papers/nber_w35604_yang_zha_2026_svar_bigdata.pdf
     md: papers/nber_w35604_yang_zha_2026_svar_bigdata.md
-  status: stub  # PDF gated by NBER
+  pages: 91
+  jel: [C11, C32, C52, C55, E44, E52]
   programs: [Money and Interest Rates, Economic Fluctuations and Growth, International Finance and Macroeconomics]
-  tags: [SVAR, Bayesian, monetary-policy, credit-spread, housing, transmission, big-data, variable-selection, proxy-SVAR, methodology]
+  tags: [SVAR, Bayesian, monetary-policy, credit-spread, housing, housing-production, transmission, big-data, variable-selection, proxy-SVAR, out-of-sample, identification, Leamer, default-risk, methodology]

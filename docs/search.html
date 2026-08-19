@@ -114,7 +114,7 @@ const catLabel={paper:'EN',ru_paper:'RU',query:'QUERY',bibliography:'BIB'}[d.cat
 const tags=(d.tags||[]).slice(0,4).map(t=>'<span class="tag">'+t+'</span>').join('');
 const url=d.url.replace(/ /g,'%20');
 
-return '<div class="result" onclick="location.href=\''+url+'\'">'+
+return '<div class="result" onclick="window.open(\''+url+'\',\'_blank\')">'+
 '<h3>'+title+' <span class="cat">'+catLabel+'</span></h3>'+
 (abs?'<p>'+abs+'</p>':'')+
 (tags?'<div class="tags">'+tags+'</div>':'')+

@@ -1,7 +1,7 @@
 ---
-title: Forecasting_Investment_and_House_Prices_in_NZ_using_Dynamic_Factor
+title: Forecasting_Investment_and_House_Prices_in_NZ_using_Dynamic_Factor_Models
 type: paper
-source_pdf: raw/papers/Forecasting_Investment_and_House_Prices_in_NZ_using_Dynamic_Factor.pdf
+source_pdf: raw/papers/Forecasting_Investment_and_House_Prices_in_NZ_using_Dynamic_Factor_Models.pdf
 converted: 2026-08-18
 ---
 

@@ -112,7 +112,7 @@ abs=abs.replace(re,'<span class="highlight">$1</span>');
 
 const catLabel={paper:'EN',ru_paper:'RU',query:'QUERY',bibliography:'BIB'}[d.category]||'';
 const tags=(d.tags||[]).slice(0,4).map(t=>'<span class="tag">'+t+'</span>').join('');
-const url=d.url.replace(/ /g,'%20');
+const url=encodeURI(d.url);
 
 return '<div class="result" onclick="window.open(\''+url+'\',\'_blank\')">'+
 '<h3>'+title+' <span class="cat">'+catLabel+'</span></h3>'+

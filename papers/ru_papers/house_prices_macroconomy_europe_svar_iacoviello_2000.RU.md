@@ -1,1965 +1,1805 @@
 ---
-title: "House Prices and the Macroeconomy in Europe: Results from a Structural VAR Analysis"
-authors: "Matteo Iacoviello"
+title: "Цены на жилье и макроэкономика в Европе: результаты структурного VAR-анализа"
+authors: "Маттео Якьелло"
 year: 2000
-publisher: "ECB"
+publisher: "ЕЦБ"
 type: working-paper
-series: "ECB Working Paper Series"
+series: "Серия рабочих документов ЕЦБ"
 number: 18
 url: https://www.ecb.europa.eu/pub/pdf/scpwps/ecbwp018.pdf
 source_pdf: raw/papers/Iacoviello. HOUSE PRICES AND THE MACROECONOMY IN EUROPE.pdf
 converted: 2026-08-19
-language: en
-note: "Re-extracted from ECB source. 42/66 pages have clear text. Pages 1, 3, 44-65 use custom font encoding (garbled)."
+language: ru
+method: "pymupdf (clear pages) + tesseract OCR (garbled pages) + Google Translate"
+note: "7 страниц извлечены pymupdf, 34 страницы через OCR (custom font encoding)."
 ---
 
-# House Prices and the Macroeconomy in Europe: Results from a Structural VAR Analysis
+# Цены на жилье и макроэкономика в Европе: результаты структурного VAR-анализа
 
-**Matteo Iacoviello**
-**April 2000**
+**Маттео Якьелло**
+**Апрель 2000**
 
-**ECB Working Paper No. 18**
+**Рабочий документ ЕЦБ № 18**
 
-## Abstract
-
-This paper uses a structural vector autoregressive (SVAR) approach to identify the main macroeconomic factors behind fluctuations in house prices in six European countries (France, Germany, Italy, Spain, Sweden and UK) over the last twenty-five years. Quarterly time series for GDP, house prices, money, inflation and interest rates are characterised by a multivariate process driven by supply, nominal, monetary, inflation and demand shocks. The results show that: (i) adverse monetary shocks have generally a significant negative impact on real house prices, and the timing of the response in house prices matches that of output; (ii) the magnitude of the response in house prices to a monetary shock can be partly justified by looking at the different housing and financial market institutions in the countries; (iii) monetary and demand shocks play an important role in driving house price fluctuations over the short run. The paper also interprets the major house price cycles and their link with the economic activity in light of the estimated shocks. Overall, the approach suggests that house prices can be embedded in a relatively simple macroeconometric model in a useful way, and that understanding their dynamics can shed some light over several macroeconomic episodes of the last quarter of century in Europe.
-
-## Non-executive summary
-
-In the last three decades or so, big changes in asset prices have occurred in many industrialised economies. While it is felt that macroeconomic factors in general and monetary policy conditions in particular were an important factor behind asset price inflation and deflation, there appears to be a lot of uncertainty upon the impact of these factors on long-term asset prices, such as those of equity, land and real estate. It is agreed that central banks should pursue primarily the goal of price stability, but the question of whether they should also react to asset price movements is still open. The issue is complicated by the fact that the link between asset prices and macroeconomic fluctuations is still poorly understood from an empirical point of view.
-
-## Contents
-
-1. Introduction
-2. Theories and evidence on house price fluctuations
-   2.1 Housing market characteristics and the "microeconomics" of house prices
-   2.2 Housing markets, monetary policy and the macroeconomy
-3. Econometric methodology: Vector Autoregressions and Common Trends
-   3.1 Why VARs?
-   3.2 The empirical methodology
-   3.3 Hypotheses about cointegration
-   3.4 Identifying structural shocks
-4. Properties of the data
-   4.1 Sources of data
-   4.2 Unit root and Cointegration Tests
-   4.3 Cointegration relations
-5. Empirical evidence
-   5.1 Impulse responses
-   5.2 Variance decompositions
-6. An informal interpretation of house price movements
-7. Conclusions
-A. The Common Trends Methodology
-B. Comparing monetary shocks in Europe
-References
-Figures
-
----
-
-E U R O P E A N C E N T R A L B A N K
-WORKING PAPER SERIES
-WORKING PAPER NO. 
-WORKING PAPER NO. 18
+Е Е Р О П Е А Н Ц ЕНТ Р А Л Б А Н К
+СЕРИЯ РАБОЧИХ ДОКУМЕНТОВ
+РАБОЧИЙ ДОКУМЕНТ №. 
+РАБОЧИЙ ДОКУМЕНТ №. 18
 18
-HOUSE PRICES AND THE
-MACROECONOMY IN EUROPE:
-RESULTS FROM A STRUCTURAL
-VAR ANALYSIS
-BY MATTEO IACOVIELLO
-APRIL 2000
- 
-  
- 
-
- 
-
- 
- 7KDQNV,WKDQNPDQ\SHRSOHDWWKH(&%HVSHFLDOO\,JQD]LR$QJHORQL*XQWKHU&RHQHQ%HQRLW0RMRQ)UDQN6PHWVDQGDQDQRQ\PRXVUHIHUHH,DPDOVRJUDWHIXOWR+HQULN+DQVHQDQG$QGHUV:DUQHIRUSURYLGLQJ
-PHZLWKWKH5$76FRGHVDQGKHOSLQLPSOHPHQWLQJWKHFRPPRQWUHQGVSURFHGXUH,ZRXOGDOVROLNHWRWKDQN0LFKDHO(KUPDQQ5DVPXV)DWXP1REXKLUR.L\RWDNL&ODXGLD2JOLDORURDQG'DQQ\4XDKIRUKHOSIXO
-GLVFXVVLRQV)LQDOO\,DPSDUWLFXODUO\LQGHEWHGWR5DRXO0LQHWWLVLQFHWKHPDLQLGHDVRIWKLVSDSHUDUHWKHUHVXOWRIFROODERUDWHGZRUNZLWKKLP2IFRXUVHDOOWKHHUURUVDUHPLQH7KHRSLQLRQVH[SUHVVHGLQWKLVZRUN
-GRQRWQHFHVVDULO\UHIOHFWWKHYLHZVRIWKH(XURSHDQ&HQWUDO%DQN
-0DWWHR,DFRYLHOORHPDLODGGUHVV0,DFRYLHOOR#OVHDFXN
-ECB Working Paper No 18 April 2000
+ЦЕНЫ НА ДОМ И
+МАКРОЭКОНОМИКА В ЕВРОПЕ:
+РЕЗУЛЬТАТЫ СТРУКТУРНОГО
+ВАР-АНАЛИЗ
+МАТТЕО ЯКОВЬЕЛЛО
+АПРЕЛЬ 2000 ГОДА
+Рабочий документ ЕЦБ № 18, апрель 2000 г.
 3
-Contents
-Abstract
+Содержание
+Аннотация
 4
-Non executive summary
+Неисполнительное резюме
 5
 1
-Introduction
+Введение
 6
 2
-Theories and evidence on house price fluctuations
+Теории и данные о колебаниях цен на жилье
 7
 2.1
-Housing market characteristics and the “microeconomics”
-of house prices
+Характеристики рынка жилья и «микроэкономика»
+цен на жилье
 8
 2.2
-Housing markets, monetary policy and the macroeconomy
+Рынки жилья, денежно-кредитная политика и макроэкономика
 9
 3
-Econometric methodology: Vector Autoregressions and
-Common Trends
+Эконометрическая методология: векторная авторегрессия и
+Общие тенденции
 11
 3.1
-Why VARs?
+Почему VAR?
 3.2
-The empirical methodology
+Эмпирическая методология
 12
 3.3
-Hypotheses about cointegration
+Гипотезы о коинтеграции
 13
 3.4
-Identifying structural shocks
+Выявление структурных шоков
 15
 4
-Properties of the data
+Свойства данных
 17
 4.1
-Sources of data
+Источники данных
 17
 4.2
-Unit root and Cointegration Tests
+Единичный корень и тесты на коинтеграцию
 19
-4.2.1 Unit root tests
+4.2.1 Тесты единичного корня
 19
-4.2.2 Cointegration tests
+4.2.2 Тесты на коинтеграцию
 19
 4.3
-Cointegration relations
+Коинтеграционные отношения
 21
 5
-Empirical evidence
+Эмпирические данные
 22
 5.1
-Impulse responses
+Импульсные реакции
 22
-5.1.1 Permanent shocks
+5.1.1 Постоянные потрясения
 23
-5.1.2 Temporary shocks
+5.1.2 Временные потрясения
 25
 5.2
-Variance decompositions
+Дисперсионное разложение
 30
 6
-An informal interpretation of house price movements
+Неофициальная интерпретация движения цен на жилье
 31
 7
-Conclusions
+Выводы
 33
-A
-The Common Trends Methodology
+А
+Методология общих тенденций
 35
-B
-Comparing monetary shocks in Europe
+Б
+Сравнение монетарных шоков в Европе
 38
-References
+Ссылки
 39
-Figures
+Цифры
 43
-ECB Working Paper No 18   April 2000
+Рабочий документ ЕЦБ № 18, апрель 2000 г.
 4
-Abstract
-This paper uses a structural vector autoregressive (SVAR) approach to identify the main
-macroeconomic factors behind fluctuations in house prices in six European countries (France,
-Germany, Italy, Spain, Sweden and UK) over the last twenty-five years. Quarterly time series for GDP,
-house prices, money, inflation and interest rates are characterised by a multivariate process driven by
-supply, nominal, monetary, inflation and demand shocks. The results show that: (i) adverse monetary
-shocks have generally a significant negative impact on real house prices, and the timing of the
-response in house prices matches that of output; (ii) the magnitude of the response in house prices
-to a monetary shock can be partly justified by looking at the different housing and financial market
-institutions in the countries; (iii) monetary and demand shocks play an important role in driving
-house price fluctuations over the short run. The paper also interprets the major house price cycles
-and their link with the economic activity in light of the estimated shocks. Overall, the approach
-suggests that house prices can be embedded in a relatively simple macroeconometric model in a
-useful way, and that understanding their dynamics can shed some light over several macroeconomic
-episodes of the last quarter of century in Europe.
-ECB Working Paper No 18 April 2000
+Аннотация
+В этой статье используется подход структурной векторной авторегрессии (SVAR) для определения основных
+макроэкономические факторы, лежащие в основе колебаний цен на жилье в шести европейских странах (Франция,
+Германии, Италии, Испании, Швеции и Великобритании) за последние двадцать пять лет. Квартальные временные ряды ВВП,
+Цены на жилье, деньги, инфляция и процентные ставки характеризуются многомерным процессом, обусловленным
+шоки предложения, номинальные, монетарные, инфляционные и спросовые. Результаты показывают, что: (i) неблагоприятная денежно-кредитная политика
+шоки, как правило, оказывают значительное негативное влияние на реальные цены на жилье, а также на сроки
+реакция цен на жилье соответствует реакции выпуска; (ii) масштаб реакции цен на жилье
+Денежный шок может быть частично оправдан, если посмотреть на различные жилищные и финансовые рынки.
+учреждения в странах; (iii) шоки денежно-кредитной политики и спроса играют важную роль в стимулировании
+Колебания цен на жилье в краткосрочной перспективе. В статье также интерпретируются основные циклы цен на жилье.
+и их связь с экономической деятельностью в свете предполагаемых потрясений. В целом, подход
+предполагает, что цены на жилье могут быть включены в относительно простую макроэконометрическую модель
+полезным способом, и что понимание их динамики может пролить свет на некоторые макроэкономические
+эпизоды последней четверти века в Европе.
+Рабочий документ ЕЦБ № 18, апрель 2000 г.
 5
-Non executive summary
-In the last three decades or so, big changes in asset prices have occurred in many industrialised
-economies. While it is felt that macroeconomic factors in general and monetary policy conditions in
-particular were an important factor behind asset price inflation and deflation, there appears to be a
-lot of uncertainty upon the impact of these factors on long-term asset prices, such as those of equity,
-land and real estate. It is agreed that central bankers should respond to asset price volatility in the
-context of an overall strategy for monetary policy, and the profession seems to converge on the
-effects of an exogenous monetary shock on output and consumer prices. However, less is known on
-how to respond to asset price volatility, as well on the impact of macroeconomic disturbances on
-asset prices.
-To address the second of these two issues, the paper uses a structural vector autoregressive (SVAR)
-approach to identify the main macroeconomic factors behind fluctuations in house prices in six
-European countries (France, Germany, Italy, Spain, Sweden and UK) over the last twenty-five years. It
-uses quarterly time series for GDP, house prices, money, inflation and interest rates to understand
-how these variables react to supply, nominal, monetary, inflation and demand shocks.
-The results show that:
+Неисполнительное резюме
+За последние три десятилетия или около того большие изменения в ценах на активы произошли во многих промышленно развитых странах.
+экономики. Хотя считается, что макроэкономические факторы в целом и условия денежно-кредитной политики в
+были важным фактором инфляции и дефляции цен на активы, похоже, существует
+много неопределенности относительно влияния этих факторов на долгосрочные цены активов, таких как акции,
+земля и недвижимость. Согласовано, что центральные банки должны реагировать на волатильность цен на активы в
+контексте общей стратегии денежно-кредитной политики, и профессия, похоже, сходится на
+влияние экзогенного монетарного шока на объем производства и потребительские цены. Однако о нем известно меньше
+как реагировать на волатильность цен на активы, а также на влияние макроэкономических потрясений на
+цены на активы.
+Для решения второй из этих двух проблем в статье используется структурная векторная авторегрессия (SVAR).
+подход к выявлению основных макроэкономических факторов, лежащих в основе колебаний цен на жилье в шести
+Европейские страны (Франция, Германия, Италия, Испания, Швеция и Великобритания) за последние двадцать пять лет. Это
+использует квартальные временные ряды ВВП, цен на жилье, денег, инфляции и процентных ставок, чтобы понять
+как эти переменные реагируют на шоки предложения, номинального, монетарного, инфляции и спроса.
+Результаты показывают, что:
 1)
-adverse monetary shocks have generally a significant negative impact on real house prices, and
-the timing of the response in house prices matches that of aggregate GDP;
+неблагоприятные монетарные шоки, как правило, оказывают значительное негативное влияние на реальные цены на жилье, и
+время реакции цен на жилье соответствует времени реакции совокупного ВВП;
 2)
-the magnitude of the response in house prices to a monetary shock can be partly justified by
-looking at the different housing and financial market institutions in the countries;
+Величина реакции цен на жилье на денежно-кредитный шок может быть частично оправдана
+рассмотрение различных институтов жилищного и финансового рынка в странах;
 3)
-Monetary and demand shocks play an important role in driving house price fluctuations over the
-short run.
-The paper also interprets the major house price cycles and their link with the economic activity in
-light of the estimated shocks. It appears that the major boom-busts in house prices occurred in the
-countries under exam over the last decades have been driven by a combination of factors all pushing
-in the same direction.
-The overall contribution of the paper is three-fold: first, the approach suggests that house prices can
-be embedded in an effective way in a relatively simple macroeconometric model that can provide
-some quantitative estimates of the sensitivity of asset prices to macroeconomic conditions. Secondly,
-it provides evidence that house prices, as expected, are much more sensitive than consumer prices to
-the stance of monetary policy and to other macroeconomic disturbances. Thirdly, it shows that
-understanding house price dynamics can shed some light over several macroeconomic episodes of
-the last quarter of century in Europe.
-4 Lqwurgxfwlrq
-Lq wkh odvw wkuhh ghfdghv ru vr elj fkdqjhv lq dvvhw sulfhv kdyh rffxuuhg lq pdq| lqgxvwuldolvhg
-hfrqrplhv1 Zkloh lw lv ihow wkdw pdfurhfrqrplf idfwruv lq jhqhudo dqg prqhwdu| srolf| frqglwlrqv
-lq sduwlfxodu zhuh dq lpsruwdqw idfwru ehklqg dvvhw sulfh lq dwlrq dqg gh dwlrq4/ wkhuh dsshduv
-wr eh d orw ri xqfhuwdlqw| xsrq wkh hhfwv ri wkhvh idfwruv rq orqj0whup dvvhw sulfhv/ vxfk dv wkrvh
-ri htxlw|/ odqg dqg uhdo hvwdwh1 Lw lv djuhhg wkdw fhqwudo edqnhuv rxjkw wr uhvsrqg wr dvvhw sulfh
-yrodwlolw| lq wkh frqwh{w ri dq ryhudoo vwudwhj| iru prqhwdu| srolf|/ dqg wkh surihvvlrq vhhpv wr
-frqyhujh rq wkh hhfwv ri dq h{rjhqrxv prqhwdu| srolf| vkrfn rq rxwsxw dqg frqvxphu sulfhv51
-Krzhyhu/ ohvv lv nqrzq rq krz wr uhvsrqg wr dvvhw sulfh yrodwlolw|/ dv zhoo rq wkh lpsdfw ri
-pdfurhfrqrplf glvwxuedqfhv rq dvvhw sulfhv61 Erwk wkhvh frqfhuqv zhuh rq wkh djhqgd lq wkh
-4<<< Ndqvdv Ihg V|psrvlxp Qhz Fkdoohqjhv iru Prqhwdu| Srolf|= v|psrvlxp sduwlflsdqwv
-qrwhg wkdw wkh lqwhusuhwdwlrq ri dvvhw sulfh fkdqjhv zdv frpsolfdwhg ehfdxvh ri sureohpv lq
-glvwlqjxlvklqj pryhphqwv gulyhq e| hfrqrplf ixqgdphqwdov iurp dvvhw sulfh exeeohv1 Wkh|
-dovr djuhhg wkdw uhvhdufk zdv qhhghg wr lghqwli| wkh fkdqqhov e| zklfk dvvhw sulfh fkdqjhv duh
-wudqvplwwhg lqwr wkh uhdo hfrqrp| dqg wr ghwhuplqh wkh txdqwlwdwlyh lpsruwdqfh ri wkhvh hhfwv
-+Vhoorq dqg Exvndv/ 4<<<,1
-Wklv sdshu wdnhv d suholplqdu| vwhs wrzdugv wkh vhfrqg srlqw/ dqdo|vlqj lq d vwuxfwxudo yhfwru
-dxwruhjuhvvlrq +YDU, frqwh{w krz krxvh sulfhv uhvsrqg wr wkh pdlq vkrfnv wkdw duh wkrxjkw
-wr gulyh hfrqrplf xfwxdwlrqv/ xvlqj gdwd rq vl{ pdmru Hxurshdq hfrqrplhv1 Sxwwlqj krxvh
-sulfhv lq dq rwkhuzlvh vwdqgdug YDU pd| dsshdu sx}}olqj dw uvw vljkw1 \hw d odujh iudfwlrq ri
-shuvrqdo vhfwru*v qhw zruwk lq wkh ghyhorshg hfrqrplhv lv lq wkh irup ri krxvlqj htxlw|7/ dqg wkh
-wrwdo ydoxh ri wkh krxvlqj vwrfn h{fhhgv JGS/ riwhq vxevwdqwldoo|> fkdqjhv lq lwv ydoxh fdq kdyh
-hhfwv rq djjuhjdwh frqvxpswlrq/ ru rq wkh delolw| ri krxvhkrogv wr eruurz iru frqvxpswlrq ru
-surgxfwlrq/ wkxv wudqvplwwlqj wkhlu hhfwv wr wkh uhdo hfrqrp|1
-Xvlqj d YDU wr h{sodlq krxvh sulfhv fdq dovr khos glvhqwdqjolqj krz pxfk ri wkh yduldelolw|
-lq krxvh sulfhv lv dwwulexwdeoh wr prqhwdu| dqg rwkhu idfwruv/ vxfk dv ghpdqg dqg vxsso| glvwxu0
-edqfhv1 Dowkrxjk lw grhv qrw doorz wr dqdo|vh gluhfwo| wkh olqn ehwzhhq qdqfldo olehudolvdwlrq
-dqg krxvh sulfhv wkdw kdv uhfhlyhg d orw ri dwwhqwlrq lq uhfhqw olwhudwxuh8/ lw kdv wkh yluwxh wr
-jlyh vrph txdolwdwlyh dqg txdqwlwdwlyh hylghqfh rq wkh lqwhuuhodwlrqvklsv ehwzhhq wkh krxvlqj
-4 Vhh/ dprqj wkh rwkhuv/ Vkljhpl +4<<8,/ Lwr dqg Lzdlvdnr +4<<8,/ Kxwfklvrq +4<<7,/ Ehuqdqnh dqg Jhuwohu
-+4<<<,1
-5 Rq wkh qdwxuh ri wklv djuhhphqw/ vhh Fkulvwldqr hw do1+4<<<, dqg Vlpv +4<<;,1
-6 Vrph h{fhswlrqv duh Odvwudshv +4<<;, rq wkh hhfw ri prqhwdu| vkrfnv rq vwrfn sulfhv lq wkh J: frxqwulhv
-dqg Kxwfklvrq +4<<7, rq prqhwdu| vkrfnv dqg odqg sulfhv lq Mdsdq1 Rq krz wr uhvsrqg wr dvvhw sulfh yrodwlolw|/
-vhh Ehuqdqnh dqg Jhuwohu +4<<<,1
-7 Wklv iudfwlrq lv ehwzhhq 83 dqg :3 shufhqw/ dffruglqj wr Srwhued +4<<4,1
-8 Vhh iru lqvwdqfh wkh sdshuv e| Plohv +4<<5, dqg Ruwdor0Pdjqh* dqg Udg| +4<<<,1
-pdunhw dqg wkh zlghu hfrqrp|1 Orrnlqj dw pruh wkdq rqh frxqwu|/ lq dgglwlrq/ fdq surylgh d
-urexvwqhvv fkhfn iru wkh uhvxowv/ dv zhoo dv jlylqj lqglfdwlrqv xsrq wkh glhuhqfhv lq wkh wudqv0
-plvvlrq phfkdqlvp1 Wklv lv sduwlfxoduo| lpsruwdqw lq wkh oljkw ri wkh idfw wkdw krxvlqj pdunhwv
-glhu vljqlfdqwo| ehwzhhq Hxurshdq frxqwulhv/ dqg wkhvh glhuhqfhv pljkw sod| d sduw lq wkh
-wudqvplvvlrq phfkdqlvp ri wkh vkrfnv1
-Wkh uhvxowv ri wkh sdshu fdq eh vxppdulvhg dv iroorzv= yhfwru dxwruhjuhvvlrqv xvlqj gdwd
-rq krxvh sulfhv dqg rwkhu pdfurhfrqrplf yduldeohv lq vl{ pdmru Hxurshdq hfrqrplhv +Iudqfh/
-Jhupdq|/ Lwdo|/ Vsdlq/ Vzhghq dqg XN, uhyhdo wkdw= +l, dgyhuvh prqhwdu| vkrfnv kdyh jhqhudoo|
-d vljqlfdqw qhjdwlyh lpsdfw rq uhdo krxvh sulfhv/ zlwk d wlplqj lq wkh uhvsrqvh ri krxvh sulfhv
-wkdw pdwfkhv wkdw ri rxwsxw> +ll, wkh pdjqlwxgh ri wkh uhvsrqvh ri krxvh sulfhv wr d prqhwdu|
-glvwxuedqfh fdq eh sduwo| mxvwlhg e| orrnlqj dw wkh glhuhqw krxvlqj dqg qdqfldo pdunhw
-lqvwlwxwlrqv lq wkh frxqwulhv> +lll, prqhwdu| dqg ghpdqg vkrfnv sod| dq lpsruwdqw uroh lq gulylqj
-krxvh sulfh xfwxdwlrqv ryhu wkh vkruw uxq1 Lq dgglwlrq/ wkh dssurdfk |lhogv sodxvleoh uhvxowv
-iru wkh uhvsrqvhv ri wkh rwkhu yduldeohv lq wkh prgho/ wkxv vxjjhvwlqj wkdw krxvh sulfhv fdq eh
-hpehgghg lq d uhodwlyho| vlpsoh pdfurhfrqrphwulf prgho lq dq hhfwlyh zd|1
-Wkh uhpdlqghu ri sdshu lv rujdqlvhg dv iroorzv= wkh qh{w Vhfwlrq vxuyh|v wkhru| dqg hylghqfh
-rq krxvh sulfh xfwxdwlrqv dqg wkh pdfurhfrqrp|1 Vhfwlrq 6 h{sodlqv krz d YDU iudphzrun
-fdq eh xvhixoo| dgrswhg wr ghvfuleh wkh pdlq pdfurhfrqrplf irufhv gulylqj krxvh sulfhv dqg
-od|v rxw wkh hfrqrphwulf phwkrgrorj|/ wkdw uholhv rq wkh frpprq wuhqgv dssurdfk ghyhorshg
-e| Nlqj/ Sorvvhu/ Vwrfn dqg Zdwvrq +NSVZ/ khqfhiruwk, +4<<4,1 Vhfwlrq 7 ghvfulehv wkh gdwd
-dqg wkhlu wlph0vhulhv surshuwlhv1 Vhfwlrq 8 suhvhqwv wkh pdlq uhvxowv/ l1h1 lpsxovh uhvsrqvhv dqg
-yduldqfh ghfrpsrvlwlrqv1 Vhfwlrq 9 xvhv wkh hvwlpdwhg vwuxfwxudo vkrfnv wr lqwhusuhw wkh pdmru
-pdfurhfrqrplf hslvrghv wkdw kdyh dffrpsdqlhg dvvhw sulfh pryhphqwv lq wkh frxqwulhv xqghu
-h{dp ryhu wkh odvw 53 |hduv ru vr1 Ilqdoo|/ Vhfwlrq : frqfoxghv1
-5 Wkhrulhv dqg hylghqfh rq krxvh sulfh xfwxdwlrqv
-Vlqfh wkh wkhruhwlfdo dqg hpslulfdo olwhudwxuh rq krxvh +dqg/ lq jhqhudo/ dvvhw, sulfh g|qdplfv
-dqg wkhlu olqn zlwk wkh pdfurhfrqrp| lv hqruprxv/ lw zrxog eh xqzlvh wr dwwhpsw wr ixoo|
-uhylhz lw khuh1 L kdyh slfnhg rxw iru glvfxvvlrq d qxpehu ri sdshuv wkdw duh pruh forvho| uhodwhg
-wr wkh dssurdfk ri wklv zrun1
-L kdyh vhsdudwhg vwxglhv wkdw duh pruh vshflf wr wkh krxvh
-sulfh g|qdplfv lq sduwlfxodu iurp wkrvh wkdw wu| wr exlog d eulgjh ehwzhhq krxvh sulfhv dqg wkh
-pdfurhfrqrp|1
-ECB Working Paper No 18 G April 2000                                                                                                      7
-514 Krxvlqj pdunhw fkdudfwhulvwlfv dqg wkh plfurhfrqrplfv ri krxvh sulfhv
-Wkhuh duh pdq| uhdvrqv zk| wkh krxvlqj pdunhw lv xqolnh wkh pdunhwv iru pdq| rwkhu jrrgv
-dqg vhuylfhv +vhh Nhqq|/ 4<<;,1
-Krxvlqj jrrgv kdyh d gxdo qdwxuh ri frpprglwlhv dqg ri
-lqyhvwphqw dvvhw/ qrupdoo| dffrxqwlqj iru d pxfk juhdwhu iudfwlrq ri krxvhkrog qhw zruwk wkdq
-frusrudwh htxlw| +Srwhued/ 4<<4,1 Wkhuh duh dovr pdq| rwkhu vshfldo ihdwxuhv ri wkh krxvlqj
-pdunhw +Txljoh|/ 4<<5/ dqg Plohv/ 4<<8,= +l, lwv uhodwlyho| kljk frvw ri vxsso|/ +ll, lwv gxudelolw|/
-+lll, lwv khwhurjhqhlw|/ +ly, lwv orfdwlrqdo {lw|/ +y, wkh srvvlelolw| wr udlvh ordqv djdlqvw krxvlqj
-froodwhudo> +yl, wkh h{lvwhqfh ri d zhoo0ghyhorshg vhfrqgdu| pdunhw1 Wkhvh ihdwxuhv lpso| wkdw wkh
-krxvlqj pdunhw lv uhdoo| d froohfwlrq ri orrvho| frqqhfwhg exw vhjphqwhg pdunhwv1 Dv d uhvxow/
-wdonlqj ri krxvh sulfhv lq jhqhudo lv d elw kd}dugrxv/ dowkrxjk lw wxuqv rxw wr eh d qhfhvvdu|
-devwudfwlrq iru wkh sxusrvhv ri wkh sdshu1
-Lq wkh vlpsohvw wkhruhwlfdo iudphzrun/ gxh wr Srwhued +4<;7,/ wkh krxvlqj pdunhw lv ghvfulehg
-dv frqvlvwlqj ri wzr vhsdudwh pdunhwv/ rqh iru wkh vwrfn ri h{lvwlqj krphv/ zklfk ghwhuplqhv wkhlu
-sulfh/ dqg wkh rwkhu iru wkh qhz frqvwuxfwlrq rz/ zklfk ghwhuplqhv wkh ohyho ri qhz lqyhvwphqw1
-Htxloleulxp uhtxluhv wkdw krphrzqhuv0lqyhvwruv hduq wkh vdph uhwxuq rq krxvlqj lqyhvwphqw dv
-rq rwkhu dvvhwv/ zkhuh krxvlqj uhwxuq lv wkh vxp ri wkh ydoxh ri uhqwdo vhuylfhv dqg fdslwdo
-jdlqv1 Wkh ydoxh ri uhqwdo vhuylfhv lv dvvxphg wr eh ghwhuplqhg lq d shuihfw pdunhw iru krxvlqj
-vhuylfhv/ htxdwlqj ghpdqg dqg +suhghwhuplqhg, vxsso|1 Wkh g|qdplfv ri vxsso| frph iurp d
-Wrelq*v t0w|sh lqyhvwphqw ixqfwlrq1 Jlyhq fxuuhqw krxvh sulfhv/ wklv ghwhuplqhv ixwxuh vxsso|
-dqg khqfh wrpruurz*v uhqw/ dqg khqfh/ yld duelwudjh/ wkh udwh ri fdslwdo jdlqv1 Dffruglqj wr
-wklv prgho/ d vxgghq ghpdqg vkrfn +h1j1/ dq lqfuhdvh iroorzlqj d idyrxudeoh wd{ uhirup, fdxvhv
-uhqwv wr lqfuhdvh lq rughu wr pdlqwdlq htxloleulxp1 Wklv zloo ohdg lqyhvwphqwv wr lqfuhdvh/ zklfk
-zloo lqgxfh h{shfwdwlrqv ri ixwxuh uhqw ghfuhdvhv iurp wkh qhz kljkhu ohyho dv wkh vwrfn dgmxvwv
-xszdugv1 Wklv lpsolhv wkdw dq xqh{shfwhg srvlwlyh vkrfn wr wkh krxvlqj pdunhw zloo kdyh dq
-lpphgldwh srvlwlyh lpsdfw rq krxvh sulfhv/ zklfk zloo eh iroorzhg e| dq dgmxvwphqw wrzdugv
-wkh orqj0uxq htxloleulxp lq zklfk wkhuh zloo eh frqwlqxrxv sulfh ghfuhdvhv1 Wkhuhiruh/ sulfhv
-zloo kdyh d phdq0uhyhuwlqj whqghqf|1 Pruh lpsruwdqwo|/ revhuyhg sulfh pryhphqwv zloo uh hfw d
-frpelqdwlrq ri vkrfnv dqg dgmxvwphqw phfkdqlvpv/ wkh odwwhu lpso|lqj srvlwlyh dxwrfruuhodwlrqv
-lq wkh krxvh sulfhv1
-Wklv vwdqgdug prgho lpsolhv wkdw/ iroorzlqj d vkrfn/ krxvh sulfhv zloo vprrwko| dgmxvw wr0
-zdugv htxloleulxp1 Ri frxuvh/ lw lv qrw wkh rqo| srvvlelolw|= phfkdqlvpv wkdw zrxog jlyh ulvh
-wr f|folfdo dgmxvwphqw lqyroyh/ iru lqvwdqfh/ eruurzlqj frqvwudlqwv/ olnh lq Vwhlq +4<<8,1 Vwhlq*v
-vwduwlqj srlqw lv wkdw wkh sxufkdvh ri d krxvh uhtxluhv d vxevwdqwldo grzq sd|phqw1 Dw dq| ohyho
-ri krxvh sulfhv/ idplolhv0ex|huv +zkr douhdg| rzq d krxvh exw kdyh uhdvrqv wr pryh, fdq eh
-8                                                                                                         ECB Working Paper No 18 G April 2000 
-vruwhg lqwr wkuhh jurxsv= 4, xqfrqvwudlqhg pryhuv> 5, frqvwudlqhg pryhuv> 6, frqvwudlqhg
-qrq0pryhuv1 Idplolhv lq wkh uvw jurxs duh vx!flhqwo| zhdowk| wkdw qdqfldo frqvwudlqwv gr
-qrw dhfw wkhlu ehkdylrxu1 Iru wkhp/ ghpdqg iru krxvhv lv d ghfuhdvlqj ixqfwlrq ri wkh sulfh1
-Idplolhv lq wkh vhfrqg jurxs kdyh qrw hqrxjk zhdowk/ dqg idfh elqglqj qdqfldo frqvwudlqwv=
-wkhlu qhw ghpdqg iru krxvlqj lv dq lqfuhdvlqj ixqfwlrq ri wkh sulfh/ vlqfh zlwk d kljkhu sulfh wkh|
-fdq drug d kljkhu grzqsd|phqw iru d qhz krxvh1 Idplolhv lq wkh wklug jurxs duh vr zhdowk
-frqvwudlqhg wkdw wkh| duh ehwwhu r vlwwlqj wljkw/ qhlwkhu ex|lqj qru vhoolqj1 Rqh nh| lpsolfdwlrq
-ri wklv prgho lv wkdw/ vxemhfw wr fhuwdlq frqglwlrqv/ wkh lpsdfw ri ixqgdphqwdo glvwxuedqfhv rq
-krxvh sulfhv fdq eh juhdwo| pdjqlhg uhodwlyh wr wkh ehqfkpdun fdvh ri qr qdqfldo frqvwudlqwv1
-Plohv +4<<5/ 4<<8, ghyhorsv d qxpehu ri wkhruhwlfdo prghov lq zklfk wkh nh| hohphqw lv wkh
-ghulydwlrq ri dq h{suhvvlrq iru wkh xvhu frvw ri krxvlqj1 Lq sduwlfxodu/ kh h{solflwo| prghov wkh
-lpsdfw ri wkh uhvwulfwlrqv rq wkh dydlodelolw| ri ixqgv wr wkh krxvhkrogv/ lq wkh irup ri d orzhu
-erxqg rq wkh dprxqw ri krxvlqj htxlw| wkdw lqglylgxdov pxvw rzq1 Klv pdlq uhvxow lv wkdw wkh
-hhfw ri doorzlqj htxlw| zlwkgudzdo iurp wkh krxvlqj pdunhw xsrq vdylqj/ frqvxpswlrq dqg
-krxvh sulfhv fdq eh erwk vxevwdqwldo dqg surorqjhg= lq sduwlfxodu/ kh vkrzv wkdw wkh hdvlqj ri
-fuhglw frqglwlrqv zloo ohdg wr lqfuhdvh lq krxvh sulfhv dqg lq wkh vwrfn ri rxwvwdqglqj pruwjdjhv
-lq wkh hfrqrp|1
-Hduo| hpslulfdo vwxglhv ri wkh krxvlqj pdunhw kdyh irfxvhg rq vrph sduwlfxodu ihdwxuhv ri
-wkh krxvh sulfhv/ orrnlqj lq sduwlfxodu dw wkh XV pdunhw9= Fdvh dqg Vkloohu +4<;</ 4<<3, vwxg|
-wkhlu dxwrfruuhodwlrq surshuwlhv> Srwhued +4<<4, irfxvhv rq fkdqjhv lq wkh frqvwuxfwlrq frvwv/ lq
-wkh uhdo diwhu0wd{ frvw ri krphrzqhuvkls/ dqg rq ghprjudsklf idfwruv dv srvvleoh ghwhuplqdqwv
-ri vkliwv ri ghpdqg dqg vxsso| lq wkh krxvlqj pdunhw= e| xvlqj phgldq krxvh sulfhv rq 6< flwlhv
-iurp 4<;3 wr 4<<3/ kh vkrzv wkdw vkliwv lq lqfrph dqg lq frqvwuxfwlrq frvwv kdyh lpsruwdqw
-hhfwv rq uhdo krxvh sulfh fkdqjhv exw qgv olwwoh vxssruw iru wkh lpsruwdqfh ri ghprjudsklf
-idfwruv1 Ehvlghv orrnlqj dw plfurhfrqrplf ghwhuplqdqwv ri krxvh sulfhv/ dqrwkhu ghedwhg lvvxh
-kdv ehhq zkhwkhu krxvh sulfhv kdyh rqo| ehhq gulyhq rqo| e| ixqgdphqwdo ghpdqg dqg vxsso|
-idfwruv ru li lw lv srvvleoh wr qg hylghqfh ri exeeohv lq wkh krxvlqj pdunhw1 D jrrg vxuyh| ri
-wkhvh lvvxhv lv Fkr +4<<9,1
-515 Krxvlqj pdunhwv/ prqhwdu| srolf| dqg wkh pdfurhfrqrp|
-Wkh lghd wkdw dvvhw sulfhv pljkw sod| d uroh lq wkh wudqvplvvlrq phfkdqlvp dqg lq wkh pdfurh0
-frqrp| lq jhqhudo lv qrw qhz lq hfrqrplfv/ dqg gdwhv edfn dw ohdvw wr Yheohq +4<37, dqg Ilvkhu
-+4<66,1 Lq uhfhqw |hduv/ wkh lghd vhhpv wr kdyh ehfrph lqfuhdvlqjo| srsxodu1 Pdq| ri wkh vxuyh|
-9 Pdq| krxvh sulfh htxdwlrqv/ prvwo| vhhq dv lqyhuwhg ghpdqg fxuyhv iru krxvlqj/ kdyh ehhq hvwlpdwhg lq wkh
-sdvw iru wkh Xqlwhg Nlqjgrp wrr1 Vhh Pxhooedxhu dqg Pxusk| +4<<:, dqg uhihuhqfhv wkhuhlq1
-ECB Working Paper No 18 G April 2000                                                                                                           9
-sdshuv sxeolvkhg lq wkh Zlqwhu 4<<8 Mrxuqdo ri Hfrqrplf Shuvshfwlyhv v|psrvlxp rq wkh Prq0
-hwdu| Wudqvplvvlrq Phfkdqlvp dqdo|vh/ gluhfwo| ru lqgluhfwo|/ wkh uroh ri wkh krxvlqj pdunhw lq
-wkh wudqvplvvlrq phfkdqlvp:1
-Wkh vr0fdoohg prqhwdulvw ylhz +Phow}hu/ 4<<8, frpprqo| hpskdvlvhv wzr ylhzv= wkhvh
-lqyroyh Wrelq*v t wkhru| ri lqyhvwphqw dqg zhdowk hhfwv rq frqvxpswlrq1
-Wkh odwwhu kdv
-lwv urrwv lq Prgljoldql*v olih0f|foh prgho/ lq zklfk frqvxpswlrq lv ghwhuplqhg e| wkh olihwlph
-uhvrxufhv ri frqvxphuv/ zklfk duh pdgh xs ri kxpdq fdslwdo/ uhdo dvvhwv dqg qdqfldo zhdowk1
-Zkhq dvvhw sulfhv idoo/ vr gr olihwlph uhvrxufhv/ dqg frqvxpswlrq idoov1
-Wkh Wrelq*v t ylhz vwduwv e| uhfrjqlvlqj wkdw wkh wudqvplvvlrq surfhvv ehjlqv dqg rshudwhv lq
-wkh dvvhw pdunhw/ zkhuh frvwv ri lqirupdwlrq dqg wudqvdfwlrq duh orzhu wkdq wkh frvwv ri fkdqjlqj
-surgxfwlrq ru dgmxvwlqj frqvxpswlrq ru lqyhvwphqw lq gxudeohv1 Li wkhuh lv xqfhuwdlqw| derxw
-wkh prqhwdu| srolf| lqlwldo lpsxovh/ dvvhw sulfhv uhvsrqg pruh txlfno|1 Fkdqjhv lq uhodwlyh sulfhv
-rq wkh dvvhw pdunhwv vsloo ryhu wr wkh rxwsxw pdunhwv> lq wkh fdvh ri dq h{sdqvlrqdu| prqhwdu|
-srolf|/ wkh sulfh ri wkh dvvhw fdq eh deryh lwv uhsodfhphqw frvw/ dqg surgxfwlrq lqfuhdvhv1
-Wkh fuhglw fkdqqho ylhz +Ehuqdqnh dqg Jhuwohu/ 4<<8,/ rq wkh rwkhu kdqg/ dvvxphv wkdw
-fuhglw pdunhwv duh qrw iulfwlrqohvv/ ehfdxvh ri sureohp ri lqirupdwlrq/ hqirufhphqw dqg lqfhq0
-wlyhv1 Ehfdxvh ri wklv/ fuhglw fdq eh pruh hdvlo| jlyhq wr djhqwv zlwk vrxqg qdqfldo srvlwlrqv/ ru
-zkr fdq rhu froodwhudo dv d jxdudqwhh1 Dq lpsolfdwlrq ri wklv lv wkdw wkh ydoxh ri wkh froodwhudo
-+iru lqvwdqfh/ krph htxlw| ydoxh, ghwhuplqhv djhqw*v delolw| wr eruurz dqg ohqg/ dqg lwv xfwx0
-dwlrqv dhfw wkh djhqw*v ohyhudjh dqg khu delolw| wr frqvxph dqg surgxfh1 Lq wxuq/ wklv lpsolhv
-wkdw surf|folfdo pryhphqwv lq wkh qdqfldo frqglwlrqv ri eruurzhuv kdyh uvw rughu hhfwv rq
-djjuhjdwh rxwsxw dqg zhdowk/ dqg fdq pdjqli| lqyhvwphqw dqg rxwsxw xfwxdwlrqv uhodwlyh wr
-d iulfwlrqohvv hfrqrp| +dv lq Nl|rwdnl dqg Prruh/ 4<<:/ dqg Ehuqdqnh/ Jhuwohu dqg Jlofkulvw/
-4<<<,1
-Wkhuh lv d orw ri hpslulfdo hylghqfh rq krxvlqj pdunhw xfwxdwlrqv dqg wkh pdfur0hfrqrp|=
-pxfk ri lw lv pdlqo| ghvfulswlyh lq qdwxuh1 Hqjoxqg dqg Lrdqqlghv +4<<:, wdnh dq lqwhuqdwlrqdo
-hpslulfdo shuvshfwlyh rq krxvlqj sulfhv lq d sdqho ri 48 RHFG frxqwulhv= wkhlu zrun/ zkloh
-grfxphqwlqj wkh srvlwlyh lpsdfw ri JGS jurzwk dqg wkh qhjdwlyh lpsdfw ri lqfuhdvh lq lqwhuhvw
-udwhv rq krxvh sulfhv/ grhv qrw surylgh hylghqfh rq wkh g|qdplfv wkdw krxvh sulfhv pljkw kdyh
-iroorzlqj d vkrfn1
-Rwkhu hylghqfh frphv iurp wzr ELV vwxglhv= lq wkhlu furvv0frxqwu| vwxg| rq wkh olqn ehwzhhq
-uhdo krxvh sulfhv dqg krxvhkrog vdylqj/ Nhqqhg| dqg Dqghuvrq +4<<7, srlqw rxw wkh gl!fxow| lq
-lghqwli|lqj wkh idfwruv jryhuqlqj krxvh sulfh xfwxdwlrqv1 Zkloh wkh| fdqqrw uxoh rxw wkh srvvl0
-: H{dpsohv duh Ehuqdqnh dqg Jhuwohu +4<<8, dqg Phow}hu +4<<8,> Wd|oru +4<<8/ sdj14:, glvfxvvhv krz pruwjdjh
-udwhv fdq eh dhfwhg e| fkdqjhv lq wkh vkruw whup lqwhuhvw udwhv1
-10                                                                                                    ECB Working Paper No 18 G April 2000
-elolw| ri vshfxodwlrq lq wkh krxvlqj pdunhwv dfurvv frxqwulhv/ wkh| vxjjhvw wkdw prqhwdu| srolf|
-vwdqfh/ vfdo wuhdwphqw ri krxvlqj dqg qdqfldo olehudolvdwlrq pljkw sod| d uroh lq gulylqj sulfh
-vzlqjv1 Erulr/ Nhqqhg| dqg Surzvh*v +4<<7, xqlyduldwh uhjuhvvlrqv ri d uhdo dvvhw sulfh lqgh{
-rq fuhglw dqg rwkhu yduldeohv vxjjhvw wkdw wkh fuhglw sod|v dqg lpsruwdqw uroh lq gulylqj dvvhw
-sulfhv/ dqg vxjjhvw iru wkh 4<;3v d wudqvplvvlrq phfkdqlvp jrlqj iurp qdqfldo olehudolvdwlrq
-wr lqfuhdvh lq fuhglw wr lqfuhdvh lq dvvhw sulfhv lq Vzhghq/ Ilqodqg dqg Qruzd|1
-Phow}hu +4<<8, frpsduhv udwhv ri sulfh fkdqjh iru qhz rqh0idplo| krxvhv dqg wkh X1V1 JGS
-gh dwru/ dqg vkrzv wkdw shdnv lq wkh udwh ri fkdqjh ri krxvlqj sulfhv suhfhgh hdfk shdn lq wkh
-gh dwru e| derxw wzr |hduv1 Kh dovr grfxphqwv vlplodu sdwwhuqv iru XN dqg Vzhghq1 Erpkr
-+4<<7, h{sodlqv txduwhuo| xfwxdwlrqv lq JGS jurzwk lq X1V1/ Mdsdq dqg Jhupdq| iurp 4<:5
-wr 4<<41 Kh vkrzv wkdw jurzwk ghshqgv srvlwlyho| rq odjjhg uhdo krxvh sulfhv/ d qglqj wkdw
-fdq eh frqvlvwhqw zlwk d prqhwdulvw ylhz ri wkh wudqvplvvlrq phfkdqlvp1 Kljjlqv dqg Rvohu
-+4<<:, xvh furvv0frxqwu| gdwd iru RHFG frxqwulhv iurp 4<;7 wr 4<<6= wkh| dujxh wkdw krxvlqj
-dqg htxlw| sulfhv zhuh lq dwhg e| vshfxodwlyh sulfh exeeohv lq pdq| frxqwulhv/ dqg wkdw dvvhw
-sulfh ghfolqhv ri wkh hduo| 4<<3v uhsuhvhqwhg d ckdqjryhu* iurp hduolhu exeeohv1 Wkh| edvh wklv
-frqfoxvlrq rq wkh revhuydwlrq wkdw frxqwulhv zkrvh dvvhw sulfhv urvh ixuwkhvw lq wkh odwh 4<;3v
-irxqg wkhlu dvvhw sulfhv idoolqj wkh ixuwkhvw odwhu rq/ d uhvxow wkdw krogv hyhq dffrxqwlqj iru wkh
-lq xhqfh ri hfrqrplf ixqgdphqwdov1
-6 Hfrqrphwulf phwkrgrorj|= Yhfwru Dxwruhjuhvvlrqv dqg Frpprq Wuhqgv
-614 Zk| YDUvB
-D vxusulvlqj idfw ri doprvw doo wkh hpslulfdo vwxglhv rq krxvh sulfh xfwxdwlrqv dqg wkh pdfurh0
-frqrp| lv wkdw/ zkloh wkh| uhfrjqlvh wkh lpsruwdqfh ri krxvh sulfhv lq wkh wudqvplvvlrq phfk0
-dqlvp/ wkh| gr qrw pdnh xvh ri rqh ri wkh prvw frqyhqlhqw dqg xvhg wrrov wr vxppdulvh wkh
-g|qdplf uhodwlrqvklsv ehwzhhq wkh yduldeohv1 Lqvwhdg/ iroorzlqj vwdqgdug sudfwlfh vlqfh Vlpv*
-+4<;3, vhplqdo frqwulexwlrq/ wklv sdshu xvhv yhfwru dxwruhjuhvvlrqv wr ghvfuleh pdfurhfrqrplf
-g|qdplfv lqyroylqj frqvxphu dqg krxvh sulfhv/ rxwsxw/ prqh| dqg lqwhuhvw udwhv1
-Ri frxuvh/ dsso|lqj wklv phwkrgrorj| wr krxvh sulfh g|qdplfv lv qrw zlwkrxw lwv vnhswlfv;1
-Lq d uhfhqw sdshu rq wkh Krxvlqj Pdunhw dqg wkh HPX/ Pdfohqqdq/ Pxhooedxhu dqg Vwhskhqv
-+4<<;, +PPV/ khqfhiruwk, dujxh wkdw wkh lqvwlwxwlrqdo glhuhqfhv h{lvwlqj lq Hxursh/ lq sdu0
-wlfxodu lq krxvlqj dqg fuhglw frqglwlrqv/ qhfhvvdulo| lpso| odujh glhuhqfhv lq wkh prqhwdu|
-wudqvplvvlrq phfkdqlvp dfurvv Hxurshdq frxqwulhv1 Wkh| dovr vwdwh wkdw YDU vwxglhv ri wkh
-wudqvplvvlrq phfkdqlvp duh vxemhfw wr d qxpehu ri vhulrxv fulwlflvpv/ wkh uvw ehlqj ri plv0
-; Shukdsv wklv lv wkh uhdvrq zk| qrerg| kdv uxq YDUv zlwk krxvh sulfhv diwhu doo1
-ECB Working Paper No 18 G April 2000                                                                                                     11
-vshflfdwlrq ehfdxvh ri wkh rplvvlrq ri lpsruwdqw yduldeohv/ vxfk dv dvvhw sulfhv1 Ixuwkhupruh/
-wkh| dujxh wkdw d YDU frxog rqo| eh d srru dssur{lpdwlrq wr wkh g|qdplf uhvsrqvhv ri dv0
-vhw sulfhv wr vwuxfwxudo vkrfnv1 Lw vhhpv wkdw wkh dssolhg hfrqrphwulfldq lv ohiw zlwk qr krsh=
-hlwkhu lqfoxgh krxvh sulfhv/ dqg ehlqj xqdeoh wr ixoo| fdswxuh wkhlu g|qdplfv/ ru wr h{foxgh
-wkhp/ xqghuvshfli|lqj wkh prgho1 E| lqfoxglqj krxvh sulfhv lq dq rwkhuzlvh uhodwlyho| vwdqgdug
-vshflfdwlrq/ wklv sdshu krshv wr eh lppxqh dw ohdvw lq sduw wr wkh vhfrqg fulwlflvp1
-Lq dsso|lqj wkh YDU phwkrgrorj| wr krxvh sulfhv/ vrph zduqlqjv duh wkhuhiruh lq rughu1
-4, Dv Frfkudqh +4<<7, srlqwv rxw/ dq| YDU phfkdqlfdoo| dffrxqwv iru 433( ri wkh yduldqfh ri
-wkh yduldeohv e| xqiruhfdvwdeoh pryhphqwv lq wkh hqgrjhqrxv yduldeohv1 Vhdufklqj iru h{rjhqrxv
-glvwxuedqfhv lv d zd| wr orrn iru srolf|/ ru whfkqrorj|/ ru eholhiv0lqgxfhg fkdqjhv lq wkdw yduldeoh1
-Lw grhv qrw vd| d orw derxw shuihfwo| dqwlflsdwhg vkrfnv ru v|vwhpdwlf srolflhv1 Qru fdq lw hdvlo|
-glvwlqjxlvk ehwzhhq ixqgdphqwdo yhuvxv qrq0ixqgdphqwdo ghwhuplqdqwv ri krxvh sulfhv/ vxfk dv
-vshfxodwlyh exeeohv1 Diwhu doo/ dqg ghvslwh wkh frpprqo| khog ylhz wkdw lq wkh odwh 4<;3v dvvhw
-pdunhwv lq pdq| lqgxvwuldolvhg frxqwulhv zhuh khog doriw e| exeeohv</ rqh ri wkh ohvvrqv wr frph
-iurp uhvhdufk lv wkdw rqh fdq qhyhu suryh zkhwkhu d jlyhq errp0exvw f|foh lq krxvh sulfhv zdv
-wuxo| d exeeoh +Kdplowrq dqg Zklwhpdq/ 4<;8,1 Wr wkh h{whqw wkdw hyhq wkh prvw h{wuhph sulfh
-ulvh pljkw kdyh ehhq gulyhq e| vrph xqrevhuyhg ixqgdphqwdo idfwru/ wkh YDU dssurdfk ri wklv
-sdshu zloo wu| wr dqdo|vh zklfk idfwruv frxog eh wkh vrxufh ri krxvh sulfh xfwxdwlrqv1
-5, Olqhdulw| lv dovr d fuxfldo lvvxh1 Krxvh sulfhv dqg rwkhu yduldeohv fdq uhdfw glhuhqwo|
-wr vkrfnv htxdo lq pdjqlwxgh exw ri rssrvlwh vljq1 PPV +4<<;,/ iru lqvwdqfh/ dujxh wkdw lq
-vshfxodwlyh pdunhwv/ vxfk dv wkh krxvlqj pdunhw/ wkh g|qdplfv ru wkh uhvsrqvh ri krxvh sulfhv
-wr lqwhuhvw udwhv duh qrq0olqhdu dqg qrq0frqvwdqw ryhu wlph1
-6, Wkh lvvxh ri wkh sursdjdwlrq phfkdqlvp lv fuxfldo wrr1 Wkh vdph lpsxovh jhqhudwhv glhu0
-hqw uhvsrqvhv ehfdxvh ri dq xqghuo|lqj glhuhqw sursdjdwlrq phfkdqlvp1 Iurp wkh pdjqlwxgh
-dqg wkh vkdsh ri wkh uhvsrqvhv/ ru frqwuroolqj iru rwkhu yduldeohv wkdw pljkw sod| d uroh lq wkh
-wudqvplvvlrq ri d vkrfn/ lw lv srvvleoh wr lqihu vrphwklqj rq zkdw kdsshqv iroorzlqj d vkrfn/ dqg
-zk|1 Krzhyhu/ lq pdq| fdvhv pruh wkdq rqh wudqvplvvlrq fkdqqho lv frqvlvwhqw zlwk wkh vdph
-uhvsrqvh1
-615 Wkh hpslulfdo phwkrgrorj|
-Wklv vhfwlrq ghvfulehv krz wkh orqj0uxq sursrvlwlrqv ri hfrqrplf wkhru| fdq eh xvhg wr lghqwli|
-wkh pdlq vrxufhv ri hfrqrplf xfwxdwlrqv1 Lq wkdw wkh dssurdfk ri Eodqfkdug dqg Txdk +4<;<,/
-NSVZ +4<<4,/ dqg Zduqh +4<<6, lv iroorzhg1 D pruh ghwdlohg ghvfulswlrq ri wkh phwkrgrorj|
-< Vhh wkh glvfxvvlrq lq Kljjlqv dqg Rvohu +4<<:/ sdjh 448, dqg uhihuhqfhv wkhuhlq1
-12                                                                                                  ECB Working Paper No 18  G  April 2000  
-lv lq wkh Dsshqgl{ D1
-Dv lw lv zhoo nqrzq/ zkhq d jurxs ri yduldeohv lv irxqg wr eh qrq0vwdwlrqdu| exw frlqwhjudwhg/
-d xvhixo vshflfdwlrq iru wkhlu g|qdplf lqwhudfwlrq lv d yhfwru0huuru0fruuhfwlrq +YHFP, prgho1
-D YHFP prgho/ lq sduwlfxodu/ sodfhv qrq0olqhdu uhgxfhg0udqn uhvwulfwlrqv rq wkh pdwul{ ri
-orqj0uxq lpsdfwv iurp d YDU1 NSVZ +4<<4,/ lq sduwlfxodu/ sursrvh d glvwlqfwlrq ehwzhhq
-vwuxfwxudo vkrfnv zlwk shupdqhqw hhfwv rq wkh ohyho ri wkh yduldeohv +vd|/ d srvlwlyh vxsso|
-vkrfn/ udlvlqj rxwsxw lq wkh orqj0uxq, iurp wkrvh zlwk rqo| whpsrudu| hhfwv +vd|/ d ghpdqg
-vkrfn wkdw fdq eh wkrxjkw wr kdyh }hur orqj0uxq hhfw rq rxwsxw dqg rwkhu uhdo yduldeohv,1
-Wkh shupdqhqw vkrfnv duh wkh vrxufhv ri wkh vr0fdoohg frpprq vwrfkdvwlf wuhqgv dfurvv wkh
-vhulhv/ dqg wkh qxpehu ri wkhvh vkrfnv lv htxdo wr wkh qxpehu ri yduldeohv lq wkh v|vwhp ohvv wkh
-qxpehu ri frlqwhjudwlqj uhodwlrqvklsv ehwzhhq wkhp1 Wkh +uhpdlqlqj, wudqvlwru| lqqrydwlrqv
-htxdo wkh qxpehu ri frlqwhjudwlqj uhodwlrqvklsv +lqwxlwlyho|/ d frlqwhjudwlqj yhfwru lghqwlhv d
-olqhdu frpelqdwlrq ri wkh yduldeohv wkdw lv vwdwlrqdu| wkxv holplqdwlqj wkh wuhqg/ vr wkdw vkrfnv
-wr lw gr qrw holplqdwh wkh vwhdg| vwdwh lq vxfk d v|vwhp,1
-L vshfli| d yh glphqvlrqdo YDU zlwk [| @
-k
-|
-ps
-ks
-l
-l
-/ zkhuh [| lv d yhfwru
-frpsulvlqj uhdo lqfrph +||,/ d phdvxuh ri uhdo prqh| edodqfhv +ps|,/ d uhdo krxvh sulfh lqgh{ 0
-l1h1/ d qrplqdo krxvh sulfh lqgh{ gh dwhg e| wkh frqvxphu sulfh ohyho 0 +ks|,/ d vkruw0whup qrplqdo
-lqwhuhvw udwh +l|,/ dqg dqqxdolvhg txduwhuo| +frqvxphu sulfh, lq dwlrq +|,1 Uhdo yduldeohv duh
-vshflhg lq qdwxudo orjdulwkpv/ lqwhuhvw udwh dqg frqvxphu sulfh lq dwlrq lq shufhqwdjh whupv1
-Vhyhudo hpslulfdo txhvwlrqv fdq eh dqvzhuhg iurp wklv uhsuhvhqwdwlrq1 Lv wkhuh hylghqfh ri d
-orqj0uxq prqh| ghpdqg vfkhgxohB Lv wkh uhdo lqwhuhvw udwh vwdwlrqdu|B Krz gr uhdo krxvh sulfhv
-ehkdyh lq wkh orqj0uxq dqg zkdw lv wkhlu uhodwlrqvkls zlwk uhdo rxwsxwB Krz gr uhdo dqg qrplqdo
-yduldeohv lqwhudfw iroorzlqj d glvwxuedqfhB Krz fdq zh glvhqwdqjoh lqqrydwlrqv zlwk shupdqhqw
-hhfwv rq wkh yduldeohv iurp wkrvh zlwk rqo| wudqvlwru| hhfwvB Zkdw dffrxqwv iru prvw ri wkh
-revhuyhg yrodwlolw| lq uhdo krxvh sulfhv wkdw kdv fkdudfwhulvhg pdq| dgydqfhg hfrqrplhv ryhu
-wkh odvw ghfdghvB
-616 K|srwkhvhv derxw frlqwhjudwlrq
-Zlwk 8 yduldeohv lq wkh gdwdvhw/ krz pdq| frpprq vwrfkdvwlf wuhqgv fdq zh h{shfw wr qgB
-Prqh|/ Rxwsxw dqg Lqwhuhvw Udwhv= Wkh ulvh lq sulfh ohyhov lq prvw frxqwulhv gxulqj
-wkh odvw ghfdghv vxjjhvwv wkh srvvlelolw| ri d vwrfkdvwlf wuhqg dvvrfldwhg zlwk wkh ghvljq ri wkh
-prqhwdu| srolf|= lq rwkhu zrugv/ dv vxjjhvwhg e| Jdol +4<<5,/ wkh fhqwudo edqn*v ghvluh wr dyrlg
-rxwsxw xfwxdwlrqv pd| uhvxow lq qrplqdo lqvwdelolw|/ lq wkh vhqvh ri ohdglqj wr d frpprq wuhqg
-ohdglqj qrplqdo udwhv/ prqh| edodqfhv dqg rxwsxw1 Dowhuqdwlyho|/ wkh uhodwlrq ehwzhhq wkhvh
-ECB Working Paper No 18  G April 2000                                                                                                       13
-yduldeohv fdq eh lqwhusuhwhg/ dv grqh iru lqvwdqfh lq Frhqhq dqg Yhjd +4<<<, dqg Furzghu/
-Krpdq dqg Udvfkh +4<<<,/ dv d wudglwlrqdo prqh| ghpdqg ixqfwlrq olqnlqj uhdo edodqfhv wr
-d vfdoh yduldeoh dqg d phdvxuh ri wkh rssruwxqlw| frvw ri pdlqwdlqlqj oltxlglw|1 Wkdw wklv olqn
-lv d prqh| ghpdqg ixqfwlrq pxvw eh lqwhusuhwhg zlwk fdxwlrq wkrxjk/ iru dw ohdvw 8 uhdvrqv43=
-4, wkhuh frxog eh pdq| frlqwhjudwlqj yhfwruv dw lvvxh lq d vlplodu v|vwhp= prqh| ghpdqg
-+ehwzhhq ps/ | dqg l, lv rqh/ exw djjuhjdwh ghpdqg dv zhoo/ iru lqvwdqfh +ehwzhhq | dqg l,>
-5, d phdvxuh ri vkruw0whup lqwhuhvw udwhv fdq zhoo uhsuhvhqw rzq udwkhu wkdq rxwvlgh udwh rq
-prqh|> 6, dq| phdvxuh ri prqh| lv dq djjuhjdwh ryhu frpsrqhqwv zlwk glhuhqw fkdudfwhulvwlfv>
-7, ghqlwlrqdo dqg vwuxfwxudo euhdnv fdqqrw eh ljqruhg> 8, wkh iuhtxhqf| ri revhuydwlrq pd|
-dhfw erwk h{rjhqhlw| dqg frlqwhjudwlrq/ dv glvfxvvhg e| Khqgu| +4<<8,1
-Lqwhuhvw Udwhv dqg Lqiodwlrq= Wkhuh duh wkhruhwlfdo uhdvrqv wr eholhyh wkdw uhdo lqwhuhvw
-udwhv duh vwdwlrqdu|1 Lq rwkhu zrugv/ wkhuh lv d olqn ehwzhhq wkh wzr qrplqdo yduldeohv wkdw
-fruuhvsrqgv wr d prglhg Ilvkhu htxdwlrq/ l1h1 l| @  . | . %|441
-Rxwsxw dqg Uhdo Krxvh Sulfhv= Lv wkhuh d orqj uxq uhodwlrqvkls ehwzhhq krxvh sulfhv
-dqg frqvxphu sulfhvB Vkrxog zh h{shfw uhdo krxvh sulfhv wr eh frqvwdqw ryhu wlph ru qrwB D
-srvvleoh dqvzhu/ zklfk lv vxjjhvwhg e| Srwhued +4<;7,/ jrhv dv iroorzv= li wkh orqj0uxq krxvlqj
-vxsso| fxuyh dqg wkh vxsso| fxuyh iru doo wkh rwkhu jrrgv zhuh shuihfwo| hodvwlf/ wkh vwhdg| vwdwh
-sulfh ri vwuxfwxuhv zrxog ghshqg hqwluho| rq frqvwuxfwlrq frvwv/ zklfk duh suredeo| lqghshqghqw
-ri wkh ohyho ri frqvwuxfwlrq1 Krzhyhu/ surylghg wkdw dq| idfwru ghwhuplqlqj uhdo hvwdwh vxsso|/
-vxfk dv odqg/ oxpehu ru frqvwuxfwlrq zrunhuv/ lv dydlodeoh lq {hg vxsso| 0 wkxv dfwlqj dv d
-olplwlqj idfwru 0/ rqh fdq h{shfw wkdw wkh surgxfwlrq srvvlelolw| iurqwlhu ehwzhhq krxvhv dqg
-rwkhu jrrgv45 lv qrw dw1 Wkdw lpsolhv d srvvleoh xszdug wuhqg lq uhdo krxvh sulfhv ryhu wkh
-orqj0uxq461 \hw rqh fdq uhdvrqdeo| h{shfw uhdo krxvh sulfhv wr eh frlqwhjudwhg zlwk JGS/ vlqfh
-wkh JGS fdq jlyh d phdvxuh ri krz pxfk wkh surgxfwlrq srvvlelolwlhv iurqwlhu lv vkliwlqj rxw
-ryhu wlph471 Lq d vhqvh/ wklv fdqglgdwh frlqwhjudwlqj yhfwru/ phdvxulqj hodvwlflw| ri uhdo krxvh
-sulfhv wr rxwsxw/ fdq eh wkrxjkw ri d orqj0uxq vxsso| fxuyh iru wkh krxvlqj vwrfn/ surylghg wkdw
-qhz lqyhvwphqw lq vwrfn lv d frqvwdqw iudfwlrq ri JGS dqg wkdw wkh vxsso| fxuyh iru krxvlqj
-43 Vhh Hulfvvrq +4<<;, iru d wkrurxjk glvfxvvlrq ri wkhvh srlqwv1
-44 Wkh zrug prglhg lv xvhg ehfdxvh wkh Ilvfkhu uhodwlrqvkls vkrxog eh pruh surshuo| prghoohg dv d orqj
-uxq uhodwlrqvkls ehwzhhq qrplqdo lqwhuhvw udwhv dqg h{shfwhg lq dwlrq/ dv grqh lq Furzghu hw do1 +4<<<,1 Xvlqj
-lq dwlrq lq shulrg | n  dv d sur{| iru lq dwlrq h{shfwdwlrqv dqg prghoolqj wkh v|vwhp zlwk Z|n lqvwhdg ri Z|
-|lhoghg doprvw xqfkdqjhg uhvxowv1
-45 D uhsuhvhqwdwlyh vdpsoh ri rwkhu jrrgv hqwhuv wkh frqvxphu sulfh lqgh{/ ri frxuvh1
-46 Iru wkh Xqlwhg Nlqjgrp/ Plohv +4<<8/ sdjh 73, grfxphqwv dq xszdug wuhqg lq uhdo krxvh sulfhv ryhu wkh
-odvw fhqwxu|1 Dowkrxjk lw lv frqfhlydeoh wkdw dw ohdvw sduw ri wkh dssduhqw ulvh lq wkh uhdo sulfh ri krxvhv lv gxh wr
-krph lpsuryhphqwv/ d txdolw| dgmxvwhg lqgh{ ri uhdo krxvh sulfhv zrxog suredeo| vwloo eh jurzlqj ryhu wlph1 Iru
-furvv0frxqwu| hylghqfh ryhu wkh odvw ghfdghv rqo|/ vhh Fxwohu +4<<8,1
-47 Qrwh wkdw L dp qrw lqyhvwljdwlqj d uhodwhg exw glhuhqw lvvxh/ vxfk dv wkh srvvlelolw| wkdw krxvlqj zhdowk lv
-d frqvwdqw iudfwlrq ri lqfrph ryhu wlph1 Wklv lqirupdwlrq ghqhv d frlqwhjudwlqj yhfwru/ exw fdqqrw eh lqfoxghg
-lq rxu dqdo|vlv vlqfh rxu 5 grhv qrw lqfoxgh dq| phdvxuh ri wkh krxvlqj vwrfn1
-14                                                                                                  ECB Working Paper No 18 G April 2000  
-vwuxfwxuhv grhv qrw vkliw ryhu wlph481
-L orrn wkhuhiruh iru wkh iroorzlqj uhsuhvhqwdwlrqv=
-|
-ps
-ks
-l
-
-@
-k
-e+
-4
-3
-e
-3
-l
-2
-@
-k
-
-3
-4
-3
-l
-
-@
-k
-3
-4
-4
-l
-wkh uvw lghqwli|lqj d orqj0uxq prqh| ghpdqg vfkhgxoh/ vd|/ ps| @ e+||  el|/ wkh vhfrqg
-olqnlqj uhdo krxvh sulfhv dqg rxwsxw/ l1h1 ks| @ ||> dqg wkh odvw rqh lpso|lqj vwdwlrqdu| +h{
-dqwh, uhdo lqwhuhvw udwh1 Dowrjhwkhu/ diwhu wkh qrupdolvdwlrq rq ps> ks dqg / wklv vshflfdwlrq
-lpsrvhv u +u  4, @ 9 qrq0whvwdeoh }hur uhvwulfwlrqv1 Wkh wkuhh uhpdlqlqj uhvwulfwlrqv +wzr ehlqj
-}hur uhvwulfwlrqv dqg rqh lpsrvlqj d 4 frh!flhqw rq wkh lqwhuhvw udwh lq ,/ jlyhq wkh rwkhuv/
-duh lqvwhdg whvwdeoh491
-617 Lghqwli|lqj vwuxfwxudo vkrfnv
-Wkh sdudphwhuv ri wkh frlqwhjudwlqj yhfwruv fdq eh xvhg wr uhvwulfw wkh orqj0uxq pxowlsolhuv ri
-wkh shupdqhqw vkrfnv +iru ghwdlov/ vhh Dsshqgl{ D,1
-Wklv ghulyhv iurp wkh idfw wkdw lqirupdwlrq derxw wkh frlqwhjudwlqj vsdfh doorzv wr irupxodwh
-d YDU lq wkh irup ri dq huuru fruuhfwlrq prgho1 Vwduwlqj iurp wkh uhgxfhg irup ri d YDU lq
-ohyhov/ zkhuh [ lv wkh froxpq yhfwru ri hqgrjhqrxv yduldeohv/ ] lv d yhfwru ri ghwhuplqlvwlf
-frpsrqhqwv/ n lv wkh odj rughu dqg H%% @  
-[| @ D[|3 . === . D&[|3& . ]| . %|
-wkh YHFP uhsuhvhqwdwlrq ri wkh YDU/ zkhuh/ zlwk xvxdo qrwdwlrq/  uhsuhvhqwv wkh uvw
-glhuhqfh rshudwru/ lv=
-[| @ [|3  +D2 . === . D&, [|3  ===  D&[|3&n . ]| . %|
-dqg wkh prylqj dyhudjh uhsuhvhqwdwlrq fdq eh fdvw dv=
-[| @ F+O,%|
-48 Qhhgohvv wr vd|/ dq| hvwlpdwhg uhodwlrqvkls zloo kdyh wr eh lqwhusuhwhg zlwk fdxwlrq/ dv wkhuh duh qrw orqj
-wlph vhulhv rq krxvh sulfhv iru pdq| ri wkh frxqwulhv wkdw wklv vwxg| dqdo|vhv1
-49 Mrkdqvhq +4<<4, vkrzv wkdw wkh dv|pswrwlf glvwulexwlrq ri wkh pd{lpxp olnholkrrg hvwlpdwhv iru q lv d pl{hg
-Jdxvvldq glvwulexwlrq1 Wkdw lpsolhv wkdw wkh olnholkrrg udwlr whvw iru jlyhq k|srwkhvlv derxw uhvwulfwlrqv rq q lv/
-iru jlyhq udqn/ dv|pswrwlfdoo| glvwulexwhg dv d 21
-ECB Working Paper No 18 G April 2000                                                                                                       15
-Shupdqhqw Vkrfnv= Lghqwlfdwlrq ri wkh shupdqhqw vkrfnv fdq wkhq eh dfklhyhg e| lpsrvlqj
-mxvw hqrxjk uhvwulfwlrqv vr wkdw wkh vkrfnv dqg wkhlu orqj0uxq hhfwv pd| eh jlyhq dq hfrqrplf
-lqwhusuhwdwlrq1 Hqjoh dqg Judqjhu +4<;:, kdyh vkrzq wkdw wkh froxpqv ri F +4, lq wkh uhvwulfwhg
-YDU deryh duh ruwkrjrqdo wr wkh frlqwhjudwlqj yhfwruv/ l1h1
-F +4, @ 31 Lq wklv yhlq/ wkh
-lghqwlfdwlrq vwudwhj| lpsrvhv wkh iroorzlqj frqvwudlqwv rq wkh 8  8 pdwul{ ri wkh orqj0uxq
-pxowlsolhuv F+4,1 Wklv pdwul{ lv sduwlwlrqhg lq= F+4, @ ^S 3` vr wkdw wkh pdwul{ S lv d 8  5
-pdwul{ zkrvh froxpqv uhsuhvhqw wkh orqj0uxq uhvsrqvhv ri wkh yduldeohv wr shupdqhqw vkrfnv/
-zkhuhdv wkh orqj0uxq uhvsrqvhv wr wkh whpsrudu| vkrfnv duh dvvxphg wr eh }hur1 Wkh 8  5
-pdwul{ S jlylqj wkh orqj0uxq pxowlsolhuv ri wkh shupdqhqw vkrfnv pxvw eh vshflhg lq d zd|
-vxfk wkdw lwv froxpqv duh ruwkrjrqdo wr wkh pdwul{ ri frlqwhjudwlqj uhodwlrqv1
-Zlwk wkh yduldeohv rughuhg dv
-k
-|
-ps
-ks
-l
-l
-/ L uhvwulfw wkh +4> 5, hohphqw ri wkh orqj0
-uxq lpsdfw pdwul{ S wr eh }hur/ vr wkdw rqh ri wkh wzr shupdqhqw vkrfnv fdq eh suhfoxghg iurp
-kdylqj d orqj0uxq hhfw rq wkh ohyho ri rxwsxw |4:1 Dffruglqjo|/ L doorz wkh rwkhu vkrfn wr dhfw
-| lq wkh orqj uxq= wklv vkrfn lv wkhuhiruh wkh rqo| vrxufh ri xqlw urrw ehkdylrxu lq wkh JGS/ dqg
-fdq eh wkrxjkw ri dv d vxsso| vkrfn1
-Lq ghwdlo/ wkh S pdwul{ ri frpprq wuhqgv zloo eh=
-S @ hS @
-5
-99999999997
-4
-3
-e+
-e
-3
-4
-3
-4
-6
-::::::::::8
-5
-7 4
-3
-
-4
-6
-8 #
-5
-99999999997
-orqj uxq hhfw ri vkrfn rq |
-orqj uxq hhfw ri vkrfn rq ps
-orqj uxq hhfw ri vkrfn rq ks
-orqj uxq hhfw ri vkrfn rq l
-orqj uxq hhfw ri vkrfn rq 
-6
-::::::::::8
-Iru dq| ydoxh ri wkh sdudphwhu  +wr eh hvwlpdwhg,/ wkh qrplqdo vkrfn +vhfrqg froxpq,
-ohdyhv rxwsxw dqg uhodwlyh sulfhv xqfkdqjhg/ |lhoglqj d orzhu +kljkhu, ohyho ri uhdo edodqfhv
-dqg kljkhu +orzhu, lq dwlrq dqg lqwhuhvw udwhv lq wkh orqj uxq4;1 Rqh srvvleoh lqwhusuhwdwlrq ri
-wklv vkrfn/ iroorzlqj Frhqhq dqg Yhjd +4<<<,/ fdq eh wkdw ri d fkdqjh lq wkh prqhwdu| srolf|
-remhfwlyh ri wkh prqhwdu| dxwkrulw|= lq wkh Hxurshdq h{shulhqfh/ lw frxog fdswxuh d srvvleo|
-suhdqqrxqfhg frpplwphqw wr d glhuhqw lq dwlrq wdujhw/ exw dovr/ pruh lq jhqhudo/ lw pljkw
-vwdqg iru d shupdqhqw qrplqdo vkrfn1
-Wkh vxsso| vkrfn +uvw froxpq, lqfuhdvhv rxwsxw/ uhdo edodqfhv dqg uhdo krxvh sulfhv lq wkh
-orqj0uxq/ zlwk zhljkwv glfwdwhg e| wkh hvwlpdwhg frlqwhjudwlqj yhfwruv1 Vr orqj dv wkh hvwlpdwh
-4: Wklv surfhgxuh pljkw dsshdu d elw dg krf/ exw fkrrvlqj  lq d zd| wkdw dvvrfldwhv hdfk vkrfn zlwk d
-idploldu hfrqrplf phfkdqlvp lv qrw d edg lghd/ hvshfldoo| zkhq/ dv zlwk wklv surfhgxuh/ vwurqj eholhiv derxw wkh
-hhfwv ri doo vkrfnv rq hdfk yduldeohv h{fhhg wkh plqlpxp uhtxluhphqwv iru lghqwlfdwlrq1 Vhh/ iru d glvfxvvlrq/
-Ilvfkhu hw do1 +4<<8,1
-4; Rssrvlwh vljqv rq uhdo edodqfhv dqg rq qrplqdo udwhv rqo| rewdlq li wkh hvwlpdwhg frlqwhjudwlqj yhfwru
-ehwzhhq prqh|/ rxwsxw dqg lqwhuhvw udwhv |lhogv frh!flhqwv ri wkh vdph vljq rq 6R dqg o1
-16                                                                                                      ECB Working Paper No 18 G April 2000
-ri  lv qrw gldjrqdo/ wklv vkrfn fdq dovr fkdqjh lq dwlrq dqg qrplqdo udwhv +e| wkh vdph dprxqw,
-lq wkh orqj uxq1
-Wudqvlwru| Vkrfnv= Wudqvlwru| vkrfnv/ zklfk duh dvvxphg wr eh ruwkrjrqdo wr wkh shu0
-pdqhqw vkrfnv dqg wr hdfk rwkhu/ zloo kdyh qr orqj0uxq hhfw rq dq| ri wkh yduldeohv1 Iroorzlqj
-Phoodqghu/ Yuhglq dqg Zduqh +4<<5,/ wkh| fdq eh jlyhq dq hfrqrplf lqwhusuhwdwlrq dorqj wkh
-olqhv ri wkh wudglwlrqdo YDU phwkrgrorj| wkdw lghqwlhv vkrfnv lq d uhfxuvlyh idvklrq1 L lghqwli|
-wkuhh vhsdudwh/ wudglwlrqdo vrxufhv ri vkruw0uxq xfwxdwlrqv= d prqhwdu| srolf| vkrfn kdv qr lp0
-phgldwh hhfw rq rxwsxw dqg FSL lq dwlrq/ exw fdq frqwhpsrudqhrxvo| dhfw uhdo edodqfhv +e|
-gulylqj grzq qrplqdo prqh| vxsso|,/ lqwhuhvw udwhv dqg uhdo krxvh sulfhv +iru lqvwdqfh ehfdxvh
-krxvh sulfhv/ dv dvvhw sulfhv/ uhdfw rq wkh qhzv4<,1
-Xqolnh wkh prqhwdu| rqh/ d ghpdqg vkrfn kdv }hur lpsdfw hhfw rq FSL lq dwlrq/ exw
-srwhqwldoo| dhfwv frqwhpsrudqhrxv JGS/ e| dhfwlqj lwv vshqglqj frpsrqhqwv +vhh Jdol/ 4<<5/
-iru d uhodwhg srlqw,/ dv zhoo dv krxvh sulfhv/ uhdo prqh| edodqfhv/ dqg lqwhuhvw udwhv1
-Wklv
-glvwxuedqfh frxog uhsuhvhqw d vkrfn wkdw kdv lwv urrwv lq hslvrghv frqfhuqlqj wkh krxvlqj pdunhw/
-vxfk dv whpsrudu| wd{ dgydqwdjhv wr krxvlqj lqyhvwphqw ru d vxgghq lqfuhdvh lq ghpdqg ixhoohg
-e| vhoi0ixooolqj h{shfwdwlrqv ri dssuhfldwlrq lq krxvh sulfhv1
-Wkh wklug dqg odvw vkrfn wudqvlwru| vkrfn +wkdw fdq frqwhpsrudqhrxvo| dhfw doo wkh ydul0
-deohv, pljkw eh/ dv lq Furzghu/ Krpdq dqg Udvfkh +4<<<,/ d wudqvlwru| lq dwlrq vkrfn/ l1h1 d
-whpsrudu| xszdug vkliw lq wkh djjuhjdwh vxsso| vfkhgxoh ri d edvlf DG2DV prgho= lqghhg/ dv zh
-zloo vhh/ wkh lpsxovh uhvsrqvhv duh lq prvw ri wkh frxqwulhv frqvlvwhqw zlwk wkh uhvsrqvhv iurp dq
-djjuhjdwh vxsso|2djjuhjdwh ghpdqg fxuyh prgho/ zlwk qr vkliw lq wkh djjuhjdwh ghpdqg fxuyh/
-qr fkdqjh lq lq dwlrq h{shfwdwlrqv/ dqg qr vkliw lq wkh orqj0uxq djjuhjdwh vxsso| fxuyh531
-7 Surshuwlhv ri wkh gdwd
-714 Vrxufhv ri gdwd
-Wkh gdwd frqvlvw ri txduwhuo| revhuydwlrqv rq rxwsxw/ d prqhwdu| djjuhjdwh/ frqvxphu sulfhv/
-krxvh sulfhv dqg d qrplqdo vkruw0whup lqwhuhvw udwh lq vl{ Hxurshdq hfrqrplhv +Iudqfh/ Jhu0
-pdq|/ Lwdo|/ Vsdlq/ Vzhghq dqg Xqlwhg Nlqjgrp,1 Zlwk wkh h{fhswlrq ri Vsdlq/ zkhuh d txdu0
-whuo| krxvh sulfh zdv dydlodeoh rqo| vwduwlqj iurp 4<;:/ wkh gdwd fryhu d shulrg zklfk vsdqv
-dssur{lpdwho| ryhu wkh odvw 58 |hduv1
-4< Dq h{dpsoh 0 |hw qrw ri d prqhwdu| vkrfn 0 vkrzlqj wkdw krxvh sulfhv duh qrw dv vwlfn| dv frqvxphu sulfhv
-dqg wkdw lpsrvlqj }hur lpsdfw uhvwulfwlrqv rq wkhp pljkw eh lqdssursuldwh +hyhq lq wlphv orz0lq dwlrq shulrgv,
-lv surylghg e| Srwhued +4<<4,= krxvh sulfhv duh uhsruwhg wr kdyh ulvhq 8 shufhqw zlwklq d zhhn ri wkh vhohfwlrq ri
-Ehuolq dv wkh qhz fdslwdo ri Jhupdq|1
-53 Dq dowhuqdwlyh lqwhusuhwdwlrq lv wkdw wklv vkrfn pljkw eh dq h{fkdqjh udwh vkrfn/ wkdw udlvhv wkh sulfhv ri
-lpsruwhg jrrgv wkxv whpsrudulo| ghsuhvvlqj rxwsxw1 L wkdqn Jxqwkhu Frhqhq iru wklv vxjjhvwlrq1
- ECB Working Paper No 18 G April 2000                                                                                                  17
-Wkh txdolw| ri gdwd iru krxvh sulfhv/ zklfk zhuh froohfwhg iurp glhuhqw vrxufhv/ glhuv
-iurp frxqwu| wr frxqwu|= krzhyhu/ vlqfh wkh sxusrvh ri wklv sdshu lv pruh wr surylgh hylghqfh
-rq g|qdplfv ri krxvh sulfhv udwkhu wkdq frpsdulqj wkhlu ohyhov dfurvv frxqwulhv/ phdvxuhphqw
-sureohpv vkrxog qrw eh ryhuvwdwhg1
-Lw lv srvvleoh/ lq sulqflsoh/ wkdw wkh wlph vhulhv gr qrw
-uh hfw dgmxvwphqwv iru wkh txdolw| ri krxvlqj vwrfn1 Qhyhuwkhohvv/ wklv vkrxog rqo| dhfw wkh
-hvwlpdwh ri wkh frlqwhjudwlqj yhfwru ehwzhhq uhdo krxvh sulfhv dqg rxwsxw/ zlwkrxw dq| rwkhu
-pdmru vlgh0hhfwv rq rwkhu/ vkruw0uxq/ g|qdplfv1
-Iuhqfk gdwd iru krxvh sulfhv frph iurp wkh Edqtxh ri Iudqfh +4<<<,/ zklfk kdv uhfhqwo|
-vwduwhg wr fdofxodwh d uhvlghqwldo krxvh sulfh lqgh{541 Jhupdq gdwd duh iurp wkh Dxqd Uhv0
-lghqwldo Sulfh Lqgh{= wkh ruljlqdo vhulhv zdv dqqxdo/ dqg d txduwhuo| rqh zdv lqwhusrodwhg yld
-lqwhusrodwlrq dvvxplqj dq DULPD+3/5/3, lq wkh ruljlqdo vhulhv551 Gdwd iru Lwdo| duh iurp wkh
-uhvlghqwldo surshuw| sulfh lqgh{ fdofxodwhg e| wkh pdjd}lqh Lo Frqvxohqwh Lppreloduh +zlwk
-hoderudwlrq e| wkh Edqn ri Lwdo|,> wkh ruljlqdo vhpl0dqqxdo iuhtxhqf| zdv frqyhuwhg lqwr txdu0
-whuo| yld lqwhusrodwlrq1 Gdwd iru Vsdlq frph iurp wkh Uhvlghqwldo Surshuw| Sulfh Lqgh{ shu
-Vtxduh Phwhu/ surylghg e| wkh Plqlvwhulr gh Hfrqrpld | Kdflhqgd1 Iru Vzhghq/ wkh gdwd zhuh
-surylghg e| wkh Fhqwudo Vwdwlvwlfdo R!fh Krxvh Sulfh Lqgh{561 Ilqdoo|/ XN gdwd fdph iurp wkh
-Qdwlrqzlgh Dqjold txduwhuo| krxvh sulfh lqgh{ iru doo surshuwlhv1 Doo wkh wlph vhulhv duh dydlodeoh
-dssur{lpdwho| iurp wkh plg *:3v/ zlwk wkh h{fhswlrq ri Vsdlq +zkhuh wkh vhulhv ehjlqv lq 4<;:,
-dqg XN +4<96,1 Wr pdnh uhvxowv pruh frpsdudeoh dfurvv frxqwulhv/ wkh hvwlpdwlrq shulrg iru
-XN vwduwv lq 4<:61
-Wkh uhvxowlqj vdpsohv wxuqhg rxw wr eh dv iroorzv= iru Iudqfh/ 4<:;=4 0 4<<:=7 +;3 re0
-vhuydwlrqv,> iru Jhupdq|/ 4<:6=4 0 4<<;=6 +436 revhuydwlrqv,> iru Lwdo|/ 4<:6=4 0 4<<;=5 +435
-revhuydwlrqv,> iru Vsdlq/ 4<;:=7 0 4<<;=7 +78 revhuydwlrqv,> iru Vzhghq/ 4<::=7 0 4<<;=7 +;8 re0
-vhuydwlrqv,> iru Xqlwhg Nlqjgrp/ 4<:6=404<<;=6 +436 revhuydwlrqv,1 Wkh uhvxowlqj krxvh sulfh
-lqglfhv/ wrjhwkhu +iru frpsdulvrq sxusrvhv, zlwk wkh frqvxphu sulfh lqglfhv/ duh vkrzq lq Iljxuh
-41 Wkh Iljxuh surylghv hylghqfh ri wkh odujh vzlqjv lq krxvh sulfhv wkdw kdyh rffxuuhg lq doo
-wkh frxqwulhv lq wkh odvw ghfdghv/ zlwk surorqjhg f|fohv ri lqfuhdvlqjo| ulvlqj sulfhv iroorzhg e|
-voxpsv> rvfloodwlrqv lq uhdo krxvh sulfhv vhhp wr kdyh ehhq sduwlfxoduo| vwurqj lq Vzhghq dqg
-54 Vlqfh 4<:;/ dq dqqxdo lqgh{ ri uhvlghqwldo surshuw| sulfhv kdv ehhq hvwlpdwhg lq Iudqfh rq wkh edvlv ri wkh
-sruwirolr ri wkh IQDLP qdwlrqdo ihghudwlrq ri uhdo hvwdwh djhqwv/ zklfk frpsulvhv 553333 surshuwlhv1 Wkh Edqtxh
-gh Iudqfh kdv wkhq wudqviruphg wklv lqgh{ lqwr d txduwhuo| rqh e| surolqj xvlqj wkh lqgh{ ri wkh Fkdpeuh
-V|qglfdoh ghv qrwdluhv iru rog xqrffxslhg dsduwphqwv vrog lq Sdulv1
-55 Wkh DXILQD2HUD lqgh{ vkrzv wkh dyhudjh sulfh iru d fxelf phwuh hqforvhg duhd iru d 6 |hdu rog krxvh
-zlwk dq dyhudjh lqgh{1 Lw lv frqvwuxfwhg wkurxjk vxuyh|v frqgxfwhg e| DXILQD2HUD dfurvv uhdo hvwdwh djhqwv
-lq wkh frxqwu|1
-Lq wkh zrugv ri Kropdqv +4<<7,/ Jhupdq krxvh sulfh klvwru| lv idu iurp up1 Krzhyhu/ wkh vhulhv surylghg
-e| Dxqd/ zklfk lv xvhg lq wklv sdshu/ lv vlplodu wr wkdw frqvwuxfwhg e| Kropdqv +4<<7, xvlqj flw|0ohyho gdwd
-surylghg e| wkh hvwdwh djhqf| Ulqj Ghxwvfkhu Pdnohu1
-56 Wkh Vzhglvk krxvh sulfh vhulhv lv frqvwuxfwhg dv zhljkwhg phdq ri sulpdu| dqg ohlvxuh krphv +L wkdqn Ekdudw
-Edurw iru nlqgo| surylglqj ph zlwk wkh vhulhv,1
-18                                                                                                      ECB Working Paper No 18 G April 2000
-XN> shulrgv ri idoolqj qrplqdo krxvh sulfhv kdyh ehhq frpprq lq doo wkh frxqwulhv1
-Wkh rwkhu vhulhv zhuh doo rewdlqhg iurp Lqwhuqdwlrqdo Ilqdqfldo Vwdwlvwlfv ri wkh LPI= | lv
-phdvxuhg e| +orj ri, JGS dw frqvwdqw sulfhv/ vhdvrqdoo| dgmxvwhg> l lv d phdvxuh ri d vkruw0whup
-lqwhuhvw udwh/ h{suhvvhg lq shufhqwdjhv/ qdpho| prqh| pdunhw udwh iru Lwdo|/ fdoo prqh| udwh iru
-Iudqfh dqg Jhupdq|/ 6 prqwkv W0Eloo udwh iru Vsdlq/ Vzhghq dqg Xqlwhg Nlqjgrp> uhdo prqh|
-ps lv wkh +gh dwhg e| wkh frqvxphu sulfh lqgh{, orj ri P5 iru Iudqfh/ Vsdlq dqg Vzhghq> P4
-iru Jhupdq|/ Lwdo| dqg XN1 Wkh uhvxowv glg qrw ydu| pxfk xvlqj P5 lqvwhdg ri P4 iru wkh odvw
-wkuhh frxqwulhv/ exw P4 surgxfhg pruh sodxvleoh hvwlpdwhv ri wkh frlqwhjudwlqj yhfwruv dqg ri
-wkh uhvsrqvhv wr vkrfnv1 Lq dwlrq/ / lv phdvxuhg e| wkh dqqxdolvhg txduwhuo| fkdqjh ri wkh +orj
-ri, frqvxphu sulfh lqgh{1
-Iru hdfk frxqwu|/ wkh hvwlpdwhg YDU frqwdlqhg d odj ohqjwk ri 6 +Iudqfh/ Vsdlq/ Vzhghq,
-ru 7 +Jhupdq|/ Lwdo|/ XN,/ ghshqglqj rq zklfk zdv vx!flhqw wr rewdlq qrlvholnh uhvlgxdov1
-Wzr lpsxovh gxpplhv zhuh xvhg wr fruuhfw iru Jhupdq uhxqlfdwlrq +4<<3=6 dqg 4<<4=4,1 Dq
-lpsxovh gxpp| yduldeoh iru XN iru 4<;:=4 zdv lqwurgxfhg wr fdswxuh d fryhudjh euhdn lq wkh
-prqh|.txdvl0prqh| LIV vhulhv1
-715 Xqlw urrw dqg Frlqwhjudwlrq Whvwv
-Dv d suholplqdu| vwhs/ dqg lq rughu wr vshfli| wkh prgho fruuhfwo|/ wkh orqj0uxq surshuwlhv ri wkh
-wlph0vhulhv lqyroyhg/ l1h1 wkhlu ghjuhh ri lqwhjudwlrq dqg wkh hyhqwxdo suhvhqfh ri frlqwhjudwlqj
-uhodwlrqvklsv/ pxvw eh fkdudfwhulvhg1
-71514 Xqlw urrw whvwv
-Wzr xqlyduldwh xqlw0urrw whvwv zhuh frqgxfwhg/ wkh dxjphqwhg Glfnh|0Ixoohu whvw dqg wkh Skloolsv0
-Shuurq +4<;;, whvw1 Wdeohv 714 dqg 715 uhsruw wkh uhvxowv iurp wkh whvwv1 Ryhudoo/ wkh slfwxuh
-wkdw hphujhv iurp wkh whvwv klqwv wkdw wkh yduldeohv duh lqwhjudwhg ri rughu rqh/ dowkrxjk/ xvlqj
-wkh Skloolsv0Shuurq whvw/ lq pdq| frxqwulhv wkh qxoo k|srwkhvlv ri d xqlw urrw lq wkh lq dwlrq udwh
-lv uhmhfwhg lq idyrxu ri vwdwlrqdulw|1
-71515 Frlqwhjudwlrq whvwv
-Wklv vxe0vhfwlrq ghvfulehv wkh hvwlpdwlrq ri wkh frlqwhjudwlrq yhfwruv iru hdfk frxqwu| zlwk
-wkh pxowlyduldwh frlqwhjudwlrq whfkqltxhv ghvfulehg e| Mrkdqvhq dqg Mxvholxv +4<<3,1 Wkh wkuhh
-frlqwhjudwlqj yhfwruv fdq eh lqwhusuhwhg dv d prqh| ghpdqg vfkhgxoh/ d orqj uxq krxvlqj vxsso|
-fxuyh dqg d Ilvkhu htxdwlrq1 Krzhyhu/ wkh yhfwruv vkrxog eh lqwhusuhwhg zlwk fduh/ dw ohdvw iru
-wkuhh uhdvrqv= 4, wkh vshflfdwlrq ri wkh prqh| ghpdqg vfkhgxoh lv suredeo| xqghusdudphwulvhg/
- ECB Working Paper No 18 G April 2000                                                                                                     19
-Wdeoh 714= Dxjphqwhg Glfnh|0Ixoohu xqlw urrw whvwv
-IUDQFH
-JHUPDQ\
-LWDO\
-VSDLQ
-VZHGHQ
-X1N1
-+
-03143
-3147
-05156
-031<<
-03195
-0313<
-6R
-0415:
-4143
-031;;
-03154
-0513:
-03147
-R
-05194
-05169
-05164
-05197
-0516<
-04173
-
-031<:
-05195
-0418<
-03154
-0419:
-05164
-Z
-03198
-05153
-04194
-0319;
-041::
-051:9
-Dxjphqwhg Glfnh|0Ixoohu xqlw urrw whvwv vwdwlvwlfv iru wkh vhulhv/ zlwk d odj ohqjwk ri 6 iru Iudqfh/ Vsdlq dqg
-Vzhghq/ 7 iru Jhupdq|/ Lwdo| dqg XN> - lqglfdwhv uhmhfwlrq ri wkh qxoo k|srwkhvlv ri xqlw urrw dw wkh <8(
-frqghqfh ohyho/ -- dw wkh <<( ohyho 0 ghshqglqj rq wkh vdpsoh vl}h/ wkh <8( PdfNlqqrq +4<<4, fulwlfdo ydoxh
-udqjhv iurp 051;< wr 051<5 01
-Wdeoh 715= Skloolsv0Shuurq Xqlw urrw whvwv
-IUDQFH
-JHUPDQ\
-LWDO\
-VSDLQ
-VZHGHQ
-X1N1
-+
-03178
-03176
-05138
-041::
-03195
-0313<
-6R
-0318;
-31<;
-04144
-031;5
-041<8
-414<
-R
-05177
-0615:-
-041<7
-0713;--
-041:4
-0316<
-
-04146
-0517;
-041<3
-0318<
-041:6
-0516;
-Z
-04186
-071<;--
-051<:-
-06139-
-071<4--
-0717;--
-Skloolsv0Shuurq xqlw urrw whvwv vwdwlvwlfv iru wkh vhulhv/ zlwk d odj ohqjwk ri 6 iru Iudqfh/ Vsdlq dqg Vzhghq/ 7 iru
-Jhupdq|/ Lwdo| dqg XN> - lqglfdwhv uhmhfwlrq ri wkh qxoo k|srwkhvlv ri xqlw urrw dw wkh <8( frqghqfh ohyho/ --
-dw wkh <<( ohyho 0 ghshqglqj rq vdpsoh vl}h/ wkh <8( fulwlfdo ydoxh udqjhv iurp 051;< wr 051<5 0 1
-dv orqj0whup lqwhuhvw udwhv/ qdqfldo zhdowk dqg lq dwlrq duh h{foxghg iurp wkh vshflfdwlrq>
-5, qdqfldo lqqrydwlrq lv olnho| wr dhfw wkh vwdelolw| ri prqh| ghpdqg ryhu wkh vdpsoh> 6,
-frlqwhjudwlqj uhodwlrqvkls duh lghqwlhg rqo| xs wr d olqhdu frpelqdwlrq/ khqfh qr vlqjoh yhfwru
-fdq eh hdvlo| lqwhusuhwhg dv ghvfulelqj d phdqlqjixo hfrqrplf uhodwlrqvkls571
-Frlqwhjudwlrq whvwv zhuh uxq iru wkh vl{ frxqwulhv1 Dffruglqj wr wkh odpegd0pd{ vwdwlvwlf
-+vhh Mrkdqvhq dqg Mxvholxv/ 4<<3/ iru d ghvfulswlrq,/ wkh qxoo k|srwkhvlv ri qr0frlqwhjudwlrq
-yhuvxv rqh frlqwhjudwlrq yhfwru/ ri rqh frlqwhjudwlrq yhfwru yhuvxv wzr zdv uhmhfwhg dw wkh <3(
-frqghqfh ohyho lq doo frxqwulhv1 Wkuhh frlqwhjudwlqj yhfwruv zhuh vxjjhvwhg lq Iudqfh/ Jhupdq|
-dqg Vzhghq/ zkhuhdv wzr dsshdu pruh olnho| lq Jhupdq| dqg Lwdo|/ dqg irxu lq Vsdlq1 Krzhyhu/
-wkhruhwlfdo uhdvrqv wr eholhyh wkdw d frlqwhjudwlqj udqn ri wkuhh ohdgv wr d sodxvleoh hfrqrplf
-lqwhusuhwdwlrq ri wkh vkrfnv kdyh ohg ph wr edvh wkh uhvw ri wkh dqdo|vlv rq d udqn ri u @ 61
-57 Wkh olwhudwxuh rq wklv lvvxh lv ri frxuvh hqruprxv1 Wr qdph d ihz vwxglhv/ vhh Idvh dqg Zlqghu +4<<;,/
-Khqgu| +4<<8,/ Hulfvvrq +4<<;,1
-20                                                                                                      ECB Working Paper No 18 G April 2000
-Wdeoh 716= Sdudphwhu hvwlpdwhv ri wkh frlqwhjudwlrq yhfwruv
-Frxqwu|
-Shulrg
-FY4
-FY5
-FY6
-S0ydoxh
-&fy <3(
-+b0pd{,
-Iudqfh
-:;=7 0 <:=7
-6R2 ' +n Dfee
-Ef.e o
-R '.
-EfD +
-| ' Z|
-144
-6
-Jhupdq|
-:6=4 0 <;=6
-6R '2f.D
-Ef2b +n D
-E2.2 o
-R 'fS
-Ef2 +
-| ' Z|
-143
-5
-Lwdo|
-:6=4 0 <;=5
-6R ' ebD+n f
-Eefb o
-R '2e
-EH. +
-| ' Z|
-186
-5
-Vsdlq
-;:=7 0 <;=7
-6R2 'SD
-EH +3 S.
-E2 o
-R 'Sb
-E2 +
-| ' Z|
-134
-6
-Vzhghq
-::=7 0 <;=7
-6R2 ' +n D.
-EHe o
-R 'HSe
-EDb +
-| ' Z|
-137
-6
-XN
-:6=4 0 <;=6
-6R 'b2S
-E2 +3 .f2
-EDD o
-R ' S
-E +
-| ' Z|
-1;5
-7
-Sdudphwhu hvwlpdwhv ri wkh wkuhh frlqwhjudwlrq yhfwruv +vwdqgdug huuruv lq eudfnhwv,1 Wkh qh{w wr odvw froxpq
-uhihuv wr wkh R0ydoxh ri wkh olnholkrrg udwlr whvw vwdwlvwlf iru ryhulghqwli|lqj uhvwulfwlrqv rq wkh frlqwhjudwlqj yhfwruv/
-zkhuhdv wkh odvw froxpq uhihuv wr wkh qxpehu ri frlqwhjudwlqj yhfwruv vxjjhvwhg e| wkh odpegd0pd{ vwdwlvwlf dw
-wkh <3( frqghqfh ohyho1
-716 Frlqwhjudwlrq uhodwlrqv
-Wdeoh 716 uhsruwv wkh hvwlpdwhg wkuhh frlqwhjudwlqj yhfwruv iru hdfk frxqwu| jlyhq rqh ryhu0
-lghqwli|lqj uhvwulfwlrq rq wkh frlqwhjudwlqj vsdfh/ wrjhwkhu zlwk s0ydoxhv iru wkh ryhu0lghqwli|lqj
-uhvwulfwlrq lpsrvhg xsrq wkh frlqwhjudwlqj yhfwruv1 Wkh uhvwulfwlrqv zhuh uhmhfwhg dw wkh <8(
-frqghqfh ohyho rqo| lq Vzhghq dqg Vsdlq581 Vlqfh lw kdv ehhq vkrzq +Mdfrevrq/ Yuhglq dqg
-Zduqh/ 4<<;,1 wkdw wkh olnholkrrg udwlr whvw iru k|srwkhvlv derxw wkh frlqwhjudwlrq yhfwruv iru
-d jlyhq udqn whqgv wr eh ryhuvl}hg/ L suhihu wr suhvhqw iru uhdvrqv ri vsdfh rqo| wkh uhvwulfwhg
-frlqwhjudwlqj yhfwruv/ zlwk vwdqgdug huuruv lq sduhqwkhvhv= wkh orvv ri lqirupdwlrq vkrxog qrw eh
-juhdw/ dv xquhvwulfwhg dqg uhvwulfwhg yhfwruv +xsrq d frqyhqlhqw urwdwlrq ri wkh odwwhu, vkrxog eh
-vlplodu1
-D ihz frpphqwv duh lq rughu jlyhq wkh hylghqfh rq wkhvh frlqwhjudwlqj yhfwruv1
-4, Wkh hvwlpdwhg lqfrph hodvwlflw| ri prqh| ghpdqg e+ lv dozd|v juhdwhu wkdq rqh lq wkh
-fdvhv lq zklfk lv qrw uhvwulfwhg wr xqlw|1 Wklv pljkw eh wkh frqvhtxhqfh ri rplwwlqj zhdowk
-yduldeohv lq wkh prqh| ghpdqg/ vxfk dv krxvlqj zhdowk/ zklfk lv srvlwlyho| fruuhodwhg zlwk
-lqfrph1
-5, Wkh hvwlpdwhg vhpl0hodvwlflw| ri prqh| ghpdqg zlwk uhvshfw wr wkh vkruw0whup lqwhuhvw
-udwh/ e/ lv qhjdwlyho| vljqhg rqo| lq wzr fdvhv rxw ri vl{1 Iru Iudqfh dqg Vzhghq/ wkh lpsolhg
-hodvwlflw| ri uhdo P5 lv vljqlfdqwo| srvlwlyh= |hw d srvlwlyh hodvwlflw| lv sodxvleoh rq wkhruhwlfdo
-jurxqgv/ dv d qhjdwlyh frh!flhqw vkrxog eh h{shfwhg d sulrul rqo| rq +vrph phdvxuh ri, qduurz
-prqh|/ dv glvfxvvhg iru lqvwdqfh e| Idvh dqg Zlqghu +4<<;, dqg Hulfvvrq +4<<;,1 Wklv vshfl0
-fdwlrq lv wkdw lw lpsolhv wkh vrphkrz frxqwhuidfwxdo uhvxow wkdw wkh qrplqdo vkrfn |lhogv kljkhu
-58 Lq Iudqfh dqg Vzhghq/ L lpsrvhg xqlw hodvwlflw| ri prqh| zlwk uhvshfw wr lqfrph/ dv wkh xquhvwulfwhg lqfrph
-hodvwlflw| zdv phdvxuhg zlwk juhdw lpsuhflvlrq dqg ohg wr lpsodxvleoh hvwlpdwhv iru wkh prqh| ghpdqg hodvwlflwlhv1
-ECB Working Paper No 18 G April 2000                                                                                                      21
-qrplqdo udwhv dqg kljkhu lq dwlrq lq wkh orqj0uxq/ exw dovr orzhu uhdo prqh| edodqfhv1 Wklv
-uhvxow grhv qrw dhfw wkh lqwhusuhwdwlrq ri wkh wudqvlwru| vkrfnv/ dqg frxog eh pruh jurxqghg
-rq hfrqrplf wkhru| li zh odehoohg wkh glvwxuedqfh dv/ vd|/ d yhorflw| vkrfn udwkhu wkdq d
-fuhglelolw| vkrfn1
-6, Wkh hvwlpdwhg frlqwhjudwlrq yhfwru ehwzhhq uhdo krxvh sulfhv dqg JGS idyrxuv dq lqwhu0
-suhwdwlrq ri wkh orqj0uxq xszdug wuhqg lq krxvh sulfhv wkdw/ ghvslwh wkh vkruw gdwdvhwv/ vhhpv
-wr eh frqvlvwhqw dfurvv frxqwulhv591 Wkh srlqw hvwlpdwhv ri wkh frh!flhqw  udqjh iurp d orzhu
-olplw ri 1396 iru Jhupdq| wr 419< iru Vsdlq1 Wkhvh hvwlpdwhv vkrxog lq dq| fdvh eh wuhdwhg zlwk
-juhdw fduh/ dv wkh| duh yhu| vhqvlwlyh wr wkh shulrg wkh| fryhu= frlqwhjudwlrq ehwzhhq uhdo krxvh
-sulfhv dqg rxwsxw fdq eh d vwdwlvwlfdo surshuw| ri wkh gdwd/ exw sxwwlqj vwuxfwxudo hpskdvlv rq
-furvv0frxqwu| glhuhqfhv zrxog eh suredeo| wrr dpelwlrxv/ qrw ohdvw ehfdxvh wkh krxvh sulfh
-lqglfhv duh qrw krprjhqrxv dfurvv frxqwulhv1
-8 Hpslulfdo hylghqfh
-814 Lpsxovh uhvsrqvhv
-Wklv vhfwlrq orrnv dw wkh hfrqrphwulf uhvxowv ri wkh vshflfdwlrq1 Wkh sxusrvh ri wklv vhfwlrq lv
-wkuhhirog=
-4, Wr fkhfn zkhwkhu wkh lghqwlfdwlrq vfkhph ohdgv wr sodxvleoh hvwlpdwhv ri wkh vkrfnv> dv
-Fkulvwldqr/ Hlfkhpedxp dqg Hydqv +4<<<, pdnh fohdu/ wkhuh lv qr frqyhujhqfh lq wkh olwhudwxuh
-rq d sduwlfxodu vhw ri dvvxpswlrqv iru lghqwli|lqj wkh hhfwv ri dq h{rjhqrxv vkrfn wr prqhwdu|
-srolf|1 Wkh vdph uhpdun dssolhv wr rwkhu vkrfnv wkdw gulyh hfrqrplf xfwxdwlrqv +Frfkudqh/
-4<<7,1 \hw wkh lqihuhqfh xsrq wkh hhfwv ri pdq| ri wkhvh vkrfnv lv urexvw dfurvv d odujh vxevhw
-ri lghqwlfdwlrq vfkhphv wkdw kdyh ehhq wulhg lq wkh olwhudwxuh= diwhu d frqwudfwlrqdu| prqhwdu|
-vkrfn/ lqwhuhvw udwhv jr xs/ sulfh ohyho uhvsrqgv vorzo|/ rxwsxw dqg prqhwdu| djjuhjdwhv idoo1
-Diwhu d srvlwlyh ghpdqg vkrfn/ rxwsxw/ lqwhuhvw udwhv dqg sulfhv lqfuhdvh/ dv lq Jdol +4<<5, dqg
-Jhuodfk dqg Vphwv +4<<8,1
-5, Wr frpsduh wkh uhvsrqvh ri hfrqrplhv iroorzlqj d vkrfn1
-Zh zrxog h{shfw wkdw wkh
-vdph lghqwlfdwlrq vfkhph |lhogv frqvlvwhqw hvwlpdwhv dfurvv hfrqrplhv1 Lw zrxog eh kdug wr
-odeho d wudqvlwru| glvwxuedqfh prqhwdu| vkrfn li lw lpsolhv d vhw ri lpsxovh uhvsrqvhv wkdw lv
-lqfrqvlvwhqw zlwk hyhu| hohphqw lq wkh vhw ri pdfurhfrqrplf prghov wkdw zh zlvk wr glvfulplqdwh
-ehwzhhq1
-59 Wklv lv eurdgo| lq olqh zlwk wkh hylghqfh wkdw wkh Nhqqhg| dqg Dqghuvrq +4<<7, vwxg| rq 48 frxqwulhv ryhu
-wkh odvw 58 |hduv surylghv= d orrn dw wkh judskv iurp sdjh 65 wr 68 ri wkhlu sdshu vkrzv wkdw lq 46 rxw ri 48
-qdwlrqv uhdo krxvh sulfhv zhuh kljkhu lq 4<<6 wkdq lq 4<:31 Vdph hylghqfh lv irxqg lq Fxwohu +4<<8, iru wkh J:
-hfrqrplhv iurp 4<:3 wr 4<<51
-22                                                                                                                                             ECB Working Paper No 18 G April 2000
-Wdeoh 814= Orqj uxq lpsdfw ri wkh shupdqhqw vkrfnv
-IUDQFH
-JHUPDQ\
-LWDO\
-VSDLQ
-VZHGHQ
-XN
-vxs1
-qrp1
-vxs1
-qrp1
-vxs1
-qrp1
-vxs1
-qrp1
-vxs1
-qrp1
-vxs1
-qrp1
-+
-4154
-3133
-31<:
-3133
-31;;
-3133
-4134
-3133
-4155
-3133
-31;6
-3133
-Z
-03135
-317:
-03154
-3186
-3134
-3175
-3138
-3166
-03153
-3163
-3143
-3179
-6R
-413<
-5169
-41<7
-314<
-4177
-4179
-4183
-04154
-314;
-4195
-31::
-06164
-R
-3185
-3133
-3139
-3133
-31<8
-3133
-41:4
-3133
-4139
-3133
-317;
-3133
-o
-03135
-317:
-03154
-3186
-3134
-3175
-3138
-3166
-03153
-3163
-3143
-3179
-Orqj uxq lpsdfw ri wkh wzr shupdqhqw +vxsso| dqg qrplqdo, vkrfnv/ rqh vwdqgdug huuru lq vl}h +shufhqwdjh
-fkdqjhv,1
-6, Wr dvvhvv krz krxvh sulfhv uhvsrqg wr vkrfnv/ zkhwkhu wkh uhvsrqvhv duh frqvlvwhqw dfurvv
-hfrqrplhv/ zkdw pljkw eh wkh uhdvrqv iru wkhvh uhvsrqvhv/ dqg zkhwkhu lw lv srvvleoh wr lqihu dq|
-sduwlfxodu wudqvplvvlrq phfkdqlvp zlwk zklfk wkh lpsxovh uhvsrqvhv iru krxvh sulfhv pljkw eh
-frqvlvwhqw1 Qhhgohvv wr vd|/ wklv lv d yhu| gl!fxow wdvn/ ehfdxvh ri wkh xqfhuwdlqw| vxuurxqglqj wkh
-lpsxovh uhvsrqvhv dqg ehfdxvh wkh hpslulfdo surfhgxuh rqo| lghqwlhv htxloleulxp uhvsrqvhv
-wr prqhwdu| vkrfnv1
-81414 Shupdqhqw vkrfnv
-Wdeoh 814 suhvhqwv wkh hvwlpdwhv ri wkh orqj0uxq lpsdfwv ri vxsso| dqg ghpdqg vkrfnv +fru0
-uhvsrqglqj wr wkh S pdwul{ glvfxvvhg deryh, iru wkh 9 frxqwulhv dqdo|vhg1 Wklv wdeoh vkrzv/
-iru lqvwdqfh/ wkdw wkh orqj0uxq hhfw ri d rqh0vwdqgdug ghyldwlrq vxsso| vkrfn udlvhv rxwsxw lq
-Iudqfh e| 4154 shufhqwdjh srlqwv +wkh jxuh lq wkh wrs ohiw sdqho,/ uhdo edodqfhv +yld lqfuhdvhg
-prqh| ghpdqg, e| 413< shufhqw/ uhdo krxvh sulfhv e| 3185 shufhqw/ dqg kdv d qhjoljleoh hhfw
-+03135 shufhqw, rq lq dwlrq dqg lqwhuhvw udwhv1
-Vxsso| vkrfnv
-Wkh uvw urz ri Iljxuhv 5 wr : surylgh wkh hvwlpdwhg uhvsrqvh ri wkh hfrqrp|
-wr d idyrxudeoh/ rqh0vwdqgdug ghyldwlrq vkrfn wr wkh djjuhjdwh vxsso| glvwxuedqfh/ dorqj zlwk
-rqh0vwdqgdug huuru dv|pswrwlf frqghqfh edqgv5:1 Edvhg rq wkh vshflfdwlrq ri wkh frlqwh0
-judwlrq yhfwruv dqg rq wkh pdwul{ ri frpprq wuhqgv/ wklv vkrfn kdv ehhq lghqwlhg xqghu wkh
-dvvxpswlrq wkdw lw ohdgv wr dq lqfuhdvh ri rxwsxw lq wkh orqj0uxq/ dv zhoo dv wr dq lqfuhdvh lq uhdo
-krxvh sulfhv/ zlwk sursruwlrqv glfwdwhg e| wkh frh!flhqw  phdvxulqj wkh orqj0uxq hodvwlflw| ri
-uhdo krxvh sulfhv wr JGS1 D furvv frxqwu| frpsdulvrq ri wkh lpsxovh uhvsrqvhv fdq eh vhhq lq
-Iljxuh ;/ zkhuh L dovr sorw wkh lpsolhg uhvsrqvhv ri frqvxphu +S,/ qrplqdo krxvh sulfhv +K,/
-dqg h{ srvw uhdo lqwhuhvw udwhv +U  GS,1 L zloo uhshdw d vlplodu h{huflvh iru wkh rwkhu vkrfnv dv
-5: Iru d glvfxvvlrq rq krz wr frpsxwh frqghqfh lqwhuydov iru wkh frpprq wuhqgv prgho/ vhh Zduqh +4<<6,
-dqg Yoddu +4<<;,1
- ECB Working Paper No 18 G April 2000                                                                                                     23
-zhoo1
-Wkh lqlwldo hhfw rq rxwsxw lv srvlwlyh iru doo wkh frxqwulhv= lq wkh lpsdfw shulrg/ wkh srlqw
-hvwlpdwh udqjhv iurp 3135 shufhqw lq Lwdo| wr 319 shufhqw lq Xqlwhg Nlqjgrp1
-Diwhu derxw
-wkuhh |hduv/ rxwsxw vwdelolvhv dw lwv kljkhu vwhdg| vwdwh ohyho kdylqj lqfuhdvhg e|/ rq dyhudjh/ 4
-shufhqwdjh srlqw1 Lq doo wkh frxqwulhv exw Vsdlq frqvxphu sulfhv duh ehorz wkh edvholqh diwhu
-rqh |hdu/ dv suhglfwhg e| d vlpsoh djjuhjdwh ghpdqg 0 djjuhjdwh vxsso| prgho1 Wkh qrplqdo
-lqwhuhvw udwh kdugo| pryhv/ dv wkh lqfuhdvh lq prqh| ghpdqg lv vdwlvhg e| d whpsrudu| ghfuhdvh
-lq wkh sulfh ohyho dqg e| lqfuhdvhg prqh| vxsso|1 Lq doo wkh frxqwulhv/ wkh orqj0uxq hhfw ri d
-vxsso| vkrfn rq lq dwlrq dqg qrplqdo udwhv lv qhjoljleoh/ dowkrxjk wkhuh lv d qhjdwlyh orqj uxq
-hhfw rq wkh ohyho ri frqvxphu sulfhv5;1
-Lq doo frxqwulhv/ krxvh sulfhv jr grzq iru vrph txduwhuv ehiruh lqfuhdvlqj wr wkhlu qhz
-vwhdg| vwdwh/ kljkhu ohyho1 Lq d shuihfw fdslwdo pdunhw/ rqh zrxog h{shfw ryhuvkrrwlqj ri krxvh
-sulfhv iroorzhg wkhq e| d judgxdo dgmxvwphqw wrzdugv wkh orqj0uxq/ kljkhu htxloleulxp ohyho1
-Rqh srvvleoh mxvwlfdwlrq iru wkh uhvxow lv wkh iroorzlqj= e| udlvlqj wkh uhwxuq wr fdslwdo/ wkh
-vxsso| vkrfn jhqhudoo| lqfuhdvhv uhdo lqwhuhvw udwhv> wklv whpsrudu| hhfw uhgxfhv wkh ghpdqg
-iru krxvhv> rqo| zkhq uhdo udwhv duh edfn wr wkh edvholqh/ wkh lqfrph hhfw ehfrphv juhdwhu
-wkdq wkh vxevwlwxwlrq +xvhu frvw, hhfw/ dqg uhdo krxvh sulfhv jr xs1 Ylvxdo lqvshfwlrq ri Iljxuh
-; vxjjhvwv d qhjdwlyh fruuhodwlrq ehwzhhq ehkdylrxu ri uhdo udwhv dqg ehkdylrxu ri uhdo krxvh
-sulfhv1
-Qrplqdo vkrfn
-Wkh shupdqhqw qrplqdo lqqrydwlrq +vhfrqg urz ri Iljxuhv 5 wr :, udlvhv
-lq dwlrq dqg qrplqdo udwhv e| wkh vdph dprxqw lq wkh orqj uxq1 Lw lv lqdgylvdeoh wr sxw wrr
-pxfk vwuxfwxudo hpskdvlv rq wklv vkrfn/ hvshfldoo| ehfdxvh/ dv vkrzq lq Iljxuh </ wkhuh lv qrw
-d krprjhqhrxv/ glvfhuqleoh sdwwhuq dfurvv hfrqrplhv lq wkh uhvsrqvh ri wkh yduldeohv1
-Rqh
-lqwhusuhwdwlrq lv wkdw ri d shupdqhqw lqqrydwlrq wr wkh h{shfwhg udwh ri lq dwlrq> wkhuhiruh wkh
-dvvrfldwhg uhvsrqvhv lq krxvh sulfhv fdq whvw zkhwkhu krxvhv duh ylhzhg dv d khgjh djdlqvw
-lq dwlrq1 Lq Vzhghq/ Lwdo| dqg Jhupdq| uhdo krxvh sulfhv jr xs/ dowkrxjk wkh huuru edqgv duh
-vrphzkdw odujh1 Wklv lqfuhdvh lq h{shfwhg lq dwlrq dovr holflwv dq xszdug uhvsrqvh ri qrplqdo
-lqwhuhvw udwhv/ zklfk lv vxjjhvwlyh ri dq dqwl0lq dwlrqdu| prqhwdu| srolf| iurp wkh prqhwdu|
-dxwkrulw|= |hw wklv prqhwdu| srolf| uhdfwlrq grhv qrw eulqj derxw dq| vljqlfdqw hhfw lq wkh
-krxvlqj pdunhw1
-5; Vsdlq lv wkh rqo| h{fhswlrq1
-24                                                                                                      ECB Working Paper No 18 G April 2000
-81415 Whpsrudu| vkrfnv
-Prqhwdu| vkrfn
-L vhsdudwh wkh wkuhh whpsrudu| vkrfnv lpsrvlqj uhvwulfwlrqv rq wkhlu frqwhp0
-srudqhrxv hhfwv lq d uhfxuvlyh idvklrq1 Iroorzlqj zlghvsuhdg wudglwlrq lq wkh YDU olwhudwxuh/
-wkh prqhwdu| glvwxuedqfh lv lghqwlhg xqghu wkh dvvxpswlrq wkdw lw grhv qrw dhfw frqwhpsrud0
-qhrxvo| rxwsxw dqg lq dwlrq1 Wkh lghqwlfdwlrq vfkhph vhhpv vxffhvvixo/ dv hylghqfh lq Iljxuh
-43 +dqg wklug urz ri Iljxuhv 5 wr :, vkrzv wkdw wklv vkrfn holflwv xszdug suhvvxuh lq lqwhuhvw udwh/
-d frqwudfwlrq lq wkh prqhwdu| djjuhjdwh5</ dqg d whpsrudu| ghfolqh lq rxwsxw/ wkdw erwwrpv
-rxw dssur{lpdwho| ehwzhhq 7 dqg < txduwhuv diwhu wkh lpsxovh lq doo wkh frxqwulhv1 Wkhvh duh
-jhqhudo lqglfdwlrqv ri d frqwudfwlrqdu| prqhwdu| srolf| vwdqfh1
-Krz gr sulfhv uhvsrqgB Erwk frqvxphu sulfhv dqg krxvh sulfhv jr grzq/ zlwk vrph h{0
-fhswlrq1 Iru lqvwdqfh/ frqvxphu sulfhv duh deryh wkh edvholqh iru rqh |hdu lq Xqlwhg Nlqjgrp/
-Jhupdq| dqg Vzhghq1 Lq X1N1 dqg Vzhghq wklv sdwwhuq lv sodxvleoh/ dv yduldeoh udwh pruwjdjh
-frvwv kdyh d odujh zhljkw lq krxvhkrog exgjhwv/ dv zhoo dv rq phdvxuhg lq dwlrq> iru Jhupdq|
-wkh lqlwldo lqfuhdvh pljkw eh gxh wr wkh idfw wkdw sduw ri wkh lqqrydwlrq lq wkh lqwhuhvw udwh
-fdswxuhv vrph uhvlgxdo v|vwhpdwlf uhvsrqvh wr xqdffrxqwhg glvwxuedqfhv jhqhudwlqj lq dwlrqdu|
-suhvvxuhv631
-\hw wkh vkruw uxq uhvsrqvh lq krxvh sulfhv lv pxfk pruh surqrxqfhg/ dqg uhdo krxvh sulfhv
-vljqlfdqwo| ghfuhdvh lq yluwxdoo| doo wkh frxqwulhv1 D fruroodu| ri wklv lv wkdw krxvh sulfh lq dwlrq
-lv pruh vhqvlwlyh wkdq frqvxphu sulfh lq dwlrq wr d prqhwdu| lqqrydwlrq1
-Wkhuh duh pdq|
-jhqhudo uhdvrqv wkdw pljkw mxvwli| wklv uhvxow/ ri frxuvh/ dqg L ghihu d glvfxvvlrq ri wklv wr wkh
-qh{w vxevhfwlrq1 Lq zkdw iroorzv/ L wu| wr vhh zkhwkhu wkh glhuhqw uhvsrqvhv ri krxvh sulfhv fdq
-eh mxvwlhg e| orrnlqj dw wkh glhuhqw krxvlqj pdunhwv lq wkh frxqwulhv dqdo|vhg dqg zkhwkhu
-dqg krz wkhvh glhuhqfhv pljkw sod| d uroh lq wkh wudqvplvvlrq phfkdqlvp1
-Wr eh fohdu/ d gluhfw frpsdulvrq ri wkh vwdqfh ri prqhwdu| srolf| lv pdgh kdug e| wkh idfw
-wkdw d w|slfdo vkrfn ydulhv lq vl}h/ vkdsh dqg gxudwlrq dfurvv frxqwulhv/ dv zhoo dv e| wkh glhuhqw
-vdpsoh vl}hv641 Khuh L suhvhqw wzr vhwv ri frpsdudwlyh uhvsrqvhv= lq wkh uvw rqh +Iljxuh 43, wkh
-frqwudfwlrq lv rqh vwdqgdug huuru lq vl}h> lq wkh vhfrqg +Iljxuh 44,/ L uhvfdoh wkh lqlwldo lpsdfw
-rq wkh lqwhuhvw udwh wr eh wkh vdph +83 edvlv srlqwv, iru doo wkh frxqwulhv1
-5< Dowkrxjk uhdo edodqfhv whpsrudulo| lqfuhdvh lq Iudqfh dqg Xqlwhg Nlqjgrp/ wkh lpsolhg hhfw rq qrplqdo
-edodqfhv lv xqdpeljxrxvo| qhjdwlyh1
-63 Wklv lv d frpprq h{sodqdwlrq lq wkh olwhudwxuh wr mxvwli| wkh zhoo nqrzq sulfh sx}}oh/ l1h1 wkh idfw wkdw diwhu
-d frqwudfwlrqdu| prqhwdu| srolf| vkrfn frqvxphu sulfh lqlwldoo| lqfuhdvh udwkhu wkdq ghfuhdvh +h1j1/ Vlpv/ 4<<5,1
-64 Zkhq lw frphv wr frpsdudwlyh YDU vwxglhv/ wkh hylghqfh lv qrw yhu| frqfoxvlyh dv idu dv wkh lpsdfw ri
-prqhwdu| dqg rwkhu vkrfnv lv frqfhuqhg1 Wdeohv E14 dqg E15 lq wkh Dsshqgl{ E surylgh d dyrxu ri wkh xqfhuwdlqw|
-lqyroyhg lq hvwlpdwlqj +dqg frpsdulqj, wkh uhvsrqvhv ri vrph Hxurshdq hfrqrplhv wr dq lghqwlhg prqhwdu| srolf|
-vkrfn1 Dowkrxjk wkh hvwlpdwhv uhihu wr glhuhqw wlph vsdqv dqg wr vkrfnv ri glhuhqw pdjqlwxgh/ d txlfn jodqfh dw
-wkhvh Wdeohv vkrzv wkdw lw vhhpv dw ohdvw kd}dugrxv wr udqn wkh hfrqrplhv dffruglqj wr wkh vl}h ri wkhlu uhdfwlrq
-wr d prqhwdu| h{sdqvlrq +zkhwkhu lw lv dq lqfuhdvh lq vrph prqhwdu| djjuhjdwh ru d ghfuhdvh lq wkh vkruw0whup
-lqwhuhvw udwh,1
- ECB Working Paper No 18 G April 2000                                                                                                              25
-Rqfh wkh lqwhuhvw udwh lqfuhdvh lv uhvfdohg +Iljxuh 44,/ lw vhhpv wkdw Lwdo| dqg Xqlwhg Nlqj0
-grp h{shulhqfh eljjhvw krxvh sulfh xfwxdwlrqv zkhuhdv Iudqfh dqg Jhupdq| duh suredeo| dw
-wkh rwkhu h{wuhph +lq Jhupdq|/ uhdo krxvh sulfhv lqlwldoo| lqfuhdvh diwhu wkh frqwudfwlrq,/ zlwk
-Vsdlq dqg Vzhghq vrphzkhuh lq ehwzhhq1 Wr jlyh vrph txdqwlwdwlyh dyrxu/ vl{ txduwhuv diwhu
-wkh prqhwdu| wljkwhqlqj qrplqdo krxvh sulfhv duh uhvshfwlyho| 416 dqg 418 shu fhqw ehorz wkh
-edvholqh lq Lwdo| dqg XN/ zkhuhdv wkh| duh 319 dqg 314 shu fhqw ehorz lq Iudqfh dqg Jhupdq|1
-Uhdo krxvh sulfhv/ ri frxuvh/ idoo d elw ohvv/ jlyhq wkh prghudwh ghfuhdvh lq frqvxphu sulfhv1 Lw
-lv gl!fxow wr vd| zkhwkhu wkhvh uhvsrqvhv duh vljqlfdqwo| glhuhqw dfurvv frxqwulhv1 Krzhyhu/
-diwhu vl{ txduwhuv wkh orzhu frqghqfh edqg +rqh v1h1, iru wkh idoo lq Jhupdq| lv deryh wkh kljkhu
-rqh iru Xqlwhg Nlqjgrp/ wkxv vxjjhvwlqj wkdw wkhuh duh vrph vljqlfdqw glhuhqfhv ehwzhhq wkh
-prvw h{wuhph fdvhv1
-Wkh glhuhqw uhvsrqvhv fdq eh mxvwlhg dv iroorzv= frxqwulhv zlwk orz wudqvdfwlrq frvwv/ kljk
-ordq0wr0ydoxh udwlrv/ d odujh rzqhu0rffxslhg vhfwru dqg d odujh sursruwlrq ri yduldeoh0lqwhuhvw
-pruwjdjh ordqv vkrxog h{shulhqfh uhodwlyho| kljk uhdo krxvh sulfh yrodwlolw| dqg d juhdw uroh iru
-krxvlqj lq wkh lqwhuhvw udwh wudqvplvvlrq phfkdqlvp +vhh PPV/ 4<<;,1 Wkh hylghqfh khuh vhhpv
-wr frqup wklv frqmhfwxuh= wkh XN lv rqh ri wkh HX frxqwulhv zlwk orzhvw wudqvdfwlrq frvwv dv
-d shufhqwdjh ri sulfh +5(,/ zlwk pruwjdjh udwhv lq prvw ri wkh fdvhv uhylhzdeoh ru uhqhjrwldeoh/
-yhu| kljk ordq0wr0ydoxh udwlrv/ dqg d kljk rzqhu rffxslhg whqxuh udwh dv d shufhqwdjh ri wkh
-krxvlqj vwrfn1 Lq Lwdo|/ dowkrxjk prvw ri wkh ixqglqj iru krxvh sxufkdvh frphv iurp rzq ixqgv/
-wkh lpsdfw ri d prqhwdu| frqwudfwlrq lv olnho| wr dhfw krxvhkrogv zkr duh vwloo uhsd|lqj wkhlu
-pruwjdjh= Eduudq/ Frxghuw dqg Prmrq +4<<9, uhsruw wkdw :8 shu fhqw ri pruwjdjh fuhglw lv dw
-udwhv wkdw duh gluhfwo| lqgh{hg rq wkh vkruw whup udwh1 Krzhyhu/ ghvslwh wkh elj uhdfwlrq lq whupv
-ri krxvh sulfh yrodwlolw|/ wkh uhvsrqvh lq rxwsxw lv qrw yhu| vwurqj= ryhudoo/ wkdw vxjjhvwv wkdw lq
-Lwdo| krxvh sulfhv/ dowkrxjk yhu| yrodwloh/ gr qrw sod| d elj uroh lq wkh wudqvplvvlrq phfkdqlvp1
-Wkh Xqlwhg Nlqjgrp lv wkh frxqwu| wkdw lv dhfwhg prvw li zh xvh dv d phwulf iru wkh lpsdfw
-ri wkh vkrfn wkh frpelqhg hhfw rq rxwsxw dqg uhdo krxvh sulfhv1 Wr wklv dlp/ Iljxuh 45 vkrzv
-d sorw ri wkh uhvsrqvh ri JGS dqg uhdo krxvh sulfhv wr d 83 edvlv srlqw xqh{shfwhg lqfuhdvh lq
-wkh vkruw whup udwh1
-Jhupdq| dqg Iudqfh +dqg/ wr vrph h{whqw/ Vsdlq/ dowkrxjk wkh vdpsoh fryhuv rqo| d vpdoo
-shulrg vwduwlqj lq 4<;:, whqg wr eh dw wkh rssrvlwh vlgh ri wkh vshfwuxp1 Dv dujxhg e| PPV
-+4<<;,/ lq Jhupdq| whqxuh udwhv duh uhodwlyho| orz dqg wudqvdfwlrq frvwv dv d iudfwlrq ri wkh sulfh
-duh uhodwlyho| kljk1 Dovr/ wkh lqlwldo frqwudfwlrq pljkw vljqdo d fuhgleoh glvlq dwlrq srolf| e|
-wkh fhqwudo edqn lq wkh ixwxuh/ wkxv orzhulqj h{shfwhg lq dwlrq dqg ixwxuh udwhv1 Vxusulvlqjo|/
-wkrxjk/ wkh uhvsrqvh ri rxwsxw lv yhu| vwurqj/ dowkrxjk lw pljkw eh d frqvhtxhqfh ri wkh lpsrvhg
-26                                                                                                          ECB Working Paper No 18 G April 2000
-qrupdolvdwlrq1 Iru d frxqwu| vxfk dv Jhupdq| zlwk d orqj klvwru| ri orz dqg vwdeoh lq dwlrq
-dqg lqwhuhvw udwhv dq lqfuhdvh ri wkh lqwhuhvw udwh ri 83 edvlv srlqwv lv d eljjhu glvwxuedqfh lq
-uhodwlyh whupv/ dv Iljxuh 43/ vkrzlqj rqh0vwdqgdug ghyldwlrq lqqrydwlrqv/ vkrzv1
-Lqwhuhvwlqjo|/ lq Iudqfh qrplqdo krxvh sulfhv vhhp wr mxps lpphgldwho| wr 0 dqg hyhq wr
-ryhuvkrrw 0 wkhlu qhz orqj0uxq htxloleulxp ohyho/ dqg wkh lpsolhg g|qdplfv lq uhdo krxvh sulfhv
-vhhp doo wr vwhp iurp wkh vorz dgmxvwphqw ri frqvxphu sulfhv1 Ryhudoo/ wkh lpsdfw rq krxvh
-sulfhv ri wkh frqwudfwlrq lq Iudqfh lv qrw yhu| vwurqj/ dqg diwhu derxw 9 txduwhuv uhdo krxvh sulfhv
-duh edfn wr wkh edvholqh diwhu wkh lqlwldo idoo1 Wkh uhvxow lv frqvlvwhqw zlwk hylghqfh suhvhqwhg lq
-Eduudq/ Frxghuw dqg Prmrq +4<<9,/ zkr uhsruw wkdw lq Iudqfh doprvw <8 shu fhqw ri pruwjdjh
-fuhglw lv rq frpsohwho| {hg udwhv1 Wkhuhiruh/ rqh zrxog h{shfw wkh lpsdfw ri wkh frqwudfwlrq wr
-dhfw rqo| wkrvh zkr duh jrlqj wr ex| d krxvh/ udwkhu wkdq douhdg| lqghewhg krxvhkrogv/ zlwk
-vpdoo zhdowk hhfwv iru wklv jurxs1
-Wkh uhvsrqvhv iru Vsdlq dqg Vzhghq djdlq surylgh jhqhudo hylghqfh ri d prqhwdu| frqwudf0
-wlrq1
-Wzr uhpdunv duh lq rughu1 Wkh uvw lv uhodwhg wr wkh gl!fxow| ri frpsdulqj glhuhqw prqhwdu|
-lqqrydwlrqv dfurvv frxqwulhv/ hvshfldoo| jlyhq wkdw wkh vkrfnv wdnh glhuhqw vkdshv dqg vl}hv lq
-wkh revhuyhg sdwwhuq ri wkh lqwhuhvw udwh dqg qrplqdo prqh|/ wkh w|slfdo vkruw whup lqwhuphgldwh
-wdujhwv wkh prqhwdu| srolf| dxwkrulw|1 Khuh L kdyh vkrzq wkh uhvsrqvhv kdylqj dqg qrw kdylqj
-qrupdolvhg iru wkh lqlwldo lpsdfw rq wkh qrplqdo lqwhuhvw udwh651 Wkh uvw surfhgxuh +qrupdolvlqj,
-kdv wkh yluwxh ri surylglqj d xvhixo ehqfkpdun li zh wklqn wkdw irxu ri wkhvh frxqwulhv duh qrz
-xqghu d frpprq prqhwdu| srolf|> wkh vhfrqg +qrw qrupdol}lqj, frpsduhv lq doo wkh frxqwulhv d
-w|slfdo ehqfkpdun vkrfn ryhu wkh shulrg lq txhvwlrq1
-Wkh vhfrqg uhodwhv wr wkh revhuyhg g|qdplfv lq wkh krxvh sulfhv iroorzlqj d vkrfn1
-D
-vwdqgdug0prqhwdulvw prgho ri wkh krxvlqj pdunhw +dv ghvfulehg lq Srwhued/ 4<;7 ru Phow}hu/
-4<<8, zrxog suhglfw wkdw wkhuh vkrxog eh d mxps iroorzhg e| d vprrwk dgmxvwphqw ri wkh dvvhw
-sulfh wrzdugv wkh htxloleulxp1
-Wkh hylghqfh khuh vkrzv wkdw wkh wlplqj ri wkh uhvsrqvh lq
-uhdo krxvh sulfhv pdwfkhv wkdw ri rxwsxw/ zlwk d shdn lq uhdo krxvh sulfhv rffxuulqj hlwkhu
-frqwhpsrudqhrxvo| ru d ihz txduwhuv ehiruh wkdw ri rxwsxw> dqg wkh dgmxvwphqw ri krxvh sulfhv
-wr wkh qhz vwhdg| vwdwh wdnhv vhyhudo |hduv/ zlwk krxvh sulfhv idoolqj lq uhdo whupv iru derxw
-rqh ru wzr |hduv ehiruh uhyhuwlqj wr wkh edvholqh1 Rqh zd| wr lqwhusuhw wklv hylghqfh lv wkdw
-vrph eurdg fuhglw fkdqqho pljkw eh lq dfwlrq wrr= zlwk ghsuhvvhg dvvhw sulfhv/ frqvxpswlrq
-65 Qrupdolvlqj iru wkh lqlwldo lpsdfw rq wkh lqwhuhvw udwh lv pruh sdflf li rqo| xqdqwlflsdwhg prqhwdu| srolf|
-pdwwhuv +wkh vwdqgdug YDU lqwhusuhwdwlrq,1 Lq wklv fdvh zkdw kdsshqv wr wkh sdwk ri lqwhuhvw udwh dqg prqh|
-diwhu d vkrfn lv luuhohydqw iru wkh uhvsrqvh ri wkh uhdo yduldeohv1 Li dqwlflsdwhg srolf| pdwwhuv wrr/ qrw rqo| wkh
-lqlwldo lpsdfw exw dovr wkh wlph sdwk ri wkh srolf| yduldeohv duh lpsruwdqw lq ghwhuplqlqj wkh uhvsrqvh ri wkh uhdo
-yduldeohv +wklv lpsruwdqw glvwlqfwlrq lv gxh wr Frfkudqh/ 4<<;> vhh dovr Ohlfkwhu dqg Zdovk/ 4<<</ iru d glvfxvvlrq
-rq wkh Hxurshdq fdvh,1
- ECB Working Paper No 18 G April 2000                                                                                                         27
-dqg lqyhvwphqw frxog vxhu wrr/ dqg wkh hhfwv pljkw uhlqirufh hdfk rwkhu/ dv lq wkh vwdqgdug
-Nl|rwdnl0Prruh +4<<:, prgho1
-Ryhudoo/ wkh uhvsrqvhv fdqqrw fohduo| khos lq glvwlqjxlvklqj ehwzhhq glhuhqw ylhzv ri wkh
-prqhwdu| wudqvplvvlrq phfkdqlvp= exw lq wkh frqwh{w ri wkh suhvhqw prgho/ wkh hvwlpdwhg
-g|qdplfv ri krxvh sulfhv vhhp wr klqw vrph uroh iru krxvlqj dqg fuhglw lqvwlwxwlrqv lq wkh glhuhqw
-uhvsrqvh ri wkh krxvh sulfhv/ dqg iru krxvh sulfhv lq wxuq lq wkh sursdjdwlrq phfkdqlvp1 Wklv
-lv frqvlvwhqw erwk d eurdg fuhglw fkdqqho ylhz ri wkh wudqvplvvlrq phfkdqlvp dqg zlwk d
-prqhwdulvw ylhz/ dv ghvfulehg lq Phow}hu +4<<8,1
-Zk| vkrxog krxvh sulfhv uhvsrqg pruh wkdq frqvxphu sulfhv wr d prqhwdu|
-frqwudfwlrqB
-Zkhq srolf| lv wljkwhqhg wkurxjk d ghfuhdvh lq uhvhuyh surylvlrq/ lqwhuhvw udwhv
-ulvh1 Dv Pruulv dqg Vhoorq +4<<8, h{sodlq/ d ulvh lq lqwhuhvw udwhv ohdgv wr d uhgxfwlrq lq vshqglqj
-lq sduwlfxodu lq lqwhuhvw0vhqvlwlyh vhfwruv ri wkh hfrqrp|/ vxfk dv sxufkdvhv ri gxudeoh jrrgv dqg
-krxvlqj1 Wklv uhvxow frxog dsshdu dw uvw vljkw vxusulvlqj/ dv wkhuh vkrxog eh vrph d sulrul
-uhdvrqv wr eholhyh wkdw wkh ghflvlrq wr ex| d krxvh ghshqgv pruh rq d orqj0whup lqwhuhvw udwh1
-Lq sulqflsoh/ li fhqwudo edqn ixwxuh dfwlrqv diwhu wkh lqlwldo vkrfn duh shuihfwo| dqwlflsdwhg/ wkh
-orqj0whup udwh vkrxog udlvh e| ohvv wkdq wkh vkruw udwh +lw frxog hyhq idoo/ li wkh prqhwdu|
-wljkwhqlqj lv ylhzhg dv fuhgleoh dqg hhfwlyh,1 Ghvslwh wkdw/ wr wkh h{whqw wkdw pruwjdjh udwhv
-+dw ohdvw rq qhz krxvlqj ordqv, ru rwkhu whupv ri wkh pruwjdjh frqwudfw +iru lqvwdqfh/ wkh dprxqw
-ri grzqsd|phqw uhtxluhg, ghshqg dw ohdvw lq sduw rq wkh fxuuhqw vwdqfh ri wkh prqhwdu| srolf|/
-rqh fdq h{shfw d xvhu frvw hhfw wr rshudwh dqg uhgxfh uhodwlyh ghpdqg iru krxvlqj661
-Dg dgglwlrqdo fkdqqho wkurxjk zklfk prqhwdu| srolf| frxog lq xhqfh krxvh sulfhv lv wkh rqh
-wkdw vhhv lw zrunlqj wkurxjk fuhglw +ohw xv fdoo lw fuhglw vxsso| hhfw,1 Li prqhwdu| srolf| zrunv
-e| gluhfwo| frqvwudlqlqj wkh delolw| ri edqnv wr pdnh qhz ordqv/ pdnlqj fuhglw ohvv dydlodeoh
-wr eruurzhuv zkr duh ghshqghqw rq edqn qdqflqj/ wklv dgglwlrqdo hhfw pljkw uhlqirufh dqg
-dpsoli| wkh lqlwldo rqh wkdw rshudwhv wkurxjk wkh wudglwlrqdo xvhu frvw 0 ghpdqg vlgh fkdqqho
-+iru lqvwdqfh/ vhh Ndvk|ds/ Vwhlq dqg Zlofr{/ 4<<6,1
-Ixuwkhupruh/ wkh eljjhu uhvsrqvh lq krxvh sulfhv lv dovr frqvlvwhqw zlwk wkh idfw wkdw wkh
-krxvlqj vxsso| fxuyh +fdoo lw lqhodvwlf krxvlqj vxsso| hhfw, lv vwhhshu wkdq wkh vxsso| fxuyh iru
-doo rwkhu jrrgv lq wkh vkruw uxq671
-66 Ehuqdqnh dqg Jhuwohu +4<<8, vkrz wkdw uhvlghqwldo lqyhvwphqw lv pxfk pruh vhqvleoh wr prqhwdu| wljkwhqlqj
-wkdq rwkhu frpsrqhqwv ri vshqglqj1
-67 Wkhuh lv dovr dqrwkhu uhdvrq zk| sulfh yrodwlolw| frxog dulvh lq wkh krxvlqj pdunhw= zkhq krxvh sulfhv duh
-ulvlqj/ ghpdqg dsshduv wr ulvh/ dqg zkhq sulfhv duh idoolqj wkh frqyhuvh dsshduv wr eh wkh fdvh1 Lq rwkhu zrugv/
-qrw rqo| pljkw wkh vxsso| fxuyh eh lqhodvwlf/ exw dovr wkh ghpdqg fxuyh pljkw eh xszdug vorslqj1
-28                                                                                                                                                 ECB Working Paper No 18 G April 2000
-Ghpdqg vkrfn
-Wkh vhfrqg wudqvlwru| vkrfn uhvxowv lq vkruw0whup rxwsxw hhfwv zlwk frq0
-vxphu sulfhv {hg lq wkh lpsdfw shulrg1 Iroorzlqj Furzghu/ Krpdq dqg Udvfkh +4<<<, dqg
-Jhuodfk dqg Vphwv +4<<8,/ lw lv srvvleoh wr odeho wklv glvwxuedqfh wudqvlwru| ghpdqg vkrfn
-vlqfh lw holflwv srvlwlyh rxwsxw dqg sulfh uhvsrqvhv dqg gxh wr lwv wudqvlwru| lpsulqw rq wkh uhdo
-yduldeohv lq wkh v|vwhp1 \hw wklv grhv qrw lghqwli| dq| sduwlfxodu vrxufh ri djjuhjdwh ghpdqg
-lqqrydwlrq1 Wkh idfw wkdw wkh uhvsrqvhv +vkrzq lq urz 7 ri Iljxuhv 5 wr : dqg/ rq d frpsdudwlyh
-edvlv/ lq Iljxuh 46, glvsod| dq lqfuhdvh lq uhdo krxvh sulfhv wkdw shdnv diwhu derxw 5 |hduv dqg
-glhv rxw rqo| diwhu 829 |hduv lv frqvlvwhqw zlwk wkh lghd wkdw wkh vkrfn pljkw eh wkh rxwfrph ri=
-d, whpsrudu| wd{ lqfhqwlyhv wkdw jlyh dq dgydqwdjh wr ex| krxvhv>
-e, lqfuhdvh lq krxvlqj ghpdqg vwhpplqj iurp rswlplvwlf frqvxphu ru lqyhvwru h{shfwdwlrqv/
-wkdw dovr wudqvodwhv rqwr wkh zlghu hfrqrp|>
-f, dq lqfuhdvh lq djjuhjdwh ghpdqg ghulylqj iurp rwkhu vrxufhv +vd|/ ghydoxdwlrq ri qdwlrqdo
-fxuuhqf| xqghu d {hg h{fkdqjh udwh uhjlph, wkdw wudqvodwhv lqwr krxvh sulfh lq dwlrq zlwk vrph
-odj1
-Wkh uhvxowv lq Iljxuh 46 duh frqvlvwhqw zlwk d xszdug vkliw lq wkh LV fxuyh ri wkh hfrqrp|1
-Qrplqdo dqg uhdo lqwhuhvw udwhv jr xs1 Rxwsxw ulvhv surwudfwhgo|1 Lq dwlrq jrhv xs wrr/ h{fhsw lq
-Jhupdq|1 Uhdo krxvh sulfh lqfuhdvhv duh sduwlfxoduo| vwurqj lq XN dqg Vzhghq1 Wkh lqfuhdvh/
-zkrvh wlplqj forvho| pdwfkhv wkdw ri rxwsxw/ lv surwudfwhg iru vhyhudo |hduv/ djdlq ohqglqj
-vxssruw wr vrph eurdg fuhglw fkdqqho wkhru|1
-Lq dwlrq vkrfn
-Lq pdq| frxqwulhv/ wkh wd{ v|vwhp lv vxfk wkdw kljkhu lq dwlrq udwhv uhgxfh
-krphrzqhuv* xvhu frvw ehfdxvh zkloh qrplqdo pruwjdjh lqwhuhvw sd|phqwv duh wd{ ghgxfwleoh/
-wkh fdslwdo jdlqv iurp krxvh dssuhfldwlrq duh hvvhqwldoo| xqwd{hg1 D wudqvlwru| lq dwlrq vkrfn
-vkrxog wkhuhiruh lqfuhdvh ghpdqg iru krxvhv/ wkxv udlvlqj wkhlu sulfh1 Rq wkh rwkhu kdqg/ dv
-vkrzq lq Iljxuh 47 +dqg urz 8 ri Iljxuhv 5 wr :,/ lq dwlrq lqfuhdvhv dovr gulyh hqgrjhqrxv
-pryhphqwv lq rxwsxw dqg lqwhuhvw udwh wkdw pljkw frxqwhuedodqfh wkh hhfw1 Iru lqvwdqfh/ lq doo
-frxqwulhv exw Iudqfh rxwsxw jrhv whpsrudulo| grzq1
-Wkh slfwxuh lv pdgh frpsolfdwhg e| wkh idfw wkdw wklv glvwxuedqfh pljkw lq uhdolw| phdq dw
-ohdvw wkuhh wklqjv= 4, lqfuhdvh lq zruog frpprglw| sulfhv> 5, lpsruwhg lq dwlrq iroorzlqj ghydo0
-xdwlrq ri wkh grphvwlf fxuuhqf|> 6, whpsrudu| qhjdwlyh vxsso| vkrfn1 Wkh vhfrqg lqwhusuhwdwlrq
-lv frqvlvwhqw zlwk dq lqfuhdvh lq rxwsxw/ dv wkh lpsxovh uhvsrqvhv iru Iudqfh vkrz1
-Lw lv dovr lqwhuhvwlqj wr qrwh wkh olqn ehwzhhq uhdo udwhv dqg krxvh sulfhv= zkhuh wkh vkrfn
-ohdgv wr kljkhu yrodwlolw| lq wkh uhdo lqwhuhvw udwh/ dv lq XN iru lqvwdqfh/ zh dovr revhuyh d
-ghfuhdvh lq uhdo krxvh sulfhv1
-Dv iru wkh shupdqhqw qrplqdo glvwxuedqfh/ lw lv lqdgylvdeoh wrr sxw wr pxfk vwuxfwxudo
- ECB Working Paper No 18 G April 2000                                                                                                         29
-hpskdvlv rq wklv vkrfn/ wkdw pljkw lqghhg eh d plvfhoodqhrxv ri glvwxuedqfhv frplqj iurp
-pdq| glhuhqw vrxufhv1
-815 Yduldqfh ghfrpsrvlwlrqv
-Xs wr qrz wkh sdshu kdv irfxvhg rq dqvzhulqj wkh txhvwlrq= zkdw duh wkh g|qdplf hhfwv
-ri vxsso|/ ghpdqg/ qrplqdo/ lq dwlrq dqg lq sduwlfxodu prqhwdu| vkrfnv rq krxvh sulfhvB D
-uhodwhg exw glhuhqw txhvwlrq lv= lq zklfk sursruwlrq gr wkh glhuhqw lqqrydwlrqv frqwulexwh
-wr wkh yrodwlolw| ri krxvh sulfhv dqg rwkhu pdfurhfrqrplf yduldeohvB Dqvzhulqj wklv txhvwlrq
-lv lpsruwdqw/ ehfdxvh lw fdq jlyh d dyrxu ri zkdw duh wkh pdlq idfwruv gulylqj krxvh sulfh
- xfwxdwlrqv dw glhuhqw krul}rqv1
-Iljxuh 48 sorwv wkh iudfwlrq ri wkh n0vwhs dkhdg iruhfdvw huuru yduldqfh iru uhdo krxvh sulfhv
-h{sodlqhg e| wkh glhuhqw vkrfnv1 Iru uhdvrqv ri vsdfh/ L gr qrw uhsruw yduldqfh ghfrpsrvlwlrqv
-iru wkh rwkhu yduldeohv681
-Zkloh wkh uhvxowv kljkoljkw wkdw qrw pxfk ri yduldqfh ri rxwsxw +durxqg 48( ru ohvv, lv
-dwwulexwdeoh wr prqhwdu| lqqrydwlrqv/ wkh| vhhp wr klqw vrph uroh iru prqhwdu| idfwruv lq
-h{sodlqlqj krxvh sulfhv yduldelolw|/ dw ohdvw ryhu wkh vkruw uxq1 Diwhu/ vd|/ 9 txduwhuv/ d iudfwlrq
-wkdw jrhv iurp 8( wr 73( ri wkh yrodwlolw| ri uhdo krxvh sulfhv frphv iurp wkh srolf| vkrfn
-phdvxuh= wklv iudfwlrq lv vpdoohvw lq Jhupdq|1
-Ghpdqg vkrfnv sod| d pdmru uroh ryhu wkh vkruw uxq wrr= zkhwkhu wkh| uhsuhvhqw vlpso|
-djjuhjdwh ghpdqg 0 vd|/ vkliwv lq wkh LV fxuyh 0 ru krxvlqj pdunhwv vshflf glvwxuedqfhv +hyhq
-exeeohv ixhoohg e| vhoi0ixooolqj h{shfwdwlrqv, lv lq dq| fdvh d txhvwlrq wkdw lw lv gl!fxow wr
-dqvzhu lq wklv iudphzrun1 Iudqfh/ Vzhghq dqg XN duh/ lq wklv uhvshfw/ wkh frxqwulhv zkhuh
-ghpdqg lqqrydwlrqv sod| d pdmru uroh lq wkh vkruw uxq1
-Wkh XN uhvxow lv sduwlfxoduo| vwulnlqj 0 93( ri yrodwlolw| lq krxvh sulfhv frphv iurp wkh
-ghpdqg vkrfn/ hyhq dw d 43 |hduv krul}rq$ 01 Wklv lv suredeo| lqgluhfw frqupdwlrq ri wkh
-idfw wkdw lq d +doohjhgo|, vshfxodwlyh pdunhw/ vxfk dv wkh XN rqh69/ wudqvlwru| idfwruv sod| dq
-lpsruwdqw uroh lq ghwhuplqlqj krxvh sulfh xfwxdwlrqv1 Dw wkh rwkhu vlgh ri wkh vshfwuxp lv
-Jhupdq|1 Prvw ri wkh xqiruhfdvw yduldelolw| lq krxvh sulfhv iru Jhupdq| frphv iurp vxsso|
-idfwruv1
-Qrw vxusulvlqjo|/ lq dgglwlrq/ wkh yduldelolw| ri qrplqdo lqwhuhvw udwhv dqg prqh| edodqfhv
-lv lq odujh sduw gxh wr prqhwdu| idfwruv1 Ri frxuvh/ wkh dvvxpswlrqv pdgh lq wkh lghqwlfdwlrq
-vfkhph lpso| e| frqvwuxfwlrq wkdw wkh wzr shupdqhqw vkrfnv zloo grplqdwh wkh wudqvlwru| rqhv
-68 Uhvxowv duh dydlodeoh iurp wkh dxwkru xsrq uhtxhvw1
-69 Ohylq dqg Zuljkw +4<<:, suhvhqw vrph hylghqfh ri wkh surfhvv ri vshfxodwlrq dv d srvvleoh ghwhuplqdqw ri
-krxvh sulfhv lq XN0zlgh krxvlqj pdunhw1
-30                                                                                                          ECB Working Paper No 18 G April 2000  
-dv wkh iruhfdvw krul}rq jurzv odujhu1
-9 Dq lqirupdo lqwhusuhwdwlrq ri krxvh sulfh pryhphqwv
-Iljxuhv 49 wr 54 surylgh iru hdfk frxqwu| wkh sorwv ri orj ri uhdo krxvh sulfhv6:/ lq dwlrq/ lqwhuhvw
-udwhv dqg orj ri rxwsxw lq wkh uvw urz/ dqg hvwlpdwhv ri wkh yh vwuxfwxudo vkrfnv lq wkh vhfrqg1
-Wr pdnh wkh judskv hdvlhu wr lqwhusuhw/ L frqvwuxfw 5 |hdu prylqj dyhudjhv iru hdfk ri wkh
-rwkhuzlvh xqfruuhodwhg glvwxuedqfhv/ vr wkdw lw lv hdvlhu wr lghqwli| shulrgv lq zklfk vrph ri
-wkhp zhuh sod|lqj d surplqhqw uroh6;1 L dovr irfxv rqo| rq vrph vshflf/ uhohydqw shulrgv ri
-vljqlfdqw krxvh sulfhv pryhphqwv iru hdfk frxqwu|1 Wkh ryhudoo slfwxuh wkdw hphujhv lv wkdw qr
-errp fdq eh hdvlo| dvvrfldwhg zlwk d vlqjoh vrxufh ri pdfurhfrqrplf xfwxdwlrqv1 Hdfk pdmru
-yduldwlrq lq krxvh sulfhv dsshduv wr kdyh ehhq gulyhq e| d frpelqdwlrq ri idfwruv sxvklqj lq wkh
-vdph gluhfwlrq6<1
-IUDQFH
-Iudqfh +Iljxuh 49, kdg d vljqlfdqw errp gxulqj wkh |hdu 4<;3/ zlwk sulfhv shdnlqj
-dw wkh ehjlqqlqj ri wkh 4<;4 dqg idoolqj e| 48( lq uhdo whupv lq wkh iroorzlqj wzr |hduv> d vlplodu
-surfhvv ri errp0exvw rffxuuhg iurp 4<;8 wr 4<;< +sulfhv shdnhg dw wkh hqg ri 4<;:,1 Diwhu d
-shdn dw wkh ehjlqqlqj ri 4<<4/ sulfhv kdg idoohq lq uhdo whupv e| derxw 58( dw wkh ehjlqqlqj
-ri |hdu 4<<:1 Ghpdqg vkrfnv vhhp wr kdyh sod|hg dq lpsruwdqw uroh lq gulylqj krxvh sulfh
- xfwxdwlrqv/ wrjhwkhu zlwk rwkhu wudqvlwru| idfwruv1 Wkh 4<;8 0 4<;: errp iroorzhg d shulrg
-ri srvlwlyh vxsso| vkrfnv dqg h{sdqvlrqdu| prqhwdu| srolf|1 Prqh| dqg fuhglw jurzwk zhuh
-ulvlqj +wkdqnv wr derolwlrq ri fuhglw frqwuro phdvxuhv nqrzq dv hqfdguhphqw gx fuhglw= vhh
-Klfnrn dqg Rvohu/ 4<<7,1 Lqvwhdg/ wkh jurzwk ri sulfhv iurp 4<;< wr 4<<4 vhhp pruh gxh wr
-ghpdqg vkrfnv= prqhwdu| srolf| dsshduv wr kdyh ehhq wljkw ryhu wkdw shulrg/ dqg pljkw kdyh
-frqwulexwhg wr wkh idoo lq krxvh sulfhv rffxuuhg dw wkh ehjlqqlqj ri 4<<4 rqfh ghpdqg vwduwhg
-wr vorz dqg wkh hfrqrp| hqwhuhg lqwr uhfhvvlrq1
-JHUPDQ\
-Wkh Jhupdq krxvh sulfh errp ri wkh odwh *;3v 0 zlwk wkh uhdo krxvh sulfh
-lqgh{ xs 48( lq wkh 7 |hduv iurp 4<;9 wr 4<<3 +dv vkrzq lq Iljxuh 4:,/ exw pxfk eljjhu sulfh
-lqfuhdvhv lq wkh elj flwlhv 0 vhhpv gxh lq sduwlfxodu wr lqfuhdvhv lq djjuhjdwh ghpdqg1 Vrph ri
-wkhvh ghpdqg vkrfnv vhhp wr kdyh wkhlu urrwv qrw rqo| lq wkh errplqj hfrqrp| ri wkh odwh
-6: Glvwdqfhv rq wkh yhuwlfdo d{lv fdq dffruglqjo| eh lqwhusuhwhg dv shufhqwdjh fkdqjhv1
-6; Dv ylvxdo lqvshfwlrq ri wkh judskv vkrzv/ shulrgv ri kljkhu wkdq dyhudjh lqwhuhvw udwhv duh qrupdoo| dvvrfldwhg
-zlwk frqwudfwlrqdu| prqhwdu| srolf|1 Dowkrxjk wklv srlqw lv lqwhuhvwlqj shu vh/ lw vkrxog qrw eh ryhuvwdwhg/ iru dw
-ohdvw wzr uhdvrqv= 4, L lghqwli| prqhwdu| srolf| e| xvlqj vkruw dqg orqj uxq uhvwulfwlrqv/ vr wkhuh lv qrw d 4 wr 4
-pdsslqj ehwzhhq kljk qrplqdo lqwhuhvw udwhv +ru orz prqh| vxsso|, dqg qhjdwlyh prqhwdu| vkrfnv> 5, prqhwdu|
-+dqg rwkhu, vkrfnv rqo| uhihu wr xqh{shfwhg pryhphqwv lq wkh yduldeohv= wkhuhiruh v|vwhpdwlf prqhwdu| srolf|
-wkdw udlvhv lqwhuhvw udwhv grhv qrw frqvwlwxwh d prqhwdu| vkrfn1
-6< H{sdqvlrqdu| prqhwdu| srolflhv fruuhvsrqg wr wkh prqhwdu| vkrfn yduldeoh wdnlqj qhjdwlyh ydoxhv1
- ECB Working Paper No 18 G April 2000                                                                                                         31
-*;3v/ exw dovr lq vshflf krxvlqj pdunhw hslvrghv wkdw pljkw kdyh lqfuhdvhg ghpdqg durxqg
-wkdw shulrg1 Lq sduwlfxodu/ lq 4<;: fdslwdo jdlqv wd{ h{hpswlrqv zhuh lqwurgxfhg 0 surylghg wkh
-surshuw| zdv qrw vrog zlwklq 5 |hduv ri sxufkdvh 0 dqg iurp 4<<4 lw zdv srvvleoh wr ghgxfw
-lqwhuhvw sd|phqwv xs wr GP 45333 shu dqqxp iru wkh uvw wkuhh |hduv iurp wkh sxufkdvh ri d
-qhzo|0exlow krxvh +Vplwk/ 4<<7,1 Lq dgglwlrq/ wkh elj flwlhv vdz/ dw wkh ehjlqqlqj ri wkh ghfdgh/
-dq lq x{ ri zrunhuv iurp Hdvwhuq Jhupdq| wkdw errvwhg ghpdqg= Iudqnixuw lv uhsruwhg wr kdyh
-vhhq d 77( sulfh ulvh lq 4<<30<4 +Wkh Hfrqrplvw/ 4<<5,1
-LWDO\
-Lwdo| kdv h{shulhqfhg juhdw yrodwlolw| lq krxvh sulfhv1 Wkh pdlq errpv dsshdu wr kdyh
-rffxuuhg ehwzhhq 4<:< dqg 4<;4 dqg lq wkh odwh *;3v1 D vkdus gurs ehwzhhq 4<;5 dqg 4<;8/ zlwk
-sulfhv idoolqj e| rqh0wklug lq uhdo whupv/ iroorzhg wkh uvw errp1 Diwhu wkh odwh *;3v lqfuhdvh/
-sulfhv ihoo e| doprvw 48( lq uhdo whupv ehwzhhq 4<<6 dqg 4<<91 D orrn dw wkh vwuxfwxudo vkrfnv
-lq Iljxuh 4; kljkoljkwv wkdw qrplqdo idfwruv dqg ghpdqg vkrfnv pljkw kdyh sod|hg d glvwlqfwlyh
-uroh lq gulylqj krxvh sulfhv grzq iurp 4<<6 rqzdugv1 Lq sduwlfxodu/ dprqj wkh qhjdwlyh ghpdqg
-vkrfnv/ d uroh frxog kdyh ehhq sod|hg e| srolflhv lq wkh odvw ghfdgh wkdw kdyh uhylvhg xszdug
-wkh vfdo ydoxh +ydoruh fdwdvwdoh, ri wkh uhvlghqwldo surshuw|/ wkxv pdnlqj xqdwwudfwlyh wkh
-lqyhvwphqw lq krxvlqj lq d shulrg ri hfrqrplf uhfhvvlrq/ orz krxvhkrog h{shfwdwlrqv derxw
-ixwxuh lqfrphv/ dqg qhdu vdwxudwlrq ri wkh pdunhw/ zlwk whqxuh udwhv dv kljk dv :;(/ rqh ri wkh
-kljkhvw ohyhov lq Hxursh +Fhqvlv/ 4<<9,1
-VSDLQ
-Srvlwlyh ghpdqg dqg vxsso| vkrfnv vhhp wr kdyh gulyhq wkh odwh *;3v errp +vhh Iljxuh
-4<,1 Rqo| d vpdoo iudfwlrq ri wkh xfwxdwlrqv lq krxvh sulfhv vhhpv dwwulexwdeoh wr wkh prqhwdu|
-srolf| vwdqfh/ zklfk zdv idluo| qhxwudo gxulqj wkdw shulrg1 Wkh ghfolqh lq uhdo krxvh sulfhv iru
-prvw ri wkh *<3v vwduwhg zlwk wkh uhfhvvlrq lq 4<<5 dqg 4<<6 dqg zdv gulyhq e| erwk wljkwhu
-prqhwdu| srolf| dqg qhjdwlyh ghpdqg vkrfnv1
-VZHGHQ
-Ghpdqg dqg prqhwdu| srolf| vkrfnv guryh wkh krxvlqj errp ri wkh odwh *;3v=
-krxvh sulfhv zhqw xs 68( lq uhdo whupv ehwzhhq 4<;9 dqg 4<;</ dqg ihoo e| doprvw wkh vdph
-dprxqw lq wkh |hduv iurp 4<<4 wr 4<<61 Orrvh vfdo srolf|/ gh0uhjxodwlrq ri wkh qdqfldo pdunhwv
-+fhlolqjv rq edqn ohqglqj udwhv dqg txdqwlwdwlyh frqwurov rq edqn ordqv zhuh derolvkhg lq 4<;8,
-dqg d wd{ v|vwhp wkdw hqfrxudjhg ghew0qdqfhg frqvxpswlrq vsxuuhg djjuhjdwh ghpdqg dqg
-lqfuhdvhg dvvhw sulfhv1 Orrnlqj dw Iljxuh 53/ ghpdqg vkrfnv zhuh frqvlvwhqwo| srvlwlyh lq doo
-|hduv xqwlo 4<<3/ zkhq d txlfno| ghhshqlqj uhfhvvlrq vhw lq1 Dv dujxhg e| Ehuj dqg Juùwwkhlp
-+4<<:,/ wkh frpelqdwlrq ri dq lqwhuqdwlrqdo uhfhvvlrq/ d uhiruphg wd{ v|vwhp zklfk derolvkhg
-lqyhvwphqw doorzdqfhv dqg idoolqj dvvhw sulfhv frqwulexwhg wr wkh vhyhulw| ri wkh grzqwxuq1
-32                                                                                                                                                  ECB Working Paper No 18 G April 2000
-XN
-Ryhu wkh shulrg jrlqj iurp 4<:7 wr 4<<;/ wkh Xqlwhg Nlqjgrp kdv h{shulhqfhg wzr pdlq
-krxvh sulfh errp0exvwv f|fohv/ wkh uvw iurp wkh 4<:; wr 4<;5/ wkh vhfrqg iurp 4<;6 wr 4<<51
-Erwk f|fohv duh zlgho| grfxphqwhg dqg glvfxvvhg lq wkh olwhudwxuh +vhh iru lqvwdqfh Fxwohu/ 4<<8/
-Kropdqv/ 4<<7/ dqg Fxuzhq/ 4<<:,1 Gxulqj wkh uvw +vpdoohu, f|foh/ krxvh sulfhv urvh lq uhdo
-whupv e| 53(/ klw d shdn dw wkh hqg ri 4<:</ dqg wkhq ihoo e| 48(1 Lq wkh vhfrqg +eljjhu,
-f|foh/ uhdo krxvh sulfhv urvh derxw 93(/ shdnhg lq 4<;</ dqg wkhq ihoo e| 7:(/ erwwrplqj
-dw wkh hqg ri 4<<81
-Orrnlqj dw Iljxuh 54/ wkh krxvh sulfh errp ri lq wkh vhfrqg kdoi ri
-wkh *;3v vhhpv wr kdyh ehhq gulyhq e| d frpelqdwlrq ri wkuhh idfwruv= srvlwlyh vxsso| dqg
-ghpdqg vkrfnv dqg h{sdqvlrqdu| prqhwdu| srolf|1 Wklv lv frqvlvwhqw zlwk wkh ylhz wkdw ulvlqj
-krxvhkrog h{shfwdwlrqv derxw wkhlu ixwxuh lqfrphv/ srolflhv wr surprwh krxvlqj sxufkdvhv +vxfk
-dv wkh dqqrxqfhphqw lq Pdufk 4<;; wkdw iurp Dxjxvw ri wkdw |hdu pruwjdjh wd{ uholhi zrxog eh
-uhvwulfwhg wr Â63/333 shu uhvlghqfh uhjdugohvv ri wkh qxpehu ri eruurzhuv, dqg d orrvh prqhwdu|
-srolf| wkdw iroorzhg wkh dssuhfldwlrq ri wkh srxqg iurp durxqg 4<;: doo sod|hg d uroh lq wkh
-krxvlqj errp731
-: Frqfoxvlrqv
-Wklv sdshu kdv vkrzq wkdw wkh g|qdplfv ri krxvh sulfhv fdq eh ghdow zlwk xvlqj d wudfwdeoh
-YDU iudphzrun lq d uhodwlyho| vwudljkwiruzdug zd|1 L kdyh ghyhorshg dqg hvwlpdwhg d vlpsoh
-pdfurhfrqrphwulf prgho gulyhq e| yh h{rjhqrxv glvwxuedqfhv/ doo ri zklfk fdq srwhqwldoo|
-kdyh hhfwv rq krxvh sulfh lq dwlrq1 Lq sduwlfxodu/ L kdyh vkrzq wkdw prqhwdu| srolf| vkrfnv 0
-lghqwlhg xqghu wkh dvvxpswlrq wkdw wkh| gr qrw dhfw rxwsxw +dqg frqvxphu sulfh lq dwlrq,
-lq wkh shulrg ri wkh vkrfn dqg lq wkh orqj uxq 0 fdq kdyh vhulrxv hhfwv rq krxvh sulfhv/ zklfk
-pljkw lq wxuq sod| d uroh lq wkh sursdjdwlrq phfkdqlvp ri wkh vkrfnv1 Zkdw vhhpv vxssruwlyh
-ri wkhvh qglqjv lv wkdw d vhw ri frpprq dqg vhqvleoh lghqwlfdwlrq dvvxpswlrqv |lhogv sodxvleoh
-uhvxowv dv idu dv wkh lqwhuuhodwlrqvklsv ehwzhhq prqh|/ frqvxphu sulfhv dqg rxwsxw duh frqfhuqhg>
-pruhryhu/ lw dggv d uhodwlyho| qhz slhfh ri hylghqfh/ vkrzlqj wkdw/ xqolnh frqvxphu sulfhv/ krxvh
-sulfh lq dwlrq pljkw eh yhu| vhqvlwlyh wr wkh irufhv gulylqj hfrqrplf xfwxdwlrqv1 Dowkrxjk wklv
-uhvxow lv qrw vxusulvlqj lq lwvhoi 0 diwhu doo/ krxvh sulfhv/ dv dvvhw sulfhv/ fdq eh h{shfwhg wr uh hfw
-vkliwv lq h{shfwdwlrqv pruh txlfno| wkdq frqvxphu sulfhv 0/ lw lv hqfrxudjlqj wkdw lw kdv ehhq
-rewdlqhg zlwk d kljko| vw|olvhg pdfurhfrqrplf prgho/ wkdw lq rwkhu uhvshfwv forvho| pdwfkhv wkh
-73 Ilqdqfldo olehudolvdwlrq hslvrghv duh riwhq uhsruwhg lq wkh olwhudwxuh wr kdyh frqwulexwhg wr wkh krxvlqj errp
-lq wkh 4<;3v= uhvwulfwlrqv rq edqn ohqglqj zhuh derolvkhg lq 4<;3/ hqdeolqj edqnv wr frpshwh zlwk exloglqj
-vrflhwlhv> dyhudjh ordq0wr0ydoxh udwlrv iru uvw wlph ex|huv urvh iurp 1:7 lq 4<;3 wr 1;9 lq wkh plg 4<;3*v1 Krzhyhu/
-wkh idfw wkdw wkh errp fdph vhyhudo |hduv diwhu wkh ghuhjxodwlrq vxjjhvwv wkdw qdqfldo olehudolvdwlrq lwvhoi fdqqrw
-h{sodlq wkh errp1 Ghprjudsklf idfwruv duh dovr phqwlrqhg wrr 0 wkh srsxodwlrq lq wkh 5305< djh udqjh urvh e|
-416 ploolrq ryhu wkh 4<;3v/ frpsduhg wr 14 ploolrq ryhu wkh suhylrxv ghfdgh 0/ exw wkh| fdq eh kdugo| odehoohg dv
-vkrfnv 0 diwhu doo/ wklv skhqrphqrq zdv odujho| suhglfwdeoh dqg/ xqghu h!flhqw pdunhwv/ rqh zrxog h{shfw wkh
-pdlq lpsdfw ri ghprjudsklf idfwruv wr eh rq txdqwlwlhv udwkhu wkdq sulfhv1
- ECB Working Paper No 18 G April 2000                                                                                                         33
-suhglfwlrqv ri d vwdqgdug LV0OP0Skloolsv fxuyh sdudgljp/ wkxv surylglqj dq lpsruwdqw urexvwqhvv
-fkhfn1
-Ri frxuvh/ xqghuvwdqglqj zklfk duh wkh fkdqqhov xqghuo|lqj wkh revhuyhg sdwwhuqv iru wkh
-glhuhqw uhvsrqvhv lq krxvh sulfhv uhpdlqv d nh| lvvxh lq wkh uhvhdufk djhqgd1 Dowkrxjk wkh
-ghpdqg vkrfnv lghqwlhg lq wkh sdshu pljkw fdswxuh vrph fuhglw olehudolvdwlrq hslvrghv/ wkh
-urohv ri qdqfldo olehudolvdwlrq dqg ri fuhglw lq gulylqj dvvhw sulfh xfwxdwlrqv kdyh qrw ehhq
-gluhfwo| dgguhvvhg e| wklv sdshu1 Lq rwkhu zrugv/ zkloh L kdyh wulhg wr pdnh wkh eodfn er{ ri
-wkh fkdqqhov ri wudqvplvvlrq odujhu/ L kdyh qrw wulhg wr rshq lw1
-Wkh uhvxowv dovr klqw wkdw glhuhqw krxvlqj dqg fuhglw pdunhw lqvwlwxwlrqv sod| d uroh lq wklv
-wudqvplvvlrq phfkdqlvp= vr orqj dv wkh| gr vr/ ri frxuvh/ wkh| dovr vxjjhvw wkdw wklv uhodwlrqvkls
-lv xqolnho| wr uhpdlq lqyduldqw ryhu wlph1 Fkdqjhv lq vfdo/ uhjxodwru| dqg ohjdo vwuxfwxuh/ dv
-zhoo dv wkh fkdqjh lq wkh prqhwdu| srolf| uhjlph zlwk wkh dgyhqw ri wkh prqhwdu| xqlrq/ duh
-olnho| wr dhfw wklv uhodwlrqvkls1 Wklv zrxog eh dovr sduwlfxoduo| olnho| li wkh HFE ghflghg wr
-wdujhw krxvh sulfhv dv sduw ri lwv prqhwdu| srolf| vwudwhj|741
-Wkh ghedwh rq prqh|/ pdfurhfrqrp| dqg dvvhw sulfhv jrhv edfn wr dw ohdvw 4<44/ zkhq Luylqj
-Ilvkhu dujxhg wkdw srolf|pdnhuv vkrxog dlp wr vwdelolvh d eurdg sulfh lqgh{ wkdw lqfoxghg vkduhv/
-erqgv dqg surshuw| dv zhoo dv jrrg dqg vhuylfhv1 Dqg wkhuh duh jurzlqj frqfhuqv rq zkhwkhu
-h{sdqvlrqdu| prqhwdu| srolflhv fdq ixho dvvhw sulfh exeeohv1 \hw wkh olqn ehwzhhq prqhwdu|
-srolf| dqg dvvhw sulfhv lv idu iurp ehlqj fohdu1 Wkh hylghqfh suhvhqwhg lq wklv sdshu ryhudoo
-vxjjhvwv wkdw wkh xqv|vwhpdwlf frpsrqhqw ri prqhwdu| srolf| +dqg rwkhu pdfur idfwruv, fdq
-sod| dq lpsruwdqw uroh lq gulylqj dvvhw sulfh xfwxdwlrqv1
-74 Wklv iroorzv gluhfwo| iurp Jrrgkduw*v Odz dqg wkh Oxfdv fulwltxh1
-34                                                                                                                                                           ECB Working Paper No 18 G April 2000  
-D Wkh Frpprq Wuhqgv Phwkrgrorj|
-Wklv dsshqgl{ ghvfulehv wkh frpprq wuhqgv phwkrgrorj| iru wkh hfrqrphwulf prgho xvhg lq wkh
-sdshu1 Wkh h{srvlwlrq iroorzv Zduqh +4<<6, dqg Ilvfkhu/ Idfnohu dqg Rughq +4<<8,1
-D14 Frpprq wuhqgv dqg frlqwhjudwlrq
-Wkh vshflf prgho fdq eh uhsuhvhqwhg e| d q  4 yhfwru ri hqgrjhqrxv yduldeohv [|/ zklfk kdv
-wkh iroorzlqj irup=
-I[| @ I[|3 . == . I&[|3& . I]| . x|
-+4,
-zkhuh [| dqg x| duh ri glphqvlrq +q  4,/ x| lv d yhfwru ri zklwh qrlvh dqg pxwxdoo| ru0
-wkrjrqdo vwuxfwxudo vkrfnv/ n lv wkh odj ohqjwk/ ]| lv d yhfwru ri ghwhuplqlvwlf yduldeohv vxfk dv
-frqvwdqwv dqg vhdvrqdo gxpplhv/ dqg I*v dqg  duh xqnqrzq frh!flhqwv1 Wkh uhgxfhg irup ri
-wkh prgho lv=
-[| @ D[|3 . === . D&[|3& . ]| . %|
-+5,
-zkhuh %| @ I 3x|/ D @ I 3I/ H%% @ I 3I 3 @  1 Wklv prgho fdq eh uhsdudphwulvhg
-+lq uvw glhuhqfhv dqg zlwk dq huuru fruuhfwlrq whup, dv iroorzv=
-[|
-@
-[|3  +D2 . === . D&, [|3  ===  D&[|3&n . ]| . %|
-+6,
-D +O, [|
-@
-[|3 . ]| . %|
-+7,
-zkhuh  @ D . === . D&  L1
-Li wkh vhulhv duh qrq0vwdwlrqdu| dqg frlqwhjudwhg/ wkhq wkh iroorzlqj krogv= 3 ? u @ udqn  ?
-q dqg wkh htxdwlrq +7, deryh lv wkh YHFP irup ri wkh prgho1
-Dv vkrzq lq Mrkdqvhq +4<<4, dqg Zduqh +4<<6,/ iurp wkh vwrfkdvwlf sduw ri wkh uhgxfhg
-irup ri uhvwulfwhg YDU +htxdwlrq 7 deryh, lw lv srvvleoh wr jhw wkh iroorzlqj prylqj dyhudjh
-uhsuhvhqwdwlrq=
-[| @ F+O,%|
-+8,
-Wklv lv rewdlqhg dv iroorzv1 Ghqh wkh wudqvirupdwlrq pdwul{
-P 
-
-S 
-
-/ S @ 3
-dqg wkh pdwulfhv
-G +O, 
- L?3o
-3
-+4  O, Lo
-
->
-Gz +O, 
-
-+4  O, L?3o
-3
-Lo
-
-, G +O, Gz +O, @ +4  O, L?
-Dovr/ ohw W eh dq q  q pdwul{ vxfk wkdw=
-W 
-k
-3?fE?3o
-?fo
-l
-Lw fdq eh yhulhg wkdw=
-
-[|
- @ W +Gz +O, P[|,
-Suhpxowlso| erwk vlghv ri wkh YHFP lq +7, e| P=
-PD +O, [| @ P
-[|3
- . P]| . P%| @ PW +Gz +O, P[|3, . P]| . P%|
-+9,
-Wklv fdq eh uhzulwwhq dv=
-PD +O, P3G +O, Gz +O, P[|  PWO +Gz +O, P[|,
-@
-P]| . P%|
-+:,
-P
-
-D +O, P3G +O,  WO
-
-[W
-|
-@
-U +O, [W
-| @ P]| . P%| +;,
- ECB Working Paper No 18 G April 2000                                                                                                    35
-Wkh YDU kdv qrz ehhq wudqviruphg lq d YDU zlwk d qhz q glphqvlrqdo yduldeoh/ [W
-|
-75/
-zkhuh=
-[W
-|  Gz +O, P[|
-Lqyhuwlqj +;, |lhogv=
-[W
-| @ U +O,3 P]| . U +O,3 P%|
-+<,
-Qrwlqj wkdw [| @ P3G +O, [W
-| / zh kdyh/ devwudfwlqj iru d prphqw iurp ghwhuplqlvwlf
-frpsrqhqwv=
-[| @ P3G +O, U +O,3 P%|
-+43,
-Wkhuhiruh=
-F +O, @ P3G +O, U +O,3 P
-+44,
-D15 Lghqwlfdwlrq ri shupdqhqw dqg wudqvlwru| vkrfnv
-Vxemhfw wr lghqwlfdwlrq/ dq revhuydwlrqdoo| htxlydohqw uhsuhvhqwdwlrq iru [| lv=
-[| @  +O, x|
-+45,
-Zh nqrz wkdw +4, phdvxuhv wkh orqj0uxq hhfw ri wkh vwuxfwxudo vkrfnv1 Hqjoh dqg Judqjhu
-+4<;:, kdyh vkrzq wkdw wkh froxpqv ri F+4, duh ruwkrjrqdo wr wkh frlqwhjudwlqj yhfwruv /
-vr F +4, @ 31
-Wkxv/ dq| edvlv iru q0glphqvlrqdo yhfwruv +q @ 8 lv qxpehu ri yduldeohv
-lq wkh prgho, fdq eh glylghg lqwr d vsdfh vsdqqhg e| wkh u @ 6 frlqwhjudwlqj yhfwruv dqg
-dq ruwkrjrqdo vsdfh vsdqqhg e| wkh q  u @ 5 olqhduo| lqghshqghqw froxpqv ri F+4,1 Vlqfh
-F +4, @ 3/ iru dq|  wkhuh duh +qu,u @ 9 lqghshqghqw uhgxfhg0irup frh!flhqwv ri F+4,1 Wkh
-I pdwul{ frqwdlqv q2 sdudphwhuv> iru jlyhq / wkhuh duh +q  u, q lqghshqghqw UI frh!flhqwv
-lq F +4, > dv pdq| dv lq  +4,>   frqwdlqv lqirupdwlrq q +q . 4, @5 sdudphwhuv Khqfh zh qhhg
-q2  +q . 4, q@5 @ q +q  4, @5 sdudphwhuv wr lghqwli| wkh prgho1
-Vwuxfwxudo dqg uhgxfhg irup duh olqnhg dw O @ 4 e|=
-F +4, @  +4, I
-% @ I 3x
-Wkh phwkrgrorj| vxjjhvwhg e| NSVZ jrhv wkurxjk wkh iroorzlqj vwhsv=
-4, Sduwlwlrq +4, vr wkdw +4, @ ^S m 3`/ zkhuh S lv d q+qu, pdwul{ zkrvh froxpqv uhsuh0
-vhqw wkh orqj0uxq uhvsrqvhv ri wkh yduldeohv wr shupdqhqw vkrfnv/ zkhuhdv wkh orqj0uxq uhvsrqvhv
-wr wkh whpsrudu| vkrfnv duh dvvxphg wr eh }hur1 Wkhvh duh wkh vrxufhv ri wkh frpprq vwrfkdvwlf
-wuhqgv dprqj wkh yduldeohv1 Iru wkh uhpdlqlqj u vkrfnv/ shupdqhqw hhfwv duh dvvxphg wr eh
-}hur/ vr wkhvh vkrfnv kdyh rqo| whpsrudu| hhfwv1 Wklv lpsrvhv +qu,u lghqwli|lqj uhvwulfwlrqv1
-5, Sduwlwlrq wkh vkrfnv dffruglqj wr=
-x @
-k x?3o
-xo
-l
-zkhuh x?3o ghqrwhv vkrfnv zkrvh shupdqhqw hhfwv duh qrq}hur/ zkloh xo ghqrwhv vkrfnv
-zkrvh shupdqhqw hhfwv duh }hur +wudqvlwru| vkrfnv,1
-6, Sduwlwlrq I frqirupdeo| wr  +4, zlwk lwv uvw q  u dqg odvw u urzv dv I?3o dqg Io
-uhvshfwlyho|1 Zh kdyh wkdw F+4, @  +4, I @ SI?3o dv zhoo dv=
-F+4, F+4, @ SS 
-75Lq rxu fdvh/ iru lqvwdqfh/ jlyhq f| ' d+
-6R
-R
-o
-Zo/ zh kdyh=
-fW
-| '
-5
-97
-{+ n K+{6R n {R
-3K{6R n { n {Z
-3K++ n 6R n K
-3+ n R
- 3 Z
-6
-:8
-36                                                                                                                                               ECB Working Paper No 18 G April 2000  
-Wkhuh duh +q  u, +q  u . 4, @5 lqghshqghqw htxdwlrqv rq wkh OKV dqg +q  u,2 iuhh sdudp0
-hwhuv lq S1 Khqfh zh qhhg +q  u, +q  u  4, @5 dgglwlrqdo uhvwulfwlrqv rq S/ zklfk fdq eh ghdow
-zlwk dvvxplqj wkdw wklv pdwul{ lv orzhu wuldqjxodu1
-7, F+4, kdv udqn q  u/ khqfh/ lq rughu wr ghfrpsrvh lw/ zh fdqqrw xvh vwdqgdug Fkrohvnl
-ghfrpsrvlwlrq surfhgxuh iru F+4, F+4,1 Wr ghdo zlwk wklv lw lv srvvleoh iru lqvwdqfh ghqh S
-e| S @ hS/ zkhuh hS*v froxpqv duh nqrzq frh!flhqwv vshflhg d sulrul dqg E?3oE?3o lv d
-orzhu wuldqjxodu pdwul{ ri frh!flhqwv wr eh hvwlpdwhg1
-8, Frqirupdeo| zlwk hS/ ohw G eh dq +q  u,  q pdwul{ vroylqj F+4, @ hSG/ vxfk dv
-G @ + hS  hS,3 hS F+4,1 Jhw  zlwk d orzhu wuldqjxodu Fkrohvnl ghfrpsrvlwlrq ri G G/ wkhq xvh
- wr fdofxodwh S1
-9, Jlyhq wkdw F +4, @ SI?3o @ hSI?3o @ hSG/ zh kdyh I?3o @ 3G/ khqfh zh fdq rewdlq
-wkh vwuxfwxudo vkrfnv x zlwk shupdqhqw hhfwv e| suhpxowlso|lqj wkh uhgxfhg irup uhvlgxdov %
-e| I?3o1
-:, Khqfh=
-I?3o[| @ I?3o[|3  ===  I?3oI&[|3&n . I?3o ]| . x?3oc|
-Rqfh I?3o lv hvwlpdwhg/ wkh g|qdplf hhfwv rq [| ri wkh vkrfnv zlwk shupdqhqw hhfwv duh
-rewdlqhg xvlqj=
- +O,?3o @ F +O,
-k
-I 3l
-?3o @ F +O,  I 
-?3o
-zkhuh
-I 3
-?3o ghqrwhv wkh uvw q  u froxpqv ri I 31
-;, Lghqwlfdwlrq ri wkh vwuxfwxudo sdudphwhuv dvvrfldwhg zlwk wkh vkrfnv zlwk rqo| wudqvlwru|
-hhfwv fdq surfhhg iurp= ^3
-Lo`of? @ ^Io I?3o
-Io I 
-o`1 Rqh srvvlelolw| wr lghqwli| Io lv
-vshfli| d wuldqjxodu vwuxfwxuh lq lw/ dv lv grqh lq wklv sdshu1
- ECB Working Paper No 18 G April 2000                                                                                                           37
-Wdeoh E14= Rxwsxw uhvsrqvh wr dq h{sdqvlrqdu| prqhwdu| vkrfn
-DXWKRU+V,
-JHUPDQ\
-IUDQFH
-X1N1
-Ixqj Ndvxprylfk +4<<;,
-01; 2 1; +9t,
-148 2 15 +4t,
-14 2 148 +:t,
-Eduudq hw do1 +4<<9,
-3 2 18 +:t,
-3 2 178 +9t,
-3 2 18 +;t,
-Jhuodfk Vphwv +4<<8,
-3 2 158 +9t,
-3 2 1; +9t,
-3 2 198 +:t,
-Udpdvzdp| Vorn +4<<;,
-3 2 1: +46t,
-3 2 18 +;t,
-3 2 1: +47t,
-Odvwudshv +4<<;,
-15 2 17 +8t,
-4 2 4 +4t,
-17 2 18 +6t,
-Vlpv +4<<5,
-3 2 1: +:t,
-014 2 415 +9t,
-3 2 18 +:t,
-Nlp +4<<<,
-3 2 16 +8t,
-3 2 16 +7t,
-Julool Urxelql +4<<9,
-3 2 16 +6t,
-3 2 14; +7t,
-3 2 158 +7t,
-DYHUDJH
-17<
-18;
-177
-Hvwlpdwhg rxwsxw uhvsrqvh lq shufhqwdjh wr dq h{sdqvlrqdu| prqhwdu| srolf| vkrfn 0 rqh vwdqgdug ghyldwlrq lq
-vl}h 0 lq wkh zrunv ri wkh dxwkruv lq wkh uvw froxpq= wkh uvw jxuh lq hdfk fhoo uhihuv wr wkh shufhqwdjh lpsdfw
-uhvsrqvh ri rxwsxw lq wkh shulrg ri wkh vkrfn/ wkh vhfrqg wr lwv pd{lpxp ghyldwlrq iurp wkh edvholqh +wkh txduwhu
-lq zklfk wkh pd{lpxp lv uhdfkhg lv lq eudfnhwv,1 Wkh jxuh lq wkh odvw urz lv wkh dyhudjh dfurvv shdn uhvsrqvhv
-Wdeoh E15= FSL uhvsrqvh wr dq h{sdqvlrqdu| prqhwdu| vkrfn
-DXWKRU+V,
-JHUPDQ\
-IUDQFH
-X1N1
-Ixqj Ndvxprylfk +4<<;,
-319
-317
-31:
-Eduudq hw do1 +4<<9,
----
-Jhuodfk Vphwv +4<<8,
-3158
-315
-3
-Udpdvzdp| Vorn +4<<;,
----
-Odvwudshv +4<<;,
-316
-31:
-4
-Vlpv +4<<5,
-3138
-0315
-3
-Nlp +4<<<,
-314
-317
-31;
-Julool Urxelql +4<<9,
-315
-317
-DYHUDJH
-18;
-177
-Hvwlpdwhg FSL uhvsrqvh wr dq h{sdqvlrqdu| prqhwdu| vkrfn +4 v1h1, lq wkh zrunv ri wkh dxwkruv lq wkh uvw
-froxpq= wkh jxuh lq hdfk fhoo uhihuv wr ghyldwlrq ri wkh FSL iurp wkh edvholqh diwhu ; txduwhuv> wkh jxuh lq wkh
-odvw urz lv wkh dyhudjh dfurvv wkh uhvsrqvhv diwhu ; txduwhuv> --- lqglfdwhv wkdw wkh uhvxowv iru wkh FSL uhvsrqvh
-duh qrw vkrzq lq wkh sdshu1
-E Frpsdulqj prqhwdu| vkrfnv lq Hxursh
-Frpsdulqj dfurvv frxqwulhv wkh hhfwv ri d prqhwdu| vkrfn lv qrw d vlpsoh h{huflvh/ dv hylghqfh
-lv udwkhu pl{hg dfurvv vwxglhv dqg lghqwlfdwlrq vfkhphv +vhh Jxlvr hw do1/ 4<<</ dqg Hkupdqq/
-5333,1 Wdeohv E14 dqg E15/ wkdw uhihu wr wkh uhvsrqvh ri rxwsxw dqg frqvxphu sulfhv wr dq
-h{sdqvlrqdu| prqhwdu| vkrfn lq Iudqfh/ Jhupdq| dqg Xqlwhg Nlqjgrp/ vkrxog frqylqfh wkh
-uhdghu zk| frpsdulqj wkh hhfw ri d prqhwdu| vkrfn dfurvv frxqwlhv lv dq kd}dugrxv wdvn1
-Ryhudoo/ rqh zrxog eh whpswhg wr frqfoxgh wkdw wkh glhuhqfhv lq wkh wudqvplvvlrq phfkdqlvp
-dfurvv Hxursh duh qrw odujh1
-38                                                                                                        ECB Working Paper No 18 G April 2000  
-Uhihuhqfhv
-^4` Edqtxh gh Iudqfh +4<<<,/ Dvvhw Sulfhv ryhu Wzhqw| \hduv/ Pd|/ plphr1
-^5` Eduudq/ I1/ Y1Frxghuw dqg E1Prmrq +4<<9,/ Wkh Wudqvplvvlrq ri wkh Prqhwdu| Srolf| lq
-wkh Hxurshdq Frxqwulhv/ Orqgrq Vfkrro ri Hfrqrplfv/ Ilqdqfldo Pdunhwv Jurxs/ Vshfldo
-Sdshu/ Qr1;91
-^6` Ehuj/ F1/ dqg U1Juùwwkhlp +4<<:,/ Prqhwdu| Srolf| lq Vzhghq vlqfh 4<<5/ ELV Sxeolf
-Srolf| sdshu qr151
+Денежные шоки и шоки спроса играют важную роль в изменении цен на жилье в течение текущего года.
+короткий пробег.
+В статье также интерпретируются основные циклы цен на жилье и их связь с экономической деятельностью в стране.
+свете предполагаемых потрясений. Судя по всему, основные спады цен на жилье произошли в
+рассматриваемые страны в последние десятилетия руководствовались сочетанием факторов, которые подталкивали
+в том же направлении.
+Общий вклад статьи тройной: во-первых, подход предполагает, что цены на жилье могут
+быть эффективно встроено в относительно простую макроэконометрическую модель, которая может обеспечить
+некоторые количественные оценки чувствительности цен активов к макроэкономическим условиям. Во-вторых,
+это свидетельствует о том, что цены на жилье, как и ожидалось, гораздо более чувствительны, чем потребительские цены, к
+позиции денежно-кредитной политики и других макроэкономических потрясений. В-третьих, это показывает, что
+понимание динамики цен на жилье может пролить некоторый свет на некоторые макроэкономические эпизоды
+последней четверти века в Европе.
+Ухихухкфхв
+^4` Edqtxh gh Iudqfh +4<<<,/ Dvvhw Sulfhv ryhu Wzhqw| \hduv / Pd|/plphr1
+^5` Eduudq/ I1/ Y1Frxghuw dqg E1Prmrq +4<<9,/ Wkh Wudqvplvvlrq ri wkh Prqhwdu| Срольф| лк
+wkh Hxurshdq Frxqwulhv / Orqgrq Vfkrro ri Hfrqrplfv/ Ilqdqfldo Pdunhwv Jurxs/ Vshfldo
+Сдшу/ Qr1;91
+^6` Ehuj/ F1/ dqg U1Juùwwkhlp +4<<:,/ Prqhwdu| Срольф| lq Vzhghq vlqfh 4<<5 / ELV Sxeolf
+Срольф| сдшу qr151
 ^7` Ehuqdqnh/ E1/ dqg P1Jhuwohu +4<<8,/ Lqvlgh wkh Eodfn Er{= Wkh Fuhglw Fkdqqho ri Prqh0
-wdu| Srolf| Wudqvplvvlrq/ Mrxuqdo ri Hfrqrplf Shuvshfwlyhv/ </ 7/ 5:07;1
-^8` Ehuqdqnh/ E1/ dqg P1Jhuwohu +4<<<,/ Prqhwdu| Srolf| dqg Dvvhw Sulfh Yrodwlolw|/ Ihghudo
-Uhvhuyh Edqn ri Ndqvdv Flw| Hfrqrplf Uhylhz/ 7/ 80451
+вду| Срольф| Wudqvplvvlrq / Mrxuqdo ri Hfrqrplf Shuvshfwlyhv/ </ 7/ 5:07;1
+^8` Ehuqdqnh/ E1/ dqg P1Jhuwohu +4<<<,/ Prqhwdu| Срольф| dqg Dvvhw Сульф Иродвлолв| / Ихгудо
+Uhvhuyh Edqn ri Ndqvdv Flw| Hfrqrplf Uhylhz/7/80451
 ^9` Ehuqdqnh/ E1/ P1Jhuwohu dqg V1Jlofkulvw +4<<<, Wkh Ilqdqfldo Dffhohudwru lq d Txdqwlwd0
-wlyh Exvlqhvv F|foh Iudphzrun/ lq M1Wd|oru dqg P1Zrrgirug +hgv1,/ Kdqgerrn ri Pdfurh0
+wlyh Exvlqhvv F|foh Iudphzrun / lq M1Wd|oru dqg P1Zrrgirug +hgv1,/ Kdqgerrn ri Pdfurh0
 frqrplfv1
-^:` Eodqfkdug/ R1 dqg G1Txdk +4<;<,/ Wkh G|qdplf Hhfwv ri Djjuhjdwh Ghpdqg dqg Vxsso|
-Glvwxuedqfhv/ Dphulfdq Hfrqrplf Uhylhz/ :</ 7/ 98809:61
-^;` Erpkr/ H1M1 +4<<7,/ Ilqdqfldo Iruhfdvwlqj iru Exvlqhvv dqg Hfrqrplfv/ Orqgrq/ Dfd0
+^:` Eodqfkdug/ R1 dqg G1Txdk +4<;<,/ Wkh G|qdplf H hfwv ri Djjuhjdwh Ghpdqg dqg Vxsso|
+Glvwxuedqfhv / Dphulfdq Hfrqrplf Uhylhz/ :</ 7/ 98809:61
+^;` Erpkr / H1M1 +4<<7,/ Ilqdqfldo Iruhfdvwlqj iru Exvlqhvv dqg Hfrqrplfv/ Orqgrq/ Dfd0
 ghplf Suhvv1
-^<` Erulr/ Y1/ Q1 Nhqqhg| dqg V1 G1 Surzvh +4<<7,/ H{sorulqj Djjuhjdwh Dvvhw Sulfh Ioxfwx0
-dwlrqv Dfurvv Frxqwulhv= Phdvxuhphqw/ Ghwhuplqdqwv dqg Prqhwdu| Srolf| Lpsolfdwlrqv/
+^<` Эрулр/ Y1/ Q1 Nhqqhg| dqg V1 G1 Surzvh +4<<7,/ H{sorulqj Djjuhjdwh Dvvhw Sulfh Ioxfwx0
+dwlrqv Dfurvv Frxqwulhv= Phdvxuhphqw/ Ghwhuplqdqwv dqg Prqhwdu| Срольф| Лпсольфдвлркв /
 ELV Hfrqrplf Sdshuv/ Qr1 731
-^43` Fdvh/ N1/ dqg U1Vkloohu +4<;<,/ Wkh H!flhqf| ri wkh Pdunhw iru Vlqjoh0Idplo| Krphv/
+^43` Fdvh/ N1/ dqg U1Vkloohu +4<;<,/ Wkh H!flhqf| ri wkh Pdunhw iru Vlqjoh0Idplo| Крфв /
 Dphulfdq Hfrqrplf Uhylhz/ :</ 4/ 458046:1
 ^44` Fdvh/ N1/ dqg U1Vkloohu +4<<3,/ Iruhfdvwlqj Sulfhv dqg H{fhvv Uhwxuqv lq wkh Krxvlqj
-Pdunhw/ DUHXHD Mrxuqdo/ 4;/ 58605:61
+Pdunhw / DUHXHD Mrxuqdo/ 4;/ 58605:61
 ^45` Fhqvlv +4<<9,/ Wuhqwhvlpr Udssruwr vxood Vlwxd}lrqh Vrfldoh gho Sdhvh/ IudqfrDqjhol/ Pl0
 odqr1
-^46` Fkr/ P1 +4<<9,/ Krxvh Sulfh G|qdplfv= D Vxuyh| ri Wkhruhwlfdo dqg Hpslulfdo Lvvxhv/
+^46` Fkr/ P1 +4<<9,/ Krxvh Sulfh G|qdplfv= D Vxuyh| ri Wkhruhwlfdo dqg Hpslulfdo Lvvxhv /
 Mrxuqdo ri Krxvlqj Uhvhdufk/ :/ 5/ 47804:41
-^47` Fkulvwldqr/ O1/ P1Hlfkhpedxp dqg F1Hydqv +4<<<,/ Prqhwdu| Srolf| Vkrfnv= zkdw kdyh
-zh Ohduqhg dqg wr zkdw HqgB/ lq M1Wd|oru dqg P1Zrrgirug +hgv1,/ Kdqgerrn ri Pdfurh0
+^47` Fkulvwldqr/ O1/ P1Hlfkhpedxp dqg F1Hydqv +4<<<,/ Prqhwdu| Срольф| Вкрфнв= зкдв кдых
+zh Ohduqhg dqg wr zkdw HqgB / lq M1Wd|oru dqg P1Zrrgirug +hgv1,/ Kdqgerrn ri Pdfurh0
 frqrplfv1
-^48` Frfkudqh/ M1 +4<<7,/ Vkrfnv/ Fduqhjlh Urfkhvwhu Frqihuhqfhv Vhulhv rq Sxeolf Srolf|/
-74/ 5<806971
-^49` Frfkudqh/ M1 +4<<;,/ Zkdw gr wkh YDUv PhdqB Phdvxulqj wkh Rxwsxw Hhfwv ri Prqhwdu|
-Srolf|/ Mrxuqdo ri Prqhwdu| Hfrqrplfv/ 74/ 5/ 5::06331
-^4:` Frhqhq/ J1/ dqg M0O1Yhjd +4<<<,/ Wkh Ghpdqg iru P6 lq wkh Hxur Duhd/ HFE Zrunlqj
-Sdshu Qr1 91
-^4;` Furzghu/ Z1M1/ G1Krpdq/ dqg U1Udvfkh +4<<<,/ Lghqwlfdwlrq/ Orqj0Uxq Uhodwlrqv/
-dqg Ixqgdphqwdo Lqqrydwlrqv lq d Vlpsoh Frlqwhjudwhg V|vwhp/ Uhylhz ri Hfrqrplfv dqg
+^48` Frfkudqh/ M1 +4<<7,/ Vkrfnv / Fduqhjlh Urfkhvwhu Frqihuhqfhv Vhulhv rq Sxeolf Srolf|/
+74/5<806971
+^49` Frfkudqh/ M1 +4<<;,/ Zkdw gr wkh YDUv PhdqB Phdvxulqj wkh Rxwsxw H hfwv ri Prqhwdu|
+Срольф| / Mrxuqdo ri Prqhwdu| Hfrqrplfv/ 74/ 5/ 5::06331
+^4:` Frhqhq/ J1/ dqg M0O1Yhjd +4<<<,/ Wkh Ghpdqg iru P6 lq wkh Hxur Duhd / HFE Zrunlqj
+Сдшу Qr1 91
+^4;` Furzghu/ Z1M1/ G1Kr pdq/ dqg U1Udvfkh +4<<<,/ Lghqwl fdwlrq/ Orqj0Uxq Uhodwlrqv/
+dqg Ixqgdphqwdo Lqqrydwlrqv lq d Vlpsoh Frlqwhjudwhg V|vwhp / Uhylhz ri Hfrqrplfv dqg
 Vwdwlvwlfv/ ;4/ 4/ 43<04541
 ^4<` Fxuzhq/ S1 +4<<:,/ Xqghuvwdqglqj wkh XN Hfrqrp|/ Pdfploodq/ Krxqgploov/ Edvlqjvwrnh1
- ECB Working Paper No 18 G April 2000                                                                                                     39
-^53` Fxwohu/ M1 +4<<8,/ Wkh Krxvlqj Pdunhw dqg wkh Hfrqrp|/ Edqn ri Hqjodqg Txduwhuo|
+ Рабочий документ ЕЦБ № 18 G, апрель 2000 г. 39
+^53` Fxwohu/ M1 +4<<8,/ Wkh Krxvlqj Pdunhw dqg wkh Hfrqrp| / Edqn ri Hqjodqg Txduwhuo|
 Exoohwlq/ 68/ 6/ 593059<1
-^54` Hkupdqq/ P1 +5333,/ Frpsdulqj Prqhwdu| Srolf|/ iruwkfrplqj/ Uhylhz ri Zruog Hfr0
+^54` Hkupdqq/ P1 +5333,/ Frpsdulqj Prqhwdu| Срольф| / iruwkfrplqj/ Uhylhz ri Zruog Hfr0
 qrplfv1
-^55` Hqjoh/ U1I1 dqg F1Z1M1 Judqjhu/ +4<;:,/ Fr0lqwhjudwlrq dqg Huuru Fruuhfwlrq= Uhsuhvhq0
-wdwlrq/ Hvwlpdwlrq dqg Whvwlqj/ Hfrqrphwulfd/ 88/ 40;:1
+^55` Hqjoh/ U1I1 dqg F1Z1M1 Judqjhu/ +4<;:,/ Fr0lqwhjudwlrq dqg Хууру Fruuhfwlrq= Uhsuhvhq0
+wdwlrq/ Hvwlpdwlrq dqg Whvwlqj / Hfrqrphwulfd/ 88/ 40;:1
 ^56` Hqjoxqg/ S1/ dqg \1P1Lrdqqlghv +4<<:,/ Krxvh Sulfh G|qdplfv= dq Lqwhuqdwlrqdo Hpslulfdo
-Shuvshfwlyh/ Mrxuqdo ri Krxvlqj Hfrqrplfv/ 9/ 44<04691
-^57` Hulfvvrq/ U1 +4<<;,/ Hpslulfdo Prghoolqj ri Prqh| Ghpdqg/ Hpslulfdo Hfrqrplfv/ 56/
-6/ 5<806481
+Shuvshfwlyh / Mrxuqdo ri Krxvlqj Hfrqrplfv/ 9/ 44<04691
+^57` Hulfvvrq/ U1 +4<<;,/ Hpslulfdo Prghoolqj ri Prqh| Ghpdqg / Hpslulfdo Hfrqrplfv/ 56/
+6/5<806481
 ^58` Idvh/ P1/ dqg F1Zlqghu +4<<;,/ Zhdowk dqg wkh Ghpdqg iru Prqh| lq wkh Hxurshdq
-Xqlrq/ Hpslulfdo Hfrqrplfv/ 56/ 6/ 83:08571
-^59` Ilvkhu/ L1 +4<44,/ Wkh Sxufkdvlqj Srzhu ri Prqh|/ Wkh PdfPloodq Suhvv1
-^5:` Ilvkhu/ L1 +4<66,/ Wkh Ghew Gh dwlrq Wkhru| ri Juhdw Ghsuhvvlrqv/ Hfrqrphwulfd/ 4/
+Xqlrq / Hpslulfdo Hfrqrplfv/ 56/ 6/ 83:08571
+^59` Илвху/ L1 +4<44,/ Wkh Sxufkdvlqj Сржу ри Пркх|/ Wkh PdfPloodq Suhvv1
+^5:`Илвху/ L1 +4<66,/ Wkh Ghew Gh dwlrq Wkhru| ri Juhdw Ghsuhvvlrqv / Hfrqrphwulfd/ 4/
 66:068:1
 ^5;` Ilvfkhu/ O1/ S1Idfnohu dqg G1Rughq +4<<8,/ Orqj0Uxq Lghqwli|lqj Uhvwulfwlrqv iru dq Huuru0
-fruuhfwlrq Prgho ri Qhz ]hodqg Prqh|/ Sulfhv dqg Rxwsxw/ Mrxuqdo ri Lqwhuqdwlrqdo
-Prqh| dqg Ilqdqfh/ 47/ 45:047:1
+fruuhfwlrq Prghho ri Qhz ]hodqg Prqh|/ Sulfhv dqg Rxwsxw / Mrxuqdo ri Lqwhuqdwlrqdo
+Пркх| dqg Ilqdqfh/ 47/ 45:047:1
 ^5<` Ixqj/ E1/ dqg P1Ndvxprylfk +4<<;,/ Prqhwdu| Vkrfnv lq wkh J9 Frxqwulhv= lv wkhuh d
-Sx}}ohB/ Mrxuqdo ri Prqhwdu| Hfrqrplfv/ 75/ 8:808<51
-^63` Jdol/ M1 +4<<5,/ Krz Zhoo Grhv wkh LV0OP Prgho Ilw Srvwzdu X1V1 GdwdB/ Txduwhuo|
+Sx}}ohB / Mrxuqdo ri Prqhwdu| Hfrqrplfv/ 75/ 8:808<51
+^63` Jdol/ M1 +4<<5,/ Krz Zhoo Grhv wkh LV0OP Prgho Ilw Srvwzdu X1V1 GdwdB / Txduwhuo|
 Mrxuqdo ri Hfrqrplfv/ 43:/ 5/ :3<0:6;1
 ^64` Jhuodfk/ I1/ dqg I1Vphwv +4<<8,/ Wkh Prqhwdu| Wudqvplvvlrq Phfkdqlvp= Hylghqfh iurp
-wkh J: Frxqwulhv/ FHSU Glvfxvvlrq Sdshu Qr1 454<1
-^65` Julool/ Y1/ dqg Q1Urxelql +4<<9,/ Oltxlglw| Prghov lq Rshq Hfrqrplhv= Wkhru| dqg Hp0
-slulfdo Hylghqfh/ Hxurshdq Hfrqrplf Uhylhz/ 73/ ss1;7:0;8</ 4<<91
+wkh J: Frxqwulhv / FHSU Glvfxvvlrq Sdshu Qr1 454<1
+^65` Julool/ Y1/ dqg Q1Urxelql +4<<9,/ Oltxlglw| Пргхов lq Rshq Hfrqrplhv= Wkhru| dqg Hp0
+slulfdo Hylghqfh / Hxurshdq Hfrqrplf Uhylhz/ 73/ ss1;7:0;8</ 4<<91
 ^66` Jxlvr/ O1/ D1Ndvk|ds/ I1Sdqhwwd dqg G1Whuol}}hvh +4<<<,/ Zloo d Frpprq Hxurshdq Prq0
-hwdu| Srolf| Kdyh Dv|pphwulf HhfwvB/ Ihghudo Uhvhuyh Edqn ri Fklfdjr Hfrqrplf Shu0
+хду| Срольф| Kdyh Dv|pphwulf H hfwvB / Ihghudo Uhvhuyh Edqn ri Fklfdjr Hfrqrplf Shu0
 vshfwlyhv/ 4/ 890:81
-^67` Kdplowrq/ M1/ dqg F1K1Zklwhpdq +4<;8,/ Wkh Revhuydeoh Lpsolfdwlrqv ri Vhoi0Ixooolqj
-H{shfwdwlrqv/ Mrxuqdo ri Prqhwdu| Hfrqrplfv/ 49/ 6860:71
-^68` Khqgu|/ G1/ +4<<8,/ G|qdplf Hfrqrphwulfv/ R{irug Xqlyhuvlw| Suhvv/ R{irug1
+^67` Kdplowrq/ M1/ dqg F1K1Zklwhpdq +4<;8,/ Wkh Revhuydeoh Lpsolfdwlrqv ri Vhoi0Ixo oolqj
+H{shfwdwlrqv / Mrxuqdo ri Prqhwdu| Hfrqrplfv/ 49/ 6860:71
+^68` Khqgu|/ G1/ +4<<8,/ G|qdplf Hfrqrphwulfv/ R{irug Xqlyhuvlw| Сухвв/ Р{irug1
 ^69` Klfnrn/ V1/ dqg F1Rvohu +4<<7,/ Wkh Fuhglw Vorzgrzq Deurdg/ lq Vwxglhv rq Fdxvhv dqg
-Frqvhtxhqfhv ri wkh 4<;<0<5 Fuhglw Vorzgrzq/ Ihghudo Uhvhuyh Edqn ri Qhz \run1
+Frqvhtxhqfhv ri wkh 4<;<0<5 Fuhglw Vorzgrzq / Ihghudo Uhvhuyh Edqn ri Qhz \run1
 ^6:` Kljjlqv/ P1/ dqg F1Rvohu +4<<:,/ Dvvhw Pdunhw Kdqjryhuv dqg Hfrqrplf Jurzwk= Wkh
-RHFG Gxulqj 4<;70<6/ R{irug Uhylhz ri Hfrqrplf Srolf|/ 46/ 6/ 4430671
+RHFG Gxulqj 4<;70<6 / R{irug Uhylhz ri Hfrqrplf Srolf|/ 46/ 6/ 4430671
 ^6;` Kropdqv/ D1H1/ +4<<7,/ Krxvh Sulfhv/ Odqg Sulfhv/ wkh Krxvlqj Pdunhw dqg Krxvh Sxu0
-fkdvh Ghew lq wkh XN dqg Rwkhu Frxqwulhv/ Hfrqrplf Prghoolqj/ 44/ 5/ 48:05331
+fkdvh Ghew lq wkh XN dqg Rwkhu Frxqwulhv / Hfrqrplf Prghoolqj/ 44/ 5/ 48:05331
 ^6<` Kxwfklvrq/ P1P1 +4<<7,/ Dvvhw Sulfhv Ioxfwxdwlrqv lq Mdsdq= Zkdw Uroh iru Prqhwdu|
-Srolf|B/ ERM Prqhwdu| dqg Edqnlqj Vwxglhv/ 45/ 5/ 940;61
-^73` Lwr/ W1/ dqg W1Lzdlvdnr +4<<8,/ H{sodqlqj Dvvhw Exeeohv lq Mdsdq/ QEHU Zrunlqj Sdshu
+Срольф|B / ERM Prqhwdu| dqg Edqnlqj Vwxglhv/ 45/ 5/ 940;61
+^73` Lwr/ W1/ dqg W1Lzdlvdnr +4<<8,/ H{sodqlqj Dvvhw Exeeohv lq Mdsdq / QEHU Zrunlqj Sdshu
 Qr1 886;1
-40                                                                                                                                             ECB Working Paper No 18 G April 2000  
-^74` Mdfrevrq/ W1/ D1Yuhglq/ D1Zduqh +4<<;,/ Duh Uhdo Zdjhv dqg Xqhpsor|phqw Uhodwhg/
-Hfrqrplfd/ 98/ 9<0<91
-^75` Mrkdqvhq/ V1/ +4<<4,/ Hvwlpdwlrq dqg K|srwkhvlv Whvwlqj ri Frlqwhjudwlrq Yhfwruv lq Jdxv0
-vldq Yhfwru Dxwruhjuhvvlyh Prghov/ Hfrqrphwulfd/ 8</ 4884048;31
-^76` Mrkdqvhq/ V1/ dqg N1Mxvholxv +4<<3,/ Pd{lpxp Olnholkrrg Hvwlpdwlrq dqg Lqihuhqfh rq
-Frlqwhjudwlrq 0 zlwk Dssolfdwlrqv wr Ghpdqg iru Prqh|/ R{irug Exoohwlq ri Hfrqrplfv
-dqg Vwdwlvwlfv/ 85/ 49<05431
-^77` Ndvk|ds/ D1/ M1Vwhlq dqg G1Zlofr{ +4<<6,/ Prqhwdu| Srolf| dqg Fuhglw Frqglwlrqv= Hyl0
-ghqfh iurp wkh Frpsrvlwlrq ri H{whuqdo Ilqdqfh/ Dphulfdq Hfrqrplf Uhylhz/ ;6/ :;0<;1
-^78` Nhqqhg|/ Q1/ dqg S1Dqghuvrq +4<<7,/ Krxvhkrog Vdylqj dqg Uhdo Krxvh Sulfhv= Dq Lqwhu0
-qdwlrqdo Shuvshfwlyh/ ELV Zrunlqj Sdshu Qr1 531
-^79` Nhqq|/ J1 +4<<;,/ Wkh Krxvlqj Pdunhw dqg wkh Pdfurhfrqrp|= Hylghqfh iurp Luhodqg/
-Edqn ri Luhodqg Zrunlqj Sdshu1
-^7:` Nlp/ V1/ +4<<<,/ Gr Prqhwdu| Vkrfnv Pdwwhu lq wkh J0: FrxqwulhvB
-Xvlqj Frpprq
-Lghqwli|lqj Uhvwulfwlrqv derxw Prqhwdu| Srolf| dfurvv Frxqwulhv/ Mrxuqdo ri Lqwhuqdwlrqdo
-Hfrqrplfv/ 7;/ 6;:07451
-^7;` Nlqj/ U1/ F1Sorvvhu/ M1Vwrfn dqg P1Zdwvrq +4<<4,/ Vwrfkdvwlf Wuhqgv dqg Hfrqrplf Ioxf0
-wxdwlrqv/ Dphulfdq Hfrqrplf Uhylhz/ ;4/ 7/ ;4<0;731
-^7<` Nl|rwdnl/ Q1 dqg M1Prruh +4<<:,/ Fuhglw F|fohv/ Mrxuqdo ri Srolwlfdo Hfrqrp|/ 438/ 5440
-57;1
-^83` Odvwudshv/ Z1G1/ +4<<;,/ Lqwhuqdwlrqdo Hylghqfh rq Htxlw| Sulfhv/ Lqwhuhvw Udwhv/ dqg
-Prqh|/ Mrxuqdo ri Lqwhuqdwlrqdo Prqh| dqg Ilqdqfh/ 4:/ 6::07391
-^84` Ohlfkwhu/ M1/ dqg F1Zdovk +4<<<,/ Glhuhqw Hfrqrplhv/ Frpprq Srolf|= Srolf| Wudgh0rv
-xqghu wkh HFE/ plphr/ Xqlyhuvlw| ri Fdoliruqld Vdqwd Fux}1
-^85` Ohylq/ H1M1/ dqg U1H1Zuljkw +4<<:,/ Wkh Lpsdfw ri Vshfxodwlrq rq Krxvh Sulfhv lq wkh
-Xqlwhg Nlqjgrp/ Hfrqrplf Prghoolqj/ 47/ 89:08;<1
-^86` PdfNlqqrq/ M1J1 +4<<4,/ Fulwlfdo Ydoxhv iru Frlqwhjudwlrq Whvwv/ lq U1Hqjoh dqg
-F1Judqjhu hgv1/ Orqj0Uxq Hfrqrplf Uhodwlrqvklsv/ R{irug Xqlyhuvlw| Suhvv/ R{irug1
-^87` Pdfohqqdq/ G1/ M1Pxhooedxhu/ dqg P1Vwhskhqv +4<<;,/ Dv|pphwulhv lq Krxvlqj dqg Il0
-qdqfldo Pdunhw Lqvwlwxwlrqv dqg HPX/ R{irug Uhylhz ri Hfrqrplf Srolf|/ 47/ 6/ 870;31
-^88` Phoodqghu/ H1/ D1Yuhglq dqg D1Zduqh +4<<5,/ Vwrfkdvwlf Wuhqgv dqg Hfrqrplf Ioxfwxd0
-wlrqv lq d Vpdoo Rshq Hfrqrp|/ Mrxuqdo ri Dssolhg Hfrqrphwulfv/ :/ 69<06<71
-^89` Phow}hu/ D1K1 +4<<8,/ Prqhwdu|/ Fuhglw dqg +Rwkhu, Wudqvplvvlrq Surfhvvhv= D Prqhwdulvw
-Shuvshfwlyh/ Mrxuqdo ri Hfrqrplf Shuvshfwlyhv/ </ 7/ 7<0:51
-^8:` Plohv/ G1 +4<<5,/ Krxvlqj Pdunhwv/ Frqvxpswlrq dqg Ilqdqfldo Olehudolvdwlrq lq wkh Pdmru
-Hfrqrplhv/ Hxurshdq Hfrqrplf Uhylhz/ 69/ 8/ 43<60 445:1
-^8;` Plohv/ G1 +4<<8,/ Krxvlqj/ qdqfldo pdunhwv dqg wkh zlghu hfrqrp|/ Mrkq Zloh| dqg Vrqv/
-Qhz \run1
-^8<` Pruulv/ F1/ dqg J1Vhoorq +4<<8,/ Edqn Ohqglqj dqg Prqhwdu| Srolf|= Hylghqfh rq d Fuhglw
-Fkdqqho/ Ihghudo Uhvhuyh ri Ndqvdv Flw| Hfrqrplf Uhylhz/ 5/ 8<0:81
-^93` Pxhooedxhu/ M1/ dqg D1Pxusk| +4<<:,/ Errpv dqg Exvwv lq wkh XN Krxvlqj Pdunhw/
-Hfrqrplf Mrxuqdo/ 43:1 4:3405:1
- ECB Working Paper No 18 G April 2000                                                                                                     41
+40 Рабочий документ ЕЦБ № 18 G, апрель 2000 г.  
 ^94` Ruwdor0Pdjqë/ I1/ dqg V1Udg| +4<<<,/ Errp lq/ Exvw rxw= \rxqj Krxvhkrogv dqg wkh
-Krxvlqj Sulfh F|foh/ Hxurshdq Hfrqrplf Uhylhz/ 76/ :880991
-^95` Skloolsv/ S1F1E1/ dqg S1 Shuurq +4<;;,/ Whvwlqj iru d Xqlw Urrw lq Wlph Vhulhv Uhjuhvvlrq/
-Elrphwulnd/ :8/ 66806791
+Krxvlqj Sulfh F|foh / Hxurshdq Hfrqrplf Uhylhz/ 76/ :880991
+^95` Skloolsv/ S1F1E1/ dqg S1 Shuurq +4<;;,/ Whvwlqj iru d Xqlw Urrw lq Wlph Vhulhv Uhjuhvvlrq /
+Элрфвулнд/ :8/ 66806791
 ^96` Srwhued/ M1 +4<;7,/ Wd{ Vxevlglhv wr Rzqhu0Rffxslhg Krxvlqj= Dq Dvvhw Pdunhw Ds0
-surdfk/ Txduwhuo| Mrxuqdo ri Hfrqrplfv/ <</ :5<0:851
-^97` Srwhued/ M1 +4<<4,/ Krxvh Sulfh G|qdplfv= Wkh Uroh ri Wd{ Srolf| dqg Ghprjudsk|/
+сурдфк / Txduwhuo| Mrxuqdo ri Hfrqrplfv/ <</ :5<0:851
+^97` Srwhued/ M1 +4<<4,/ Krxvh Sulfh G|qdplfv= Wkh Uroh ri Wd{ Srolf| dqg Гпрюдск| /
 Eurrnlqjv Sdshuv rq Hfrqrplf Dfwlylw|/ 5/ 47605361
 ^98` Txljoh|/ M1 P +4<<5,/ Krxvlqj Pdunhwv lq M1 Hdwzhoo/ P1 Plojdwh dqg S1 Qhzpdq +hgv1,/
 Wkh Qhz Sdojudyh= D Glfwlrqdu| ri Hfrqrplfv/ 6053/ Orqgrq/ Pdfploodq Suhvv1
-^99` Udpdvzdp|/ U1/ dqg W1Vorn +4<<;,/ Wkh Uhdo Hhfwv ri Prqhwdu| Srolf| lq wkh Hxurshdq
-Xqlrq= Zkdw Duh wkh GlhuhqfhvB/ LPI Vwd Sdshuv/ 78/ 5/ 6:706<91
-^9:` Vhoorq/ J1/ dqg F1U1Exvndv +4<<<,/ Qhz Fkdoohqjhv iru Prqhwdu| Srolf|= D Vxppdu| ri
-wkh Edqn*v 4<<< V|psrvlxp/ Ihghudo Uhvhuyh Edqn ri Ndqvdv Flw| Hfrqrplf Uhylhz/ 7/
+^99` Udpdvzdp|/ U1/ dqg W1Vorn +4<<;,/ Wkh Uhdo H hfwv ri Prqhwdu| Срольф| lq wkh Hxurshdq
+Xqlrq= Zkdw Duh wkh Gl huhqfhvB / LPI Vwd Sdshuv/ 78/ 5/ 6:706<91
+^9:` Vhoorq/ J1/ dqg F1U1Exvndv +4<<<,/ Qhz Fkdoohqjhv iru Prqhwdu| Срольф|= D Vxppdu| ри
+wkh Edqn*v 4<<< V|psrvlxp / Ihghudo Uhvhuyh Edqn ri Ndqvdv Flw| Hfrqrplf Uhylhz/ 7/
 80451
-^9;` Vkljhpl/ \1/ +4<<8,/ Dvvhw Lq dwlrq lq Vhohfwhg Frxqwulhv/ ERM Prqhwdu| dqg Edqnlqj
+^9;` Vkljhpl/ \1/ +4<<8,/ Dvvhw Lq dwlrq lq Vhohfwhg Frxqwulhv / ERM Prqhwdu| dqg Edqnlqj
 Vwxglhv/ 46/ 5/ 4<<81
-^9<` Vlpv/ F1/ +4<;3,/ Pdfurhfrqrplfv dqg Uhdolw|/ Hfrqrphwulfd/ 7;/ 407;1
-^:3` Vlpv/ F1/ +4<<5,/ Lqwhusuhwlqj wkh Pdfurhfrqrplf Wlph0vhulhv idfwv= wkh Hhfwv ri Prqh0
-wdu| Srolf|/ Hxurshdq Hfrqrplf Uhylhz/ 69/ <:8043441
-^:4` Vlpv/ F1/ +4<<;,/ Frpphqw rq Johqq Uxghexvfk*v cGr Phdvxuhv ri Prqhwdu| Srolf| lq d
-YDU Pdnh VhqvhB*/ Lqwhuqdwlrqdo Hfrqrplf Uhylhz/ 6</ 7/ <660<741
+^9<` Vlpv/ F1/ +4<;3,/ Pdfurhfrqrplfv dqg Uhdolw| /Hfrqrphwulfd/ 7;/ 407;1
+^:3` Vlpv/ F1/ +4<<5,/ Lqwhusuhwlqj wkh Pdfurhfrqrplf Wlph0vhulhv idfwv= wkh H hfwv ri Prqh0
+вду| Срольф| / Hxurshdq Hfrqrplf Uhylhz/ 69/ <:8043441
+^:4` Vlpv/ F1/ +4<<;,/ Frpphqw rq Johqq Uxghexvfk*v cGr Phdvxuhv ri Prqhwdu| Срольф| лк д
+YDU Pdnh VhqvhB */ Lqwhuqdwlrqdo Hfrqrplf Uhylhz/ 6</ 7/ <660<741
 ^:5` Vplwk/ H1R1 +4<<7,/ Wkh Jhupdq Hfrqrp|/ Urxwohgjh/ Orqgrq dqg Qhz \run1
-^:6` Vwhlq/ M1 +4<<8,/ Sulfhv dqg Wudglqj Yroxphv lq wkh Krxvlqj Pdunhw= D prgho zlwk
-Grzqsd|phqw Frqvwudlqwv/ Txduwhuo| Mrxuqdo ri Hfrqrplfv/ 443/ 6:<07391
-^:7` Wd|oru/ P1 +4<<8,/ Wkh Prqhwdu| Wudqvplvvlrq Phfkdqlvp= Dq Hpslulfdo Iudphzrun/
+^:6` Vwhlq/ M1 +4<<8,/ Sulfhv dqg Wudglqj Yroxphv lq wkh Krxvlqj Pdunhw= D prghho zlwk
+Grzqsd|phqw Frqvwudlqwv / Txduwhuo| Mrxuqdo ri Hfrqrplfv/443/6:<07391
+^:7` Wd|oru/ P1 +4<<8,/ Wkh Prqhwdu| Wudqvplvvlrq Phfkdqlvp= Dq Hpslulfdo Iudphzrun /
 Mrxuqdo ri Hfrqrplf Shuvshfwlyhv/ </ 7/ 440591
 ^:8` Wkh Hfrqrplvw/ D ihz Krph Wuxwkv/ 53wk Mxqh 4<<51
 ^:9` Yheohq/ W1 +4<37,/ Wkh Wkhru| ri Exvlqhvv Hqwhusulvh/ Vfuleqhu/ Qhz \run1
 ^::` Yoddu/ S1M1J1 +4<<;,/ Rq wkh Dv|pswrwlf Glvwulexwlrq ri Lpsxovh Uhvsrqvh Ixqfwlrqv
 zlwk Orqj0uxq Uhvwulfwlrqv/ Gh Qhghuodqgvfkh Edqn/ Uhvhdufk Phprudqgxp ZR)H qu
 86<2<;3</ Dpvwhugdp1
-^:;` Zduqh/ D1 +4<<6,/ D Frpprq Wuhqgv Prgho= Lghqwlfdwlrq/ Hvwlpdwlrq dqg Lqihuhqfh/
+^:;` Zduqh/ D1 +4<<6,/ D Frpprq Wuhqgv Prghho= Lghqwl fdwlrq/ Hvwlpdwlrq dqg Lqihuhqfh /
 vhplqdu sdshu Qr1888/ LLHV/ Vwrfnkrop1
-42                                                                                                                                        ECB Working Paper No 18 G April 2000
+42 Рабочий документ ЕЦБ № 18 G, апрель 2000 г.
 
----
+7 выводов
+Эта статья показала, что с динамикой цен на жилье можно справиться, используя управляемый метод.
+Структура VAR относительно простым способом. Я разработал и оценил простой
+макроэконометрическая модель, обусловленная пятью экзогенными возмущениями, каждое из которых потенциально может
+оказывают влияние на инфляцию цен на жилье. В частности, я показал, что шоки денежно-кредитной политики –
+определяются при предположении, что они не влияют на выпуск (и инфляцию потребительских цен)
+в период шока и в долгосрочной перспективе - может иметь серьезные последствия для цен на жилье, что
+может, в свою очередь, играть роль в механизме распространения потрясений. Что кажется поддерживающим
+Одним из этих выводов является то, что набор общих и разумных предположений идентификации дает правдоподобные
+результаты в том, что касается взаимосвязей между деньгами, потребительскими ценами и объемом производства;
+более того, это добавляет относительно новое доказательство, показывающее, что, в отличие от потребительских цен,
+Ценовая инфляция может быть очень чувствительной к силам, вызывающим экономические колебания. Хотя это
+результат сам по себе не удивителен – в конце концов, цены на жилье, как и цены на активы, могут отражать
+ожидания меняются быстрее, чем потребительские цены. Обнадеживает тот факт, что
+получено с помощью сильно стилизованной макроэкономической модели, которая в других отношениях близко соответствует
 
-*Note: This file was re-extracted from the ECB source PDF. 42 of 66 pages have clear text extraction. Pages 1, 3, and 44-65 use custom font encoding that could not be decoded. The garbled pages contain the acknowledgments, appendix details, references, and figures.*
+«° В литературе часто сообщается, что эпизоды финансовой либерализации способствовали жилищному буму.
+в 1980-е годы: ограничения на банковское кредитование были отменены в 1980 году, что позволило банкам конкурировать со строительными компаниями.
+общества; Среднее соотношение кредита к стоимости для покупателей, впервые покупающих недвижимость, выросло с 0,74 в 1980 году до 0,86 в середине 1980-х годов. Однако,
+Тот факт, что бум произошел через несколько лет после дерегулирования, предполагает, что финансовая либерализация сама по себе не может
+объясните бум. Упоминаются и демографические факторы: численность населения в возрасте 20-29 лет выросла на
+1,3 миллиона в 1980-е годы по сравнению с 0,1 миллиона за предыдущее десятилетие, но их вряд ли можно назвать
+шоки - в конце концов, это явление было в значительной степени предсказуемым, и в условиях эффективных рынков можно было бы ожидать, что
+Основное влияние демографических факторов будет оказываться на количество, а не на цены.
+
+Рабочий документ ЕЦБ № 18, апрель 2000 г. 33
+
+1 Введение
+
+За последние три десятилетия или около того большие изменения в ценах на активы произошли во многих промышленно развитых странах.
+экономики. Хотя считается, что макроэкономические факторы в целом и условия денежно-кредитной политики
+в частности, были важным фактором инфляции и дефляции цен на активы!
+существует большая неопределенность в отношении воздействия этих факторов на долгосрочные цены активов, таких как
+капитала, земли и недвижимости. Все согласны с тем, что центральные банки должны реагировать на цену активов.
+волатильность в контексте общей стратегии денежно-кредитной политики, и профессия, похоже,
+сходятся во мнении о влиянии экзогенного шока денежно-кредитной политики на объем производства и потребительские цены».
+Однако меньше известно о том, как реагировать на волатильность цен на активы, а также о влиянии
+макроэкономические нарушения цен на активы®. Обе эти проблемы стояли на повестке дня
+Симпозиум ФРС Канзаса 1999 г. «Новые вызовы денежно-кредитной политике»: участники симпозиума
+отметил, что интерпретация изменений цен на активы затруднена из-за проблем в
+отличая движения, вызванные фундаментальными экономическими показателями, от пузырей цен на активы. Они
+также согласился с тем, что необходимы исследования для выявления каналов, по которым происходит изменение цен на активы.
+транслируются в реальную экономику и определить количественную значимость этих эффектов.
+(Селлон и Бускас, 1999).
+
+В данной статье делается предварительный шаг ко второму пункту, анализируя структурный вектор
+авторегрессия (VAR) контекст, как цены на жилье реагируют на основные шоки, о которых думают
+для стимулирования экономических колебаний, используя данные по шести крупнейшим европейским экономикам. Ставим дом
+Цены в стандартном VAR на первый взгляд могут показаться загадочными. И все же значительная часть
+Чистый капитал личного сектора в развитых странах представлен в виде жилищного капитала», а
+общая стоимость жилищного фонда превышает ВВП, зачастую существенно; изменения его стоимости могут иметь
+влияние на совокупное потребление или на способность домохозяйств брать кредиты на потребление или
+производства, тем самым передавая свои эффекты в реальную экономику.
+
+Использование VAR для объяснения цен на жилье также может помочь понять, насколько велика изменчивость.
+Изменение цен на жилье обусловлено монетарными и другими факторами, такими как перепады спроса и предложения.
+бансы. Хотя это и не позволяет напрямую проанализировать связь между финансовой либерализацией
+и цен на жилье, которому уделяется много внимания в современной литературе?, оно имеет то достоинство, что
+дать некоторые качественные и количественные данные о взаимосвязях между жильем
+
+© См., среди прочих, Сигэми (1995), Ито и Ивайсако (1995), Хатчисон (1994), Бернанке и Гертлер.
+ae Sn природу этого соглашения см. Christiano et al. (1999) и Sims (1998).
+
+* Некоторыми исключениями являются Lastrapes (1998) о влиянии монетарных шоков на цены акций в странах G7.
+и Хатчисон (1994) о денежных потрясениях и ценах на землю в Японии. О том, как реагировать на волатильность цен на активы,
+см. Бернанке и Гертлер (1999).
+
+* По данным Poterba (1991), эта доля составляет от 50 до 70 процентов.
+
+См., например, статьи Майлза (1992) и Ортало-Магне и Ради (1999).
+
+рынок и экономика в целом. Кроме того, анализ более чем одной страны может дать
+проверка устойчивости результатов, а также указание на различия в транс-
+Механизм миссии. Это особенно важно в свете того, что рынки жилья
+существенно различаются между европейскими странами, и эти различия могут сыграть роль в
+механизм передачи ударов.
+
+Результаты статьи можно резюмировать следующим образом: векторная авторегрессия с использованием данных
+на цены на жилье и другие макроэкономические переменные в шести крупнейших европейских экономиках (Франция,
+Германия, Италия, Испания, Швеция и Великобритания) показывают, что: (i) неблагоприятные монетарные шоки, как правило,
+значительное негативное влияние на реальные цены на жилье, с временной реакцией цен на жилье
+который соответствует выходному значению; (ii) величину реакции цен на жилье на денежную
+Беспокойство можно частично оправдать, если посмотреть на различные жилищные и финансовые рынки.
+учреждения в странах; (iii) шоки денежно-кредитной политики и спроса играют важную роль в стимулировании
+Колебания цен на жилье в краткосрочной перспективе. Кроме того, этот подход дает правдоподобные результаты.
+для ответов других переменных в модели, что позволяет предположить, что цены на жилье могут быть
+эффективно встроены в относительно простую макроэконометрическую модель.
+
+Оставшаяся часть статьи организована следующим образом: в следующем разделе рассматриваются теория и фактические данные.
+о колебаниях цен на жилье и макроэкономике. В разделе 3 объясняется, как структура VAR
+может быть с пользой использован для описания основных макроэкономических сил, влияющих на цены на жилье и
+излагает эконометрическую методологию, основанную на разработанном подходе общих тенденций
+Кинга, Плоссера, Стока и Уотсона (далее KPSW) (1991). Раздел 4 описывает данные
+и их свойства временных рядов. В разделе 5 представлены основные результаты, т.е. импульсные характеристики и
+дисперсионное разложение. В разделе 6 используются оценки структурных шоков для интерпретации основных
+макроэкономические эпизоды, сопровождавшие движение цен на активы в странах
+экзамен за последние 20 лет или около того. Наконец, раздел 7 завершается.
+
+2 Теории и данные о колебаниях цен на жилье
+
+Поскольку теоретическая и эмпирическая литература по динамике цен на жилье (и, в целом, на активы)
+и их связь с макроэкономикой огромна, было бы неразумно пытаться полностью
+просмотрите это здесь. Я выбрал для обсуждения ряд работ, которые более тесно связаны между собой.
+подходу к этой работе. У меня есть отдельные исследования, более специфичные для дома.
+динамика цен, в частности со стороны тех, кто пытается построить мост между ценами на жилье и
+макроэкономика.
+
+Рабочий документ ЕЦБ № 18, апрель 2000 г. 7
+
+2.1 Характеристики рынка жилья и «микроэкономика» цен на жилье
+Существует множество причин, по которым рынок жилья отличается от рынков многих других товаров.
+и услуги (см. Кенни, 1998). Жилищные блага имеют двойственную природу: товара и
+инвестиционный актив, обычно составляющий гораздо большую долю собственного капитала домохозяйства, чем
+корпоративный капитал (Poterba, 1991). Есть и много других особенностей корпуса.
+рынок (Quigley, 1992 и Miles, 1995): (i) его относительно высокая стоимость поставок, (ii) его долговечность,
+(iii) его неоднородность, (iv) его географическая фиксированность, (v) возможность привлечь кредиты под залог жилья
+залог; (vi) наличие хорошо развитого вторичного рынка. Эти особенности подразумевают, что
+Рынок жилья на самом деле представляет собой совокупность слабо связанных, но сегментированных рынков. В результате
+говорить о ценах на жилье в целом немного рискованно, хотя оказывается, что это необходимо.
+абстракция для целей статьи.
+
+В простейшей теоретической схеме, предложенной Потербой (1984), рынок жилья описывается
+как состоящий из двух отдельных рынков, один из которых предназначен для акций существующих домов, что определяет их
+цена, а другой — для потока нового строительства, который определяет уровень новых инвестиций.
+Равновесие требует, чтобы домовладельцы-инвесторы получали такую же прибыль от инвестиций в жилье, как и
+по другим активам, где доход от жилья представляет собой сумму стоимости услуг по аренде и капитала
+прибыль. Предполагается, что стоимость услуг по аренде определяется на идеальном рынке жилья.
+услуги, уравнивающие спрос и (заранее определенное) предложение. Динамика предложения исходит из
+Инвестиционная функция Тобина q-типа. Учитывая текущие цены на жилье, это определяет будущее предложение.
+и, следовательно, завтрашняя рента и, следовательно, посредством арбитража, норма прироста капитала. Согласно
+В этой модели внезапный шок спроса (например, рост после благоприятной налоговой реформы) вызывает
+арендная плата увеличится, чтобы сохранить равновесие. Это приведет к увеличению инвестиций, что
+вызовет ожидания будущего снижения арендной платы с нового более высокого уровня по мере корректировки акций
+вверх. Это означает, что неожиданный положительный шок на рынке жилья будет иметь
+немедленное положительное влияние на цены на жилье, за которым последует корректировка в сторону
+долгосрочное равновесие, при котором цены будут постоянно снижаться. Поэтому цены
+будет иметь тенденцию к возврату к среднему значению. Что еще более важно, наблюдаемые движения цен будут отражать
+сочетание шоков и механизмов корректировки, причем последний предполагает положительную автокорреляцию
+в ценах на жилье.
+
+Эта стандартная модель предполагает, что после шока цены на жилье будут плавно приспосабливаться к
+равновесие подопечных. Конечно, это не единственная возможность: механизмы, которые могли бы вызвать
+циклическая корректировка предполагает, например, ограничения заимствований, как у Штейна (1995). Штейна
+Отправной точкой является то, что покупка дома требует существенного первоначального взноса. На любом уровне
+цен на жилье, семьи-покупатели (уже владеющие домом, но имеющие причины переехать) могут
+8 Рабочий документ ЕЦБ № 18, апрель 2000 г.
+
+разделены на три группы: 1) «свободные движители»; 2) «скованные движения»; 3) «сдержанный
+непереезжающие». Семьи первой группы достаточно богаты, и финансовые ограничения не позволяют им
+не влияют на их поведение. Для них спрос на дома является убывающей функцией цены.
+Семьи второй группы не имеют достаточного благосостояния и сталкиваются с финансовыми трудностями:
+их чистый спрос на жилье является возрастающей функцией цены, поскольку при более высокой цене они
+могут позволить себе более высокий первоначальный взнос за новый дом. Семьи третьей группы настолько богаты
+убеждены, что им лучше сидеть сложа руки, не покупая и не продавая. Одно из ключевых последствий
+этой модели заключается в том, что при определенных условиях влияние фундаментальных возмущений на
+Цены на жилье могут быть значительно увеличены по сравнению с базовым случаем отсутствия финансовых ограничений.
+
+Майлз (1992, 1995) разрабатывает ряд теоретических моделей, в которых ключевым элементом является
+вывод выражения для потребительской стоимости жилья. В частности, он явно моделирует
+влияние ограничений на доступность средств домохозяйствам в виде снижения
+привязан к размеру жилищного фонда, которым должны владеть физические лица. Его главный результат состоит в том, что
+влияние разрешения вывода акций с рынка жилья на сбережения, потребление и
+цены на жилье могут быть как существенными, так и продолжительными: в частности, он показывает, что ослабление
+условия кредитования приведут к увеличению цен на жилье и объема непогашенных ипотечных кредитов
+в экономике.
+
+Ранние эмпирические исследования рынка жилья были сосредоточены на некоторых конкретных особенностях.
+цены на жилье, особенно на рынке США®: исследование Кейса и Шиллера (1989, 1990)
+их автокорреляционные свойства; Потерба (1991) фокусируется на изменениях в стоимости строительства, в
+реальная стоимость домовладения после уплаты налогов, а также демографические факторы как возможные определяющие факторы
+изменений спроса и предложения на рынке жилья: с использованием медианных цен на жилье в 39 городах.
+с 1980 по 1990 годы он показывает, что изменения в доходах и затратах на строительство имеют важное значение.
+влияет на реальные изменения цен на жилье, но находит мало подтверждения важности демографического
+факторы. Помимо рассмотрения микроэкономических факторов, определяющих цены на жилье, есть еще один дискуссионный вопрос:
+вопрос заключался в том, были ли цены на жилье обусловлены только фундаментальным спросом и предложением.
+факторов или можно ли обнаружить признаки пузырей на рынке жилья. Хороший обзор
+этими вопросами является Чо (1996).
+
+2.2 Рынки жилья, денежно-кредитная политика и макроэкономика
+
+Идея о том, что цены на активы могут играть роль в трансмиссионном механизме и в макроэкономике.
+Экономика в целом не является чем-то новым в экономической науке и восходит, по крайней мере, к Веблену (1904) и Фишеру.
+(1933). В последние годы эта идея, кажется, становится все более популярной. Многие из опроса
+«6 Многие уравнения цен на жилье, которые в основном рассматриваются как перевернутые кривые спроса на жилье, были рассчитаны в
+прошлое и для Соединенного Королевства тоже. См. Muellbauer and Murphy (1997) и ссылки там.
+
+Рабочий документ ЕЦБ № 18, апрель 2000 г. 9
+
+статьи, опубликованные на симпозиуме «Журнал экономических перспектив» зимой 1995 г.
+Этический механизм передачи проанализировать, прямо или косвенно, роль рынка жилья в
+Механизм передачи».
+
+Так называемая «монетаристская» точка зрения (Meltzer, 1995) обычно подчеркивает две точки зрения:
+использовать q-теорию Тобина о влиянии инвестиций и богатства на потребление. Последний имеет
+его корни лежат в модели жизненного цикла Модильяни, в которой потребление определяется продолжительностью жизни
+ресурсы потребителей, которые состоят из человеческого капитала, реальных активов и финансового богатства.
+Когда цены на активы падают, падают и жизненные ресурсы, и потребление падает.
+
+Точка зрения Тобина начинается с признания того, что процесс передачи начинается и протекает в
+рынок активов, где затраты на информацию и транзакции ниже, чем затраты на изменение
+производство или корректировка потребления или инвестиций в товары длительного пользования. Если есть неуверенность в
+На первоначальный импульс денежно-кредитной политики цены на активы реагируют быстрее. Изменения относительных цен
+на рынках активов перекинутся на рынки продукции; в случае экспансионистской монетарной политики
+политики, цена актива может быть выше его восстановительной стоимости, и производство увеличивается.
+
+С другой стороны, точка зрения «кредитного канала» (Бернанке и Гертлер, 1995) предполагает, что
+Кредитные рынки не лишены трений из-за проблем с информацией, правоприменением и стимулированием.
+тивы. По этой причине кредит легче предоставить агентам с устойчивым финансовым положением или
+кто может предложить залог в качестве гарантии. Следствием этого является то, что стоимость залога
+(например, стоимость собственного капитала) определяет способность агента брать займы и кредиты, а также ее колебания.
+Изменения влияют на рычаги воздействия агента и его способность потреблять и производить. В свою очередь, это подразумевает
+что проциклические изменения в финансовых условиях заемщиков имеют последствия первого порядка.
+совокупный объем производства и благосостояния и может увеличить колебания инвестиций и выпуска по сравнению с
+экономика без трения (как у Киётаки и Мура, 1997 г., а также у Бернанке, Гертлера и Гилкриста,
+1999).
+
+Существует множество эмпирических данных о колебаниях рынка жилья и макроэкономике:
+большая часть из них носит в основном описательный характер. Энглунд и Иоаннидес (1997) берут международный
+эмпирический взгляд на цены на жилье в группе из 15 стран ОЭСР: их работа, в то время как
+документирование положительного влияния роста ВВП и отрицательного влияния увеличения процентной ставки
+ставок на цены на жилье, не дает данных о динамике, которую могли бы иметь цены на жилье.
+после шока.
+
+Другие данные получены из двух исследований BIS: межстранового исследования связи между
+реальные цены на жилье и сбережения домохозяйств, Кеннеди и Андерсон (1994) указывают на сложность
+выявление факторов, влияющих на колебания цен на жилье. Хотя они не могут исключить возможность
+
+? Примерами являются Бернанке и Гертлер (1995) и Мельцер (1995); Тейлор (1995, стр. 17) обсуждает, как ипотека
+на ставки могут влиять изменения краткосрочных процентных ставок.
+10 Рабочий документ ЕЦБ № 18, апрель 2000 г.
+
+Поскольку спекуляции на рынках жилья в разных странах, они предполагают, что денежно-кредитная политика
+налогово-бюджетный режим жилья и финансовая либерализация могут сыграть роль в стимулировании цен.
+качели. Одномерные регрессии индекса реальных цен активов Борио, Кеннеди и Проуза (1994).
+кредита и другие переменные предполагают, что кредит играет важную роль в движении активов.
+цены и предложить на 1980-е годы трансмиссионный механизм, основанный на финансовой либерализации
+к увеличению кредита к увеличению цен на активы в Швеции, Финляндии и Норвегии.
+
+Мельцер (1995) сравнивает темпы изменения цен на новые односемейные дома и ВВП США.
+дефлятор и показывает, что пики темпов изменения цен на жилье предшествуют каждому пику
+дефлятор примерно на два года. Он также документирует аналогичные модели для Великобритании и Швеции. Бомхофф
+(1994) объясняет квартальные колебания роста ВВП в США, Японии и Германии с 1972 года.
+по 1991 год. Он показывает, что экономический рост положительно зависит от отстающих реальных цен на жилье.
+может соответствовать монетаристскому взгляду на трансмиссионный механизм. Хиггинс и Ослер
+(1997) используют межстрановые данные по странам ОЭСР с 1984 по 1993 год: они утверждают, что жилищное строительство
+цены на акции были раздуты спекулятивными ценовыми пузырями во многих странах, и этот актив
+Снижение цен в начале 1990-х годов представляло собой «похмелье» предыдущих пузырей. Они основывают это
+вывод на основании наблюдения о том, что страны, цены на активы которых росли больше всего в конце 1980-х гг.
+позже обнаружили, что цены на их активы упали сильнее всего, и этот результат справедлив даже для
+Влияние экономических основ.
+
+3 Эконометрическая методология: векторная авторегрессия и общие тенденции
+3.1 Почему VAR?
+
+Удивительный факт почти всех эмпирических исследований колебаний цен на жилье и макроэкономических показателей.
+экономики заключается в том, что, хотя они признают важность цен на жилье в механизме передачи
+анизма, они не используют один из наиболее удобных и используемых инструментов для обобщения
+динамические связи между переменными. Вместо этого, следуя стандартной практике со времен Симса
+(1980), эта статья использует векторную авторегрессию для описания макроэкономических показателей.
+динамика, включающая потребительские цены и цены на жилье, объем производства, деньги и процентные ставки.
+
+Конечно, применение этой методологии к динамике цен на жилье не обошлось без скептиков®.
+В недавней статье о рынке жилья и ЕВС Макленнан, Мюэльбауэр и Стивенс
+(1998) (далее MMS) утверждают, что институциональные различия, существующие в Европе, в
+особенно в условиях жилья и кредита, «неизбежно подразумевают большие различия в денежной
+механизм передачи через европейские страны». Они также заявляют, что исследования VAR
+механизм передачи подвергаются ряду серьезных критических замечаний, в первую очередь из-за неправильного
+
+* Возможно, именно по этой причине никто так и не провел VAR-анализ цен на жилье.
+Рабочий документ ЕЦБ № 18 » апрель 2000 г. 11
+
+спецификации из-за отсутствия важных переменных, таких как цены на активы. Кроме того,
+они утверждают, что VAR может быть лишь плохим приближением к динамическим реакциям организма.
+устанавливать цены в соответствии со структурными шоками. Похоже, что у прикладного эконометрика не осталось надежды:
+либо включать цены на жилье и не иметь возможности полностью отразить их динамику, либо исключать
+их, занижая модель. Включив цены на жилье в относительно стандартный в остальном
+спецификации, эта статья надеется быть, по крайней мере частично, невосприимчивой к второй критике.
+
+Поэтому при применении методологии VAR к ценам на жилье уместны некоторые предостережения.
+
+1) Как указывает Кокрейн (1994), любая VAR механически объясняет 100% дисперсии
+переменных из-за непредсказуемых движений эндогенных переменных. В поисках экзогенного
+возмущения — это способ поиска изменений в этой переменной, вызванных политикой, технологией или убеждениями.
+Это мало что говорит об идеально ожидаемых потрясениях или систематической политике. И это не может быть легко
+различать фундаментальные и нефундаментальные факторы, определяющие цены на жилье, такие как
+спекулятивные пузыри. Ведь, несмотря на распространенное мнение, что в конце 1980-х гг.
+рынки во многих промышленно развитых странах держались на плаву из-за пузырей», — один из уроков будущего.
+Исследования показывают, что невозможно доказать, был ли данный цикл бума-спада цен на жилье
+действительно пузырь (Гамильтон и Уайтмен, 1985). До такой степени, что даже самая экстремальная цена
+рост мог быть вызван каким-то ненаблюдаемым фундаментальным фактором, подходом VAR этого
+В статье будет предпринята попытка проанализировать, какие факторы могут быть источником колебаний цен на жилье.
+
+2) Линейность также является важным вопросом. Цены на жилье и другие переменные могут реагировать по-разному
+к толчкам, равным по величине, но противоположному знаку. MMS (1998), например, утверждают, что в
+спекулятивные рынки, такие как рынок жилья, динамика или реакция цен на жилье
+процентные ставки нелинейны и непостоянны во времени.
+
+3) Вопрос о механизме распространения также имеет решающее значение. Один и тот же импульс порождает разные
+ent ответы из-за лежащего в основе другого механизма распространения. От величины
+и форму ответов или контроль других переменных, которые могут играть роль в
+передачи шока, можно сделать вывод о том, что происходит после шока, и
+почему. Однако во многих случаях более чем один канал передачи соответствует одному и тому же каналу.
+ответ.
+
+3.2. Эмпирическая методология
+
+В этом разделе описывается, как долгосрочные положения экономической теории могут быть использованы для выявления
+Основные источники экономических колебаний. В этом подходе Бланшара и Куа (1989):
+Далее следуют KPSW (1991) и Warne (1993). Более подробное описание методики
+»° См. обсуждение в Higgins and Osler (1997, стр. 115) и ссылки там.
+
+12 Рабочий документ ЕЦБ № 18 © апрель 2000 г.
+
+находится в приложении А.
+
+Как известно, когда группа переменных оказывается нестационарной, но коинтегрированной,
+полезной спецификацией их динамического взаимодействия является модель векторной коррекции ошибок (VECM).
+Модель VECM, в частности, накладывает нелинейные ограничения пониженного ранга на матрицу
+долгосрочные последствия VAR. KPSW (1991), в частности, предлагает провести различие между
+структурные шоки с постоянным воздействием на уровень переменных (скажем, положительное предложение
+шок, увеличивающий выпуск в долгосрочной перспективе) от тех, которые имеют лишь временный эффект (скажем, спрос
+шок, который, как можно считать, не оказывает нулевого долгосрочного воздействия на объем производства и другие реальные переменные).
+Постоянные потрясения являются источниками так называемых общих стохастических тенденций во всем мире.
+серии, а число этих шоков равно числу переменных в системе за вычетом
+количество коинтегрирующих связей между ними. (Оставшиеся) временные инновации
+равно числу коинтегрирующих отношений (интуитивно, коинтегрирующий вектор идентифицирует
+линейная комбинация переменных, которая является стационарной, что устраняет тенденцию, так что шоки
+чтобы это не исключало установившегося режима в такой системе).
+
+Я указываю пятимерную VAR с помощью X; = [ y mp hp iw J. где X; вектор
+включающий реальный доход (y;), показатель реальных денежных остатков (mp;), индекс реальных цен на жилье -
+т.е. аномальный индекс цен на жилье, дефлированный на уровень потребительских цен - (hp;), краткосрочный номинальный
+процентная ставка (i) и годовая квартальная инфляция (потребительские цены) (71). Реальные переменные
+указывается в натуральных логарифмах, процентная ставка и инфляция потребительских цен в процентах.
+Из этого представления можно ответить на несколько эмпирических вопросов. Есть ли доказательства того, что
+долгосрочный график спроса на деньги? Является ли реальная процентная ставка стационарной? Как меняются реальные цены на жилье
+ведут себя в долгосрочном периоде и какова их связь с реальным выпуском? Как соотносятся реальные и номинальные
+переменные взаимодействуют после возмущения? Как мы можем распутать инновации с постоянными
+влияние на переменные от тех, которые имеют только временные эффекты? На что приходится большая часть
+наблюдалась волатильность реальных цен на жилье, которая характерна для многих стран с развитой экономикой на протяжении
+последние десятилетия?
+
+3.3 Гипотезы о коинтеграции
+Сколько общих стохастических тенденций мы можем ожидать, имея в наборе данных 5 переменных?
+
+ДЕНЬГИ, ПРОИЗВОДСТВО И ПРОЦЕНТНЫЕ СТАВКИ: Рост уровня цен в большинстве стран в течение
+последних десятилетий предполагает возможность стохастической тенденции, связанной с дизайном
+денежно-кредитная политика: другими словами, как предположил Гали (1992), желание центрального банка избежать
+Колебания выпуска могут привести к номинальной нестабильности, в том смысле, что они приводят к общей тенденции.
+ведущие номинальные ставки, денежные остатки и выпуск. Альтернативно, связь между этими
+Рабочий документ ЕЦБ № 18. Апрель 2000 г. 13
+
+переменные можно интерпретировать, как это сделано, например, в Coenen and Vega (1999) и Crowder,
+Хоффман и Раше (1999), как традиционная функция спроса на деньги, связывающая реальные балансы с
+масштабная переменная и мера альтернативных издержек поддержания ликвидности. что эта ссылка
+Однако эту функцию спроса на деньги следует интерпретировать с осторожностью, по крайней мере, по 5 причинам!»:
+1) в подобной системе может существовать множество векторов коинтеграции: спрос на деньги
+(между mp, y и i) один, но и совокупный спрос, например (между y и 1);
+2) показатель краткосрочных процентных ставок вполне может представлять собой собственную, а не внешнюю ставку по
+деньги; 3) любая денежная мера представляет собой совокупность компонентов с различными характеристиками;
+4) нельзя игнорировать дефиниционные и структурные разрывы; 5) частота наблюдения может
+влияют как на экзогенность, так и на коинтеграцию, как обсуждал Хендри (1995).
+
+ПРОЦЕНТНЫЕ СТАВКИ И ИНФЛЯЦИЯ. Существуют теоретические основания полагать, что реальные проценты
+тарифы являются стационарными. Другими словами, существует связь между двумя номинальными переменными, которые
+соответствует модифицированному уравнению Фишера, т.е. i¢ = po + 7 + el,
+
+РЕЗУЛЬТАТЫ И РЕАЛЬНЫЕ ЦЕНЫ НА ЖИЛЬЕ: Существует ли долгосрочная связь между ценами на жилье?
+и потребительские цены? Должны ли мы ожидать, что реальные цены на жилье будут постоянными с течением времени или нет? А
+Возможный ответ, предложенный Потербой (1984), заключается в следующем: если долгосрочное жилищное строительство
+кривая предложения и кривая предложения всех остальных товаров были совершенно эластичными, устойчивое состояние
+цена конструкций будет полностью зависеть от затрат на строительство, которые, вероятно, не зависят
+от уровня строительства. Однако при условии, что любой фактор, определяющий предложение недвижимости,
+например, земля, лесоматериалы или строители, имеется в наличии в фиксированном количестве, действуя, таким образом, как
+ограничивающий фактор - можно ожидать, что граница производственных возможностей между домами и
+другие товары! не плоский. Это предполагает возможную тенденцию роста реальных цен на жилье в течение следующего года.
+в долгосрочной перспективе!*. Тем не менее, можно разумно ожидать, что реальные цены на жилье будут коинтегрированы с ВВП, поскольку
+ВВП может дать меру того, насколько смещается граница производственных возможностей.
+со временем!*. В каком-то смысле этот потенциальный коинтегрирующий вектор, измеряющий эластичность реального дома
+цены на выпуск, можно рассматривать как долгосрочную кривую предложения жилищного фонда при условии, что
+новые инвестиции в акции составляют постоянную долю ВВП, и что кривая предложения жилья
+
+10 Подробное обсуждение этих вопросов см. в Ericsson (1998).
+
+11 «Слово «модифицированный» используется потому, что соотношение Фишера правильнее моделировать как длинный
+проанализируйте взаимосвязь между номинальными процентными ставками и ожидаемой инфляцией, как это сделано в Crowder et al. (1999). Использование
+инфляция в период t + 1 как показатель инфляционных ожиданий и моделирование системы с w241 вместо 7;
+дали практически неизменные результаты.
+
+12 4 репрезентативная выборка «прочих товаров», естественно, входит в индекс потребительских цен.
+
+«5 Что касается Соединенного Королевства, Майлз (1995, стр. 40) документирует тенденцию к росту реальных цен на жилье в течение
+прошлого века. Хотя вполне возможно, что, по крайней мере, частично кажущийся рост реальных цен на дома обусловлен
+улучшения жилищных условий, индекс реальных цен на жилье, скорректированный на качество, вероятно, со временем все равно будет расти. Для
+данные из разных стран только за последние десятилетия, см. Cutler (1995).
+
+«Обратите внимание, что я не исследую связанный, а другой вопрос, например, возможность того, что жилищное богатство
+постоянная доля дохода с течением времени. Эта информация определяет вектор коинтеграции, но не может быть включена.
+в нашем анализе, поскольку наш z не включает в себя какой-либо показатель жилищного фонда.
+
+14 Рабочий документ ЕЦБ № 18 © апрель 2000 г.
+
+структуры не смещаются со временем!®.
+Поэтому я ищу следующие представления:
+й мп хп ио
+'
+Б = [- 10 и 0]
+'
+% = [-r 0100]
+'
+8 = [0 00 -1 1]
+первый определяет долгосрочный график спроса на деньги, скажем, mp; = byyt — бит, второй
+связывающий реальные цены на жилье и объем производства, т. е. hp, = Ty, а последний подразумевает стационарность (напр.
+анте) реальная процентная ставка. В целом после нормализации на мп, хп и 7 эта спецификация
+накладывает г (г — 1) = 6 непроверяемых нулевых ограничений. Три оставшихся ограничения (два
+нулевые ограничения и одно, налагающее коэффициент -1 на процентную ставку в 33), учитывая остальные,
+вместо этого доступны тестированию!®.
+3.4 Выявление структурных шоков
+Параметры коинтегрирующих векторов можно использовать для ограничения долгосрочных множителей
+перманентные шоки (подробнее см. Приложение А).
+Это вытекает из того, что информация о коинтегрирующем пространстве позволяет сформулировать
+VAR в виде модели исправления ошибок. Начиная с сокращенной формы VAR в
+уровни, где X — вектор-столбец эндогенных переменных, Z — вектор детерминированных
+компоненты, k — порядок запаздывания и Eee! = 5
+X, = АХ +... + АХ k + Ze + et
+представление VAR в VECM, где в обычных обозначениях A представляет собой первый
+разностный оператор:
+АХ, = TLXt-1 — (Аг+...+Ар) АХ —.. — Ар АХ нг + УЗ + ет
+и представление скользящего среднего можно представить как:
+AX, = O(L)er
+
+«© Излишне говорить, что любую предполагаемую взаимосвязь следует интерпретировать с осторожностью, поскольку она непродолжительна.
+временные ряды цен на жилье для многих стран, которые анализируются в этом исследовании.
+
+4 Йохансен (1991) показывает, что асимптотическое распределение оценок максимального правдоподобия для 3 является смешанным.
+Гауссово распределение. Это означает, что критерий отношения правдоподобия для данной гипотезы об ограничениях на { равен:
+для данного ранга, асимптотически распределенного как x.
+
+Рабочий документ ЕЦБ № 18 © апрель 2000 г. 15
+
+ПОСТОЯННЫЕ ШОКЫ: Идентификация постоянных потрясений может быть достигнута путем введения
+ограничений ровно столько, чтобы потрясениям и их долгосрочным последствиям можно было дать экономический эффект.
+интерпретация. Энгл и Грейнджер (1987) показали, что столбцы C (1) в ограниченном
+Вышеуказанные VAR ортогональны коинтегрирующим векторам, т.е. @’C(1) = 0. Таким образом,
+Стратегия идентификации накладывает следующие ограничения на матрицу 5x5 долгосрочного прогноза:
+множители C(1). Эта матрица разбита на: C(1) = [P 0] так, что матрица P имеет размер 5 x 2.
+матрица, столбцы которой представляют долгосрочную реакцию переменных на постоянные шоки,
+тогда как долгосрочная реакция на временные шоки предполагается равной нулю. 5 х 2
+Матрица P, дающая долгосрочные множители постоянных шоков, должна быть определена таким образом, чтобы
+такая, что ее столбцы ортогональны матрице коинтегрирующих отношений.
+
+С переменными, упорядоченными как [ y mp hp ia |: я ограничиваю элемент (1,2) длинного
+приравнять матрицу воздействия P к нулю, чтобы можно было исключить одно из двух постоянных потрясений.
+оказывающее долгосрочное влияние на уровень выпуска y!». Соответственно, я позволяю другому шоку повлиять на
+y в долгосрочной перспективе: этот шок, таким образом, является единственным источником изменения единичного корня ВВП, и
+можно рассматривать как шок предложения.
+
+Более подробно, матрица P общих тенденций будет выглядеть следующим образом:
+
+1 0 долгосрочный эффект шока на y
+по -б; долгосрочный эффект шока на МП
+P=P0=|7r 0 10 <— | долгосрочный эффект шока на здоровье
+Оо ол а} долгосрочный эффект шока на меня
+Оо старый долгосрочный эффект шока на 7
+
+Для любого значения параметра @ (подлежит оценке) номинальный удар (второй столбец)
+оставляет выпуск и относительные цены неизменными, что приводит к более низкому (более высокому) уровню реальных балансов
+и более высокая (сниженная) инфляция и процентные ставки в долгосрочной перспективе!*. Одна из возможных интерпретаций
+этот шок, согласно Коэнену и Веге (1999), может быть шоком изменения денежно-кредитной политики.
+Цель денежно-кредитного органа: согласно европейскому опыту, оно может захватить возможную
+заранее объявленное обязательство по достижению другого целевого показателя инфляции, но также, в более общем плане, это может
+означает постоянный номинальный шок.
+
+Шок предложения (первая колонка) увеличивает выпуск, реальный баланс и реальные цены на жилье в
+долгосрочные, с весами, определяемыми предполагаемыми коинтегрирующими векторами. Пока оценка
+«IT. Эта процедура может показаться немного специальной, но выбор P «таким образом, чтобы каждый шок ассоциировался с
+знакомый экономический механизм» — неплохая идея, особенно когда, как в случае с этой процедурой, сильные убеждения в
+Эффекты всех шоков на каждую переменную превышают минимальные требования для идентификации. См., для обсуждения,
+Фишер и др. (1995).
+
+18 Противоположные знаки реальных балансов и номинальных ставок получаются только в том случае, если оцененный коинтегрирующий вектор
+между деньгами, выпуском и процентными ставками дает коэффициенты одного знака при mp и r.
+16 Рабочий документ ЕЦБ № 18, апрель 2000 г.
+
+@ не является диагональным, этот шок также может изменить инфляцию и номинальные ставки (на ту же величину)
+в долгосрочной перспективе.
+
+ПЕРЕХОДНЫЕ ШОКЫ: Временные потрясения, которые предположительно ортогональны пер-
+Существующие шоки и друг на друга не окажут долгосрочного воздействия ни на одну из переменных. Следование
+Мелландер, Вредин и Варн (1992), им можно дать экономическую интерпретацию с точки зрения
+линии традиционной методологии VAR, которая выявляет шоки рекурсивным образом. Я идентифицирую
+три отдельных традиционных источника краткосрочных колебаний: шок денежно-кредитной политики не имеет никакого влияния.
+опосредованное влияние на объем производства и инфляцию ИПЦ, но может одновременно влиять на реальные балансы (посредством
+снижение номинальной денежной массы), процентные ставки и реальные цены на жилье (например, потому что
+цены на жилье, как и цены на активы, реагируют на новости!»).
+
+В отличие от монетарного, шок спроса не оказывает никакого влияния на инфляцию ИПЦ, но
+потенциально влияет на современный ВВП, воздействуя на его расходные компоненты (см. Гали, 1992,
+для соответствующей точки), а также цены на жилье, реальные денежные остатки и процентные ставки. Это
+беспорядки могут представлять собой шок, корни которого лежат в эпизодах, касающихся рынка жилья,
+например, временные налоговые льготы для инвестиций в жилье или внезапное увеличение спроса, вызванное
+благодаря самореализующимся ожиданиям повышения цен на жилье.
+
+Третий и последний шок – временный шок (который может одновременно повлиять на все варианты
+способности) может быть, как у Краудера, Хоффмана и Раше (1999), временным инфляционным шоком, т.е.
+временный сдвиг вверх в графике совокупного предложения базовой модели AD/AS: действительно, поскольку мы
+Как увидите, импульсивные реакции в большинстве стран соответствуют реакциям.
+модель кривой совокупного предложения/совокупного спроса, без смещения кривой совокупного спроса,
+никаких изменений в инфляционных ожиданиях и никакого смещения долгосрочной кривой совокупного предложения».
+
+4 Свойства данных
+
+4.1 Источники данных
+
+Данные состоят из квартальных наблюдений по объему производства, денежному агрегату, потребительским ценам,
+цены на жилье и номинальная краткосрочная процентная ставка в шести европейских экономиках (Франция, Германия,
+многие, Италия, Испания, Швеция и Великобритания). За исключением Испании, где четверть
+Последняя цена на жилье была доступна только начиная с 1987 года, данные охватывают период, охватывающий
+примерно за последние 25 лет.
+
+19 Пример (хотя и не денежного шока), показывающий, что цены на жилье не такие устойчивые, как потребительские цены.
+и что наложение на них ограничений с нулевым воздействием может быть неуместным (даже в периоды низкой инфляции)
+Данные Потербы (1991): сообщается, что цены на жилье выросли на 5 процентов в течение недели после выбора
+Берлин как новая столица Германии.
+
+°° Альтернативная интерпретация заключается в том, что этот шок может быть шоком обменного курса, который поднимает цены на
+импортированные товары, что временно снижает объем производства. Я благодарю Гюнтера Коэнена за это предложение.
+
+Рабочий документ ЕЦБ № 18, апрель 2000 г. 17
+
+Качество данных о ценах на жилье, собранных из разных источников, различается.
+из страны в страну: однако, поскольку цель этой статьи – больше предоставить доказательства
+на динамике цен на жилье, а не на сравнении их уровней по странам, измерение
+проблемы не следует преувеличивать. В принципе возможно, что временной ряд не
+отразить. корректировки на качество жилищного фонда. Тем не менее, это должно повлиять только на
+оценка вектора коинтеграции между реальными ценами на жилье и объемом производства без каких-либо других
+основные побочные эффекты на другую, краткосрочную динамику.
+
+Данные о ценах на жилье во Франции взяты из Банка Франции (1999 г.), который недавно
+начали рассчитывать индекс цен на жилье»!. Немецкие данные взяты из Aufina Res-
+идентичный индекс цен: исходный ряд был годовым, а квартальный был интерполирован через
+интерполяция, предполагающая ARIMA(0,2,0) в исходном ряду». Данные по Италии взяты из
+индекс цен на жилую недвижимость, рассчитываемый журналом «I] Consulente Immobilare» (с
+разработка Банка Италии); исходная полугодовая частота была преобразована в квартальную.
+в конце посредством интерполяции. Данные по Испании взяты из Индекса цен на жилую недвижимость за год.
+Квадратный метр, предоставлен Министерством экономики и гасиенды. По Швеции данные были
+предоставлено Центральным статистическим управлением по индексу цен на жилье». Наконец, данные по Великобритании были взяты из
+Квартальный индекс цен на жилье по всей Англии по всей Англии. Доступны все временные ряды
+примерно с середины 70-х, за исключением Испании (где сериал начинается в 1987 году)
+и Великобритания (1963). Чтобы сделать результаты более сопоставимыми между странами, период оценки
+Великобритания начинается в 1973 году.
+
+Итоговые выборки оказались следующими: для Франции 1978:1 - 1997:4 (80 об-
+сервировки); для Германии – 1973:1 – 1998:3 (103 наблюдения); для Италии, 1973:1 - 1998:2 (102
+наблюдения); для Испании – 1987:4 – 1998:4 (45 наблюдений); для Швеции, 1977:4 - 1998:4 (85 об-
+сервировки); для Соединенного Королевства – 1973:1–1998:3 (103 наблюдения). Итоговая цена дома
+индексы вместе (для целей сравнения) с индексами потребительских цен показаны на рис.
+1. На рисунке показаны большие колебания цен на жилье, произошедшие во всех странах.
+странах в последние десятилетия, с длительными циклами всё более растущего роста цен, за которыми следовали
+спады; Колебания реальных цен на жилье, кажется, были особенно сильными в Швеции и
+
+21 С 1978 года во Франции ежегодный индекс цен на жилую недвижимость рассчитывается на основе
+портфель национальной федерации агентов по недвижимости FNAIM, включающий 220 000 объектов недвижимости. Банк
+Затем де Франс преобразовал этот индекс в ежеквартальный, профилируя его с помощью индекса Палаты представителей.
+Нотариальный совет по продаже старых незанятых квартир в Париже.
+
+* Индекс AUFINA/ERA показывает среднюю цену за кубометр закрытой площади дома 3-летней давности.
+со средним индексом. Он построен на основе опросов, проведенных AUFINA/ERA среди агентов по недвижимости.
+в стране.
+
+По словам Холманс (1994), «история цен на жилье в Германии далека от стабильности». Однако сериал предоставил
+по Ауфине, который используется в этой статье, аналогичен построенному Холмансом (1994) с использованием данных на уровне города.
+предоставлено агентством недвижимости Ring Deutscher Makler.
+
+23 «Ряд цен на жилье в Швеции построен как средневзвешенное значение первичного жилья и домов для отдыха (спасибо Бхарату)
+Баро за любезное предоставление серии).
+
+18 Рабочий документ ЕЦБ № 18, апрель 2000 г.
+
+Великобритания; Периоды падения номинальных цен на жилье были обычным явлением во всех странах.
+
+Все остальные ряды были получены из Международной финансовой статистики МВФ:
+измеряется (логарифмом) ВВП в постоянных ценах с учетом сезонных колебаний; 7 – это мера краткосрочного
+процентная ставка, выраженная в процентах, а именно ставка денежного рынка для Италии, процентная ставка денег для
+Франция и Германия, 3-месячная ставка казначейских векселей для Испании, Швеции и Великобритании; реальные деньги
+mp — логарифм M2 (дефлированный по индексу потребительских цен) для Франции, Испании и Швеции; М1
+для Германии, Италии и Великобритании. Результаты не сильно различались при использовании M2 вместо M1 в последнем случае.
+трех странах, но M1 дал более правдоподобные оценки коинтегрирующих векторов и
+реакции на потрясения. Инфляция, 7, измеряется годовым квартальным изменением (log
+г) индекс потребительских цен.
+
+Для каждой страны расчетная VAR содержала длину лага 3 (Франция, Испания, Швеция).
+или 4 (Германия, Италия, Великобритания), в зависимости от того, чего было достаточно для получения шумоподобных остатков.
+Для поправки на воссоединение Германии использовались два импульсных манекена (1990:3 и 1991:1). Ан
+Импульсная фиктивная переменная для Великобритании за 1987 год: 1 была введена для отражения разрыва покрытия в
+деньги+квази-деньги серии IFS.
+
+4.2 Единичный корень и тесты на коинтеграцию
+
+В качестве предварительного шага и для правильного определения модели долгосрочные свойства
+
+задействованные временные ряды, то есть степень их интеграции и возможное присутствие коинтегрирующих
+
+отношения должны быть охарактеризованы.
+
+4.2.1 Тесты единичного корня
+
+Были проведены два одномерных теста единичного корня: расширенный тест Дики-Фуллера и критерий Филлипса-Фуллера.
+
+Тест Перрона (1988). В таблицах 4.1 и 4.2 представлены результаты испытаний. В целом картина
+
+которое следует из тестов, намекает на то, что переменные интегрированы первого порядка, хотя, используя
+
+тест Филлипса-Перрона, во многих странах нулевая гипотеза единичного корня в уровне инфляции
+
+отвергается в пользу стационарности.
+
+4.2.2 Тесты на коинтеграцию
+
+В этом подразделе описывается оценка векторов коинтеграции для каждой страны с
+
+методы многомерной коинтеграции, описанные Йохансеном и Джуселиусом (1990). Трое
+
+коинтеграционные векторы можно интерпретировать как график спроса на деньги, долгосрочное предложение жилья.
+
+кривая и уравнение Фишера. Однако векторы следует интерпретировать с осторожностью, по крайней мере, для
+
+три причины: 1) спецификация графика спроса на деньги, вероятно, недостаточно параметризована,
+Рабочий документ ЕЦБ № 18 © апрель 2000 г. 19
+
+Таблица 4.1: Расширенные модульные корневые тесты Дики-Фуллера
+ФРАНЦИЯ ГЕРМАНИЯ ИТАЛИЯ ИСПАНИЯ ШВЕЦИЯ ВЕЛИКОБРИТАНИЯ
+у -0,10 0,14 -2,23 -0,99 -0,62 -0,09
+мп -1,27 1,10 -0,88 -0,21 -2,07 -0,14
+л.с. -2,61 -2,36 -2,31 -2,64 -2,39 -1,40
+я -0,97 -2,62 -1,59 -0,21 -1,67 -2,31
+сша -0,65 -2,20 -1,61 -0,68 -1,77 -2,76
+Дополненная статистика тестов единичного корня Дики-Фуллера для серии с длиной лага 3 для Франции, Испании и
+Швеция — 4 для Германии, Италии и Великобритании; * указывает на отклонение нулевой гипотезы единичного корня на уровне 95%.
+уровень достоверности, ** на уровне 99% - в зависимости от размера выборки критическое значение 95% MacKinnon (1991)
+колеблется от -2,89 до -2,92-.
+Таблица 4.2. Тесты единичного корня Филлипса-Перрона
+ФРАНЦИЯ ГЕРМАНИЯ ИТАЛИЯ ИСПАНИЯ ШВЕЦИЯ ВЕЛИКОБРИТАНИЯ
+у -0,45 -0,43 -2,05 -L77 -0,62 -0,09
+мп -0,58 0,98 -1л1л -0,82 -1,95 1,19
+л.с. -2,44 -3,27* -1,94 -4,08** -L71 -0,39
+я -1,13 -2,48 -1,90 -0,59 -1,73 -2,38
+сша -1,53, -4,98** -2,97* -3,06* -4,91** -4,48**
+Статистика тестов единичного корня Филлипса-Перрона для ряда с длиной лага 3 для Франции, Испании и Швеции, 4 для
+Германия, Италия и Великобритания; * указывает на отклонение общей гипотезы единичного корня на уровне достоверности 95%, **
+на уровне 99% - в зависимости от размера выборки критическое значение 95% колеблется от -2,89 до -2,92- .
+поскольку долгосрочные процентные ставки, финансовое богатство и инфляция исключены из спецификации;
+2) финансовые инновации, вероятно, повлияют на стабильность спроса на деньги в выборке; 3)
+коинтеграционные отношения идентифицируются только с точностью до линейной комбинации, следовательно, не существует единого вектора.
+можно легко интерпретировать как описание значимых экономических отношений»!
+
+Тесты на коинтеграцию были проведены для шести стран. По статистике лямбда-макс
+(описание см. в Johansen and Juselius, 1990), нулевая гипотеза отсутствия коинтеграции
+против одного вектора коинтеграции, один вектор коинтеграции против двух был отклонен на 90%
+уровень доверия во всех странах. Три коинтеграционных вектора были предложены во Франции и Германии.
+и Швеции, тогда как два из них кажутся более вероятными в Германии и Италии и четыре в Испании. Однако,
+теоретические основания полагать, что коинтегрирующий ранг три ведет к правдоподобному экономическому развитию.
+интерпретация потрясений привела меня к тому, что весь остальной анализ был основан на ранге r = 3.
+
+24 «Литература по этому вопросу, конечно, огромна. Чтобы назвать несколько исследований, см. Fase and Winder (1998),
+Хендри (1995 г.), Эрикссон (1998 г.).
+20 Рабочий документ ЕЦБ № 18 © апрель 2000 г.
+
+Таблица 4.3: Оценки параметров векторов коинтеграции
+СТРАНА Период CV1 Cv2 CV3 P-значение #cv 90%
+(Q-макс)
+Франция 784-974 mp2=yt5.044r hp=373y =m, 11 3
+(074) Потому что)
+Германия 73:1- 98:3. mpl =2,075 y+ 35 r hp=.063y =m 10 2
+(о29) 7 дюймов (272) (202)
+Италия 73:1 98:2 mpl=1495г+ 3.01 р Ap=124г утра 53 2
+(409) (87)
+Спай: 7:4 - 98:4 2 =1,65 г— 3. хп =1. = 01 3
+боль 8 8 mp2=165y- 367 r — hp=1,60y т.е. = me 0
+Швеция 77:4-98:4 mp2 =y+537r = hp=864y =m 04 3
+(834) (159)
+Великобритания 73:1- 98:3 mpl=1,926y—7,02r hp=63y nam 82 4
+(32) 7 (515) (ау
+Оценки параметров трех векторов коинтеграции (стандартные ошибки в скобках). Предпоследний столбец
+относится к p-значению статистики теста отношения правдоподобия для чрезмерного выявления ограничений на коинтегрирующие векторы,
+тогда как последний столбец относится к количеству коинтегрирующих векторов, предложенных статистикой лямбда-макс при
+уровень доверия 90%.
+4.3 Коинтеграционные отношения
+В Таблице 4.3 представлены предполагаемые три вектора коинтеграции для каждой страны с учетом одного сверх-
+идентифицирующее ограничение коинтегрирующего пространства вместе с p-значениями для сверхидентифицирующего
+ограничение, налагаемое на коинтегрирующие векторы. Ограничения были отвергнуты на 95%
+уровень доверия только в Швеции и Испании??. Поскольку было показано (Якобсон, Вредин и
+Уорн, 1998). что критерий отношения правдоподобия для гипотезы о векторах коинтеграции для
+данный ранг имеет тенденцию быть завышенным, я предпочитаю из соображений экономии места представить только ограниченные
+коинтегрирующие векторы со стандартными ошибками в скобках: потеря информации не должна быть
+отлично, так как неограниченные и ограниченные векторы (при удобном вращении последних) должны быть
+похоже.
+
+Необходимо сделать несколько комментариев, учитывая данные об этих коинтегрирующих векторах.
+
+1) Предполагаемая эластичность спроса на деньги по доходу всегда больше, чем эластичность спроса на деньги по доходу.
+случаях, в которых не ограничивается единицей. Это может быть следствием упущения богатства
+переменные спроса на деньги, такие как жилищное богатство, которое положительно коррелирует с
+доход.
+
+2) Предполагаемая полуэластичность спроса на деньги по краткосрочным процентам.
+ставка bj имеет отрицательный знак только в двух случаях из шести. Для Франции и Швеции подразумеваемый
+эластичность реального М2 значительно положительна, однако положительная эластичность вполне правдоподобна с теоретической точки зрения.
+оснований, поскольку отрицательный коэффициент следует ожидать априори только на (некоторой мере) узких
+деньги, как обсуждалось, например, Фэйсом и Уиндером (1998) и Эрикссоном (1998). Эта специфика-
+Суть в том, что это подразумевает в некотором роде противоречащий факту результат, заключающийся в том, что номинальный шок дает более высокие результаты.
+
+25 Во Франции и Швеции я установил единичную эластичность денег по доходу, поскольку неограниченный доход
+Эластичность измерялась с большой неточностью и приводила к неправдоподобным оценкам эластичности спроса на деньги.
+Рабочий документ ЕЦБ № 18, апрель 2000 г. 21
+
+номинальные ставки и более высокая инфляция в долгосрочной перспективе, но также и снижение реальных денежных остатков. Это
+результат не влияет на интерпретацию временных шоков и может быть более обоснованным.
+экономической теории, если бы мы назвали возмущение, скажем, «скоростным» шоком, а не
+шок доверия.
+
+3) Предполагаемый вектор коинтеграции между реальными ценами на жилье и ВВП благоприятствует взаимодействию.
+предположение о долгосрочной тенденции роста цен на жилье, которая, несмотря на короткие наборы данных, кажется
+быть последовательным во всех странах». Точечные оценки коэффициента 7 варьируются от более низких
+предел от 0,063 для Германии до 1,69 для Испании. К этим оценкам в любом случае следует относиться с учетом
+с большой осторожностью, так как они очень чувствительны к периоду, который они охватывают: коинтеграция между реальным домом
+цены и выпуск могут быть статистическими свойствами данных, но при этом структурный акцент делается на
+межстрановые различия, вероятно, были бы слишком амбициозными, не в последнюю очередь потому, что цена на жилье
+индексы не являются однородными в разных странах.
+
+5 Эмпирические данные
+
+5.1 Импульсные характеристики
+
+В этом разделе рассматриваются эконометрические результаты спецификации. Целью этого раздела является
+тройной:
+
+1) Проверить, приводит ли схема идентификации к правдоподобным оценкам шоков; как
+Кристиано, Эйхембаум и Эванс (1999) ясно дают понять, что в литературе нет единого мнения.
+на определенном наборе допущений для выявления последствий экзогенного шока для денежно-кредитной политики.
+политика. То же самое замечание применимо и к другим потрясениям, вызывающим экономические колебания (Кокрейн,
+1994). Тем не менее, выводы о последствиях многих из этих потрясений являются надежными для большого подмножества
+схем идентификации, которые были опробованы в литературе: после сдерживающего денежно-кредитного
+шок, процентные ставки растут, уровень цен реагирует медленно, объем производства и денежные агрегаты падают.
+После положительного шока спроса объем производства, процентные ставки и цены увеличиваются, как у Гали (1992) и
+Герлах и Сметс (1995).
+
+2) Сравнить реакцию экономик после шока. Мы ожидали бы, что
+одна и та же схема идентификации дает согласованные оценки во всех странах. было бы трудно
+назовите временное возмущение «денежным шоком», если оно предполагает набор импульсных реакций, которые
+несовместимы с каждым элементом набора макроэкономических моделей, которые мы хотим различать
+между.
+
+26 «Это в целом соответствует данным исследования Кеннеди и Андерсона (1994), проведенного в 15 странах более
+последние 25 лет дает: взгляд на графики со стр. 32 по 35 их статьи показывает, что в 13 из 15
+Реальные цены на жилье в странах в 1993 году были выше, чем в 1970 году. Те же данные можно найти у Катлера (1995) для стран «Большой семерки».
+экономики с 1970 по 1992 год.
+
+22 Рабочий документ ЕЦБ № 18 © апрель 2000 г.
+
+Таблица 5.1: Долгосрочное воздействие постоянных шоков
+«ФРАНЦИЯ ГЕРМАНИЯ —СИТАЛИЯ~—ИСПАНИЯ. ——ШВЕЦИЯ.—СУК.
+суп. ном. суп. ном. суп. ном. суп. ном. суп. ном. суп. ном.
+
+у 1,21 0,00 0,97 0,00 0,88 0,00 1,01 0,00 1,22 0,00 0,83 0,00
+
+сша -0,02 0,47 -0,21 0,53 0,01 0,42 0,05 0,33 -0,20 0,30 0,10 0,46
+
+т. пл. 1,09 2,36 1,94 0,19 144 1,46 1,50 -1,21 0,18 1,62 0,77 -3,31
+
+л.с. 0,52 0,00 0,06 0,00 0,95 0,00 171 0,00 1,06 0,00 0,48 0,00
+
+г -0,02 0,47 -0,21 0,53 0,01 0,42 0,05 0,33 -0,20 0,30 0,10 0,46
+Долгосрочное воздействие двух постоянных шоков (предложения и номинального), одна стандартная ошибка по размеру (в процентах).
+изменения).
+
+3) Оценить, как цены на жилье реагируют на шоки, согласуются ли реакции между
+экономики, каковы могут быть причины таких ответов и можно ли сделать какие-либо выводы
+особый механизм передачи, с помощью которого могут быть определены импульсные реакции цен на жилье.
+последовательный. Излишне говорить, что это очень трудная задача из-за неопределенности, окружающей
+импульсные реакции и потому, что эмпирическая процедура идентифицирует только «равновесные» реакции
+к монетарным шокам.
+
+5.1.1 Постоянные потрясения
+В Таблице 5.1 представлены оценки долгосрочных последствий шоков спроса и предложения (кор-
+отвечая на матрицу P, обсуждавшуюся выше) для 6 проанализированных стран. В этой таблице показано,
+например, что долгосрочный эффект шока предложения на одно стандартное отклонение приводит к увеличению выпуска в
+Франция на 1,21 процентного пункта (цифра в верхней левой панели), реальный баланс (за счет увеличения
+спрос на деньги) на 1,09 процента, реальные цены на жилье на 0,52 процента и оказывает незначительное влияние
+(-0,02 процента) на инфляцию и процентные ставки.
+Шоки предложения. В первом ряду рисунков 2–7 представлена предполагаемая реакция экономики.
+к благоприятному шоку в размере одного стандартного отклонения от нарушения совокупного предложения, а также
+асимптотические доверительные интервалы с одной стандартной ошибкой». На основе спецификации монеты
+векторов градации и на матрице общих тенденций этот шок был идентифицирован под
+предположение, что это приводит к увеличению выпуска в долгосрочном периоде, а также к увеличению реального
+цены на жилье, пропорции которых определяются коэффициентом Т, измеряющим долгосрочную эластичность
+реальные цены на жилье к ВВП. Сравнение импульсных характеристик между странами можно увидеть на
+Рисунок 8, где я также нарисовал подразумеваемые реакции потребителей (P), номинальных цен на жилье (H),
+и реальные процентные ставки ex post (R — DP). Я повторю аналогичное упражнение для остальных амортизаторов.
+«27 Обсуждение того, как вычислять доверительные интервалы для модели общих тенденций, см. в Warne (1993).
+и Влаар (1998)
+
+Рабочий документ ЕЦБ № 18, апрель 2000 г. 23
+
+хорошо.
+
+Первоначальное влияние на выпуск положительное для всех стран: в период воздействия точка
+оценка колеблется от 0,02 процента в Италии до 0,6 процента в Великобритании. Примерно через
+Через три года выпуск стабилизируется на более высоком устойчивом уровне, увеличившись в среднем на 1
+процентный пункт. Во всех странах, кроме Испании, потребительские цены после
+один год, как предсказывает простая модель совокупного спроса и совокупного предложения. Номинал
+процентная ставка практически не меняется, поскольку увеличение спроса на деньги удовлетворяется временным снижением
+уровня цен и увеличения денежной массы. Во всех странах долгосрочный эффект
+Шок предложения, связанный с инфляцией и номинальными ставками, незначителен, хотя в долгосрочной перспективе наблюдается отрицательный эффект.
+влияние на уровень потребительских цен*®.
+
+Во всех странах цены на жилье снижаются в течение нескольких кварталов, прежде чем подняться до нового уровня.
+устойчивое состояние, более высокий уровень. На идеальном рынке капитала можно было бы ожидать превышения стоимости дома.
+Затем последовала постепенная корректировка цен в сторону долгосрочного, более высокого равновесного уровня.
+Одним из возможных объяснений такого результата является следующее: повышая доходность капитала,
+шок предложения обычно увеличивает реальные процентные ставки; этот временный эффект снижает спрос
+для домов; только когда реальные ставки вернутся к базовому уровню, эффект дохода станет больше
+чем эффект замещения (издержки пользователя), и реальные цены на жилье растут. Визуальный осмотр рисунка
+8 предполагает отрицательную корреляцию между поведением реальных ставок и поведением реального жилья.
+цены.
+
+Номинальный шок. Постоянная номинальная инновация (второй ряд рисунков 2–7) повышает
+инфляции и номинальных ставок на ту же величину в долгосрочном периоде. тоже нежелательно ставить
+этому шоку уделяется большое структурное внимание, особенно потому, что, как показано на рисунке 9,
+однородная, различимая закономерность в реакции переменных в разных экономиках. Один
+интерпретация заключается в постоянном изменении ожидаемого уровня инфляции; поэтому
+соответствующие реакции цен на жилье могут проверить, рассматриваются ли дома как защита от
+инфляция. В Швеции, Италии и Германии реальные цены на жилье растут, хотя диапазон ошибок составляет
+несколько большой. Это увеличение ожидаемой инфляции также вызывает повышательную реакцию номинальной инфляции.
+процентные ставки, что свидетельствует об антиинфляционной денежно-кредитной политике со стороны денежно-кредитной политики.
+власти: тем не менее, эта реакция денежно-кредитной политики не приводит к какому-либо существенному эффекту в
+рынок жилья.
+
+24 Рабочий документ ЕЦБ № 18 © апрель 2000 г.
+
+5.1.2 Временные потрясения
+
+Денежный шок Я выделяю три временных шока, налагающих ограничения на их современное состояние.
+поровые эффекты рекурсивным способом. Следуя широко распространенной традиции в литературе VAR,
+денежное потрясение идентифицируется в предположении, что оно не затрагивает современные
+Неизменно объем производства и инфляция. Схема идентификации кажется успешной, о чем свидетельствует рисунок
+10 (и третий ряд рисунков 2–7) показывает, что этот шок вызывает повышательное давление на процентные ставки,
+
+оо 29 а
+
+сокращение денежного агрегата» и временное снижение выпуска, достигающее дна.
+примерно через 4-9 кварталов после импульса во всех странах. Это
+общие признаки сдерживающей денежно-кредитной политики.
+
+Как реагируют цены? И потребительские цены, и цены на жилье снижаются, причем некоторые экс-
+восприятие. Например, в Соединенном Королевстве потребительские цены в течение одного года превышают базовый уровень.
+Германия и Швеция. В Великобритании и Швеции эта модель вполне вероятна, поскольку ипотека с плавающей процентной ставкой
+затраты имеют большой вес в семейных бюджетах, а также в измеренной инфляции; для Германии
+первоначальное увеличение могло быть связано с тем, что часть нововведений в процентной ставке
+отражает некоторую остаточную систематическую реакцию на неучтенные возмущения, порождающие инфляционные процессы.
+давление»,
+
+Однако краткосрочная реакция цен на жилье гораздо более выражена, и реальные цены на жилье
+существенно снизились практически во всех странах. Следствием этого является то, что инфляция цен на жилье
+более чувствителен к монетарным нововведениям, чем инфляция потребительских цен. Есть много
+конечно, общие причины, которые могли бы оправдать этот результат, и я откладываю обсуждение этого до
+следующий подраздел. Далее я попытаюсь выяснить, могут ли цены на жилье по-разному реагировать на ситуацию.
+быть оправдано путем рассмотрения различных рынков жилья в анализируемых странах и того, является ли
+и какую роль эти различия могут сыграть в механизме передачи.
+
+Чтобы внести ясность, прямое сравнение позиции денежно-кредитной политики затруднено тем фактом, что
+что типичный шок различается по размеру, форме и продолжительности в разных странах, а также в зависимости от различных факторов.
+размеры выборки*!. Здесь я представляю два набора сравнительных ответов: в первом (рис. 10)
+сокращение составляет одну стандартную ошибку по размеру; во втором (рис. 11) я изменяю масштаб первоначального воздействия
+процентная ставка должна быть одинаковой (50 базисных пунктов) для всех стран.
+
+29 Хотя во Франции и Соединенном Королевстве реальный баланс временно увеличивается, подразумеваемый эффект на номинальный баланс
+баланс однозначно отрицательный.
+
+*° Это распространенное в литературе объяснение, оправдывающее хорошо известную ценовую загадку, т.е. тот факт, что после
+Шок сдерживающей денежно-кредитной политики первоначально увеличивает, а не снижает потребительские цены (например, Sims, 1992)
+
+3. Когда дело доходит до сравнительных исследований VAR, данные не очень убедительны.
+Речь идет о денежных и других потрясениях. Таблицы B.1 и B.2 в Приложении B дают представление о неопределенности.
+участвует в оценке (и сравнении) реакции некоторых европейских экономик на определенную денежно-кредитную политику
+шок. Хотя оценки относятся к разным временным периодам и потрясениям разной силы, беглый взгляд на
+Эти таблицы показывают, что ранжирование экономик по размеру их реакции представляется по меньшей мере опасным.
+к денежной экспансии (будь то увеличение некоторого денежного агрегата или уменьшение краткосрочного
+процентная ставка)
+
+Рабочий документ ЕЦБ № 18 © апрель 2000 г. 25
+
+После изменения масштаба повышения процентных ставок (рис. 11) создается впечатление, что Италия и Великобритания
+В Европе наблюдаются самые большие колебания цен на жилье, тогда как во Франции и Германии, вероятно, наблюдается
+другая крайность (в Германии реальные цены на жилье первоначально растут после спада), при этом
+Испания и Швеция где-то посередине. Чтобы придать некоторый количественный оттенок, через шесть кварталов после
+номинальные цены на жилье в результате ужесточения денежно-кредитной политики соответственно на 1,3 и 1,5 процента ниже
+базовый уровень в Италии и Великобритании, тогда как во Франции и Германии они на 0,6 и 0,1 процента ниже.
+Реальные цены на жилье, конечно, упадут несколько меньше, учитывая умеренное снижение потребительских цен. Это
+Трудно сказать, существенно ли различаются эти ответы в разных странах. Однако,
+через шесть кварталов нижний доверительный интервал (один п.п.) для падения в Германии оказался выше верхнего
+один для Соединенного Королевства, что позволяет предположить, что между
+самые крайние случаи.
+
+Различные ответы можно обосновать следующим образом: страны с низкими трансакционными издержками, высокими
+соотношение кредита к стоимости, большой сектор, занимаемый собственниками, и большая доля переменных процентов.
+ипотечные кредиты должны испытывать относительно высокую волатильность реальных цен на жилье и большую роль для
+жилье в механизме передачи процентных ставок (см. MMS, 1998). Доказательства здесь кажутся
+Чтобы подтвердить эту гипотезу: Великобритания является одной из стран ЕС с самыми низкими транзакционными издержками, поскольку
+процент от цены (2%), при этом ставки по ипотечным кредитам в большинстве случаев подлежат пересмотру или пересмотру,
+очень высокое соотношение кредита к стоимости и высокая ставка владения, занимаемого владельцем, в процентах от
+жилой фонд. В Италии, хотя большая часть финансирования покупки жилья поступает из собственных средств,
+Влияние сокращения денежной массы, скорее всего, отразится на домохозяйствах, которые все еще выплачивают свои долги.
+ипотека: Барран, Кудерт и Моджон (1996) сообщают, что 75 процентов ипотечных кредитов находятся на уровне
+ставки, которые напрямую индексируются по краткосрочным ставкам. Однако, несмотря на большую реакцию в плане
+волатильности цен на жилье, реакция объема производства не очень сильная: в целом это говорит о том, что в
+Цены на жилье в Италии, хотя и очень волатильны, не играют большой роли в механизме передачи.
+
+Соединенное Королевство является страной, которая пострадала больше всего, если мы используем в качестве показателя воздействия
+шока – совокупное воздействие на объем производства и реальные цены на жилье. С этой целью на рисунке 12 показано
+график реакции ВВП и реальных цен на жилье на неожиданное увеличение на 50 базисных пунктов
+краткосрочная ставка.
+
+Германия и Франция (и, в некоторой степени, Испания, хотя выборка охватывает лишь небольшую часть стран).
+период, начинающийся в 1987 году), как правило, находятся на противоположной стороне спектра. Как утверждает ММС
+(1998), в Германии ставки владения относительно низкие, а транзакционные издержки составляют часть цены.
+относительно высоки. Кроме того, первоначальное сокращение может сигнализировать о проведении заслуживающей доверия политики дефляции.
+центральный банк в будущем, тем самым снижая ожидаемую инфляцию и будущие ставки. Удивительно,
+тем не менее, реакция выпуска очень сильна, хотя это может быть следствием навязанного
+26 Рабочий документ ЕЦБ № 18, апрель 2000 г.
+
+нормализация. Для такой страны, как Германия, с долгой историей низкой и стабильной инфляции
+и процентные ставки. Увеличение процентной ставки на 50 базисных пунктов является «большим» нарушением
+в относительных величинах, как показано на рисунке 10, показывающем инновации в пределах одного стандартного отклонения.
+
+Интересно, что во Франции номинальные цены на жилье, кажется, сразу же подскочили до - и даже до
+перерегулирование - их новый долгосрочный равновесный уровень и подразумеваемая динамика реальных цен на жилье.
+похоже, все это связано с медленной корректировкой потребительских цен. В целом, влияние на дом
+Спад цен во Франции не очень сильный, и примерно через 6 кварталов реальные цены на жилье
+вернулись к исходному уровню после первоначального падения. Результат согласуется с доказательствами, представленными в
+Barran, Coudert и Mojon (1996), которые сообщают, что во Франции почти 95 процентов ипотечных кредитов
+кредит предоставляется по полностью фиксированным ставкам. Таким образом, можно было бы ожидать, что влияние сокращения
+влияют только на тех, кто собирается купить дом, а не на домохозяйства, уже имеющие долги, с
+небольшие эффекты богатства для этой группы.
+
+Ответы Испании и Швеции снова предоставляют общее свидетельство денежного сокращения.
+ция.
+
+Уместны два замечания. Первое связано со сложностью сравнения различных денежных
+инноваций в разных странах, особенно с учетом того, что потрясения принимают разные формы и размеры в разных странах.
+наблюдаемая структура процентной ставки и номинальных денег, типичный краткосрочный промежуточный вариант
+нацелен на орган денежно-кредитной политики. Здесь я показал ответы, имеющие и не имеющие
+нормализовано для первоначального воздействия на номинальную процентную ставку*?. Первая процедура (нормализующая)
+имеет то преимущество, что предоставляет полезный ориентир, если мы считаем, что четыре из этих стран сейчас
+в рамках общей денежно-кредитной политики; второй (не нормирующий) сравнивает во всех странах
+«типичный» эталонный шок за рассматриваемый период.
+
+Второе связано с наблюдаемой динамикой цен на жилье после шока. А
+стандартно-монетаристская модель рынка жилья (как описано у Poterba, 1984 или Meltzer,
+1995) предсказал бы, что должен произойти скачок, за которым последует плавная корректировка актива.
+цена приближается к равновесию. Приведенные здесь данные показывают, что время ответа в
+реальные цены на жилье совпадают с объемом производства, при этом пик реальных цен на жилье приходится либо на
+одновременно или за несколько кварталов до даты выпуска; и корректировка цен на жилье
+Для перехода к новому устойчивому состоянию требуется несколько лет, при этом цены на жилье падают в реальном выражении в течение примерно
+один или два года, прежде чем вернуться к исходному состоянию. Один из способов интерпретировать эти доказательства состоит в том, что
+Также может действовать некий широкий «кредитный канал»: при снижении цен на активы потребление.
+
+82 Нормализация первоначального воздействия на процентную ставку является более мирной, если только непредвиденная денежно-кредитная политика
+имеет значение (стандартная интерпретация VAR). Что происходит в этом случае с траекторией процентной ставки и денег?
+после шока не имеет значения для реакции реальных переменных. Если ожидаемая политика также имеет значение, то не только
+первоначальное воздействие, но также и временной ход политических переменных важны для определения реакции реального
+переменные (это важное различие принадлежит Cochrane, 1998; см. также Leichter and Walsh, 1999, для обсуждения
+в случае с Европой).
+
+Рабочий документ ЕЦБ № 18, апрель 2000 г. 27
+
+и инвестиции тоже могут пострадать, а эффекты могут усиливать друг друга, как в стандартном
+Модель Киётаки-Мура (1997 г.).
+
+В целом, ответы не могут четко помочь в разграничении различных взглядов на проблему.
+денежно-кредитный трансмиссионный механизм: но в контексте настоящей модели предполагаемая
+динамика цен на жилье, кажется, намекает на некоторую роль жилищных и кредитных учреждений в различных
+реакция цен на жилье, а цены на жилье, в свою очередь, в механизме распространения. Это
+соответствует как взгляду на механизм передачи «широкого кредитного канала», так и
+«монетаристский взгляд», как описано Мельцером (1995).
+
+Почему цены на жилье должны реагировать на денежно-кредитную политику сильнее, чем потребительские цены?
+сокращение? Когда политика ужесточается за счет уменьшения резервных резервов, процентные ставки
+подъем. Как объясняют Моррис и Селлон (1995), рост процентных ставок приводит к сокращению расходов.
+особенно в секторах экономики, чувствительных к процентным ставкам, таких как покупка товаров длительного пользования и
+жилье. Этот результат может показаться на первый взгляд неожиданным, поскольку должны существовать некоторые априорные
+есть основания полагать, что решение о покупке дома больше зависит от долгосрочной процентной ставки.
+В принципе, если будущие действия центрального банка после первоначального шока точно спрогнозированы,
+долгосрочная ставка должна повыситься меньше, чем краткосрочная ставка (она может даже упасть, если денежная ставка
+ужесточение рассматривается как заслуживающее доверия и эффективное). Несмотря на это, в той степени, в которой ставки по ипотечным кредитам
+(по крайней мере, по новым жилищным кредитам) или иные условия ипотечного договора (например, сумма
+требуемого первоначального взноса) зависят, по крайней мере частично, от текущей позиции денежно-кредитной политики,
+можно ожидать, что эффект затрат пользователей сработает и снизит относительный спрос на жилье*?
+
+Дополнительным каналом, посредством которого денежно-кредитная политика может влиять на цены на жилье, является тот,
+который видит, что он работает через кредит (назовем это эффектом кредитного предложения). Если монетарная политика работает
+путем прямого ограничения способности банков выдавать новые кредиты, делая кредит менее доступным
+для заемщиков, которые зависят от банковского финансирования, этот дополнительный эффект может усилить и
+усилить первоначальный вариант, который работает через традиционный канал «затраты пользователя – спрос»
+(например, см. Кашьяп, Штейн и Уилкокс, 1993).
+
+Более того, более сильная реакция цен на жилье также согласуется с тем фактом, что
+Кривая предложения жилья (назовем это эффектом неэластичного предложения жилья) круче, чем кривая предложения для
+все остальные товары в краткосрочном периоде*4.
+
+«8 Бернанке и Гертлер (1995) показывают, что инвестиции в жилье гораздо более чувствительны к ужесточению денежно-кредитной политики.
+чем другие компоненты расходов.
+
+34 Есть еще одна причина, по которой на рынке жилья может возникнуть волатильность цен: когда цены на жилье
+Когда цены падают, кажется, что спрос растет, а когда цены падают, то, по-видимому, происходит обратное. Другими словами,
+не только кривая предложения может быть неэластичной, но и кривая спроса может иметь восходящий наклон.
+
+28 Рабочий документ ЕЦБ № 18, апрель 2000 г.
+
+Шок спроса Второй временный шок приводит к краткосрочным эффектам выпуска с конъюнктурой.
+потребительские цены, зафиксированные в период воздействия. Следуя Краудеру, Хоффману и Раше (1999) и
+Gerlach and Smets (1995), это нарушение можно назвать «временным шоком спроса».
+поскольку он вызывает положительную реакцию выпуска и цен, а также из-за его временного отпечатка на реальной
+переменные в системе. Однако это не указывает на какой-либо конкретный источник совокупного спроса.
+инновации. Тот факт, что ответы (показаны в строке 4 на рисунках 2–7 и при сравнительном анализе
+на рисунке 13) демонстрируют рост реальных цен на жилье, который достигает пика примерно через 2 года и
+вымирает только через 5–6 лет, что согласуется с идеей о том, что шок может быть результатом:
+
+а) временные налоговые льготы, дающие преимущество при покупке домов;
+
+б) увеличение спроса на жилье, вызванное оптимистическими ожиданиями потребителей или инвесторов,
+это также отражается на экономике в целом;
+
+в) увеличение совокупного спроса, происходящего из других источников (скажем, девальвации национальной валюты)
+валюте при режиме фиксированного обменного курса), что приводит к инфляции цен на жилье с некоторым
+отставание.
+
+Результаты на рисунке 13 согласуются со сдвигом вверх кривой IS экономики.
+
+Номинальные и реальные процентные ставки растут. Объем производства растет в течение длительного времени. Инфляция тоже растет, за исключением
+Германия. Реальный рост цен на жилье особенно значителен в Великобритании и Швеции. Увеличение,
+время которого точно соответствует сроку выпуска, растягивается на несколько лет, снова предоставляя кредиты
+поддержка некоторой теории «широких» кредитных каналов.
+Инфляционный шок Во многих странах налоговая система такова, что более высокие темпы инфляции снижают
+расходы домовладельцев на пользование, поскольку, хотя номинальные проценты по ипотечным кредитам не подлежат налогообложению,
+прирост капитала от роста стоимости домов по существу не облагается налогом. Временный инфляционный шок
+поэтому должно увеличиться спрос на дома, тем самым повысив их цену. С другой стороны, как
+Как показано на рисунке 14 (и строке 5 на рисунках 2–7), рост инфляции также стимулирует эндогенные
+изменения объема производства и процентных ставок, которые могут уравновесить эффект. Например, во всех
+странах, но во Франции объем производства временно снижается.
+
+Картина осложняется тем, что это нарушение на самом деле может означать
+минимум три вещи: 1) рост мировых цен на сырьевые товары; 2) импортированная инфляция после девальвации
+курс национальной валюты; 3) временный отрицательный шок предложения. Вторая интерпретация
+соответствует увеличению выпуска, как показывают импульсные реакции во Франции.
+
+Также интересно отметить связь между реальными ставками и ценами на жилье: где произошел шок?
+приводит к более высокой волатильности реальной процентной ставки, как, например, в Великобритании, мы также наблюдаем
+снижение реальных цен на жилье.
+
+Что касается постоянного номинального возмущения, то нецелесообразно слишком сильно придавать ему структурное значение.
+
+Рабочий документ ЕЦБ № 18 © апрель 2000 г. 29
+
+акцент на этом шоке, который действительно может быть разнообразными нарушениями, исходящими от
+много разных источников.
+
+5.2 Дисперсионное разложение
+
+До сих пор в статье основное внимание уделялось ответу на вопрос: каковы динамические эффекты?
+предложения, спроса, номинальной инфляции и, в частности, монетарных шоков цен на жилье? А
+Связанный, но другой вопрос: в какой пропорции различные инновации способствуют
+волатильности цен на жилье и других макроэкономических переменных? Отвечая на этот вопрос
+важен, потому что он может дать представление о том, каковы основные факторы, влияющие на цену дома.
+колебания на разных горизонтах.
+
+На рисунке 15 показана доля отклонения ошибки прогноза на k шагов вперед для реальных цен на жилье.
+объясняется различными потрясениями. Из соображений экономии места я не привожу дисперсионные разложения.
+для остальных переменных*?.
+
+Хотя результаты показывают, что незначительная разница в выпуске (около 15% или менее)
+обусловленные денежными инновациями, они, кажется, намекают на некоторую роль монетарных факторов в
+объяснение изменчивости цен на жилье, по крайней мере, в краткосрочной перспективе. Через, скажем, 6 кварталов дробь
+от 5% до 40% волатильности реальных цен на жилье происходит из-за политического шока.
+мера: эта фракция наименьшая в Германии.
+
+Шоки спроса также играют важную роль в краткосрочной перспективе: являются ли они просто
+совокупный спрос (скажем, сдвиги кривой IS) или специфические нарушения на рынках жилья (даже
+пузыри, раздуваемые самореализующимися ожиданиями) – это в любом случае вопрос, который трудно решить.
+ответ в этих рамках. Франция, Швеция и Великобритания в этом отношении являются странами, где
+инновации спроса играют важную роль в краткосрочной перспективе.
+
+Результат Великобритании особенно поразителен: 60% волатильности цен на жилье приходится на
+шок спроса, даже в перспективе 10 лет! -. Вероятно, это косвенное подтверждение
+тот факт, что на (якобы) спекулятивном рынке, таком как UK one®®, временные факторы играют важную роль.
+важную роль в определении колебаний цен на жилье. На другой стороне спектра находится
+Германия. Большая часть непрогнозируемых колебаний цен на жилье в Германии обусловлена предложением.
+факторы.
+
+Кроме того, неудивительно, что изменчивость номинальных процентных ставок и денежных остатков
+во многом обусловлено монетарными факторами. Конечно, предположения, сделанные при идентификации
+По своей конструкции схема подразумевает, что два постоянных потрясения будут доминировать над временными потрясениями.
+
+35 Результаты доступны у автора по запросу.
+36 Левин и Райт (1997) приводят некоторые свидетельства того, что процесс спекуляций является возможным детерминантом
+Цены на жилье на рынке жилья в Великобритании.
+30 Рабочий документ ЕЦБ № 18 © апрель 2000 г.
+
+по мере увеличения горизонта прогнозирования.
+
+6 Неофициальная интерпретация динамики цен на жилье
+
+На рисунках 16–21 для каждой страны представлены графики логарифмов реальных цен на жилье*, инфляции, процентов.
+темпы и логарифм выпуска в первой строке и оценки пяти структурных шоков во второй.
+Чтобы облегчить интерпретацию графиков, я строю скользящие средние за два года для каждого из показателей.
+в противном случае некоррелированные возмущения, так что легче определить периоды, в которых некоторые из
+они играли заметную роль**. Я также сосредотачиваюсь только на некоторых конкретных, важных периодах
+значительные изменения цен на жилье в каждой стране. Общая картина складывается такова, что нет.
+Бум можно легко связать с единственным источником макроэкономических колебаний. Каждый майор
+Изменение цен на жилье, судя по всему, было вызвано сочетанием факторов, подталкивающих
+в том же направлении®».
+
+ФРАНЦИЯ Во Франции (рис. 16) в 1980 году наблюдался значительный бум, когда цены достигли пика.
+в начале 1981 г. и падение на 15% в реальном выражении в последующие два года; аналогичный
+Процесс бума-спада происходил с 1985 по 1989 год (цены достигли пика в конце 1987 года). После
+На пике в начале 1991 года цены в реальном выражении вначале упали примерно на 25%.
+1997 года. Потрясения спроса, похоже, сыграли важную роль в повышении цен на жилье.
+колебания вместе с другими переходными факторами. Бум 1985–1987 годов последовал за периодом
+позитивных шоков предложения и экспансионистской денежно-кредитной политики. Рост денег и кредита был
+растет (благодаря отмене мер кредитного контроля, известных как «encadrement ducredit»: см.
+Хикок и Ослер, 1994). Вместо этого рост цен с 1989 по 1991 год, по всей видимости, был обусловлен скорее
+шоки спроса: денежно-кредитная политика, похоже, была жесткой в течение этого периода и, возможно,
+способствовал падению цен на жилье, которое произошло в начале 1991 года, когда начался спрос
+замедлился, и экономика вступила в рецессию.
+
+ГЕРМАНИЯ Бум цен на жилье в Германии в конце 80-х годов – с реальной ценой на жилье
+индекс вырос на 15% за 4 года с 1986 по 1990 год (как показано на рисунке 17), но гораздо большая цена
+рост в крупных городах, по-видимому, обусловлен, в частности, увеличением совокупного спроса. Некоторые из
+эти шоки «спроса», похоже, имеют свои корни не только в быстро развивающейся экономике конца
+
+37 Расстояния по вертикальной оси соответственно можно интерпретировать как процентные изменения.
+
+58 Как показывает визуальный анализ графиков, периоды процентных ставок, превышающих средние, обычно связаны с
+со сдерживающей денежно-кредитной политикой. Хотя этот момент интересен сам по себе, его не следует переоценивать, поскольку
+как минимум две причины: 1) Я определяю денежно-кредитную политику, используя краткосрочные и долгосрочные ограничения, поэтому не существует соотношения 1 к 1.
+сопоставление высоких номинальных процентных ставок (или низкой денежной массы) и негативных монетарных шоков; 2) денежный
+(и другие) шоки относятся только к неожиданным изменениям переменных: поэтому систематическая денежно-кредитная политика
+повышение процентных ставок не является монетарным шоком.
+
+39 Экспансионистская денежно-кредитная политика соответствует отрицательному значению переменной денежного шока.
+
+Рабочий документ ЕЦБ № 18, апрель 2000 г. 31
+
+*80-е годы, но также и в определенные периоды на рынке жилья, которые могли привести к увеличению спроса в
+тот период. В частности, в 1987 году были введены льготы по налогу на прирост капитала – при условии, что
+недвижимость не продавалась в течение 2 лет с момента покупки - и с 1991 года можно было вычесть
+процентные выплаты до 12 000 немецких марок в год в течение первых трех лет с момента покупки
+дом-новостройка (Смит, 1994). Кроме того, в начале десятилетия в крупных городах наблюдалось
+приток рабочих из Восточной Германии, который увеличил спрос: сообщается, что во Франкфурте
+наблюдался рост цен на 44% в 1990-91 годах (The Economist, 1992).
+
+ИТАЛИЯ Италия пережила большую волатильность цен на жилье. Основные бумы, судя по всему,
+произошло между 1979 и 1981 годами и в конце 80-х годов. Резкое падение в период с 1982 по 1985 гг.
+цены упали на одну треть в реальном выражении после первого бума. После роста в конце 80-х гг.
+цены упали почти на 15% в реальном выражении в период с 1993 по 1996 год. Взгляд на структурные потрясения
+На рисунке 18 показано, что номинальные факторы и шоки спроса могли сыграть особую роль.
+роль в снижении цен на жилье с 1993 года. В частности, среди отрицательного спроса
+шоков, свою роль могла бы сыграть политика, пересмотренная в сторону повышения в последнее десятилетие.
+финансовую стоимость («valore catastale») жилой недвижимости, что делает ее непривлекательной.
+инвестиции в жилье в период экономического спада, низкие ожидания домохозяйств относительно
+будущие доходы и близость к насыщению рынка, при этом доля владения достигает 78%, что является одним из
+самые высокие уровни в Европе (Censis, 1996).
+
+ИСПАНИЯ Положительные шоки спроса и предложения, судя по всему, стали причиной бума конца 80-х годов (см.
+19). Лишь небольшая часть колебаний цен на жилье, по-видимому, связана с денежно-кредитной политикой.
+политическая позиция, которая в тот период была довольно нейтральной. Снижение реальных цен на жилье в
+Большая часть 90-х годов началась с рецессии 1992 и 1993 годов и была вызвана как более жесткими
+денежно-кредитная политика и негативные шоки спроса.
+
+ШВЕЦИЯ Потрясения спроса и денежно-кредитной политики привели к жилищному буму в конце 80-х:
+цены на жилье выросли на 35% в реальном выражении в период с 1986 по 1989 год и упали почти на такую же величину.
+сумма в период с 1991 по 1993 год. Мягкая налогово-бюджетная политика, дерегулирование финансовых рынков
+(потолки ставок по банковским кредитам и количественный контроль по банковским кредитам были отменены в 1985 году)
+а налоговая система, которая поощряла потребление, финансируемое за счет долга, стимулировала совокупный спрос и
+рост цен на активы. Судя по рисунку 20, шоки спроса были неизменно положительными во всех странах.
+лет до 1990 года, когда началась быстро углубляющаяся рецессия. Как утверждают Берг и Греттхайм,
+(1997), сочетание международной рецессии и реформированной налоговой системы, которая отменила
+инвестиционные льготы и падение цен на активы усугубили спад.
+
+32 Рабочий документ ЕЦБ № 18, апрель 2000 г.
+
+Великобритания За период с 1974 по 1998 год Великобритания пережила два основных
+Циклы бума и спада цен на жилье: первый — с 1978 по 1982 год, второй — с 1983 по 1992 год.
+Оба цикла широко документированы и обсуждаются в литературе (см., например, Cutler, 1995,
+Холманс, 1994 г. и Карвен, 1997 г.). В течение первого (меньшего) цикла цены на жилье в реальном выражении выросли.
+условиях на 20%, достигло пика в конце 1979 года, а затем упало на 15%. Во втором (большом)
+В течение цикла реальные цены на жилье выросли примерно на 60%, достигли пика в 1989 году, а затем упали на 47%, достигнув дна.
+в конце 1995 года. На рисунке 21 можно увидеть бум цен на жилье во второй половине 1995 года.
+Похоже, что 80-е годы были обусловлены сочетанием трех факторов: положительного предложения и
+шоки спроса и экспансионистская денежно-кредитная политика. Это согласуется с мнением о том, что рост
+ожидания домохозяйств относительно своих будущих доходов, политика поощрения покупки жилья (например,
+как объявление в марте 1988 года о том, что с августа того же года будут введены льготы по налогу на ипотеку.
+ограничение £30 000 на место жительства независимо от количества заемщиков) и свободную денежную
+Политика, последовавшая за повышением курса фунта примерно с 1987 года, сыграла свою роль в
+Жилищный бум!?.
+7 выводов
+Эта статья показала, что с динамикой цен на жилье можно справиться, используя управляемый метод.
+Структура VAR относительно простым способом. Я разработал и оценил простой
+макроэконометрическая модель, обусловленная пятью экзогенными возмущениями, каждое из которых потенциально может
+оказывают влияние на инфляцию цен на жилье. В частности, я показал, что шоки денежно-кредитной политики –
+определяются при предположении, что они не влияют на выпуск (и инфляцию потребительских цен)
+в период шока и в долгосрочной перспективе - может иметь серьезные последствия для цен на жилье, что
+может, в свою очередь, играть роль в механизме распространения потрясений. Что кажется поддерживающим
+Одним из этих выводов является то, что набор общих и разумных предположений идентификации дает правдоподобные
+результаты в том, что касается взаимосвязей между деньгами, потребительскими ценами и объемом производства;
+более того, это добавляет относительно новое доказательство, показывающее, что, в отличие от потребительских цен,
+Ценовая инфляция может быть очень чувствительной к силам, вызывающим экономические колебания. Хотя это
+результат сам по себе не удивителен – в конце концов, цены на жилье, как и цены на активы, могут отражать
+ожидания меняются быстрее, чем потребительские цены. Обнадеживает тот факт, что
+получено с помощью сильно стилизованной макроэкономической модели, которая в других отношениях близко соответствует
+
+«° В литературе часто сообщается, что эпизоды финансовой либерализации способствовали жилищному буму.
+в 1980-е годы: ограничения на банковское кредитование были отменены в 1980 году, что позволило банкам конкурировать со строительными компаниями.
+общества; Среднее соотношение кредита к стоимости для покупателей, впервые покупающих недвижимость, выросло с 0,74 в 1980 году до 0,86 в середине 1980-х годов. Однако,
+Тот факт, что бум произошел через несколько лет после дерегулирования, предполагает, что финансовая либерализация сама по себе не может
+объясните бум. Упоминаются и демографические факторы: численность населения в возрасте 20-29 лет выросла на
+1,3 миллиона в 1980-е годы по сравнению с 0,1 миллиона за предыдущее десятилетие, но их вряд ли можно назвать
+шоки - в конце концов, это явление было в значительной степени предсказуемым, и в условиях эффективных рынков можно было бы ожидать, что
+Основное влияние демографических факторов будет оказываться на количество, а не на цены.
+
+Рабочий документ ЕЦБ № 18, апрель 2000 г. 33
+
+прогнозы стандартной парадигмы кривой IS-LM-Филлипса, что обеспечивает важную надежность
+проверьте.
+
+Конечно, понимание того, какие каналы лежат в основе наблюдаемых закономерностей
+различная реакция цен на жилье остается ключевым вопросом в программе исследований. Хотя
+шоки спроса, выявленные в докладе, могут отражать некоторые эпизоды кредитной либерализации,
+Роль финансовой либерализации и кредита в стимулировании колебаний цен на активы не была изучена.
+непосредственно рассматривается в этой статье. Другими словами, хотя я и пытался создать черный ящик
+каналы передачи больше, я не пробовал открывать.
+
+Результаты также указывают на то, что в этом играют роль различные институты рынка жилья и кредита.
+механизм передачи: если они это делают, то, конечно, они также предполагают, что эти отношения
+вряд ли останется неизменным с течением времени. Изменения в налогово-бюджетной, нормативной и правовой структуре,
+а также изменение режима монетарной политики с появлением валютного союза.
+вероятно, повлияет на эти отношения. Это также было бы особенно вероятно, если бы ЕЦБ решил
+целевые цены на жилье в рамках своей стратегии денежно-кредитной политики*!.
+
+Споры о деньгах, макроэкономике и ценах на активы ведутся как минимум с 1911 года, когда Ирвинг
+Фишер утверждал, что политики должны стремиться стабилизировать широкий индекс цен, включающий акции.
+облигации и имущество, а также товары и услуги. И растет обеспокоенность по поводу того,
+Экспансионистская денежно-кредитная политика может разжечь пузыри цен на активы. Однако связь между денежными
+политика и цены на активы далеко не ясны. Доказательства, представленные в этой статье, в целом
+предполагает, что несистематическая составляющая денежно-кредитной политики (и другие макрофакторы) может
+играют важную роль в изменении цен на активы.
+
+«1 «Это следует непосредственно из закона Гудхарта и критики Лукаса.
+34 Рабочий документ ЕЦБ № 18, апрель 2000 г.
+
+A Методология общих тенденций
+В этом приложении описывается методология общих тенденций для эконометрической модели, используемой в
+бумага. Экспозиция следует за Уорном (1993) и Фишером, Факлером и Орденом (1995).
+A.1 Общие тенденции и коинтеграция
+Конкретная модель может быть представлена вектором x 1 эндогенных переменных X;, который имеет
+следующую форму:
+PX, = ФАКС t+. + FeXiig + Фадд + ут (1)
+где Х; и Ву; имеют размерность (n x 1), u% — вектор белого шума и взаимно или
+тогональные структурные потрясения, k — длина лага, Z — вектор детерминированных переменных, таких как
+константы и сезонные переменные, а F и yz — неизвестные коэффициенты. Уменьшенная форма
+модель:
+Хр = Ар Хр +... + АрХтег + УЗ + ет (2)
+где &; = Фу, А, = ФФ, Эээ! = Ф-!Ф- =. Эту модель можно перепараметризовать.
+(в первых разностях и с учетом коррекции ошибок) следующим образом:
+АХ, = ILX 1) — (Аг+... + Ар) АХ — «.. — АрАКсен га + УЗ +е (3)
+А(L)AX, = X17 +p%+er (4)
+
+где IT = Aj +... + A, —I.
+
+Если ряды нестационарны и коинтегрированы, то справедливо следующее: 0 < r = ранг I <
+n и уравнение (4), приведенное выше, представляют собой форму модели VECM.
+
+Как показано Йохансеном (1991) и Варном (1993), из стохастической части приведенной
+форме ограниченного VAR (уравнение 4 выше) можно получить следующее скользящее среднее
+представительство:
+
+АХ, =С(Лекс (6)
+
+Это получается следующим образом. Определите матрицу преобразования
+
+М = у | Япония = 0
+и матрицы
+— | тре 0 —| К-Л)ч-
+pmH=|" ау, mw=[O-Hi pf] =pw@D.wM=0-Hh
+Кроме того, пусть a* будет матрицей размера n x n такой, что:
+как [Pnxin-r) Onxr]
+Можно убедиться, что:
+а (8'Х;) = а* (Д, (L)MX)
+
+Предварительно умножьте обе части VECM в (4) на M:
+
+MA(L) AX, = Ma (8'Xt-1) + MpZ + Mer = Ma* (D1 (L) MXi-1) + Mp2 + Mer (6)
+
+Это можно переписать как:
+
+MA(L) M7!D(L) Dy (L) MX, — Mo*L(D, (L)MX,) = MpZ,+ Mex (7)
+
+М(А(L)М"D(L)=а°L) Xf = RL) Xf = MpZ + Mex (8)
+Рабочий документ ЕЦБ № 18 © апрель 2000 г. 35
+
+Теперь VAR преобразован в VAR с новой n-мерной переменной Xj».
+где:
+
+Xf =D, (L)MX,
+
+Инвертирование (8) дает:
+
+Xf = R(L) | Мп& + Р(Л)* Мер (9)
+
+Отмечая, что AX; = M-!D(L) Xj, абстрагируясь на мгновение от детерминированного
+компоненты:
+
+ТОПОР; = M7!D(L) R(L)"* Me, (10)
+
+Следовательно: 1
+
+С(Л) =М7!Д(Л) Р(Л)' М (11)
+А.2 Идентификация постоянных и временных потрясений
+При условии идентификации — эквивалентное по наблюдениям представление для AX; это:
+АХ, =Т (Л) ут (12)
+
+Мы знаем, что I'(1) измеряет долгосрочный эффект структурных шоков. Энгл и Грейнджер
+(1987) показали, что столбцы C(1) ортогональны коинтегрирующим векторам (3,
+поэтому @’C (1) = 0. Таким образом, любой базис для n-мерных векторов (n = 5) — это количество переменных
+в модели) можно разделить на пространство, охватываемое r = 3 коинтегрирующими векторами и
+ортогональное пространство, натянутое на п — г = 2 линейно независимых столбца С(1). Поскольку
+8'С (1) = 0, для любого @ имеется (п — г)г = 6 независимых коэффициентов приведенной формы С(1).
+Матрица F содержит n? параметры; для данного 3 существует (n — r)n независимых RF-коэффициентов
+в C(1) столько же, сколько в ['(1); © содержит информацию n(n +1)/2 параметров. Следовательно, нам нужно
+н? —(n+1)n/2 =n(n—1)/2 параметров для идентификации модели.
+
+Структурная и приведенная формы связаны при L = 1 соотношением:
+
+С(1I)=Т(Q)F
+е=F лу
+
+Методология, предложенная KPSW, состоит из следующих этапов:
+
+1) Разбить (1) так, чтобы [(1) = [P | 0], где P — матрица размера n x (n—1), столбцы которой представляют
+отправили долгосрочные реакции переменных на постоянные шоки, тогда как долгосрочные реакции
+временные шоки принимаются равными нулю. Это источники обычного стохастика.
+тенденции среди переменных. Для остальных r шоков предполагается, что постоянные последствия будут равны
+ноль, поэтому эти потрясения имеют лишь временный эффект. Это накладывает (п — 1) г ограничений на идентификацию.
+
+2) Распределите амортизаторы согласно:
+
+и = [ нер |
+
+где un-r обозначает потрясения, постоянные последствия которых отличны от нуля, а u обозначает потрясения.
+чьи постоянные эффекты равны нулю (переходные потрясения).
+
+3) Разбиение F согласно (1) с первыми nm —r и последними r строками как Fy_, а F,
+соответственно. Имеем C(1) =T (1) F = PFy-r, а также:
+
+C(I)=C(L! = PP’
+
+В нашем случае, например, при X;=[y mp hp rz’ мы имеем:
+
+Да + byAmp +7Ач
+—би Амп + Ай + Ар
+
+Xp= —byy + mp + бит
+
+рю + хп
+Йен
+36 Рабочий документ ЕЦБ № 18, апрель 2000 г.
+
+Существуют (п — г) (п — г + 1)/2 независимых уравнений на ЛГС и (п — г)? свободный параметр-
+этеров в Р. Следовательно, нам потребуется (п — 1) (п — г — 1)/2 дополнительных ограничений на Р, которые можно наложить
+при условии, что эта матрица является нижнетреугольной.
+
+4) С(1) имеет ранг п — г, следовательно, для его разложения мы не можем использовать стандартные методы Холецкого
+процедура разложения C(1)©C(1)’. Чтобы справиться с этим, можно, например, определить P
+P = PO, где столбцы P представляют собой известные коэффициенты, заданные априори, а O(,_,)(n—r) iS a
+нижняя треугольная матрица оцениваемых коэффициентов. 7
+
+5) Согласно PO, пусть D — матрица размера (n — 1) x n, решающая C(1) = PD, такая как
+D=(P'P)"'P'C(1). Получите © с помощью нижнего треугольного разложения Холецкого DUD', затем используйте
+© для расчета П. _ _
+
+6) Учитывая, что C (1) = PF,_, = POF,_, = PD, имеем F,_, = @~!D, следовательно, можем получить
+структурные шоки с постоянным эффектом за счет предварительного умножения остатков приведенной формы ¢
+от Фрона.
+
+7) Следовательно:
+
+Fr AXt = Fur Xt-1 = «= Свободный Fe AX Hp + Fr Zt + Un=ryt
+
+Однажды F),_,. оценивается динамическое воздействие на X; потрясений с постоянными последствиями
+получено с помощью:
+
+T(Dyop =C(L) [FO] = C (DEF,
+
+где [F" al nr обозначает первые n — 1r столбцов F’ 1,
+
+8) Идентификация структурных параметров, связанных с толчками только временного характера.
+эффекты могут исходить из: [0 Дж;],..,, = [F-2Fy-r F,-SF{]. Одна из возможностей идентифицировать F - это
+задайте в нем треугольную структуру, как это сделано в данной работе.
+
+Рабочий документ ЕЦБ № 18 © апрель 2000 г. 37
+
+Таблица B.1: Реакция выпуска на стимулирующий монетарный шок
+АВТОР(Ы) ГЕРМАНИЯ ФРАНЦИЯ ВЕЛИКОБРИТАНИЯ
+Фунг Касумович (1998) -.8/8 (6q) 15/2 (Iq) 1/-15 (7q)
+Барран и др. (1996) 0/.5(7q) 0/45 (6q) 0/5 (8q)
+Герлах Сметс (1995) 0/25 (6q) 0/8 (6q) 0/65 (74)
+Рамасвами Слок (1998) 0/.7(13q) 0/5 (8q) 0/7 (14q)
+Lastrapes (1998) 2 / A (5q) 1/1(q) 4/5 (3q)
+Симс (1992) 0/0,7(7q) -1/12(6q) 0/5 (7q)
+Ким (1999) 0 / 3 (5q) 0/.3(5q) 0/3 (4q)
+Грилли Рубини (1996) 0/0,3(3кв) 0/18 (4кв) 0/25 (4кв)
+В среднем 49 58 44 часа
+Предполагаемая реакция выпуска в процентах на шок экспансионистской денежно-кредитной политики – одно стандартное отклонение
+размер - в работах авторов в первом столбце: первая цифра в каждой ячейке означает процентное воздействие
+реакция выпуска в период шока, вторая до его максимального отклонения от базовой линии (квартальный
+в скобках указан максимум, при котором достигается максимум). Цифра в последней строке представляет собой среднее значение по пиковым ответам.
+Таблица B.2: Реакция ИПЦ на экспансионистский монетарный шок
+АВТОР(ГЕРМАНИЯ ФРАНЦИЯ ВЕЛИКОБРИТАНИЯ
+Фунг Касумович (1998) 0,6 0,4 0,7
+Барран и др. (1996) э-э-э мы
+Герлах Сметс (1995) 0,25 0,2 0
+Рамасвами Слок (1998) ee ek ee
+Ластрапес (1998) 03 0,7 1
+Симс (1992) 0,05 -0,2 0
+Ким (1999) 0,1 04 0,8
+Грилли Рубини (1996) 0,2 0,4 0,4
+СРЕДНИЙ 58 58 44
+Оценка реакции ИПЦ на экспансионистский монетарный шок (1 с.е.) в работах авторов в первой
+столбец: цифра в каждой ячейке относится к отклонению ИПЦ от базового уровня через 8 кварталов; фигура в
+последняя строка — среднее значение по ответам за 8 кварталов; *** означает, что результаты ответа CPI
+в статье не показаны.
+B Сравнение монетарных шоков в Европе
+Сравнение последствий денежно-кредитного шока между странами — непростая задача, о чем свидетельствуют данные
+довольно неоднозначно в разных исследованиях и схемах идентификации (см. Guiso et al., 1999 и Ehrmann,
+2000). Таблицы B.1 и B.2, которые относятся к реакции выпуска и потребительских цен на
+экспансионистский монетарный шок во Франции, Германии и Великобритании должен убедить
+читатель, почему сравнение эффекта монетарного шока в разных странах является опасной задачей.
+В целом, можно было бы заключить, что различия в механизме передачи
+в Европе невелики.
+38 Рабочий документ ЕЦБ № 18, апрель 2000 г.
+
+[41] Джейкобсон, Т., А.Вредин, А.Уорн (1998), «Связаны ли реальная заработная плата и безработица»,
+Экономика, 65, 69-96.
+
+[42] Йохансен, С. (1991), «Оценка и проверка гипотез векторов коинтеграции в гаус-
+Сианские векторные модели авторегрессии», Econometrica, 59, 1551–1580.
+
+[43] Йохансен С. и К.Юселиус (1990), «Оценка максимального правдоподобия и вывод о
+Коинтеграция - с приложениями к спросу на деньги», Оксфордский бюллетень экономики.
+и статистика, 52, 169–210.
+
+[44] Кашьяп А., Дж. Стейн и Д. Уилкокс (1993), Денежно-кредитная политика и условия кредитования: Эви-
+зависимость от состава внешних финансов», American Economic Review, 83, 78–98.
+
+[45] Кеннеди Н. и П. Андерсон (1994), «Сбережения домохозяйств и реальные цены на жилье: меж-
+Национальная перспектива», Рабочий документ БМР № 20.
+
+[46] Кенни, Г. (1998), «Рынок жилья и макроэкономика: данные из Ирландии»,
+Рабочий документ Банка Ирландии.
+
+[47] Ким, С., (1999), «Имеют ли значение валютные потрясения в странах «Большой семерки»?
+Выявление ограничений денежно-кредитной политики в разных странах», Journal of International
+Экономика, 48, 387–412.
+
+[48] Кинг Р., К.Плоссер, Дж.Сток и М.Уотсон (1991), «Стохастические тенденции и экономические колебания».
+обучения», American Economic Review, 81, 4, 819–840.
+
+[49] Киётаки Н. и Дж. Мур (1997), «Кредитные циклы», Журнал политической экономии, 105, 211-
+248.
+
+[50] Ластрапес, У.Д., (1998), «Международные данные о ценах на акции, процентных ставках и
+Деньги», Журнал международных денег и финансов, 17, 377–406.
+
+(51) Лейхтер Дж. и К. Уолш (1999 г.), «Различные экономики, общая политика: политические компромиссы».
+под управлением ЕЦБ», мимео, Калифорнийский университет Санта-Круз.
+
+(52) Левин, Э.Дж., и Р.Райт (1997), «Влияние спекуляций на цены на жилье в
+Соединенное Королевство», Экономическое моделирование, 14, 567–589.
+
+{53] Маккиннон, Дж.Г. (1991), «Критические значения для тестов на коинтеграцию», в Р. Энгле и
+Под ред. К. Грейнджера, «Долгосрочные экономические отношения», Oxford University Press, Оксфорд.
+
+(54) Макленнан, Д., Дж. Мюлбауэр и М. Стивенс (1998), «Асимметрия в жилищном и финансовом секторе».
+институты финансового рынка и ЕВС», «Озфордский обзор экономической политики», 14, 3, 54–80.
+
+(55) Мелландер Э., А. Вредин и А. Варн (1992), «Стохастические тенденции и экономические колебания».
+ации в малой открытой экономике», Journal of Applied Econometrics, 7, 369–394.
+
+(56) Мельцер, А.Х. (1995), «Денежные, кредитные и (другие) трансмиссионные процессы: монетарист
+Перспектива», Журнал «Экономические перспективы», 9, 4, 49-72.
+
+[57] Майлз Д. (1992), «Рынки жилья, потребление и финансовая либерализация в основных
+Экономика», European Economic Review, 36, 5, 1093–1127.
+
+[58] Майлз Д. (1995), Жилье, финансовые рынки и экономика в целом, Джон Уайли и сыновья,
+Нью-Йорк.
+
+[59] Моррис К. и Дж. Селлон (1995), «Банковское кредитование и денежно-кредитная политика: данные о кредите».
+Канал», Экономическое обозрение Федеральной резервной системы Канзас-Сити, 2, 59–75.
+
+{60] Мюлльбауэр Дж. и А.Мерфи (1997), «Бумы и спады на рынке жилья Великобритании»,
+Экономический журнал, 107. 1701–27.
+
+Рабочий документ ЕЦБ № 18, апрель 2000 г. 4

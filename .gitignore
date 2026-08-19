@@ -11,3 +11,6 @@ _archive/
 # Large Rosstat RAR archives (extracted contents tracked, RARs local only)
 raw/rosstat/socioeconomic_regions/*.rar
 raw/rosstat/socioeconomic_regions/fed_okr_*.rar
+
+# Large SQLite database (757 MB with DOM.RF data)
+data/rosstat_construction.db

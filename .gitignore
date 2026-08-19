@@ -8,3 +8,6 @@ _archive/
 # Obsidian
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
+# Large Rosstat RAR archives (extracted contents tracked, RARs local only)
+raw/rosstat/socioeconomic_regions/*.rar
+raw/rosstat/socioeconomic_regions/fed_okr_*.rar

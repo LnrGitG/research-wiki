@@ -780,18 +780,20 @@ sources:
   - institute-of-urban-economics
   - '2026'
 - id: broxterman_2026_sufficient_statistic
-  title: 'Characteristics of a Sufficient Statistic to Measure City Housing Prices'
+  title: Characteristics of a Sufficient Statistic to Measure City Housing Prices
   type: paper
   date: '2026-03-02'
   url: https://www.nber.org/papers/w35144
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/characteristics-sufficient-statistic-measure-city-housing-prices
-  venue: 'NBER CRIW Conference on Measurement of Housing and the Housing Sector'
-  publisher: 'University of Chicago Press (Studies in Income and Wealth)'
+  venue: NBER CRIW Conference on Measurement of Housing and the Housing Sector
+  publisher: University of Chicago Press (Studies in Income and Wealth)
   authors:
   - Daniel Broxterman (Florida State University)
   - William Larson (US Department of the Treasury)
   - Anthony Yezer (George Washington University)
-  jel: [R14, R31]
+  jel:
+  - R14
+  - R31
   files:
     md: papers/Broxterman-Larson-Yezer-2026-sufficient-statistic-city-housing-prices.md
     pdf_chapter: raw/papers/Broxterman-Larson-Yezer-2026-sufficient-statistic-city-housing-prices.pdf
@@ -815,7 +817,8 @@ sources:
   - spatial-equilibrium
   - submarket
 - id: sherpa_2026_h1_construction
-  title: 'Sherpa Group: Строительство в российских регионах: итоги первого полугодия 2026 года'
+  title: 'Sherpa Group: Строительство в российских регионах: итоги первого полугодия
+    2026 года'
   type: industry_report
   date: '2026-08-05'
   url: https://sherpagroup.ru/analytics/pdf/e6hkwd5.pdf
@@ -840,8 +843,13 @@ sources:
   type: research_report
   date: '2024-11-14'
   url: https://www.cbr.ru/content/document/file/169979/analytic_note_20241114_ddkp.pdf
-  publisher: 'Банк России'
-  authors: [А. Могилат, А. Москалева, С. Попова, Н. Турдыева, В. Цой]
+  publisher: Банк России
+  authors:
+  - А. Могилат
+  - А. Москалева
+  - С. Попова
+  - Н. Турдыева
+  - В. Цой
   files:
     md: papers/cbr_2024_interest_expenses_companies.md
     pdf: raw/papers/cbr_2024_interest_expenses_companies.pdf
@@ -865,13 +873,22 @@ sources:
   - cbr
   - transmission-mechanism
 - id: nber_criw_2026_ch2_blended_housing_starts
-  title: 'A Blended Data Approach to Measuring Monthly Housing Starts: Satellite Imagery, Survey Data and More!'
+  title: 'A Blended Data Approach to Measuring Monthly Housing Starts: Satellite Imagery,
+    Survey Data and More!'
   type: paper
-  date: '2026-03'
+  date: 2026-03
   url: https://www.nber.org/papers/w35113
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/blended-data-approach-measuring-monthly-housing-starts-satellite-imagery-survey-data-and-more
-  venue: 'NBER CRIW Conference on Measurement of Housing and the Housing Sector'
-  authors: [Nicole Czaplicki, Colin Shevlin, Hector Ferronato, Aidan Smith, Dwarakh Nayam, Lei Peng, Scott Springer, Doren Walker]
+  venue: NBER CRIW Conference on Measurement of Housing and the Housing Sector
+  authors:
+  - Nicole Czaplicki
+  - Colin Shevlin
+  - Hector Ferronato
+  - Aidan Smith
+  - Dwarakh Nayam
+  - Lei Peng
+  - Scott Springer
+  - Doren Walker
   nber_wp: w35113
   nber_chapter: c15395
   files:
@@ -879,67 +896,132 @@ sources:
     pdf_chapter: raw/papers/NBER-CRIW-2026-Ch2-Czaplicki-Blended-Data-Housing-Starts.pdf
     pdf_wp: raw/papers/NBER-CRIW-2026-Ch2-Czaplicki-Blended-Data-Housing-Starts-w35113.pdf
     pdf_comment: raw/papers/NBER-CRIW-2026-Ch2-Comment.pdf
-  tags: [nber, criw, housing-starts, satellite-imagery, cnn, census, soc, measurement, US]
+  tags:
+  - nber
+  - criw
+  - housing-starts
+  - satellite-imagery
+  - cnn
+  - census
+  - soc
+  - measurement
+  - US
 - id: nber_criw_2026_ch3_geographic_pagerank
-  title: 'Measuring Housing Quality Using Revealed Preference: A Geographic PageRank Approach'
+  title: 'Measuring Housing Quality Using Revealed Preference: A Geographic PageRank
+    Approach'
   type: paper
-  date: '2026-03'
+  date: 2026-03
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/measuring-housing-quality-using-revealed-preference-geographic-pagerank-approach
-  venue: 'NBER CRIW Conference on Measurement of Housing and the Housing Sector'
-  authors: [Alex Bell, Sophie Calder-Wang, Shusheng Zhong]
+  venue: NBER CRIW Conference on Measurement of Housing and the Housing Sector
+  authors:
+  - Alex Bell
+  - Sophie Calder-Wang
+  - Shusheng Zhong
   nber_chapter: c15397
-  jel: [R32, R31, C39]
+  jel:
+  - R32
+  - R31
+  - C39
   files:
     md: papers/NBER-CRIW-2026-Measurement-Housing-Sector-Ch2-Ch11.md
     pdf_chapter: raw/papers/NBER-CRIW-2026-Ch3-Bell-Geographic-PageRank.pdf
     pdf_comment: raw/papers/NBER-CRIW-2026-Ch3-Comment.pdf
-  tags: [nber, criw, pagerank, housing-quality, revealed-preference, migration, amenities, measurement]
+  tags:
+  - nber
+  - criw
+  - pagerank
+  - housing-quality
+  - revealed-preference
+  - migration
+  - amenities
+  - measurement
 - id: nber_criw_2026_ch4_spillovers_vad
-  title: 'The Positive Spillovers to Risky Investments in Vacant, Abandoned, and Disinvested Properties'
+  title: The Positive Spillovers to Risky Investments in Vacant, Abandoned, and Disinvested
+    Properties
   type: paper
-  date: '2026-02'
+  date: 2026-02
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/positive-spillovers-risky-investments-vacant-abandoned-and-disinvested-properties
-  venue: 'NBER CRIW Conference on Measurement of Housing and the Housing Sector'
-  authors: [Edward W. Chen, Reagan L. Lengefeld, Omar Isaac Asensio]
+  venue: NBER CRIW Conference on Measurement of Housing and the Housing Sector
+  authors:
+  - Edward W. Chen
+  - Reagan L. Lengefeld
+  - Omar Isaac Asensio
   nber_chapter: c15399
   files:
     md: papers/NBER-CRIW-2026-Measurement-Housing-Sector-Ch2-Ch11.md
     pdf_chapter: raw/papers/NBER-CRIW-2026-Ch4-Chen-Positive-Spillovers.pdf
-  tags: [nber, criw, infill-development, spillovers, vacant-properties, climate-risk, Savannah]
+  tags:
+  - nber
+  - criw
+  - infill-development
+  - spillovers
+  - vacant-properties
+  - climate-risk
+  - Savannah
 - id: nber_criw_2026_ch5_rental_prices_1914_2006
-  title: 'Rental Prices and the Cost of Living in the United States, 1914-2006'
+  title: Rental Prices and the Cost of Living in the United States, 1914-2006
   type: paper
-  date: '2026-03'
+  date: 2026-03
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/rental-prices-and-cost-living-united-states-1914-2006
-  venue: 'NBER CRIW Conference on Measurement of Housing and the Housing Sector'
-  authors: [Ronan C. Lyons, Allison Shertzer, Rowena Gray]
+  venue: NBER CRIW Conference on Measurement of Housing and the Housing Sector
+  authors:
+  - Ronan C. Lyons
+  - Allison Shertzer
+  - Rowena Gray
   nber_chapter: c15401
   files:
     md: papers/NBER-CRIW-2026-Measurement-Housing-Sector-Ch2-Ch11.md
     pdf_chapter: raw/papers/NBER-CRIW-2026-Ch5-Lyons-Rental-Prices-1914-2006.pdf
     pdf_comment: raw/papers/NBER-CRIW-2026-Ch5-Comment.pdf
-  tags: [nber, criw, rental-prices, CPI, shelter, historical, HHP, cost-of-living, US, 1914-2006]
+  tags:
+  - nber
+  - criw
+  - rental-prices
+  - CPI
+  - shelter
+  - historical
+  - HHP
+  - cost-of-living
+  - US
+  - 1914-2006
 - id: nber_criw_2026_ch6_land_supply
-  title: 'The Effect of Land Supply for New Homes on Residential Investment and House Prices'
+  title: The Effect of Land Supply for New Homes on Residential Investment and House
+    Prices
   type: paper
-  date: '2026-02'
+  date: 2026-02
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/effect-land-supply-new-homes-residential-investment-and-house-prices
-  venue: 'NBER CRIW Conference on Measurement of Housing and the Housing Sector'
-  authors: [Justin Katz, Paul S. Willen]
+  venue: NBER CRIW Conference on Measurement of Housing and the Housing Sector
+  authors:
+  - Justin Katz
+  - Paul S. Willen
   nber_chapter: c15403
   files:
     md: papers/NBER-CRIW-2026-Measurement-Housing-Sector-Ch2-Ch11.md
     pdf_chapter: raw/papers/NBER-CRIW-2026-Ch6-Katz-Willen-Land-Supply.pdf
     pdf_comment: raw/papers/NBER-CRIW-2026-Ch6-Comment.pdf
-  tags: [nber, criw, land-supply, parcel-level, fragmentation, construction-productivity, supply-elasticity, New-England, house-prices, Glaeser-Gyourko-2005, Saiz-2010]
+  tags:
+  - nber
+  - criw
+  - land-supply
+  - parcel-level
+  - fragmentation
+  - construction-productivity
+  - supply-elasticity
+  - New-England
+  - house-prices
+  - Glaeser-Gyourko-2005
+  - Saiz-2010
 - id: nber_criw_2026_ch7_cpi_shelter_nonresponse
-  title: 'Nonresponse Imputations and Related Measurement Issues in the CPI for Shelter'
+  title: Nonresponse Imputations and Related Measurement Issues in the CPI for Shelter
   type: paper
-  date: '2026-04'
+  date: 2026-04
   url: https://www.nber.org/papers/w35250
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/nonresponse-imputations-and-related-measurement-issues-cpi-shelter
-  venue: 'NBER CRIW Conference on Measurement of Housing and the Housing Sector'
-  authors: [Lara Loewenstein, Hugh Montag, Randal Verbrugge]
+  venue: NBER CRIW Conference on Measurement of Housing and the Housing Sector
+  authors:
+  - Lara Loewenstein
+  - Hugh Montag
+  - Randal Verbrugge
   nber_wp: w35250
   nber_chapter: c15405
   files:
@@ -947,15 +1029,27 @@ sources:
     pdf_chapter: raw/papers/NBER-CRIW-2026-Ch7-Loewenstein-CPI-Shelter-Nonresponse.pdf
     pdf_wp: raw/papers/NBER-CRIW-2026-Ch7-Loewenstein-CPI-Shelter-Nonresponse-w35250.pdf
     pdf_comment: raw/papers/NBER-CRIW-2026-Ch7-Comment.pdf
-  tags: [nber, criw, CPI, shelter, nonresponse, imputation, BLS, inflation, measurement, US]
+  tags:
+  - nber
+  - criw
+  - CPI
+  - shelter
+  - nonresponse
+  - imputation
+  - BLS
+  - inflation
+  - measurement
+  - US
 - id: nber_criw_2026_ch8_flood_risk
-  title: 'Flood Risk, Insurance, and Housing in the United States'
+  title: Flood Risk, Insurance, and Housing in the United States
   type: paper
-  date: '2026-05'
+  date: 2026-05
   url: https://www.nber.org/papers/w35204
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/flood-risk-insurance-and-housing-united-states
-  venue: 'NBER CRIW Conference on Measurement of Housing and the Housing Sector'
-  authors: [Suvy Qin, John Voorheis]
+  venue: NBER CRIW Conference on Measurement of Housing and the Housing Sector
+  authors:
+  - Suvy Qin
+  - John Voorheis
   nber_wp: w35204
   nber_chapter: c15407
   files:
@@ -963,15 +1057,28 @@ sources:
     pdf_chapter: raw/papers/NBER-CRIW-2026-Ch8-Qin-Flood-Risk-Insurance.pdf
     pdf_wp: raw/papers/NBER-CRIW-2026-Ch8-Qin-Flood-Risk-Insurance-w35204.pdf
     pdf_comment: raw/papers/NBER-CRIW-2026-Ch8-Comment.pdf
-  tags: [nber, criw, flood-risk, insurance, parcel-level, census, household-level, climate, measurement, US]
+  tags:
+  - nber
+  - criw
+  - flood-risk
+  - insurance
+  - parcel-level
+  - census
+  - household-level
+  - climate
+  - measurement
+  - US
 - id: nber_criw_2026_ch9_mice_missing_data
-  title: 'Filling the Gaps with MICE: Addressing Missing Data in Real Estate Price Indices'
+  title: 'Filling the Gaps with MICE: Addressing Missing Data in Real Estate Price
+    Indices'
   type: paper
-  date: '2026-04'
+  date: 2026-04
   url: https://www.nber.org/papers/w35139
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/filling-gaps-mice-addressing-missing-data-real-estate-price-indices
-  venue: 'NBER CRIW Conference on Measurement of Housing and the Housing Sector'
-  authors: [Miriam Steurer, Sabrina Spiegel]
+  venue: NBER CRIW Conference on Measurement of Housing and the Housing Sector
+  authors:
+  - Miriam Steurer
+  - Sabrina Spiegel
   nber_wp: w35139
   nber_chapter: c15409
   files:
@@ -979,441 +1086,809 @@ sources:
     pdf_chapter: raw/papers/NBER-CRIW-2026-Ch9-Steurer-MICE-Missing-Data.pdf
     pdf_wp: raw/papers/NBER-CRIW-2026-Ch9-Steurer-MICE-Missing-Data-w35139.pdf
     pdf_comment: raw/papers/NBER-CRIW-2026-Ch9-Comment.pdf
-  tags: [nber, criw, MICE, imputation, hedonic, price-index, missing-data, Vienna, Austria, real-estate]
+  tags:
+  - nber
+  - criw
+  - MICE
+  - imputation
+  - hedonic
+  - price-index
+  - missing-data
+  - Vienna
+  - Austria
+  - real-estate
 - id: nber_criw_2026_ch10_lands_opportunity
-  title: 'Lands of Opportunity: Differences in the Geography of Wealth and Income Mobility in the United States'
+  title: 'Lands of Opportunity: Differences in the Geography of Wealth and Income
+    Mobility in the United States'
   type: paper
-  date: '2026-05'
+  date: 2026-05
   url: https://www.nber.org/papers/w35219
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/lands-opportunity-differences-geography-wealth-and-income-mobility-united-states
-  venue: 'NBER CRIW Conference on Measurement of Housing and the Housing Sector'
-  authors: [Ariel Binder, Max Risch, John Voorheis]
+  venue: NBER CRIW Conference on Measurement of Housing and the Housing Sector
+  authors:
+  - Ariel Binder
+  - Max Risch
+  - John Voorheis
   nber_wp: w35219
   nber_chapter: c15411
-  jel: [E24, O18, R31, D31]
+  jel:
+  - E24
+  - O18
+  - R31
+  - D31
   files:
     md: papers/NBER-CRIW-2026-Measurement-Housing-Sector-Ch2-Ch11.md
     pdf_chapter: raw/papers/NBER-CRIW-2026-Ch10-Binder-Lands-of-Opportunity.pdf
     pdf_wp: raw/papers/NBER-CRIW-2026-Ch10-Binder-Lands-of-Opportunity-w35219.pdf
     pdf_comment: raw/papers/NBER-CRIW-2026-Ch10-Comment.pdf
-  tags: [nber, criw, intergenerational-mobility, wealth, income, homeownership, housing-wealth, county-level, census, Great-Recession]
+  tags:
+  - nber
+  - criw
+  - intergenerational-mobility
+  - wealth
+  - income
+  - homeownership
+  - housing-wealth
+  - county-level
+  - census
+  - Great-Recession
 - id: nber_criw_2026_ch11_rental_ownership
-  title: 'Toward a Methodology for Measuring Rental Property Ownership in the United States'
+  title: Toward a Methodology for Measuring Rental Property Ownership in the United
+    States
   type: paper
-  date: '2026-05'
+  date: 2026-05
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/toward-methodology-measuring-rental-property-ownership-united-states
-  venue: 'NBER CRIW Conference on Measurement of Housing and the Housing Sector'
-  authors: [Stephanie Kestelman, Rebecca Diamond, John Eric Humphries, Kate Pennington, Winnie van Dijk, John Voorheis]
+  venue: NBER CRIW Conference on Measurement of Housing and the Housing Sector
+  authors:
+  - Stephanie Kestelman
+  - Rebecca Diamond
+  - John Eric Humphries
+  - Kate Pennington
+  - Winnie van Dijk
+  - John Voorheis
   nber_chapter: c15413
   files:
     md: papers/NBER-CRIW-2026-Measurement-Housing-Sector-Ch2-Ch11.md
     pdf_chapter: raw/papers/NBER-CRIW-2026-Ch11-Kestelman-Rental-Ownership.pdf
     pdf_comment: raw/papers/NBER-CRIW-2026-Ch11-Comment.pdf
-  tags: [nber, criw, rental-ownership, LLC, landlord, property-records, Business-Register, K-1, REIT, ownership-concentration, CBSA]
-
-# === Housing Market Papers Batch (Aug 2026) ===
-
+  tags:
+  - nber
+  - criw
+  - rental-ownership
+  - LLC
+  - landlord
+  - property-records
+  - Business-Register
+  - K-1
+  - REIT
+  - ownership-concentration
+  - CBSA
 - id: louie_2026_housing_affordability_demand
-  title: 'Housing Affordability and Housing Demand'
+  title: Housing Affordability and Housing Demand
   type: article
   date: '2026'
-  venue: 'FRBSF Economic Letter'
-  authors: [S. Louie, J.A. Mondragon, R. Najjar, J.F. Wieland]
+  venue: FRBSF Economic Letter
+  authors:
+  - S. Louie
+  - J.A. Mondragon
+  - R. Najjar
+  - J.F. Wieland
   url: https://www.frbsf.org/wp-content/uploads/el2026-03.pdf
   files:
     md: papers/Louie-Mondragon-2026-housing-affordability-demand-FRBSF.md
     pdf: raw/papers/Louie-Mondragon-2026-housing-affordability-demand-FRBSF.pdf
-  tags: [housing-affordability, housing-demand, FRBSF, housing-market]
-
+  tags:
+  - housing-affordability
+  - housing-demand
+  - FRBSF
+  - housing-market
 - id: drechsler_2024_monetary_policy_mortgage
-  title: 'Monetary Policy and the Mortgage Market'
+  title: Monetary Policy and the Mortgage Market
   type: working_paper
   date: '2024'
-  venue: 'Federal Reserve Bank (NYU Stern)'
-  authors: [I. Drechsler, A. Savov, P. Schnabl et al.]
+  venue: Federal Reserve Bank (NYU Stern)
+  authors:
+  - I. Drechsler
+  - A. Savov
+  - P. Schnabl et al.
   url: https://pages.stern.nyu.edu/asavov/alexisavov/Alexi_Savov_files/DSSS_Aug_2024.pdf
   files:
     md: papers/Drechsler-Savov-Schnabl-2024-monetary-policy-mortgage-market.md
     pdf: raw/papers/Drechsler-Savov-Schnabl-2024-monetary-policy-mortgage-market.pdf
-  tags: [mortgage-monetary-policy, Drechsler-Savov-Schnabl, deposit-channel, mortgage-market]
-
+  tags:
+  - mortgage-monetary-policy
+  - Drechsler-Savov-Schnabl
+  - deposit-channel
+  - mortgage-market
 - id: kolennikova_2024_housing_inequality
-  title: 'Specifics of Russians Perception of Housing Conditions and Housing Inequality'
+  title: Specifics of Russians Perception of Housing Conditions and Housing Inequality
   type: article
   date: '2024'
   venue: 'Economic and Social Changes: Facts, Trends, Forecast'
-  authors: [N.D. Kolennikova]
+  authors:
+  - N.D. Kolennikova
   url: http://library.volnc.ru/Files/articles/1732279355.pdf
   files:
     md: papers/Kolennikova-2024-RU-housing-inequality.md
     pdf: raw/papers/Kolennikova-2024-RU-housing-inequality.pdf
-  tags: [russian-housing, housing-inequality, housing-perception, VolNC]
-
+  tags:
+  - russian-housing
+  - housing-inequality
+  - housing-perception
+  - VolNC
 - id: panova_2025_ru_mbs_pricing
-  title: 'Pricing analysis of Russian mortgage-backed securities'
+  title: Pricing analysis of Russian mortgage-backed securities
   type: article
   date: '2025'
   venue: 'Finance: Theory and Practice'
-  authors: [S.A. Panova, D.L. Kuimov, S.A. Perekhod]
+  authors:
+  - S.A. Panova
+  - D.L. Kuimov
+  - S.A. Perekhod
   url: https://financetp.fa.ru/jour/issue/download/93/101
   files:
     md: papers/Panova-Kuimov-2025-RU-MBS-pricing.md
     pdf: raw/papers/Panova-Kuimov-2025-RU-MBS-pricing.pdf
-  tags: [russian-mortgage, MBS, securitization, pricing, Finance-Theory-Practice]
-
+  tags:
+  - russian-mortgage
+  - MBS
+  - securitization
+  - pricing
+  - Finance-Theory-Practice
 - id: popova_2026_covid_preferential_mortgage
-  title: 'The impact of COVID-19 and preferential mortgage lending programs on mortgage lending: Evidence from Russia'
+  title: 'The impact of COVID-19 and preferential mortgage lending programs on mortgage
+    lending: Evidence from Russia'
   type: article
   date: '2026'
-  venue: 'Journal of the New Economic Association'
-  authors: [P.A. Popova]
+  venue: Journal of the New Economic Association
+  authors:
+  - P.A. Popova
   url: http://www.econorus.org/journal/pdf/NEA-71.pdf
   files:
     md: papers/Popova-2026-COVID-preferential-mortgage-Russia.md
     pdf: raw/papers/Popova-2026-COVID-preferential-mortgage-Russia.pdf
-  tags: [russian-mortgage, subsidized-mortgage, COVID, preferential-lending, NEA]
-
+  tags:
+  - russian-mortgage
+  - subsidized-mortgage
+  - COVID
+  - preferential-lending
+  - NEA
 - id: louie_2025_supply_constraints_nber
-  title: 'Supply constraints do not explain house price and quantity growth across US cities'
+  title: Supply constraints do not explain house price and quantity growth across
+    US cities
   type: working_paper
   date: '2025'
-  venue: 'NBER Working Paper 33576'
-  authors: [S. Louie, J.A. Mondragon, J.F. Wieland]
+  venue: NBER Working Paper 33576
+  authors:
+  - S. Louie
+  - J.A. Mondragon
+  - J.F. Wieland
   url: https://www.nber.org/papers/w33576
   files:
     md: papers/Louie-Mondragon-Wieland-2025-supply-constraints-NBER-w33576.md
     pdf: raw/papers/Louie-Mondragon-Wieland-2025-supply-constraints-NBER-w33576.pdf
-  tags: [supply-elasticity, supply-constraints, NBER, housing-prices, housing-quantity, WURI]
-
+  tags:
+  - supply-elasticity
+  - supply-constraints
+  - NBER
+  - housing-prices
+  - housing-quantity
+  - WURI
 - id: zhirnov_2025_supply_demand_RU_housing
-  title: 'The Contribution of Supply and Demand Factors to the Dynamics of Primary Housing Prices in Russia'
+  title: The Contribution of Supply and Demand Factors to the Dynamics of Primary
+    Housing Prices in Russia
   type: article
   date: '2025'
-  venue: 'Studies on Russian Economic Development'
-  authors: [G.A. Zhirnov, S.V. Khatuntsev]
+  venue: Studies on Russian Economic Development
+  authors:
+  - G.A. Zhirnov
+  - S.V. Khatuntsev
   url: https://link.springer.com/article/10.1134/S1075700724700758
   doi: 10.1134/S1075700724700758
   files:
     md: papers/Zhirnov-Khatuntsev-2025-supply-demand-RU-housing-prices.md
-  tags: [russian-housing, supply-demand, primary-housing-prices, Hedonic, SRED]
-
+  tags:
+  - russian-housing
+  - supply-demand
+  - primary-housing-prices
+  - Hedonic
+  - SRED
 - id: shirov_2024_russia_2035
   title: 'Russia 2035: The New Quality of the National Economy'
   type: article
   date: '2024'
-  venue: 'Studies on Russian Economic Development'
-  authors: [A.A. Shirov, D.R. Belousov, A.A. Blokhin, M.S. Gusev, A. Klepach, M.N. Uzyakov]
+  venue: Studies on Russian Economic Development
+  authors:
+  - A.A. Shirov
+  - D.R. Belousov
+  - A.A. Blokhin
+  - M.S. Gusev
+  - A. Klepach
+  - M.N. Uzyakov
   url: https://link.springer.com/article/10.1134/S1075700724020151
   doi: 10.1134/S1075700724020151
   files:
     md: papers/Shirov-Belousov-2024-Russia-2035.md
-  tags: [russian-macro, forecast-2035, modernization, SRED]
-
+  tags:
+  - russian-macro
+  - forecast-2035
+  - modernization
+  - SRED
 - id: rodriguez_2026_housing_vulnerabilities_mp
-  title: 'Housing Market Vulnerabilities and Monetary Policy: Lessons From two Decades of European Data'
+  title: 'Housing Market Vulnerabilities and Monetary Policy: Lessons From two Decades
+    of European Data'
   type: article
   date: '2026'
-  venue: 'The Journal of Real Estate Finance and Economics'
-  authors: [D. Rodríguez-Asensio, A.M. López-García]
+  venue: The Journal of Real Estate Finance and Economics
+  authors:
+  - D. Rodríguez-Asensio
+  - A.M. López-García
   url: https://link.springer.com/article/10.1007/s11146-026-10047-w
   doi: 10.1007/s11146-026-10047-w
   files:
     md: papers/Rodriguez-Asensio-LopezGarcia-2026-housing-vulnerabilities-MP-Europe.md
-  tags: [mortgage-monetary-policy, housing-vulnerabilities, Europe, JREFE]
-
+  tags:
+  - mortgage-monetary-policy
+  - housing-vulnerabilities
+  - Europe
+  - JREFE
 - id: japaridze_2024_housing_fertility
   title: 'Housing Affordability Crisis and Delayed Fertility: Evidence from the USA'
   type: article
   date: '2024'
-  venue: 'Population Research and Policy Review'
-  authors: [I. Japaridze, N. Sayour]
+  venue: Population Research and Policy Review
+  authors:
+  - I. Japaridze
+  - N. Sayour
   url: https://link.springer.com/article/10.1007/s11113-024-09865-8
   doi: 10.1007/s11113-024-09865-8
   files:
     md: papers/Japaridze-Sayour-2024-housing-fertility-delayed.md
-  tags: [demographics, housing-affordability, fertility, PRPR]
-
+  tags:
+  - demographics
+  - housing-affordability
+  - fertility
+  - PRPR
 - id: baum_snow_2026_canada_supply
   title: 'Viewpoint: Housing supply and housing affordability in Canada'
   type: article
   date: '2026'
-  venue: 'Canadian Journal of Economics'
-  authors: [N. Baum-Snow, A. ab Iorwerth, J. Macek]
+  venue: Canadian Journal of Economics
+  authors:
+  - N. Baum-Snow
+  - A. ab Iorwerth
+  - J. Macek
   url: https://onlinelibrary.wiley.com/doi/abs/10.1111/caje.70054
   doi: 10.1111/caje.70054
   files:
     md: papers/Baum-Snow-abIorwerth-2026-housing-supply-affordability-Canada.md
-  tags: [supply-elasticity, housing-affordability, Canada, immigration, CJE]
-
+  tags:
+  - supply-elasticity
+  - housing-affordability
+  - Canada
+  - immigration
+  - CJE
 - id: yezer_2026_land_use_regulation
-  title: 'Can Land Use Regulation Lower the Price of Housing in Cities?'
+  title: Can Land Use Regulation Lower the Price of Housing in Cities?
   type: article
   date: '2026'
-  venue: 'Journal of Regional Science'
-  authors: [A.M. Yezer]
+  venue: Journal of Regional Science
+  authors:
+  - A.M. Yezer
   url: https://onlinelibrary.wiley.com/doi/abs/10.1111/jors.70083
   doi: 10.1111/jors.70083
   files:
     md: papers/Yezer-2026-land-use-regulation-housing-prices-JRS.md
-  tags: [supply-elasticity, land-use-regulation, housing-prices, JRS, urban-models]
-
+  tags:
+  - supply-elasticity
+  - land-use-regulation
+  - housing-prices
+  - JRS
+  - urban-models
 - id: glaeser_2025_suburban_frontier
-  title: "America's Housing Supply Problem: The Closing of the Suburban Frontier?"
+  title: 'America''s Housing Supply Problem: The Closing of the Suburban Frontier?'
   type: article
   date: '2025'
-  venue: 'Brookings Papers on Economic Activity'
-  authors: [E.L. Glaeser, J. Gyourko]
+  venue: Brookings Papers on Economic Activity
+  authors:
+  - E.L. Glaeser
+  - J. Gyourko
   url: https://muse.jhu.edu/pub/1/article/978551/summary
   files:
     md: papers/Glaeser-Gyourko-2025-suburban-frontier-Brookings.md
-  tags: [supply-elasticity, suburban-frontier, BPEA, Glaeser-Gyourko]
-
+  tags:
+  - supply-elasticity
+  - suburban-frontier
+  - BPEA
+  - Glaeser-Gyourko
 - id: volkova_2026_housing_demography_RU
-  title: 'Impact of Housing Affordability on Social Sustainability and Demographic Development in Russian Regions'
+  title: Impact of Housing Affordability on Social Sustainability and Demographic
+    Development in Russian Regions
   type: article
   date: '2026'
-  venue: 'Veredas do Direito'
-  authors: [N. Volkova, T. Khalilova, A. Voronovich, A. Dudochnikov]
+  venue: Veredas do Direito
+  authors:
+  - N. Volkova
+  - T. Khalilova
+  - A. Voronovich
+  - A. Dudochnikov
   url: https://revista.domhelder.edu.br/index.php/veredas/article/view/5124
   files:
     md: papers/Volkova-2026-RU-housing-affordability-demography.md
-  tags: [russian-housing-demographics, housing-affordability, demography, regions]
-
+  tags:
+  - russian-housing-demographics
+  - housing-affordability
+  - demography
+  - regions
 - id: matvienko_2024_sanctions_mortgage
-  title: 'Assessment of the Impact of Unilateral Restrictive Measures on the Mortgage Lending Market in the RF'
+  title: Assessment of the Impact of Unilateral Restrictive Measures on the Mortgage
+    Lending Market in the RF
   type: article
   date: '2024'
-  venue: 'Economic Problems and Legal Practice'
-  authors: [G.V. Matvienko]
+  venue: Economic Problems and Legal Practice
+  authors:
+  - G.V. Matvienko
   url: https://journals.eco-vector.com/2541-8025/article/view/655472
   files:
     md: papers/Matvienko-2024-sanctions-RU-mortgage.md
-  tags: [russian-mortgage, sanctions, mortgage-lending, financial-legal]
-
+  tags:
+  - russian-mortgage
+  - sanctions
+  - mortgage-lending
+  - financial-legal
 - id: shevtsova_2026_RU_housing_policy
-  title: 'External Shocks and Multi-Level Governance Adaptation: the Case of Russian Housing Policy'
+  title: 'External Shocks and Multi-Level Governance Adaptation: the Case of Russian
+    Housing Policy'
   type: article
   date: '2026'
-  venue: 'Russian Politics'
-  authors: [I. Shevtsova, A. Sorbale, A. Starodubtsev, D. Stremoukhov]
+  venue: Russian Politics
+  authors:
+  - I. Shevtsova
+  - A. Sorbale
+  - A. Starodubtsev
+  - D. Stremoukhov
   url: https://brill.com/view/journals/rupo/11/2/article-p265_5.xml
   files:
     md: papers/Shevtsova-2026-RU-housing-policy-external-shocks.md
-  tags: [russian-housing-policy, external-shocks, governance, sanctions]
-
+  tags:
+  - russian-housing-policy
+  - external-shocks
+  - governance
+  - sanctions
 - id: hedlund_2025_mortgage_mp_inflation
-  title: 'Mortgage Market Structure and the Transmission of Monetary Policy During the Great Inflation'
+  title: Mortgage Market Structure and the Transmission of Monetary Policy During
+    the Great Inflation
   type: working_paper
   date: '2025'
-  venue: 'Working Paper'
-  authors: [A. Hedlund, K. Larkin, K. Mitman, S. Ozkan]
+  venue: Working Paper
+  authors:
+  - A. Hedlund
+  - K. Larkin
+  - K. Mitman
+  - S. Ozkan
   url: https://www.jstor.org/stable/resrep71100
   files:
     md: papers/Hedlund-Larkin-Mitman-Ozkan-2025-mortgage-MP-great-inflation.md
-  tags: [mortgage-monetary-policy, mortgage-market-structure, great-inflation]
-
+  tags:
+  - mortgage-monetary-policy
+  - mortgage-market-structure
+  - great-inflation
 - id: van_nieuwerburgh_2026_great_revaluation
-  title: 'The Great Revaluation: COVID-19 and the Structural Transformation of the American Housing Market'
+  title: 'The Great Revaluation: COVID-19 and the Structural Transformation of the
+    American Housing Market'
   type: working_paper
   date: '2026'
-  venue: 'SSRN Working Paper'
-  authors: [S. Van Nieuwerburgh]
+  venue: SSRN Working Paper
+  authors:
+  - S. Van Nieuwerburgh
   url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6227278
   files:
     md: papers/VanNieuwerburgh-2026-Great-Revaluation-COVID-housing-SSRN.md
-  tags: [housing-market, COVID, structural-transformation, SSRN]
-
+  tags:
+  - housing-market
+  - COVID
+  - structural-transformation
+  - SSRN
 - id: koziol_2026_monetary_transmission_cpi
-  title: 'Mapping Monetary Transmission: Housing, CPI Measurement and the Two Faces of Inflation'
+  title: 'Mapping Monetary Transmission: Housing, CPI Measurement and the Two Faces
+    of Inflation'
   type: working_paper
   date: '2026'
-  venue: 'SSRN Working Paper'
-  authors: [T. Koziol]
+  venue: SSRN Working Paper
+  authors:
+  - T. Koziol
   url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7040338
   files:
     md: papers/Koziol-2026-monetary-transmission-CPI-housing-SSRN.md
-  tags: [mortgage-monetary-policy, CPI, housing-measurement, inflation, SSRN]
-
+  tags:
+  - mortgage-monetary-policy
+  - CPI
+  - housing-measurement
+  - inflation
+  - SSRN
 - id: albuquerque_2025_boe_transmission
-  title: 'Monetary transmission through the housing sector'
+  title: Monetary transmission through the housing sector
   type: working_paper
   date: '2025'
-  venue: 'Bank of England Staff Working Paper'
-  authors: [D. Albuquerque, T. Lazarowicz]
+  venue: Bank of England Staff Working Paper
+  authors:
+  - D. Albuquerque
+  - T. Lazarowicz
   url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5227227
   files:
     md: papers/Albuquerque-Lazarowicz-2025-monetary-transmission-housing-BoE-SSRN.md
-  tags: [mortgage-monetary-policy, BoE, monetary-transmission, housing-sector]
-
-# === FEDS Inflation Persistence Papers (Aug 2026) ===
-
+  tags:
+  - mortgage-monetary-policy
+  - BoE
+  - monetary-transmission
+  - housing-sector
 - id: kiley_2022_anchored
-  title: 'Anchored or Not: How Much Information Does 21st Century Data Contain on Inflation Dynamics?'
+  title: 'Anchored or Not: How Much Information Does 21st Century Data Contain on
+    Inflation Dynamics?'
   type: working-paper
   date: '2022'
-  venue: 'Federal Reserve Board, FEDS Working Paper 2022.016'
-  authors: [Michael T. Kiley]
+  venue: Federal Reserve Board, FEDS Working Paper 2022.016
+  authors:
+  - Michael T. Kiley
   doi: 10.17016/FEDS.2022.016
   url: https://www.federalreserve.gov/econres/feds/anchored-or-not-how-much-information-does-21st-century-data-contain-on-inflation-dynamics.htm
   files:
     pdf: raw/papers/kiley_2022_anchored.pdf
     md: papers/Kiley-2022-anchored-or-not-bayesian-inflation-persistence.md
-  tags: [inflation, bayesian, persistence, phillips-curve, monetary-policy, FED, FEDS-paper]
-
+  tags:
+  - inflation
+  - bayesian
+  - persistence
+  - phillips-curve
+  - monetary-policy
+  - FED
+  - FEDS-paper
 - id: demichelis_2024_persistent
-  title: 'Has the Inflation Process Become More Persistent? Evidence from the Major Advanced Economies'
+  title: Has the Inflation Process Become More Persistent? Evidence from the Major
+    Advanced Economies
   type: feds-note
   date: '2024'
-  venue: 'Federal Reserve Board, FEDS Notes / NBER WP w31197'
-  authors: [Andrea De Michelis, Grace Lofstrom, Mike McHenry, Musa Orak, Albert Queraltó, Mikaël Scaramucci]
+  venue: Federal Reserve Board, FEDS Notes / NBER WP w31197
+  authors:
+  - Andrea De Michelis
+  - Grace Lofstrom
+  - Mike McHenry
+  - Musa Orak
+  - Albert Queraltó
+  - Mikaël Scaramucci
   doi: 10.17016/2380-7172.3562
   url: https://www.federalreserve.gov/econres/notes/feds-notes/has-the-inflation-process-become-more-persistent-evidence-from-the-major-advanced-economies-20240628.html
   files:
     pdf: raw/papers/michelis_2024_persistent.pdf
     md: papers/DeMichelis-2024-inflation-process-more-persistent.md
-  tags: [inflation, persistence, advanced-economies, euro-area, backward-looking, monetary-policy, FEDS-notes]
-
+  tags:
+  - inflation
+  - persistence
+  - advanced-economies
+  - euro-area
+  - backward-looking
+  - monetary-policy
+  - FEDS-notes
 - id: amisano_2025_ensemble
   title: 'Underlying Inflation: An Ensemble Averaging Approach'
   type: feds-note
   date: '2025'
-  venue: 'Federal Reserve Board, FEDS Notes'
-  authors: [Gianni Amisano, Travis J. Berge, Simon C. Smith]
+  venue: Federal Reserve Board, FEDS Notes
+  authors:
+  - Gianni Amisano
+  - Travis J. Berge
+  - Simon C. Smith
   doi: 10.17016/2380-7172.3756
   url: https://www.federalreserve.gov/econres/notes/feds-notes/underlying-inflation-an-ensemble-averaging-approach-20250325.html
   files:
     md: papers/Amisano-2025-underlying-inflation-ensemble-averaging.md
-  tags: [inflation, underlying-inflation, ensemble-averaging, core-inflation, monetary-policy, FEDS-notes]
-
+  tags:
+  - inflation
+  - underlying-inflation
+  - ensemble-averaging
+  - core-inflation
+  - monetary-policy
+  - FEDS-notes
 - id: smith_2024_realtime
-  title: 'New tools to monitor inflation in real time'
+  title: New tools to monitor inflation in real time
   type: feds-note
   date: '2024'
-  venue: 'Federal Reserve Board, FEDS Notes'
-  authors: [Simon C. Smith, Alexander L. Wolman]
+  venue: Federal Reserve Board, FEDS Notes
+  authors:
+  - Simon C. Smith
+  - Alexander L. Wolman
   doi: 10.17016/2380-7172.3617
   url: https://www.federalreserve.gov/econres/notes/feds-notes/new-tools-to-monitor-inflation-in-real-time-20241220.html
   files:
     md: papers/Smith-Wolman-2024-new-tools-monitor-inflation-real-time.md
-  tags: [inflation, real-time, monitoring, breadth, PCE, asymmetry, FEDS-notes]
-
+  tags:
+  - inflation
+  - real-time
+  - monitoring
+  - breadth
+  - PCE
+  - asymmetry
+  - FEDS-notes
 - id: hajdini_2025_pandemic
   title: 'Inflation since the Pandemic: Lessons and Challenges'
   type: working-paper
   date: '2025'
-  venue: 'Federal Reserve Board, FEDS Working Paper 2025.070'
-  authors: [Ina Hajdini, Adam Hale Shapiro, Andrew Lee Smith, Daniel Villar Vallenas]
+  venue: Federal Reserve Board, FEDS Working Paper 2025.070
+  authors:
+  - Ina Hajdini
+  - Adam Hale Shapiro
+  - Andrew Lee Smith
+  - Daniel Villar Vallenas
   doi: 10.17016/feds.2025.070
   url: https://www.federalreserve.gov/econres/feds/inflation-since-the-pandemic-lessons-and-challenges.htm
   files:
     pdf: raw/papers/hajdini_2025_pandemic.pdf
     md: papers/Hajdini-2025-inflation-since-pandemic-lessons-challenges.md
-  tags: [inflation, pandemic, post-pandemic, expectations, supply-demand, monetary-policy, FEDS-paper]
-
+  tags:
+  - inflation
+  - pandemic
+  - post-pandemic
+  - expectations
+  - supply-demand
+  - monetary-policy
+  - FEDS-paper
 - id: cascaldigarcia_2023_drivers
-  title: 'Drivers of Post-pandemic Inflation in Selected Advanced Economies and Implications for the Outlook'
+  title: Drivers of Post-pandemic Inflation in Selected Advanced Economies and Implications
+    for the Outlook
   type: feds-note
   date: '2023'
-  venue: 'Federal Reserve Board, FEDS Notes'
-  authors: [Danilo Cascaldi-Garcia, Musa Orak, Zina Saijid]
+  venue: Federal Reserve Board, FEDS Notes
+  authors:
+  - Danilo Cascaldi-Garcia
+  - Musa Orak
+  - Zina Saijid
   doi: 10.17016/2380-7172.3232
   url: https://www.federalreserve.gov/econres/notes/feds-notes/drivers-of-post-pandemic-inflation-in-selected-advanced-economies-and-implications-for-the-outlook-20230113.html
   files:
     md: papers/CascaldiGarcia-2023-drivers-post-pandemic-inflation-advanced-economies.md
-  tags: [inflation, post-pandemic, advanced-economies, persistence, euro-area, FEDS-notes]
-
+  tags:
+  - inflation
+  - post-pandemic
+  - advanced-economies
+  - persistence
+  - euro-area
+  - FEDS-notes
 - id: giannone_2024_drivers
-  title: 'The Drivers of Post-Pandemic Inflation'
+  title: The Drivers of Post-Pandemic Inflation
   type: working-paper
   date: '2024'
-  venue: 'NBER Working Paper 32859'
-  authors: [Domenico Giannone, Giorgio E. Primiceri]
+  venue: NBER Working Paper 32859
+  authors:
+  - Domenico Giannone
+  - Giorgio E. Primiceri
   doi: 10.3386/w32859
   url: https://www.nber.org/papers/w32859
   files:
     pdf: raw/papers/giannone_2024_drivers.pdf
     md: papers/Giannone-Primiceri-2024-drivers-post-pandemic-inflation.md
-  tags: [inflation, post-pandemic, demand-shocks, supply-shocks, SVAR, NBER]
-
-# === CBR Growth Accounting Papers (Aug 2026) ===
-
+  tags:
+  - inflation
+  - post-pandemic
+  - demand-shocks
+  - supply-shocks
+  - SVAR
+  - NBER
 - id: cbr_2026_economic_growth_factors
-  title: 'Экономический рост в России через призму факторов производства: прошлое и возможное будущее'
+  title: 'Экономический рост в России через призму факторов производства: прошлое
+    и возможное будущее'
   type: research-report
   date: '2026'
-  venue: 'Банк России, аналитическая записка'
-  authors: [П. Вихарев, С. Ермаков, И. Зяблицкий, О. Крыжановский, М. Ляхнова]
+  venue: Банк России, аналитическая записка
+  authors:
+  - П. Вихарев
+  - С. Ермаков
+  - И. Зяблицкий
+  - О. Крыжановский
+  - М. Ляхнова
   url: https://cbr.ru/Content/Document/File/196274/analytic_note_20260811_20.pdf
   files:
     pdf: raw/papers/cbr_2026_economic_growth_factors.pdf
     md: papers/cbr_2026_economic_growth_factors.md
-  tags: [economic-growth, growth-accounting, TFP, potential-output, demographics, Russia, CBR, labor, capital, productivity, scenarios]
-
+  tags:
+  - economic-growth
+  - growth-accounting
+  - TFP
+  - potential-output
+  - demographics
+  - Russia
+  - CBR
+  - labor
+  - capital
+  - productivity
+  - scenarios
 - id: cbr_2026_potential_output
   title: 'Потенциальный выпуск в российской экономике: оценки 2026 года'
   type: research-report
   date: '2026'
-  venue: 'Банк России, аналитическая записка (приложение)'
-  authors: [П. Вихарев, И. Зяблицкий, С. Ермаков, Д. Крылов, М. Ляхнова, Д. Овечкин, Ю. Перевышин, А. Шульгин]
+  venue: Банк России, аналитическая записка (приложение)
+  authors:
+  - П. Вихарев
+  - И. Зяблицкий
+  - С. Ермаков
+  - Д. Крылов
+  - М. Ляхнова
+  - Д. Овечкин
+  - Ю. Перевышин
+  - А. Шульгин
   url: https://cbr.ru/Content/Document/File/197283/analytic_note_20260811_20_2.pdf
   files:
     pdf: raw/papers/cbr_2026_potential_output_estimates.pdf
     md: papers/cbr_2026_potential_output_estimates.md
-  tags: [potential-output, output-gap, Russia, CBR, growth-accounting, TFP, labor, capital, scenarios]
-
-# === Expert RA Housing Developers Report (Aug 2026) ===
-
+  tags:
+  - potential-output
+  - output-gap
+  - Russia
+  - CBR
+  - growth-accounting
+  - TFP
+  - labor
+  - capital
+  - scenarios
 - id: expert_ra_2026_housing_developers
   title: 'Жилищное строительство: под давлением'
   type: industry-report
-  date: '2026-08'
-  venue: 'АО «Эксперт РА»'
-  authors: [Г. Галиева, С. Буруева, Д. Сергиенко]
+  date: 2026-08
+  venue: АО «Эксперт РА»
+  authors:
+  - Г. Галиева
+  - С. Буруева
+  - Д. Сергиенко
   files:
     pdf: raw/papers/expert_ra_2026_housing_developers.pdf
     md: papers/expert_ra_2026_housing_developers.md
-  tags: [housing-construction, developers, financial-health, debt, EBITDA, escrow, key-rate, mortgage, Russia, Expert-RA, profitability, credit-ratings]
-
-# === Regional Developers Zero Profit (Aug 2026) ===
-
+  tags:
+  - housing-construction
+  - developers
+  - financial-health
+  - debt
+  - EBITDA
+  - escrow
+  - key-rate
+  - mortgage
+  - Russia
+  - Expert-RA
+  - profitability
+  - credit-ratings
 - id: dvizhenie_2026_regional_developers_zero_profit
-  title: 'Прибыли в региональном девелопменте больше нет: застройщики работают в ноль или в убыток'
+  title: 'Прибыли в региональном девелопменте больше нет: застройщики работают в ноль
+    или в убыток'
   type: industry-news
-  date: '2026-08'
-  venue: 'Движение.ру в MAX'
-  authors: [И. Пискулин, П. Галкин (Паритет Девелопмент), С. Разуваев (GMK)]
+  date: 2026-08
+  venue: Движение.ру в MAX
+  authors:
+  - И. Пискулин
+  - П. Галкин (Паритет Девелопмент)
+  - С. Разуваев (GMK)
   files:
     md: papers/dvizhenie_2026_regional_developers_zero_profit.md
-  tags: [housing-construction, developers, regional, profitability, cost-structure, labor-costs, land, credit-cost, break-even, Russia, zero-profit, construction-cost]
-
-# === NBER WP w35588: AI Agents in Econometric Coding ===
-
+  tags:
+  - housing-construction
+  - developers
+  - regional
+  - profitability
+  - cost-structure
+  - labor-costs
+  - land
+  - credit-cost
+  - break-even
+  - Russia
+  - zero-profit
+  - construction-cost
 - id: nber_w35588_galiani_2026
-  title: 'AI Agents and Prompt Engineering in Econometric Coding'
+  title: AI Agents and Prompt Engineering in Econometric Coding
   type: working-paper
-  date: '2026-08'
-  venue: 'NBER Working Paper No. 35588'
-  authors: [Sebastian Galiani, Federico Ariel López, Raul A. Sosa]
+  date: 2026-08
+  venue: NBER Working Paper No. 35588
+  authors:
+  - Sebastian Galiani
+  - Federico Ariel López
+  - Raul A. Sosa
   files:
     pdf: raw/papers/nber_w35588_galiani_2026_ai_econometric_coding.pdf
     md: papers/nber_w35588_galiani_2026_ai_econometric_coding.md
   pages: 31
-  jel: [C18, C87]
-  tags: [AI, LLM, econometric-coding, agents, prompt-engineering, Stata, R, Python, benchmark, Claude, GPT, reproducibility, methodology]
-
-# === NBER WP w35604: Algorithm-Driven SVARs ===
-
+  jel:
+  - C18
+  - C87
+  tags:
+  - AI
+  - LLM
+  - econometric-coding
+  - agents
+  - prompt-engineering
+  - Stata
+  - R
+  - Python
+  - benchmark
+  - Claude
+  - GPT
+  - reproducibility
+  - methodology
 - id: nber_w35604_yang_zha_2026
   title: 'Algorithm-Driven SVARs: Navigating the Wilderness of Big Data'
   type: working-paper
-  date: '2026-08'
-  venue: 'NBER Working Paper No. 35604'
-  authors: [Yucheng Yang, Tao Zha]
-  doi: '10.3386/w35604'
+  date: 2026-08
+  venue: NBER Working Paper No. 35604
+  authors:
+  - Yucheng Yang
+  - Tao Zha
+  doi: 10.3386/w35604
   files:
     pdf: raw/papers/nber_w35604_yang_zha_2026_svar_bigdata.pdf
     md: papers/nber_w35604_yang_zha_2026_svar_bigdata.md
   pages: 91
-  jel: [C11, C32, C52, C55, E44, E52]
-  programs: [Money and Interest Rates, Economic Fluctuations and Growth, International Finance and Macroeconomics]
-  tags: [SVAR, Bayesian, monetary-policy, credit-spread, housing, housing-production, transmission, big-data, variable-selection, proxy-SVAR, out-of-sample, identification, Leamer, default-risk, methodology]
+  jel:
+  - C11
+  - C32
+  - C52
+  - C55
+  - E44
+  - E52
+  programs:
+  - Money and Interest Rates
+  - Economic Fluctuations and Growth
+  - International Finance and Macroeconomics
+  tags:
+  - SVAR
+  - Bayesian
+  - monetary-policy
+  - credit-spread
+  - housing
+  - housing-production
+  - transmission
+  - big-data
+  - variable-selection
+  - proxy-SVAR
+  - out-of-sample
+  - identification
+  - Leamer
+  - default-risk
+  - methodology
+- id: econometrics_r_packages_2026
+  name: 'Экономика строительства в R: Стратегический выбор пакетов для оценки, наукастинга
+    и прогнозирования'
+  type: pdf
+  file: papers/economics_r_packages_econometrics_2026.md
+  raw_file: raw/papers/Economics_R_packages_econometrics_2026.pdf
+  format: md+pdf
+  pages: 28
+  references: 113
+  description: 'Обзор R-пакетов для эконометрического анализа в строительстве: fixest,
+    marginaleffects, bsts, forecast, fable, CausalImpact, xtbreak. 5-шаговый workflow:
+    подготовка → EDA → оценка → наукастинг → прогнозирование.'
+  tags:
+  - econometrics
+  - R
+  - forecasting
+  - nowcasting
+  - causal-inference
+  - BSTS
+  - fixest
+  - construction
+  - housing
+  - panel-data
+  - time-series
+  - structural-breaks
+  key_packages:
+  - fixest
+  - marginaleffects
+  - lmtest
+  - sandwich
+  - zoo
+  - xts
+  - forecast
+  - fable
+  - bsts
+  - CausalImpact
+  - xtbreak
+  topics:
+  - causal-inference
+  - nowcasting
+  - long-term-forecasting
+  - structural-breaks
+  - data-integration

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ввод жилья в России 1990–2026 | Росстат</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f1117;color:#e0e0e0;padding:20px}
+h1{font-size:1.5rem;margin-bottom:5px;background:linear-gradient(90deg,#4fc3f7,#81c784);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#888;font-size:0.85rem;margin-bottom:20px}
+.grid{display:grid;gap:20px;max-width:1200px;margin:0 auto}
+.chart-card{background:#1a1d29;border:1px solid #2a2d3a;border-radius:12px;padding:20px}
+.chart-card h2{font-size:1rem;color:#81c784;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.chart-card h2 .badge{background:#2a3a4a;color:#4fc3f7;font-size:0.7rem;padding:2px 8px;border-radius:10px;font-weight:400}
+canvas{max-height:400px!important}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+.stat{background:#1a1d29;border:1px solid #2a2d3a;border-radius:8px;padding:12px;text-align:center}
+.stat .val{font-size:1.5rem;font-weight:700;color:#4fc3f7}
+.stat .label{font-size:0.7rem;color:#888;margin-top:4px;text-transform:uppercase}
+.stat .sub{font-size:0.65rem;color:#666;margin-top:2px}
+.stat.red .val{color:#ef5350}
+.stat.green .val{color:#81c784}
+.stat.orange .val{color:#ffb74d}
+.table-card{background:#1a1d29;border:1px solid #2a2d3a;border-radius:12px;padding:20px;overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:0.8rem}
+th{background:#222531;padding:8px;text-align:left;color:#4fc3f7;border-bottom:2px solid #2a3a4a;position:sticky;top:0}
+td{padding:6px 8px;border-bottom:1px solid #222531}
+tr:hover{background:#1e2130}
+.positive{color:#81c784}
+.negative{color:#ef5350}
+.footer{text-align:center;color:#555;font-size:0.75rem;margin-top:20px;padding:10px}
+</style>
+</head>
+<body>
+
+<h1>🏗️ Ввод жилья в России, 1990–2026</h1>
+<p class="subtitle">Источник: Росстат /folder/14458 · База: rosstat_construction.db · Обновлено: 19.08.2026</p>
+
+<div class="stats">
+<div class="stat"><div class="val" id="s-peak"></div><div class="label">Пик ввода</div><div class="sub" id="s-peak-year"></div></div>
+<div class="stat"><div class="val" id="s-2025"></div><div class="label">2025 (год)</div><div class="sub">млн м²</div></div>
+<div class="stat red"><div class="val" id="s-2026q1"></div><div class="label">2026 Q1 к 2025 Q1</div><div class="sub" id="s-2026q1-sub"></div></div>
+<div class="stat green"><div class="val" id="s-trend"></div><div class="label">Тренд 2020–2021</div><div class="sub">млн м²/год</div></div>
+</div>
+
+<div class="grid">
+<div class="chart-card">
+<h2>📈 Годовой ввод жилья, 1990–2021 <span class="badge">млн м²</span></h2>
+<canvas id="annual"></canvas>
+</div>
+<div class="chart-card">
+<h2>📊 Поквартальная динамика, 2025–2026 <span class="badge">млн м²</span></h2>
+<canvas id="quarterly"></canvas>
+</div>
+<div class="chart-card">
+<h2>📉 Помесячный ввод (накопительным итогом), 2025–2026 <span class="badge">млн м²</span></h2>
+<canvas id="monthly"></canvas>
+</div>
+<div class="chart-card">
+<h2>⚡ % к соответствующему периоду прошлого года <span class="badge">2025–2026</span></h2>
+<canvas id="pct"></canvas>
+</div>
+<div class="table-card">
+<h2 style="margin-bottom:12px">📋 Поквартальные данные</h2>
+<table id="table"><thead><tr><th>Период</th><th>Введено, млн м²</th><th>Изменение к пред. кварталу</th><th>Изменение к прошлогоднему</th></tr></thead><tbody></tbody></table>
+</div>
+</div>
+
+<div class="footer">База данных: data/rosstat_construction.db (50 293 наблюдений, 54 индикатора) · Скрипт: scripts/update_rosstat.py</div>
+
+<script>
+// Data
+const annualData = [{"year": 1990, "value": 49.4}, {"year": 1991, "value": 41.5}, {"year": 1992, "value": 41.8}, {"year": 1993, "value": 39.2}, {"year": 1994, "value": 41.0}, {"year": 1995, "value": 34.3}, {"year": 1996, "value": 32.7}, {"year": 1997, "value": 30.7}, {"year": 1998, "value": 32.0}, {"year": 1999, "value": 30.3}, {"year": 2000, "value": 31.7}, {"year": 2001, "value": 33.8}, {"year": 2002, "value": 36.4}, {"year": 2003, "value": 41.0}, {"year": 2004, "value": 43.6}, {"year": 2005, "value": 50.6}, {"year": 2006, "value": 61.2}, {"year": 2007, "value": 64.1}, {"year": 2008, "value": 59.9}, {"year": 2009, "value": 58.4}, {"year": 2010, "value": 62.3}, {"year": 2011, "value": 65.7}, {"year": 2012, "value": 70.5}, {"year": 2013, "value": 84.2}, {"year": 2014, "value": 85.3}, {"year": 2015, "value": 80.2}, {"year": 2016, "value": 79.2}, {"year": 2017, "value": 75.7}, {"year": 2018, "value": 82.0}, {"year": 2019, "value": 82.2}, {"year": 2020, "value": 92.6}, {"year": 2021, "value": 102.7}];
+const quarterlyData = [{"year": 2025, "quarter": 1, "value": 32.0}, {"year": 2025, "quarter": 2, "value": 20.2}, {"year": 2025, "quarter": 3, "value": 24.4}, {"year": 2025, "quarter": 4, "value": 31.6}, {"year": 2026, "quarter": 1, "value": 23.0}, {"year": 2026, "quarter": 2, "value": 19.8}];
+const monthlyData = [{"year": 2025, "month": 1, "value": 11.0}, {"year": 2025, "month": 2, "value": 21.4}, {"year": 2025, "month": 3, "value": 32.0}, {"year": 2025, "month": 4, "value": 38.7}, {"year": 2025, "month": 5, "value": 44.7}, {"year": 2025, "month": 6, "value": 52.2}, {"year": 2025, "month": 7, "value": 59.6}, {"year": 2025, "month": 8, "value": 67.5}, {"year": 2025, "month": 9, "value": 76.6}, {"year": 2025, "month": 10, "value": 83.6}, {"year": 2025, "month": 11, "value": 91.5}, {"year": 2025, "month": 12, "value": 108.1}, {"year": 2026, "month": 1, "value": 8.0}, {"year": 2026, "month": 2, "value": 14.8}, {"year": 2026, "month": 3, "value": 23.0}, {"year": 2026, "month": 4, "value": 29.4}, {"year": 2026, "month": 5, "value": 35.0}, {"year": 2026, "month": 6, "value": 42.8}, {"year": 2026, "month": 7, "value": 50.6}];
+const pctData = [{"year": 2025, "month": 1, "pct": 90.4}, {"year": 2025, "month": 2, "pct": 103.8}, {"year": 2025, "month": 3, "pct": 108.9}, {"year": 2025, "month": 4, "pct": 105.7}, {"year": 2025, "month": 5, "pct": 102.0}, {"year": 2025, "month": 6, "pct": 97.6}, {"year": 2025, "month": 7, "pct": 96.0}, {"year": 2025, "month": 8, "pct": 94.7}, {"year": 2025, "month": 9, "pct": 94.4}, {"year": 2025, "month": 10, "pct": 95.4}, {"year": 2025, "month": 11, "pct": 97.6}, {"year": 2025, "month": 12, "pct": 100.3}, {"year": 2026, "month": 1, "pct": 73.3}, {"year": 2026, "month": 2, "pct": 69.1}, {"year": 2026, "month": 3, "pct": 71.8}, {"year": 2026, "month": 4, "pct": 76.0}, {"year": 2026, "month": 5, "pct": 78.3}, {"year": 2026, "month": 6, "pct": 82.0}, {"year": 2026, "month": 7, "pct": 85.0}];
+
+// Chart defaults
+Chart.defaults.color = '#888';
+Chart.defaults.borderColor = '#2a2d3a';
+Chart.defaults.font.family = "'Segoe UI', Roboto, sans-serif";
+
+// Annual chart
+new Chart(document.getElementById('annual'), {
+type: 'bar',
+data: {
+labels: annualData.map(d => d.year),
+datasets: [{
+label: 'Введено жилья, млн м²',
+data: annualData.map(d => d.value),
+backgroundColor: annualData.map((d,i) => {
+if(d.year >= 2007 && d.year <= 2008) return '#42a5f5';
+if(d.year >= 2013 && d.year <= 2014) return '#66bb6a';
+if(d.year >= 2020) return '#ff9800';
+return '#5c6bc0';
+}),
+borderRadius: 3
+}]
+},
+options: {
+responsive: true,
+plugins: {
+tooltip: {callbacks: {label: c => `${c.parsed.y} млн м²`}},
+legend: {display: false}
+},
+scales: {
+x: {title: {display: true, text: 'Год'}},
+y: {title: {display: true, text: 'Млн м²'}, beginAtZero: true}
+}
+}
+});
+
+// Quarterly chart
+const qLabels = quarterlyData.map(d => `${d.year} Q${d.quarter}`);
+new Chart(document.getElementById('quarterly'), {
+type: 'bar',
+data: {
+labels: qLabels,
+datasets: [{
+label: 'Введено, млн м²',
+data: quarterlyData.map(d => d.value),
+backgroundColor: quarterlyData.map(d => d.year === 2025 ? '#42a5f5' : '#ef5350'),
+borderRadius: 4
+}]
+},
+options: {
+responsive: true,
+plugins: {
+tooltip: {callbacks: {label: c => `${c.parsed.y} млн м²`}},
+legend: {display: false}
+},
+scales: {
+x: {title: {display: true, text: 'Квартал'}},
+y: {title: {display: true, text: 'Млн м²'}, beginAtZero: true}
+}
+}
+});
+
+// Monthly cumulative chart
+const monthNames = ['','янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+new Chart(document.getElementById('monthly'), {
+type: 'line',
+data: {
+labels: monthlyData.map(d => `${monthNames[d.month]} ${d.year}`),
+datasets: [
+{label: '2025', data: monthlyData.filter(d=>d.year===2025).map(d=>d.value), borderColor: '#42a5f5', backgroundColor: 'rgba(66,165,245,0.1)', fill: true, tension: 0.3, pointRadius: 4},
+{label: '2026', data: monthlyData.filter(d=>d.year===2026).map(d=>d.value), borderColor: '#ef5350', backgroundColor: 'rgba(239,83,80,0.1)', fill: true, tension: 0.3, pointRadius: 4}
+]
+},
+options: {
+responsive: true,
+plugins: {tooltip: {callbacks: {label: c => `${c.dataset.label}: ${c.parsed.y} млн м²`}}},
+scales: {
+x: {title: {display: true, text: 'Месяц (накопительным итогом)'}},
+y: {title: {display: true, text: 'Млн м²'}, beginAtZero: true}
+}
+}
+});
+
+// % to previous year
+new Chart(document.getElementById('pct'), {
+type: 'line',
+data: {
+labels: pctData.map(d => `${monthNames[d.month]} ${d.year}`),
+datasets: [{
+label: '% к прошлогоднему',
+data: pctData.map(d => d.pct),
+borderColor: pctData.map((d,i) => d.pct >= 100 ? '#81c784' : '#ef5350').join(','),
+backgroundColor: 'rgba(129,199,132,0.1)',
+fill: false,
+tension: 0.3,
+pointRadius: 5,
+pointBackgroundColor: pctData.map(d => d.pct >= 100 ? '#81c784' : '#ef5350'),
+segment: {borderColor: c => c.p1.parsed.y >= 100 ? '#81c784' : '#ef5350'}
+}]
+},
+options: {
+responsive: true,
+plugins: {
+tooltip: {callbacks: {label: c => `${c.parsed.y}% к прошлогоднему`}},
+legend: {display: false}
+},
+scales: {
+x: {title: {display: true, text: 'Месяц'}},
+y: {title: {display: true, text: '% к соответ. периоду'}, suggestedMin: 60, suggestedMax: 110,
+ticks: {callback: v => v + '%'}}
+}
+}
+});
+
+// Stats
+const peak = annualData.reduce((a,b) => b.value > a.value ? b : a);
+document.getElementById('s-peak').textContent = peak.value;
+document.getElementById('s-peak-year').textContent = `${peak.year} год`;
+
+const total2025 = monthlyData.find(d=>d.year===2025 && d.month===12);
+document.getElementById('s-2025').textContent = total2025 ? (total2025.value).toFixed(1) : '—';
+
+const q2026_1 = quarterlyData.find(d=>d.year===2026 && d.quarter===1);
+const q2025_1 = quarterlyData.find(d=>d.year===2025 && d.quarter===1);
+if(q2026_1 && q2025_1) {
+const change = ((q2026_1.value / q2025_1.value - 1) * 100).toFixed(1);
+document.getElementById('s-2026q1').textContent = change + '%';
+document.getElementById('s-2026q1-sub').textContent = `${q2026_1.value} vs ${q2025_1.value} млн м²`;
+}
+
+const trend2020 = annualData.find(d=>d.year===2020)?.value || 0;
+const trend2021 = annualData.find(d=>d.year===2021)?.value || 0;
+document.getElementById('s-trend').textContent = '+' + (trend2021 - trend2020).toFixed(1);
+
+// Table
+const tbody = document.querySelector('#table tbody');
+quarterlyData.forEach((q,i) => {
+const prevQ = i > 0 ? quarterlyData[i-1] : null;
+const yoyQ = quarterlyData.find(d => d.year === q.year - 1 && d.quarter === q.quarter);
+const qoqChange = prevQ ? ((q.value / prevQ.value - 1) * 100).toFixed(1) : '—';
+const yoyChange = yoyQ ? ((q.value / yoyQ.value - 1) * 100).toFixed(1) : '—';
+const qoqClass = prevQ ? (q.value >= prevQ.value ? 'positive' : 'negative') : '';
+const yoyClass = yoyQ ? (q.value >= yoyQ.value ? 'positive' : 'negative') : '';
+tbody.innerHTML += `<tr>
+<td><b>${q.year} Q${q.quarter}</b></td>
+<td>${q.value} млн м²</td>
+<td class="${qoqClass}">${qoqChange !== '—' ? qoqChange + '%' : '—'}</td>
+<td class="${yoyClass}">${yoyChange !== '—' ? yoyChange + '%' : '—'}</td>
+</tr>`;
+});
+</script>
+</body>
+</html>

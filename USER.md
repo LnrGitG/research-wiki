@@ -1,0 +1,5 @@
+User is a researcher/analyst working on Russian housing market economics. Maintains a research wiki (research-wiki repo) with papers, catalog.yaml, and queries. Focus: supply elasticity estimation, demographic forecasting, mortgage markets, developer financial health, construction industry analysis.
+§
+User builds comprehensive research pipelines: ingests PDFs/reports → extracts text & markdown → saves to papers/ and raw/papers/ → updates catalog.yaml with metadata/tags → detailed git commits with quantitative highlights → cross-references across all sources. Uses SPARK, ЕИСЖС, Rosstat, CBR, NOSTROY data. Develops research concepts for grants/publications (JUE, RED, JHRES, HSE Basic Research).
+§
+User provides multiple source types in batches: academic (CMWP RANEPA), industry (Sherpa, Alfa-Bank, MACON), news (Stroygaz), comparative (VEB/China). Expects full processing pipeline executed automatically with proper tagging for vector search.

@@ -140,13 +140,18 @@ y: {title: {display: true, text: 'Млн м²'}, beginAtZero: true}
 
 // Monthly cumulative chart
 const monthNames = ['','янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+const monthly2025 = monthlyData.filter(d=>d.year===2025);
+const monthly2026 = monthlyData.filter(d=>d.year===2026);
+const maxMonthLen = Math.max(monthly2025.length, monthly2026.length);
+const monthLabels = Array.from({length: maxMonthLen}, (_, i) => monthNames[i + 1] || '');
+
 new Chart(document.getElementById('monthly'), {
 type: 'line',
 data: {
-labels: monthlyData.map(d => `${monthNames[d.month]} ${d.year}`),
+labels: monthLabels,
 datasets: [
-{label: '2025', data: monthlyData.filter(d=>d.year===2025).map(d=>d.value), borderColor: '#42a5f5', backgroundColor: 'rgba(66,165,245,0.1)', fill: true, tension: 0.3, pointRadius: 4},
-{label: '2026', data: monthlyData.filter(d=>d.year===2026).map(d=>d.value), borderColor: '#ef5350', backgroundColor: 'rgba(239,83,80,0.1)', fill: true, tension: 0.3, pointRadius: 4}
+{label: '2025', data: monthly2025.map(d=>d.value), borderColor: '#42a5f5', backgroundColor: 'rgba(66,165,245,0.1)', fill: true, tension: 0.3, pointRadius: 4},
+{label: '2026', data: monthly2026.map(d=>d.value), borderColor: '#ef5350', backgroundColor: 'rgba(239,83,80,0.1)', fill: true, tension: 0.3, pointRadius: 4}
 ]
 },
 options: {
@@ -167,12 +172,13 @@ labels: pctData.map(d => `${monthNames[d.month]} ${d.year}`),
 datasets: [{
 label: '% к прошлогоднему',
 data: pctData.map(d => d.pct),
-borderColor: pctData.map((d,i) => d.pct >= 100 ? '#81c784' : '#ef5350').join(','),
+borderColor: '#4fc3f7',
 backgroundColor: 'rgba(129,199,132,0.1)',
 fill: false,
 tension: 0.3,
 pointRadius: 5,
 pointBackgroundColor: pctData.map(d => d.pct >= 100 ? '#81c784' : '#ef5350'),
+pointBorderColor: pctData.map(d => d.pct >= 100 ? '#81c784' : '#ef5350'),
 segment: {borderColor: c => c.p1.parsed.y >= 100 ? '#81c784' : '#ef5350'}
 }]
 },

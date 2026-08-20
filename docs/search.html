@@ -112,9 +112,10 @@ abs=abs.replace(re,'<span class="highlight">$1</span>');
 
 const catLabel={paper:'EN',ru_paper:'RU',query:'QUERY',bibliography:'BIB'}[d.category]||'';
 const tags=(d.tags||[]).slice(0,4).map(t=>'<span class="tag">'+t+'</span>').join('');
-const url=encodeURI(d.url);
+const filePath=d.url.replace('https://github.com/LnrGitG/research-wiki/blob/main/','');
+const viewerUrl='viewer.html?p='+encodeURIComponent(filePath);
 
-return '<div class="result" onclick="window.open(\''+url+'\',\'_blank\')">'+
+return '<div class="result" onclick="location.href=\''+viewerUrl+'\'">'+
 '<h3>'+title+' <span class="cat">'+catLabel+'</span></h3>'+
 (abs?'<p>'+abs+'</p>':'')+
 (tags?'<div class="tags">'+tags+'</div>':'')+

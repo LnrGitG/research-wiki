@@ -182,11 +182,13 @@ return;
 container.innerHTML=results.map(r=>{
 const m=r.meta;
 const catLabel={paper:'EN',ru_paper:'RU',query:'QUERY',bibliography:'BIB'}[m.c]||'';
-const url=encodeURI(m.u);
+// Build viewer URL: viewer.html?p=papers/file.md
+const filePath=m.u.replace('https://github.com/LnrGitG/research-wiki/blob/main/','');
+const viewerUrl='viewer.html?p='+encodeURIComponent(filePath);
 const scorePct=(r.score*100).toFixed(0)+'%';
 const title=escapeHtml(m.t||m.f);
 const abs=m.a?escapeHtml(m.a):'';
-return '<div class="result" onclick="window.open(\''+url+'\',\'_blank\')">'+
+return '<div class="result" onclick="location.href=\''+viewerUrl+'\'">'+
 '<h3>'+title+' <span class="cat">'+catLabel+'</span>'+
 '<span class="score">'+scorePct+'</span></h3>'+
 (abs?'<p>'+abs+'</p>':'')+

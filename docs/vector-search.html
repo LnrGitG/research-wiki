@@ -93,12 +93,12 @@ for(let i=0;i<bin.length;i++)u8[i]=bin.charCodeAt(i);
 EMB=new Float32Array(buf);
 
 progFill.style.width='40%';
-progText.textContent='Загрузка модели (23 МБ, кешируется)…';
+progText.textContent='Загрузка модели (17 МБ, кешируется)…';
 
 // Step 2: Load ONNX model via transformers.js
 // First load downloads ~23MB, subsequent loads use browser cache
 extractor=await pipeline('feature-extraction',
-'Xenova/paraphrase-multilingual-MiniLM-L12-v2',
+'Xenova/paraphrase-MiniLM-L3-v2',
 {quantized:true});
 
 progFill.style.width='100%';

@@ -13,12 +13,6 @@ h1{font-size:1.3rem;margin-bottom:8px;background:linear-gradient(90deg,#4fc3f7,#
 input[type=text]{width:100%;padding:12px 16px;font-size:16px;background:#1a1d29;border:1px solid #2a2d3a;border-radius:8px;color:#e0e0e0;outline:none}
 input[type=text]:focus{border-color:#4fc3f7}
 input[type=text]::placeholder{color:#555}
-.mode{display:flex;gap:6px;margin-top:8px}
-.mode-btn{padding:4px 12px;font-size:0.75rem;background:#1a1d29;border:1px solid #2a2d3a;border-radius:20px;cursor:pointer;user-select:none}
-.mode-btn.active{background:#2a3a4a;border-color:#4fc3f7;color:#4fc3f7}
-.suggest{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px}
-.suggest-btn{padding:3px 8px;font-size:0.7rem;background:#111520;border:1px solid #1a1d29;border-radius:12px;color:#666;cursor:pointer}
-.suggest-btn:active{border-color:#4fc3f7;color:#4fc3f7}
 .filters{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
 .filter{padding:4px 10px;font-size:0.75rem;background:#1a1d29;border:1px solid #2a2d3a;border-radius:20px;cursor:pointer;user-select:none}
 .filter.active{background:#2a3a4a;border-color:#4fc3f7;color:#4fc3f7}
@@ -31,7 +25,11 @@ input[type=text]::placeholder{color:#555}
 .result .score{font-size:0.65rem;color:#81c784;float:right}
 .result p{font-size:0.8rem;color:#999;line-height:1.4}
 .no-results{text-align:center;color:#555;padding:40px 20px;font-size:0.9rem}
-.loading{text-align:center;color:#4fc3f7;padding:20px;font-size:0.9rem}
+.loading{text-align:center;padding:20px;font-size:0.9rem}
+.spinner{display:inline-block;width:20px;height:20px;border:2px solid #2a2d3a;border-top-color:#4fc3f7;border-radius:50%;animation:spin 0.8s linear infinite;margin-right:8px;vertical-align:middle}
+@keyframes spin{to{transform:rotate(360deg)}}
+.progress-bar{height:3px;background:#1a1d29;border-radius:2px;margin:8px 0;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#4fc3f7,#81c784);transition:width .3s}
 a{color:#4fc3f7;text-decoration:none}
 .back{font-size:0.8rem;margin-bottom:10px;display:inline-block}
 </style>
@@ -40,15 +38,10 @@ a{color:#4fc3f7;text-decoration:none}
 
 <a href="index.html" class="back">← Главная</a>
 <h1>🧠 Векторный поиск</h1>
-<p class="subtitle" id="status">Загрузка эмбеддингов (847 КБ)…</p>
+<p class="subtitle" id="status">Загрузка…</p>
 
 <div class="search-box" style="display:none" id="search-box">
-<input type="text" id="q" placeholder="Семантический поиск: тема, концепция, метод…" autocomplete="off">
-<div class="mode">
-<div class="mode-btn active" data-mode="vector">🧠 Векторный</div>
-<div class="mode-btn" data-mode="keyword">📝 Ключевые слова</div>
-</div>
-<div class="suggest" id="suggest"></div>
+<input type="text" id="q" placeholder="Семантический поиск: тема, концепция, метод…" autocomplete="off" disabled>
 <div class="filters">
 <div class="filter active" data-cat="all">Все</div>
 <div class="filter" data-cat="paper">EN</div>
@@ -58,161 +51,159 @@ a{color:#4fc3f7;text-decoration:none}
 </div>
 </div>
 
+<div id="progress" style="display:none" class="loading">
+<div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
+<div id="prog-text">Загрузка модели…</div>
+</div>
+
 <div class="results" id="results"></div>
 
-<script>
-let META=[];let EMB=null;let DIM=384;let QEMB=null;let QUERIES=[];
-let activeCat='all';let mode='vector';let loaded=false;
+<script type="module">
+import {pipeline,env} from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0';
 
-// Load embeddings
-async function load(){
+// Configure: load model from HF Hub, cache in browser
+env.allowLocalModels=false;
+
+let extractor=null;
+let EMB=null;let META=[];let DIM=384;
+let activeCat='all';let loaded=false;
+let lastQuery='';let searchTimer=null;
+
+// Load model + embeddings in parallel
+async function init(){
+const status=document.getElementById('status');
+const prog=document.getElementById('progress');
+const progText=document.getElementById('prog-text');
+const progFill=document.getElementById('prog-fill');
+
 try{
-// Load document embeddings
-const r1=await fetch('vector-embeddings.json');
-const d1=await r1.json();
-DIM=d1.dim;META=d1.meta;
-const bin=atob(d1.embeddings_b64);
-EMB=new Float16Array(bin.length/2);
-for(let i=0;i<bin.length;i+=2){
-EMB[i/2]=(bin.charCodeAt(i)|bin.charCodeAt(i+1)<<8);
-}
-// Reinterpret as float16 — need DataView
+// Step 1: Load embeddings (1.3 MB)
+progText.textContent='Загрузка индекса (1.3 МБ)…';
+progFill.style.width='10%';
+
+const r=await fetch('embeddings-f32.json');
+const data=await r.json();
+DIM=data.dim;META=data.meta;
+
+// Decode base64 → Float32Array
+const bin=atob(data.embeddings_b64);
 const buf=new ArrayBuffer(bin.length);
 const u8=new Uint8Array(buf);
 for(let i=0;i<bin.length;i++)u8[i]=bin.charCodeAt(i);
-EMB=new Float16Array(buf);
+EMB=new Float32Array(buf);
 
-// Load query embeddings
-const r2=await fetch('query-embeddings.json');
-const d2=await r2.json();
-QUERIES=d2.queries;
-const qbin=atob(d2.embeddings_b64);
-const qbuf=new ArrayBuffer(qbin.length);
-const qu8=new Uint8Array(qbuf);
-for(let i=0;i<qbin.length;i++)qu8[i]=qbin.charCodeAt(i);
-QEMB=new Float16Array(qbuf);
+progFill.style.width='40%';
+progText.textContent='Загрузка модели (23 МБ, кешируется)…';
+
+// Step 2: Load ONNX model via transformers.js
+// First load downloads ~23MB, subsequent loads use browser cache
+extractor=await pipeline('feature-extraction',
+'Xenova/paraphrase-multilingual-MiniLM-L12-v2',
+{quantized:true});
+
+progFill.style.width='100%';
+prog.style.display='none';
+status.textContent=META.length+' документов · модель готова';
+document.getElementById('search-box').style.display='block';
+document.getElementById('q').disabled=false;
+document.getElementById('q').focus();
 
 loaded=true;
-document.getElementById('status').textContent=MET A.length+' документов · 58 предзапроссов · готов';
-document.getElementById('search-box').style.display='block';
-
-// Show suggestions
-const sugg=document.getElementById('suggest');
-const shown=QUERIES.slice(0,12);
-sugg.innerHTML=shown.map(q=>'<div class="suggest-btn" onclick="document.getElementById(\'q\').value=\''+q+'\';search()">'+q+'</div>').join('');
-
 search();
 }catch(e){
-document.getElementById('status').textContent='Ошибка: '+e.message;
+progText.textContent='Ошибка: '+e.message;
+console.error(e);
 }
 }
 
-// Cosine similarity
-function cosSim(a,b){
-let dot=0;for(let i=0;i<DIM;i++)dot+=a[i]*b[i];
-return dot;
+// Embed query text using transformers.js
+async function embedQuery(text){
+const output=await extractor(text,{pooling:'mean',normalize:true});
+return output.data; // Float32Array(384)
 }
 
-// Find nearest pre-computed query embedding
-function nearestQuery(text){
-const textLower=text.toLowerCase();
-let bestIdx=-1,bestScore=0;
-for(let i=0;i<QUERIES.length;i++){
-const q=QUERIES[i].toLowerCase();
-// Simple word overlap score
-const qWords=q.split(/\s+/);
-const tWords=textLower.split(/\s+/);
-let overlap=0;
-for(let qw of qWords){
-for(let tw of tWords){
-if(qw.includes(tw)||tw.includes(qw)){overlap++;break;}
+// Cosine similarity search
+async function doSearch(query){
+if(!loaded||!query.trim())return[];
+
+// Encode query
+const qVec=await embedQuery(query);
+
+// Compute cosine similarity (embeddings already normalized)
+const scores=new Float32Array(META.length);
+for(let i=0;i<META.length;i++){
+let dot=0;
+const off=i*DIM;
+for(let j=0;j<DIM;j++){
+dot+=EMB[off+j]*qVec[j];
 }
-}
-const score=overlap/Math.max(qWords.length,tWords.length||1);
-if(score>bestScore){bestScore=score;bestIdx=i;}
-}
-return bestScore>0.3?bestIdx:-1;
+scores[i]=dot;
 }
 
-function search(){
+// Sort
+const idx=Array.from({length:META.length},(_,i)=>i);
+idx.sort((a,b)=>scores[b]-scores[a]);
+
+// Filter + top results
+let results=idx;
+if(activeCat!=='all'){
+results=idx.filter(i=>META[i].c===activeCat);
+}
+
+return results.slice(0,50).map(i=>({
+meta:META[i],score:scores[i]
+}));
+}
+
+async function search(){
 if(!loaded)return;
 const q=document.getElementById('q').value.trim();
-let results=META.map((d,i)=>({d,i,score:0}));
+if(q===lastQuery)return;
+lastQuery=q;
 
-// Filter by category
-if(activeCat!=='all'){
-results=results.filter(r=>r.d.category===activeCat);
-}
-
-if(mode==='keyword'&&q){
-// Keyword search
-const terms=q.toLowerCase().split(/\s+/).filter(t=>t.length>0);
-results=results.filter(r=>{
-const text=((r.d.title||'')+' '+(r.d.abstract||'')+' '+r.d.file).toLowerCase();
-return terms.every(t=>text.includes(t));
-});
-results.sort((a,b)=>(a.d.title||'').localeCompare(b.d.title||''));
-}else if(mode==='vector'&&q){
-// Vector search: find nearest pre-computed query
-const qIdx=nearestQuery(q);
-if(qIdx>=0&&QEMB){
-const qVec=QEMB.subarray(qIdx*DIM,(qIdx+1)*DIM);
-results.forEach(r=>{
-r.score=cosSim(qVec,EMB.subarray(r.i*DIM,(r.i+1)*DIM));
-});
-results.sort((a,b)=>b.score-a.score);
-results=results.filter(r=>r.score>0.3);
-}else{
-// Fall back to keyword if no matching pre-computed query
-const terms=q.toLowerCase().split(/\s+/).filter(t=>t.length>0);
-results=results.filter(r=>{
-const text=((r.d.title||'')+' '+(r.d.abstract||'')+' '+r.d.file).toLowerCase();
-return terms.every(t=>text.includes(t));
-});
-results.sort((a,b)=>(a.d.title||'').localeCompare(b.d.title||''));
-}
-}
-
-document.getElementById('count').textContent=results.length+' найдено';
-renderResults(results.slice(0,50),q);
-}
-
-function renderResults(results,q){
 const container=document.getElementById('results');
-if(results.length===0){
-container.innerHTML='<p class="no-results">Ничего не найдено. Попробуйте предложить­ый запрос ниже.</p>';
+if(!q){
+container.innerHTML='';
+document.getElementById('count').textContent='0';
 return;
 }
+
+container.innerHTML='<div class="loading"><span class="spinner"></span>Поиск…</div>';
+
+try{
+const results=await doSearch(q);
+document.getElementById('count').textContent=results.length+' найдено';
+
+if(results.length===0){
+container.innerHTML='<p class="no-results">Ничего не найдено</p>';
+return;
+}
+
 container.innerHTML=results.map(r=>{
-let title=r.d.title||r.d.file;
-const catLabel={paper:'EN',ru_paper:'RU',query:'QUERY',bibliography:'BIB'}[r.d.category]||'';
-const url=encodeURI(r.d.url);
-const score=mode==='vector'&&r.score>0?(r.score*100).toFixed(0)+'%':'';
+const m=r.meta;
+const catLabel={paper:'EN',ru_paper:'RU',query:'QUERY',bibliography:'BIB'}[m.c]||'';
+const url=encodeURI(m.u);
+const scorePct=(r.score*100).toFixed(0)+'%';
+const title=escapeHtml(m.t||m.f);
+const abs=m.a?escapeHtml(m.a):'';
 return '<div class="result" onclick="window.open(\''+url+'\',\'_blank\')">'+
-'<h3>'+escapeHtml(title)+' <span class="cat">'+catLabel+'</span>'+
-(score?'<span class="score">'+score+'</span>':'')+'</h3>'+
-(r.d.abstract?'<p>'+escapeHtml(r.d.abstract)+'</p>':'')+
+'<h3>'+title+' <span class="cat">'+catLabel+'</span>'+
+'<span class="score">'+scorePct+'</span></h3>'+
+(abs?'<p>'+abs+'</p>':'')+
 '</div>';
 }).join('');
+}catch(e){
+container.innerHTML='<p class="no-results">Ошибка: '+e.message+'</p>';
+}
 }
 
 function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-// Input handler
-let debounce;
+// Input handler with debounce
 document.addEventListener('DOMContentLoaded',()=>{
 document.getElementById('q').addEventListener('input',()=>{
-clearTimeout(debounce);
-debounce=setTimeout(search,300);
-});
-// Mode buttons
-document.querySelectorAll('.mode-btn').forEach(b=>{
-b.addEventListener('click',()=>{
-document.querySelectorAll('.mode-btn').forEach(x=>x.classList.remove('active'));
-b.classList.add('active');
-mode=b.dataset.mode;
-search();
-});
+clearTimeout(searchTimer);
+searchTimer=setTimeout(search,400);
 });
 // Filter buttons
 document.querySelectorAll('.filter[data-cat]').forEach(f=>{
@@ -223,8 +214,8 @@ activeCat=f.dataset.cat;
 search();
 });
 });
-// Load data
-load();
+// Start loading
+init();
 });
 </script>
 </body>

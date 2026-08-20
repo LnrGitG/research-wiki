@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0">
+<title>📊 Данные | Research Wiki</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f1117;color:#e0e0e0;padding:12px;max-width:900px;margin:0 auto}
+h1{font-size:1.3rem;margin-bottom:8px;background:linear-gradient(90deg,#4fc3f7,#81c784);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#888;font-size:0.8rem;margin-bottom:12px}
+.back{font-size:0.8rem;margin-bottom:10px;display:inline-block;color:#4fc3f7;text-decoration:none}
+.tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap;position:sticky;top:0;background:#0f1117;padding:4px 0;z-index:10}
+.tab{padding:6px 12px;font-size:0.8rem;background:#1a1d29;border:1px solid #2a2d3a;border-radius:8px;cursor:pointer;color:#888}
+.tab.active{background:#2a3a4a;border-color:#4fc3f7;color:#4fc3f7}
+.chart-card{background:#1a1d29;border:1px solid #2a2d3a;border-radius:12px;padding:16px;margin-bottom:16px}
+.chart-card h2{font-size:0.95rem;color:#81c784;margin-bottom:10px}
+canvas{max-height:350px!important}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
+.stat{background:#1a1d29;border:1px solid #2a2d3a;border-radius:8px;padding:8px 12px;text-align:center}
+.stat .val{font-size:1.2rem;font-weight:700;color:#4fc3f7}
+.stat .label{font-size:0.7rem;color:#888;margin-top:2px}
+.stat.green .val{color:#81c784}
+.stat.red .val{color:#ef5350}
+.stat.orange .val{color:#ffb74d}
+table{width:100%;border-collapse:collapse;font-size:0.8rem;margin-top:8px}
+th{background:#222531;padding:6px;text-align:left;color:#4fc3f7;border-bottom:2px solid #2a3a4a;position:sticky;top:0}
+td{padding:5px 8px;border-bottom:1px solid #222531;color:#b0bec5}
+tr:active{background:#1e2130}
+.table-card{background:#1a1d29;border:1px solid #2a2d3a;border-radius:12px;padding:16px;overflow-x:auto;margin-bottom:16px}
+.search-hint{background:#1a1d29;border:1px solid #2a2d3a;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:0.8rem;color:#888}
+.search-hint a{color:#4fc3f7}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back">← Главная</a>
+<h1>📊 Статистика жилищного строительства</h1>
+<p class="subtitle">Росстат · ДОМ.РФ · 11 рядов · 56 КБ</p>
+
+<div class="search-hint">
+🧠 <a href="vector-search.html">Векторный поиск</a> — найдёт статьи по теме.
+📊 Здесь — количественные данные из базы (rosstat_construction.db).
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div id="content"></div>
+
+<script>
+let DATA=null;
+const SERIES={
+'input':{'name':'Ввод жилья','icon':'🏠'},
+'prices_a':{'name':'Цены (годовые)','icon':'💰'},
+'prices_q':{'name':'Цены (квартальные)','icon':'📈'},
+'completions':{'name':'Ввод зданий','icon':'🏗️'},
+'unfinished':{'name':'Незавершённое','icon':'⏳'},
+'employment':{'name':'Занятость','icon':'👷'},
+'materials':{'name':'Материалы','icon':'🧱'},
+'machinery':{'name':'Техника','icon':'🚜'},
+'ddu':{'name':'ДДУ (ДОМ.РФ)','icon':'📋'},
+'permits':{'name':'РНС (ДОМ.РФ)','icon':'📄'},
+'regional':{'name':'Регионы 2023','icon':'🗺️'},
+};
+
+function initTabs(){
+const tabs=document.getElementById('tabs');
+tabs.innerHTML=Object.entries(SERIES).map(([k,v])=>
+`<div class="tab" data-key="${k}">${v.icon} ${v.name}</div>`).join('');
+tabs.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+tabs.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+t.classList.add('active');
+render(t.dataset.key);
+}));
+}
+
+function render(key){
+const c=document.getElementById('content');
+const D=DATA;
+
+if(key==='input'){
+const d=D.housing_input_annual;
+const latest=d[d.length-1],peak=d.reduce((a,b)=>b.value>a.value?b:a);
+c.innerHTML=`<div class="stats">
+<div class="stat"><div class="val">${peak.value}</div><div class="label">Пик (${peak.year})</div></div>
+<div class="stat green"><div class="val">${latest.value}</div><div class="label">${latest.year}</div></div>
+</div>
+<div class="chart-card"><h2>Ввод жилья, млн м² (1990–2021)</h2>
+<canvas id="ch"></canvas></div>`;
+new Chart(document.getElementById('ch'),{type:'bar',data:{
+labels:d.map(x=>x.year),
+datasets:[{label:'млн м²',data:d.map(x=>x.value),backgroundColor:'#4fc3f7',borderRadius:3}]
+},options:{plugins:{legend:{display:false}}}});
+}
+
+else if(key==='prices_a'){
+const p=D.housing_prices_annual.filter(x=>x.market==='primary');
+const s=D.housing_prices_annual.filter(x=>x.market==='secondary');
+c.innerHTML=`<div class="chart-card"><h2>Цены на жильё, тыс.руб./м² (2000–2023)</h2>
+<canvas id="ch"></canvas></div>`;
+new Chart(document.getElementById('ch'),{type:'line',data:{
+labels:p.map(x=>x.year),
+datasets:[
+{label:'Первичный',data:p.map(x=>x.price),borderColor:'#4fc3f7',tension:0.3,fill:false},
+{label:'Вторичный',data:s.map(x=>x.price),borderColor:'#81c784',tension:0.3,fill:false}
+]}});
+}
+
+else if(key==='prices_q'){
+const d=D.housing_prices_quarterly;
+const labels=[...new Set(d.map(x=>`${x.year} Q${x.q}`))];
+const p=d.filter(x=>x.market==='primary');
+const s=d.filter(x=>x.market==='secondary');
+c.innerHTML=`<div class="chart-card"><h2>Цены квартальные, тыс.руб./м² (2016–2026)</h2>
+<canvas id="ch"></canvas></div>`;
+new Chart(document.getElementById('ch'),{type:'line',data:{
+labels:labels,
+datasets:[
+{label:'Первичный',data:p.map(x=>x.price),borderColor:'#4fc3f7',tension:0.3},
+{label:'Вторичный',data:s.map(x=>x.price),borderColor:'#81c784',tension:0.3}
+]}});
+}
+
+else if(key==='completions'){
+const d=D.building_completions;
+const years=[...new Set(d.map(x=>x.year))];
+const counts=d.filter(x=>x.indicator.includes('count'));
+c.innerHTML=`<div class="chart-card"><h2>Введено зданий (2000–2024)</h2>
+<canvas id="ch"></canvas></div>`;
+new Chart(document.getElementById('ch'),{type:'bar',data:{
+labels:years,
+datasets:[{label:'Зданий',data:counts.map(x=>x.value),backgroundColor:'#81c784'}]
+},options:{plugins:{legend:{display:false}}}});
+}
+
+else if(key==='unfinished'){
+const d=D.unfinished_construction;
+const years=[...new Set(d.map(x=>x.year))];
+const b=d.filter(x=>x.indicator==='unfinished_buildings_count');
+const h=d.filter(x=>x.indicator==='unfinished_houses_count');
+c.innerHTML=`<div class="chart-card"><h2>Незавершённое строительство (2000–2024)</h2>
+<canvas id="ch"></canvas></div>`;
+new Chart(document.getElementById('ch'),{type:'line',data:{
+labels:years,
+datasets:[
+{label:'Здания',data:b.map(x=>x.value),borderColor:'#ef5350'},
+{label:'Жилые дома',data:h.map(x=>x.value),borderColor:'#ffb74d'}
+]}});
+}
+
+else if(key==='employment'){
+const d=D.construction_employment;
+c.innerHTML=`<div class="chart-card"><h2>Занятость в строительстве, тыс. чел.</h2>
+<canvas id="ch"></canvas></div>`;
+new Chart(document.getElementById('ch'),{type:'bar',data:{
+labels:d.map(x=>x.year),
+datasets:[{label:'Тыс. чел.',data:d.map(x=>x.emp),backgroundColor:'#4fc3f7'}]
+},options:{plugins:{legend:{display:false}}}});
+}
+
+else if(key==='materials'){
+const products=[...new Set(D.materials_production.map(x=>x.product))];
+const years=[...new Set(D.materials_production.map(x=>x.year))];
+c.innerHTML=`<div class="chart-card"><h2>Производство материалов (по годам)</h2>
+<select id="prod" style="padding:8px;background:#1a1d29;border:1px solid #2a2d3a;color:#e0e0e0;border-radius:6px;width:100%">
+${products.map(p=>`<option value="${p}">${p}</option>`).join('')}
+</select>
+<canvas id="ch" style="margin-top:10px"></canvas></div>`;
+function drawMat(prod){
+const d=D.materials_production.filter(x=>x.product===prod);
+new Chart(document.getElementById('ch'),{type:'bar',data:{
+labels:d.map(x=>x.year),datasets:[{label:prod,data:d.map(x=>x.value),backgroundColor:'#81c784'}]
+},options:{plugins:{legend:{display:false}}}});
+}
+drawMat(products[0]);
+document.getElementById('prod').addEventListener('change',e=>{
+document.getElementById('ch').remove();
+const cv=document.createElement('canvas');cv.id='ch';
+document.querySelector('.chart-card').appendChild(cv);
+drawMat(e.target.value);
+});
+}
+
+else if(key==='machinery'){
+const d=D.machinery_park;
+const types=[...new Set(d.map(x=>x.type))];
+const years=[...new Set(d.map(x=>x.year))];
+c.innerHTML=`<div class="chart-card"><h2>Парк строительной техники</h2>
+<canvas id="ch"></canvas></div>`;
+new Chart(document.getElementById('ch'),{type:'bar',data:{
+labels:years,
+datasets:types.map((t,i)=>({
+label:t,data:d.filter(x=>x.type===t).map(x=>x.count),
+borderColor:['#4fc3f7','#81c784','#ffb74d','#ef5350','#ce93d8'][i%5],
+backgroundColor:['#4fc3f7','#81c784','#ffb74d','#ef5350','#ce93d8'][i%5]+'33'
+}))
+}});
+}
+
+else if(key==='ddu'){
+const d=D.ddu_monthly;
+c.innerHTML=`<div class="chart-card"><h2>ДДУ (ДОМ.РФ), помесячно</h2>
+<canvas id="ch"></canvas></div>`;
+new Chart(document.getElementById('ch'),{type:'line',data:{
+labels:d.map(x=>x.date),
+datasets:[{label:'ДДУ',data:d.map(x=>x.value),borderColor:'#4fc3f7',tension:0.3}]
+},options:{plugins:{legend:{display:false}}}});
+}
+
+else if(key==='permits'){
+const d=D.permits_monthly;
+c.innerHTML=`<div class="chart-card"><h2>РНС — разрешения на строительство (ДОМ.РФ)</h2>
+<canvas id="ch"></canvas></div>`;
+new Chart(document.getElementById('ch'),{type:'line',data:{
+labels:d.map(x=>x.date),
+datasets:[{label:'РНС',data:d.map(x=>x.value),borderColor:'#81c784',tension:0.3}]
+},options:{plugins:{legend:{display:false}}}});
+}
+
+else if(key==='regional'){
+const d=D.regional_prices_2023;
+const p=d.filter(x=>x.market==='primary').sort((a,b)=>b.price-a.price);
+c.innerHTML=`<div class="table-card"><h2>Цены 2023 по регионам (первичный рынок)</h2>
+<table><thead><tr><th>Регион</th><th>тыс.руб./м²</th></tr></thead><tbody>
+${p.slice(0,30).map(x=>`<tr><td>${x.region}</td><td style="color:#4fc3f7">${x.price}</td></tr>`).join('')}
+</tbody></table></div>`;
+}
+}
+
+// Load data
+fetch('data-summary.json').then(r=>r.json()).then(d=>{
+DATA=d;
+initTabs();
+document.querySelector('.tab').click();
+}).catch(e=>{
+document.getElementById('content').innerHTML='<p style="color:#ef5350;padding:20px">Ошибка загрузки данных: '+e.message+'</p>';
+});
+</script>
+</body>
+</html>

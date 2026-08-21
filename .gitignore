@@ -14,3 +14,7 @@ raw/rosstat/socioeconomic_regions/fed_okr_*.rar
 
 # Large SQLite database (757 MB with DOM.RF data)
 data/rosstat_construction.db
+
+data/regions_panel.db
+raw/rosstat/regions_collection_102/*.parquet
+raw/rosstat/regions_collection_102/*.zip

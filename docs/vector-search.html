@@ -47,6 +47,7 @@ a{color:#4fc3f7;text-decoration:none}
 <div class="filter" data-cat="paper">EN</div>
 <div class="filter" data-cat="ru_paper">RU</div>
 <div class="filter" data-cat="query">Queries</div>
+<div class="filter" data-cat="bib">📚 Библиография</div>
 <div class="filter badge" id="count">0</div>
 </div>
 </div>
@@ -68,6 +69,7 @@ let extractor=null;
 let EMB=null;let META=[];let DIM=384;
 let activeCat='all';let loaded=false;
 let lastQuery='';let searchTimer=null;
+let BIB=null; // bibliography entries
 
 // Load model + embeddings in parallel
 async function init(){
@@ -157,7 +159,14 @@ meta:META[i],score:scores[i]
 
 async function search(){
 if(!loaded)return;
-const q=document.getElementById('q').value.trim();
+const q=document.getElementById('q').value.trim().toLowerCase();
+
+// Bibliography mode — no vector search needed
+if(activeCat==='bib'){
+renderBib(q);
+return;
+}
+
 if(q===lastQuery)return;
 lastQuery=q;
 
@@ -201,6 +210,60 @@ container.innerHTML='<p class="no-results">Ошибка: '+e.message+'</p>';
 
 function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
+// Render bibliography list (filterable, no vector search)
+async function renderBib(query){
+const container=document.getElementById('results');
+document.getElementById('count').textContent='';
+
+// Load bibliography JSON on first access
+if(!BIB){
+try{
+const r=await fetch('bibliography.json');
+BIB=await r.json();
+}catch(e){
+container.innerHTML='<p class="no-results">Ошибка загрузки библиографии</p>';
+return;
+}
+}
+
+let entries=BIB;
+
+// Filter by query text
+if(query){
+entries=BIB.filter(e=>{
+return e.text.toLowerCase().includes(query)||
+e.author.toLowerCase().includes(query)||
+e.year.includes(query);
+});
+}
+
+document.getElementById('count').textContent=entries.length+' из '+BIB.length;
+
+if(entries.length===0){
+container.innerHTML='<p class="no-results">Ничего не найдено в библиографии</p>';
+return;
+}
+
+// Render entries (max 500 for performance)
+const show=entries.slice(0,500);
+let html='<div style="color:#666;font-size:0.75rem;margin-bottom:8px">'+
+(entries.length>500?'Показано 500 из '+entries.length+'. Уточните запрос.':'')+
+'</div>';
+
+html+=show.map(e=>{
+const author=escapeHtml(e.author||'');
+const year=e.year?`<span style="color:#81c784">(${e.year})</span>`:'';
+const lang=e.lang==='ru'?'<span style="color:#ffb74d;font-size:0.7rem">RU</span>':'';
+const text=escapeHtml(e.text.length>200?e.text.slice(0,200)+'…':e.text);
+return `<div class="result" style="cursor:default">
+<h3 style="font-size:0.82rem">${author} ${year} ${lang}</h3>
+<p style="font-size:0.78rem;color:#999">${text}</p>
+</div>`;
+}).join('');
+
+container.innerHTML=html;
+}
+
 // Input handler with debounce
 document.addEventListener('DOMContentLoaded',()=>{
 document.getElementById('q').addEventListener('input',()=>{
@@ -213,7 +276,17 @@ f.addEventListener('click',()=>{
 document.querySelectorAll('.filter[data-cat]').forEach(x=>x.classList.remove('active'));
 f.classList.add('active');
 activeCat=f.dataset.cat;
+// For bibliography: clear query state and render immediately
+if(activeCat==='bib'){
+lastQuery='\x01'; // force re-search
+document.getElementById('q').value=document.getElementById('q').value;
+document.getElementById('q').placeholder='Фильтр по автору, году, теме…';
 search();
+}else{
+document.getElementById('q').placeholder='Семантический поиск: тема, концепция, метод…';
+lastQuery='';
+search();
+}
 });
 });
 // Start loading

@@ -1993,3 +1993,38 @@ sources:
   file: papers/housing_financial_system_sufi_wachter_2017.md
   refs_count: 193
   open_access: false
+- id: housing_markets_ageing_karim_2026
+  title: Housing Markets and Ageing—Dynamics and Policy Issues
+  authors:
+  - Dilruba Karim
+  year: 2026
+  journal: National Institute Economic Review
+  pages: 1-12
+  doi: 10.1017/nie.2026.10097
+  publisher: Cambridge University Press
+  published_online: '2026-07-07'
+  url: https://www.cambridge.org/core/journals/national-institute-economic-review/article/housing-markets-and-ageingdynamics-and-policy-issues/EDF37A52F7BE744049D4F1F4626F29A5
+  keywords:
+  - population ageing
+  - housing
+  - mortgage lending
+  - housing markets
+  - taxation
+  tags:
+  - demographics
+  - ageing
+  - housing-markets
+  - house-prices
+  - homeownership
+  - downsizing
+  - retirement-housing
+  - taxation
+  - pensions
+  - UK
+  - equity-release
+  - reverse-mortgages
+  source: cambridge-core
+  type: original-article
+  file: papers/housing_markets_ageing_karim_2026.md
+  refs_count: 41
+  open_access: true

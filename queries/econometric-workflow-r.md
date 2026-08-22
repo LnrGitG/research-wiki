@@ -648,3 +648,169 @@ Rscript scripts/05_structural_breaks.R
 | Цены квартальные, ДДУ месячные | Разные частоты | MIDAS-регрессии или агрегация |
 | Нет данных до 2020 (DOM.RF) | Длинные ряды только цены | Совместить с Росстат 2000–2023 |
 | stock_krt имеет прогнозы до 2033 | Нереальные нули | Фильтровать date <= 2026-08 |
+---
+
+## CRAN Task View: Time Series Analysis — обзор пакетов
+
+**Источник:** [CRAN Task View: Time Series](https://cran.r-project.org/web/views/TimeSeries.html)
+**Поддержка:** Rob J Hyndman, Rebecca Killick (версия 2026-07-29)
+**Всего пакетов:** 376 в 23 разделах
+
+### Core (5 пакетов)
+
+```r
+install.packages(c("fable", "forecast", "tseries", "tsibble", "zoo"))
+```
+
+| Пакет | Назначение |
+|-------|-----------|
+| **fable** | Tidyverse-фреймворк: ETS, ARIMA, TSLM, многие серии одновременно (tsibble) |
+| **forecast** | Классический фреймворк: auto.arima(), ets(), прогнозирование (ts) |
+| **tseries** | ADF, KPSS, GARCH, bootstrapping, irts-класс |
+| **tsibble** | Tidy temporal data frames — основа для fable/feasts |
+| **zoo** | Регулярные/нерегулярные ряды, yearmon/yearqtr, rollmean |
+
+### 1. Базовая инфраструктура (22 пакета)
+
+| Категория | Пакеты |
+|-----------|--------|
+| Rolling stats | `slider`, `roll`, `runner`, `tbrf`, `data.table::froll()` |
+| Graphics | `ggtime`, `tsibbletalk`, `dygraphs`, `sugrrants`, `gravitas` |
+
+### 2. Классы временных рядов (15 пакетов)
+
+| Класс | Пакет | Примечание |
+|-------|-------|-----------|
+| `ts` | base R | Регулярные ряды, numeric timestamps |
+| `zoo`/`xts` | zoo, xts | Произвольные timestamps |
+| `tsibble` | tsibble | Tidy temporal, основа для fable |
+| `tsbox` | tsbox | Конвертация между всеми классами |
+| `timeSeries` | timeSeries | Финансовые ряды |
+
+### 3. Прогнозирование и одномерные модели (33 пакета)
+
+| Модель | Пакеты | Для нашего исследования |
+|--------|--------|------------------------|
+| **ETS** | `fable::ETS()`, `forecast::ets()`, `smooth` | Прогноз цен на жильё |
+| **ARIMA** | `fable::ARIMA()`, `forecast::auto.arima()`, `tseries::arma()` | Базовые модели ввода жилья |
+| **TBATS** | `forecast`, `tsissm` | Ряды с двойной сезонностью |
+| **Theta** | `fable::THETA()`, `forecast::thetaf()`, `forecTheta` | Бенчмарк |
+| **Prophet** | `prophet`, `fable.prophet` | Daily data, праздники |
+| **Структурные** | `bsts`, `UComp`, `autostsm`, `bssm` | Тренд+сезонность+регрессоры |
+| **GARCH** | `rugarch`, `tsgarch`, `fGarch` | Волатильность цен |
+| **Count TS** | `tscount`, `fableCount` | Сделки ДДУ (помесячно) |
+| **Bayesian ARIMA** | `bayesforecast` | Байесовские модели |
+
+### 4. Детекция структурных сдвигов (22 пакета) — **критично для РФ**
+
+| Метод | Пакет | Применение |
+|-------|-------|-----------|
+| **strucchange** | strucchange, strucchangeRcpp | Тесты Chow, CUSUM — кризисы 2008, 2014, 2020 |
+| **changepoint** | changepoint, changepoint.np, changepoint.geo | PELT, CROPS |
+| **mosum** | mosum | Moving sum — множественные сдвиги |
+| **trend** | trend | Mann-Kendall, сезонный Mann-Kendall |
+| **bfast** | bfast | Сдвиги в тренд+сезонность |
+
+### 5. Декомпозиция и фильтрация (17 пакетов)
+
+| Метод | Пакеты | Применение |
+|-------|-------|-----------|
+| **STL** | `stats::stl()`, `stlplus`, `stR` | Тренд-сезонность |
+| **HP filter** | `mFilter`, `hpfilter`, `neverhpfilter` | Бизнес-циклы жилья |
+| **SSA** | `Rssa`, `ASSA` | Singular Spectrum Analysis |
+| **EMD** | `EMD`, `hht`, `Rlibeemd` | Empirical Mode Decomposition |
+
+### 6. Сезонность (19 пакетов)
+
+| Метод | Пакеты |
+|-------|-------|
+| **X-13-ARIMA-SEATS** | `seasonal`, `seasonalview`, `x13binary` |
+| **JDemetra+** | `rjd3toolkit`, `RJDemetra` |
+| **STL+regression** | `stR`, `deseats` |
+| **Daily/weekly** | `dsa`, `boiwsa` |
+
+### 7. Стационарность, единичные корни, коинтеграция (23 пакета)
+
+| Метод | Пакеты | Для нашего исследования |
+|-------|-------|------------------------|
+| **ADF, KPSS, PP** | `tseries`, `urca` | Тесты на интегрированность |
+| **Zivot-Andrews** | `urca` | Единичный корень со сдвигом — ключевое для РФ |
+| **Johansen** | `urca`, `vars`, `pvars` | Ранг коинтеграции |
+| **Engle-Granger** | `tseries`, `urca` | Двухшаговый метод |
+| **ARDL/NARDL** | `ARDL`, `nardl`, `ardl.nardl` | Нелинейная коинтеграция (асимметрия) |
+| **ECM** | `ecm`, `cointReg` | Error correction models |
+| **FCVAR** | `FCVAR` | Fractionally cointegrated VAR |
+
+### 8. Динамические регрессии (14 пакетов)
+
+| Метод | Пакеты | Применение |
+|-------|-------|-----------|
+| **dynlm** | dynlm | OLS с лагами — базовая спецификация |
+| **dlm** | dlm | State space, Kalman filter |
+| **bsts** | bsts | Bayesian structural TS — тренд+регрессоры |
+| **dLagM** | dLagM | Распределённые лаги |
+| **fastTS** | fastTS | Lasso для TS с экзогенными |
+| **TimeGPT** | nixtlar | Pre-trained transformer (API) |
+
+### 9. Многомерные модели — VAR/VECM (60 пакетов)
+
+| Метод | Пакеты | Для нашего исследования |
+|-------|-------|------------------------|
+| **vars** | vars | Классический VAR: цены↔ввод↔инвестиции |
+| **MTS** | MTS | All-purpose toolkit VAR/VARMA |
+| **tsDyn** | tsDyn | Threshold VAR, SETAR, LSTAR — режимы рынка |
+| **bigtime** | bigtime | Sparse VAR для больших систем |
+| **BigVAR** | BigVAR | Lasso-penalized VARX |
+| **svars** | svars | Structural VAR identification |
+| **bayesianVARs** | bayesianVARs | Bayesian VAR |
+| **bvartools** | bvartools | Bayesian VAR toolkit |
+| **KFAS** | KFAS | Multivariate state space, Kalman |
+| **MARSS** | MARSS | Multivariate AR state-space (EM) |
+| **dfms** | dfms | Dynamic factor models |
+| **Granger** | grangersearch, NlinTS | Причинность по Грейнджеру |
+
+### 10. Анализ больших групп рядов (10 пакетов)
+
+| Метод | Пакеты | Применение |
+|-------|-------|-----------|
+| **feasts** | feasts | Features для tsibble — 96 регионов |
+| **tsfeatures** | tsfeatures | Features для ts-объектов |
+| **Rcatch22** | Rcatch22 | 22 ключевых features |
+| **dtwclust** | dtwclust | Кластеризация рядов (DTW) |
+
+### 11. Бутстрэппинг (6 пакетов)
+
+| Метод | Пакеты |
+|-------|-------|
+| **block bootstrap** | `boot::tsboot()`, `tseries::tsbootstrap()` |
+| **Optimal block length** | `blocklength` |
+| **Max entropy** | `meboot` |
+| **Bootstrap unit root** | `bootUR` |
+
+### 12. Источники данных (37 пакетов)
+
+| Источник | Пакет | Релевантность |
+|----------|-------|---------------|
+| **FRED** | fredr | Макро для сравнения США↔РФ |
+| **DBnomics** | rdbnomics | Сотни млн рядов |
+| **ECB** | ecb | Ставки ЕЦБ |
+| **Bundesbank** | bbk, bundesbank | Немецкие ряды |
+| **Учебные данные** | fpp3, astsa, TSA, FinTS | Готовые датасеты |
+| **M-competitions** | Mcomp, Tcomp | Бенчмарк прогнозы |
+
+### Рекомендуемый стартовый набор для research-wiki
+
+```r
+# Core
+install.packages(c("fable", "forecast", "tseries", "tsibble", "zoo", 
+                    "feasts", "urca", "vars", "strucchange"))
+
+# Panel + modeling
+install.packages(c("fixest", "plm", "dynlm", "bsts", "rugarch"))
+
+# Features + clustering
+install.packages(c("tsfeatures", "dtwclust", "Rcatch22"))
+
+# Visualization
+install.packages(c("ggtime", "dygraphs"))
+```

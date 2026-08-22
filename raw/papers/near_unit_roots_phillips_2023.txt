@@ -1,0 +1,3937 @@
+Econometric Theory, 39, 2023, 221–263.
+doi:10.1017/S0266466622000342
+ESTIMATION AND INFERENCE WITH
+NEAR UNIT ROOTS
+PETER C.B. PHILLIPS
+Yale University, University of Auckland, Singapore Management
+University, and University of Southampton
+New methods are developed for identifying, estimating, and performing infer-
+ence with nonstationary time series that have autoregressive roots near unity. The
+approach subsumes unit-root (UR), local unit-root (LUR), mildly integrated (MI),
+and mildly explosive (ME) specifications in the new model formulation. It is shown
+how a new parameterization involving a localizing rate sequence that characterizes
+departures from unity can be consistently estimated in all cases. Simple pivotal limit
+distributions that enable valid inference about the form and degree of nonstationarity
+apply for MI and ME specifications and new limit theory holds in UR and LUR
+cases. Normalizing and variance stabilizing properties of the new parameterization
+are explored. Simulations are reported that reveal some of the advantages of this
+alternative formulation of nonstationary time series. A housing market application
+of the methods is conducted that distinguishes the differing forms of house price
+behavior in Australian state capital cities over the past decade.
+1. INTRODUCTION
+While empirical research makes heavy use of persistent time-series asymptotics for
+modeling nonstationary data, it is usually recognized that it is often too restrictive,
+although certainly convenient, to insist that autoregressive roots be precisely unity.
+In consequence, much research has been done on time series with local to unit
+roots (LURs) or near-integrated processes following early work in the 1980s on
+the development of LUR asymptotics (Chan and Wei, 1987; Phillips, 1987b, 1988)
+for models with long-run autoregressive coefficients of the form θn = 1+ c
+n, where
+c is an unknown localizing coefficient and n is the sample size. In the LUR
+model, the parameter c is identified but is not consistently estimable. Methods
+of inference concerning c have been suggested (Stock, 1991; Hansen, 1999)
+and used in applications1 but have known limitations (Mikusheva, 2007, 2012;
+Thanks go to the Co-Editor and two referees for helpful comments on the earlier version. The paper is a four-decadal
+sequel to Phillips (1987a). Some preliminary findings were reported in 2011 in a draft paper with a different title
+(Phillips, 2011) that was never completed. The present paper completes that earlier analysis, studies identification
+issues, formulates a new localizing rate sequence, and provides limit theory, inferential procedures, simulations, and
+an empirical application. Computations were performed by the author in MATLAB. Support is acknowledged from
+the NSF under Grant Nos. SES-09 56687 and SES-18 50860, and a Kelly Fellowship at the University of Auckland.
+Address correspondence to Peter C. B. Phillips, Cowles Foundation, Yale University, New Haven, CT, USA; e-mail:
+peter.phillips@yale.edu.
+1The main areas in which the technology of near UR process limit theory has been applied are: (i) empirical
+confidence interval (CI) construction using LUR asymptotic theory, a literature beginning in Stock (1991), and for an
+© The Author(s), 2022. Published by Cambridge University Press. This is an Open Access article,
+distributed under the terms of the Creative Commons Attribution licence (https://creativecommons.org/
+licenses/by/4.0/), which permits unrestricted re-use, distribution, and reproduction in any medium, provided
+the original work is properly cited.
+221
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+222
+PETER C.B. PHILLIPS
+Phillips, 2014) and face challenges in extension to practical model settings and
+multivariate models.
+More recent attention has focused on mildly integrated (MI) and mildly explo-
+sive (ME) time series for which the long-run autoregressive coefficient has the
+form θn = 1 + c
+nα , where α ∈(0,1) is an unknown localizing rate and c is an
+unknown constant scale coefficient. Models with this formulation of θn offer
+alternatives closer to the stationary and explosive regions and have opened up new
+robust estimation possibilities and new options for inference. Such models deliver
+nonstationary alternatives to the random wandering behavior associated with LUR
+processes and help to deliver connectivity between stationary and nonstationary
+asymptotics (Phillips and Magdalinos, 2007a, 2007b; hereafter PM) and (Giraitis
+and Phillips, 2006; Phillips, Magdalinos, and Giraitis, 2010), in addition to long
+memory processes with the (nonstationary) fractional parameter d = 1
+2 (Duffy and
+Kasparis, 2021). A particular advantage of MI time series is the simple mechanism
+they provide for constructing endogeneously generated instruments (known as
+IVX) that validate standard methods of inference in cointegrating and predic-
+tive regressions (Phillips and Magdalinos, 2009; Kostakis et al., 2015), thereby
+overcoming ubiquitous problems of size distortion and non-pivotal inference that
+are induced by the presence of LUR regressors (Elliott, 1998; Phillips, 2015).
+In addition, ME time series have opened up new opportunities for estimation
+and inference concerning explosive phenomena and exuberance in financial and
+real estate markets, providing methods of real-time detection of bubble behavior
+that have proved useful in practical work on the diagnosis of prevailing market
+conditions by market participants, banks, and regulators (Phillips, Wu, and Yu,
+2011; Phillips et al., 2015a, 2015b).
+The present paper contributes to this literature in several ways. First, issues of
+identification and consistent estimation of the localizing coefficients {α,c} in MI
+and ME models are explored. Contrary to popular thinking, it is shown that it is
+possible to consistently estimate the rate parameter α that controls (in conjunction
+with the scale parameter) the widths of the MI and ME regions as the sample size
+n →∞. Consistent estimation of the rate parameter also applies in the LUR case
+where α = 1, although the limit distribution is different. In addition, whereas the
+localizing parameters {α,c} are not separately identified in finite samples, pseudo-
+identification does hold asymptotically. In particular, unlike LUR models where
+consistent estimation of the localizing coefficient c is not possible, consistent
+estimation of pseudo-true values of c, notably c∗∓1, is attainable in MI and ME
+systems.2
+entirely different approach the empirical application given in Section 5 of the present paper; (ii) predictive regressions
+in finance (see Phillips (2015) for an overview and the references therein); (iii) use of MI instruments (IVX methods
+following Phillips and Magdalinos (2009)) for robust pivotal limit theory with nonstationary data particularly in
+finance (Kostakis, Magdalinos, and Stamatogiannis, 2015); and (iv) tests for financial and real estate bubbles in
+Phillips and Yu (2011) and Phillips, Shi, and Yu (2015a, 2015b) and much subsequent empirical research on bubbles.
+2Recent work by Lin and Tu (2020) correctly pointed to the difficulties in the estimation of c but did not observe that
+pseudo-true values c∗of c are consistently estimable.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+223
+The primary contribution of the paper is to propose an equivalent model
+formulation in terms of a single localizing rate sequence which is identifiable,
+consistently estimable, and has pivotal limit theory that enables inference in these
+models. Some particular advantages of this new formulation stand out. It delivers
+a simple uniparameter measure that quantifies departures from UR and LUR
+specifications. This parameter sequence can be estimated at a regularly varying
+power rate for MI time series and an exponential rate for ME series. LUR as well as
+UR specifications occur at natural boundary values of the new parameter sequence,
+and the limit theory for the proposed nonlinear rate estimator belongs to a stable
+normal class in contrast to the nonstandard limit theory for the autoregressive
+coefficient estimator. Finally, simulations show good finite-sample performance
+in estimation and inference for this alternative formulation, although performance
+deteriorates due to a slower logarithmic convergence rate when the localizing rate
+coefficient approaches unity. Consistency still holds in this case, in contrast to the
+well-known asymptotic theory for the LUR case in which the localizing coefficient
+c, as distinct from α, is not consistently estimable.
+The paper is organized as follows. Section 2 studies issues of identification,
+estimation, and inference concerning MI autoregressions, introduces the equiva-
+lent uniparameter sequence representation of these processes, and provides limit
+theory for estimation of the localizing coefficients. ME processes are considered
+in Section 3. Simulations are reported in Section 4, and an empirical illustration
+of the methods to housing markets is given in Section 5. Concluding remarks and
+further discussion are given in Section 6. Proofs are in the Appendix.
+2. MILDLY INTEGRATED AUTOREGRESSION
+2.1. Model and Properties
+For simplicity of exposition, we consider the prototypical MI autoregression
+Xt = θnXt−1 +ut, t = 1,...,n,
+(2.1)
+θn = 1+ c
+nα , c < 0, α ∈(0,1),
+(2.2)
+with initialization X0 = op (nα) and innovations satisfying ut ∼iid (0,σ 2). With
+some minor modification, the methodology given here accommodates systems like
+(2.1) with weakly dependent errors ut such as those considered in PM (2007b).
+That extension in the case c < 0 is discussed in Section 2.4 and used later in the
+empirical application. Some results in the present section also include the LUR
+case where α = 1 and c ∈(−∞,∞). In the ME case where c > 0, the limit theory
+given in Section 3 holds without any modification for weak dependence in the
+innovations.
+Partial sums St := t
+i=1 ui of ut satisfy the functional law
+Bnα (·) := S⌊nα·⌋
+nα/2 =
+⌊nα·⌋
+i=1
+ui
+nα/2
+⇝B(·),
+(2.3)
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+224
+PETER C.B. PHILLIPS
+where B(·) is Brownian motion with variance σ 2. Least-squares estimation of
+θn gives ˆθn = n
+t=1 XtXt−1/n
+t=1 X2
+t−1, which carries information about both
+localizing parameters (α,c) in (2.2). The estimate ˆθn is known to be consistent
+for θn with the following limit theory.
+LEMMA 2.1. PM (2007a, Thm. 3.2) For model (2.1) with θn = 1+c/nα, c < 0,
+and α ∈(0,1), we have: (i)
+n
+1+α
+2
+
+ˆθn −θn
+
+⇝N (0, −2c) =: ξc,
+(2.4)
+(ii)
+1
+n1+α
+n
+t=1 X2
+t−1 →p
+σ 2
+−2c, and (iii)
+1
+n(1+α)/2
+n
+t=1 xt−1ut ⇝N
+
+0, σ 4
+−2c
+
+, as
+n →∞.
+Result (i) shows that, as c →0, the asymptotic variance tends to zero, matching
+the fact that the convergence rate rises to n in the UR case as θn →1. Similarly,
+(ii) and (iii) show that the regressor signal n
+t=1 X2
+t−1 diverges at a faster rate than
+n1+α as c →0. Thus, the value of c and its proximity to zero influence asymptotic
+behavior in a material way that relates to the localizing rate coefficient α. More
+directly in terms of the localizing rate parameter α itself, the convergence rate
+n
+1+α
+2
+→n as α →1. It is therefore evident that the two localizing coefficients
+(c,α) play joint and related roles in determining both the finite-sample and limit
+behavior of ˆθn. This interactive role of the unknown parameters (c,α) affects the
+capacity to identify these parameters.
+2.2. Local Parameter Identification Failure
+The functional dependence of the autoregressive coefficient θn = 1 +
+c
+nα =:
+θn(c,α) on the two localizing parameters (c,α) reveals a fundamental identification
+uncertainty in the specification. Whereas θn is itself identified in finite samples,
+these two parameters are not separately identified in finite samples even under
+additional conditions such as the sign of c. This is explained by the fact that
+the generating mechanism (2.1) implies the moving average representation Xt =
+t−1
+j=0 θj
+nut−j + θt
+nX0 so that the joint distribution of {Xj}n
+j=1 for any given sample
+size n depends on the pair (c,α) only through θn and, hence, only through the ratio
+c
+nα . Given n, the (stationary) LUR condition 0 < θn < 1 requires −nα < c < 0 or
+0 < |c| < nα, so that −∞< log|c| < α logn. It follows that the likelihood of {Xj}n
+j=1
+is equivalently defined by the following simpler uniparameter autoregressive
+parameter specification:
+θn = θn(γn) := 1−1
+nγn ,
+(2.5)
+with
+γn = γn(c,α) := α −log|c|
+logn ∈(0,1),
+(2.6)
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+225
+because −1/nγn = −n
+log|c|
+logn /nα = −|c|/nα = c/nα for −nα < c < −
+1
+n1−α . The
+upper and lower limits of c used in the definition of γn ensure that γn ∈(0,1).
+In particular, γn →1 as c tends to the upper limit −
+1
+n1−α , and γn →0 as c tends
+to its lower limit −nα. For values of c ≥−
+1
+n1−α , we have 1/nγn = |c|/nα ≤1/n.
+Thus, for c ≥−
+1
+n1−α and as c →0 from below, the rate parameter γn ≥1 and the
+autoregressive coefficient θn is local to unity when c = −1/n1−α or closer to unity
+when −1/n1−α < c ≤0. As will be explained in what follows, the limit theory
+developed here for the estimation of γn accommodates this possibility.
+The upshot is that the model given by equations (2.1) and (2.2) may equivalently
+be defined by (2.1) in conjunction with the specification θn = 1−
+1
+nγn , where γn =
+γn(c,α) ∈(0,1) is given in (2.6). This new formulation of θn is a single-parameter
+specification θn = θn(γn) that involves the rate-parameter sequence γn. Importantly,
+given n, the value of γn(c,α) is determined by the pair (c,α) and we have the
+following correspondences at the limits of the domain of definition of (c,α) and
+the key point c = −1 in (2.6) where γn = α:
+lim
+c→−n−(1−α)(γn,θn) →(1,1−1
+n),
+lim
+c→−1(γn,θn) →(α,1−1
+nα ),
+lim
+c→−nα(γn,θn) →(0,0),
+lim
+(c,α)→(−1,1)(γn,θn) →(1,1−1
+n),
+lim
+α→1(γn,θn) →(1−log|c|
+logn ,1−|c|
+n ),
+lim
+α→0(γn,θn) →
+
+−log|c|
+logn ,1−|c|
+
+.
+(2.7)
+These relations show that stationary, MI, and LUR models are all captured in the
+single parameter specification. However, the correspondence is evidently not 1 : 1.
+For example, γn(−
+1
+n1−α,α) = γn(−1,1) = 1 both yield the same autoregressive
+coefficient θn = 1−1
+n. More generally, we have equivalence whenever
+c1
+nα1 = c2
+nα2 ,
+or c1 = c2nα1−α2. So if α1 = α2 +b, then c1 = c2nb will ensure that θn = 1+ c1
+nα1 =
+1 + c2nb
+nα1 = 1 + c2
+nα2 . Then θn = 1 −
+1
+nγn with γn = α1 −log|c1|
+logn = α2 −log|c2|
+logn
+so
+that γn(c1,α1) = γn(c2,α2), and there is lack of identification in finite samples.
+Note that, in the equivalence γn(c1,α1) = γn(c2,α2), c1 depends on n. However,
+this is not an issue in finite samples where, for any given n, the allowable range
+−nα1 < c1 < −
+1
+n1−α1 for the localizing coefficient c1 is satisfied and ensures that
+γn ∈(0,1) as required for the MI specification of the model. In contrast to this
+finite-sample failure of identification of the pair (c,α), the localizing rate parameter
+γn is identified, just as the autoregressive coefficient θn is itself identified.
+Attempts to estimate the twin-parameter specification (c,α) reveal the presence
+of the localizing coefficient uncertainty implicit in the dual parameter specification
+of the MI models (2.1) and (2.2). The impact of the identification uncertainty about
+(c,α) becomes apparent in the asymptotic theory because separate estimation of
+the rate parameter α and the localizing coefficient c lead as n →∞to the pseudo-
+parameters (c∗= −1,γn) in the uniparameter specification (2.6). Thus, the point
+of equivalence γn = α that arises when c takes on the value −1 in (2.6) turns out
+to be an important pseudo-true limit value for the localizing rate coefficient γn
+in the limit theory. As we proceed to show, it turns out that there are asymptotic
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+226
+PETER C.B. PHILLIPS
+identification and consistent estimation of both the pseudo-true value c∗= −1 and
+the specific rate sequence γn when n →∞. Thus, the essential element in the MI
+model is the implied localizing rate parameter γn in the specification θn = 1−
+1
+nγn .
+Boundary values for the parameter sequence γn are also relevant because when
+γn = 1−log|c|
+logn the model merges with the LUR class where θn = 1−|c|
+n = 1+ c
+n with
+c < 0. In particular: when γn = 1 (i.e., c = −1 in γn = 1−log|c|
+logn ), we have the LUR
+special case θn = 1−1
+n; when γn > 1, we have the LUR coefficient θn = 1+ c
+n with
+−1 < c < 0; and γn < 1 captures LUR models with c < −1. Furthermore, when
+γn →∞, θn →1, delivering the UR model. Similar correspondences apply on the
+right side of the UR model with θn = 1+
+1
+nγn > 1 and γn = 1−log|c|
+logn , as discussed
+in Section 3. These representations become important in interpreting the results of
+applied research, as shown later in the empirical illustration.
+Limit theory for the autoregressive coefficient estimate ˆθn is given in (2.4). On
+a suitably expanded probability space by virtue of the Skorohod representation
+theorem,3 the convergence (2.4) holds in probability and, in this expanded space,
+we can write
+ˆθn = θn +
+ξc
+n
+1+α
+2
+
+1+op (1)
+
+.
+(2.8)
+It is convenient to work within this expanded space, and we often do so sub-
+sequently without specific mention. The random component n−1+α
+2 ξc in (2.8)
+depends on both parameters (c,α). However, in view of the equivalent representa-
+tion (2.6), we may write
+ξc
+n
+1+α
+2
+=d N
+
+0, −2c
+n1+α
+
+= N
+
+0,
+2
+n1+γn
+
+,
+(2.9)
+because 1/nγn = −c/nα and n
+1+α
+2 |c|−1/2 = n
+1+γn
+2
+as shown in (A-1) in the
+Appendix. The limit theory of Lemma 2.1 may therefore be rewritten in the follow-
+ing simpler form that does not explicitly depend on c although the uniparameter
+γn implicitly carries the effects of the value of c and its asymptotic behavior when
+c itself depends on n.
+LEMMA 2.2. Under the conditions of Lemma 2.1 and defining the rate-
+parameter sequence γn = γn(c,α) = α −log|c|
+logn ∈(0,1) as in (3.11), we have: (i)
+n
+1+γn
+2
+
+ˆθn −θn
+
+⇝N (0,2) =: ξ,
+(2.10)
+(ii)
+1
+n1+γn
+n
+t=1 X2
+t−1 →p σ 2
+2 , and (iii)
+1
+n(1+γn)/2
+n
+t=1 xt−1ut ⇝N
+
+0, σ 4
+2
+
+, as n →∞.
+3See, for example, Shorack and Wellner (2009, Theorem 4, p. 47) or Billingsley (2008, Theorem 25.6, p. 287).
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+227
+2.3. Parameter Estimation
+We now consider methods of estimating the localizing parameters (c,α) and
+associated uniparameter sequence γn under various conditions concerning the true
+value of autoregressive parameter sequence θn and its proximity to unity.
+2.3.1. Estimation of the Rate Coefficient α.
+In view of the representation (2.5),
+define ˆAn = ˆθn −1 and construct the nonlinear rate estimator ˆα = −
+log
+			ˆAn
+			
+logn , for
+which the following limit theory holds.
+THEOREM 2.1. (i) For models (2.1) and (2.2) with fixed c < 0 and fixed α ∈
+(0,1) as n →∞, we have ˆα →p α and
+n
+1−α
+2 logn
+
+ˆα −α + log|c|
+logn
+
+⇝ξc
+−c =d N
+
+0, 2
+|c|
+
+,
+(2.11)
+where ξc is given in (2.4).
+(ii) For model (2.1) with fixed α ∈(0,1), θn = 1+ cn
+nα and cn = −
+1
+n1−α−δ , and 0 <
+δ ≤1−α as n →∞, we have ˆα →p 1−δ and
+nδ/2 logn
+
+ˆα −(1−δ)
+
+⇝ξ =d N (0,2).
+(2.12)
+(iii) For model (2.1) with α = 1, θn = 1 + c
+n, and fixed c ∈(−∞,∞) as n →∞,
+we have ˆα →p 1 and
+(logn)
+
+ˆα −1
+
+⇝−log|c+ξJc|,
+(2.13)
+where ξJc =
+ 1
+0 JcdW/
+ 1
+0 J2
+c, Jc(r) =
+ 1
+0 ec(r−s)dW(s) is a standard linear diffusion,
+and W is standard Brownian motion.
+Result (2.11) shows that the estimator ˆα is consistent with convergence rate
+O(n
+1−α
+2 logn) but with a first-order asymptotic bias −log|c|
+logn and, upon centering
+and scaling, ˆα has the limiting normal distribution N
+
+0, 2
+|c|
+
+. When c = −1,
+the asymptotic bias term disappears and the limit distribution is simply N (0,2).
+In general, the asymptotic variance depends on the localizing coefficient c and
+diverges as
+2
+|c| →∞when c →0, indicative that the convergence rate changes
+when c is dependent on the sample size n. In particular, in case (ii), where cn =
+−
+1
+n1−α−δ →0 or even closer to zero4 as n →∞, the convergence rate drops to
+nδ/2 logn and further approaches logn when δ →0. The asymptotics in (i) and
+(ii) hold when α ∈(0,1) and c < 0 but fail in the UR case where c = 0 and
+θn = 1 or where c = cn →0 as fast or faster than as cn = −
+1
+n1−α . In that case, the
+autoregressive coefficient is either θn = 1−1
+n or closer to unity with θn = 1+o( 1
+n).
+4For instance, if cn = −Ln
+n1−α for some slowly varying (SV) function for which Ln →∞as n →∞, then a version
+of (ii) continues to hold but with convergence rate L1/2
+n
+logn. See Remark 2.1.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+228
+PETER C.B. PHILLIPS
+In such near-integrated or closer-to-UR cases, (2.8) fails. Result (2.13) in (iii) then
+shows that the estimator ˆα is consistent for the unit exponent with convergence
+rate O(logn), as anticipated from (2.11) when α →1, but with a limit distribution
+determined by the quantity log|c + ξJc| which involves bias and dependence on
+the nonstandard LUR limit distribution ξJc =
+ 1
+0 JcdW/
+ 1
+0 J2
+c. The finite-sample
+behavior of the estimator ˆα in these various cases is explored in relation to these
+asymptotics later in the paper.
+As evident from (2.11), the convergence rate of ˆα differs from that of ˆθn
+by a rate reduction factor of nα/logn. The rate reduction arises because of the
+sample size dependence of the function ˆα = ˆαn( ˆθn) = −log|ˆAn|/logn that links
+the two estimators. Importantly, this dependence on n means that the usual delta
+method asymptotics do not hold because there is a sequence of functions relating
+the estimators rather than a single fixed function. The failure of the usual delta
+argument in such circumstances is an instance of a more general problem that
+was studied in Phillips (2012) where an extended delta theorem for sequences of
+functions was established to deal with situations of this type. In the present case,
+the problem can be analyzed directly because the transformation that defines ˆα is
+explicitly provided by the formula ˆα = −log|ˆAn|/logn linking the estimators. It
+is the dependence of the sequence of functions on the sample size n that leads to
+the noted reduction in the convergence rate.
+From Lemma 2.1, we have
+1
+n1+α
+n
+t=1 X2
+t−1 →p
+σ 2
+−2c, so that log
+ 1
+n
+n
+t=1 X2
+t−1
+
+−
+α logn →p log
+
+σ 2
+−c
+
+. Simple transformation then leads to another consistent
+estimator of α, viz.,
+˜α = log
+ 1
+n
+n
+t=1 X2
+t−1
+
+logn
+→p α,
+for which (logn)(˜α −α) →p log
+
+σ 2
+−c
+
+. So ˜α has a logarithmic convergence rate
+when α ∈(0,1) in contrast to the regularly varying rate of ˆα. When α = 1,
+1
+n2
+n
+t=1 X2
+t−1 ⇝
+ 1
+0 J2
+c and then
+˜α = log
+ 1
+n
+n
+t=1 X2
+t−1
+
+logn
+→p 1,
+so that ˜α is again consistent with a logarithmic convergence rate in the LUR case
+but with limit theory (logn)(˜α −1) ⇝log
+ 1
+0 J2
+c
+
+, indicative of a random first-
+order bias effect. In cases (i) and (ii) of Theorem 2.1, both estimators ˆα and ˜α have
+limit theory that depends on the unknown localizing coefficient c and both suffer
+first-order asymptotic bias effects. Inference about the rate parameter α using these
+results for either ˆα or ˜α therefore depends on estimation or knowledge of c. As
+discussed below, this problem is averted by exploiting the pseudo-true value c∗=
+−1 of c in the MI case and using a uniparameter representation of θn.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+229
+Remark 2.1. If the specification cn =
+g
+n1−α−δ , with additional localizing constant
+coefficient g < 0, is used in Theorem 2.1(ii), we again have ˆα →p 1−δ, but in place
+of (2.12), we have the limit theory
+nδ/2 logn
+
+ˆα −(1−δ)+ log|g|
+logn
+
+⇝ξg
+−g =d N
+
+0, 2
+|g|
+
+,
+(2.14)
+analogous to (2.11). Furthermore, if cn = −Ln
+n1−α for some SV function Ln at
+infinity, then ˆα →p 1 and
+L1/2
+n
+logn
+
+ˆα −1+ logLn
+logn
+
+⇝ξ =d N (0,2),
+(2.15)
+which is shown in (A-10) in the proof of Theorem 2.1(ii)—SV Extension, which
+is given in the Appendix. The Gaussian limit theory is then maintained up to and
+including a scale SV factor Ln →∞times the logn rate. So this rate is faster
+than the logarithmic rate logn that applies in Theorem 2.1(iii) when α = 1 and
+θn = 1+ c
+n is local to unity. Result (2.15) provides a localizing rate estimator limit
+theory for the MI case with autoregressive coefficient θn = 1+ c
+kn considered in PM
+(2007a) where in the present case kn = −c n
+Ln = o(n) so that θn = 1−Ln
+n . Observe
+that even though the bias term −logLn
+logn →0 as n →∞in this near UR case, the bias
+is nonnegligible asymptotically in the limit distribution given the convergence rate
+L1/2
+n
+logn in (2.15).
+2.3.2. Estimation of the Localizing Coefficient c.
+The asymptotic behavior of
+the regression signal n
+t=1 X2
+t−1 ∼a σ 2n1+α
+−2c
+suggests the following estimator of the
+localizing coefficient c:
+ˆc = −
+n1+ˆα ˆσ 2
+2n
+t=1 X2
+t−1
+= −
+nˆα−α ˆσ 2
+2
+n1+α
+n
+t=1 X2
+t−1
+,
+(2.16)
+where ˆσ 2 = 1
+n
+n
+t=1 ˆu2
+t →p σ 2 with ˆut = Xt −ˆθnXt−1 and ˆα = −
+log
+			ˆAn
+			
+logn is as before.
+The estimator ˆc is consistent for the pseudo-true localizing coefficient c∗= −1 in
+the MI case.
+THEOREM 2.2. Under the conditions of Theorem 2.1 and as n →∞ˆc →p −1.
+Theorems 2.1 and 2.2 show that, whereas the twin localizing parameters (c,α) in
+an MI system are not themselves identified in finite samples, consistent estimation
+is possible for the rate parameter ˆα and the pseudo-true value c∗= −1. However,
+there is nonnegligible bias in the limit distribution of the rate estimator α and c
+itself is not consistently estimable. Instead, the pseudo-true value c∗= −1 is the
+limiting value of ˆc and leads directly to the uniparameter sequence γn for which
+the identified representation of the MI autoregressive sequence θn = 1−
+1
+nγn holds.
+These asymptotic findings reveal that attempts to estimate consistently the twin
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+230
+PETER C.B. PHILLIPS
+localizing parameters (c,α) in an MI system lead, in effect, to consistent estimation
+of the uniparameter sequence γn in the identified representation θn = 1 −
+1
+nγn ,
+pointing to the advantage of using this representation of mild integration in an
+autoregression.
+2.3.3. Uniparameter Estimation.
+An alternative approach to rate estimation
+is to take advantage of the uniparameter representation of the MI model based on
+the rate-parameter sequence γn in (2.6). With this reformulation of the model, we
+can define the rate estimator
+ˆγn = −
+log
+			ˆAn
+			
+logn
+= −log| ˆθn −1|
+logn
+,
+(2.17)
+which has precisely the same form as the estimator ˆα. However, by virtue of the
+definition of the sequence γn in (2.6), ˆγn takes advantage of the presence of the
+first-order asymptotic bias log|c|
+logn in the estimator ˆα. In doing so, ˆγn is a natural
+estimator for the localizing rate sequence γn because the uniparameter formulation
+of the autoregressive coefficient θn = 1 −
+1
+nγn gives An = θn −1 = −1
+nγn and so
+log|An|
+logn
+= −γn, which leads to the estimator ˆγn in (2.17). The limit theory for ˆγn
+follows directly from Theorem 2.1 and is formalized in the following result.
+COROLLARY 2.1. Under the conditions of Theorem 2.1(i) with c < 0, α ∈
+(0,1), and γn = α −log|c|
+logn , or Theorem 2.1(ii) with θn = 1 + cn
+nα = 1 −
+1
+nγn , cn =
+−
+1
+n1−α−δ , γn = 1−δ, and 0 < δ ≤1−α as n →∞, we have
+n
+1−γn
+2
+logn
+
+ˆγn −γn
+
+⇝ξ =d N (0,2).
+(2.18)
+In the SV case discussed in Remark 2.1 where θn = 1+ cn
+nα = 1−Ln
+n with cn = −Ln
+n1−α
+and Ln →∞is SV at infinity, we have, as n →∞,
+L1/2
+n
+logn
+
+ˆγn −γn
+
+⇝ξ,
+(2.19)
+where γn = 1−logLn
+logn . Finally, when θn = 1+ c
+n, we have, as n →∞,
+(logn)
+
+ˆγn −1
+
+⇝−log|c+ξJc|.
+(2.20)
+In (2.18), the Gaussian limit theory of ˆγn has no first-order asymptotic bias and
+has the regularly varying convergence rate n
+1−γn
+2
+logn. The asymptotic variance
+in (2.18) is constant and independent on the sequence γn. So ˆγn is a variance
+stabilizing transformation of ˆθn, at least up to the rate of convergence.
+In (2.19), the limit theory of ˆγn also has no first-order bias, is again Gaussian,
+and involves the convergence rate L1/2
+n
+logn. Observe that, when γn = 1−logLn
+logn , it
+follows that n(1−γn)/2 = n
+1
+2
+logLn
+logn = L1/2
+n , corresponding to the additional SV factor
+beyond the logn rate in (2.19). This linkage means that (2.19) is subsumed within
+(2.18), which assists inference as explained below. Importantly, result (2.19) also
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+231
+continues to hold for SV functions Ln, such as Ln = logn, for which logLn
+logn →0 and
+γn = 1 −logLn
+logn →1 as n →∞, thereby reaching the lower boundary of the LUR
+case. In such cases, (2.19) implies the Gaussian asymptotic approximation
+ˆγn ∼a N
+
+1−logLn
+logn ,
+2
+Ln log2 n
+
+∼a N
+
+1,
+2
+Ln log2 n
+
+.
+(2.21)
+The last member of (2.21) is a (crude) asymptotic approximation that ignores
+the relative magnitude of the mean component logLn
+logn in relation to the asymptotic
+standard deviation
+√(2)
+L1/2
+n
+logn. The comparative merits of the crude Gaussian approx-
+imation (2.21) and the LUR approximation (2.20) in the case γn = 1 are explored
+later in simulations.
+Transformations of the usual stationary autoregression limit theory with fixed
+θ < 1 provide simple heuristics for the limit theory given in (2.18). In particular,
+using the representation θn = 1 −
+1
+nγn and applying standard fixed θ asymptotics
+suggests
+√n
+
+ˆθn −θn
+
+⇒N
+
+0,1−θ2
+n
+
+= N
+
+0, 2
+nγn −
+1
+n2γn
+
+.
+Rescaling gives the asymptotic approximation n(1+γn)/2 
+ˆθn −θn
+
+∼a N (0,2),
+for θn = 1 −
+1
+nγn , in the neighborhood of unity. Transforming θn −→γn =
+−log(1−θn)
+logn
+and using the delta method with derivative dθn
+dγn = logn
+nγn then delivers
+n(1−γn)/2 logn
+
+ˆγn −γn
+
+∼a N (0,2), matching (2.18). This argument becomes
+rigorous in Corollary 2.1 because the MI limit theory in Lemma 2.2 validates the
+asymptotic theory (2.10) for θn = 1−
+1
+nγn , which leads in turn to (2.18).
+In the LUR case where θn = 1 + c
+n, based on the assumption that γn = 1, the
+nonlinear rate estimator ˆγn →p 1 and is consistent for the true value γn = 1,
+unlike the usual estimator of c in the LUR case, viz., n( ˆθn −1). In this LUR
+case, the convergence rate of ˆγn is logarithmic and the limit distribution is
+nonstandard, although as shown in the simulations in Figure 5(b), the distribution
+of the nonlinear functional (2.20) is much closer in general appearance to a
+Gaussian distribution than the usual UR and LUR limit distributions. This feature
+is explained by the form of the limit distribution (2.20). In particular, using the
+linear diffusion equation dJc = cJcdr + dW, we have the integral representation
+ 1
+0 JcdJc = c
+ 1
+0 J2
+cdr +
+ 1
+0 JcdW, from which it is easy to see that (2.20) can be
+written in the alternate form
+(logn)
+
+ˆγn −1
+
+⇝−log
+				
+ 1
+0 JcdJc
+ 1
+0 J2c
+				 = −log|ηJc|,
+(2.22)
+where ηJc =
+ 1
+0 JcdJc/
+ 1
+0 J2
+c is the continuous record estimator of the parameter
+c in the linear diffusion defining Jc (see Phillips, 1987a, eqn. (32)). The limiting
+representation (2.22) may be interpreted as a transform of a continuous-time serial
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+232
+PETER C.B. PHILLIPS
+correlation coefficient, having the form of a logarithmic “variance stabilizing”
+transform.
+In the UR case with c = 0 and θn = 1 in (2.20), the limit theory of ˆγn is pivotal
+and given by (logn)
+
+ˆγn −1
+
+⇝−log|ηW|, with ηW =
+ 1
+0 WdW/
+ 1
+0 W2 and W
+standard Brownian motion. This distribution can be used for testing under the null
+of a unit autoregressive root, with local power function determined by (2.22) with
+c̸ = 0. However, this approach is equivalent to standard UR testing because there
+is a one-to-one relationship between the estimates ˆθn and ˆγn and their asymptotic
+distributions under the null and the alternative. So, even though the respective
+asymptotics have different convergence rates and the limit distributions have very
+different forms, with that of ˆγn being much more bell-shaped than the usual UR
+distribution, they lead to precisely the same inferences. The approach that follows
+augments this existing testing regime in the pure UR case by using the limit theory
+for ˆγn in MI and ME cases to construct CIs for γn < 1 that allow for near URs on
+both the left and right sides of unity that approach the LUR boundary, as discussed
+above.
+The limit distributions (2.18) and (2.19) are both N(0,2) and do not depend
+on the localizing coefficient c. However, in fact, ξ = ξ−1, corresponding to the
+pseudo-true value c∗= −1 of c and matching the specification of the localizing
+scale coefficient −1 in θn = 1 −
+1
+nγn . The limit distribution N(0,2) is conducive
+to inference. In particular, CI construction for γn follows directly by use of the
+consistent estimate ˆγn for calculation of the asymptotic standard error. Thus, when
+ˆθn < 1, an asymptotic 100(1−λ)% CI for γn can be constructed as
+ˆγn ±cvλ ×
+√
+2
+n
+1−ˆγn
+2
+logn
+,
+(2.23)
+where cvλ = 
+−1(1−λ/2), using the standard normal cdf 
+. This CI remains valid
+even when γn = 1−logLn
+logn →1, as n →∞, because Ln →∞and so
+n
+1−ˆγn
+2
+logn = n
+1−γn
+2
+logn×Op
+
+n
+−
+1
+2L1/2
+n
+logn
+
+(2.24)
+= n
+1−γn
+2
+logn
+
+1+Op
+ 1
+L1/2
+n
+
+∼a n
+1−γn
+2
+logn.
+(2.25)
+The coverage probability and length of the interval (2.23) are explored later in the
+simulations. When γn is close to unity, the intervals can be wide, as is to be expected
+from the convergence rate of ˆγn and the fact that the asymptotic standard error
+√
+2/(n
+1−γn
+2
+logn) tends to zero at a near logarithmic rate in such cases. Nonetheless,
+useful inferences about γn are possible in practice with sample sizes around n =
+100 when ˆθn < 1 and considerably smaller sample sizes when ˆθn > 1, as will be
+evident in the empirical illustration in Section 5.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+233
+2.3.4. Variance Stabilizing and Normalizing Properties of ˆγn.
+The rate esti-
+mator ˆγn = −
+log
+
+1−ˆθn
+
+logn
+bears an interesting relationship to the well-known Fisher
+z transformation of the sample product-moment correlation coefficient r. Fisher
+(1921) discovered that, unlike r, the transformation z(r) = 1
+2 log
+ 1+r
+1−r
+
+= tanh−1 (r)
+of r is approximately normal with variance that is stable over different values of
+the population correlation ρ.5 The following result shows that the rate estimator ˆγn
+has asymptotically the same form as Fisher’s z transformation, expressed in terms
+of the serial correlation coefficient ˆθn rather than the product-moment correlation.
+COROLLARY 2.2. Under the conditions of Corollary 2.1, as n →∞, we have
+n
+1−γn
+2
+logn
+
+ˆγn −γn
+
+= n
+1−γn
+2
+
+log 1+ ˆθn
+1−ˆθn
+−log 1+θn
+1−θn
+
++O
+ 1
+nγn
+
+⇝N(0,2).
+(2.26)
+Note that the scale factor 1
+2 in the usual Fisher formula 1
+2 log 1+ ˆθn
+1−ˆθn does not appear
+here in the serial correlation case (2.26) because the asymptotic variance is 2 not 1.
+Moreover, the action of variance stabilization is more subtle in the present case. In
+particular, in the case of fixed θ ∈(0,1), if we consider the transformation h( ˆθ) =
+log 1+ ˆθ
+1−ˆθ , then h′(θ) =
+2
+1−θ2 and
+√n(h( ˆθ)−h(θ)) ∼a h′(θ)√n( ˆθ −θ) ⇝N
+
+0,h′(θ)2(1−θ2)
+
+= N
+
+0,
+4
+1−θ2
+
+,
+which is clearly not variance stabilizing. However, in the neighborhood of unity
+with θn = 1−
+1
+nγn , we have h′(θn) =
+2
+1−θ2n = nγn 
+1+O
+ 1
+nγn
+
+. Then
+√n(h( ˆθn)−h(θn)) ∼a h′(θn)√n( ˆθn −θn) ∼a N
+
+0,
+4
+1−θ2n
+
+∼a N (0,2nγn),
+and, upon rescaling by the factor n−γn/2, we obtain
+n
+1−γn
+2 (h( ˆθn)−h(θn)) ∼a n
+1−γn
+2
+logn
+
+ˆγn −γn
+
+⇝N(0,2).
+(2.27)
+So the Fisher transformation of the serial correlation coefficient ˆθn is variance
+stabilizing in the near UR case, at least up to the convergence rate, as is the rate
+estimator ˆγn from (2.18).
+5If r is the sample product-moment correlation of data (Xi,Yi)n
+i=1 drawn independently from the same bivariate normal
+distribution with correlation ρ, then z = 1
+2 log
+
+1+r
+1−r
+
+is approximately N
+
+1
+2 log
+
+1+ρ
+1−ρ
+
+, 1
+n
+
+, thereby stabilizing the
+variance (see Fisher, 1921; Hotelling, 1953). The normalizing properties of the transform have been demonstrated
+through its skewness reduction and attenuating effects on the first-order correction term in its Edgeworth expansion
+(see Winterbottom, 1979; Konishi, 1981). Thus, the Fisher transformation is normalizing and stabilizing for the
+product-moment correlation. Both these properties enhance inference.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+234
+PETER C.B. PHILLIPS
+Interestingly, for the case of fixed θ, it is known (Jenkins, 1954) that the
+appropriate variance stabilizing transform of the serial correlation coefficient
+ˆθ is the angular transform h(θ) = sin−1(θ) not the Fisher transform. Indeed,
+with derivative h′(θ) = (1 −θ2)−1/2, direct application of the delta method
+gives √n(sin−1( ˆθ) −sin−1(θ)) ⇝N(0,1). However, in the vicinity of unity,
+the development of the limit theory changes. When θn = 1 −
+1
+nγn , we have by
+direct expansion that sin−1(1 −
+1
+nγn ) = π
+2 −
+√
+2
+1
+nγn/2 + O(
+1
+n3γn/2 ) as n →∞. Then
+√n(sin−1( ˆθn)−sin−1(θn)) ∼a −
+√
+2n
+
+1
+n ˆγn/2 −
+1
+nγn/2
+
+and further expansion reveals
+that
+√n(sin−1( ˆθn)−sin−1(θn)) ∼a
+n(1−γn)/2 logn
+√
+2
+
+ˆγn −γn
+
+⇝N(0,1),
+(2.28)
+as n →∞, in view of the limit theory (2.18) in Corollary 2.1. It follows that the
+angular transform maintains its variance stabilizing property in the MI vicinity
+of unity and is asymptotically equivalent to the rate estimator ˆγn, at least up to
+the respective convergence rates. Thus, in contrast to the fixed θ case, when θn =
+1 −
+1
+nγn is near unity, both the Fisher transformation and the angular transform
+coincide asymptotically and lead to variance stabilization according to (2.27) and
+(2.28); and both transformations have the same asymptotic theory as that of the
+rate coefficient ˆγn.
+Unlike the product-moment correlation, there is very little literature dealing
+with normalizing transformations for the serial correlation coefficient. In the
+fixed θ ∈(−1,1) case, Phillips (1977) gave the Edgeworth expansion for the
+distribution of the serial correlation coefficient to order O(n−1) and a subsequent
+working paper (Phillips, 1979) showed that the Fisher transformation removed the
+O( 1
+√n) skewness term in the Edgeworth expansion of ˆθ. Taniguchi (2012) and
+Marsh (2001) also considered the higher-order correction property of the Fisher
+transform. Phillips et al. (2010) developed expansions in the MI and ME cases,
+which smooth the transitions to the near-stationary and near-explosive models from
+the LUR case. Translating their expansion (Phillips et al., 2010, Thm. 1) in the
+near-stationary case to the present notation with θ = 1−
+1
+nγn , we have
+P
+n(1+γn)/2
+√
+2
+
+ˆθn −θn
+
+< x
+
+= 
+(x)+ 1
+√
+2
+1+x2
+n(1−γn)/2 ϕ (x)+O
+
+1
+n1−γn
+
+,
+(2.29)
+where 
+(x) and ϕ (x) are the cdf and density of the standard normal distribution.
+Expression (2.29) gives an asymptotic series expansion in powers of
+1
+n(1−γn)/2 rather
+than
+1
+√n. In contrast to the Edgeworth expansion for fixed θ ∈(0,1), where the
+correction term on the first-order Gaussian asymptotics diverges as θ →1,6 the
+6The Edgeworth expansion in the fixed stationary θ case to O( 1
+√n ) has the form
+P
+⎛
+⎝
+√n
+
+ˆθ −θ
+
+√
+1−θ2
+< x
+⎞
+⎠= 
+(x)+
+θ
+√
+1−θ2
+1+x2
+√n ϕ (x)+O
+ 1
+n
+
+,
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+235
+first-order correction in (2.29) remains finite as γn →1, leading to a Gram–Charlier
+series representation of the limit distribution in the LUR model rather than an
+asymptotic series. Similar properties can be expected for the distribution of the
+rate estimator ˆγn for which we have the limit theory
+n(1−γn)/2
+√
+2
+logn
+
+ˆγn −γn
+
+∼a
+n(1+γn)/2
+√
+2
+
+ˆθn −θn
+
+,
+corresponding to the fact that ˆγn →p 1 when γn = 1 and the limit distribution of
+logn
+
+ˆγn −1
+
+is no longer Gaussian but is given in (2.20). In fact, (2.29) captures
+this departure from Gaussianity in the O(1) correction term when γn →1. A
+detailed analysis of these expansions and representations is left for future work.
+2.4. Weakly Dependent Errors
+The above theory extends to the MI models (2.1) and (2.2) with weakly dependent
+errors under the following condition.
+Assumption LP. ut = C(L)εt = ∞
+j=0 cjεt−j, where C(1)̸ = 0, ω2 = σ 2C(1)2,
+∞
+j=1 j
+		cj
+		 < ∞, and εt ∼iid
+
+0,σ 2
+.
+Specifically, we have the following extension of Corollary 2.1.
+THEOREM 2.3. (i) For models (2.1) and (2.2) with fixed c < 0, fixed α ∈
+(1/3,1), and ut satisfying Assumption LP, as n →∞, we have ˆγn −γn →p 0 and
+n
+1−γn
+2
+logn
+
+ˆγn −γn + logϕ
+logn
+
+⇝ξ,
+(2.30)
+where ξ =d N (0,2) and ϕ = σ 2
+ω2 .
+(ii) Under these conditions, a modified version of case (ii) of Corollary 2.1 where
+θn = 1+ cn
+nα = 1−
+1
+nγn with cn = −
+1
+n1−α−δ , γn = 1−δ, and 0 < δ ≤1−α holds in
+which
+nδ/2 logn
+
+ˆγn −γn + logϕ
+logn
+
+⇝ξ.
+(2.31)
+(iii) In the SV case where θn = 1 + cn
+nα = 1 −Ln
+n with cn = −Ln
+n1−α and Ln →∞is
+SV at infinity, again under the above conditions, we have, as n →∞,
+L1/2
+n
+logn
+
+ˆγn −γn + logϕ
+logn
+
+⇝ξ,
+(2.32)
+where γn = 1−logLn
+logn .
+whose correction term
+θ
+√
+1−θ2
+1+x2
+√n ϕ (x) on the standard Gaussian cdf 
+(x) diverges as θ →1. This divergence
+signals the abrupt discontinuity in the asymptotic theory between the stationary and nonstationary cases of θ. As is
+evident in (2.29), the passage in the asymptotic theory via the parameter γn is far less abrupt as γn →1.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+236
+PETER C.B. PHILLIPS
+(iv) In the LUR case where θn = 1+ c
+n,
+(logn)
+
+ˆγn −1
+
+⇝−log|c+ξJc|.
+(2.33)
+The effect of weak dependence in the innovations in the MI model is to induce
+asymptotic bias in the estimator ˆγn. The bias logϕ
+logn in (2.30)–(2.32) depends on
+the extent of the deviation ϕ from unity and hence the extent of the deviation of
+the long-run variance ω2 from the variance σ 2. There is no bias when the ut are
+martingale differences and ω2 = σ 2, in which case logϕ = 0. The condition α ∈
+(1/3,1) in Theorem 2.3 ensures that the bias in (2.30) takes the simple form shown
+involving the parameter ϕ and is a consequence of PM (2007b, Thm. 4.2 and eqn.
+(24)). The condition can be relaxed but has the advantage in the present context
+that it leads to a simple bias correction formula.
+In fact, correction for the bias in ˆγn in the presence of weak dependence can be
+achieved by a simple nonparametric serial correlation adjustment, analogous to the
+corrections employed in UR tests such as the {Zα,Zt} tests (Phillips, 1987a). Define
+ˆϕ = ˆσ 2
+u / ˆω2 where ˆσ 2
+u = 1
+n
+n
+t=1 ˆu2
+t is the residual variance and ˆω2 is a consistent
+heteroskedastic and autocorrelation consistent (HAC) estimator of ω2. The bias
+corrected estimator is ˜γn = ˆγn + log ˆϕ
+logn , so that the estimation error is ˜γn −γ = ˆγn −
+γ + log ˆϕ
+logn , for which we have
+n
+1−γn
+2
+logn{ ˜γn −γn} ⇝ξ =d N (0,2),
+(2.34)
+in place of (2.30). The result holds for any consistent HAC estimator of ω2 based on
+standard triangular or quadratic lag kernels, as shown in the proof of Theorem 2.3.
+CIs for γn that are robust to weak dependence may be constructed using the bias
+corrected estimator ˜γn in place of ˆγn in the earlier formula (2.23). In particular,
+when ˆθn < 1, an asymptotic 100(1−λ)% CI for γn is
+˜γn ±cvλ ×
+√
+2
+n
+1−˜γn
+2
+logn
+,
+(2.35)
+where the critical value cvλ = 
+−1(1−λ/2) is determined as in (2.23).
+3. MILDLY EXPLOSIVE MODEL
+We use the generating mechanism (2.1) with autoregressive coefficient in the ME
+region θn = 1 + c
+nα, c > 0, where α ∈(0,1). The limit theory for ˆθn was given in
+PM (2007a) and shown to hold in PM (2007b) with weakly dependent equation
+errors under standard linear process conditions (Phillips and Solo, 1992).
+LEMMA 3.1. PM (2007a, Thm. 3.2) For model (2.1) with θn = 1+c/nα, c > 0,
+α ∈(0,1), and ut satisfying the linear process condition LP, as n →∞, we have:
+(i)
+nαθn
+n
+2c
+
+ˆθn −θn
+
+⇝C,
+as n →∞,
+(3.1)
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+237
+where C denotes a standard Cauchy variate; and (ii)
+1
+nα Xn ⇝X(c),
+n
+t=1 X2
+t−1
+θ2n
+n n2α
+⇝1
+2cX(c)2,
+(3.2)
+where X(c) = N
+
+0, ω2
+2c
+
+and ω2 is the long-run variance of ut or simply the
+variance when ut ∼iid (0,σ 2).
+Proceeding as in the MI case on a suitably expanded probability space where
+the convergence (3.1) holds in probability, we have
+ˆθn = θn + 1
+nα
+2c
+θnn
+C
+
+1+op (1)
+
+= 1+ c
+nα + 1
+nα
+2c
+θnn
+C
+
+1+op (1)
+
+.
+(3.3)
+As before, define ˆAn = ˆθn −1 and the rate estimator ˆα = −
+log
+			ˆAn
+			
+logn . The limit theory
+for ˆα in the ME case now follows directly from Lemma 3.1.
+THEOREM 3.1. (i) For models (2.1) and (2.2) with fixed c > 0, under the
+conditions of Lemma 3.1, we have ˆα →p α and
+
+1+ c
+nα
+n
+logn
+
+ˆα −α + log|c|
+logn
+
+⇝ζc =d 2cC.
+(3.4)
+(ii) For model (2.1) with fixed α ∈(0,1), θn = 1+ cn
+nα and cn =
+1
+n1−α−δ , and 0 < δ ≤
+1−α, as n →∞, we have ˆα →p 1−δ and
+
+1+
+1
+n1−δ
+n
+logn
+
+ˆα −(1−δ)
+
+⇝ζ =d 2C.
+(3.5)
+Noting that
+
+1+ c
+nα
+n = ecn1−α 
+1−O(n1−2α)
+
+∼a ecn1−α when α > 1
+2, we can
+write (3.4) in this case as
+ecn1−α logn
+
+ˆα −α + log|c|
+logn
+
+⇝2cC,
+(3.6)
+and (3.5) as
+enδ logn
+
+ˆα −(1−δ)
+
+⇝2C,
+(3.7)
+when δ ≤1−α < 1/2. Furthermore, an extension of (ii) analogous to the MI case
+holds when θn = 1+ Ln
+n differs from unity by an SV function at infinity Ln. In this
+case, we have cn =
+Ln
+n1−α = n
+logLn
+logn
+n1−α so that
+θn = 1+ cn
+nα = 1+
+1
+n1−logLn
+logn
+= 1+ Ln
+n ,
+(3.8)
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+238
+PETER C.B. PHILLIPS
+and the following limit theory holds when Ln →∞, as n →∞,
+
+1+
+1
+n1−logLn
+logn
+n
+logn
+
+ˆα −
+
+1−logLn
+logn
+
+⇝2C,
+(3.9)
+as shown in (A-30) in the proof of the SV extension of Theorem 3.1(ii).
+As in the MI case, the limit distributions (3.4) and (3.5) reveal nonnegligible bias
+in the rate estimator ˆα of α when c̸ = 1. Moreover, the pair (c,α) is not identifiable
+and the localizing scale parameter c is not consistently estimable, just as discussed
+earlier in the MI case. Instead, the pseudo-true value c∗= 1 is identifiable and
+consistently estimable.
+THEOREM 3.2. Under the conditions of Theorem 3.1 and as n →∞
+˜c = 1
+2
+nˆαX2
+n
+n
+t=1 X2
+t−1
+→p 1.
+(3.10)
+The pseudo-true value c∗= 1 is the limiting value of ˜c in the ME case. As before
+in the MI case, attempts to estimate consistently the twin localizing parameters
+(c,α) lead, in effect, to consistent estimation of the uniparameter sequence γn =
+α −logc
+logn. It is therefore convenient, as before in the MI case, to reparameterize the
+ME model so that the autoregressive coefficient is written as θn = 1 +
+1
+nγn . With
+this parameterization, the likelihood of {Xt}n
+t=1 relies on the identified uniparameter
+sequence
+θn = 1+ 1
+nγn , with γn = γn(c,α) = α −logc
+logn ∈(0,1),
+(3.11)
+as 1/nγn = n
+log|c|
+logn /nα = c/nα with
+1
+n1−α < c < nα. The inequalities defining the
+range of c used in the definition of γn ensure that γn ∈(0,1) so that θn is an ME
+coefficient. When 0 ≤c ≤
+1
+n1−α , the rate parameter γn ≥1, corresponding to a
+local-to-unity or closer-to-unity autoregressive coefficient θn = 1 +
+1
+nγn ≤1 + 1
+n.
+Estimation of γn proceeds as in the MI case by employing the same form as ˆα,
+viz.,
+ˆγn = −
+log
+			ˆAn
+			
+logn
+= −log| ˆθn −1|
+logn
+.
+(3.12)
+The limit theory for ˆγn follows the proof of Theorem 3.1(i) and (ii), including
+the SV extension of (ii) in which γn = 1 −logLn
+logn for θn = 1 + Ln
+n , as given in the
+following result.
+COROLLARY 3.1. (i) Under the conditions of Theorem 3.1(i) with cn > 0, α ∈
+(0,1), and γn = α −log|cn|
+logn , we have, as n →∞,
+
+1+ 1
+nγn
+n
+logn
+
+ˆγn −γn
+
+⇝ζ =d 2C.
+(3.13)
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+239
+(ii) In the regularly varying case where θn = 1+ cn
+nα = 1+ Ln
+n with cn =
+Ln
+n1−α and
+Ln →∞is SV at infinity, we have γn = 1−logLn
+logn and, in place of (3.13),
+
+1+ Ln
+n
+n
+logn
+
+ˆγn −γn
+
+⇝ζ =d 2C.
+(3.14)
+Potential-accelerated convergence properties may be expected of the transfor-
+mation from ˆθn to the rate estimator ˆγn in the ME case, analogous to those that
+occur in the MI case on the stationary side of unity. It is known from the asymptotic
+expansion in Satchell (1984) that the first-order correction term is exponentially
+small of order O(1/θn) in the explosive case. So we might expect the asymptotic
+approximation to be a good one and this is borne out by the simulations for the
+ME case for ˆγn given in Section 4.2. More detailed analytic properties of the
+transform in the explosive case are yet to be explored and will be considered in
+future research.
+The limit distribution 2C in (3.13) and (3.14) is conducive to inference, using the
+consistent estimate ˆγn and the quantiles of the Cauchy distribution C to construct
+CIs. When ˆθn > 1, an asymptotic 100(1−λ)% CI for γn in the ME case based on
+(3.13) is given by
+ˆγn ±cvC,λ ×
+2
+
+1+
+1
+n ˆγn
+n
+logn
+,
+(3.15)
+where cvC,λ = 
+−1
+C (1 −λ/2) is the 1 −λ/2 percentile of the standard Cauchy
+distribution with cdf 
+C. The two-sided 95% critical value of 12.706 when λ =
+0.025 reflects the heavy-tailed nature of the Cauchy distribution and contributes
+to widening the length of the CI, especially when the rate parameter γn is close to
+unity, in which case the scale factor
+2
+
+1+ 1
+n ˆγn
+n
+logn in (3.15) is close to logarithmic.
+Use of the CI in this ME case is of course conditional on observing ˆθn > 1, just as
+the CI in the MI case is conditional on observing ˆθn < 1.
+Importantly, however, there is no upper bound on the value of γn and values of
+γn = 1 indicate that cases of local to unity and cases even closer to unity (γn >
+1) than O(1/n) deviations from a UR are included in the CIs. This is useful for
+inference on both sides of a UR. In the empirical application considered in Section
+5, some such cases do occur, with the implication that the UR option is not excluded
+in these cases.
+4. SIMULATIONS
+This section reports numerical evidence based on 5,000 replications of the finite-
+sample distributions of the localizing rate estimates {ˆα, ˆγn} and the localizing
+coefficient estimates {ˆc,˜c}. The simulation design employed the model given in
+(2.1). The observations {Xt}n
+t=1 were generated for both MI (c < 0) and ME (c > 0)
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+240
+PETER C.B. PHILLIPS
+0
+0.5
+1
+1.5
+2
+2.5
+3
+Density
+(a) ˆα densities
+0.5
+1
+1.5
+–1.5
+–1
+–0.5
+0
+0.5
+1
+1.5
+2
+2.5
+3
+Density
+(b) ˆc densities
+Figure 1. Empirical densities of the estimates ˆα and ˆc for sample sizes n ∈{50,100,250,500} with
+true value α = 0.85, true c = −1, and pseudo-true value c∗= −1. Readers are referred to the online
+version for colored graphics here and in all subsequent figures.
+cases using standard normally distributed equation errors ut from an initialization
+X0 ∼N(0,1). The specific experiments and simulation results for these cases are
+given in the following two subsections.
+4.1. Mildly Integrated Case
+The experiments for Figures 1–5 used the following parameter settings:
+(i) α = 0.85, c = −1, n ∈{50,100,250,500,1500},
+(ii) α ∈{0.65,0.75,0.85,0.95}, c = −1, n = 100,
+(iii) α = 0.85, c ∈{−0.5, −1.0, −2.0, −5.0}, n = 100,
+(iv) γn = α −log|c|
+logn ∈{0.50,0.70,0.85,1.0}, n = 100.
+Figures 1–3 display kernel estimates of the empirical densities of the estimates
+(ˆα,ˆc) of the localizing coefficient pair (α,c). Figure 4 shows kernel estimates of
+the empirical densities of the parameter ˆγn for sample size n = 100 and for true
+values γn = α −log(|c|)
+nα
+∈{0.50,0.70,0.85,1.0} corresponding to the true values
+c ∈{−5.0, −2.0, −1.0, −0.5} and true value α = 0.85. For the same true value
+α = 0.85 but with γn = 1, Figure 5 displays kernel estimates of the densities of
+ˆγn for n ∈{100,250,500,1500} shown against the asymptotic normal (Figure 5(a))
+and asymptotic LUR (Figure 5(b)) distributions. The results are summarized as
+follows.
+(1) Figure 1(b) shows increasing concentration of the density of ˆc around the
+pseudo-true value c∗= −1 as n increases, consonant with the consistency ˆc →p c∗
+established in Theorem 2.2. The rate of concentration in the distributions of ˆc as n
+increases with α = 0.85 is noticeable but slow, indicative of the convergence rate
+Op(min{n−(1−α)/2,n−α/2}) shown in (A-14) in the proof of Theorem 2.2.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+241
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+Density
+(a) ˆα densities
+0
+0.5
+1
+1.5
+–2
+–1.5
+–1
+0
+0.5
+1
+1.5
+2
+2.5
+3
+Density
+(b) ˆc densities
+Figure 2. Empirical densities of the estimates ˆα and ˆc for sample size n = 100, for true values of
+α ∈{0.65,0.75,0.85,0.95}, true c = −1, and pseudo-true value c∗= −1.
+0
+0.5
+1
+1.5
+2
+2.5
+3
+Density
+(a) ˆα densities
+0
+0.5
+1
+1.5
+–2.5
+–2
+–1.5
+–1
+–0.5
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+Density
+(b) ˆc densities
+Figure 3. Empirical densities of the estimates ˆα and ˆc for sample size n = 100, for true value α = 0.85,
+true c ∈{−0.5, −1.0, −2.0, −5.0}, and pseudo-true value c∗= −1.
+(2) The densities in Figure 1(a) show a similar increasing concentration in the
+distribution of ˆα as n increases, in this case combined with bias reduction. Again,
+this accords well with the limit theory in Theorem 2.1 where the convergence rate is
+Op(n−(1−α)/2 logn) combined with first-order downward bias of −log|c|
+logn . The latter
+is the analog in the estimation of α of the usual downward bias in the least-squares
+autoregressive coefficient estimate ˆθn.
+(3) Figure 2(a) and (b) shows the effects of varying the rate coefficient α on the
+distributions of ˆα and ˆc when the sample size n = 100. As expected from Theorem
+2.1, the central location of the distribution of ˆα shifts to follow the value of α but
+with clear indication of downward bias in each case, consonant with the known
+downward bias in the autoregressive coefficient estimate ˆθ. On the other hand, the
+central location of ˆc is close to the pseudo-true value c∗= −1 for all values of α,
+corroborating the asymptotic theory that ˆc →p −1. The distribution of ˆc does show
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+242
+PETER C.B. PHILLIPS
+0
+1
+2
+3
+4
+Density
+(a) ˆγn densities for various c values
+0
+0.5
+1
+1.5
+2
+0
+0.5
+1
+1.5
+2
+1
+2
+3
+4
+5
+Density
+(b) ˆγn densities with asymptotic
+normal approximation
+Figure 4. Panel (a): Empirical densities of the estimates ˆγn for sample size n = 100 and for true values
+γn = α −log|c|
+logn ∈{0.50,0.70,0.85,1.0} corresponding to the values c ∈{−5.0, −2.0, −1.0, −0.5} and
+fixed α = 0.85. Panel (b): Empirical densities of the estimates ˆγn for sample size n = 100 as in Panel
+(a) shown against the asymptotic N
+
+γn,
+2
+n1−γn log2 n
+
+curves displayed with asterisks.
+0
+0.5
+1
+1.5
+2
+2.5
+Density
+(a) ˆγn densities for n = 100, 250, 500, 1500,
+with asymptotic normal approximation
+0
+0.5
+1
+1.5
+2
+0
+0.5
+1
+1.5
+2
+0
+0.5
+1
+1.5
+2
+2.5
+Density
+(b) ˆγn densities for n = 100, 250, 500, 1500, with
+asymptotic transformed LUR approximation
+Figure
+5.
+Empirical
+densities
+of
+the
+estimates
+ˆγn
+computed
+for
+the
+pairs
+(c,n) ∈
+{(−0.501,100),(−0.436,250),(−0.393,500),(−0.333,1500)}
+and
+α = 0.85,
+with
+each
+pair
+corresponding to the constant localizing rate coefficient γn = 1. The asymptotic normal approximations
+(shown in (a)) and the asymptotic transformed LUR approximations (shown in (b)) are given by the
+curves with asterisks (see the text for details).
+somewhat greater skewness to the right and greater dispersion when α = 0.95, no
+doubt reflecting the well-known skewness and dispersion of the estimate ˆθ in UR
+and local-to-unity cases.
+(4) Figure 3(a) and (b) shows the effects of the localizing coefficient value c on
+the distributions of ˆα and ˆc, with fixed α = 0.85 and sample size n = 100. The
+impact on the distribution of ˆα, seen in Figure 3(a), is to shift the central location
+in accord with the changing value of α = 1 + c
+nα for c ∈{−0.5, −1, −2, −5}.
+The densities show greater concentration for larger |c| and again reflect the wider
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+243
+dispersion and skewness associated with the near UR case that applies when |c| is
+small. For all these values of c, the densities of ˆc displayed in Figure 3(b) show
+remarkable concentration about the pseudo-true limit value c∗= −1.
+(5) Figure 4(a) shows empirical densities for n = 100 of the estimates ˆγn of
+the parameter γn in the uniparameter MI specification (3.11). In contrast to the
+distributions of the estimates ˆα of the rate coefficient α in the conventional MI
+model formulation, the densities of ˆγn are much better centered about the true
+values of γn, especially when γn takes on small values closer to γn = 0.5. This
+finite-sample finding reflects the asymptotic theory in Corollary 2.1 in which the
+limit distribution is shown to be Gaussian and centered about the true value of γn.
+(6) Figure 4(b) shows the same empirical densities of ˆγn as in Panel (a) for n =
+100 and c ∈−0.5, −1.0, −5.0 against the asymptotic normal N
+
+γn,
+2
+n1−γn log2 n
+
+displayed with asterisks. For these values of c and n, the corresponding values
+of γn are 1.0,0.70,0.50. Evidently, for γn = 0.5 and γn = 0.7, the asymptotic
+distribution is adequate in terms of location but less so in the UR case γn = 1.0 with
+c = −0.5. Here, the asymptotic distribution is biased upward relative to the finite-
+sample distribution when n = 100, partly reflecting the slower logarithmic rate of
+convergence to the limit distribution when γn = 1.0 and partly that in this case
+the autoregressive coefficient θn = 1 −1
+n is in the LUR class and the distribution
+N
+
+γn,
+2
+n1−γn log2 n
+
+is a crude Gaussian approximation to the LUR limit theory.
+The comparison of the two approximations is explored more systematically in
+Figure 5.
+(7) Figure 5(a) and (b) shows the empirical densities of ˆγn against two types of
+asymptotic approximation in the LUR case where the autoregressive coefficient is
+θn = 1 −1
+n and γn = 1. The simulations are performed for values of n increasing
+from n = 100 to n = 1,500 and for (c,α) pairs where in each case α = 0.85
+and c rises toward zero according to c = −1/n1−α = −0.50 when n = 100 up to
+c = −0.393 when n = 1,500. In each of these cases, the autoregressive coefficient
+is θ = 1 −1
+n, and the uniparameter localizing rate coefficient γn = 1 is in the
+LUR class. The asymptotic normal approximations based on N
+
+γn,
+2
+n1−γn log2 n
+
+=
+N
+
+1,
+2
+log2 n
+
+when γn = 1 are displayed by the curves with asterisks in Figure 5(a).
+Since γn = 1, the rate of convergence to the asymptotic normal distribution is logn
+and this logarithmic rate is evident in the slow convergence of the empirical density
+plots toward the asymptotic normal with slowly shrinking bias and variance,
+corroborating the limit theory.7 In Figure 5(a), the asymptotic normal approxi-
+mations (asterisked) show similar variation to the finite-sample distributions of ˆγn
+7Theorem 2.1(i) and (ii) fails when α ∈(0,1), but c = cn →0 as fast as or faster than cn = −
+1
+n1−α . In that case, the
+autoregressive coefficient is either θn = 1 −1
+n or closer to unity with θn = 1 + o( 1
+n ), and Theorem 2.1(iii) applies
+with logn convergence rate and limit distribution determined by the quantity log|c+ξJc|. Nonetheless, as discussed
+in the paragraph below, the asymptotic normal distribution N
+
+1,
+2
+log2 n
+
+provides an alternative approximation when
+γn = 1.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+244
+PETER C.B. PHILLIPS
+but do not capture location as well since, for all n, the asymptotic distributions
+are centered on γn = 1 by construction and the finite-sample distributions are
+centered below unity with the gap narrowing as n increases. In Figure 5(b),
+the asymptotic transformed LUR approximations (asterisked) are obtained by
+computing 1 −log
+		−1+ξJ−1
+		/logn based on Theorem 2.1(iii) and simulating
+the distribution of ξJ−1, using a sample size of 5,000 and 25,000 replications.
+Evidently, the transformed LUR approximations provide substantially improved
+location estimates and match dispersion well with the finite-sample distribution.
+Notably, both finite-sample and LUR approximate densities of the rate estimator
+ˆγn are bell-shaped, in contrast to estimates of the autoregressive coefficient ˆθn. The
+nonlinear transformation defining ˆγn = −log| ˆθn −1|/logn plays the role of a nor-
+malizing transformation, similar to Fisher’s z-transformation of the autocorrelation
+coefficient, as discussed earlier.
+It is worth drawing attention to the fact that the asymptotic distribution at the
+LUR limit where θn = 1 + cn
+nα ∼a 1 −1
+n is actually normal along the path toward
+the boundary where the pair (cn,n) →(0,∞) and the autoregressive coefficient
+θn ∼a 1−1
+n and uniparameter rate sequence γn →1, while remaining within the MI
+class with fixed α ∈(0,1). The distributions of the centered and scaled estimates
+of γn along this path belong to a stable normal class in which the asymptotic
+approximation is Gaussian even though the autoregressive parameter is local to
+unity in the limit.8 This normal class is very different from the LUR class where
+θn = 1 + c
+n for which the limit distributions as n →∞belong to a nonnormal
+general UR class involving linear diffusion and Brownian motion processes (Jc,B)
+which in turn converge to the standard UR distribution when c →0, as shown
+in Phillips (1987b). Similarly, the normal class with γn = 1 and with fixed rate
+coefficient α ∈(0,1), for which the pairs (cn,n) →(0,∞), differs considerably
+from the LUR class with θn = 1 + c
+n considered in Theorem 2.1(iii) where the
+rate coefficient α = 1 is consistently estimated by ˆαn within this class. However,
+a common feature of this latter class and the normal class is that they share
+the same logn convergence rate, reflecting the increased difficulty in estimating
+the localizing rate parameter as the UR is approached. As indicated earlier, the
+asymptotic density N
+
+γn,
+2
+n1−γn log2 n
+
+∼a N
+
+1,
+2
+log2 n
+
+of γn may be considered a
+crude Gaussian approximation to the non-Gaussian LUR limit theory in the case
+γn ∼a 1.
+(8) Figure 6 shows coverage probabilities and CI lengths for inference concern-
+ing γn based on the asymptotic formula (2.23). The graphics were computed using
+5,000 replications with n = 100, α = 0.85, and values of c < 0 at equispaced
+intervals in the interval [−10, −0.6], leading to a range of γn values in [0.35,0.96]
+with γn = 0.35 when c = −10 and γn = 0.96 when c = −0.6. The results show
+satisfactory coverage in the range of 90%–95% for values of c ∈[−10, −6] with
+8Another stable normal class in the UR case is the partially aggregated differences estimator (PAE) studied in Han,
+Phillips, and Sul (2011). However, in that case, the PAE is an estimator of the autoregressive coefficient θn rather
+than the localizing rate parameters ˆα or ˆγn.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+245
+–10
+–8
+–6
+–4
+–2
+0
+c
+0
+0.2
+0.4
+0.6
+0.8
+1
+Coverage Probability
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+Interval Length
+Coverage prob
+0.95 level
+CI length
+Figure 6. Coverage probabilities (solid blue curve, left axis), 95% CI (dotted black line), and CI
+lengths (dashed sienna curve, right axis) for γn ∈[0.35,0.96] based on (2.23), corresponding to various
+values of the localizing coefficient c ∈[−10, −0.6] with α = 0.85 and n = 100.
+coverage falling to around 75% when c = −0.6. Similarly, CI lengths for γ rise
+from below 0.1 when c = −10 to over 1.1 when c = −0.6 and γn = 0.96. The
+lower coverage probabilities and much wider CI lengths when γn is close to unity
+are to be expected, given the near logarithmic convergence rate as γn approaches
+unity.9 Inference about the value of γn is clearly imprecise when the true value
+is close to unity, matching the poor local power of UR tests and the difficulty of
+distinguishing an LUR from a UR.
+4.2. Mildly Explosive Case
+These simulations used experimental designs similar to those in the MI case but
+based on model (2.1) with c > 0. Figures 7 and 8 employed settings that give
+results for various values of the localizing scale coefficient c and the sample size
+n as follows:
+(i) α = 0.85, n = 100, c ∈{0.5,1.0,2.0,5.0},γn = α −log|c|
+logn ∈{0.50,0.70,0.85,1.0};
+(ii) α = 0.85, c = 1,n ∈{50,100,250,500}.
+The results reported concentrate on (i) estimation of the uniparameter rate
+sequence γn and the localizing scale coefficient c > 0; and (ii) inference
+about γn.
+Figure 7(a) shows that the distributions of ˆγn are generally well centered about
+the true values in the ME case when n = 100. Dispersion increases as γn approaches
+9When n = 100 and γn = 0.96, n(1−γn)/2 logn = 5.05, and n(1−γn)/2 logn = 20.57 when γn = 0.35.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+246
+PETER C.B. PHILLIPS
+2
+4
+6
+8
+Density
+(a) ˆγn densities for various c values
+0.2
+0.6
+1
+1.4
+0
+1
+2
+0
+1
+2
+3
+4
+5
+6
+7
+Density
+(b) ˜cn densities for various c values
+Figure 7. Panel (a): Empirical densities of the estimates ˆγn for sample size n = 100 and for true
+values γn = α −log|c|
+logn ∈{0.50,0.70,0.85,1.0} corresponding to the true values c ∈{5.0,2.0,1.0,0.5}
+and α = 0.85. Panel (b): Empirical densities of the estimates ˜c for sample size n = 100, α = 0.85, and
+c ∈{0.5,1.0,2.0,5.0}, as in Panel (a).
+1
+2
+3
+4
+5
+6
+Density
+(a) ˆγn densities for various sample sizes n
+0.5
+1
+1.5
+0
+0.5
+1
+1.5
+0
+1
+2
+3
+4
+Density
+(b) ˜cn densities for various sample sizes n
+Figure 8. Panel (a): Empirical densities of ˆγn for various sample sizes n ∈{50,100,250,500} with
+true value c = 1 and γn = α = 0.85. Panel (b): Empirical densities of ˜c for the same sample sizes and
+same values c = 1 and γ = α = 0.85.
+unity, as expected from the rate of convergence and as occurs in the MI case (Figure
+4(b)). When c = 0.5, we have γn = 0.85 −log0.5
+log100 = 1.0 so that the autoregressive
+coefficient is θ = 1+ 1
+n and therefore immediately local to unity. In this case, the
+density of ˆγn is still very close to symmetric and only slightly biased below unity,
+unlike the density of the ordinary least-squares estimate of θ in the LUR case or
+the ME case when c = −0.5 where the downward bias is more substantial (Figure
+4(b)).
+In Figure 7(b), the densities of ˜c are shown for c ∈{0.5,1.0,2.0,5.0}, again
+for n = 100. The densities differ considerably between c = 0.5 and the higher
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+247
+values of c. When c = 0.5 with n = 100, we have θ = 1+
+0.5
+1000.85 = 1.01 = 1+
+1
+100,
+corresponding to the value of the uniparameter rate γn = 1. In this case, the true
+value of the pair (c,α) is not identifiable and c is not consistently estimable. This
+property is reflected in the nearly uniform density of ˜c observed in Figure 7(b)
+when c = 0.5. On the other hand, the uniparameter γn is identifiable in this case
+and the density of the consistent estimator ˆγn is centered close to unity with a
+small downward bias (Figure 7(a)). For values of c > 1, the densities of ˜c are
+centered close to the pseudo-true value c∗= 1 with progressively less dispersion
+as c increases, both as predicted by the limit theory.
+Figure 8(a) and (b) shows the effects on the distributions of ˆγn and ˜c of raising
+the sample size when true values of the parameters are c = 1 = c∗and α = 0.85.
+For these fixed parameters, the sample sizes n ∈{50,100,250,500} lead to the same
+implied uniparameter value γn = α = 0.85. Evidently, the distributions of ˆγn are
+well centered about the true value and show shrinking dispersion as n increases.
+The distributions of ˜c are located around a dominant primary mode close to the true
+value c = 1 with concentration that increases with n. There is evidence of a small
+secondary mode close to the origin, which is more evident for the smaller sample
+sizes n = 50,100, and a small upward bias in the primary mode that diminishes as
+n increases.
+Figure 9(a) shows the distributions of ˆγn for sample sizes n ∈{50,100,250,500}
+with true values c = 2 and α = 0.85, which correspond to the implied values γn ∈
+{0.67,0.70,0.72,0.74}. Evidently, the distributions of ˆγn are well centered about
+the true values in the ME case for these values of n when the localizing scale
+coefficient c = 2. Figure 9(b) shows the distributions of ˜c when the true value
+c = 2 for the same values of n. For the smaller sample sizes n = 50,100, there is
+some upward bias from the pseudo-true value c∗= 1, but this bias disappears for
+the larger sample sizes n = 250,500, corroborating the limit theory that ˜c →p 1 in
+the ME case when c̸ = 1.
+Figure 10 shows coverage probabilities and CI lengths for inference concerning
+γn based on the asymptotic formula (3.15) using a nominal (two-sided) asymptotic
+level of 95% with the Cauchy distribution critical value 12.706.10 The graphics
+were computed using 5,000 replications with n = 100, α = 0.85, and values of
+c > 0 at equispaced intervals in the interval [0.5,5.0], leading to a range of γn values
+in [1.0,0.5] with γn = 1.0 when c = 0.5 and γn = 0.5 when c = 5.0 corresponding to
+autoregressive coefficient values θn ∈[1.01,1.1]. The results reveal sharp coverage
+probabilities at the 95% level for values c ∈[3,5] corresponding to θn ∈[1.06,1.1]
+with CI lengths at most 0.033 over this range.11 The sharp outcomes over this range
+arise from the exponential convergence rate to the limiting Cauchy distribution. For
+values of c ∈(0.5,3), coverage probability slowly declines to around the 82% level
+and the interval length increases monotonically toward unity at the point c = 0.5
+10The quantile function for percentile p of the standard Cauchy distribution is tan(π(p−0.5)), which gives the critical
+value 12.706 when p = 0.975.
+11From (3.15), the interval length at c = 3 with n = 100 and α = 0.85 is
+4×12.706
+(1+
+3
+1000.85 )100 log100 = 0.033.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+248
+PETER C.B. PHILLIPS
+2
+4
+6
+8
+10
+Density
+(a) ˆγn densities for various sample sizes n
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+1.1
+1.2
+0
+2
+4
+6
+8
+Density
+(b) ˜c densities for various sample sizes n
+Figure 9. Panel (a): Empirical densities of ˆγn for various sample sizes n ∈{50,100,250,500} with
+true values c = 2, α = 0.85, and corresponding values γn ∈{0.67,0.70,0.72,0.74}. Panel (b): Empirical
+densities of ˜c for the same sample sizes and same values c = 2, α = 0.85, and γn = 0.70.
+0
+1
+2
+3
+4
+5
+c
+0
+0.2
+0.4
+0.6
+0.8
+1
+Coverage Probability
+0
+1
+2
+3
+4
+interval Length
+Coverage prob
+0.95 level
+CI length
+Figure 10. Coverage probabilities (solid blue curve, left axis), 95% CI (dotted black line) and CI
+lengths (dashed sienna curve, right axis) for γn ∈[1.0,0.50] based on (3.15), corresponding to various
+values of the localizing coefficient c ∈[0.5,5.0] with α = 0.85 and n = 100.
+where γn = 1, θn = 1+ 1
+n = 1.01, and a logarithmic convergence rate holds in this
+boundary local to unity case.
+5. EMPIRICS
+This section provides an empirical illustration of the paper’s methodology to
+the housing market in Australia. The period since the global financial crisis has
+witnessed rampant house price appreciation in many cities of the developed world.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+249
+With the onset of the Covid-19 pandemic and the rapid expansion of credit by many
+monetary authorities in response, house price inflation has accelerated, persistently
+outpacing income growth and making housing affordability and consumer debt
+prominent issues for policy makers in many countries. Housing market exuberance
+has been especially marked in the Antipodes, with many Australian and New
+Zealand cities experiencing in excess of 20% house price appreciation in a single
+year from March 2020.12 The methods of this paper are used to make a quantitative
+assessment of this inflation and, in particular, to provide an empirical measure of
+its extent using estimates of the parametric rate of exuberance based on the ME
+model studied in the paper. Those cities where speculative behavior in the housing
+market is not identified are studied within the MI or local-to-unity framework.
+House price exuberance can be defined as explosive or ME deviations of
+house prices from underlying market fundamentals. To determine the existence
+of such deviations or specific episodes of deviation, it is necessary to obtain a
+measure of housing market fundamentals that can be used as a benchmark for the
+computation of deviations. One method is to select specific fundamentals such
+as rents or income and employ standardized quantities like price/rent (P/R) or
+price/income ratios in conducting the data analysis. Another approach is to employ
+a reduced form regression method that accounts for the impact of a broad set
+of fundamental factors that may affect demand and supply pressures in housing
+markets. This approach avoids the specificity of a single factor fundamental such
+as that involved in the use of a P/R or price/income ratio. The reduced form is
+fitted by IVX regression (Phillips and Magdalinos, 2009; Kostakis et al., 2015) to
+accommodate endogeneity in the regressors and key variables such as the P/R ratio
+are decomposed into fundamental and nonfundamental (NF) components. The NF
+components are the residuals in this regression and are therefore anticipated to
+have weak dependence or stationary characteristics if there are no other systematic
+forces at work driving house prices. These residuals may then be used to assess
+evidence for the presence of explosive or ME behavior in prices. This is the
+approach developed in Shi and Phillips (2021) and is employed in the construction
+of the NF component of the P/R ratio data used here.13
+Figure 11 provides plots of monthly observations of the NF P/R data for the
+eight state capital cities of Australia over the period from July 31, 2012 to June
+30, 2021. The plots for Sydney, Melbourne, Brisbane, Adelaide, Darwin, and
+Canberra have a hockey stick graph form, each showing evidence of elevating NF
+P/R ratios toward the end of the sample period from 2020. The earlier observations
+12In
+Australia,
+house
+price
+appreciation
+was
+16.4%
+over
+the
+12-month
+period
+to
+June
+2021,
+placing
+Australia
+the
+seventh
+highest
+among
+55
+countries
+according
+to
+global
+house
+price
+indexes
+https://content.knightfrank.com/research/84/documents/en/global-house-price-index-q2-2021-8422.pdf;
+the
+corresponding figure for New Zealand was 25.9% placing New Zealand the second highest among the same
+group of countries.
+13The data employed here are downloadable from the website https://www.housing-fever.com/. The fundamental
+factors considered include real mortgage interest rates (nominal mortgage rates less inflation expectations), real rents,
+and real disposal income (proxied by State final demand) for the Australian cities. See Shi and Phillips (2021) and
+the website https://www.housing-fever.com/ for further details.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+250
+PETER C.B. PHILLIPS
+0
+0.2
+0.4
+Sydney
+0
+0.1
+0.2
+Melbourne
+0.1
+Brisbane
+0
+0.05
+Adelaide
+0
+0.1
+Darwin
+0
+0.1
+Canberra
+–0.02
+0
+0.02
+Perth
+2013
+2014
+2015
+2016
+2017
+2018
+2019
+2020
+2021
+–0.05
+0
+Hobart
+Figure 11. Monthly Australian metropolitan city house P/R ratios (controlled by IVX regression
+estimation to remove the effects of economic fundamentals, including real disposable income and real
+mortgage interest rates) over the period of 2013–2021. Data source: https://www.housing-fever.com/ .
+before 2020 show no noticeable systematic movements but are clearly highly
+autoregressive.
+The methods of the paper were applied as follows. Empirical regressions with
+each NF house P/R series were run giving linear least-squares estimates ˆθn of θn
+and nonlinear estimates ˆγn of γn according to (2.17) and (3.12). ME and MI series
+were identified according to whether ˆθn ≷1, the rate parameter γn was estimated,
+and CIs were constructed for γn based on (3.15) in the ME case and (2.35) in the
+MI case, where possible weak dependence in the residuals is accounted for using
+the modified rate estimate ˜γn, as discussed in Section 2.4.
+The results are reported in Table 1 and detail both the full period of 2012–
+2021 and the later period of 2018–2021. The main findings are summarized as
+follows.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+251
+Table 1. Autoregressive coefficient estimates ˆθn, localizing rate estimates
+{ ˆγn, ˜γn} and nominal 95% CIs of γn for the NF components of house P/R ratios in
+Australian state capitals
+Capital city
+Years
+ˆθn
+ˆγn
+CI ˆγ
+˜γn
+CI ˜γ
+Sydney
+2012–2021
+1.101
+0.4897
+(0.4896,0.4899)
+2018–2021
+1.134
+0.5564
+(0.4895,0.6233)
+Melbourne
+2012–2021
+1.021
+0.8258
+(0.2457,1.4061)
+2018–2021
+1.112
+0.6070
+(0.4671,0.7468)
+Brisbane
+2012–2021
+1.107
+0.4768
+(0.4767,0.4769)
+2018–2021
+1.132
+0.5587
+(0.4893,0.6281)
+Adelaide
+2012–2021
+0.974
+0.7815
+(0.4265,1.1365)
+0.7679
+(0.4240,1.1117)
+2018–2021
+1.107
+1.1146
+(0.000∗,4.7690)
+Darwin
+2012–2021
+0.922
+0.5456
+(0.3413,0.7500)
+0.5302
+(0.3331,0.7273)
+2018–2021
+1.051
+0.8196
+(0.000∗,1.9047)
+Canberra
+2012–2021
+1.012
+0.9419
+(0.000∗,2.4149)
+2018–2021
+1.090
+0.6661
+(0.3783,0.9538)
+Perth
+2012–2021
+0.919
+0.5373
+(0.3369,0.7377)
+0.4694
+(0.2984,0.6404)
+2018–2021
+0.907
+0.6582
+(0.2440,1.0723)
+0.5169
+(0.1960,0.8378)
+Hobart
+2012–2021
+0.924
+0.5516
+(0.3444,0.7588)
+0.5645
+(0.3509,0.7781)
+2018–2021
+0.896
+0.6273
+(0.2356,1.0190)
+0.5997
+(0.2270.0.9723)
+Notes: (i) CI ˆγn and CI ˜γn indicate CIs constructed using the estimate ˆγn and the bias corrected estimate
+˜γn, respectively (see Section 2.4 for ˜γn and CI ˜γn). Entries in the columns for ˜γn and CI ˜γn are shown
+only for cases where ˆθn < 1.
+(ii) 0.000∗signifies that the lower limit of the constructed CI for γn is negative and therefore lies below
+the natural zero boundary for the left limit of the rate coefficient.
+(iii) CIs are constructed using (3.15) when ˆθn > 1 and (2.23) when ˆθn < 1. CIs robust to weak
+dependence when ˆθn < 1 are obtained using the bias corrected estimator ˜γn < 1 as shown in (2.35).
+(iv) Data: 108 monthly observations from July 31, 2012 to June 30, 2021; 36 monthly observations
+from July 31, 2018 to June 30, 2021.
+1. Sydney, Melbourne, Brisbane, Adelaide, Darwin, and Canberra all have autore-
+gressive coefficients ˆθn > 1 over the more recent period of 2018–2021. With the
+exception of Adelaide, the corresponding rate coefficient estimates ˆγn are all
+less than unity, signifying ME behavior for each of these cities. Furthermore,
+Sydney, Melbourne, Brisbane, and Canberra have 95% CIs for γn lying within
+the (0,1) interval, confirming ME behavior in the NF house P/R ratio at this
+level of significance. For Darwin, the rate estimate is ˆγn = 0.8196 and the CI is
+wide (0,1.9), thereby including the explosive LUR and close-to-unity cases as
+possible generating mechanisms. For Adelaide, the rate coefficient ˆγn = 1.1146
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+252
+PETER C.B. PHILLIPS
+exceeds unity, indicating an explosive close-to-unity coefficient and the CI for
+γn is also wide, reflecting the slow convergence rate in the LUR case and the
+short sample size of 36 observations over this recent period.
+2. Over the full period of 2012–2021, Sydney, Melbourne, Brisbane, and Canberra
+again have explosive autoregressive coefficients and ˆγn estimates lying in the
+(0,1) interval, indicating that over this longer period the ME behavior at the
+end of the period remains evident. For Sydney and Brisbane, the 95% CIs for
+γn continue to fall within the (0,1) interval, so the ME behavior is sustained at
+this significance level for the full period. For Melbourne and Canberra, the CIs
+are wider and include both explosive LUR and close-to-unity cases.
+3. Perth and Hobart have autoregressive coefficients ˆθn < 1 in both the full
+period and later period. These two cities also have estimated rate coefficients
+ˆγn ∈(0,1), signifying MI behavior. The corresponding 95% CIs support this
+inference, although the interval (0.235,1.019) for Hobart is wider and includes
+unity, thereby allowing for the possibility of a local-to-unity coefficient. These
+cities therefore show no evidence of housing market bubbles. In addition and for
+the full period, Darwin has the autoregressive coefficient ˆθn = 0.922 < 1 with
+CI (0.341,0.750) indicating MI behavior, so that for Darwin the exuberance
+observed in the later period is not strong enough to be sustained in estimation
+and inference over the full sample.
+The findings reported above correspond broadly to the results of alternative
+methods of assessing the presence of exuberance in these Australian city housing
+markets. In particular, the recursive PSY test procedures developed in Phillips
+et al. (2015a) provide supportive evidence for exuberance in the latter part of the
+sample period in Sydney, Melbourne, Brisbane, Canberra, and, less so, Adelaide
+and Darwin.14 The present findings complement that evidence in two ways. First,
+the results distinguish the explosive alternative by measuring the departure from
+the null hypothesis of no exuberance in the NF P/R ratio by means of the magnitude
+(lower values signifying greater departures) of estimates of the rate coefficient
+γn and its CIs. Second, the alternative hypothesis in the present work allows for
+MI alternatives in addition to UR and local-to-unity alternatives (as in the PSY
+test), again with quantification provided by the magnitude of the estimated rate
+coefficient ˆγn when ˆθn < 1. On the other hand, the PSY procedure is designed for
+real-time dating of origination and termination of bubbles as well as detection. This
+is a feature for which recursive versions of the present estimation and inferential
+procedures can be developed and explored in later work.
+6. CONCLUDING REMARKS
+Early research in the 1980s on time-series regression with URs revealed the
+advantages of function space limit theory in delivering general properties for
+estimation and inference in regressions that involve time-series variables with
+14See https://www.housing-fever.com/.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+253
+nonstationarities that can be captured by unit autoregressive roots or roots that
+may be local to unity. The methods in that research relied on nonstandard limit
+theory involving nonlinear functionals of stochastic processes such as Brownian
+motions and diffusions. The present paper shows that valid inference about the
+character of nonstationary time series in a wider class than the UR and LUR class
+can be conducted using pivotal Gaussian and heavy-tailed Cauchy limit theory. The
+methods facilitate the study of time series that may have more divergent behavior or
+milder wandering behavior than random walks. These characteristics can be identi-
+fied, estimated, and used for inference about the particular form of nonstationarity
+in the data without conducting tests such as UR or KPSS tests (Phillips, 1987a;
+Kwiatkowski, Phillips, Schmidt, and Shin, 1992). As the empirical application
+to the housing market illustrates, the techniques may be particularly useful in
+studying episodes of financial and asset market exuberance where it is useful to
+distinguish different forms of nonstationarity. Rather than confining attention to
+UR and LUR processes in designing inference, the methods focus on the implied
+localizing rate parameter that measures the extent of divergence from UR behavior,
+thereby adding to the econometric toolkit for detecting multiple different forms of
+nonstationarity in economic data. In future work, these tools of inference with
+near URs can be applied in recursive analyses and empirical dating algorithms to
+characterize changes that may occur in the character of nonstationary data.
+A further contribution of the paper is to identification. Two parameters are
+shown to be naturally identified in data when there is a near UR: a rate parameter γn
+that measures closeness to unity in the metric of powers of 1
+n; and the identification-
+enforced pseudo-scale parameter c = ±1. Data that are generated in a near UR
+environment cannot identify the joint parameters (c,γn) of both scale and rate.
+Instead, there is a data-enforced identification of scale c = ±1 that identifies an
+MI process from an ME process and the rate parameter γn that reveals the extent
+of either MI or ME behavior in the data. A referee kindly provided a likelihood
+analysis of this implicit uncertainty in joint estimation of (c,γn) showing how
+conditional Fisher information is zero when joint likelihood estimation is pursued.
+The analysis in Sections 2 and 3 and the simulation results in Section 4 show
+that the data themselves are sufficiently informative to overcome the identification
+failure and asymptotically enforce the values c = ±1 that identify near stationary
+from near explosive alternatives.
+APPENDIX
+Proof of Lemma 2.2. Since the rate-parameter sequence is defined by γn = α −log|c|
+logn ,
+we have
+n
+1+γn
+2
+= n
+1+α
+2 n−1
+2
+log|c|
+logn = n
+1+α
+2 |c|−1/2,
+(A-1)
+because
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+254
+PETER C.B. PHILLIPS
+log
+
+n
+1
+2
+log|c|
+logn
+
+= 1
+2
+log|c|
+logn ×logn = log|c|1/2,
+and so n−1
+2
+log|c|
+logn = |c|−1/2. The results of Lemma 2.2 follow directly by use of the
+equivalence (A-1) in Lemma 2.1.
+□
+Proof of Theorem 2.1. Part (i): Working in the expanded probability space where (2.8)
+holds and using the definition ˆAn = ˆθn −1 and the fact that c < 0 and α ∈(0,1) are fixed,
+we have, as n →∞,
+log
+			ˆAn
+			 = log
+					
+c
+nα +
+ξc
+n
+1+α
+2
+
+1+op (1)
+
+					
+= log
+
+1
+nα
+					c+
+ξc
+n
+1−α
+2
+
+1+op (1)
+
+					
+
+= −α logn+log
+					c+
+ξc
+n
+1−α
+2
+
+1+op (1)
+
+					
+= −α logn+log|c|+log
+					1+
+ξc
+cn
+1−α
+2
+
+1+op (1)
+
+					
+= −α logn+log|c|+
+ξc
+cn
+1−α
+2
+
+1+op (1)
+
+.
+(A-2)
+Then,
+ˆα = −
+log
+			ˆAn
+			
+logn
+= α −log|c|
+logn −
+ξc
+cn
+1−α
+2 logn
+
+1+op (1)
+
+,
+(A-3)
+so that ˆα →p α in both the expanded space and the original space. Moreover, in the original
+space, we have the weak convergence
+n
+1−α
+2 logn
+
+ˆα −α + log|c|
+logn
+
+⇒ξc
+−c =d N
+
+0, 2
+|c|
+
+,
+giving the required result (i).
+Part (ii): When θn = 1+ cn
+nα = −
+1
+n1−δ with cn = −
+1
+n1−α−δ with fixed δ > 0, then An =
+θn −1 = −
+1
+n1−δ , and in view of (2.8), we have
+ˆAn = ˆθn −1 = −
+1
+n1−δ +
+ξ
+n1−δ/2
+
+1+op (1)
+
+,
+with ξ =d N(0,2). In place of (A-2), we now find that
+log
+			ˆAn
+			 = log
+				−
+1
+n1−δ +
+ξ
+n1−δ/2
+
+1+op (1)
+				
+= log
+				
+1
+n1−δ
+				+log
+				1−
+ξ
+nδ/2
+
+1+op (1)
+				
+= −(1−δ)logn−
+ξ
+nδ/2
+
+1+op (1)
+
+.
+(A-4)
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+255
+Then,
+ˆα = −
+log
+			ˆAn
+			
+logn
+= 1−δ +
+ξ
+nδ/2 logn
+
+1+op (1)
+
+,
+(A-5)
+so that ˆα →p 1 −δ in both the expanded space and the original space, with the following
+limit theory in the original space:
+nδ/2 logn
+
+ˆα −(1−δ)
+
+⇝ξ =d N (0,2),
+giving (ii). When δ = 1−α, we have n(1−α)/2 logn
+
+ˆα −α
+
+⇝N (0,2) as in (i) with |c| = 1.
+Part (ii) SV Extension: In a similar manner, when cn = −Ln
+n1−α with an SV function
+Ln →∞, as n →∞, we have θn = 1 −Ln
+n . In the notation of Phillips and Magdalinos
+(2007a), this formulation is θn = 1 + c
+kn with kn = |c|n/Ln, or more simply kn = n/Ln =
+where the SV function absorbs the constant |c|. From Phillips and Magdalinos (2007a), we
+have the limit theory
+
+nkn( ˆθn −θn) ⇝N(0, −2c) = ξc.
+(A-6)
+In our present notation,
+n
+√Ln ( ˆθn −1 + Ln
+n ) ⇝N(0,2) = ξ, which in the expanded proba-
+bility space we write as
+ˆθn −1 = −Ln
+n +
+√Ln
+n
+ξ{1+op(1)}.
+(A-7)
+It follows that
+log
+			ˆAn
+			 = log| ˆθn −1| = log
+				−Ln
+n +
+√Ln
+n
+ξ
+
+1+op (1)
+				
+= log
+				
+Ln
+n
+				+log
+				1−
+ξ
+√Ln
+
+1+op (1)
+				
+= −logn+logLn −
+ξ
+√Ln
+
+1+op (1)
+
+.
+(A-8)
+Hence,
+ˆα = −
+log
+			ˆAn
+			
+logn
+= 1−logLn
+logn +
+ξ
+L1/2
+n
+logn
+
+1+op (1)
+
+,
+(A-9)
+which leads to the limit theory
+L1/2
+n
+logn
+
+ˆα −
+
+1−logLn
+logn
+
+⇝ξ,
+(A-10)
+giving the required extension of (ii) stated in Remark 2.1. The downward bias term in this
+near UR case is −logLn
+logn , which is nonnegligible given the convergence rate Ln logn.
+Part (iii): When θn = 1 + c
+n for some fixed c ∈(−∞,∞) and α = 1 in (2.1), the limit
+theory for ˆθn is (see Phillips, 1987b)
+n
+
+ˆθn −θn
+
+⇝
+ 1
+0 JcdW
+ 1
+0 J2c
+=: ξJc,
+as n →∞,
+(A-11)
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+256
+PETER C.B. PHILLIPS
+where Jc (r) =
+ r
+0 ec(r−s)dW (s) is a standard linear diffusion and W is standard Brownian
+motion. Then, proceeding as above on a suitably expanded probability space, we have ˆθn =
+θn + 1
+nξJc
+
+1+op(1)
+
+and ˆAn := ˆθn −1 = c
+n + 1
+nξJc
+
+1+op (1)
+
+= 1
+n
+
+c+ξJc
+
+1+op (1)
+
+,
+so that
+log
+			ˆAn
+			 = −logn+log
+		c+ξJc
+
+1+op (1)
+		 = −logn+log
+		c+ξJc
+		+op (1).
+Hence,
+ˆα = −
+log
+			ˆAn
+			
+logn
+= 1−log
+		c+ξJc
+		
+logn
++op
+
+1
+logn
+
+,
+and then ˆα →p 1 in both the expanded and original spaces. The convergence rate of ˆα is
+logn, and in the original space, we have weak convergence and the following limit theory
+for the normalized and centered estimator
+(logn)
+
+ˆα −1
+
+⇝−log|c+ξJc|,
+giving the stated result (iii).
+□
+Proof of Theorem 2.2. From Theorem 2.1, ˆα −α = −log|c|
+logn {1+op(1)} and so nˆα−α =
+n
+log(1/|c|)
+logn
+{1+op(1)} from which we have
+log
+
+nˆα−α
+= (ˆα −α)logn = log(1/|c|)
+logn
+{1+op(1)}logn = log(1/|c|){1+op(1)}.
+(A-12)
+Then,
+ˆc = −
+nˆα−α ˆσ 2
+2
+n1+α
+n
+t=1 X2
+t−1
+= −
+1
+|c| ˆσ 2
+2
+n1+α
+n
+t=1 X2
+t−1
+{1+op(1)} →p −
+1
+|c|σ 2
+σ 2
+−c
+= −1,
+(A-13)
+so that ˆc →c∗= −1 as required. To find the convergence rate, note first that, by standard
+calculations, ˆσ 2 = σ 2+Op(1/√n). Next, lognˆα−α = (ˆα−α)logn = Op
+
+n−
+1
+(1−α)/2
+
+from
+Theorem 2.1, so that nˆα−α = 1 + Op
+
+n−
+1
+(1−α)/2
+
+. Furthermore, as in the proof of PM
+(2007a, Lem. 3.1), we find that
+1−θ2
+n
+n
+
+t=1
+X2
+t−1 = σ 2 +Op(n−1/2)+Op
+
+n−(1−α)/2
++Op
+
+n−α/2
+,
+from which it follows that
+ˆc = −
+nˆα−α ˆσ 2
+2
+n1+α
+n
+t=1 X2
+t−1
+= −1+Op
+
+n−(1−α)/2 +n−α/2
+= −1+Op(min{n−(1−α)/2,n−α/2}).
+(A-14)
+□
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+257
+Proof of Corollary 2.1. In (i), we have θ = 1 + c
+nα . So, from (A-2) and using the fact
+that nγn = nα/|c|, we have
+log|ˆAn|
+logn
+= −α + log|c|
+logn +
+ξc
+cn
+1−α
+2 logn
+
+1+op (1)
+
+= −γn +
+ξc
+cn
+1−α
+2 logn
+
+1+op (1)
+
+= −γn + ξc|c|
+1
+2 n
+γn
+2
+cn
+1
+2 logn
+
+1+op (1)
+
+= −γn +
+ξ
+n
+1−γn
+2
+logn
+
+1+op (1)
+
+,
+(A-15)
+where ξc = N(0, −2c) from (2.4) and ξ = N(0,2) from Lemma 2.2. Then,
+ˆγn −γn = −
+log
+			ˆAn
+			
+logn
+−γn = −
+ξ
+n
+1−γn
+2
+logn
+
+1+op (1)
+
+,
+(A-16)
+from which it follows that
+n
+1−γn
+2
+logn
+
+ˆγn −γn
+
+⇝ξ =d N (0,2),
+(A-17)
+giving the stated result. The same result holds directly in case (ii) because cn = −
+1
+n1−α−δ
+with δ ∈(0,1−α] and then γn = 1−δ.
+In the extension of (ii) discussed in Remark 2.1 where θn = 1 −Ln
+n involving the SV
+function Ln, we have cn = −Ln
+n1−α = −n
+logLn
+logn
+n1−α
+so that
+θn = 1+ cn
+nα = 1−
+1
+n1−logLn
+logn
+= 1−1
+nγn ,
+with γn = 1−logLn
+logn . The following limit theory then holds when Ln →∞, as n →∞:
+L1/2
+n
+logn
+
+ˆγn −γn
+
+⇝ξ,
+(A-18)
+where the centering in (A-10) is adjusted by the term −logLn
+logn , which becomes absorbed
+in the uniparameter γn = 1−logLn
+logn . Result (A-18) continues to hold for choices of the SV
+function Ln, such as Ln = logn, for which logLn
+logn →0 and γn = 1−logLn
+logn →1 as n →∞.
+Finally, in the LUR case where θn = 1+ c
+n with fixed c, the result follows directly from
+Theorem 2.1(iii) and the fact that ˆγn = ˆα.
+□
+Proof of Corollary 2.2. Assume that 0 < ˆθn < 1, and write
+ˆγn −γn = −
+log
+
+1−ˆθn
+
+logn
++ log(1−θn)
+logn
+=
+1
+logn
+
+log
+1
+1−ˆθn
+−log
+1
+1−θn
+
+=
+1
+logn
+
+log 1+ ˆθn
+1−ˆθn
+−log 1+θn
+1−θn
+
+−
+1
+logn log 1+ ˆθn
+1+θn
+.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+258
+PETER C.B. PHILLIPS
+Now, θn = 1−1
+nγn and, from Lemma 2.2, ˆθn = θn +Op
+
+1
+n(1+γn)/2
+
+, so that
+log 1+ ˆθn
+1+θn
+= log
+1+θn +Op
+
+1
+n(1+γn)/2
+
+1+θn
+= log
+
+1+Op
+
+1
+n(1+γn)/2
+
+= Op
+
+1
+n(1+γn)/2
+
+.
+It follows that
+ˆγn −γn =
+1
+logn
+
+log 1+ ˆθn
+1−ˆθn
+−log 1+θn
+1−θn
+
++Op
+
+1
+n(1+γn)/2 logn
+
+and thus
+n
+1−γn
+2
+logn
+
+ˆγn −γn
+
+= n
+1−γn
+2
+
+log 1+ ˆθn
+1−ˆθn
+−log 1+θn
+1−θn
+
++Op
+ 1
+nγn
+
+⇝N (0,2),
+as stated.
+□
+Proof of Theorem 2.3. Part (i): For models (2.1) and (2.2) with fixed c < 0, fixed α ∈
+
+1
+3,1
+
+, and ut satisfying Assumption LP, as n →∞, we have the following limit theory
+for ˆθn from PM (2007b, Thm. 4.2, eqn. (24)):
+n
+1+α
+2
+
+ˆθn −θn −1
+nα
+−2cλ
+ω2
+
+⇝N
+
+0, −2cϕ2
+=: ξcϕ2,
+as n →∞,
+(A-19)
+where ω2 = σ 2C(1)2 is the long-run variance of ut, λ = (ω2 −σ 2)/2 is the one-sided
+long-run covariance of ut, and ϕ = σ 2
+ω2 . Expanding the probability space as before, the
+convergence (A-19) holds in probability and we have
+ˆθn = θn + 1
+nα
+2cλ
+ω2 +
+ξcϕ2
+n
+1+α
+2
+
+1+op (1)
+
+.
+Setting ˆAn = ˆθn −1, it follows that, for c < 0,
+log
+			ˆAn
+			 = log
+					
+c
+nα −1
+nα
+2cλ
+ω2 +
+ξcϕ2
+n
+1+α
+2
+
+1+op (1)
+
+					
+(A-20)
+= log
+
+				
+1
+nα
+				
+					c−2cλ
+ω2 +
+ξcϕ2
+n
+1−α
+2
+
+1+op (1)
+
+					
+
+= −α logn+log
+					c−2cλ
+ω2 +
+ξcϕ2
+n
+1−α
+2
+
+1+op (1)
+
+					
+= −α logn+log
+
+|c|
+					1−2λ
+ω2 +
+ξcϕ2
+cn
+1−α
+2
+
+1+op (1)
+
+					
+
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+259
+= −α logn+log|c|+log
+					
+σ 2
+ω2 +
+ξcϕ2
+cn
+1−α
+2
+
+1+op (1)
+
+					
+= −α logn+log|c|+logϕ +log
+					1+
+ξcϕ2
+cϕn
+1−α
+2
+
+1+op (1)
+
+					
+= −α logn+log|c|+logϕ + 1
+c
+ξc
+n
+1−α
+2
+
+1+op (1)
+
+.
+(A-21)
+Then, using the fact that nα = |c|nγn, we have
+ˆγn = −
+log
+			ˆAn
+			
+logn
+= α −log|c|+logϕ
+logn
+−
+ξc
+cn
+1−α
+2 logn
+
+1+op (1)
+
+= γn −logϕ
+logn −
+ξc
+c1/2n
+1−γn
+2
+logn
+
+1+op (1)
+
+= γn −logϕ
+logn −
+ξ
+n
+1−γn
+2
+logn
+
+1+op (1)
+
+,
+(A-22)
+where ξ =d N(0,2), from which it follows that ˆγn −γn →p 0, in both the expanded space
+and the original space at a logn rate. In the original space, we have the weak convergence
+n
+1−γn
+2
+logn
+
+ˆγn −γn + logϕ
+logn
+
+⇝ξ =d N (0,2),
+(A-23)
+giving the stated result.
+Parts (ii) and (iii): Here, we have θn = 1+ cn
+nα = 1−1
+nγn with cn = −
+1
+n1−α−δ , γn = 1−δ,
+and 0 < δ ≤1 −α. Using the same derivations as above but with these values of (cn,γn),
+we obtain
+nδ/2 logn
+
+ˆγn −γn + logϕ
+logn
+
+⇝ξ =d N (0,2),
+giving (2.31). Similarly, in the SV case (iii) where θn = 1+ cn
+nα = 1−Ln
+n with cn = −Ln
+n1−α
+and Ln →∞is SV at infinity, we have, as n →∞,
+L1/2
+n
+logn
+
+ˆγn −γn + logϕ
+logn
+
+⇝ξ =d N (0,2).
+(A-24)
+Part (iv): When θn = 1+ c
+n with fixed c, we have on a suitably expanded space ˆθn = θn +
+1
+nξJc
+
+1+op(1)
+
+so that
+log
+			ˆAn
+			 = −logn+log
+		c+ξJc
+
+1+op (1)
+		 = −logn+log
+		c+ξJc
+		+op (1).
+Hence,
+ˆγn = −
+log
+			ˆAn
+			
+logn
+= 1−log
+		c+ξJc
+		
+logn
++op
+
+1
+logn
+
+from which ˆγn →p 1 and the limit theory (logn)
+
+ˆγn −1
+
+⇝−log|c + ξJc| holds as
+stated.
+□
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+260
+PETER C.B. PHILLIPS
+Proof of equation (2.34). In the weakly dependent error case, the bias corrected estima-
+tor is ˜γn = ˆγn + log ˆϕ
+logn , where ˆϕ = ˆσ 2/ ˆω2 in which ˆσ 2 = 1
+n
+n
+t=1 ˆu2t with ˆut = Xt −ˆθnXt−1
+and ˆω2 is a standard kernel estimator of the long-run variance, ω2, of ut. Note that ˆσ 2−σ 2 =
+Op
+
+n−1/2
+and by standard HAC estimator asymptotics we have ˆω2
+tri −σ 2 = Op
+
+n−1/3
+for the triangular lag kernel estimator and ˆω2
+quad −σ 2 = Op
+
+n−2/5
+for the quadratic lag
+kernel estimator with optimal bandwidth choices. It follows directly that ˆϕ −ϕ = Op(n−κ)
+with κ ∈{1/3,2/5} for these two types of kernels. We then have
+n
+1−γn
+2
+logn{ ˜γn −γn} = n
+1−γn
+2
+logn
+
+ˆγn + log ˆϕ
+logn −γn
+
+= n
+1−γn
+2
+logn
+
+ˆγn −γn + logϕ
+logn +Op(n−κ)
+
+= n
+1−γn
+2
+logn
+
+ˆγn −γn + logϕ
+logn
+
++Op
+
+n
+1−γn−2κ
+2
+logn
+
+⇝ξ =d N (0,2).
+Since nγn = nα−log|c|/logn = nα/|c|, we have n
+1−γn−2κ
+2
+= n
+1−α−2κ
+2
+|c|1/2, so that
+n
+1−γn−2κ
+2
+logn = op(1) whenever α > 1 −2κ or α > 1
+3 for κ ≥1/3, which includes both
+triangular and quadratic lag kernel choices. It follows that the bias-corrected estimator
+˜γn = ˆγn + log ˆϕ
+logn satisfies
+n
+1−γn
+2
+logn{ ˜γn −γn} = n
+1−γn
+2
+logn
+
+ˆγn −γn + logϕ
+logn
+
++op(1) ⇝ξ =d N (0,2),
+(A-25)
+for all α > 1
+3, and the result holds for all standard consistent HAC estimators of ω2 under
+the conditions of Theorem 2.3.
+□
+Proof of Theorem 3.1. Part (i): Defining ˆAn = ˆθn −1 as before, it follows that, for
+c > 0,
+ˆAn = c
+nα + 1
+nα
+2c
+θnn
+C
+
+1+op (1)
+
+= c
+nα
+
+1+ 2
+θnn
+C
+
+1+op (1)
+
+,
+so that
+log
+			ˆAn
+			 = −α logn+log|c|+log
+
+1+ 2
+θnn
+C
+
+1+op (1)
+
+= −α logn+log|c|+ 2
+θnn
+C
+
+1+op (1)
+
+.
+Hence,
+ˆα = −
+log
+			ˆAn
+			
+logn
+= α −log|c|
+logn −
+2
+θnn lognC
+
+1+op (1)
+
+,
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+261
+and then ˆα →p α in both the expanded and original spaces. The convergence rate to α is
+logn, but upon recentering and normalizing we have
+
+1+ c
+nα
+n
+logn
+
+ˆα −α + log|c|
+logn
+
+⇝2cC,
+(A-26)
+as stated. Then, noting
+
+1+ c
+nα
+n = ecn1−α 
+1−O(n1−2α)
+
+∼a ecn1−α when α > 1
+2, we
+have
+ecn1−α logn
+
+ˆα −α + log|c|
+logn
+
+⇝2cC,
+(A-27)
+giving (3.6).
+Part (ii): When cn =
+1
+n1−α−δ with 0 < δ ≤1 −α, we have θn = 1 + 1
+nδ . It then follows
+as in Part (i) that ˆα →p 1−δ, as n →∞. Furthermore, since log|cn| = log
+1
+n1−α−δ = (−1+
+α +δ)logn, we have α −log|cn|
+logn = 1−δ and then
+
+1+
+1
+n1−δ
+n
+logn
+
+ˆα −(1−δ)
+
+⇝2C.
+(A-28)
+Noting that
+
+1+
+1
+n1−δ
+n
+= enδ 
+1−O(
+1
+n1−2δ )
+
+∼a enδ when δ < 1
+2, we have
+en1−δ logn
+
+ˆα −(1−δ)
+
+⇝2C,
+as in (3.7).
+Part (ii) SV Extension: When the autoregressive coefficient θn = 1 + Ln
+n differs from
+unity by an SV function at infinity, Ln, we have cn =
+Ln
+n1−α = n
+logLn
+logn
+n1−α , so that
+θn = 1+ Ln
+n = 1+ cn
+nα = 1+
+1
+n1−logLn
+logn
+=: 1+ 1
+nγn ,
+with uniparameter γn = 1−logLn
+logn , as in (3.8). In the same way, as in (A-28), the following
+limit theory then holds when Ln →∞, as n →∞:
+
+1+
+1
+n1−logLn
+logn
+n
+logn
+
+ˆα −
+
+1−logLn
+logn
+
+⇝2C,
+(A-29)
+which can be rewritten entirely in terms of the uniparameter γn as
+
+1+ 1
+nγn
+n
+logn
+
+ˆγn −γn
+
+=
+
+1+ Ln
+n
+n
+logn
+
+ˆγn −γn
+
+⇝2C,
+(A-30)
+where ˆγn = −
+log
+			ˆAn
+			
+logn . In (A-30), the centering in (A-29) is absorbed in the uniparameter
+γn = 1−logLn
+logn because, when cn =
+Ln
+n1−α ,
+γn = α −logcn
+logn = α −logLn −(1−α)logn
+logn
+= 1−logLn
+logn ,
+and
+1
+nγn = Ln
+n .
+□
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+262
+PETER C.B. PHILLIPS
+REFERENCES
+Billingsley, P. (2008) Probability and Measure. Wiley.
+Chan, N.H. & C.-Z. Wei (1987) Asymptotic inference for nearly nonstationary AR(1) processes.
+Annals of Statistics 15, 1050–1063.
+Duffy, J. A. & I. Kasparis (2021) Estimation and inference in the presence of fractional d = 1/2 and
+weakly nonstationary processes. Annals of Statistics, 49, 1195–1217.
+Elliott, G. (1998) On the robustness of cointegration methods when regressors almost have unit roots.
+Econometrica 66, 149–158.
+Fisher, R.A. (1921) On the “probable error” of a coefficient of correlation deduced from a small sample.
+Metron 1, 1–32.
+Giraitis, L. & P.C.B. Phillips (2006) Uniform limit theory for stationary autoregression. Journal of
+Time Series Analysis 27, 51–60.
+Han, C., P.C.B. Phillips, and D. Sul (2011) Uniform asymptotic normality in stationary and unit root
+autoregression. Econometric Theory 27, 1117–1151.
+Hansen, B.E. (1999) The grid bootstrap and the autoregressive model. Review of Economics and
+Statistics 81, 594–607.
+Hotelling, H. (1953) New light on the correlation coefficient and its transforms. Journal of the Royal
+Statistical Society. Series B (Methodological) 15, 193–232.
+Jenkins, G. (1954) An angular transformation for the serial correlation coefficient. Biometrika 41,
+261–265.
+Konishi, S. (1981) Normalizing transformations of some statistics in multivariate analysis. Biometrika
+68, 647–651.
+Kostakis, A., T. Magdalinos, & M.P. Stamatogiannis (2015) Robust econometric inference for stock
+return predictability. The Review of Financial Studies 28, 1506–1553.
+Kwiatkowski, D., P.C.B. Phillips, P. Schmidt, & Y. Shin (1992) Testing the null hypothesis of
+stationarity against the alternative of a unit root. Journal of Econometrics 54(1–3), 159–178.
+Lin, Y. & Y. Tu (2020) Robust inference for spurious regressions and cointegrations involving processes
+moderately deviated from a unit root. Journal of Econometrics 219, 52–65.
+Marsh, P. (2001) Edgeworth expansions in Gaussian autoregression. Statistics and Probability Letters
+54, 233–241.
+Mikusheva, A. (2007) Uniform inference in autoregressive models. Econometrica 75, 1411–1452.
+Mikusheva, A. (2012) One-dimensional inference in autoregressive models with the potential presence
+of a unit root. Econometrica 80, 173–212.
+Phillips, P.C.B. (1977) Approximations to some finite sample distributions associated with a first-order
+stochastic difference equation. Econometrica 45, 463–485.
+Phillips, P.C.B. (1979) Normalizing transformation for the serial correlation coefficient α. Research
+Note I and Note II, University of Birmingham.
+Phillips, P.C.B. (1987a) Time series regression with a unit root. Econometrica 55, 277–301.
+Phillips, P.C.B. (1987b) Towards a unified asymptotic theory for autoregression. Biometrika 74,
+535–547.
+Phillips, P.C.B. (1988) Regression theory for near-integrated time series. Econometrica 56, 1021–1043.
+Phillips, P.C.B. (2011) Estimation of the Localizing Rate for Mildly Integrated and Mildly Explosive
+Processes. Working Paper, Yale University.
+Phillips, P.C.B. (2012) Folklore theorems, implicit maps, and indirect inference. Econometrica 80,
+425–454.
+Phillips, P.C.B. (2014) On confidence intervals for autoregressive roots and predictive regression.
+Econometrica 82, 1177–1195.
+Phillips, P.C.B. (2015) Halbert White Jr. Memorial JFEC lecture: Pitfalls and possibilities in predictive
+regression. Journal of Financial Econometrics 13, 521–555.
+Phillips, P.C.B. & T. Magdalinos (2007a) Limit theory for moderate deviations from a unit root. Journal
+of Econometrics 136, 115–130.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press
+ESTIMATION AND INFERENCE WITH NEAR UNIT ROOTS
+263
+Phillips, P. C. B. & T. Magdalinos (2007b) Limit theory for moderate deviations from a unit root
+under weak dependence. In G.D.A. Phillips and E. Tzavalis (eds.), The Refinement of Econometric
+Estimation and Test Procedures: Finite Sample and Asymptotic Analysis, pp. 123–162. Cambridge
+University Press.
+Phillips, P.C.B. & T. Magdalinos (2009) Econometric Inference in the Vicinity of Unity. Working Paper
+7, Singapore Management University, CoFie.
+Phillips, P.C.B., T. Magdalinos, & L. Giraitis (2010) Smoothing local-to-moderate unit root theory.
+Journal of Econometrics 158, 274–279.
+Phillips, P.C.B., S. Shi, & J. Yu (2015a) Testing for multiple bubbles: Historical episodes of exuberance
+and collapse in the S&P 500. International Economic Review 56, 1043–1078.
+Phillips, P.C.B., S. Shi, & J. Yu (2015b) Testing for multiple bubbles: Limit theory of real-time
+detectors. International Economic Review 56, 1079–1134.
+Phillips, P.C.B. & V. Solo (1992) Asymptotics for linear processes. Annals of Statistics 20, 971–1001.
+Phillips, P.C.B., Y. Wu, & J. Yu (2011) Explosive behavior in the 1990s NASDAQ: When did
+exuberance escalate asset values? International Economic Review 52, 201–226.
+Phillips, P.C.B. & J. Yu (2011) Dating the timeline of financial bubbles during the subprime crisis.
+Quantitative Economics 2, 455–491.
+Satchell, S.E. (1984) Approximation to the finite sample distribution for nonstable first order stochastic
+difference equations. Econometrica 52, 1271–1289.
+Shi, S. & P.C.B. Phillips (2021) Diagnosing housing fever with an econometric thermometer. Journal
+of Economic Surveys; doi:10.1111/joes.12430.
+Shorack, G.R. & J.A. Wellner (2009) Empirical Processes with Applications to Statistics. SIAM.
+Stock, J.H. (1991) Confidence intervals for the largest autoregressive root in US macroeconomic time
+series. Journal of Monetary Economics 28, 435–459.
+Taniguchi, M. (2012) Higher Order Asymptotic Theory for Time Series Analysis. Lecture Notes in
+Statistics, vol. 68. Springer Science & Business Media.
+Winterbottom, A. (1979) A note on the derivation of Fisher’s transformation of the correlation
+coefficient. The American Statistician 33, 142–143.
+https://doi.org/10.1017/S0266466622000342 Published online by Cambridge University Press

@@ -1,0 +1,1101 @@
+Macroeconomic Dynamics (2024), 28, pp. 1682–1714
+doi:10.1017/S1365100523000615
+ARTICLE
+Monetary policy and housing market cycles†
+Shiu-Sheng Chen1
+, Tzu-Yu Lin2
+, and Jen-Kuan Wang3
+1Department of Economics, National Taiwan University, Taipei, Taiwan
+2Department of Economics, National Cheng Kung University, Tainan, Taiwan
+3Department of Economics, The Pennsylvania State University, University Park, PA, USA
+Corresponding author: Shiu-Sheng Chen; Email: sschen@ntu.edu.tw
+Abstract
+Using monthly data from 1978:M1 to 2019:M9, this paper provides empirical evidence concerning the role
+that monetary policy plays in the US housing market. We ﬁrst show that shocks to short-run interest rates
+have signiﬁcant impacts on house prices and that these effects are persistent. Our ﬁndings also provide evi-
+dence supporting the claim that too-low-for-too-long interest rates are responsible for the 2002–2006 US
+housing boom. We further investigate the different channels through which an easing monetary policy
+fuels the house price boom and ﬁnd that faster sales and lower inventory levels in the housing mar-
+ket most amplify the policy effects. Lastly, we provide compelling evidence of the asymmetric effects of
+contractionary and expansionary monetary policies on house prices.
+Keywords: Monetary policy; housing market
+1. Introduction
+Some early studies argue that there is no strong evidence of causality running from lower interest
+rates to housing market booms [see, e.g., Kuttner (2013); Bernanke (2010); Dokko et al. (2011);
+Luciani (2015)]. However, it is now well documented in the recent literature that an expan-
+sionary monetary policy leads to US house price booms [see, e.g., McDonald and Stokes (2013,
+2015); Jorda et al. (2015); Cooper et al. (2016)]. Nonetheless, although empirical ﬁndings pro-
+vide supportive evidence that loose monetary policy causes signiﬁcant house price appreciation,
+there remain unanswered questions about the relationship between monetary policy and housing
+market ﬂuctuations.
+First, it is debatable whether interest rates held too low for too long during 2003–2005 resulted
+in a housing boom and subsequently led to the 2008 subprime mortgage crisis and the follow-
+ing global recession. For example, Taylor (2015) provides a review of the history of US monetary
+policy over the past 50 years and argues that the low-interest rate policy during the period 2003–
+2005 brought on a search for yield, accounted for excesses in the housing market, and, that when
+combined with a regulatory process that broke the rules for safety and soundness, was a key fac-
+tor in the 2007–2008 global ﬁnancial crisis and the Great Recession until 2009. Opposing this,
+Bernanke (2010) argues that the direct linkages between monetary policy and housing bubbles are
+weak, and instead proposes the so-called global savings glut hypothesis whereby “capital inﬂows
+from emerging markets to industrial countries can help to explain asset price appreciation and
+low long-term real interest rates in the countries receiving the funds.”
+Second, the importance of different channels in the transmission of monetary policy to house
+prices is less investigated. As suggested in the literature, there are several channels through which
+†We would like to thank two anonymous referees for comments and suggestions. Any remaining errors are our own.
+C⃝The Author(s), 2024. Published by Cambridge University Press. This is an Open Access article, distributed under the terms of the
+Creative Commons Attribution licence (http://creativecommons.org/licenses/by/4.0/), which permits unrestricted re-use, distribution and
+reproduction, provided the original article is properly cited.
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1683
+interest rates may affect house prices [see Kuttner (2013)]. Among these, two popularly accepted
+driving forces of house price ﬂuctuations are commonly cited: credit conditions and sentiment
+[see Cox and Ludvigson (2019)]. The role of credit was particularly brought to attention follow-
+ing the 2008–2009 crisis [see, e.g., Schularick and Taylor (2012); Iacoviello (2015); Mian and Suﬁ
+(2018)], with most house buyers needing to obtain mortgage loans for home purchase, and house-
+holds typically facing some borrowing constraint. Hence, as expansionary monetary policy relaxes
+credit constraints, the credit channel tends to amplify and propagate the effects of monetary policy
+on house prices [see, e.g., Segev and Schaffer (2020)].
+There is also an argument that market sentiment plays a key role in asset price dynamics
+because an increase in optimistic expectations about future house prices may trigger housing mar-
+ket booms. As an expansionary monetary policy boosts market optimism, it also raises house
+prices. Another potential channel is the time-on-the-market (or housing market liquidity). A
+more liquid housing market (less time-on-the-market) may also increase house prices as the hous-
+ing market generally clears with higher listing prices [see, e.g., Sirmans et al. (2010)]. Hence, a
+loose monetary policy reduces the costs of housing ﬁnance and thus time-on-the-market, which
+may then amplify the expansionary effects of monetary policy.
+Finally, the recent fast-growing literature has stressed the role of ﬁnancial frictions faced by
+households and ﬁrms in generating asymmetric responses to monetary policy. Financial frictions,
+which may be rooted in asymmetric information or limited commitment, lead lenders to not only
+charge a higher premium but also impose credit constraints on borrowers, such as in the form of
+collateral constraints. Thus, a contractionary monetary policy has a stronger effect on economic
+aggregates because credit constraints are more likely to be binding, and borrowers are not able
+to borrow the amount demanded when liquidity is scarce because of monetary tightening [see,
+e.g., Lin (2021); Bluwstein et al. (2020); Bernstein (2021)]. As for the policy implications, if a
+contractionary policy exerts a stronger effect on house prices than an expansionary policy, the
+policymaker should consider the fact that the same size of monetary contractions and expansions
+could result in different-sized policy effects. To enhance ﬁnancial stability, macroprudential policy
+interventions could then be a better policy tool than interest rate policy because the contractionary
+effects on house prices may be too costly.1 Hence, it is of interest to question if the effects of
+monetary policy shocks on house prices are asymmetric.
+In this paper, we use a structural vector autoregressive (SVAR) model of the housing mar-
+ket to jointly address the abovementioned issues. The ﬁrst objective is to identify the underlying
+shocks to the US housing market. The identiﬁcation of these shocks is important, not only for
+explaining ﬂuctuations in the house prices but also for understanding the channels of monetary
+policy transmission to the housing market. We use this to implement a structural decomposition
+of house prices into their components including price changes resulting from monetary policy,
+credit, sentiment, housing demand, and housing supply shocks.
+We provide estimates of the dynamic effects of these shocks on house prices and estimate how
+much each of these shocks contributed to the evolution of house prices from 1978 to 2019. The
+novelty of the paper is as follows. First, we estimate an SVAR model of the US housing market,
+i.e., we explicitly specify housing demand and supply. We also incorporate monetary policy, credit
+conditions, and housing market sentiment in our chosen SVAR model. Disentangling these vari-
+ous shocks helps us better measure the impact of monetary policy shocks on house prices. Second,
+we provide evidence that a loose monetary policy may have led to the 2002–2006 US housing
+boom. Third, we focus on quantifying different channels of monetary policy on house prices using
+counterfactual analysis. Finally, we provide evidence of the asymmetric impact of monetary policy
+shocks on house prices.
+The empirical results are as follows. After controlling for other drivers of house prices, we
+ﬁnd a loose monetary policy shock signiﬁcantly causes house prices to increase. The impacts of
+interest rate shocks become stronger and signiﬁcant after periods of months. Over the long run,
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1684
+S.-S. Chen et al.
+a substantial portion of house price movements can be explained by monetary policy (30%) and
+housing supply (35%).
+According to our historical decomposition, monetary policy shocks account for the price rises
+in the US housing market from January 2002 to May 2006, which is when house prices reached a
+record high. By comparison, credit shocks offer a secondary substantial impact, whereas sentiment
+shocks do not matter as much as other structural shocks. In terms of the transmission channels
+for monetary policy, the counterfactual analysis shows that the most important channel of mone-
+tary policy transmission to house prices is the time-on-the-market. The credit channel also plays
+some role whereas the sentiment channel is not crucial. Finally, there is robust evidence that a
+contractionary monetary policy shock has a larger impact on house prices than an expansionary
+monetary policy shock.
+The remainder of the paper is structured as follows. Section 2 reviews the literature on the
+relationship between monetary policy and house prices. We also discuss the various potential
+channels for monetary policy transmission. Section 3 presents the empirical strategy and Section
+4 describes the data. Sections 5–8 report the key empirical results along with some robustness
+checks. We offer some concluding remarks in Section 9.
+2. Literature review
+In terms of the effects of monetary policy on house prices, the early literature suggests a weak link
+between the two variables. Dokko et al. (2011) use quarterly data from 14 OECD countries from
+1970 to 2002 and obtain evidence that traditional channels of monetary policy accounted for little
+of the rise in housing markets and that monetary policy was then not the main factor causing the
+housing boom of the 2000s. Kuttner (2013) provides a thorough review of the early literature on
+the impact of interest rates on house prices and concludes that the effects are too small to explain
+the real estate booms in the US and elsewhere over the past decade. Luciani (2015) estimates a
+structural dynamic factor model using US quarterly data from 1982 to 2010 and concludes that
+the contribution of the Fed’s expansionary monetary policy from 2002–2004 to the recent housing
+cycle was negligible.
+Conversely, other studies ﬁnd compelling evidence of a link between monetary policy and
+house prices. For example, Del Negro and Otrok (2007) estimate a VAR model using US quar-
+terly data from 1986 to 2005 and ﬁnd that monetary policy shocks can explain a sizable share of
+housing price movements. Jarocinski and Smets (2008) show that monetary policy has signiﬁcant
+effects on housing investment and house prices and that easing monetary policy in 2002–2004
+contributed to the boom in the housing market in 2004 and 2005. McDonald and Stokes (2013)
+employ the S&P Case–Shiller aggregate 10-city monthly housing price indices and ﬁnd evidence
+consistent with the view that the Fed’s interest rate policy in the period 2001–2004 of pushing
+down the federal funds rate and keeping it artiﬁcially low was a cause of the house price bubble.
+Using data spanning 140 years of modern economies including the US, Jorda et al. (2015) show
+that loose monetary conditions lead to booms in real estate lending and house price bubbles.
+Finally, Cooper et al. (2016) demonstrate the nonnegligible effect of monetary policy on regional
+house prices across different US states. For international evidence of the link between interest rates
+and house prices, see also Iacoviello and Minetti (2003), Iacoviello and Minetti (2008), Goodhart
+and Hofmann (2008), Sá et al. (2011), Bordo and Landon-Lane (2014), Head and Lloyd-Ellis
+(2016), Nocera and Roma (2018), Kishor and Marfatia (2018), and Robstad (2018). In general,
+based on the previous literature, use of a vector autoregressive (VAR) framework seems to pro-
+vide more supportive evidence that loose monetary policy causes house price appreciation and
+that these impacts are signiﬁcant and nonnegligible. This paper follows the same lines as the exist-
+ing VAR literature but augments the VAR model with credit conditions, market sentiment, and
+time-on-the-market, which are also potentially important explanations of house price swings.
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1685
+Table 1. Data source
+Variable
+Code
+Data source
+Effective Federal Funds Rate
+FEDFUNDS
+FRED
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+Chicago Fed’s National Financial
+NFCICREDIT
+FRED
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+Conditions Index (Credit SubIndex)
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+Housing market sentiment
+Table 41: Buying Conditions for Houses
+Michigan Survey of Consumers
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+Real estate loans
+RELACBW027SBOG
+FRED
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+Housing inventory–sales ratio
+MSACSR
+FRED
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+S&P/Case-Shiller U.S.
+Robert Shiller’s Website
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+Real Home Price Index
+Figure 1. Data.
+Regarding the channels that may work for monetary policy shocks, the role of credit is attract-
+ing attention after the crisis of 2008–2009 [see, e.g., Schularick and Taylor (2012); Iacoviello
+(2015); Mian and Suﬁ(2018)]. Most house buyers need to obtain mortgage loans for a home pur-
+chase, and typical households face borrowing constraints. Agnello et al. (2018) suggest that credit
+market conditions are crucial for housing market booms, whereas Rojas (2021) provides evidence
+that growth in mortgage credit during the 1990s and mid-2000s was greatest for lower-income
+borrowers, which then led to the ﬁnancial crisis of the mid-2000s. Using the lifting of branching
+restrictions that took place in the US after 1994, Favara and Imbs (2015) demonstrate a causal
+chain going from an expansion in credit to house prices. Moreover, Mian and Suﬁ(2021) argue
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1686
+S.-S. Chen et al.
+Figure 2. Monetary policy shock.
+that greater availability of credit leads optimistic speculators to increase demand and house prices.
+This increase in house prices may then convince more people to become speculators, which fur-
+ther boosts house prices. Hence, as expansionary monetary policy relaxes credit constraints, the
+credit channel tends to amplify and propagate the effects of monetary policy on house prices [see,
+e.g., Segev and Schaffer (2020)].
+It is also argued that market sentiment plays a vital role in asset price dynamics. Bekiros et al.
+(2020) provide a theoretical framework to demonstrate how a rise in optimistic expectations about
+future house prices triggers housing market booms. Kaplan et al. (2020) ﬁnd that beliefs about
+future house prices, or expectations, are the key source of variation in home values and reveal that
+it was a shift in beliefs, not a change in credit conditions, that drove the US housing boom–bust
+around the time of the Great Recession. Whereas house prices reﬂect the present value of future
+cash ﬂows or house rents, expectations of the future housing market indicate how those upcoming
+house rents may vary. Using questionnaire surveys of homebuyers, Case and Shiller (2003) and
+Case et al. (2012) discover that expectations of a boost in future house prices play an important
+role in determining recent US house price booms. Lambertini et al. (2013) and Ben-David et
+al. (2019) also show that expectations of rising house prices explain a sizable proportion of the
+ﬂuctuations in house prices. Lastly, Soo (2018) uses the news media to construct a sentiment
+index for house price expectations and ﬁnds that sentiment has signiﬁcant predictive power for
+future house prices, and should then be taken seriously as a potential determinant of house prices,
+especially in research surrounding policy concerns.
+Finally, several studies investigate the relationship between the time-on-the-market and house
+prices. As argued by Beneﬁeld and Hardin (2015), time-on-the-market is one of the most analyzed
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1687
+Figure 3. Credit shock.
+outcomes in the residential literature. Using meta-analysis, Sirmans et al. (2010) provide evi-
+dence that time-on-the-market has a negative impact on house prices, whereas Dube and Legros
+(2016) ﬁnd evidence that houses staying longer on the market provide negative information to the
+market, which results in a lower ﬁnal sale price.
+3. Empirical strategy
+To examine the linkage between house prices and monetary policy, we consider a stylized SVAR
+model of the housing market augmented with monetary policy, credit condition, and market
+sentiment:
+A0yt = A1yt−1 + · · · + Apyt−p + et,
+(1)
+where yt is a vector containing the federal funds rate, credit conditions, market sentiment, the log
+of housing loans, the housing inventory–sales ratio, and the log of real house prices. Following
+Bernanke and Blinder (1992) and Bernanke and Mihov (1998), the federal funds rate is the mon-
+etary policy instrument. General credit conditions indicate the availability and cost of borrowing
+for various purposes, including purchasing homes. Moreover, housing market sentiment is also
+an important determinant of house prices [see e.g., Soo (2018)]. We use housing loans to measure
+housing demand, and the housing inventory–sales ratio to reﬂect the time-on-the-market, i.e.,
+housing market liquidity as a proxy of housing supply.
+The term et denotes the structural shocks with mean zero and a diagonal variance–covariance
+matrix  = E(ete′t), where the diagonal entries are the variances of the structural shocks.
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1688
+S.-S. Chen et al.
+Figure 4. Sentiment shock.
+We estimate the reduced-form vector autoregressive (VAR) model using
+yt = φ1yt−1 + · · · + φpyt−p + ut,
+(2)
+where ut denotes the regression errors. Note that the structural shocks and the reduced-form
+errors are related by A0ut = et, where ut = (u1t, u2t, u3t, u4t, u5t, u6t)′ is the vector of regression
+errors for each variable in equation (2). Regarding the structural shocks,
+et = (eMP
+t
+, eCredit
+t
+, eSent
+t
+, eDemand
+t
+, eSupply
+t
+, eHP
+t
+)′,
+where eMP
+t
+represents a monetary policy shock, whereas eCredit
+t
+, eSent
+t
+, eDemand
+t
+, and eSupply
+t
+are non-
+policy structural shocks, i.e., credit supply shocks, sentiment shocks, housing demand shocks and
+housing supply shocks, respectively. The residual shock eHP
+t
+represents all other shocks affecting
+house prices without a particular structural interpretation.
+We achieve identiﬁcation by imposing a recursive restriction on A0. The key assumption is that
+monetary policy does not respond instantaneously to all other variables in the SVAR system. In
+particular, we assume that the Fed does not respond to house price movements in setting monetary
+policy within the month. This draws on existing empirical ﬁndings that the interest rate response
+to house price shocks in the US is statistically insigniﬁcant [see, e.g., Musso et al. (2011)], and that
+the Fed tends to raise policy rates after a few quarters of housing demand shocks, i.e., a delayed
+response [Andre et al. (2012)].
+In the second equation, given that credit conditions measure the general availability and cost
+of borrowing money for various purposes, we assume these do not respond to housing market-
+speciﬁc variables within the month and are only driven by monetary policy. Conversely, readily
+available and affordable credit can lead to increased speculative activity and investment in the
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1689
+Figure 5. Housing demand shock.
+real estate market, which may cause participants to become more optimistic about the housing
+market. Finally, easy access to credit for home buyers and home construction ﬁrms can also boost
+both housing demand and supply and therefore house prices.
+In the third equation, housing market sentiment is driven by monetary policy and credit
+shocks, but there is a lagged response to housing market-speciﬁc shocks. This is motivated by
+the fact that the general economic and ﬁnancial market outlook, including monetary policy and
+credit conditions, is frequently discussed in the media, and affects housing market sentiment in
+real time. In contrast, it may take time for the public to receive information about housing market
+conditions. Real estate market data, such as house prices or inventory levels, often take some time
+to be collected, analyzed, and reported. Therefore, individuals may not be immediately aware of
+the current state of the housing market, which should delay the effect on sentiment.
+The fourth to sixth equations represent the housing market, where housing demand and supply
+shocks are identiﬁed. In addition to shocks from monetary policy, credit conditions, and market
+sentiment, positive housing demand shocks encourage increased home purchases with external
+ﬁnancing, and thus impact upon housing loans. Moreover, both housing demand and supply
+shocks affect the housing inventory–sales ratio, i.e., the time-on-the-market. Higher demand cre-
+ates a seller’s market in which home buyers act swiftly to secure their target property and reduces
+the average time a home remains on the market. Conversely, positive supply shocks lead to a
+longer time-on-the-market as properties take longer to sell in a buyer’s market. Finally, all types
+of shocks in the SVAR system affect house prices. After accounting for shocks to monetary policy,
+credit conditions, housing market sentiment, housing demand, and housing supply, we treat the
+shock in the house price equation as a residual shock unaccounted for in the model, which we
+simply denote as a house price shock.
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1690
+S.-S. Chen et al.
+Figure 6. Housing supply shock.
+It is worth noting that as the focus of the current paper is the effect of monetary policy shocks
+on house prices, the identiﬁcation of the monetary policy shocks is more solid than those of any
+other structural shocks. Nevertheless, we later use impulse response analysis to check whether the
+responses of house prices are a plausible reaction to the various types of structural shocks.
+4. Data
+We use monthly data from 1978:M1 to 2019:M9. We assess credit conditions using the Credit
+Subindex of the Chicago Fed National Financial Conditions Index (NFCI), which provides a
+comprehensive update on US ﬁnancial conditions in money markets, debt and equity markets,
+and the traditional and shadow banking systems. The credit subindex is composed of measures
+of credit conditions, where positive values of the index indicate tighter credit conditions than
+average, whereas negative values indicate looser credit conditions than average.
+To proxy housing market sentiment, we use data from the Michigan Survey of Consumers
+(SOC), which has been applied to capture home buyer conﬁdence [see, e.g., Piazzesi and Schneider
+(2009); Lambertini et al. (2013)]. In the SOC, a nationally representative sample of 500 individ-
+uals is surveyed on their views about business and buying conditions, including questions about
+the housing market. The question is “[g]enerally speaking, do you think now is a good time or
+a bad time to buy a house?” and respondents answer “good time,” “bad time,” or “uncertain.”
+Letting Gt and Bt denote the percentage of respondents that respond “good time” and “bad time,”
+respectively, the SOC constructs the index of buying conditions for houses as follows:
+Sentt = 100 + (Gt −Bt).
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1691
+Table 2. Variance decomposition of real house prices
+Horizon
+Monetary policy shock
+Credit shock
+Sentiment shock
+Housing demand shock
+Supply shock
+Other shock
+h = 1
+0.43
+0.08
+0.15
+0.53
+1.06
+97.75
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+2
+0.66
+0.21
+0.04
+0.78
+1.79
+96.52
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+4
+2.41
+0.17
+0.04
+0.95
+3.57
+92.85
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+8
+6.11
+1.37
+0.12
+2.28
+7.73
+82.39
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+12
+12.15
+1.01
+0.15
+6.50
+14.12
+66.07
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+20
+22.71
+1.21
+0.16
+8.30
+21.22
+46.40
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+32
+29.84
+3.74
+0.43
+7.79
+30.14
+28.06
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+40
+29.87
+6.02
+0.53
+7.15
+35.09
+21.34
+Figure 7. Historical decomposition.
+The index serves to measure housing market sentiment. It has been shown that the SOC index
+is highly correlated with the media housing sentiment index constructed by social media text
+mining [see, e.g., Soo (2018)], which validates the SOC index being a reliable measure of consumer
+optimism about house prices.
+We measure housing loans using all real estate loans (for all commercial banks) and construct
+the housing inventory–sales ratio by dividing houses for sale by houses sold. Because this provides
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1692
+S.-S. Chen et al.
+Figure 8. Contribution of each structural shock to the cumulative change in the house prices during January 2002 to May
+2006.
+Figure 9. Instrumented monetary policy shock.
+an indication of the size of the for-sale inventory in relation to the number of houses currently
+sold, we can use it to measure the time-on-the-market, i.e., how long the current for-sale inventory
+would last given the current sales rate if no additional new houses were built. Finally, we use the
+S&P CoreLogic Case–Shiller home price index deﬂated by the consumer price index to measure
+real house prices.
+All the data except the SOC index and the S&P CoreLogic Case–Shiller home price index
+are from the Federal Reserve Economic Data (FRED) constructed by the Federal Reserve Bank
+of St. Louis. The SOC index is from the Michigan Survey of Consumers, whereas the S&P
+CoreLogic Case–Shiller home price index is available from Robert Shiller’s webpage.2 All the data
+are described in Table 1 and the time series plots are shown in Figure 1.
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1693
+(a)
+(b)
+(c)
+(d)
+Figure 10. Time-varying VAR: response of house prices during different periods. (a) Impulse responses: house prices to mon-
+etary policy shocks in 1987:1, 1997:1, 2007:1, and 2017:1, (b) Difference between the responses in 1997:1 and 1987:1, with the
+90% conﬁdence interval, (c) Difference between the responses in 2007:1 and 1987:1, with the 90% conﬁdence interval, and
+(d) Difference between the responses in 2017:1 and 1987:1, with the 90% conﬁdence interval.
+Figure 11. Unrestricted and counterfactual responses [Kilian and Lewis (2011)’s counterfactual].
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1694
+S.-S. Chen et al.
+Figure 12. Unrestricted and counterfactual responses [Bernanke et al. (1997)’s counterfactual].
+Figure 13. Response of house prices and test results of asymmetry.
+5. Monetary policy and the US housing market
+We ﬁrst examine the impulse response functions to evaluate whether the SVAR model can char-
+acterize the cyclical properties of the US housing market. Our purpose is to check whether the
+responses of the house price are plausible reactions to the different types of shocks, and most
+importantly, whether monetary policy shocks have a signiﬁcant impact on house prices. Whether
+these responses persist is also of interest. We select the lag length of the VAR model using the
+Akaike information criterion, although the Bayesian information criterion provides comparable
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1695
+Figure 14. Gilchrist and Zakrajsek (2012)’s excess bond premium.
+Figure 15. Bork et al. (2020)’s housing sentiment index.
+Figure 16. New privately-owned housing units authorized in permit-issuing places: total units.
+results. We also use the structural forecast error variance decomposition to see if the monetary
+policy shock accounts for a considerable portion of the variation in house prices.
+5.1. Impulse responses
+Figure 2 plots the impulse responses, including a 95% bootstrap conﬁdence interval, to an expan-
+sionary monetary policy shock, i.e., a 25-basis point easing in the federal funds rate. Clearly, loose
+monetary policy causes a signiﬁcant short-run credit boom (an easing of credit conditions), and
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1696
+S.-S. Chen et al.
+Figure 17. Wu and Xia (2016) shadow rates and federal funds rates.
+Figure 18. US new one family houses (sold and for sale).
+boosts housing market optimism among buyers. Housing loans will increase due to higher hous-
+ing demand. Moreover, an expansionary monetary policy lowers the cost of housing ﬁnance,
+which causes the housing inventory–sales ratio (the time-on-the-market) to decrease. Finally, a
+loose monetary policy unambiguously raises real house prices, with a 25-basis point rate cut caus-
+ing a 0.1% appreciation of real house prices after 6 months and a 0.4% increase after 2 years. The
+effects of monetary policy on house prices are highly persistent.
+According to Figure 3, the effect of a credit tightening shock causes a short-run signiﬁcant
+decline in market sentiment, whereas the time-on-the-market increases due to the restricted
+availability of housing ﬁnance. Furthermore, short-term tightness in credit conditions makes the
+Fed more likely to accommodate this by cutting interest rates. The impacts on house prices are,
+however, not statistically signiﬁcant.
+Figure 4 also appears to show that increasing consumer optimism toward the housing market
+lowers the time-on-the-market, which drives up real estate loans and house prices, although this
+effect is statistically insigniﬁcant. Similarly, Figure 5 reveals that housing demand shocks cause
+house prices to rise and the time-on-the-market to decrease. Finally, as shown in Figure 6, a hous-
+ing supply shock raises the time-on-the-market, and thus leads to a house price decrease. This
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1697
+Figure 19. Robustness 1, impulse response to monetary policy shocks.
+depreciation in house prices reduces the potential returns on real estate investment, making hous-
+ing less attractive as an asset class. As a result, investors may be less willing to take out loans for
+investment purposes. Moreover, a longer time-on-the-market could invoke the perception of a
+stagnant market. This may lead to concern among potential buyers that it will be difﬁcult to either
+resell the property in the future or rent it out, and this serves to reduce housing demand and thus
+discourages housing loans.
+In sum, the results of the impulse response functions for the various shocks are in line with eco-
+nomic intuition, which suggests that our SVAR model speciﬁcation and identiﬁcation assumption
+are highly plausible. Finally, we obtain compelling evidence that a lower interest rate helps fuel
+house price booms, which is consistent with international evidence in recent work by Nocera and
+Roma (2018) and Robstad (2018).
+5.2. Variance decomposition
+Given that the impulse response analysis provides information about how monetary policy affects
+house prices, we further examine the extent to which monetary policy shocks account for any vari-
+ability in real house prices. Table 2 reports the contribution (in percent) of the various structural
+shocks to the forecast error variance of house prices over horizons of 1, 2, 4, 8, 12, 20, 32, and 40
+quarters.
+To start, we can see that in the short run (e.g., over the two-quarter or 6-month horizon),
+monetary policy shocks account for only 0.66% of the variation in real house prices on average.
+However, the explanatory power rises to 29.87% over the long run (e.g., 40-quarter or 10-year
+horizon). The reason the monetary policy shock gains more explanatory power over the long
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1698
+S.-S. Chen et al.
+Figure 20. Robustness 2, impulse response to monetary policy shocks.
+run may come from the persistence and propagation of the monetary policy shocks. Other than
+monetary policy shocks and house-own-price shocks, the housing supply shock accounts for about
+35.09% of the variations in house prices over the long run. Credit and housing demand shocks
+also provide some explanatory power, whereas sentiment shocks explain extraordinarily minor
+variations in house prices, even over the long run. That is, housing sentiment plays only a minor
+role in explaining house price movements.
+5.3. Monetary policy and the 2002–2006 US housing boom
+It is claimed in Bernanke (2010) that the direct linkages between monetary policy and housing
+bubbles are weak, whereas Taylor (2015) argues that the low-interest rate policy of 2003–2005
+brought on a search for yield and was then a key factor in the subsequent ﬁnancial crisis and
+the Great Recession. Here, we further address the question of whether loosening monetary policy
+causes house price booms during our sample period using historical decomposition. We construct
+the base projection of house prices, which is obtained from the VAR model without any stochastic
+shocks. We then perform a historical decomposition to dynamically simulate the model by turn-
+ing on only one realized historical structural shock, with the other shocks set to zero. Hence, we
+can determine the importance of any one structural shock by examining the extent to which the
+introduction of the particular shock in house prices closes the gap between the base projection and
+the actual series. Figure 7 plots the cumulative contribution of different shocks to house prices.
+It is evident that we can historically explain a substantial portion of the movements in house
+prices using monetary policy shocks. By contrast, sentiment shocks have made comparatively
+small contributions to house prices.
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1699
+Figure 21. Robustness 3, impulse response to monetary policy shocks.
+It is of special interest to focus on the speciﬁc period between when the housing boom began
+in early 2002 and reached its record high in mid-2006.3 Hence, we further examine whether
+we can attribute the house price hike during the period 2002–2006 to monetary policy shocks.
+Let ˆyj
+6t denote the counterfactual house price series with only the realized historical shocks
+j ∈{MP, Credit, Sent, Demand, Supply, HP}, and base6t denote the base projection without any
+stochastic shocks. As discussed, we can measure the importance of structural shock j by examin-
+ing the extent to which the introduction of shock j in house prices (i.e., ˆyj
+6t −base6t) closes the
+gap between the base projection and the actual series (i.e., y6t −base6t). We thus follow the spirit
+of Kilian and Lee (2014), and use the following measure to present the information conveyed by
+historical decomposition:
+HDj
+6,T1,T2 = 100 × (ˆyj
+6T2 −baseT2) −(ˆyj
+6T1 −baseT1)
+(y6T2 −base6T2) −(y6T1 −base6T1)
+for T1 < T2. That is, the portion of the cumulative change in y6t −base6t between dates T1 and T2
+explained by structural shock j.
+A high value of HDj
+6,T1,T2 indicates that the gap between the base projection and the actual
+series can be largely explained by structural shock j during the period between T1 and T2.
+Alternatively, a negative value of HDj
+6,T1,T2 indicates that the impact of structural shock j has been
+offset by the remaining shocks. We provide a bar chart to show HDj
+6,T1,T2 for different shocks
+during 2002:M1–2006:M5 in Figure 8. Using this, we can see that between 2002:M1 and 2006:M5,
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1700
+S.-S. Chen et al.
+Figure 22. Robustness 4, impulse response to monetary policy shocks.
+monetary policy shocks account for 69% of house price variations, which is the highest percent-
+age among all the structural shocks. Hence, the results from the historical decomposition provide
+some indirect evidence to support the claim that the “too-low-for-too-long” interest rates starting
+in the early 2000s may have caused the subsequent US housing market booms.
+5.4. Discussion
+In this paper, we augmented an SVAR model of the US housing market with monetary pol-
+icy, credit conditions, and housing market sentiment. We have shown that after controlling for
+other drivers of house prices, a looser monetary policy shock signiﬁcantly increases house prices.
+This ﬁnding is generally consistent with existing evidence in Iacoviello (2005) and Del Negro
+and Otrok (2007), using different data frequencies, VAR model speciﬁcations, and identiﬁcation
+assumptions.4
+The results of the variance decomposition also show that in the long run, a substantial portion
+of house price movement can be explained by monetary policy (around 30% over a 40-month
+horizon), which contrast with the results in Del Negro and Otrok (2007) that monetary shocks
+explain about 8% of house price movement over a horizon of 10 quarters (or 30 months). This
+difference in results may be because their sample period is from 1986:Q1 to 2005:Q4, i.e., the great
+moderation, whereas we examine the period including high and volatile interest rate movements
+during 1978–1985, as well as the sharp decline and recovery in house prices during 2006–2019.
+In fact, we can obtain results similar to theirs when restricting the sample period to 1986:M1–
+2005:M12 as in Del Negro and Otrok (2007).5
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1701
+Figure 23. Robustness 5, impulse response to monetary policy shocks.
+According to our historical decomposition, monetary policy shocks account for the price
+rises observed in the US housing market from January 2002 to May 2006, which is when they
+reached a record high. By comparison, credit shocks offer a secondary substantial impact, which
+is consistent with the ﬁndings in Justiniano et al. (2019).
+However, we ﬁnd housing market sentiment shocks have neither a signiﬁcant impact on house
+prices, nor do they play an essential role in explaining house price movements. These results are
+in line with Andre et al. (2021), who provide evidence that while housing price changes exert a
+signiﬁcant impact on housing sentiment, shocks to housing sentiment that are entirely external
+may have only a minimal impact on housing prices.
+5.5. External instrument identiﬁcation
+In our baseline results, we employ the federal funds rate as a measure of monetary policy, which
+is also inﬂuenced by forces other than monetary policy. To account for bias when estimating the
+effects of monetary policy using federal funds rates, the literature suggests the use of the narrative
+approach in Romer and Romer (2004) to construct an external series as a more exogenous measure
+of monetary policy shocks. As argued by Montiel Olea et al. (2021), while such an external series
+would not represent a genuine monetary policy shock, it can be treated as a variable plausibly
+correlated with monetary policy shocks, and uncorrelated with other structural shocks. Hence,
+in the spirit of Stock and Watson (2012) and many other recent works in the literature [see, e.g.,
+Mertens and Ravn (2013); Gertler and Karadi (2015); Mertens and Montiel Olea (2018)], this
+section aims to strengthen the argument for the impact of monetary policy shocks on house prices
+by incorporating identiﬁcation with an external instrument, i.e., Romer and Romer’s series.
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1702
+S.-S. Chen et al.
+Table 3. Variance decomposition: percentage contribution of monetary policy shocks for different robustness
+speciﬁcations
+(1)
+(2)
+(3)
+(4)
+(5)
+Horizon
+Robustness 1
+Robustness 2
+Robustness 3
+Robustness 4
+Robustness 5
+h = 1
+0.18
+0.61
+0.48
+0.00
+0.41
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+2
+0.35
+1.32
+0.58
+0.08
+0.64
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+4
+1.92
+3.83
+1.78
+1.17
+2.32
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+8
+7.29
+7.78
+3.89
+3.80
+5.97
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+12
+12.26
+11.89
+8.38
+7.93
+12.02
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+20
+19.42
+21.67
+21.10
+15.72
+22.80
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+32
+24.58
+27.77
+34.45
+22.01
+30.35
+.. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ..
+40
+25.99
+28.29
+37.53
+22.77
+30.58
+Note: Robustness 1 represents the model using Gilchrist and Zakrajsek (2012)’s excess bond premium as a measure of credit condi-
+tion. Robustness 2 represents the model with the Bork et al. (2020)’s housing sentiment index. Robustness 3 represents the model
+using housing permits as a measure of housing demand. Robustness 4 represents the model using the Wu and Xia (2016) shadow
+rates as a measure of monetary policy. Robustness 5 represents the model using the ratio of the new one-family houses sold to
+new one-family homes for sale to measure the time-on-the-market.
+We employ the updated Romer and Romer (2004)’s series constructed by Miranda-Agrippino
+and Rey (2020) and Miranda-Agrippino and Ricco (2021).6 The identifying assumption underly-
+ing this approach is twofold: (1) the federal funds rate is correlated with the narrative instrument,
+and (2) the series of instrument is exogenous to other shocks in the system. These assumptions
+align with the methodological framework presented by Romer and Romer (2004). While the sec-
+ond assumption is not testable, we follow Montiel Olea et al. (2021) to address concerns regarding
+the instrument’s strength. The calculated Wald statistic for this analysis is 8.93, exceeding the crit-
+ical value of 3.84 at a 95% conﬁdence level, which supports the rejection of the null hypothesis of
+irrelevance.
+Figure 9 presents the impacts of the monetary policy shocks on each variable, along with the
+95% weak-instrument robust conﬁdence interval proposed by Montiel Olea et al. (2021). Notably,
+the impulse responses displayed in the ﬁgure exhibit no qualitative deviations from our baseline
+ﬁndings. That is, the responses to the instrumented monetary policy shocks closely resemble those
+observed in the benchmark analysis. In sum, this exercise reinforces our initial conclusion about
+the signiﬁcance of expansionary monetary policy causing a house price appreciation.
+5.6. Is the impact of monetary policy changing over time?
+Given the extensive time span covered by our data, encompassing several diverse economic
+episodes, successive presidents of the Federal Reserve, and potentially varying monetary policy
+regimes, it is pertinent to inquire whether the responses to housing prices differ under the same
+expansionary monetary policy shocks. That is, are monetary policy shocks asymmetric over time?
+To examine this question, we apply the methodology proposed by Primiceri (2005) and tuned in
+Del Negro and Primiceri (2015) to estimate a time-varying SVAR model.
+To ensure a stable system, we standardize each variable before conducting the simulations.
+For calibration purposes, we use the ﬁrst 5 years of the sample to establish the prior distribution,
+following closely the setup in Primiceri (2005). Additionally, we employ a lag length of one in our
+analysis to reduce the burden of parameter estimation.
+The corresponding results are presented in Figure 10(a), illustrating the impulse responses
+to a one-standard-deviation decrease in the federal funds rate in January 1987, 1997, 2007, and
+2017. Figure 10(b)–(d) represents the pairwise differences between the impulse responses for
+different dates with a 90% conﬁdence interval, treating 1987:1 as the comparison group. It is
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1703
+Figure 24. Robustness: historical decomposition. Robustness 1 represents the model using Gilchrist and Zakrajsek (2012)’s
+excess bond premium as a measure of credit condition. Robustness 2 represents the model with the Bork et al. (2020)’s
+housing sentiment index. Robustness 3 represents the model using housing permits as a measure of housing demand.
+Robustness 4 represents the model using the Wu and Xia (2016) shadow rates as a measure of monetary policy. Robustness
+5 represents the model using the ratio of the new one-family houses sold to new one-family homes for sale to measure the
+time-on-the-market.
+worth noting that although the timing selection is arbitrary, the chosen time periods coincide
+with the chairmanship tenures of Paul Volcker, Alan Greenspan, Ben Bernanke, and Janet Yellen,
+respectively.
+Upon examining Figure 10(a), regardless of when the impulse responses are calculated, a loose
+monetary policy unanimously causes house prices to appreciate. That is, our main ﬁndings do not
+change across different time points. Moreover, according to Figure 10(b)–(d), it is apparent that
+the response paths exhibit signiﬁcant differences over the longer term in comparison to that in
+1987:1. House prices in the later decades display a greater level of responsiveness compared to the
+earliest periods. This highlights the evolving nature of the housing market and suggests that the
+impact of monetary policy shocks may vary over time.
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1704
+S.-S. Chen et al.
+Figure 25. Robustness: contribution of each structural shock to the cumulative change in the house prices during January
+2002 to May 2006. See notes to Figure 24 for more details about different robustness speciﬁcations.
+6. How important are the different channels for monetary transmission mechanism?
+Because we have shown that monetary policy has a nonnegligible inﬂuence on house prices, it is
+of interest to investigate further how important the different channels are through which low-
+interest rates cause the housing market to boom. To respond to this question, we follow the
+approach proposed by Kilian and Lewis (2011) to conduct a counterfactual analysis, which they
+use to investigate how the monetary policy channel ampliﬁes the effects of oil price shocks on real
+output.
+Using the credit channel as an example, to quantify this channel, we consider a counterfac-
+tual in which credit conditions react to ﬂuctuations in all variables in the SVAR model except
+the monetary policy shocks. To shut down the direct response of credit conditions to monetary
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1705
+Figure 26. Robustness 1: Unrestricted and counterfactual responses [Kilian and Lewis (2011)’s counterfactual].
+policy shocks, we construct a sequence of hypothetical shocks to credit conditions that offset the
+contemporaneous and lagged effects of the federal funds rate on credit conditions.
+We only shut down the response of credit conditions to monetary policy shocks, and allow
+credit conditions to respond to the other endogenous variables in the SVAR model, i.e., the
+response of credit conditions need not be zero. Hence, we can use the difference between the unre-
+stricted (actual) and counterfactual impulse responses to quantify the effects of monetary policy
+shocks on house prices through the credit condition. A large gap between these two responses
+suggests the credit channel plays an important role in the transmission of monetary policy. By
+contrast, if the actual and counterfactual responses are close to each other, we would conclude
+that credit conditions do not act as a channel for monetary policy. We can quantify alternative
+channels such as the market sentiment, housing demand, and time-on-the-market channels using
+an analogous procedure.
+Using the case of an expansionary monetary policy shock, Figure 11 illustrates the counterfac-
+tual results for the different channels. The solid line represents the unrestricted response of house
+prices to a loose monetary policy shock, whereas the dashed line represents the counterfactual
+responses. The difference between the two lines indicates the effects of the channels. According
+to Figure 11, the most important channel is the time-on-the-market channel, whereby faster sales
+and lower inventory levels in the housing market amplify the effects of an expansionary mon-
+etary policy shock. The credit channel also plays a role in the transmission of monetary policy
+shocks to house prices. However, in the absence of the sentiment and housing demand channels,
+the responses of house prices are precisely the same as they were. This implies that the sentiment
+and housing demand channels are not important in the transmission of monetary policy shocks.
+It is worth noting that we can construct an alternative counterfactual approach by hold-
+ing channel variables such as credit conditions, market sentiment, housing loans, and the
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1706
+S.-S. Chen et al.
+Figure 27. Robustness 2: Unrestricted and counterfactual responses [Kilian and Lewis (2011)’s counterfactual].
+inventory–sales ratio ﬁxed in response to monetary policy shocks [see, e.g., Bernanke et al. (1997)].
+This alternative approach is called the Bernanke–Gertler–Watson (BGW) counterfactual by Kilian
+and Lewis (2011).
+Figure 12 depicts the BGW counterfactuals with the unrestricted responses, and provides sim-
+ilar results to the Kilian and Lewis (2011) approach. The time-on-the-market remains the most
+crucial channel for monetary policy transmission.
+7. Do monetary policy shocks have asymmetric effects on house prices?
+In this section, we further investigate if the effects of monetary policy shocks on house prices are
+asymmetric. A strand of previous empirical studies tends to ﬁnd that monetary contractions have
+a signiﬁcantly greater effect on economic activity than an equally sized expansionary policy [see,
+e.g., DeLong and Summers (1988); Cover (1992); Rhee and Rich (1995); Karras (1996); Karras
+and Stokes (1999); Tenreyro and Thwaites (2016); Angrist et al. (2018)]. Following Tenreyro
+and Thwaites (2016), we use the local projection method proposed by Jorda (2005) to investi-
+gate further whether positive and negative shocks to policy rates have different impacts on house
+prices, yt:
+yt+h = αh + β+
+h × max[eMP
+t
+, 0] + β−
+h × min[eMP
+t
+, 0] + γ ′hxt + εt+h,
+(3)
+where max[eMP
+t
+, 0] and min[eMP
+t
+, 0] are contractionary and expansionary monetary shocks and xt
+is a vector of controls including one lag of the dependent variable and other structural shocks.
+Figure 13(a) and (b) plots the impulse responses of house prices for positive and negative
+policy rate shocks, respectively. As suggested by Jorda (2005), we construct a 95% conﬁdence
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1707
+Figure 28. Robustness 3: Unrestricted and counterfactual responses [Kilian and Lewis (2011)’s counterfactual].
+interval using the Newey–West heteroskedasticity and autocorrelation consistent (HAC) estima-
+tor. As expected, a positive (contractionary) shock causes house prices to decrease, whereas a
+negative (expansionary) shock causes house prices to increase. Both responses are statistically sig-
+niﬁcant. Moreover, the magnitudes of responses are much higher for interest rate hikes than cuts,
+which suggests that the effects of monetary policy shocks on house prices are indeed asymmet-
+ric. The Wald statistics and associated p-values for testing the null hypothesis H0 : |β+
+h | = |β−
+h |,
+h = 0, 1, . . . , H, are in Figure 13(c) and (d). Clearly, we can reject the null hypothesis over most
+horizons, which provides convincing evidence of asymmetry.
+8. Robustness
+In this section, we provide a battery of robustness checks to validate our results from the base-
+line model. We ﬁrst consider an alternative measure of credit conditions. Gilchrist and Zakrajsek
+(2012) propose the use of the excess bond premium (EBP) as a measure of credit supply shocks,
+arguing that the proposed measure can capture exogenous variation in the pricing of default risk
+and as such constitutes an appropriate proxy for credit supply. They show that the EBP is highly
+correlated with measures of supply derived from the senior loan ofﬁcers survey. In what follows,
+we replace the credit subindex of the Chicago Fed NFCI with the EBP in Gilchrist and Zakrajsek
+(2012). The EBP data are updated by Favara et al. (2016), and plotted in Figure 14.7 We refer to
+these results as Robustness 1.
+Second, a recent analysis by Bork et al. (2020) constructs a new measure of housing sentiment
+using household survey responses to questions about buying conditions for houses. Although the
+new measure is based on the same data source from the consumer surveys of the University of
+Michigan as in our baseline model, the authors reﬁned the survey data using partial least squares
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1708
+S.-S. Chen et al.
+Figure 29. Robustness 4: Unrestricted and counterfactual responses [Kilian and Lewis (2011)’s counterfactual].
+Figure 30. Robustness 5: Unrestricted and counterfactual responses [Kilian and Lewis (2011)’s counterfactual].
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1709
+Figure 31. Robustness 1: Response of house prices and test results of asymmetry.
+Figure 32. Robustness 2: Response of house prices and test results of asymmetry.
+to construct a housing sentiment index, which is argued to extract the most valuable informa-
+tion from the survey responses into an easy-to-interpret index of housing sentiment. Bork et al.
+(2020)’s housing sentiment index is available at a quarterly frequency,8 and we thus convert the
+quarterly data into monthly data by the local quadric polynomial where the average of the monthly
+data matches the quarterly data. We plot Bork et al. (2020)’s housing sentiment index in Figure 15
+and refer to the results as Robustness 2.
+Third, an alternative measure of housing demand is used. Although future housing supply
+relates to the granting of building permits, it may also reﬂect a shift in current housing demand.
+We thus replace the housing loan data with building permits to identify housing demand shocks.
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1710
+S.-S. Chen et al.
+Figure 33. Robustness 3: Response of house prices and test results of asymmetry.
+Figure 34. Robustness 4: Response of house prices and test results of asymmetry.
+The building permit data are the new privately owned housing units authorized in permit-issuing
+places (total units), which are available from the FRED. We plot the data for building permits in
+Figure 16, with the results denoted as Robustness 3.
+Fourth, we account for the period of zero lower bound (ZLB) interest rates. In this analysis,
+we use the federal funds rate to reﬂect monetary policy. However, during the ZLB period, it is
+possible that the federal funds rate is unable to capture the features of monetary policy because
+it is almost always only slightly higher than zero. To address this concern, we replace the federal
+funds rate with the Wu–Xia shadow rate from 1990:M1 to 2019:M9 following Wu and Xia (2016).
+The Wu–Xia rate is estimated based on the idea of the shadow rate proposed by Black (1995) and
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1711
+Figure 35. Robustness 5: Response of house prices and test results of asymmetry.
+provides an alternative indicator of the Federal Reserve’s policy stance when the federal funds rate
+approaches the ZLB. As a reference, the rates are posted and updated by the Federal Reserve Bank
+of Atlanta on a regular basis. Figure 17 plots the differences between the federal funds rate and the
+Wu–Xia shadow rate. We title this exercise Robustness 4.
+Finally, we consider an alternative measure of the time-on-the-market by calculating the ratio
+of new one-family houses sold to new one-family homes for sale. Both data are obtained from
+the FRED and plotted in Figure 18. Empirical results using the new measure of the time-on-the-
+market are denoted as Robustness 5.
+The impulse response functions in response to an expansionary monetary policy are presented
+in Figures 19–23 for Robustness 1–5. Clearly, our baseline results remain: a loose monetary policy
+causes real house prices to signiﬁcantly increase.
+Moreover, the variance decomposition shown in Table 3 reveals that monetary policy shocks
+continue to explain about 23%–38% of the movements in real house prices. Figure 24 illustrates
+the historical decomposition results for our different robustness checks, which again align with
+our baseline results. In particular, Figure 25 also provides evidence that monetary policy shocks
+are responsible for the 2002–2006 US housing booms.
+As for the transmission channels of monetary policy, Figures 26–30 suggest that while the
+credit supply channel may again have played some role consistent with the baseline ﬁndings,
+the time-on-the-market is unambiguously the most important channel amplifying the effects of
+monetary policy on house prices. Finally, Figures 31–35 suggest that our baseline evidence for the
+asymmetric effects of monetary policy shocks on house prices remains robust.
+9. Conclusion
+In this paper, we identiﬁed several empirical facts concerning monetary policy and the US housing
+market. Our baseline ﬁndings are as follows. First, we have shown that an expansionary monetary
+policy leads to real house price appreciations and that this effect is highly persistent. Moreover,
+monetary policy shocks can account for a substantial portion of house price ﬂuctuations over
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1712
+S.-S. Chen et al.
+the long run. In particular, using historical decomposition, we have shown that monetary policy
+shocks are an important reason for the housing boom in the US during the period 2002–2006.
+As for the different channels of monetary policy transmission, we found that the time-on-
+the-market is the most important channel amplifying the effects of monetary policy. Finally, we
+presented robust evidence of the asymmetric effect of monetary policy shocks, i.e., contractionary
+monetary policy exerts a larger impact on house prices than an equivalent expansionary monetary
+policy.
+Notes
+1 Nonetheless, a recent study by Dong et al. (2022) uses a dynamic New Keynesian model to demonstrate that an increase
+in housing prices has a dual impact on ﬁrms. On one hand, it stimulates real investment by easing collateral constraints. On
+the other hand, it can dampen their capital demand due to the crowding-out effect. If the latter effect outweighs the former, a
+housing boom could hinder the real economy. Under certain circumstances, it is proposed that a capital subsidization policy
+might yield more favorable outcomes than alternative macroeconomic policy tools, including macroprudential policies.
+2 See http://www.econ.yale.edu/~shiller/data.htm.
+3 Dokko et al. (2011) argue that “the pace of house price appreciation increased notably after 2002, and much of the
+overvaluation in house prices appears to have occurred after 2002 too.”
+4 Both Iacoviello (2005) and Del Negro and Otrok (2007) examine quarterly data.
+5 Monetary policy shocks account for only 10.12% of house price movements over a horizon of 30 months when restricting
+the sample period to 1986:M1–2005:M12.
+6 The updated series is available up to December 2007 and is accessible via http://silviamirandaagrippino.com/code-data.
+7 The updated EBP data are available from https://www.federalreserve.gov/econresdata/notes/feds-notes/2016/ﬁles/ebp_
+csv.csv.
+8 The quarterly series can be obtained from Lasse Bork’s website: http://www.lassebork.dk/.
+References
+Agnello, L., V. Castro and R. M. Sousa (2018) Economic activity, credit market conditions, and the housing market.
+Macroeconomic Dynamics 22(7), 1769–1789.
+Andre, C., D. Gabauer and R. Gupta (2021) Time-varying spillovers between housing sentiment and housing market in the
+United States. Finance Research Letters 42, 101925.
+Andre, C., R. Gupta and P. T. Kanda (2012) Do house prices impact consumption and interest rates? Evidence from OECD
+countries using an agnostic identiﬁcation procedure. Applied Economics Quarterly 58(1), 19–70.
+Angrist, J. D., Ò. Jordà and G. M. Kuersteiner (2018) Semiparametric estimates of monetary policy effects: String theory
+revisited. Journal of Business & Economic Statistics 36(3), 371–387.
+Bekiros, S., R. Nilavongse and G. S. Uddin (2020) Expectation-driven house prices and debt defaults: The effectiveness of
+monetary and macroprudential policies. Journal of Financial Stability 49, 100760.
+Ben-David, I., P. Towbin and S. Weber (2019) Inferring Expectations from Observables: Evidence from the Housing Market.
+Fisher College of Business Working Paper No. 2019-03-008.
+Beneﬁeld, J. and W. Hardin (2015) Does time-on-market measurement matter? The Journal of Real Estate Finance and
+Economics 50(1), 52–73.
+Bernanke, B. (2010) Monetary Policy and the Housing Bubble. Keynote Speech, American Economic Association Annual
+Meeting.
+Bernanke, B. S. and A. S. Blinder (1992) The federal funds rate and the channels of monetary transmission. American
+Economic Review 82(4), 901–921.
+Bernanke, B. S., M. Gertler and M. Watson (1997) Systematic monetary policy and the effects of oil price shocks. Brookings
+Papers on Economic Activity 28(1), 91–157.
+Bernanke, B. S. and I. Mihov (1998) Measuring monetary policy. Quarterly Journal of Economics 113(3), 869–902.
+Bernstein, J. (2021) A model of state-dependent monetary policy. Journal of Monetary Economics 117, 904–917.
+Black, F. (1995) Interest rates as options. The Journal of Finance 50(5), 1371–1376.
+Bluwstein, K., M. Brzoza-Brzezina, P. Gelain and M. Kolasa (2020) Multiperiod loans, occasionally binding constraints, and
+monetary policy: A quantitative evaluation. Journal of Money, Credit and Banking 52(7), 1691–1718.
+Bordo, M. D. and J. Landon-Lane (2014) What explains house price booms? History and empirical evidence. In:
+Macroeconomic Analysis and International Finance, Chapter 1, pp. 1–36.
+Bork, L., S. V. Møller and T. Q. Pedersen (2020) A new index of housing sentiment. Management Science 66(4), 1563–1583.
+Case, K. and R. Shiller (2003) Is there a bubble in the housing market? Brookings Papers on Economic Activity 34(2), 299–362.
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+Macroeconomic Dynamics
+1713
+Case, K. E., R. J. Shiller and A. K. Thompson (2012) What have they been thinking? Homebuyer behavior in hot and cold
+markets. Brookings Papers on Economic Activity 43(2 (Fall)), 265–315.
+Cooper, D. H., M. J. Luengo-Prado and G. P. Olivei (2016) Monetary Policy and Regional House-Price Appreciation. Working
+Papers 16-18, Federal Reserve Bank of Boston.
+Cover, J. P. (1992) Asymmetric effects of positive and negative money-supply shocks. The Quarterly Journal of Economics
+107(4), 1261–1282.
+Cox, J. and S. C. Ludvigson (2019) Drivers of the great housing boom-bust: Credit conditions, beliefs, or both? Real Estate
+Economics 49(3), 843–875.
+Del Negro, M. and C. Otrok (2007) 99 Luftballons: Monetary policy and the house price boom across U.S. states. Journal of
+Monetary Economics 54(7), 1962–1985.
+Del Negro, M. and G. E. Primiceri (2015) Time varying structural vector autoregressions and monetary policy: A corrigen-
+dum. The Review of Economic Studies 82(4), 1342–1345.
+DeLong, J. B. and L. H. Summers (1988) How does macroeconomic policy affect output? Brookings Papers on Economic
+Activity 19(2), 433–494.
+Dokko, J., B. M. Doyle, M. T. Kiley, J. Kim, S. Sherlund, J. Sim and S. Van Den Heuvel (2011) Monetary policy and the global
+housing bubble. Economic Policy 26(66), 237–287.
+Dong, F., Y. Guo, Y. Peng and Z. Xu (2022) Economic slowdown and housing dynamics in China: A tale of two investments
+by ﬁrms. Journal of Money, Credit and Banking 54(6), 1839–1874.
+Dube, J. and D. Legros (2016) A spatiotemporal solution for the simultaneous sale price and time-on-the-market problem.
+Real Estate Economics 44(4), 846–877.
+Favara, G. and J. Imbs (2015) Credit supply and the price of housing. American Economic Review 105(3), 958–992.
+Favara, S. G., K. F. Lewis and E. Zakrajsek (2016) Updating the Recession Risk and the Excess Bond Premium. FEDS Notes
+2016-10-06, Board of Governors of the Federal Reserve System (U.S.).
+Gertler, M. and P. Karadi (2015) Monetary policy surprises, credit costs, and economic activity. American Economic Journal:
+Macroeconomics 7(1), 44–76.
+Gilchrist, S. and E. Zakrajsek (2012) Credit spreads and business cycle ﬂuctuations. American Economic Review 102(4),
+1692–1720.
+Goodhart, C. and B. Hofmann (2008) House prices, money, credit, and the macroeconomy. Oxford Review of Economic Policy
+24(1), 180–205.
+Head, A. and H. Lloyd-Ellis (2016) Has Canadian house price growth been excessive? Canadian Journal of Economics 49(4),
+1367–1400.
+Iacoviello, M. (2005) House prices, borrowing constraints, and monetary policy in the business cycle. American Economic
+Review 95(3), 739–764.
+Iacoviello, M. (2015) Financial business cycles. Review of Economic Dynamics 18(1), 140–163. Money, Credit, and Financial
+Frictions.
+Iacoviello, M. and R. Minetti (2003) Financial liberalization and the sensitivity of house prices to monetary policy: Theory
+and evidence. Manchester School 71(1), 20–34.
+Iacoviello, M. and R. Minetti (2008) The credit channel of monetary policy: Evidence from the housing market. Journal of
+Macroeconomics 30(1), 69–96.
+Jarocinski, M. and F. Smets (2008) House prices and the stance of monetary policy. Review 90, 339–366.
+Jorda, O. (2005) Estimation and inference of impulse responses by local projections. American Economic Review 95(1),
+161–182.
+Jordà, Ò., M. Schularick and A. M. Taylor (2015) Betting the house. Journal of International Economics 96(S1), S2–S18.
+Justiniano, A., G. E. Primiceri and A. Tambalotti (2019) Credit supply and the housing boom. Journal of Political Economy
+127(3), 1317–1350.
+Kaplan, G., K. Mitman and G. L. Violante (2020) The housing boom and bust: Model meets evidence. Journal of Political
+Economy 128(9), 3285–3345.
+Karras, G. (1996) Why are the effects of money-supply shocks asymmetric? Convex aggregate supply or “pushing on a string”?
+Journal of Macroeconomics 18(4), 605–619.
+Karras, G. and H. H. Stokes (1999) Why are the effects of money-supply shocks asymmetric? Evidence from prices,
+consumption, and investment. Journal of Macroeconomics 21(4), 713–727.
+Kilian, L. and T. K. Lee (2014) Quantifying the speculative component in the real price of oil: The role of global oil inventories.
+Journal of International Money and Finance 42(C), 71–87.
+Kilian, L. and L. T. Lewis (2011) Does the fed respond to oil price shocks?∗. The Economic Journal 121(555), 1047–1072.
+Kishor, N. K. and H. A. Marfatia (2018) Forecasting house prices in OECD economies. Journal of Forecasting 37(2), 170–190.
+Kuttner, K. N. (2013) Low Interest Rates and Housing Bubbles: Still No Smoking Gun. In: The Role of Central Banks in
+Financial Stability, pp. 159–185.
+Lambertini, L., C. Mendicino and M. T. Punzi (2013) Expectation-driven cycles in the housing market: Evidence from survey
+data. Journal of Financial Stability 9(4), 518–529.
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press
+1714
+S.-S. Chen et al.
+Lin, T.-Y. (2021) Asymmetric effects of monetary policy. The B.E. Journal of Macroeconomics 21(2), 425–447.
+Luciani, M. (2015) Monetary policy and the housing market: A structural factor analysis. Journal of Applied Econometrics
+30(2), 199–218.
+McDonald, J. and H. Stokes (2013) Monetary policy and the housing bubble. The Journal of Real Estate Finance and Economics
+46(3), 437–451.
+McDonald, J. and H. Stokes (2015) Monetary policy, ﬁscal policy, and the housing bubble. Modern Economy 06, 165–178.
+Mertens, K. and J. L. Montiel Olea (2018) Marginal tax rates and income: New time series evidence. The Quarterly Journal of
+Economics 133(4), 1803–1884.
+Mertens, K. and M. O. Ravn (2013) The dynamic effects of personal and corporate income tax changes in the United States.
+American Economic Review 103(4), 1212–1247.
+Mian, A. and A. Suﬁ(2018) Finance and business cycles: The credit-driven household demand channel. Journal of Economic
+Perspectives 32(3), 31–58.
+Mian, A. and A. Suﬁ(2021) Credit supply and housing speculation. The Review of Financial Studies 35(2), 680–719.
+Miranda-Agrippino, S. and H. Rey (2020) US monetary policy and the global ﬁnancial cycle. The Review of Economic Studies
+87(6), 2754–2776.
+Miranda-Agrippino, S. and G. Ricco (2021) The transmission of monetary policy shocks. American Economic Journal:
+Macroeconomics 13(3), 74–107.
+Montiel Olea, J. L., J. H. Stock and M. W. Watson (2021) Inference in structural vector autoregressions identiﬁed with an
+external instrument. Journal of Econometrics 225(1), 74–87.
+Musso, A., S. Neri and L. Stracca (2011) Housing, consumption and monetary policy: How different are the US and the euro
+area? Journal of Banking and Finance 35(11), 3019–3041.
+Nocera, A. and M. Roma (2018) House Prices and Monetary Policy in the Euro Area: Evidence from Structural VARs. USC-
+INET Research Paper No. 18-13.
+Piazzesi, M. and M. Schneider (2009) Momentum traders in the housing market: Survey evidence and a search model.
+American Economic Review 99(2), 406–411.
+Primiceri, G. E. (2005) Time varying structural vector autoregressions and monetary policy. The Review of Economic Studies
+72(3), 821–852.
+Rhee, W. and R. W. Rich (1995) Inﬂation and the asymmetric effects of money on output ﬂuctuations. Journal of
+Macroeconomics 17(4), 683–702.
+Robstad, O. (2018) House prices, credit and the effect of monetary policy in Norway: Evidence from structural VAR models.
+Empirical Economics 54(2), 461–483.
+Rojas, A. (2021) Mortgage credit growth for lower-income borrowers during the, 2000s, housing boom: Evidence and
+implications. Journal of Empirical Finance 62, 220–233.
+Romer, C. D. and D. H. Romer (2004) A new measure of monetary shocks: Derivation and implications. American Economic
+Review 94(4), 1055–1084.
+Schularick, M. and A. M. Taylor (2012) Credit booms gone bust: Monetary policy, leverage cycles, and ﬁnancial crises, 1870-
+2008. American Economic Review 102(2), 1029–1061.
+Segev, N. and M. Schaffer (2020) Monetary policy, bank competition and regional credit cycles: Evidence from a quasi-natural
+experiment. Journal of Corporate Finance 64, 101494.
+Sirmans, G. S., L. MacDonald and D. A. Macpherson (2010) A meta-analysis of selling price and time-on-the-market. Journal
+of Housing Research 19(2), 139–152.
+Soo, C. K. (2018) Quantifying sentiment with news media across local housing markets. The Review of Financial Studies
+31(10), 3689–3719.
+Stock, J. H. and M. W. Watson (2012) Disentangling the Channels of the 2007-2009 Recession. Technical Report, National
+Bureau of Economic Research.
+Sá, F., P. Towbin and T. Wieladek (2011) Low Interest Rates and Housing Booms: The Role of Capital Inﬂows, Monetary
+Policy and Financial Innovation. Globalization and Monetary Policy Institute Working Paper 79, Federal Reserve Bank of
+Dallas.
+Taylor, J. (2015) A Monetary Policy for the Future. In: Opening Remarks, IMF Conference on “Rethinking Macro Policy III,
+Progress or Confusion?”.
+Tenreyro, S. and G. Thwaites (2016) Pushing on a string: US monetary policy is less powerful in recessions. American
+Economic Journal: Macroeconomics 8(4), 43–74.
+Wu, J. C. and F. D. Xia (2016) Measuring the macroeconomic impact of monetary policy at the zero lower bound. Journal of
+Money, Credit and Banking 48(2-3), 253–291.
+Cite this article: Chen S-S, Lin T-Y and Wang J-K (2024). “Monetary policy and housing market cycles.” Macroeconomic
+Dynamics 28, 1682–1714. https://doi.org/10.1017/S1365100523000615
+https://doi.org/10.1017/S1365100523000615 Published online by Cambridge University Press

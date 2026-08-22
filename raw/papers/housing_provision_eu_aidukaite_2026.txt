@@ -1,0 +1,784 @@
+ARTICLE
+Housing provision: A comparative study of housing
+availability, accessibility, and adequacy in EU member
+states
+Rūta Ubarevičienė
+and Jolanta Aidukaitė
+Institute of Sociology, Lithuanian Centre for Social Sciences, Vilnius, Lithuania
+Corresponding author: Rūta Ubarevičienė; Email: ruta.ubareviciene@lcss.lt
+(Received 31 July 2024; revised 05 December 2025; accepted 18 December 2025)
+Abstract
+Housing issues are a growing global concern and a key topic on the European policy agenda. Across EU,
+challenges such as immigration, economic stagnation, inequality, and ageing populations exacerbate
+housing provision issues. This growing concern demands effective solutions, guided by research, data-
+driven insights, and comparative analysis. This study overviews and compares housing provision in the EU
+countries. Using OECD and Eurostat data from 2010 to 2021, we examine governments’ roles in housing
+provision and assess availability, affordability, and adequacy, while exploring their interrelationships.
+Through hierarchical cluster analysis and cartographic visualization, we identify clusters of countries with
+similar housing characteristics. The findings reveal significant variation, with some countries struggling with
+availability, others with affordability or adequacy. Our results highlight a clear divide in housing challenges
+between Eastern, Western, Southern, and Northern Europe, largely aligning with welfare state regimes.
+Keywords: housing provision; housing policy; social policy; welfare state; European Union
+Introduction
+Access to housing that is both affordable and adequate – offering safety, sufficient space, essential
+services, and manageable costs – is important for wellbeing, health, and financial and family stability
+(Rolfe et al., 2020). However, both buying and renting such housing have become increasingly out of
+reach for lower-income households and are now also hardly affordable for many middle-class families,
+with homelessness on the rise, even in economically advanced countries (Preece et al., 2020; Galster and
+Ok Lee, 2021; United Nations, 2021; Hilber and Schöni, 2022; Housing Europe, 2023; Nasrabadi et al.,
+2024). According to the Eurostat (2024), housing expenses often make up the largest share of household
+expenditure, accounting for nearly one-fifth of disposable income. During periods of housing crisis, this
+burden can force households to delay or reduce essential spending on food, healthcare, and education
+(Coupe, 2021; Galster and Ok Lee, 2021). Thus, housing issues not only impact individuals’ living
+conditions but also intersect with other domains safeguarded by welfare policies, such as healthcare,
+education, and unemployment support (United Nations Department of Economic and Social Affairs,
+2019). The recent report “The State of Housing in Europe” (Housing Europe, 2023) highlights rising
+costs of living, shortages in social and affordable housing, economic and energy crises, and limited public
+investment as the greatest drivers contributing to the housing crisis and increasing unaffordability across
+Europe. Additionally, the rising trend of financialization in the housing market – where properties are
+increasingly treated as investment assets rather than homes – further intensifies price pressures, reduces
+© The Author(s), 2026. Published by Cambridge University Press on behalf of Social Policy Association. This is an Open Access article, distributed
+under the terms of the Creative Commons Attribution licence (http://creativecommons.org/licenses/by/4.0), which permits unrestricted re-use,
+distribution and reproduction, provided the original article is properly cited.
+Journal of International and Comparative Social Policy (2026), 42: 1, 22–41
+doi:10.1017/ics.2025.10087
+housing availability for residents, and exacerbates market instability, particularly affecting low- and
+middle-income households (Aalbers, 2017; Çelik, 2024; Köppe and Byrne, 2024). Not surprisingly,
+affordable and adequate housing is an important issue on the EU’s Urban and Social Policy Agenda
+(European Commission, 2018; Housing Europe, 2023).
+Despite the EU’s expanding role in coordinating housing policies, housing markets across member
+states continue to face significant pressure. This raises the question: can EU-level policy coordination
+effectively address the complex and multifaceted challenges reshaping housing markets, including
+economic factors like rising housing costs, inflation, and recession, as well as demands for sustainable
+housing, demographic shifts (e.g., ageing and social segregation), and increasing regional inequalities?
+The complexity of these issues, combined with each country’s unique economic, social, and regulatory
+context, makes it challenging to objectively assess and compare housing policies and systems across
+countries. Nevertheless, a comprehensive understanding gained from general overviews and inter-
+national comparisons could provide valuable insights into the diverse housing pathways and common
+patterns in housing provision models across the EU, potentially guiding more effective and tailored
+solutions. In other words, comparing housing-related challenges across Europe not only reveal shared
+and divergent patterns, but may also inform the design of housing policies tailored to national needs yet
+informed by the international context.
+The aim of this study is to provide an overview and comparison of housing provision1 across EU
+member states. The study focuses on three key domains: availability, affordability, and adequacy, as well
+as the government efforts to improve housing provision. Using OECD and Eurostat data from 2010 to
+2021, we examine governments’ roles in housing provision and assess availability, affordability, and
+adequacy, while also exploring their interrelationships. Using hierarchical cluster analysis, we identify
+groups of countries with similar housing sector characteristics and visualize the results with cartographic
+techniques. This study provides a comparative overview of housing provision across the EU, highlighting
+the relative scale of these issues in each country. It also uncovers that welfare models – liberal, social-
+democratic, conservative-corporatist, Mediterranean/Southern European and post-socialist/hybrid/
+transition – are closely linked to the provision of housing.
+Literature review
+Comparative housing research in Europe
+As EU housing markets face complex challenges affecting millions of people, scholarly literature on the
+housing issues is expanding, with comparative European studies also increasing but still limited.2 For
+example, among these comparative studies, a handful focus on affordability (e.g., Frayne et al., 2022;
+Eurofund, 2023; Valderrama et al., 2023; Hick et al., 2024), where all emphasize the persistent challenges
+of housing affordability across Europe, particularly in large metropolitan regions (Reichle et al., 2023).
+Studies often relate housing affordability challenges to housing market financialization (e.g., Aalbers,
+2017; Hick and Stephens, 2023; Çelik, 2024; Köppe and Byrne, 2024), and they find that this process
+exacerbates affordability issues by prioritizing profit-driven investments, inflating property prices, and
+reducing access to affordable housing stock throughout the EU. Housing shortages, driven by factors like
+population growth, urbanization, urban planning, and housing market dynamics, remain a pressing
+issue in many European countries, impacting affordability, accessibility, and quality of life (Hallett and
+Hallett, 2021; OECD, 2021). This gap between supply and demand is contributing to rising property
+prices, worsened affordability, and heightened competition in both rental and homeownership markets,
+1Housing provision refers to ensuring access to safe, affordable, and suitable housing through various means, including
+public housing programs, private market development, and rental regulations.
+2Notably, many studies take a narrower focus, examining specific issues within individual countries or cities. While these
+localized analyses allow for detailed exploration, they often have limited coverage and overlook the broader context of housing-
+related challenges (see Erdogdu, 2011). It should be noted that the present literature review does not cover all such studies,
+focusing instead on broader comparative insights.
+Journal of International and Comparative Social Policy
+23
+particularly in major cities (European Parliament, 2025). In light of these challenges, large housing
+estates have attracted attention in both earlier research (e.g., Dekker and Van Kempen, 2004; Musterd
+and Ronald, 2007) and more recent studies (e.g., Hess et al., 2018; Hess and Tammaru, 2019). These
+studies examine evidence on the changing conditions of large housing estates, showing that many
+mid-20th-century estates in Europe – once seen as solutions to urban issues – have become disadvan-
+taged areas, particularly for low-income households and ethnic minorities. Although large housing
+estates offer affordable housing, they now face challenges such as physical decay, safety concerns, high
+unemployment, peripheral locations, and increasing stigmatization, undermining the goal of ensuring
+adequate housing provision. This issue is closely linked to increasing housing inequality, as shown by
+Nasrabadi et al. (2024), whose comprehensive literature review from around the world spanning four
+decades, highlights that interconnected factors – such as race, ethnicity, income, and education –
+strongly affect housing inequality. Income inequality is a primary driver of housing inequality, as
+financial resources play a crucial role in the housing market, offering greater choice in selecting a home
+and neighbourhood. As a result, higher income inequality leads to greater residential segregation
+between affluent and disadvantaged groups (Musterd and Ostendorf, 1998). Comparative research on
+residential segregation (e.g., Tammaru et al., 2016; Haandrikman et al., 2021) concludes that the
+widening spatial divide between the rich and poor in European capital cities poses a threat to social
+stability. These studies and many other researchers in the field agree that residential segregation is
+influenced by factors such as income inequality, welfare regimes, labour market structures, housing
+systems, migration patterns, and residential mobility.
+Although housing studies, as reviewed above, provide valuable knowledge from different perspectives
+and across geographical contexts, it is difficult to integrate this information into a comprehensive
+understanding of housing issues. For example, Erdogdu (2011) highlights that housing is a complex,
+difficult-to-theorize topic, interconnected with economic, social, demographic, and cultural contexts,
+requiring both macro and micro considerations along with diverse methodologies, including historical,
+descriptive, empirical, and qualitative analyses. Similarly, Nasrabadi et al. (2024) argue that existing
+literature tends to isolate issues like affordability and access, ignoring their broader socio-cultural and
+economic context. Furthermore, the debate in housing studies is enriched by research that critically
+examines key concepts and methodologies in the field. For example, Stephen Ezennia and Hoskara
+(2019) review the literature on housing affordability and its measurement, highlighting methodological
+weaknesses. Haffner and Hulse (2021) build on this by offering a fresh perspective on the concept of
+“housing affordability” and emphasizing the need for improved measurement approaches. Meanwhile,
+James et al. (2022) identify four key uses of “housing inequality” in the literature – an outcome, an
+experience, a product, and a construct, offering a framework to understand housing’s multifaceted roles,
+distribution, and societal impacts. Moreover, the book by Stephens and Norris (2014) tackles the
+challenges faced by comparative housing research, emphasizing the main barriers that hinder it from
+reaching the same methodological and theoretical depth as other areas of comparative social science.
+Finally, housing studies (e.g., Kucharska-Stasiak et al., 2021; Hilber and Schöni, 2022; Nasrabadi et al.,
+2024) criticize an attempt to adopt a one-size-fits-all approach, arguing that a uniform EU housing policy
+is neither feasible nor effective. Instead, policymakers should implement localized strategies tailored to
+groups of countries with similar conditions.
+This study contributes a comparative, data-driven analysis of housing provision across EU member
+states, highlighting patterns in availability, affordability, and adequacy, and providing insights to inform
+targeted housing policies. By integrating multiple domains of housing provision and using harmonized
+data from OECD and Eurostat (2010–2021), the study overcomes some of the challenges identified in
+previous research, such as the fragmentation of issues and the difficulty of cross-country comparisons.
+The use of hierarchical cluster analysis and cartographic visualization allows for systematic grouping of
+countries with similar housing characteristics, addressing the need for comprehensive, comparable, and
+interpretable analysis. Furthermore, by examining the interrelationships between availability, afford-
+ability, and adequacy, this study captures the broader socio-economic context of housing, moving
+beyond isolated measures such as price or shortage.
+24
+Rūta Ubarevičienė and Jolanta Aidukaitė
+European Union’s role in housing policy
+Across the EU, housing policy is primarily managed by national governments; however, growing
+challenges across various spheres, such as immigration, war-related instability, economic recession,
+inflation, regional inequalities, ageing populations, and increasing social segregation, are placing
+significant pressure on housing markets. In response to growing housing-related challenges, the EU
+has increasingly acknowledged the need for coordinated action, leveraging its influence through funding,
+regulatory frameworks, and policy coordination to support housing initiatives across member states.
+Housing policy has been increasingly incorporated into the EU’s policy agenda through various
+measures (see Kucharska-Stasiak et al., 2021). For example, the EU addresses housing through the
+European Pillar of Social Rights, promoting social housing, housing assistance, and services for the
+homeless (Housing Europe, 2023; European Commission, 2023). Housing rights are also addressed in
+the Charter of Fundamental Rights, emphasizing housing assistance as vital to reducing poverty and
+social exclusion (European Union, 2012). In 2021, the European Parliament called for an integrated
+housing strategy to improve housing availability and affordability across Member States (European
+Parliament, 2021). During her 2024 re-election campaign, European Commission President Ursula von
+der Leyen highlighted housing as a key priority for the next Commission (Eunews, 2024; Politico, 2024).
+Following her victory, she appointed the EU’s first-ever Commissioner for Housing to develop a
+comprehensive housing strategy (European Commission, 2024). These efforts reflect the EU’s increasing
+commitment to making housing one of the core pillars of its social agenda, recognizing the urgency of
+coordinated action to address disparities and affordability challenges across Member States.
+With global housing challenges intensifying due to housing affordability issues, sustainability
+demands, and demographic shifts, the EU’s unique collaborative framework serves as a unique platform
+for developing shared solutions. Yet, coordinated EU efforts appear to have little impact on reducing
+housing market tensions or disparities across Member States, likely due to the wide variation in housing
+systems, which reflect each country’s unique demographic, economic, and environmental conditions
+(Kucharska-Stasiak et al., 2021).
+Welfare models and housing provision
+Housing provision is closely intertwined with broader welfare systems, as social policies play a role in
+shaping the availability, affordability, and adequacy of housing (Flynn and Montalbano, 2024). Through
+the lens of welfare regime theory (Esping-Andersen, 1990), which classifies regimes into liberal,
+conservative-corporatist, and social-democratic types – later extended to include Southern European/
+Mediterranean model (Ferrera, 1996) to capture the distinctive features of Southern Europe, and the
+post-socialist/hybrid regime (Aidukaitė, 2004; Fenger, 2007), highlighting the specific trajectories of
+Central and Eastern European countries – these welfare models differ in how they balance state
+intervention, market forces, and family support, profoundly influencing national housing outcomes
+(van Kersbergen and Vis, 2013) and social inclusion (Brown and Brik, 2024).
+Different welfare regimes give rise to distinct housing regimes – shaping whether housing policy leans
+more toward social allocation, market liberalization, or hybrid forms. The value of regime typologies has
+been a frequent topic of discussion in housing research, a field where cross-country classifications have
+proven especially useful for comparative analysis. The study of Flynn and Montalbano (2024) system-
+atically reviews housing regime typologies, showing that while their explanatory power is debated, they
+remain relevant in comparative housing research when understood from a historically grounded
+perspective. Similarly, Blackwell and Kohl (2019) criticize static welfare-housing typologies as cross-
+sectional snapshots that ignore historical contingencies, arguing that links between welfare regimes,
+homeownership rates, and mortgage debt are often temporary and shaped by path-dependent factors
+like evolving housing finance systems. They advocate historicized typologies incorporating regional
+variations and pre-welfare trajectories (e.g., bond-based financing favouring rentals in eastern and
+northern Europe versus deposit-based models promoting ownership in Anglo-Saxon contexts) to better
+Journal of International and Comparative Social Policy
+25
+capture lasting patterns. This perspective encourages a more dynamic understanding of housing
+diversity in Europe.
+Furthermore, one of the major focuses of housing research is the ongoing debate over the relationship
+between housing provision and broader welfare systems (see Clapham, 2020). This discourse (Kemeny,
+2001, 2005; Hick and Stephens, 2023; Grander and Stephens, 2024) emphasizes the integration of
+housing into the welfare policy framework, alongside healthcare, education, and unemployment
+support. While the critical role of housing within this broader framework is widely acknowledged, its
+exact contribution remains unclear. Despite numerous forms of housing support, it is rarely regarded as a
+universal form of public provision (Kemeny, 2001). The key to the issue lies in the housing sector’s deep
+entanglement with market interests, which complicates its integration into welfare systems. Housing
+policy aims to mitigate these market forces, with Lund (2011) asserting it as the state’s efforts to modify
+housing markets. Thus, on one hand, housing is treated as a market commodity, subject to buying,
+selling, and investment. On the other hand, it is also recognized as a fundamental social right, ensuring
+shelter and security for individuals and families (Bengtsson, 2001).
+Regardless of welfare models or housing regimes, housing-related tensions are evident across all
+European countries, each struggling to balance market dynamics with social rights. This study does not
+aim to challenge housing regime typologies or establish clear links between welfare state models and
+housing provision. Instead, it examines housing challenges in each EU country, focusing on the interplay
+between availability, affordability, and adequacy.
+Methodological approach
+Figure 1 visually represents the conceptual framework of this study. The housing provision – understood
+as the process of supplying, allocating, and maintaining housing to ensure access to safe, affordable, and
+Housing Provision
+Availability
+Affordability
+Adequacy
+Housing policy
+Market conditions
+• overcrowding rate 
+• average age of 
+children leaving their 
+parents’ household • 
+net migration • 
+construction of new 
+housing 
+•  housing cost 
+burden • housing 
+cost overburden rate 
+• household 
+expenditure on 
+housing and utilities 
+• house price-to-
+income ratio 
+• environmental 
+conditions 
+surrounding 
+dwellings • 
+challenges inside the 
+dwellings 
+• government expenditure • social 
+housing stock • rental market regulation 
+Figure 1. Conceptual framework for the housing provision and selected indicators (authors’ elaboration).
+26
+Rūta Ubarevičienė and Jolanta Aidukaitė
+suitable homes – largely depends on the interplay between housing policy and market conditions, where
+housing policy plays an important role in regulating market forces and influencing household choices
+(Doherty, 2004; Clapham, 2006; Lund, 2011). Meantime, the state of the housing provision can be
+accessed by considering the key aspects of the housing domain: availability, affordability, and adequacy,
+where
+Availability shows whether there is enough or a lack of (a specific type of) housing. In the context of
+housing studies, it is often associated with the shortage of housing. The availability of housing is
+influenced by factors such as urbanization, immigration, and the construction of new housing.
+Affordability assesses whether households, especially low-income ones, can access housing at a
+reasonable cost. When a large portion of the population cannot afford market-priced housing and lacks
+alternatives like social housing, affordability becomes a critical issue.
+Adequacy refers to housing quality, meaning the physical and functional features that ensure security,
+stability, and dignity, such as sufficient space, proper lighting, temperature, structural safety, and access
+to clean water and sanitation. Adequacy also extends to access to essential services (e.g., healthcare,
+education, and infrastructure), which together support residents’ well-being (United Nations, 2009).3
+These three domains are interrelated, and all are essential for assessing housing provision. For
+example, housing may be available but unaffordable or affordable but inadequate. Such scenarios
+indicate gaps in effective housing provision.
+In this study, we assess housing provision in EU countries using various indicators, with data sourced
+from international housing databases (OECD and Eurostat). As no single indicator directly measures
+housing provision, we conducted a detailed overview of available data and then selected and grouped
+multiple indicators4 to capture the domains of availability, affordability, adequacy, and the government’s
+role in the housing sector (resulting from the interplay between housing policy and market conditions).
+We analyse country-level data from 2010 to 2021 using a consistent, comparative approach across the
+selected indicators. Hierarchical cluster analysis is applied to identify groups of countries with similar
+housing characteristics within the defined domains. For each domain, we deliberately construct three
+distinct clusters – a methodological decision guided by the need to balance granularity and interpret-
+ability. This number of clusters effectively captures core geographical and socio-economic divisions
+(Northern/Western, Southern, and Eastern Europe) and allows for avoiding the excessive fragmentation
+or overcomplication that could arise from higher cluster counts (e.g., four or more, which preliminary
+tests showed led to less coherent or interpretable groupings). The clusters are subsequently visualized
+using cartographic techniques, which provide a clear overview of how housing characteristics vary across
+Europe. Overall, this study presents a comparative analysis of EU countries, providing a relative
+assessment in which each indicator reflects variation among countries. By comparing the indicator
+values across countries, we aim to identify key differences and reveal general patterns in housing
+provision.
+This study faces some challenges that may impact the reliability of the research findings. First, the
+diversity of housing policies, forms of housing support, and varying definitions – such as social housing
+or affordable housing – complicates comparisons across EU countries. Second, data availability and
+quality differ across countries (Housing Europe, 2023), limiting comparative studies at lower spatial
+levels. As a result, this study uses national-level data, which presents challenges due to substantial
+regional differences, especially between urban and rural areas. Urban areas often experience housing
+shortages driven by population growth and economic migration, while rural areas face high vacancy rates
+and underinvestment. These areas differ significantly, and distinct policies are applied to address the
+unique challenges of each. Third, the clusters are based on average values over the entire period, which
+smooths year-to-year anomalies to highlight long-term trends; however, this approach obscures short-
+3Accessibility, which refers to the extent to which the physical environment enables vulnerable groups (such as disabled,
+elderly, refugees, homeless, children, etc.) to live independently, is also an essential aspect of housing, however, due to limited
+data, we do not analyse it.
+4See Supplementary Material for indicator details and sources.
+Journal of International and Comparative Social Policy
+27
+term changes and subtle shifts in housing characteristics. Fourth, there is a time-lag between policy
+interventions – such as recent EU efforts to promote green housing or tackle inequality – and their
+measurable outcomes, a critical issue in today’s fast-evolving housing debate (Frayne et al., 2022).
+Although we acknowledge that our methodological approach has limitations, the primary goal of this
+paper is to provide a comparative overview of the housing provision in the EU countries. While more
+granular territorial or individual-level data could deepen insights into specific issues, it might com-
+promise the broad perspective essential to understanding the multifaceted nature of Europe’s current
+housing challenges.
+Results
+This section compares housing issues across EU countries, focusing on availability, affordability, and
+adequacy. The analysis provides insights into housing provision and the effectiveness of government
+efforts. It also provides insights into how different welfare models affect the interplay between these
+domains, highlighting the factors shaping housing outcomes and the differences in housing provision
+among EU member states. The paper presents generalized results, with detailed statistics on individual
+indicators, their changes over time, and additional results available in the Supplementary Material, along
+with definitions and data sources.
+The role of governments in housing provision
+All European countries have housing policies that aim to improve the living conditions of those in need
+through various state-provided benefits and services. In many cases, governments play a crucial role in
+ensuring adequate and affordable housing, particularly for low-income households (European Parlia-
+ment, 2021). One way to assess the government’s role in housing provision is by examining the share
+of GDP allocated to housing-related developments.5 Over the past two decades, government spending
+on housing has fluctuated, averaging between 1% and 0.5% of GDP across EU member states.
+While expenditure was around 0.9% in the 2000s, it steadily declined to a low of 0.5% in 2017. However,
+this trend has recently reversed, with spending rebounding to 1.0% in 2022 (Eurostat, 2025; see
+Supplementary Material). Previous studies (Aidukaitė, 2004; Doherty, 2004; Clapham, 2006; Arbaci,
+2007; Tsenkova and Polanska, 2014) have observed a trend of gradual withdrawal by the state from the
+housing sector across many EU countries. However, as this process is uneven in scale and speed, and
+housing policy still differs remarkably between countries (Doherty, 2004; Kettunen and Ruonavaara,
+2021; Dewilde, 2022), the evidence of the state’s withdrawal from the housing sector is not conclusive.
+Moreover, there is a growing consensus that improving housing affordability necessitates policies aimed
+at increasing housing supply (Frayne et al., 2022). The positive effects of redistributive housing allowance
+and rent regulations on the living and housing conditions of low-income households and renters in the
+EU have been demonstrated in a recent study by Dewilde (2022). Furthermore, Kettunen and Ruona-
+vaara (2021) studied rent regulations and concluded that the housing provision systems in Europe are
+not entirely neoliberalized, emphasizing the significance of rent regulation policies. Therefore, an
+essential factor to consider when assessing the government’s role in housing provision is the extent of
+regulation within the rental market.
+Lastly, in many countries, a key component of the government’s role in housing provision is social
+housing,6 which is essential for supporting the most vulnerable populations. In countries where social
+5These are expenditures on housing development (58% of total), community development (17%), water supply (8%), street
+lighting (8%), as well as research and development (R&D) related to housing and community amenities, along with other
+housing and community services not elsewhere classified (together accounting for the remaining 9%) (Eurostat, 2025).
+6The definition and perception of social housing varies greatly from country to country, thus statistics need to be critically
+assessed; for example, in some countries social housing is targeted only to the most vulnerable groups, while in others it is open
+to all (Granath Hansson and Lundgren, 2019).
+28
+Rūta Ubarevičienė and Jolanta Aidukaitė
+housing is limited, additional measures are often implemented to assist lower-income individuals in
+accessing affordable housing. This is evidenced by our finding that the correlation between government
+expenditure on the housing sector and the share of social rental housing stock is statistically insignificant
+(r = .286, p = .149). The absence of a relationship may be attributed to two underlaying reasons. First,
+government expenditure includes financial support for homebuyers, such as subsidized mortgages and
+housing allowances, which may be prioritized in countries where social housing is scarce. Therefore,
+countries with a higher share of social housing may spend less on homebuyer support or housing
+allowances, whereas those with less social housing need to invest more in increasing its share or
+providing alternative housing support. Second, different types of social rental housing providers exist,
+with varying levels of state funding.
+In this study, we quantitatively assess the extent of government commitment to housing support
+across EU countries using three key indicators: government spending on housing-related developments
+as a percentage of GDP, the proportion of social rental housing within the total housing stock, and the
+regulation of the rental market. Figure 2 presents maps illustrating each of these indicators individually,
+along with an aggregated assessment derived from the hierarchical clustering method. The blue cluster,
+which includes Sweden, Denmark, the Netherlands, and Austria, is characterized by relatively low
+government expenditure on housing, but a large social rental housing stock and a highly regulated rental
+market. The red cluster, which includes Latvia, Croatia, Romania, and Bulgaria, exhibits the opposite
+characteristics: higher government expenditure on housing, but a smaller social housing stock and low
+regulation in the rental market. The largest group of countries falls into the remaining yellowish cluster,
+which shows intermediate characteristics across all assessed indicators. Thus, the clustering analysis
+reveals three distinct groups of EU countries based on their government strategies in housing provision.
+It is important to acknowledge that other factors also play a role in shaping housing policies. One key
+factor is the housing ownership structure, which is shaped by a country’s historical development. Our
+findings show that countries with higher homeownership rates tend to have higher government
+spending on housing, likely through mortgage subsidies, reflecting a policy focus on promoting home-
+ownership. This is supported by a positive and significant correlation between government expenditure
+and homeownership (r = .308, p = .118), while the correlation with tenancy is negative and weaker
+(r = .265, p = .181). Conversely, a higher share of social housing reduces the need for homeownership.
+This highlights the interplay between housing tenure structures and government intervention. Add-
+itionally, housing outcomes are shaped by a variety of nuanced factors, including state tax policies, access
+to credit, labour market conditions (such as gendered effects stemming from women’s typically lower
+wages), regional planning regulations, and inheritance policies. Collectively, these factors can either
+reinforce or alleviate disparities in housing accessibility, affordability, and quality.
+Housing availability
+Housing provision relies on multiple domains, one of which – housing availability – depends on the
+supply of housing that meets the diverse needs of the population. Now, we will assess housing availability
+in EU countries using selected indicators: overcrowding rate, average age of children leaving their
+parents’ household, net migration, and construction of new housing (Figure 3; see Supplementary Material
+for indicator details).
+Overcrowding rate varies significantly across Europe, with a clear contrast between Eastern and
+Western countries (Figure 3), although there is a general trend towards decline and convergence (see
+Supplementary Material). The overcrowding rate in Central and Eastern (CEE) countries was previously
+much higher but declined significantly over the last decade due to declining populations and demo-
+graphic ageing (see e.g., Szafrańska et al., 2019) as well as due to growing economies and large-scale
+residential construction. In Western Europe, the overcrowding rate had traditionally been lower due to
+intense urbanization, industrialization, and mass housing construction after World War II. However, in
+the last decade, these rates have slightly increased, especially in large cities experiencing steady
+Journal of International and Comparative Social Policy
+29
+Figure 2. Government spending on housing-related developments, social rental housing share, and rental market regulation (grayscale), and an aggregated assessment (in colour) using the
+hierarchical clustering method to classify countries based on the government’s role in housing provision (2010–2021) (authors’ elaboration based on OECD and Eurostat data).
+30
+Rūta Ubarevičienė and Jolanta Aidukaitė
+Figure 3. Housing availability: overcrowding rate, average age of children leaving their parents’ household, construction of new housing, and net migration (in greyscale), and an aggregated
+assessment (in colour) using the hierarchical clustering method (2010–2021) (authors’ elaboration based on Eurostat data and EU-SILC survey).
+Journal of International and Comparative Social Policy
+31
+population growth due to immigration, presenting a growing challenge of housing shortages (Eurofund,
+2023).
+Our analysis revealed notable relationships. For example, overcrowding positively correlates with
+homeownership rates – the higher the homeownership, the greater the overcrowding (r = .458, p = .016),
+while a larger rental sector, public or private, is negatively associated with overcrowding (r = .597,
+p = .001). Thus, high homeownership in CEE and Mediterranean countries contributes to greater
+overcrowding, whereas larger rental sectors in Nordic and Continental Europe alleviate it. Overcrowding
+also appears tied to the age children leave their parental home, with later departures associated with
+higher overcrowding rates (r = .345, p = .078). In Northern and Western Europe, children leave home
+earlier, while in other regions, they stay with parents longer. In CEE and Mediterranean countries, a
+limited rental sector restricts housing availability and affordability, steering young people toward
+homeownership – a costlier, slower option than renting – while prolonged stays with parents, due to
+these constraints, exacerbate overcrowding when neither moving out nor owning is feasible (see Simón-
+Moreno et al., 2024 on Southern Europe). Housing availability, particularly shortage, is directly
+influenced by supply and demand dynamics, and can be assessed through indicators like construction
+volumes and net migration. Our analysis incorporates these metrics to provide a better overview of
+housing availability. Yet, the complex relationship between construction volumes and net migration, and
+their impact on housing shortages, requires more extensive research, beyond the scope of this study.
+Based on all four indicators, EU countries can be classified into three clusters according to relative
+housing availability (Figure 3). Notably, individual indicators vary greatly and may contradict each
+other, making this aggregated outcome a relative measure rather than an absolute ranking of housing
+availability. Having said that, the aggregated results indicate that housing availability is highest in
+Finland, Denmark, Ireland, Luxembourg, and Cyprus (blue cluster). In contrast, CEE countries, Italy,
+and Sweden exhibit the lowest housing availability (red cluster). The remaining countries fall into an
+intermediate category.
+Housing affordability
+Housing affordability is another important feature needed to ensure broad accessibility and reduce
+financial strain across EU households. After examining available indicators – capturing different
+dimensions of housing affordability – we selected four that best reflect the situation in EU countries:
+housing cost burden, housing cost overburden rate, household expenditure on housing and utilities, and
+house price-to-income ratio (Figure 4; see Supplementary Material for indicator details).
+Housing cost burden refers to the share of disposable income spent on housing expenses like
+mortgages, rent, utilities, and property taxes. Western and Northern European countries have
+considerably higher housing cost burdens compared to CEE countries, largely due to tenure com-
+position differences – higher home ownership rates are associated with lower housing cost burdens.
+The greatest burden falls on households in countries with a high proportion of market-priced rentals,
+while the lowest burden is in countries with a high share of owners without outstanding mortgages (see
+Supplementary Material; Pittini et al., 2017; Dewilde, 2022; Hilber and Schöni, 2022). Generally,
+renters face higher housing costs compared to mortgage holders in most countries, and this gap is
+particularly pronounced in Sweden, Finland, and the Netherlands, whereas the opposite is true in
+Croatia, Malta, and Latvia. In Luxembourg, France, Ireland, Slovenia, and Czechia, there is almost no
+difference in affordability between renting and owning. As documented in the literature (Scanlon et al.,
+2014; Pittini et al., 2017), low-income residents are more likely to be tenants, creating a vicious circle from
+which it is difficult for the low-income population to escape (Tammaru et al., 2021). Between 2010 and
+2021, there have been significant changes in the housing cost burden, with some countries experiencing a
+decrease (e.g., Sweden, Lithuania, Croatia) while others have seen an increase (e.g., Malta, Luxembourg,
+Poland). As there is no clear geographical pattern, these changes may be related to economic factors such as
+increasing wages, rising housing prices, economic restructuring, etc.
+32
+Rūta Ubarevičienė and Jolanta Aidukaitė
+Figure 4. Housing affordability: housing cost burden, housing cost overburden rate, household expenditure on housing and utilities, and house price-to-income ratio (in greyscale), and an aggregated
+assessment (in colour) using the hierarchical clustering method (2010–2021) (authors’ elaboration based on Eurostat and OECD data).
+Journal of International and Comparative Social Policy
+33
+Another indicator – housing cost overburden rate – shows the percentage of households spending
+over 40% of their income on housing. In 2021, the EU average was around 7%, with Greece having an
+exceptionally high overburden rate, where nearly one-third of households spent at least 40% of their
+disposable income on housing. Over the past decade, while housing affordability pressures eased in most
+countries, they intensified in Greece and Bulgaria, highlighting increasing barriers to securing adequate
+housing.
+In the EU, household spending on housing costs and utilities, like water and electricity, averages a
+quarter of household income, with relatively small variation across countries and over time. It is
+interesting to find that prolonged living with parents is associated with significantly lower housing
+expenditures (r = .444, p = .020), most likely due to shared costs. However, this may also lead to
+overcrowding in the household. Additionally, higher household expenditure is linked to a greater
+proportion of social rental housing (r = .437, p = .023), which is typically occupied by low-income
+individuals. Thus, although low-income pay relatively little for housing, the cost of maintaining housing
+still requires a large portion of their income. This implies that despite considerable housing assistance,
+affordability remains a significant challenge.
+Our last indicator – the house price-to-income ratio – reveals a clear geographic divide: Western
+European countries are in a more favourable position than Eastern European countries. Higher ratios,
+typical in Eastern and Southern European countries, indicate that house prices are relatively high
+compared to incomes, requiring more years of earnings to purchase a home. In contrast, lower ratios
+in Western European countries suggest that people can save for a home more quickly. Over the decade,
+the differences between countries have narrowed. The gap between the highest and lowest ratios in 2021
+was smaller than it was in 2010. In 2010, less economically strong countries faced higher ratios
+(indicating lower affordability), but by 2021, this trend had shifted. It is important to note that the
+price-to-income ratio contrasts with other affordability measures, highlighting that overall housing
+affordability depends not only on purchase costs but also on ongoing expenses such as maintenance,
+taxes, and utilities. Additional factors – such as mortgage availability and household savings rates – can
+also influence affordability.
+Figure 4 summarizes housing affordability using cluster analysis. The red cluster, indicating lower
+affordability, includes countries in Northern and Continental Europe, which are among the EU’s
+strongest economies and have more developed housing policies with greater state intervention. In
+contrast, the blue cluster represents countries with higher affordability, and includes the Baltic states,
+Poland, Slovenia, Croatia, Ireland, and Portugal. These countries generally have weaker economies and
+more liberalized housing policies with less state intervention than the red cluster countries. The yellowish
+cluster represents countries with moderate housing affordability, and such countries are spread across
+different geographic regions. It is worth noting that, although saving for a home remains more difficult in
+Eastern and Southern Europe, overall housing affordability poses greater challenges in the Nordic and
+Western countries.
+Housing adequacy
+Housing adequacy is another important factor to examine when assessing housing provision. It refers to
+housing that meets acceptable quality standards, ensuring residents have safe, comfortable, and healthy
+living conditions. In this study, we take into account environmental conditions surrounding dwellings
+(such as noise, pollution, grime, crime, etc.) as well as challenges inside the dwellings themselves
+(including leaking roof, damp walls, inadequate heating, and the absence of a bath, shower, or indoor
+toilet). Figure 5 presents maps depicting both individual indicators (highlighting disparities more
+clearly) and an aggregated assessment.
+The results in the maps show that housing adequacy varies across countries, with no clear geograph-
+ical pattern, and each country faces a unique combination of challenges. Our findings indicate that
+residents in countries with higher population densities, as well as some southern European countries,
+34
+Rūta Ubarevičienė and Jolanta Aidukaitė
+Figure 5. Housing adequacy: environment-related indicators, dwelling-related indicators, and an aggregated assessment using the hierarchical clustering method (2010–2021) (authors’ elaboration
+based on Eurostat data).
+Journal of International and Comparative Social Policy
+35
+express greater levels of concern regarding environmental issues. In contrast, Eastern and to some extent
+Southern European countries experience higher rates of dwelling deprivation compared to other EU
+regions. When combining all indicators, housing adequacy appears relatively highest in Scandinavian
+countries, parts of Central European, and a handful of other countries, while Eastern Europe and
+Portugal rank lowest. Notably, across the EU, the conditions of the surrounding environment and the
+quality of the dwelling itself often do not align, i.e., residents may live in a well-maintained dwelling in a
+poor environmental setting (France and the Netherlands) or vice versa (Bulgaria). Overall, these findings
+highlight the need for nuanced, country-specific housing policies that address both dwelling quality and
+environmental conditions simultaneously.
+How is everything related?
+To better understand the overall state of housing provision across the EU, we summarized the results and
+presented them in Figure 6. On the left side, we combined aggregated assessments of housing availability
+and affordability. This cross-country and cross-variable comparison helps identify patterns, reveal
+interconnections between housing domains, and highlight underlying structural causes. The resulting
+map shows that these housing domains interact differently across contexts. For example, Sweden, along
+with Germany, the Benelux countries, Italy, and much of Central and Eastern Europe, faces greater
+tensions in both availability and affordability, pointing to structural issues that demand stronger policy
+interventions beyond current measures. Meanwhile, Ireland, Finland, and Luxembourg exhibit better
+housing availability and affordability, suggesting their policies may be more effective and could serve as
+valuable examples to learn from. Notably, some countries show a mismatch between affordability and
+availability, as seen in Poland and Croatia, where housing is affordable but scarce, and Denmark, where
+availability is higher despite affordability issues. These findings highlight the complexity of housing
+market dynamics and the need for targeted policies to address imbalances, echoing the conclusions of
+other recent studies Kucharska-Stasiak et al., 2021; Hilber and Schöni, 2022; Nasrabadi et al., 2024).
+On the right side of Figure 6, clusters derived from all measured housing indicators, including
+government contributions, are shown. A clear division between Western, Eastern, and Southern Europe
+is evident. Notably, these clusters also closely align with traditional welfare state regimes. Group 1, shown
+in blue, can be associated with the Mediterranean housing regime and is characterized by high home-
+ownership rates, largely driven by family support and intergenerational transfers. These countries have
+moderate social housing stocks and limited government spending on housing, focusing more on
+homeownership incentives than on rental market development. The rental sector remains small and
+weakly regulated, creating affordability challenges. Meanwhile, Group 2, shown in red, can be associated
+with social-democratic and conservative-corporatist regimes. It features larger social housing stocks,
+well-developed rental markets, and strong tenant protections. While direct government spending is
+lower, policies emphasize market regulation, housing allowances, and indirect subsidies to support
+affordability. Lastly, Group 3, shown in yellow, comprises geographically more peripheral EU countries –
+post-socialist states together with Ireland and Portugal. These countries are characterized by low social
+housing stock, moderate government intervention, and an underdeveloped rental sector. In post-
+socialist states, rapid transition-era privatization boosted homeownership, while in Ireland and Portugal,
+gradual tenant purchase schemes and pro-ownership policies reduced public housing. Despite these
+different paths, all face persistent affordability and adequacy challenges.
+Discussion and conclusions
+Housing markets across the European Union face a complex set of challenges, encouraging the EU to
+strengthen its role in coordinating housing policies among member states. However, the effectiveness of
+these efforts remains debated, as diverse housing systems, national priorities, and regulatory frameworks
+make it difficult to apply uniform solutions (Dekker and Van Kempen, 2004; Hilber and Schöni, 2022;
+36
+Rūta Ubarevičienė and Jolanta Aidukaitė
+Figure 6. On the left: countries according to housing affordability and availability; on the right: countries according to combination of all measured indicators, 2010–2021 (authors’ elaboration based
+on OECD and Eurostat data).
+Journal of International and Comparative Social Policy
+37
+Nasrabadi et al., 2024). The EU presents an interesting case study in this regard, as it brings together
+countries with distinct historical backgrounds that have shaped their housing systems and policies.
+Despite these national differences, EU member states are also connected through shared regulations and
+overarching policy frameworks. Assessing and comparing different housing policies and systems across
+these countries is equally challenging, yet understanding this diversity is important. A broader perspec-
+tive gained through international comparisons may offer insights into housing strategies, reveal
+common patterns, and guide the development of more effective policy solutions. The comparative
+approach is essential for identifying best practices, assessing policy transferability, and deepening the
+understanding of EU housing challenges. For instance, the financialization of housing – treating
+properties as investments rather than homes – exacerbates price pressures, reduces availability, and
+destabilizes markets across the EU (Çelik, 2024; Köppe and Byrne, 2024). Similarly, while home-sharing
+platforms like Airbnb have driven up housing costs, particularly in city centres, recent regulations have
+had minimal impact on affordability (Reichle et al., 2023). Building on this perspective, this study aimed
+to provide an overview and comparison of housing provision across EU member states. It examined key
+domains – availability, affordability, and adequacy – while also exploring government efforts to enhance
+housing provision. The study explored how these issues differ between countries and how they correlate
+with each other and with the extent of government interventions, aiming to uncover the links between
+housing challenges and policy responses.
+The findings of this study reveal significant variation in housing provision across EU countries when
+analyzed through the lens of availability, affordability, and adequacy. Each country faces distinct
+challenges: while some struggle with housing availability, others grapple with affordability or adequacy
+issues. Notably, when all housing indicators are combined to assess and compare overall housing
+provision, a clear geographical division emerges between Eastern and Western as well as Southern
+and Northern parts of Europe. Interestingly, these clusters largely align with welfare state regimes –
+merging social-democratic and conservative-corporatist types into coordinated market economies
+(CMEs) as per the Varieties of Capitalism framework (Hall and Soskice, 2001), while assigning
+Mediterranean and Central and East European countries to mixed market or hybrid models (Hancké
+et al., 2007; Bohle and Greskovits, 2012), and cross-cutting traditional unitary/dualist housing regime
+typologies where the former aligns with unitary and the latter with dualist models (Kemeny, 2001) –
+suggesting that housing provision is deeply influenced by path dependency (Bengtsson, 2001), as well as
+differences in economic development and political preferences (Ansell, 2014). Although many studies
+(e.g., Brown and Brik, 2024; Flynn and Montalbano, 2024) argue that welfare models are limited in scope,
+our results show that these regimes – by highlighting the influence of broader structural factors – still play
+an important role in shaping housing provision patterns across the EU. Furthermore, there is no
+straightforward correlation between the overall state of housing provision and government intervention
+– a higher level of state involvement does not necessarily equate to better housing outcomes. These
+results emphasize that housing policies effective in one country may not yield the same results elsewhere,
+reinforcing the need for tailored, context-specific solutions (Coupe, 2021). Moreover, despite increasing
+EU involvement, the persistent pressure on housing markets suggests that policy coordination alone may
+not be sufficient to address the deep-rooted structural challenges, as economic, social, and regulatory
+differences across member states continue to shape housing provision. Therefore, more targeted,
+context-specific interventions are needed to effectively tackle these complex issues.
+Although the results of this study provide important insights, they are subject to inherent limitations.
+For each domain, we intentionally construct three clusters – a methodological decision guided by the
+need to balance granularity and interpretability. Although alternative cluster counts could reveal
+additional nuances (for instance, four clusters might distinguish Central and Eastern Europe from
+Southern Europe more sharply), they would do so at the expense of clarity and comparability across the
+housing domains we analyse. Three clusters, therefore, provide the most coherent and interpretable
+structure for our analysis. Additionally, a major constraint is that broad generalizations primarily yield
+descriptive findings, limiting explanatory depth. Research incorporating different data types and focused
+case studies can offer deeper insights into specific aspects of housing provision and stronger analytical
+38
+Rūta Ubarevičienė and Jolanta Aidukaitė
+power; however, their narrower scope makes cross-country comparisons impossible. More granular
+territorial or individual-level data could further refine understanding of particular issues, while public
+opinion surveys could shed light on people’s perceptions of housing rights and policy effectiveness,
+helping to identify areas for improvement. Yet these approaches often sacrifice the broader perspective
+needed to capture and compare Europe’s complex housing landscape.
+Supplementary material. The supplementary material for this article can be found at http://doi.org/10.1017/ics.2025.10087.
+Funding statement. This study has received funding from the Lithuanian Research Council (S-MIP-23-37 “Ensuring
+Housing Needs: Challenges and Prospects in Lithuania”).
+Disclosure statement. The authors declare that they have no known competing financial interests or personal relationships
+that could have appeared to influence the work reported in this paper.
+References
+Aalbers MB (2017) The variegated financialization of housing. International Journal of Urban and Regional Research 41(4),
+542–554.
+Aidukaitė J (2004) The emergence of the post-socialist welfare state: The case of the Baltic states: Estonia, Latvia and Lithuania
+(doctoral dissertation).gAidukaitė, J. (2014). Housing policy regime in Lithuania: Towards liberalization and marketization.
+GeoJournal 79, 421–432.
+Ansell B (2014) The political economy of ownership: Housing markets and the welfare state. American Political Science Review
+108(2), 383–402.
+Arbaci S (2007) Ethnic segregation, housing systems and welfare regimes in Europe. European Journal of Housing Policy 7(4),
+401–433.
+Bengtsson B (2001) Housing as a social right: Implications for welfare state theory. Scandinavian Political Studies 24(4),
+255–275.
+Blackwell T and Kohl S (2019) Historicizing housing typologies: Beyond welfare state regimes and varieties of residential
+capitalism. Housing Studies 34(2), 298–318.
+Bohle D and Greskovits B (2012) Capitalist Diversity on Europe’s Periphery. Cornell University Press
+Brown CT and Brik AB (2024) Welfare regime typologies: The six worlds of social inclusion. Journal of International and
+Comparative Social Policy 40(1), 1–23.
+Çelik Ö (2024) Cracking the housing crisis: Financialization, the state, struggles, and rights. Housing Studies 39(6), 1385–1394.
+Clapham D (2006) Housing policy and the discourse of globalization. European Journal of Housing Policy 6(1), 55–76.
+Clapham D (2020) The demise of the welfare regimes approach? A response to Stephens. Housing, Theory and Society 37(5),
+548–551.
+Coupe T (2021) How global is the affordable housing crisis? International Journal of Housing Markets and Analysis 14(3),
+429–445.
+Dekker K and Van Kempen R (2004) Large housing estates in Europe: Current situation and developments. Tijdschrift voor
+Economische en Sociale Geografie 95(5), 570–577.
+Dewilde C (2022) How housing affects the association between low income and living conditions-deprivation across Europe.
+Socio-Economic Review 20(1), 373–400.
+Doherty J (2004) European housing policies: Bringing the state back in? European Journal of Housing Policy 4(3), 253–260.
+Erdogdu G (2011) Problems in housing research and comparative housing studies. Megaron 6(2), 71–78.
+Esping-Andersen G (1990) The three worlds of welfare capitalism. Princeton University Press.
+Eunews (2024) EU puts right-to-home plan in the pipeline, more funds from Cohesion policies and flexibility on state aid.
+Accessed February 28, 2025, https://www.eunews.it/en/2024/10/09/eu-puts-right-to-home-plan-in-the-pipeline-more-funds-
+from-cohesion-policies-and-flexibility-on-state-aid/.
+Eurofund (2023) Unaffordable and Inadequate Housing in Europe. Luxembourg: Publications Office of the European Union
+European Commission (2018) The Housing Partnership Action Plan [Report]. Accessed February 28, 2025, https://ec.europa.
+eu/futurium/en/system/files/ged/final_action_plan_euua_housing_partnership_december_2018_1.pdf.
+European Commission (2023) The European Pillar of Social Rights. Accessed February 28, 2025, https://employment-social-
+affairs.ec.europa.eu/european-pillar-social-rights-20-principles_en.
+European Commission (2024) Mission Letter. Ursula von del Leyen. President of the European Commission. Commissioner-
+designate for Energy and Housing. Accessed January 13, 2025, https://commission.europa.eu/document/download/1c203799-
+0137-482e-bd18-4f6813535986_en?filename=Mission%20letter%20-%20JORGENSEN.pdf.
+European Parliament (2021) Decent and affordable housing for all. Accessed February 28, 2025, https://www.europarl.europa.
+eu/doceo/document/TA-9-2021-0020_EN.html.
+Journal of International and Comparative Social Policy
+39
+European Parliament (2025) Rising housing costs in the EU: The facts (infographics). Accessed March 7, 2025, https://
+www.europarl.europa.eu/topics/en/article/20241014STO24542/rising-housing-costs-in-the-eu-the-facts-infographics#:~:
+text=In%20the%20EU%20in%202023,cities%20faced%20the%20same%20issue.
+European Union (2012) Charter of Fundamental Rights of the European Union, October 26, 2012, 2012/C 326/02. Accessed
+February 28, 2025, https://www.refworld.org/docid/3ae6b3b70.html
+Eurostat (2024) Housing in Europe – 2024 edition [Interactive publication]. Accessed March 1, 2025, https://ec.europa.eu/
+eurostat/web/interactive-publications/housing-2024.
+Eurostat (2025) Government expenditure on housing and community amenities. Accessed February 24, 2025, https://ec.europa.
+eu/eurostat/databrowser/view/gov_10a_exp__custom_15531624/default/table?lang=en.
+Fenger M (2007) Welfare regimes in central and Eastern Europe: Incorporating post-communist countries in a welfare regime
+typology. Contemporary issues and ideas in social sciences, 1–30.
+Ferrera M (1996) The ‘southern model’ of welfare in social Europe. Journal of European Social Policy 6(1), 17–37.
+Flynn LB and Montalbano G (2024) Housing regime typologies and their discontents: A systematic literature review. Housing,
+Theory and Society 41(2), 127–146.
+Frayne C, Szczypińska A, Vašíček B and Zeugner S (2022) Housing Market Developments in the Euro Area: Focus on Housing
+Affordability. Publications Office of the European Union
+Galster G and Ok Lee K (2021) Introduction to the special issue of the Global crisis in housing affordability. International
+Journal of Urban Sciences 25(1), 1–6.
+Granath Hansson A and Lundgren B (2019) Defining social housing: A discussion on the suitable criteria. Housing, Theory
+and Society 36(2), 149–166.
+Grander M and Stephens M (2024) The Routledge Handbook of Housing and Welfare. Routledge
+Haandrikman K, Costa R, Malmberg B, Rogne AF and Sleutjes B (2021) Socio-economic segregation in European cities: A
+comparative study of Brussels, Copenhagen, Amsterdam, Oslo and Stockholm. Urban Geography 44(1), 1–36.
+Haffner ME and Hulse K (2021) A fresh look at contemporary perspectives on urban housing affordability. International
+Journal of Urban Sciences 25(1), 59–79.
+Hall PA and Soskice D (2001) Varieties of Capitalism: The Institutional Foundations of Comparative Advantage. Oxford:
+Oxford University Press
+Hallett G and Hallett G (2021) The new housing shortage: An international review. In Hallett G (ed.), The New Housing
+Shortage. Routledge, pp. 207–265
+Hancké B, Rhodes M and Thatcher M (2007) Beyond Varieties of Capitalism: Conflict, Contradictions, and Complementarities
+in the European Economy. Oxford University Press
+Hess D and Tammaru T (2019) Housing Estates in the Baltic Countries: The Legacy of Central Planning in Estonia, Latvia and
+Lithuania. Springer Nature
+Hess D, Tammaru T and Van Ham M (2018) Housing Estates in Europe: Poverty, Ethnic Segregation and Policy Challenges.
+Springer Nature
+Hick R, Pomati M and Stephens M (2024) Housing affordability and poverty in Europe: On the deteriorating position of
+market renters. Journal of Social Policy, 1–24.
+Hick R and Stephens M (2023) Housing, the welfare state and poverty: On the financialization of housing and the dependent
+variable problem. Housing, Theory and Society 40(1), 78–95.
+Hilber C and Schöni O (2022) Housing Policy and Affordable Housing. Centre for Economic Performance. London: London
+School of Economics and Political Science
+Housing Europe (2023) The state of housing in Europe 2023 [Report]. Accessed February 28, 2025, https://www.housingeurope.
+eu/the-state-of-the-housing-in-europe-2023/.
+James L, Daniel L, Bentley R and Baker E (2022) Housing inequality: A systematic scoping review. Housing Studies 39(5),
+1264–1285.
+Kemeny J (2001) Comparative housing and welfare: Theorizing the relationship. Journal of Housing and the Built Environment
+16, 53–70.
+Kemeny J (2005) “The really big trade-off” between home ownership and welfare: Castles’ evaluation of the 1980 thesis, and a
+reformulation 25 years on. Housing, Theory and Society 22(2), 59–75.
+Kettunen H and Ruonavaara H (2021) Rent regulation in 21st century Europe. Comparative perspectives. Housing Studies
+36(9), 1446–1468.
+Köppe S and Byrne M (2024) Political economy of housing policy. In Greve B, Moreira A and Van Gerven M (eds.), Handbook
+of the Political Economy of Social Policy. Edward Elgar, pp. 218–231
+Kucharska-Stasiak E, Źróbek S and Żelazowski K (2021) European Union housing policy – An attempt to synthesize the
+actions taken. Sustainability 14(1), 39.
+Lund B (2011) Understanding Housing Policy, 2nd Edn. Bristol, UK: The Policy Press
+Musterd S and Ostendorf W (1998) Urban Segregation and the Welfare State: Inequality and Exclusion in Western Cities.
+London: Routledge
+40
+Rūta Ubarevičienė and Jolanta Aidukaitė
+Musterd S and Ronald VK (2007) Trapped or on the springboard? Housing careers in large housing estates in European cities.
+Journal of Urban Affairs 29(3), 311–329.
+Nasrabadi MT, Larimian T, Timmis A and Yigitcanlar T (2024) Mapping four decades of housing inequality research: Trends,
+insights, knowledge gaps, and research directions. Sustainable Cities and Society, 105693.
+OECD (2021) Brick by Brick: Building Better Housing Policies [Report]. OECD Publishing
+Pittini A, Koessl G, Lakatos E and Ghekiere L (2017) The State of Housing in the EU. Accessed November 15, 2023,
+www.housingeurope.eu.
+Politico (2024) Von del Leyen bets bog on housing. Accessed February 28, 2025, https://www.politico.eu/article/von-der-leyen-
+bets-big-on-housing-european-commission/.
+Preece J, Hickman P and Pattison B (2020) The affordability of “affordable” housing in England: Conditionality and exclusion
+in a context of welfare reform. Housing Studies 35(7), 1214–1238.
+Reichle P, Fidrmuc J and Reck F (2023) The sharing economy and housing markets in selected European cities. Journal of
+Housing Economics 60, 101914.
+Rolfe S, Garnham L, Godwin J, Anderson I, Seaman P and Donaldson C (2020) Housing as a social determinant of health and
+wellbeing: Developing an empirically-informed realist theoretical framework. BMC Public Health 20(1), 1138.
+Scanlon K, Whitehead C and Fernández Arrigoitia M (2014) Social Housing in Europe. New York: John Wiley and Sons, Ltd
+Simón-Moreno H, Heitkamp T, Pereira SM and Siatitsa D (2024) Introduction to the special issue: ‘Facing the housing
+affordability crisis in southern Europe: Housing policies in the spotlight’. Critical Housing Analysis 11(2), 194–203.
+Stephen Ezennia I and Hoskara SO (2019) Methodological weaknesses in the measurement approaches and concept of
+housing affordability used in housing research: A qualitative study. PLoS One 14(8), e0221246.
+Stephens M and Norris M (2014) Meaning and Measurement in Comparative Housing Research. London: Routledge
+Szafrańska E, Coudroy de Lille L and Kazimierczak J (2019) Urban shrinkage and housing in a post-socialist city: Relationship
+between the demographic evolution and housing development in Łódź. Poland. Journal of Housing and the Built
+Environment 34(2), 441–464.
+Tammaru T, Knapp D, Silm S, Van Ham M and Witlox F (2021) Spatial underpinnings of social inequalities: A vicious circles
+of segregation approach. Social Inclusion 9(2), 65–76.
+Tammaru T, Marcińczak S, Van Ham M and Musterd S (2016) Socio-Economic Segregation in European Capital Cities: East
+Meets West. London/New York: Routledge
+Tsenkova S and Polanska DV (2014) Between state and market: Housing policy and housing transformation in post-socialist
+cities. GeoJournal 79, 401–405.
+United Nations (2009) The Human Right to Adequate Housing (Fact Sheet No. 21). Accessed November 23, 2021, https://
+www.un.org/ruleoflaw/blog/document/the-human-right-to-adequate-housing-fact-sheet-no-21/.
+United Nations (2021) UN Special Rapporteur on Adequate Housing: The Human Right to Adequate Housing. Accessed
+March 28, 2025, https://www.ohchr.org/EN/Issues/Housing/Pages/AboutHRandHousing.aspx.
+United Nations Department of Economic and Social Affairs (2019) Affordable Housing and Social Protection Systems for All
+to Address Homelessness. Accessed August 22, 2025, https://www.un.org/development/desa/dspd/wp-content/uploads/
+sites/22/2019/10/summary-egm-final-9sep.pdf.
+Valderrama ML, Gorse P, Marinkov MM and Topalova P (2023) European housing markets at a turning point – Risks,
+household and bank vulnerabilities, and policy options. International Monetary Fund 2023(076). https://doi.org/10.5089/
+9798400237782.001.
+van Kersbergen K and Vis B (2013) Welfare state regimes: Why did we get different worlds of welfare and do we still have them?
+In Comparative Welfare State Politics. Cambridge: Cambridge University Press, pp. 53–77.
+Cite this article: Ubarevičienė R and Aidukaitė J (2026) Housing provision: A comparative study of housing availability,
+accessibility, and adequacy in EU member states. Journal of International and Comparative Social Policy 42: 22–41. https://doi.
+org/10.1017/ics.2025.10087
+Journal of International and Comparative Social Policy
+41

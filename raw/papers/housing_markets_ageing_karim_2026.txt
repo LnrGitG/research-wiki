@@ -1,0 +1,582 @@
+ARTICLE
+HOUSING MARKETS AND AGEING—DYNAMICS AND POLICY
+ISSUES
+Eric Philip Davis1,2
+and Dilruba Karim1
+1Brunel Business School, Brunel University of London, UK and 2National Institute of Economic and Social Research, UK
+Corresponding author: Dilruba Karim; Email: dilruba.karim@brunel.ac.uk
+Abstract
+Ageing of the population is an ineluctable process with major implications. We review effects of ageing on
+housing markets and related policy issues. Demographic effects are detectable for housing, with the working
+population tending to drive prices up while retired groups restrain it but only to a limited degree. The elderly
+desire bequests and precautionary saving and prefer not to sell or borrow against existing property. Among
+policy issues are availability of equity extraction loans, transaction costs for elderly households wishing to
+trade down and factors underlying availability of alternative and more suitable housing for elderly people.
+Keywords: population ageing; housing; mortgage lending; housing markets; taxation
+JEL codes: J1; G5; R31
+1. Introduction
+Countries across the world are facing a process of demographic ageing, which is already underway.
+Underlying factors are a decline in fertility and a rise in longevity. The latest UN population projections,
+for example, show that whereas fertility in high-income countries in 1950 was 3.04 children per woman,
+by 2023, it had fallen to 1.47 and the ‘medium’ projection is that in 2050 it will recover slightly to 1.55
+(United National, 2024). Meanwhile, whereas longevity (life expectancy at birth—both sexes) in high-
+income countries was 61.8 years in 1950; in 2023, it had risen to 81.4 years and in 2050, it is projected to
+be 85.2. The world population too has undergone a demographic transition, albeit at a lower average level
+of longevity and with higher fertility. For example, fertility has fallen from 4.85 in 1950 to 2.25 in 2023
+and is projected to fall further to 2.1 in 2050, while life expectancy at birth has increased from 46.4 years
+in 1950 to 73.2 in 2023 and is set to rise to 77.0 in 2050. These patterns are expected to lead to major
+changes in the population over 65, rising in high-income countries from 19% in 2023 to 27% in 2050,
+with corresponding figures at world level at 10% and 16%, respectively.
+In this context, this paper seeks to provide an overview of effects of ageing on housing markets and
+related policy issues. Demographic effects are detectable for house prices, with the working population
+tending to drive prices up while retired groups restrain it. Their behaviour is not fully consistent with the
+life-cycle pattern of consumption and saving, with desire for bequests and precautionary saving as well as
+preference not to sell or borrow against existing property being amongst the reasons for this.
+There are important policy implications, which we trace particularly for the UK, although there are
+common aspects in a number of advanced countries. We note, for example, the risk of negative equity
+arising from house price falls. But more crucially, we highlight the way that elderly people remaining in
+their own properties causes difficulty for the overall housing market, in particular availability of housing
+to first time buyers, not least given the barriers to expanding the general housing stock and retirement
+© The Author(s), 2026. Published by Cambridge University Press on behalf of National Institute Economic Review. This is an Open Access article,
+distributed under the terms of the Creative Commons Attribution licence (http://creativecommons.org/licenses/by/4.0), which permits unrest-
+ricted re-use, distribution and reproduction, provided the original article is properly cited.
+National Institute Economic Review (2026), 1–12
+doi:10.1017/nie.2026.10097
+homes in particular. Underlying policy issues include the availability of equity extraction loans and the
+view taken of them by elderly people, transaction costs for elderly households wishing to trade down and
+the policy levers affecting determinants of the availability of alternative and more suitable housing for
+elderly people. We also highlight the specific tax measures applied to housing and their effect on
+downsizing, financial regulations relevant to housing demand and aspects of the integration of pensions
+and housing as means of ensuring financial security in old age.
+2. Ageing and housing market dynamics
+Studies of the effect of ageing on housing market dynamics focus particularly on house prices, although
+studies have also examined the pattern of elderly homeownership, which will become more important at
+an economy-wide level as populations continue to age.
+2.1. Ageing and house prices
+Before surveying recent work on ageing and house prices, we briefly introduce considerations relevant to
+modelling of house prices.
+The main approach to house price modelling has been to rely on hedonic price models with these
+being developed since the 1960s. Rosen (1974), building on Becker (1965) and Lancaster (1966),
+developed a framework that allowed the prices of goods to capture different attributes which generate
+utility for the consumer. This approach allows for product differentiation. Unlike homogenous goods,
+homebuyers are matching their preferences to a product with a unique set of characteristics—an
+important consideration for house purchases since when purchasing a property, consumers consider
+the utility benefits of a host of characteristics, such as location, dwelling size, neighbourhood charac-
+teristics and so forth. However, these multiple factors will also impact the price of a property because they
+possess monetary value. As Chin and Chau (2003) note, homebuyers are purchasing a product that is a
+set of attributes and changes in one of these factors will change the utility benefits and thus the marginal
+price. Since the total house price is the sum of all marginal prices, the change in an attribute of one house
+relative to another explains differences in house prices.
+The advantage of the hedonic approach is that it does not treat houses as homogeneous goods and it
+allows the researcher to add attributes to a baseline model, including demographic considerations that
+are now important in the context of ageing populations. Thus, demographic factors can be modelled in
+terms of their impact on house prices and implications for other economic variables can be inferred.
+However, a major problem of the Rosen approach is that the price equation is non-linear and no specific
+functional form is provided. This means prices derived from the equation can vary depending on the
+chosen specification. Typically, in a first stage, prices are regressed on the commodity attributes to obtain
+estimated marginal prices for each. These are then used in a second-stage regression to estimate an inverse
+demand function, assuming the marginal prices are endogenous to demand. Moreover, it is assumed that
+housing supply is unaffected by consumer demand, which is unlikely to be the case (Chin and Chau, 2003).
+Hedonic models can also pose additional problems when evaluating the impacts of ageing demo-
+graphics onhouse prices. They cannot easily accountfor unobservableneighbourhood characteristics, such
+as standard of local care provision, transport accessibility and disability access. These are important
+considerations for aged homebuyers, so their exclusion could lead to biased inferences. Elderly home-
+owners may spend significant sums on property renovations but lack of data on this means their impact on
+house prices could create omitted variable bias. This can also create inaccuracies in house price estimation
+since hedonic models often assume depreciation can be proxied by the age of a property but older
+properties that have been renovated by the elderly will depreciate less or may even appreciate in value.
+Another approach, utilised in several studies cited in this paper, is the asset model of house prices. As
+equity prices are related to the discounted value of future dividends (dividend discount model), so house
+prices should be related to discounted net rental values. The intuition behind the Poterba (1984) ‘user
+2
+Davis and Karim
+cost’ approach is that owning a property (via purchase) should be financially equivalent to renting. If
+renting is cheaper, demand for ownership falls as do house prices. If purchase is cheaper, rental demand
+falls. Hence under a no arbitrage equilibrium, the price of a property should equate to the present value of
+discounted rents on equivalent properties. Rents then become dependent on house prices which are in
+turn dependent on factors such as real interest rates, depreciation, property taxes and expected house
+price inflation.
+In Poterba et al. (1991), the above approach is used to specifically incorporate ageing demographics
+by splitting cohorts into subsets by age with the elderly being classed as over 65 years. The average effect
+of more elderly populations is a reduction in long term house prices since the more aged are assumed to
+exit the market or not renovate. However, in the short run, because housing supply is relatively inelastic
+and because expected deflation of house prices is slow to adjust, prices may not decline significantly.
+Since property is the major durable asset holding of many households, they provide the biggest utility
+gains in an average household’s asset portfolio. However, unlike homogenous equities where equity risk
+premia are commonly estimated, in the case of housing risk premia is less understood. Other problems
+with the user cost approach to determining the impact of ageing arise from omitted variable bias. As
+previously mentioned, data on renovations are sparse. Any impact of ageing may be capturing other
+excluded factors such as credit constraints in the lending market and macroprudential restrictions like
+loan-to-value limits.
+As described hereafter, authors such as Arestis and Gonzalez-Martine (2017) assume short-run supply
+of housing as fixed and augment the Poterba (1984) model by including macroeconomic factors such as
+unemployment and real disposable income alongside demographic variables. Other studies, as discussed
+below, have incorporated elderly homeownership, elderly wealth accumulation and decumulation.
+Studies of effects of ageing on house prices can be divided between those using calibrated overlapping
+generations or life-cycle models and those using econometric techniques. The former are generally based
+on calibrated behavioural coefficients, typically applied to the behaviour of individuals inter alia in their
+demand for housing, and in some cases also firms and government. Meanwhile the latter are based on
+statistical estimation, in the field of housing demand generally at a global, national or regional level.
+In more detail, overlapping generations and life-cycle models typically examine shifts in the assumed
+financial behaviour of individuals identified inter alia by age, aggregated across a wider population, often
+within in the context of a small economy model. They generate average or economy wide results of ageing
+on financial behaviour including housing demand. Effects on housing demand in the context of ageing
+affecting prices are typically only one of the outputs of these models, as seen in the examples, below. Life-
+cycle models differ from overlapping generation models mainly in a focus on an individual’s lifetime
+saving and consumption choices while the latter analyse interactions between generations also. On the
+other hand, econometric studies typically focus on the determination of house prices or related variables
+related to housing demand such as home ownership directly, including ageing as well as other
+determinants of global, economy wide or regional level house prices or home ownership. These studies
+are assessed in greater detail in Davis and Karim (2025). We focus on each in turn.
+As regards studies using overlapping generations, Cerny et al. (2010) proposed a calibrated over-
+lapping generations model including ageing, housing and pension reform. People decide in their model
+whether to buy or rent property and borrow against it, as well as receiving labour income (or in
+retirement, a state pension), and deciding whether to hold safe or risky financial assets. Results suggest
+growth in financial assets over the working life followed by reductions in retirement, but with some
+retained for bequests. This is preceded by a rise in debt that is decumulated over the working life. Owner
+occupation peaks around 60 years of age but does not decline greatly till late in retirement, which as
+discussed below seems to be borne out by some econometric studies. Owner occupation and house prices
+both increase in future years, but the stock of financial assets rises by more.
+Lisack et al. (2021) prepared an overlapping generations model of the advanced countries that
+includes house prices and household debt as an output as well as real interest rates. It was suggested that
+longevity drives increases in wealth, as individuals seek to provide for a longer retirement period. This in
+turn reduces the real interest rate both in the past and the future (assuming longevity trends continue)
+National Institute Economic Review
+3
+and raises the capital–labour ratio. Lower interest rates and longevity account for a large proportion of
+the increase in real house prices up to 2008, and also the doubling of household debt/GDP ratios as young
+people borrowed to buy more expensive houses.
+Yogo (2016) used a life-cycle model of the US, examining housing choice in the context of health
+depreciation and potentially costly healthcare. This may be especially applicable to European countries if
+social care in old age is expensive. Retired consumers select levels of consumption and, health expenditure,
+while undertaking asset allocation between bonds, stocks and housing. Retirement income arises from
+social security and defined benefit pension funds. The model shows that the portfolio share in housing is
+negatively related to declining health and declines as people get older, in line with time horizons. A pension
+reform (a one-time reduction in social security benefits) leads to a shift from housing and equity to bonds.
+Health expenditure is seen as a form of investment in health capital but with decreasing returns; out-of-
+pocket health expenses as a share of income are higher for those in poor health and older.
+Turning to studies using econometric methods, an early study by Mankiw and Weil (1989) of US
+housing demand created much interest, as it suggested a major fall in house prices by 47 % between 1990
+and 2010 as baby boomers retired. The result was not borne out as house prices continued to rise. Age
+and cohort effects had not been sufficiently distinguished, as baby boomers sought more housing services
+than earlier generations, so did not ‘trade down’ as predicted.
+More recent studies have taken this critique into account via identification of cohorts or the use of
+pooled or panel data. For example, Igan and Loungini (2012) in a model of real house price changes for a
+large set of countries used pooled estimation from 1970 to 2010. They included working-age population
+along with other typical house price determinants and found the change in the working age population
+was significant and positive for house prices.
+Davis et al. (2011) modelled the demographic effect in more detail by using those aged 20–39 as a
+share of population (the main house buying cohort) for a panel of advanced countries. Its size was
+significant in boosting house prices, although only for the UK, US and Canada.
+Takáts (2012) used data on 22 developed nations from 1970 to 2009, using panel estimation. He found
+that the change in the elderly dependency ratio (negatively) and the change in population (positively)
+had significant effects on real house price growth. Annual increases over the sample from changing
+demographic shifts were estimated to be 0.3% per annum over the historic sample. He suggests that
+population ageing in coming decades may reduce real housing values by about 0.8% per annum but this is
+likely to be offset by economic growth. Gevorgyan (2019) also found population growth boosts house
+prices for 59 countries up to 2018 but did not test for other demographic variables.
+Jäger and Schmidt (2017) estimated house price determination over 1950–2012 in 13 developed
+countries. They found a negative effect of the over-65 cohort and a positive effect of pre-65 s, but no
+relation of house prices to life expectancy or population size. It was suggested that demographic patterns
+depress house prices both in the past and the future, but in the past, this has been compensated by GDP
+growth; ageing plus subdued growth might lead to more actual house price falls in the future.
+As in Davis et al. (2011), Arestis and Gonzalez-Martine (2017) looked at house price determinants
+in 17 OECD countries over 1970–2013, using age groups 25–44, 45–64 and 65+. Effects were assessed
+country-by-country. Results showed different demographic effects between countries, with, for
+example, the US having long-run and short-run positive effects from the two working age groups
+(25–44 and 45–64) but noeffects from the retiring group (65+). Australiahad short-and long -run negative
+effects from the retired group. No demographic effects were detected for the UK. Accordingly, cross
+country panel studies may hide some important national differences in housing market dynamics.
+One of the few studies that look at the effect of ageing at a local as opposed to a national level and also
+at submarkets within the overall housing stock is Wang and Durst (2023). They examine the impact of
+ageing as proxied by the elderly dependency ratio at a US county level. They find that there is an overall
+boost to house prices from a larger percentage of elderly people, but that this is focused in particular on
+smaller homes (one bedroom) and there is no significant effect on condominiums and larger houses.
+They suggest results at a national level may be distorted by differences in ageing and also zoning rules at a
+local level and that the pattern found relates to downsizing.
+4
+Davis and Karim
+On balance, the results of estimates for prices of non-financial assets (e.g. property) are that a larger
+elderly cohort restrains housing demand. But in most cases, the literature does not suggest an outright
+decline. It appears that house prices are more likely to respond to specific features of demographics in the
+countries concerned than equities, since the latter are much more internationally traded. The studies
+may underestimate the role of housing supply, which if limited, could raise upward pressures on house
+prices in future.
+2.2. Ageing and home ownership
+As regards shifts in the relative demand between real and financial assets with ageing, it seems that
+housing demand would fall less than for financial assets as the elderly cohort grows. This is due to risk
+preferences, and the dual need for housing as a producer of consumer services and as an asset, alongside
+the illiquidity of housing. This is consistent with the results for house prices cited above which suggest the
+size of the elderly cohort has relatively little impact on prices when other factors are taken into account.
+Such a view is underlined by research of Chiuri and Japelli (2010) who looked at elderly home-
+ownership across 15 OECD countries. Whereas the raw data suggest a decline in homeownership from
+age 60 onwards, controlling for cohort effects mitigates this decline considerably, instead it begins at age
+70 and accelerates at age 75. They find that mortgage market regulation (including scope to extract
+equity) is a key explanation of differences across countries—in fact it has a negative correlation in that
+those able to extract equity are more likely to remain homeowners than those who have limited scope to
+do this.
+Of course, equity extraction implies a decline in net wealth while remaining as a homeowner, whereas
+ceasing to be a homeowner implies a switch to the rented sector, retirement or care home. As noted by
+Bogataj et al. (2016), however, equity release schemes are often assigned to the property and not the
+property owner and hence may limit desirable downsizing. Property taxes and availability of care beds
+were not significant determinants of home ownership by the elderly.
+Meanwhile, Horioka and Ventura (2024) investigated homeownership’s role in a wider assessment of
+the pattern of wealth accumulation/decumulation by the elderly. Whereas the life-cycle hypothesis
+assumes that the elderly will decumulate wealth to maintain consumption in retirement, the evidence
+shows that less than half of old people in European countries are decumulating wealth, with the average
+rate of accumulation being 6.6% over a three-year period. The explanations include a bequest motive
+(keeping wealth for the next generation), generous public pensions (that reduce the need to decumulate)
+and reluctance of the elderly to sell their houses or borrow against their accumulated equity.
+The bequest motive has a greater effect on accumulation, the larger the expected bequest. Precau-
+tionary saving in Europe seems to be less important than in the US, which may relate to public health
+systems and lesser concern about longevity risk due to public pensions. Homeowners are more likely to
+be accumulating wealth than renters, thus underlining that reluctance of elderly homeowners to sell
+homes or borrow against equity helps to explain the decumulation puzzle. It is suggested that consump-
+tion of the elderly can be increased via higher inheritance taxes, as would availability of home equity
+loans.
+Similarly, Blundell et al. (2016) find a lack of decumulation in the UK even by those aged 70–74;
+housing tends to be retained in retirement unlike in the US (partly due to house price increases) although
+financial assets are also decumulated less rapidly than in the US.
+3. Ageing and housing market policy
+3.1. The reluctance of elderly to downsize
+The results of the empirical studies outlined above clearly have certain policy implications. If ageing will
+lead to declines in property prices, then there is a risk of negative equity for mortgage borrowers, which in
+turn could impact on lending institutions. On the other hand, the balance of the literature on ageing and
+National Institute Economic Review
+5
+house prices seems to suggest that declines in house prices due to ageing will be limited when other
+factors are considered. This is underlined by the work cited on home ownership and asset decumulation
+by the elderly which suggest a very limited rate of decline of homeownership as people age, especially
+when cohort effects are allowed for. This occurs in a wider context of a strong bequest motive (in Europe)
+and precautionary saving (in the US and Japan), which entails that financial as well as housing assets are
+decumulated slowly if at all, while the elderly accumulate equity in their houses as prices rise.
+On the other hand, there are important corollaries of these results which are less discussed in the
+empirical literature. For example, the tendency of elderly people to continue living in large homes (e.g.,
+76% of over-65 s in the UK are owner occupiers) is a key issue for the distribution of housing across the
+population. A question raised in the UK is whether the reluctance of the elderly to leave their existing
+homes is related to the lack of suitable homes to move to, be they bungalows in the open market or
+specialised sheltered accommodation for older people, with or without care. Note in this context that
+specialised retirement housing is only 2.6% of the housing stock while 90% of the elderly live in open
+market mainstream housing. This issue is particularly pertinent since 84% of projected household
+growth between 2018 and 2043 involves people over 65.
+In this context, Mayhew (2020) estimates that1 there are more than 15 million unused bedrooms in
+the UK, of which 60% are owned by the over-65 s. Under occupation is accordingly concentrated among
+elderly singles and couples, but there is a lack of age-friendly housing in the UK even for those willing to
+consider downsizing; LGA (2022) suggest that 3 million people are ready to downsize in the UK but are
+put off by lack of choice. Only 7000 retirement homes are typically built each year, which is dwarfed by
+the expected rise in over 65 households to 2030 of 180,000.
+Even in the US, where downsizing is more common, Wang and Durst (2023) note a shortage of
+affordable elderly housing that warrants public intervention. Also, they note the demand for smaller
+homes as a consequence of ageing may conflict with similar demand for small homes by first time buyers.
+Absent policy action, Mayhew (2020) suggests that in the UK, the ‘bedroom surplus’ is expected to rise
+to 20 million in 2040 with 13 million of the over-65 s living in unsuitable accommodation. This is based
+on existing estimates (as noted above) projected forwards using UK demographic forecasts. It is
+suggested that getting the elderly into appropriate housing will not only free up space for first-time
+buyers but also reduce the burden on the health service and social care as social care can be more
+efficiently deployed in sheltered housing and retirement communities. Stays in hospital can accordingly
+be reduced.
+3.2. Barriers to construction of retirement housing
+Why do builders not construct more retirement homes, notably in the UK? The answer must address
+barriers to building houses generally, as well as specific problems giving rise to barriers to building
+retirement homes. We note that a number of these issues arise more widely than the UK, as noted by the
+World Economic Forum (Masterson, 2022), although some details are specific to the UK.
+Factors underlying slow housebuilding in general include planning delays (Badii et al., 2024). These in
+turn link to factors such as the need for sizeable financial contributions to the local area (to finance roads,
+other local infrastructure and services to cope with the increased demand from extra housing),
+infrastructure delays, cost of meeting regulatory requirements (such as environmental protection),
+delays to council decisions and community opposition. These have been particular issues for large
+developments that in recent years have accounted for a larger percentage of applications than in the past.
+Meanwhile, costs for housebuilders have increased sharply in recent years, arising from land, labour,
+materials and financial costs. Skilled labour is in short supply. Resultant pressure on profit margins
+reduces incentives to build, particularly in the case of affordable housing which has lower margins
+1These estimates are derived from a variety of data sources, as set out in Chapter 2 of the article, including the census. The
+Dwelling Index developed for the Last-Time Buyer report, and UK demographic data.
+6
+Davis and Karim
+(Masterson, 2022). Economic uncertainty arising from Brexit and COVID-19 have also served as
+disincentives to housebuilding.
+There is also an argument that developers prefer margins to volume more generally, resulting in a
+slow release of houses to the market to keep prices high, so-called drip feeding (Roberts, 2025). A
+particular problem arises for affordable housing as local authorities are limited in their ability to build
+more, and much of the stock of social housing has been sold off under ‘right to buy’ legislation.
+As regards the supply of retirement housing, Stirling and Burgess (2021) cite barriers, such as a lack of
+suitable sites, difficulty competing with other land uses due to higher costs than for general needs housing
+(such as wheelchair accessibility requirements), as well as planning barriers such as those arising from
+inconsistencies between local authorities around planning use classes for retirement homes. They
+contend that there is a lack of strategic vision to older people’s housing needs at a national level and
+poor assessment of needs for retirement housing at a local level. There are also constraints to investment
+in retirement communities such as long investment time horizons, which may deter interest by quoted
+investment funds. Meanwhile, housing market stimulus packages are typically focused on incentives and
+housing supply for young first-time buyers rather than the incentives to supply retirement homes and for
+elderly homeowners to downsize.
+Mayhew (2020) also cites a major change in 1990 when the Community Care Act required local
+authorities to help vulnerable adults to stay in the community, and which led to a rationalisation of the
+retirement housing sector and a collapse in supply, especially by local authorities and not-for profit
+organisations, to at most 25% of its peak ever since.
+Demand factors also play a role in discouraging supply. We have already cited the reluctance of older
+people to move from their existing homes. They are likely to be attached to a local community whereas
+retirement communities are often remotely situated and with poor access to public transport. And they
+do not necessarily wish to move to smaller homes. For a couple where one person needs social care, care
+home fees in the UK are levied on financial assets of that person and not on the value of the property,
+which creates a further disincentive to downsizing.
+Leasehold contracts offered to retirement homes are much less attractive than freeholds people hold
+and may dissuade people from selling their existing homes. It is not clear that the recent reform to replace
+leasehold with commonhold and limit ground rents will make retirement homes, or flats more generally,
+more attractive (Hudson, 2026).
+There are often exit fees to sales of retirement properties embedded in contracts, which may be 10%–
+30% of value in some cases (Age UK, 2025). A further key aspect is maintenance fees associated with
+retirement flats as opposed to houses that discourage movement. Crawford (2026) cite a large number of
+people unable to sell the retirement homes they have inherited, and who thus pay very large such
+maintenance fees. Such aspects justify individuals with concerns about inheritance to desist from
+purchasing retirement homes. Taxes, especially stamp duty land tax, also militate against moving house
+to downsize to retirement housing, as discussed below.
+Outside London and the Southeast, Stirling and Burgess (2021) suggest that ‘retirement communities’
+appear to be unviable; this is constrained to areas where older movers can access more housing equity,
+which limits choices for those living elsewhere. Indeed, they suggest that only social renters and wealthy
+homeowners seem able to access retirement housing.
+In light of issues as identified above, Mayhew (2020) suggests that local authorities should require
+housebuilders to include suitable housing for the elderly in planning applications, as they do for
+affordable housing. More efficient use of the existing stock, with the elderly living in suitable housing
+as opposed to remaining in, and underoccupying, their existing properties, would reduce pressures to
+‘just build more’. Bogataj et al. (2016) further highlight the need for local demographic projections to play
+a greater role in planning for housing, notably for the elderly.
+Further policy action suggested by Stirling and Burgess (2021) might include aligning accessibility
+standards of mainstream and specialised housing, and support for specialised housing applications from
+health and social care authorities (as it promotes efficiency in delivery of their services). Given individual
+preferences, housebuilders may need to consider a wider range of options for elderly individuals seeking
+National Institute Economic Review
+7
+retirement housing than one-bedroom retirement homes and guarantee long leases. A strategic vision for
+elderly housing is needed at a central and local government level.
+3.3. Tax systems, housing and ageing
+The tax system in many countries also militates against downsizing. For example, in the UK, stamp duty
+land tax (a transactions tax) on house purchase at rates of 5%–12% on properties valued above £250,000
+disincentivises downsizing. As noted by Whitehead et al. (2024), this tax means people seeking to downsize
+cannot buy a property of the same value as their existing one without paying the tax, whereas staying in
+their existing home avoids such costs. They argue that elderly people downsizing should have the same
+incentives as first-time buyers, with greater exemption from stamp duty, or its deferral till death.
+Progressive ad valorem property taxes regularly revalued and thus properly indexed to inflation
+would provide a much better incentive to downsize, if they could replace transactions taxes. Bogataj et al.
+(2016) identify similar issues in Spain (and more widely in EU countries). The UK is a particularly
+egregious example of unindexed property taxes, as property valuations have not been revised since 1991.
+As noted by Muellbauer (2025) the poorest pay the highest tax as a proportion of their income and higher
+band rates are much higher in poor areas such as Nottingham than rich ones such as Westminster. This,
+combined with high rates of stamp duty land tax, implies in turn that elderly people in high value
+properties in richer areas have little incentive to move. However, the wholesale transition to a revalued
+and indexed system may be difficult, given it will create winners and losers.
+In what would be an incremental but also radical reform, Muellbauer (2025) argues that the two top
+rates of council tax in the UK should be replaced by an annual wealth tax of 0.5%, which would be 1% for
+non-UK taxpayers and second homeowners. There would also be a 1% tax on agricultural and
+unoccupied land valued above £40,000 a hectare. This would affect an estimated 1.1 million properties,
+thus limiting political risk. There would certainly be an incentive for pensioners in these top-rated
+properties to downsize if this proposal were to be introduced, even though they would be allowed to delay
+payment of the tax till the property is sold. A fall in high value property prices would then likely ensue.
+Muellbauer estimates that the proposal would raise £9bn in revenue from the top two council tax bands,
+which could be balanced by a reduction in stamp duty land tax to 5%.
+Whitehead et al. (2024) recommend an overall reform of the council tax system, which would entail
+revaluation of all properties to current values, and adjustment of the bands in a way to imply that those
+with higher-valued properties pay proportionately more tax. The authors suggest that such a reform
+would increase the tax burden on those making the largest untaxed capital gains and increase the
+incentive to move to lower-valued properties by downsizing.
+Adam (2025) of the Institute for Fiscal Studies similarly recommends reforms to council tax to be
+proportionate to current valuations. It is suggested that rates should be set to replace revenues from both
+current council tax and the stamp duty land tax and that both of these should be abolished. Such a reform
+could again encourage downsizing. Adam (ibid) also notes that the current 25% discount from council
+tax available to sole occupants encourages individuals to remain in large houses and recommends either
+its abolition or setting not be in line with property values.
+Meanwhile, without reforming the underlying system of council taxation, the UK government has
+raised a surcharge on properties valued at over £2 m from 2028, to rise in line with inflation. 200,000
+properties may be affected, raising around £400 m. This could lead to more decumulation of property by
+the elderly (although as in the Muellbauer proposal, they are to be given the option of deferring liabilities
+till the property is sold).
+3.4. Issues in rental for the elderly
+We may add that the taxation of owner occupation is also generally much more favourable than for
+landlords with homes to rent, with the latter typically subject to income tax on rental income and capital
+8
+Davis and Karim
+gains tax. This offers a further disincentive for homeowners to sell up and rent, since the disparity in
+taxation is reflected in the cost of occupation.
+Some perspective on these policy issues can be provided by noting that despite the current generation
+of elderly being unique in terms of its prevalence of owner occupation, more and more elderly people are
+renting. In the UK, for example, older renters are predicted to double in the next 20 years (Age UK, 2024).
+30% of older renters live in ‘non-decent’ homes, over 50% of renters approaching retirement (45–64)
+have no savings and may find paying rent in retirement difficult. And 70% of over-65 renters would find
+it difficult to find an alternative property if they had to move.
+Australia has seen similar patterns, with overall owner occupation falling from 71% to 67% in the past
+two decades. Amongst the elderly, the 75+ group has the highest owner occupation and the 60–64 group
+has the highest proportion of renters (Chen et al., 2024). Renting has increased by 73% among the elderly
+in the past decade.
+Such patterns raise the issue of whether the overall system of retirement tends to assume mortgage-
+free owner occupation (with just maintenance and property taxes to pay) and what the implications of
+more renting will be as ageing proceeds. Certainly, it may raise the required level of income needed for
+‘comfortable’ retirement.
+3.5. Ageing and financial regulation
+Turning to financial institutions and financial regulation, Mitchell (2018) lists several desirable inno-
+vations to allow for the effects of ageing linked to housing. These are based on US experience but are
+clearly relevant elsewhere. Notably, to allow for wealth shocks, it may be helpful to have reverse
+mortgages; risk sharing in defined contribution funds between workers and retirees; and more inflation-
+indexed assets. Development of financial literacy will be crucial, as will allowance for declines in cognitive
+abilities with age.
+In this overall context, the question arises whether housing can be made more liquid for the elderly to
+aid their financial sustainability in retirement? What are the obstacles to trading down, equity release and
+so forth and are they amenable to regulatory action? Does it point to a need for re-examining regulation
+of equity release or reverse mortgages? In light of the analysis of ageing and housing, does regulation of
+mortgage lending warrant review, in case of issues such as age-discrimination in mortgages (which is
+forbidden in the US) and issues in trading down/equity release (as noted above)? It is notable that in
+Australia, the government offers a home equity access scheme to supplement pension income which can
+be obtained as a lump sum or a monthly income stream, at a rate of 3.5% (Chen et al., 2024). The US have
+the HECM programme, which guarantees reverse mortgages and is highly used (Bogataj et al., 2016).
+Meanwhile, in the context of affordability for older people currently confined to renting, Chen et al.
+(2024) suggest fractional ownership models in housing could be a helpful way of owning real estate,
+facilitated through blockchain. It allows multiple buyers to share ownership of a property and could be a
+viable option for older Australians who want to access the benefits of homeownership without the high
+upfront costs and risks of actual 100% purchase.
+Relevant research on the UK mortgage market by Bogiatzis et al (Bogiatzis-Gibbons et al., 2025) from
+the Financial Conduct Authority found no evidence of discrimination of mortgage pricing by demo-
+graphic characteristics (including age). However, they could not conclude that there are not issues with
+‘demand fairness’ via the availability of products to different groups. There are other potential drivers of
+differential outcomes, such as the impact on the supply of mortgages of the financial conditions of
+individuals in certain social groups at the point of taking out a mortgage.
+3.6. Interaction of housing and pensions
+Interaction of housing and pensions is a further key issue as ageing proceeds. Building from their model
+cited above, Cerny et al. (2010)) suggest that a reduction in real pensions paradoxically boosts the
+National Institute Economic Review
+9
+housing market further, as people have more income in working life, due to the assumption that the
+government will levy lower taxes on labour income to pay public pensions. Later retirement also boosts
+housing demand as people have more lifetime income, whereas saving for (and during) retirement is lower.
+An analysis of the issues for retirement-income risk raised by the rise of defined contribution pensions
+in the UK is given by Boileau et al. (2025a, 2025b). Investors have to manage the investment of a lump
+sum received on retirement. This issue comes particularly to the fore since, as discussed previously, the
+option of downsizing or equity release from owner occupied housing is unpopular and little used. A
+model of ‘flex then fix’ with drawdown up to a certain age and then annuitisation of the remainder is seen
+as a possible way forward as a non-compulsory default option.
+4. Conclusion
+We have highlighted that the ageing of the population, driven by declining fertility and rising longevity, is
+an ineluctable process with major economic and financial implications. We gave an overview of effects of
+ageing on housing market dynamics and related policy issues. On balance, the literature suggests that
+demographic effects are detectable for housing, with the working population tending to drive prices up
+while retired groups restrain it, but only to a limited degree when other factors are taken into account.
+The behaviour of elderly cohorts is not fully consistent with the life-cycle pattern of consumption and
+saving, with desire of bequests and precautionary saving as well as preference not to sell or borrow against
+existing property being amongst the reasons for this. Similar effects are found in both calibrated and
+econometric models of housing and personal finance.
+There are importantpolicy implications, arising partly but not wholly fromthe empirical literature cited
+above. We note, for example, the risk of negative equity arising from house price falls. But more crucially,
+we highlight the way that elderly people remaining in their own properties causes difficulty for the overall
+housing market, in particular availability of housing to first-time buyers. Underlying policy issues include
+the availability of equity extraction loans and the view taken of them by elderly people, transaction costs for
+elderly households wishing to trade down and the policy levers affecting determinants of the availability of
+alternative and more suitablehousingforelderlypeople. Wealsohighlight the specifictax measures applied
+to housing and their effect on downsizing, financial regulations relevant to housing demand and aspects of
+the integration of pensions and housing as means of ensuring financial security in old age.
+Further research in the context of housing and ageing may include re-estimating the relation of ageing to
+house prices and mortgage lending (developing from Davis et al., 2011), to assess likely patterns of mortgage
+demand and risks of house price declines in the time of ageing. Such research would inter alia probe whether
+countries such as the UK are outliers and thus less vulnerable to downward demographic pressure on house
+prices with ageing, due to immigration and very inelastic housing supply. As in Wang and Durst (2023), a
+UK study of house price relations to elderlypeople for different subcategories of housingcouldbe valuable, if
+datawere available. An importantcorollary would be estimating determinants of housing supply specifically
+available for elderly people, although data for the latter may be difficult to obtain.
+Acknowledgements. We thank Stephen Millard, our discussant and other participants in the NIER Workshop ‘The Political
+Economy of Ageing’, held at NIESR on 23 January 2026 for helpful comments and suggestions. This research did not receive any
+specific grant from funding agencies in the public, commercial or not-for-profit sectors.
+Data availability statement. The data sources for publicly available data are indicated in the text.
+Competing interests. The authors declare that there are no competing interests.
+References
+Adam, S. (2025), ‘Reforming the Taxation of Housing: What Changes Should the Chancellor Choose? in Presentation at the
+IFS–CIOT Debate, 6 November 2025, London: Institute for Fiscal Studies and Chartered Institute of Taxation.
+Age UK (2024), ‘Housing, Building for an Ageing Population’, Parliamentary Briefing, November 2024.
+10
+Davis and Karim
+Age UK (2025), ‘Buying Retirement Housing’, Factsheet 2, November 2025.
+Arestis, P. and Gonzalez-Martine, A.R. (2017), ‘Importance of Demographics for Housing in the OECD Economies’, Bulletin
+of Economic Research, 69, 1, pp. 1–22. http://doi.org/10.1111/boer.12072.
+Badii, E., Brinkmann, J., Datta, N. and Kulka, A. (2024), ‘5 Facts about the UK Planning System’, CAGE Policy Brief,
+September 2024,
+Becker, G.S. (1965), ‘A Theory of the Allocationof Time’, The Economic Journal, 75, 299, pp.493.http://doi.org/10.2307/2228949.
+Blundell, R., Rawford, R.C., French, E. and Tetlow, G. (2016), ‘Comparing Retirement Wealth Trajectories on Both Sides of
+the Pond’, Fiscal Studies, 37, 1, pp. 105–130.
+Bogataj, D., McDonnell, D.R. and Bogataj, M. (2016), ‘Management, Financing and Taxation of Housing Stock in the
+Shrinking Cities of Aging Societies’, International Journal of Production Economics, 181, pp. 2–13. http://doi.org/10.1016/j.
+ijpe.2016.08.017.
+Bogiatzis-Gibbons, D., Charles, L., Lawlor, L., Limani, B., O’Brien, E and Staniland, N. (2025), ‘An Empirical Analysis of
+Pricing Differences by Demographic Characteristics in the UK Mortgage Market’, FCA Research Note, 13 February 2025
+Boileau, B., Cribb, J. and Emmerson, C. (2025a), Individuals’ Challenges Managing Pensions through Retirement, The
+Pensions Review, London: Institute for Fiscal Studies, https://ifs.org.uk/publications/individuals-challenges-managing-
+pensions-through-retirement.
+Boileau, B., Cribb, J. and Emmerson, C. (2025b), Policies to Help People Manage Defined Contribution Pension Wealth
+through Retirement, The Pensions Review, London: Institute for Fiscal Studies, https://ifs.org.uk/publications/policies-help-
+people-manage-defined-contribution-pension-wealth-through-retirement.
+Cerny, A., Miles, D. and Schmidt, L. (2010), ‘The Impact of Changing Demographics and Pensions on the Demand for
+Housing and Financial Assets’, Pension Economics and Finance, 9, 3, pp. 393–420. http://doi.org/10.1017/S1474747209990047.
+Chen, J., Tran, L., Sinclair, S. and Boymal, J. (2024), ‘‘Safe as Houses’: Recalibrating Homeownership in Australian retirement
+Planning’, Australian Economic Review, 57, 1, pp. 90–101. http://doi.org/10.1111/1467-8462.12549.
+Chin, T. and Chau, K.W. (2003), ‘A Critical Review of Literature on the Hedonic Price Model’, International Journal for
+Housing Science and its Applications, 27, 2, pp. 145–165.
+Chiuri, M.C. and Jappelli, T. (2010), ‘Do the Elderly Reduce Housing Equity? An International Comparison’, Journal of
+Population Economics, 23, 2, pp. 643–663. http://doi.org/10.1007/s00148-008-0217-4.
+Crawford, A. (2026), ‘I can’t Sell Mum’s Retirement Flat, and it’s Costing me Thousands’, BBC News Website, 6 February 2026
+Davis, E.P., Fic, T.M. and Karim, D. (2011), ’Housing Market Dynamics and Macroprudential Tools’, in RUTH: The
+Riksbank’s Report on the Swedish Housing Market, Brunel Economics and Finance Working Paper No. 11-07, Uxbridge:
+Brunel University, https://bura.brunel.ac.uk/handle/2438/7151.
+Davis, E.P. and Karim, D. (2025), Ageing and Financial Markets: A Literature Survey, NIESR Discussion Paper No. 568,
+London: National Institute of Economic and Social Research.
+Gevorgyan, K. (2019), ‘Do Demographic Changes Affect House Prices?’, Journal of Demographic Economics, 85, 4, pp. 305–320.
+http://doi.org/10.1017/dem.2019.9.
+Horioka, C.Y. and Ventura, L. (2024), ‘Do the Retired Elderly in Europe Decumulate their Wealth? The Importance of Bequest
+Motives, Precautionary Saving, Public Pensions and Homeownership’, Review of Income and Wealth, 70, 1, pp. 187–212.
+http://doi.org/10.1111/roiw.12632.
+Hudson, N. (2026), ‘Who Killed the British Flat?’, Financial Times, 4 February 2026
+Igan, D. and Loungani, P. (2012), Global House Price Cycles, IMF Working Paper WP/12/217, Washington, DC: International
+Monetary Fund, https://www.imf.org/en/Publications/WP/Issues/2016/12/31/Global-Housing-Cycles-26229.
+Jäger, P. and Schmidt, T. (2017), ‘Demographic Change and House Prices: Headwind or Tailwind?’ Economics Letters, 160,
+pp. 82–85. http://doi.org/10.1016/j.econlet.2017.09.007.
+Lancaster, K.J. (1966), ‘A New Approach to Consumer Theory’, The Journal of Political Economy, 74, 2, pp. 132–157. http://doi.
+org/10.1086/259131.
+Lisack, N., Sajedi, R. and Thwaites, G. (2021), ‘Population Ageing and the Macroeconomy’, International Journal of Central
+Banking, 17, 2, pp. 44–80.
+Local Government Association (LGA) (2022), Housing Our Ageing Population, London: Local Government Association,
+https://www.local.gov.uk/publications/housing-ageing-population.
+Mankiw, N.G. and Weil, D.N. (1989), ‘The Baby Boom, the Baby Bust and the Housing Market’, Regional Science and Urban
+Economics, 19, 2, pp. 235–258. http://doi.org/10.1016/0166-0462(89)90005-7.
+Masterson, V. (2022), What Has Caused the Global Housing Crisis – and How Can We Fix it? Geneva: World Economic Forum,
+16 June, https://www.weforum.org/stories/2022/06/how-to-fix-global-housing-crisis/.
+Mayhew, L. (2020), Too Little, Too Late? Too Little, Too Late? Housing for an Housing for an ageing population ageing
+population (978-1-9997174-9-0). London, UK: CSFI: Centre for the Study of Financial Information.
+Mitchell, O.S. (2018), ‘Enhancing Risk Management for an Aging World’, Geneva Risk and Insurance Review, 43, 2,
+pp. 115–136. http://doi.org/10.1057/s10713-018-0027-x.
+Muellbauer, J. (2025), ‘Britain Needs a Wealth Tax on Property’, Financial Times, 31 August 2025
+National Institute Economic Review
+11
+Poterba, J.M. (1984), ‘Tax Subsidies to Owner-Occupied Housing: An Asset-Market Approach’, The Quarterly Journal of
+Economics, 99, 4, pp. 729–752. http://doi.org/10.2307/1883123.
+Poterba, J.M., Weil, D.N. and Shiller, R. (1991), ‘House Price Dynamics: The Role of Tax Policy and Demography’, Brookings
+Papers on Economic Activity, 1991, 2, pp. 143–203. http://doi.org/10.2307/2534591.
+Roberts, A. (2025), Let’s Talk about the Real Causes of the Housing Crisis. London: Campaign to Protect Rural England (CPRE),
+https://www.cpre.org.uk.
+Rosen, S. (1974), ‘Hedonic Prices and Implicit Markets: Product Differentiation in Pure Competition’, Journal of Political
+Economy, 82, 1, pp. 34–55. http://doi.org/10.1086/260169.
+Stirling, P. and Burgess, G. (2021), Understanding Supply, Demand and Investment in the Market for Retirement Housing
+Communities in England. Cambridge: Cambridge Centre for Housing and Planning Research, Department of Land
+Economy,
+University
+of
+Cambridge,
+https://www.housinglin.org.uk/_assets/Resources/Housing/OtherOrganisation/
+Report_UnderstandingSupplyDemandInvestmentMarketReitrementHousingCommunitiesEngland.pdf.
+Takáts, E. (2012), ‘Aging and House Prices’, Journal of Housing Economics, 21, 2, pp. 131–141. http://doi.org/10.1016/j.
+jhe.2012.04.001.
+United Nations (2024), World Population Prospects 2024, Historic Estimates and Medium Variant Projections, UN, https://
+population.un.org/wpp/downloads
+Wang, W. and Durst, N.J. (2023), ‘Planning for Active Aging: Exploring Housing Preferences of Elderly Populations in the
+United States’, Journal of Housing and the Built Environment, 38, 2, pp. 795–809. http://doi.org/10.1007/s10901-022-09962-0.
+Whitehead, C., Crook, T. and Scanlon, K. (2024), A Roadmap to a Coherent Housing Policy. Report for the Family Building
+Society. London: LSE London, London School of Economics and Political Science, https://www.lse.ac.uk/geography-and-
+environment/research/lse-london.
+Yogo, M. (2016), ‘Portfolio Choice in Retirement – Health Risk and the Demand for Annuities, Housing and Risky Assets’,
+Journal of Monetary Economics, 80, pp. 17–34. http://doi.org/10.1016/j.jmoneco.2016.04.008.
+Cite this article: Davis, E. P. and Karim, D. (2026), ‘Housing markets and ageing—dynamics and policy issues’, National
+Institute Economic Review, pp. 1–12. https://doi.org/10.1017/nie.2026.10097
+12
+Davis and Karim

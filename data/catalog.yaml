@@ -2306,3 +2306,22 @@ sources:
   - indicator
   description: 'Квартальные снимки по регионам: 03_02 (досрочное погашение, 6 индикаторов), 03_03 (объём/долг/погашение, 5 индикаторов), 04_02 (рефинансирование, 8 индикаторов). Q2 2026, 96 регионов'
   header_row: 7
+- id: rosstat_housing_input_operational
+  name: Строительство жилых домов (оперативные данные, Росстат)
+  type: file
+  url: https://rosstat.gov.ru/storage/mediabank/jil_dom-oper_07-2026.xls
+  format: xls
+  schedule: monthly (Rosstat publishes ~20th of following month)
+  table: housing_input_operational_monthly
+  primary_key:
+  - region_name
+  - report_year
+  - report_month
+  - indicator
+  description: 'Помесячные оперативные данные по вводу жилья по 96-98 регионам: всего и ИЖС населением, накопленный и месячный объём, % г/г. 19 листов (январь 2025 — июль 2026)'
+  header_row: 8
+  indicators:
+  - housing_input_total_cumulative
+  - housing_input_total_monthly
+  - housing_input_individual_cumulative
+  - housing_input_individual_monthly

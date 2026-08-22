@@ -1929,3 +1929,67 @@ sources:
   full_text_available: false
   open_access: true
   note: Full text available via Cambridge Core (citation_fulltext_world_readable)
+- id: monetary_policy_housing_cycles_wang_2024
+  title: Monetary policy and housing market cycles
+  authors:
+  - Jen-Kuan Wang
+  year: 2024
+  journal: Macroeconomic Dynamics
+  volume: 28
+  issue: 8
+  pages: 1682-1714
+  doi: 10.1017/S1365100523000615
+  publisher: Cambridge University Press
+  url: https://www.cambridge.org/core/journals/macroeconomic-dynamics/article/monetary-policy-and-housing-market-cycles/848C05CEA1BBB77E4847D320B0A9389D
+  keywords:
+  - Monetary policy
+  - housing market
+  tags:
+  - monetary-policy
+  - housing-market
+  - SVAR
+  - impulse-response
+  - housing-boom
+  - interest-rates
+  - credit-channel
+  - time-on-market
+  - asymmetric-effects
+  - USA
+  source: cambridge-core
+  type: original-article
+  file: papers/monetary_policy_housing_cycles_wang_2024.md
+  refs_count: 77
+  open_access: true
+- id: housing_financial_system_sufi_wachter_2017
+  title: 'Housing and the Financial System: Risks and Returns'
+  authors:
+  - Amir Sufi
+  - Susan M. Wachter
+  year: 2017
+  book: Evidence and Innovation in Housing Law and Policy
+  part: Part IV
+  pages: 255-256
+  publisher: Cambridge University Press
+  url: https://www.cambridge.org/core/books/evidence-and-innovation-in-housing-law-and-policy/housing-and-the-financial-system-risks-and-returns/CB5A5A64DFB62ECE27BAB82FCB883FDD
+  keywords:
+  - housing
+  - financial system
+  - mortgage crisis
+  - securitization
+  - credit supply
+  - subprime
+  tags:
+  - housing-finance
+  - mortgage-crisis
+  - subprime
+  - securitization
+  - credit-supply
+  - household-debt
+  - defaults
+  - financial-system
+  - USA
+  source: cambridge-core
+  type: book-chapter
+  file: papers/housing_financial_system_sufi_wachter_2017.md
+  refs_count: 193
+  open_access: false

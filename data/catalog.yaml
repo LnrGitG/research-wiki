@@ -5,16 +5,14 @@ sources:
   type: api
   url: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_04_New_loans_ind.xlsx
   format: xlsx
-  schedule: 0 7 * * *
-  table: cbr_mortgage_new_loans
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
   primary_key:
-  - period
-  - region
-  - metric
-  - currency
-  description: 'Объём и количество новых ипотечных кредитов по регионам РФ (млн руб.,
-    шт.) - 3 листа: в рублях, в валюте, итого'
-  header_row: null
+  - region_name
+  - report_date
+  - indicator
+  description: 'Новые ипотечные кредиты по регионам РФ (млн руб.) — VFS 02_04, 3 листа: рубли/валюта/итого. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
+  header_row: 2
 - id: cbr_usd_rate
   name: Курс USD (ЦБ РФ, динамика)
   type: api
@@ -243,8 +241,7 @@ sources:
   - prices
   - construction
 - id: cmwp_demographic_2040
-  title: 'CMWP RANEPA: Влияние демографических изменений на рынок жилья в России:
-    долгосрочный прогноз до 2040 года'
+  title: 'CMWP RANEPA: Влияние демографических изменений на рынок жилья в России: долгосрочный прогноз до 2040 года'
   type: research_report
   date: '2024'
   url: https://www.cmwp.ru/upload/sprint.editor/aa6/5i532x0wrc56sdck62492ckjgmk5jrcd.pdf
@@ -260,8 +257,7 @@ sources:
   - population-projection
   - '2040'
 - id: cmwp_supply_elasticity
-  title: 'CMWP RANEPA: Эластичность предложения жилья в российских регионах: оценки
-    и факторы'
+  title: 'CMWP RANEPA: Эластичность предложения жилья в российских регионах: оценки и факторы'
   type: research_report
   date: '2024'
   url: https://www.cmwp.ru/upload/iblock/7b8/1drfkt7eb9y8ulgddxxng5jrd7w0lh2v.pdf
@@ -304,8 +300,7 @@ sources:
   - etalong
   - glorax
 - id: stroygaz_labor_crisis_2026
-  title: 'Строительная газета: Переманивать или растить? Кадровый кризис в стройотрасли
-    (форум «Движение»)'
+  title: 'Строительная газета: Переманивать или растить? Кадровый кризис в стройотрасли (форум «Движение»)'
   type: industry_article
   date: '2026-06-26'
   url: https://stroygaz.ru/publication/kadry/peremanivat-ili-rastit-na-forume-nedvizhimosti-dvizhenie-obsudili-kadrovyy-krizis-v-stroyotrasli/
@@ -323,8 +318,7 @@ sources:
   - forum-dvizhenie
   - '2026'
 - id: cmwp_construction_debt_burden_2026
-  title: 'ЦМАКП: Долговая нагрузка строительных компаний России — критический уровень
-    (481% от EBITDA)'
+  title: 'ЦМАКП: Долговая нагрузка строительных компаний России — критический уровень (481% от EBITDA)'
   type: macro_analysis
   date: 2026-02
   url: https://www.cmwp.ru/
@@ -381,8 +375,7 @@ sources:
   - demand-weakness
   - max-analytics
 - id: veb_china_real_estate_2026
-  title: 'ВЭБ/Noah Smith: Китайский кризис недвижимости — структурный сбой модели
-    (янв-фев 2026)'
+  title: 'ВЭБ/Noah Smith: Китайский кризис недвижимости — структурный сбой модели (янв-фев 2026)'
   type: comparative_analysis
   date: 2026-02
   url: https://veb.ru/
@@ -419,8 +412,7 @@ sources:
   - policy-counterfactuals
   - research-design
 - id: gis_zhkh_housing_stock_2025
-  title: 'ГИС ЖКХ: Фонд многоквартирных домов России — износ, аварийность, пробелы
-    в данных (2025)'
+  title: 'ГИС ЖКХ: Фонд многоквартирных домов России — износ, аварийность, пробелы в данных (2025)'
   type: government_data
   date: 2025-12
   url: https://t.me/sq_metre
@@ -714,8 +706,7 @@ sources:
   - verhulst-2026-reference
   - couillard-2025-reference
 - id: census_satellite_housing_starts_2024
-  title: 'Census Bureau: Single-Family Housing Starts Using Satellite Imagery (Experimental
-    Data Product)'
+  title: 'Census Bureau: Single-Family Housing Starts Using Satellite Imagery (Experimental Data Product)'
   type: methodology_documentation
   date: '2024-12-19'
   url: https://www.census.gov/data/experimental-data-products/single-family-housing-satellite-imagery.html
@@ -817,8 +808,7 @@ sources:
   - spatial-equilibrium
   - submarket
 - id: sherpa_2026_h1_construction
-  title: 'Sherpa Group: Строительство в российских регионах: итоги первого полугодия
-    2026 года'
+  title: 'Sherpa Group: Строительство в российских регионах: итоги первого полугодия 2026 года'
   type: industry_report
   date: '2026-08-05'
   url: https://sherpagroup.ru/analytics/pdf/e6hkwd5.pdf
@@ -873,8 +863,7 @@ sources:
   - cbr
   - transmission-mechanism
 - id: nber_criw_2026_ch2_blended_housing_starts
-  title: 'A Blended Data Approach to Measuring Monthly Housing Starts: Satellite Imagery,
-    Survey Data and More!'
+  title: 'A Blended Data Approach to Measuring Monthly Housing Starts: Satellite Imagery, Survey Data and More!'
   type: paper
   date: 2026-03
   url: https://www.nber.org/papers/w35113
@@ -907,8 +896,7 @@ sources:
   - measurement
   - US
 - id: nber_criw_2026_ch3_geographic_pagerank
-  title: 'Measuring Housing Quality Using Revealed Preference: A Geographic PageRank
-    Approach'
+  title: 'Measuring Housing Quality Using Revealed Preference: A Geographic PageRank Approach'
   type: paper
   date: 2026-03
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/measuring-housing-quality-using-revealed-preference-geographic-pagerank-approach
@@ -936,8 +924,7 @@ sources:
   - amenities
   - measurement
 - id: nber_criw_2026_ch4_spillovers_vad
-  title: The Positive Spillovers to Risky Investments in Vacant, Abandoned, and Disinvested
-    Properties
+  title: The Positive Spillovers to Risky Investments in Vacant, Abandoned, and Disinvested Properties
   type: paper
   date: 2026-02
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/positive-spillovers-risky-investments-vacant-abandoned-and-disinvested-properties
@@ -985,8 +972,7 @@ sources:
   - US
   - 1914-2006
 - id: nber_criw_2026_ch6_land_supply
-  title: The Effect of Land Supply for New Homes on Residential Investment and House
-    Prices
+  title: The Effect of Land Supply for New Homes on Residential Investment and House Prices
   type: paper
   date: 2026-02
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/effect-land-supply-new-homes-residential-investment-and-house-prices
@@ -1069,8 +1055,7 @@ sources:
   - measurement
   - US
 - id: nber_criw_2026_ch9_mice_missing_data
-  title: 'Filling the Gaps with MICE: Addressing Missing Data in Real Estate Price
-    Indices'
+  title: 'Filling the Gaps with MICE: Addressing Missing Data in Real Estate Price Indices'
   type: paper
   date: 2026-04
   url: https://www.nber.org/papers/w35139
@@ -1098,8 +1083,7 @@ sources:
   - Austria
   - real-estate
 - id: nber_criw_2026_ch10_lands_opportunity
-  title: 'Lands of Opportunity: Differences in the Geography of Wealth and Income
-    Mobility in the United States'
+  title: 'Lands of Opportunity: Differences in the Geography of Wealth and Income Mobility in the United States'
   type: paper
   date: 2026-05
   url: https://www.nber.org/papers/w35219
@@ -1133,8 +1117,7 @@ sources:
   - census
   - Great-Recession
 - id: nber_criw_2026_ch11_rental_ownership
-  title: Toward a Methodology for Measuring Rental Property Ownership in the United
-    States
+  title: Toward a Methodology for Measuring Rental Property Ownership in the United States
   type: paper
   date: 2026-05
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/toward-methodology-measuring-rental-property-ownership-united-states
@@ -1236,8 +1219,7 @@ sources:
   - pricing
   - Finance-Theory-Practice
 - id: popova_2026_covid_preferential_mortgage
-  title: 'The impact of COVID-19 and preferential mortgage lending programs on mortgage
-    lending: Evidence from Russia'
+  title: 'The impact of COVID-19 and preferential mortgage lending programs on mortgage lending: Evidence from Russia'
   type: article
   date: '2026'
   venue: Journal of the New Economic Association
@@ -1254,8 +1236,7 @@ sources:
   - preferential-lending
   - NEA
 - id: louie_2025_supply_constraints_nber
-  title: Supply constraints do not explain house price and quantity growth across
-    US cities
+  title: Supply constraints do not explain house price and quantity growth across US cities
   type: working_paper
   date: '2025'
   venue: NBER Working Paper 33576
@@ -1275,8 +1256,7 @@ sources:
   - housing-quantity
   - WURI
 - id: zhirnov_2025_supply_demand_RU_housing
-  title: The Contribution of Supply and Demand Factors to the Dynamics of Primary
-    Housing Prices in Russia
+  title: The Contribution of Supply and Demand Factors to the Dynamics of Primary Housing Prices in Russia
   type: article
   date: '2025'
   venue: Studies on Russian Economic Development
@@ -1315,8 +1295,7 @@ sources:
   - modernization
   - SRED
 - id: rodriguez_2026_housing_vulnerabilities_mp
-  title: 'Housing Market Vulnerabilities and Monetary Policy: Lessons From two Decades
-    of European Data'
+  title: 'Housing Market Vulnerabilities and Monetary Policy: Lessons From two Decades of European Data'
   type: article
   date: '2026'
   venue: The Journal of Real Estate Finance and Economics
@@ -1402,8 +1381,7 @@ sources:
   - BPEA
   - Glaeser-Gyourko
 - id: volkova_2026_housing_demography_RU
-  title: Impact of Housing Affordability on Social Sustainability and Demographic
-    Development in Russian Regions
+  title: Impact of Housing Affordability on Social Sustainability and Demographic Development in Russian Regions
   type: article
   date: '2026'
   venue: Veredas do Direito
@@ -1421,8 +1399,7 @@ sources:
   - demography
   - regions
 - id: matvienko_2024_sanctions_mortgage
-  title: Assessment of the Impact of Unilateral Restrictive Measures on the Mortgage
-    Lending Market in the RF
+  title: Assessment of the Impact of Unilateral Restrictive Measures on the Mortgage Lending Market in the RF
   type: article
   date: '2024'
   venue: Economic Problems and Legal Practice
@@ -1437,8 +1414,7 @@ sources:
   - mortgage-lending
   - financial-legal
 - id: shevtsova_2026_RU_housing_policy
-  title: 'External Shocks and Multi-Level Governance Adaptation: the Case of Russian
-    Housing Policy'
+  title: 'External Shocks and Multi-Level Governance Adaptation: the Case of Russian Housing Policy'
   type: article
   date: '2026'
   venue: Russian Politics
@@ -1456,8 +1432,7 @@ sources:
   - governance
   - sanctions
 - id: hedlund_2025_mortgage_mp_inflation
-  title: Mortgage Market Structure and the Transmission of Monetary Policy During
-    the Great Inflation
+  title: Mortgage Market Structure and the Transmission of Monetary Policy During the Great Inflation
   type: working_paper
   date: '2025'
   venue: Working Paper
@@ -1474,8 +1449,7 @@ sources:
   - mortgage-market-structure
   - great-inflation
 - id: van_nieuwerburgh_2026_great_revaluation
-  title: 'The Great Revaluation: COVID-19 and the Structural Transformation of the
-    American Housing Market'
+  title: 'The Great Revaluation: COVID-19 and the Structural Transformation of the American Housing Market'
   type: working_paper
   date: '2026'
   venue: SSRN Working Paper
@@ -1490,8 +1464,7 @@ sources:
   - structural-transformation
   - SSRN
 - id: koziol_2026_monetary_transmission_cpi
-  title: 'Mapping Monetary Transmission: Housing, CPI Measurement and the Two Faces
-    of Inflation'
+  title: 'Mapping Monetary Transmission: Housing, CPI Measurement and the Two Faces of Inflation'
   type: working_paper
   date: '2026'
   venue: SSRN Working Paper
@@ -1523,8 +1496,7 @@ sources:
   - monetary-transmission
   - housing-sector
 - id: kiley_2022_anchored
-  title: 'Anchored or Not: How Much Information Does 21st Century Data Contain on
-    Inflation Dynamics?'
+  title: 'Anchored or Not: How Much Information Does 21st Century Data Contain on Inflation Dynamics?'
   type: working-paper
   date: '2022'
   venue: Federal Reserve Board, FEDS Working Paper 2022.016
@@ -1544,8 +1516,7 @@ sources:
   - FED
   - FEDS-paper
 - id: demichelis_2024_persistent
-  title: Has the Inflation Process Become More Persistent? Evidence from the Major
-    Advanced Economies
+  title: Has the Inflation Process Become More Persistent? Evidence from the Major Advanced Economies
   type: feds-note
   date: '2024'
   venue: Federal Reserve Board, FEDS Notes / NBER WP w31197
@@ -1633,8 +1604,7 @@ sources:
   - monetary-policy
   - FEDS-paper
 - id: cascaldigarcia_2023_drivers
-  title: Drivers of Post-pandemic Inflation in Selected Advanced Economies and Implications
-    for the Outlook
+  title: Drivers of Post-pandemic Inflation in Selected Advanced Economies and Implications for the Outlook
   type: feds-note
   date: '2023'
   venue: Federal Reserve Board, FEDS Notes
@@ -1674,8 +1644,7 @@ sources:
   - SVAR
   - NBER
 - id: cbr_2026_economic_growth_factors
-  title: 'Экономический рост в России через призму факторов производства: прошлое
-    и возможное будущее'
+  title: 'Экономический рост в России через призму факторов производства: прошлое и возможное будущее'
   type: research-report
   date: '2026'
   venue: Банк России, аналитическая записка
@@ -1755,8 +1724,7 @@ sources:
   - profitability
   - credit-ratings
 - id: dvizhenie_2026_regional_developers_zero_profit
-  title: 'Прибыли в региональном девелопменте больше нет: застройщики работают в ноль
-    или в убыток'
+  title: 'Прибыли в региональном девелопменте больше нет: застройщики работают в ноль или в убыток'
   type: industry-news
   date: 2026-08
   venue: Движение.ру в MAX
@@ -1850,17 +1818,15 @@ sources:
   - default-risk
   - methodology
 - id: econometrics_r_packages_2026
-  name: 'Экономика строительства в R: Стратегический выбор пакетов для оценки, наукастинга
-    и прогнозирования'
+  name: 'Экономика строительства в R: Стратегический выбор пакетов для оценки, наукастинга и прогнозирования'
   type: pdf
   file: papers/economics_r_packages_econometrics_2026.md
   raw_file: raw/papers/Economics_R_packages_econometrics_2026.pdf
   format: md+pdf
   pages: 28
   references: 113
-  description: 'Обзор R-пакетов для эконометрического анализа в строительстве: fixest,
-    marginaleffects, bsts, forecast, fable, CausalImpact, xtbreak. 5-шаговый workflow:
-    подготовка → EDA → оценка → наукастинг → прогнозирование.'
+  description: 'Обзор R-пакетов для эконометрического анализа в строительстве: fixest, marginaleffects, bsts, forecast, fable, CausalImpact, xtbreak. 5-шаговый workflow: подготовка → EDA → оценка → наукастинг
+    → прогнозирование.'
   tags:
   - econometrics
   - R
@@ -1893,8 +1859,7 @@ sources:
   - structural-breaks
   - data-integration
 - id: housing_provision_eu_aidukaite_2026
-  title: 'Housing provision: A comparative study of housing availability, accessibility,
-    and adequacy in EU member states'
+  title: 'Housing provision: A comparative study of housing availability, accessibility, and adequacy in EU member states'
   authors:
   - Jolanta Aidukaitė
   year: 2026
@@ -2102,3 +2067,72 @@ sources:
   file: papers/spatial_indirect_inference_rossi_2023.md
   refs_count: 30
   open_access: true
+- id: cbr_mortgage_debt
+  name: Задолженность по ипотечным кредитам (ЦБ РФ, 02_05)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_05_Debt_ind.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: 'Задолженность + просрочка по ипотечным кредитам по регионам РФ (млн руб.) — VFS 02_05, 6 листов: рубли/валюта/итого × долг/просрочка. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
+  header_row: 2
+- id: cbr_corporate_new_loans
+  name: Новые корпоративные кредиты по регионам (ЦБ РФ, 01_04)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/BankSector/Loans_to_corporations/01_04_D_New_loans_subj.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_corporate_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  - currency
+  description: 'Новые корпоративные кредиты по регионам РФ (млн руб.) — VFS 01_04, 3 листа: рубли/валюта/итого. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
+  header_row: 2
+- id: cbr_corporate_debt
+  name: Задолженность по корпоративным кредитам по регионам (ЦБ РФ, 01_05)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/BankSector/Loans_to_corporations/01_05_D_Debt_subj.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_corporate_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  - currency
+  description: 'Задолженность + просрочка по корпоративным кредитам по регионам РФ (млн руб.) — VFS 01_05, 6 листов: рубли/валюта/итого × долг/просрочка. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
+  header_row: 2
+- id: cbr_mortgage_bulletin
+  name: Бюллетень «Сведения о рынке ИЖК в России» (ЦБ РФ, Tag 211)
+  type: api
+  url: https://www.cbr.ru/banking_sector/statistics/?CF.TagId=211
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: 'Ежемесячный информационный бюллетень №74 (июнь 2026): 38 листов, 18 региональных (Т_16–Т_33): кол-во/объём ИЖК, ДДУ, ИЖС, задолженность, просрочка, ставки, доли, средний размер — 13 мес
+    (Jun 2025 → Jun 2026), 96 регионов. Т_34 — цены 1 кв.м (квартальная, 2025Q1–2026Q1)'
+  header_row: 4
+- id: cbr_escrow
+  name: Проектное финансирование и счета эскроу по регионам (ЦБ РФ, Tag 167)
+  type: api
+  url: https://www.cbr.ru/banking_sector/statistics/?CF.TagId=167
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_escrow_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: 'Ежемесячные данные по проектному финансированию застройщиков с эскроу: 9 индикаторов (кол-во/сумма кредитных договоров, задолженность, счета эскроу, остатки, ставка, раскрытые счета, перечисления).
+    55 файлов (Jan 2022 → Jul 2026), 86 регионов. Один файл = один месяц, имя файла = DDMMYYYY'
+  header_row: 3

@@ -2325,3 +2325,15 @@ sources:
   - housing_input_total_monthly
   - housing_input_individual_cumulative
   - housing_input_individual_monthly
+- id: rosstat_socio_economic_construction
+  name: Социально-экономическое положение России, раздел 1.6 Строительство (Росстат)
+  type: file
+  url: https://rosstat.gov.ru/storage/mediabank/2-1-6_06-2026.doc
+  format: doc
+  schedule: monthly (Rosstat publishes ~20th of following month)
+  tables:
+  - construction_volume_monthly_rf
+  - construction_contracts_monthly_rf
+  - buildings_completed_by_type
+  description: 'Ежемесячный доклад Росстата, раздел Строительство. 6 таблиц: объём СМР (помесячно), договоры/портфель заказов, ввод зданий по типам, ввод мощностей, ввод жилья, ввод соцкультуры. РФ уровень.'
+  header_row: varies

@@ -18,3 +18,4 @@ data/rosstat_construction.db
 data/regions_panel.db
 raw/rosstat/regions_collection_102/*.parquet
 raw/rosstat/regions_collection_102/*.zip
+data/cbr_lending.db

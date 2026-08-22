@@ -2028,3 +2028,40 @@ sources:
   file: papers/housing_markets_ageing_karim_2026.md
   refs_count: 41
   open_access: true
+- id: near_unit_roots_phillips_2023
+  title: Estimation and Inference with Near Unit Roots
+  authors:
+  - Peter C.B. Phillips
+  year: 2023
+  journal: Econometric Theory
+  volume: 39
+  issue: 2
+  pages: 221-263
+  doi: 10.1017/S0266466622000342
+  publisher: Cambridge University Press
+  published_online: '2022-07-27'
+  url: https://www.cambridge.org/core/journals/econometric-theory/article/estimation-and-inference-with-near-unit-roots/961D55BA08CFFEAAE9772CE271D64A3C
+  keywords:
+  - near unit roots
+  - nonstationary time series
+  - mildly integrated
+  - mildly explosive
+  - housing market
+  tags:
+  - unit-roots
+  - near-unit-roots
+  - nonstationary
+  - mildly-integrated
+  - mildly-explosive
+  - local-unit-root
+  - autoregressive-roots
+  - housing-market
+  - house-prices
+  - Australia
+  - inference
+  - time-series
+  source: cambridge-core
+  type: original-article
+  file: papers/near_unit_roots_phillips_2023.md
+  refs_count: 41
+  open_access: true

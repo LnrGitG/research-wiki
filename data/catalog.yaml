@@ -2065,3 +2065,40 @@ sources:
   file: papers/near_unit_roots_phillips_2023.md
   refs_count: 41
   open_access: true
+- id: spatial_indirect_inference_rossi_2023
+  title: Continuously Updated Indirect Inference in Heteroskedastic Spatial Models
+  authors:
+  - Francesca Rossi
+  year: 2023
+  journal: Econometric Theory
+  volume: 39
+  issue: 1
+  pages: 107-145
+  doi: 10.1017/S0266466621000384
+  publisher: Cambridge University Press
+  published_online: '2021-09-22'
+  url: https://www.cambridge.org/core/journals/econometric-theory/article/continuously-updated-indirect-inference-in-heteroskedastic-spatial-models/11CABB59EA7FAA3CD8F3981ED8CD39BE
+  keywords:
+  - spatial econometrics
+  - indirect inference
+  - heteroskedasticity
+  - continuous updating
+  - house prices
+  tags:
+  - spatial-econometrics
+  - indirect-inference
+  - heteroskedasticity
+  - continuous-updating
+  - OLS
+  - QMLE
+  - spatial-autoregression
+  - house-prices
+  - Boston
+  - Moran-I
+  - spatial-lag
+  - spatial-error
+  source: cambridge-core
+  type: original-article
+  file: papers/spatial_indirect_inference_rossi_2023.md
+  refs_count: 30
+  open_access: true

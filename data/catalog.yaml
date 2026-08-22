@@ -2136,3 +2136,55 @@ sources:
   description: 'Ежемесячные данные по проектному финансированию застройщиков с эскроу: 9 индикаторов (кол-во/сумма кредитных договоров, задолженность, счета эскроу, остатки, ставка, раскрытые счета, перечисления).
     55 файлов (Jan 2022 → Jul 2026), 86 регионов. Один файл = один месяц, имя файла = DDMMYYYY'
   header_row: 3
+- id: cbr_housing_loans_count
+  name: Количество жилищных кредитов по регионам (ЦБ РФ, 02_06)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_06_Quantity_housing.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: 'Количество жилищных кредитов по регионам РФ (шт.) — VFS 02_06, 3 листа: рубли/валюта/итого. 90 мес (Jan 2019 – Jun 2026), 96 регионов'
+  header_row: 3
+- id: cbr_housing_loans_volume
+  name: Объём жилищных кредитов по регионам (ЦБ РФ, 02_07)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_07_New_loans_housing.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: Объём жилищных кредитов по регионам РФ (млн руб.) — VFS 02_07, 3 листа. 90 мес (Jan 2019 – Jun 2026), 96 регионов
+  header_row: 3
+- id: cbr_housing_rates_terms
+  name: Ставки и сроки по жилищным кредитам (ЦБ РФ, 02_08)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_08_Rates_housing.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: 'Средневзвешенные сроки (мес.) и ставки (%) по жилищным кредитам — VFS 02_08, 4 листа: срок/ставка × рубли/валюта. 90 мес, 96 регионов'
+  header_row: 3
+- id: cbr_housing_debt
+  name: Задолженность по жилищным кредитам по регионам (ЦБ РФ, 02_09)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_09_Debt_housing.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: 'Задолженность + просрочка по жилищным кредитам по регионам РФ (млн руб.) — VFS 02_09, 6 листов: рубли/валюта/итого × долг/просрочка. 90 мес, 96 регионов'
+  header_row: 3

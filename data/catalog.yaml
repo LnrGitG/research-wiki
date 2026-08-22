@@ -1892,3 +1892,40 @@ sources:
   - long-term-forecasting
   - structural-breaks
   - data-integration
+- id: housing_provision_eu_aidukaite_2026
+  title: 'Housing provision: A comparative study of housing availability, accessibility,
+    and adequacy in EU member states'
+  authors:
+  - Jolanta Aidukaitė
+  year: 2026
+  journal: Journal of International and Comparative Social Policy
+  volume: 42
+  issue: 1
+  pages: 22-41
+  doi: 10.1017/ics.2025.10087
+  publisher: Cambridge University Press
+  url: https://www.cambridge.org/core/journals/journal-of-international-and-comparative-social-policy/article/housing-provision-a-comparative-study-of-housing-availability-accessibility-and-adequacy-in-eu-member-states/221123B4585BA16C890FCB5C925B5F47
+  keywords:
+  - housing provision
+  - housing policy
+  - social policy
+  - welfare state
+  - European Union
+  tags:
+  - housing-provision
+  - comparative-housing
+  - EU
+  - welfare-state
+  - availability
+  - affordability
+  - adequacy
+  - cluster-analysis
+  - Eurostat
+  - OECD
+  source: cambridge-core
+  type: original-article
+  file: papers/housing_provision_eu_aidukaite_2026.md
+  refs_count: 74
+  full_text_available: false
+  open_access: true
+  note: Full text available via Cambridge Core (citation_fulltext_world_readable)

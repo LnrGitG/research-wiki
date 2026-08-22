@@ -2188,3 +2188,121 @@ sources:
   - indicator
   description: 'Задолженность + просрочка по жилищным кредитам по регионам РФ (млн руб.) — VFS 02_09, 6 листов: рубли/валюта/итого × долг/просрочка. 90 мес, 96 регионов'
   header_row: 3
+- id: cbr_scpa_quantity
+  name: Кол-во ИЖК под залог прав требования (ЦБ РФ, 02_15)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_15_Quantity_scpa_mortgage.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: Количество ИЖК под залог прав требования (ДДУ) по регионам (шт.) — 3 листа. 90 мес, 96 регионов
+  header_row: 2
+- id: cbr_scpa_volume
+  name: Объём ИЖК под залог прав требования (ЦБ РФ, 02_16)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_16_New_loans_scpa_mortgage.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: Объём ИЖК под залог прав требования (ДДУ) по регионам (млн руб.) — 3 листа. 90 мес, 96 регионов
+  header_row: 2
+- id: cbr_scpa_rates
+  name: Ставки и сроки ИЖК под залог прав требования (ЦБ РФ, 02_17)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_17_Rates_scpa_mortgage.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: Средневзвешенные сроки (мес.) и ставки (%) по ИЖК под залог прав требования — 4 листа. 90 мес, 96 регионов
+  header_row: 2
+- id: cbr_scpa_debt
+  name: Задолженность ИЖК под залог прав требования (ЦБ РФ, 02_18)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_18_Debt_scpa_mortgage.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: Задолженность + просрочка + приобретённые права по ИЖК под залог прав требования — 12 листов. 90/63 мес, 96 регионов
+  header_row: 2
+- id: cbr_ihc_quantity
+  name: Кол-во ИЖК на цели ИЖС (ЦБ РФ, 02_42)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/banksector/mortgage/02_42_Quantity_mortgage_ihc.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: Количество ИЖК на цели ИЖС (создание/приобретение) — 9 листов. 30 мес (Jan 2024 – Jun 2026), 96 регионов
+  header_row: 3
+- id: cbr_ihc_volume
+  name: Объём ИЖК на цели ИЖС (ЦБ РФ, 02_43)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/banksector/mortgage/02_43_New_loans_mortgage_ihc.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: Объём ИЖК на цели ИЖС (создание/приобретение, млн руб.) — 9 листов. 30 мес, 96 регионов
+  header_row: 3
+- id: cbr_ihc_share
+  name: Доля ИЖС в ИЖК (ЦБ РФ, 02_44)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/banksector/mortgage/02_44_Share_mortgage_ihc.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: Доля ИЖК на цели ИЖС в общем объёме ИЖК (%) — 9 листов. 30 мес, 96 регионов
+  header_row: 3
+- id: cbr_ihc_rates
+  name: Ставки и сроки ИЖК на цели ИЖС (ЦБ РФ, 02_45)
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/banksector/mortgage/02_45_Rates_mortgage_ihc.xlsx
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_monthly
+  primary_key:
+  - region_name
+  - report_date
+  - indicator
+  description: Средневзвешенные сроки (мес.) и ставки (%) по ИЖК на цели ИЖС — 12 листов. 30 мес, 96 регионов
+  header_row: 3
+- id: cbr_mortgage_quarterly_snapshots
+  name: 'Квартальные снимки: досрочное погашение, показатели, рефинансирование (ЦБ РФ, 03_02/03_03/04_02)'
+  type: api
+  url: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/
+  format: xlsx
+  schedule: 0 7 * * 2
+  table: cbr_mortgage_quarterly
+  primary_key:
+  - region_name
+  - year
+  - quarter
+  - indicator
+  description: 'Квартальные снимки по регионам: 03_02 (досрочное погашение, 6 индикаторов), 03_03 (объём/долг/погашение, 5 индикаторов), 04_02 (рефинансирование, 8 индикаторов). Q2 2026, 96 регионов'
+  header_row: 7

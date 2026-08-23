@@ -2357,3 +2357,16 @@ sources:
   - vds_real_2021
   - vds_volume_index
   - vds_deflator
+- id: rosstat_average_wage_monthly
+  name: Среднемесячная номинальная начисленная ЗП по субъектам РФ (Росстат)
+  type: file
+  url: https://rosstat.gov.ru/storage/mediabank/tab2-zpl_05-2026.xlsx
+  format: xlsx
+  schedule: monthly (Росстат публикует ~20-го числа следующего месяца)
+  table: average_wage_monthly_regional
+  primary_key:
+  - region_name
+  - year
+  - month
+  description: 'Помесячная номинальная начисленная ЗП по полному кругу организаций, 97 регионов (РФ + 8 ФО + субъекты), 2013-2026. РФ май 2026: 110,216 руб'
+  header_row: varies (row 3 for 2013-2018, row 2 for 2019+)

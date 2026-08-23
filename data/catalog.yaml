@@ -2370,3 +2370,15 @@ sources:
   - month
   description: 'Помесячная номинальная начисленная ЗП по полному кругу организаций, 97 регионов (РФ + 8 ФО + субъекты), 2013-2026. РФ май 2026: 110,216 руб'
   header_row: varies (row 3 for 2013-2018, row 2 for 2019+)
+- id: rosstat_real_wage_index_annual
+  name: Индекс реальной среднемесячной начисленной ЗП по субъектам РФ (Росстат)
+  type: file
+  url: https://rosstat.gov.ru/storage/mediabank/tab5-zpl-2025.xlsx
+  format: xlsx
+  schedule: annual (за предыдущий год)
+  table: real_wage_index_annual_regional
+  primary_key:
+  - region_name
+  - year
+  description: 'Индекс реальной ЗП (% к предыдущему году), 97 регионов, 2000-2025. РФ 2025: 105.2%'
+  header_row: varies (row 4 for 2000-2017, row 3 for 2018+)

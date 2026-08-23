@@ -2337,3 +2337,23 @@ sources:
   - buildings_completed_by_type
   description: 'Ежемесячный доклад Росстата, раздел Строительство. 6 таблиц: объём СМР (помесячно), договоры/портфель заказов, ввод зданий по типам, ввод мощностей, ввод жилья, ввод соцкультуры. РФ уровень.'
   header_row: varies
+- id: rosstat_vds_quarterly_okved
+  name: Валовая добавленная стоимость по ОКВЕД2, квартальная (Росстат)
+  type: file
+  url: https://rosstat.gov.ru/storage/mediabank/VDS_kvartal_OKVED2_s_2011-2026.xlsx
+  format: xlsx
+  schedule: quarterly (не позднее 11 сентября за Q2)
+  table: gdp_vds_quarterly_okved
+  primary_key:
+  - okved_section
+  - year
+  - quarter
+  - series
+  description: 'Квартальная ВДС по 22 разделам ОКВЕД2 (A-T) + ВВП. 5 серий: номинал (текущие цены), реальные цены 2016 и 2021, индексы физического объема, дефляторы. 2011-2026, обновлено 17.06.2026'
+  header_row: 4
+  series:
+  - vds_nominal
+  - vds_real_2016
+  - vds_real_2021
+  - vds_volume_index
+  - vds_deflator

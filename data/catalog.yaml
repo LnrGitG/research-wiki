@@ -2382,3 +2382,18 @@ sources:
   - year
   description: 'Индекс реальной ЗП (% к предыдущему году), 97 регионов, 2000-2025. РФ 2025: 105.2%'
   header_row: varies (row 4 for 2000-2017, row 3 for 2018+)
+- id: rosstat_das_construction_sentiment
+  name: Опережающие индикаторы в строительстве (ДАС, Росстат)
+  type: file
+  url: https://rosstat.gov.ru/storage/mediabank/indikatori_DAS_2kv_2026.xlsx
+  format: xlsx
+  schedule: quarterly
+  table: das_construction_sentiment_quarterly
+  primary_key:
+  - indicator
+  - subtype
+  - year
+  - quarter
+  description: 'Квартальные опережающие индикаторы деловой активности в строительстве (ДАС). 7 индикаторов: индекс уверенности, портфель заказов, физический объем (факт+ожидания), занятость (факт+ожидания),
+    загрузка мощностей, экономическая ситуация (факт+ожидания), факторы-ограничения (3 фактора). 2006-2026, без новых территорий'
+  header_row: 5

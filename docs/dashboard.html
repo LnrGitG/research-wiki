@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Жилищное строительство — дашборд | research-wiki</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #0f1420; --card: #171e2e; --border: #26304a;
+  --text: #e6ebf5; --muted: #8b96ad;
+  --blue: #4f8ef7; --green: #3fb68b; --orange: #f5a742; --red: #e05d5d; --purple: #a06ee1;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 16px; line-height: 1.45; padding-bottom: 40px;
+}
+header { padding: 20px 16px 12px; max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 1.35rem; font-weight: 700; }
+.subtitle { color: var(--muted); font-size: .85rem; margin-top: 4px; }
+.subtitle a { color: var(--blue); text-decoration: none; }
+main { max-width: 1100px; margin: 0 auto; padding: 0 12px; }
+.kpi-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px; margin: 14px 0;
+}
+.kpi {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px;
+}
+.kpi .label { color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; }
+.kpi .value { font-size: 1.35rem; font-weight: 700; margin-top: 3px; }
+.kpi .delta { font-size: .78rem; margin-top: 2px; }
+.delta.up { color: var(--green); } .delta.down { color: var(--red); }
+.grid-2 { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 800px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+.chart-card {
+  background: var(--card); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px; margin-top: 12px;
+}
+.chart-card h2 { font-size: .95rem; font-weight: 600; margin-bottom: 2px; }
+.chart-card .note { color: var(--muted); font-size: .74rem; margin-bottom: 10px; }
+.chart-wrap { position: relative; height: 260px; }
+.chart-wrap.tall { height: 420px; }
+select {
+  background: var(--bg); color: var(--text); border: 1px solid var(--border);
+  border-radius: 6px; padding: 6px 8px; font-size: .82rem; margin-bottom: 10px; width: 100%;
+}
+footer { max-width: 1100px; margin: 24px auto 0; padding: 0 16px; color: var(--muted); font-size: .75rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🏗️ Жилищное строительство России</h1>
+  <div class="subtitle">
+    Дашборд по таблице <code>observations</code> (Росстат) ·
+    <a href="index.html">← research-wiki</a> ·
+    <a href="data.html">статистика ЦБ</a>
+  </div>
+</header>
+
+<main>
+  <div class="kpi-grid" id="kpis"></div>
+
+  <div class="grid-2">
+    <div class="chart-card">
+      <h2>Ввод жилых домов, РФ</h2>
+      <div class="note">тыс. м² в год · 1990–2021</div>
+      <div class="chart-wrap"><canvas id="chartInput"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h2>Стоимость строительства 1 м²</h2>
+      <div class="note">руб., фактическая · 1999–2020 (номинал)</div>
+      <div class="chart-wrap"><canvas id="chartCost"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h2>Построено квартир</h2>
+      <div class="note">единиц в год · 2000–2021</div>
+      <div class="chart-wrap"><canvas id="chartFlats"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h2>Незавершённое строительство к годовому вводу</h2>
+      <div class="note">% · падение = достройка и продажа с опережением · 2000–2021</div>
+      <div class="chart-wrap"><canvas id="chartUnfinished"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h2>Доля малоэтажного жилья (ИЖС)</h2>
+      <div class="note">% ввода общей площади · 2012–2021</div>
+      <div class="chart-wrap"><canvas id="chartLowrise"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <h2>Ввод жилья по регионам, 2021</h2>
+      <div class="note">тыс. м² · топ-30 + выбор региона</div>
+      <select id="regionSelect"></select>
+      <div class="chart-wrap tall"><canvas id="chartRegions"></canvas></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  Источник: Росстат (разделы «Жилищное строительство», годовые издания) → таблица observations,
+  rosstat_construction.db. Обновлено: 2026-08-24.
+</footer>
+
+<script>
+const COLORS = { blue:'#4f8ef7', green:'#3fb68b', orange:'#f5a742', red:'#e05d5d', purple:'#a06ee1' };
+Chart.defaults.color = '#8b96ad';
+Chart.defaults.borderColor = '#26304a';
+Chart.defaults.font.size = 11;
+
+fetch('data/observations_dashboard.json')
+  .then(r => r.json())
+  .then(D => {
+
+  const fmt = new Intl.NumberFormat('ru-RU');
+  const series = k => D[k].data.map(p => p[0]);
+  const values = k => D[k].data.map(p => p[1]);
+
+  // ---- KPI ----
+  const last = k => { const d = D[k].data; return { y: d[d.length-1][0], v: d[d.length-1][1], p: d[d.length-2] ? d[d.length-2][1] : null }; };
+  const inp = last('housing_input_rf');
+  const cost = last('cost_per_sqm_rf');
+  const flats = last('flats_rf');
+  const unfin = last('unfinished_ratio_rf');
+  const lowr = last('lowrise_share_rf');
+
+  const kpis = [
+    { label: `Ввод жилья ${inp.y}`, value: fmt.format(Math.round(inp.v)) + ' тыс м²',
+      delta: inp.p ? ((inp.v/inp.p-1)*100).toFixed(1)+'% г/г' : '', dir: inp.p && inp.v>=inp.p },
+    { label: `Стоимость 1 м² ${cost.y}`, value: fmt.format(Math.round(cost.v)) + ' ₽',
+      delta: cost.p ? ((cost.v/cost.p-1)*100).toFixed(1)+'% г/г' : '', dir: cost.p && cost.v<=cost.p },
+    { label: `Квартир ${flats.y}`, value: fmt.format(Math.round(flats.v)),
+      delta: flats.p ? ((flats.v/flats.p-1)*100).toFixed(1)+'% г/г' : '', dir: flats.p && flats.v>=flats.p },
+    { label: `Незавершёнка ${unfin.y}`, value: unfin.v.toFixed(0) + '%',
+      delta: 'к годовому вводу', dir: null },
+    { label: `Малоэтажное ${lowr.y}`, value: lowr.v.toFixed(1) + '%',
+      delta: 'доля ввода ИЖС+блок', dir: null },
+  ];
+  document.getElementById('kpis').innerHTML = kpis.map(k =>
+    `<div class="kpi"><div class="label">${k.label}</div><div class="value">${k.value}</div>` +
+    `<div class="delta ${k.dir===null?'':(k.dir?'up':'down')}">${k.dir===null?k.delta:(k.dir?'▲ ':'▼ ')+k.delta}</div></div>`
+  ).join('');
+
+  // ---- Line chart helper ----
+  function line(id, key, color, opts={}) {
+    new Chart(document.getElementById(id), {
+      type: 'line',
+      data: {
+        labels: series(key),
+        datasets: [{
+          data: values(key),
+          borderColor: color, backgroundColor: color+'22',
+          fill: true, tension: 0.25, pointRadius: 2, borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false }, tooltip: {
+            callbacks: { label: ctx => fmt.format(Math.round(ctx.parsed.y)) + ' ' + (D[key].unit||'') }
+        }},
+        scales: {
+          x: { ticks: { maxTicksLimit: 9 } },
+          y: { ticks: { callback: v => opts.compact && Math.abs(v)>=1000 ? fmt.format(Math.round(v/1000))+'K' : fmt.format(Math.round(v)) } }
+        }
+      }
+    });
+  }
+
+  line('chartInput', 'housing_input_rf', COLORS.blue);
+  line('chartCost', 'cost_per_sqm_rf', COLORS.orange);
+  line('chartFlats', 'flats_rf', COLORS.green);
+  line('chartUnfinished', 'unfinished_ratio_rf', COLORS.red);
+  line('chartLowrise', 'lowrise_share_rf', COLORS.purple);
+
+  // ---- Regions bar ----
+  const R21 = D.housing_input_regions.data['2021'] || {};
+  const sorted = Object.entries(R21).sort((a,b)=>b[1]-a[1]);
+  const top30 = sorted.slice(0, 30);
+  new Chart(document.getElementById('chartRegions'), {
+    type: 'bar',
+    data: {
+      labels: top30.map(e => e[0].replace('область','об.').replace('Республика','Респ.').replace('автономный округ','АО')),
+      datasets: [{ data: top30.map(e=>e[1]), backgroundColor: COLORS.blue+'cc' }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: {
+        callbacks: { label: ctx => fmt.format(Math.round(ctx.parsed.x)) + ' тыс м²' } } },
+      scales: { x: { ticks: { callback: v => fmt.format(Math.round(v)) } } }
+    }
+  });
+
+  // Region picker — динамика одного региона 2000–2021
+  const sel = document.getElementById('regionSelect');
+  const years = [...new Set(
+    Object.entries(D.housing_input_regions.data).flatMap(([y, regs]) =>
+      Object.keys(regs).map(r => null)).concat()
+  )];
+  // Для динамики нужен полный ряд по региону из observations — здесь только срезы 2020/2021
+  sel.innerHTML = '<option value="">— выберите регион для сравнения 2020→2021 —</option>' +
+    sorted.map(e => `<option value="${encodeURIComponent(e[0])}">${e[0]}</option>`).join('');
+  });
+</script>
+</body>
+</html>

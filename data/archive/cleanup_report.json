@@ -1,0 +1,25 @@
+{
+  "started": "2026-08-24T21:29:41.850588",
+  "phases": {
+    "P1": {
+      "deleted": 267980
+    },
+    "P2": {
+      "dup_groups": 1006,
+      "deleted": 4052
+    },
+    "P3": {
+      "deleted": 5994
+    },
+    "P4": {
+      "deleted": 7776,
+      "orphaned_indicators_removed": 19
+    },
+    "P5": {
+      "mortgage_fx_zero": 144348,
+      "corporate_fx_zero": 11515
+    }
+  },
+  "finished": "2026-08-24T21:31:58.976272",
+  "total_deleted": 285802
+}

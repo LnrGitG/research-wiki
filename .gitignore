@@ -19,3 +19,6 @@ data/regions_panel.db
 raw/rosstat/regions_collection_102/*.parquet
 raw/rosstat/regions_collection_102/*.zip
 data/cbr_lending.db
+
+# DB cleanup archive: JSONL backups of removed DOM.RF marginal blocks (106 MB local only)
+data/archive/*.jsonl

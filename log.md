@@ -126,3 +126,10 @@
 - Added scripts: scripts/convert_pdfs.py (idempotent PDF→MD, skips _archive/Workpapers, flags error-page/image-only) and scripts/lint_wiki.py (non-blocking by default; --strict fails on broken wikilinks).
 - Cleanup: moved two bad extracted sources to _archive/rejected/2026-07-25/ (chodorow-reich-2025-cpi-housing = access denied; dipasquale-wheaton-1992 = image-only/empty extraction).
 - Verified: convert_pdfs.py --no-recursive → converted=0 skipped=33 failed=0; lint_wiki.py → problems=0 warnings=170 (mostly missing catalog cards for existing raw sources).
+
+## [2026-08-25] ingest | AI Mindset cases: Academic Research + Research Planning and Content Tagging
+- Sources: base.aimindset.org case-Academic-Research, case-AI-for-Research-Planning-and-Content-Tagging (both 21.08.2026)
+- Extraction: curl direct (web_extract not configured), Quartz static HTML -> article block
+- Created: queries/ai-mindset-research-planning-case.md (both cases, RU summary + pipeline mapping)
+- Updated: index.md (2 new query entries)
+- Key takeaway: extraction/publishing stronger than case; gaps = LLM research-plan/gap generation, auto-tagging with confidence, auto-review assembly -> fit llm_pipeline.py

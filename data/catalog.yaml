@@ -11,7 +11,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Новые ипотечные кредиты по регионам РФ (млн руб.) — VFS 02_04, 3 листа: рубли/валюта/итого. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
+  description: 'Новые ипотечные кредиты по регионам РФ (млн руб.) — VFS 02_04, 3 листа: рубли/валюта/итого.
+    90 мес (Jan 2019 → Jun 2026), 96 регионов'
   header_row: 2
 - id: cbr_usd_rate
   name: Курс USD (ЦБ РФ, динамика)
@@ -241,7 +242,8 @@ sources:
   - prices
   - construction
 - id: cmwp_demographic_2040
-  title: 'CMWP RANEPA: Влияние демографических изменений на рынок жилья в России: долгосрочный прогноз до 2040 года'
+  title: 'CMWP RANEPA: Влияние демографических изменений на рынок жилья в России: долгосрочный прогноз
+    до 2040 года'
   type: research_report
   date: '2024'
   url: https://www.cmwp.ru/upload/sprint.editor/aa6/5i532x0wrc56sdck62492ckjgmk5jrcd.pdf
@@ -863,7 +865,8 @@ sources:
   - cbr
   - transmission-mechanism
 - id: nber_criw_2026_ch2_blended_housing_starts
-  title: 'A Blended Data Approach to Measuring Monthly Housing Starts: Satellite Imagery, Survey Data and More!'
+  title: 'A Blended Data Approach to Measuring Monthly Housing Starts: Satellite Imagery, Survey Data
+    and More!'
   type: paper
   date: 2026-03
   url: https://www.nber.org/papers/w35113
@@ -1083,7 +1086,8 @@ sources:
   - Austria
   - real-estate
 - id: nber_criw_2026_ch10_lands_opportunity
-  title: 'Lands of Opportunity: Differences in the Geography of Wealth and Income Mobility in the United States'
+  title: 'Lands of Opportunity: Differences in the Geography of Wealth and Income Mobility in the United
+    States'
   type: paper
   date: 2026-05
   url: https://www.nber.org/papers/w35219
@@ -1219,7 +1223,8 @@ sources:
   - pricing
   - Finance-Theory-Practice
 - id: popova_2026_covid_preferential_mortgage
-  title: 'The impact of COVID-19 and preferential mortgage lending programs on mortgage lending: Evidence from Russia'
+  title: 'The impact of COVID-19 and preferential mortgage lending programs on mortgage lending: Evidence
+    from Russia'
   type: article
   date: '2026'
   venue: Journal of the New Economic Association
@@ -1381,7 +1386,8 @@ sources:
   - BPEA
   - Glaeser-Gyourko
 - id: volkova_2026_housing_demography_RU
-  title: Impact of Housing Affordability on Social Sustainability and Demographic Development in Russian Regions
+  title: Impact of Housing Affordability on Social Sustainability and Demographic Development in Russian
+    Regions
   type: article
   date: '2026'
   venue: Veredas do Direito
@@ -1399,7 +1405,8 @@ sources:
   - demography
   - regions
 - id: matvienko_2024_sanctions_mortgage
-  title: Assessment of the Impact of Unilateral Restrictive Measures on the Mortgage Lending Market in the RF
+  title: Assessment of the Impact of Unilateral Restrictive Measures on the Mortgage Lending Market in
+    the RF
   type: article
   date: '2024'
   venue: Economic Problems and Legal Practice
@@ -1825,7 +1832,8 @@ sources:
   format: md+pdf
   pages: 28
   references: 113
-  description: 'Обзор R-пакетов для эконометрического анализа в строительстве: fixest, marginaleffects, bsts, forecast, fable, CausalImpact, xtbreak. 5-шаговый workflow: подготовка → EDA → оценка → наукастинг
+  description: 'Обзор R-пакетов для эконометрического анализа в строительстве: fixest, marginaleffects,
+    bsts, forecast, fable, CausalImpact, xtbreak. 5-шаговый workflow: подготовка → EDA → оценка → наукастинг
     → прогнозирование.'
   tags:
   - econometrics
@@ -1859,7 +1867,8 @@ sources:
   - structural-breaks
   - data-integration
 - id: housing_provision_eu_aidukaite_2026
-  title: 'Housing provision: A comparative study of housing availability, accessibility, and adequacy in EU member states'
+  title: 'Housing provision: A comparative study of housing availability, accessibility, and adequacy
+    in EU member states'
   authors:
   - Jolanta Aidukaitė
   year: 2026
@@ -2078,7 +2087,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Задолженность + просрочка по ипотечным кредитам по регионам РФ (млн руб.) — VFS 02_05, 6 листов: рубли/валюта/итого × долг/просрочка. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
+  description: 'Задолженность + просрочка по ипотечным кредитам по регионам РФ (млн руб.) — VFS 02_05,
+    6 листов: рубли/валюта/итого × долг/просрочка. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
   header_row: 2
 - id: cbr_corporate_new_loans
   name: Новые корпоративные кредиты по регионам (ЦБ РФ, 01_04)
@@ -2092,7 +2102,8 @@ sources:
   - report_date
   - indicator
   - currency
-  description: 'Новые корпоративные кредиты по регионам РФ (млн руб.) — VFS 01_04, 3 листа: рубли/валюта/итого. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
+  description: 'Новые корпоративные кредиты по регионам РФ (млн руб.) — VFS 01_04, 3 листа: рубли/валюта/итого.
+    90 мес (Jan 2019 → Jun 2026), 96 регионов'
   header_row: 2
 - id: cbr_corporate_debt
   name: Задолженность по корпоративным кредитам по регионам (ЦБ РФ, 01_05)
@@ -2106,7 +2117,8 @@ sources:
   - report_date
   - indicator
   - currency
-  description: 'Задолженность + просрочка по корпоративным кредитам по регионам РФ (млн руб.) — VFS 01_05, 6 листов: рубли/валюта/итого × долг/просрочка. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
+  description: 'Задолженность + просрочка по корпоративным кредитам по регионам РФ (млн руб.) — VFS 01_05,
+    6 листов: рубли/валюта/итого × долг/просрочка. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
   header_row: 2
 - id: cbr_mortgage_bulletin
   name: Бюллетень «Сведения о рынке ИЖК в России» (ЦБ РФ, Tag 211)
@@ -2119,8 +2131,9 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Ежемесячный информационный бюллетень №74 (июнь 2026): 38 листов, 18 региональных (Т_16–Т_33): кол-во/объём ИЖК, ДДУ, ИЖС, задолженность, просрочка, ставки, доли, средний размер — 13 мес
-    (Jun 2025 → Jun 2026), 96 регионов. Т_34 — цены 1 кв.м (квартальная, 2025Q1–2026Q1)'
+  description: 'Ежемесячный информационный бюллетень №74 (июнь 2026): 38 листов, 18 региональных (Т_16–Т_33):
+    кол-во/объём ИЖК, ДДУ, ИЖС, задолженность, просрочка, ставки, доли, средний размер — 13 мес (Jun 2025
+    → Jun 2026), 96 регионов. Т_34 — цены 1 кв.м (квартальная, 2025Q1–2026Q1)'
   header_row: 4
 - id: cbr_escrow
   name: Проектное финансирование и счета эскроу по регионам (ЦБ РФ, Tag 167)
@@ -2133,7 +2146,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Ежемесячные данные по проектному финансированию застройщиков с эскроу: 9 индикаторов (кол-во/сумма кредитных договоров, задолженность, счета эскроу, остатки, ставка, раскрытые счета, перечисления).
+  description: 'Ежемесячные данные по проектному финансированию застройщиков с эскроу: 9 индикаторов (кол-во/сумма
+    кредитных договоров, задолженность, счета эскроу, остатки, ставка, раскрытые счета, перечисления).
     55 файлов (Jan 2022 → Jul 2026), 86 регионов. Один файл = один месяц, имя файла = DDMMYYYY'
   header_row: 3
 - id: cbr_housing_loans_count
@@ -2147,7 +2161,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Количество жилищных кредитов по регионам РФ (шт.) — VFS 02_06, 3 листа: рубли/валюта/итого. 90 мес (Jan 2019 – Jun 2026), 96 регионов'
+  description: 'Количество жилищных кредитов по регионам РФ (шт.) — VFS 02_06, 3 листа: рубли/валюта/итого.
+    90 мес (Jan 2019 – Jun 2026), 96 регионов'
   header_row: 3
 - id: cbr_housing_loans_volume
   name: Объём жилищных кредитов по регионам (ЦБ РФ, 02_07)
@@ -2160,7 +2175,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Объём жилищных кредитов по регионам РФ (млн руб.) — VFS 02_07, 3 листа. 90 мес (Jan 2019 – Jun 2026), 96 регионов
+  description: Объём жилищных кредитов по регионам РФ (млн руб.) — VFS 02_07, 3 листа. 90 мес (Jan 2019
+    – Jun 2026), 96 регионов
   header_row: 3
 - id: cbr_housing_rates_terms
   name: Ставки и сроки по жилищным кредитам (ЦБ РФ, 02_08)
@@ -2173,7 +2189,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Средневзвешенные сроки (мес.) и ставки (%) по жилищным кредитам — VFS 02_08, 4 листа: срок/ставка × рубли/валюта. 90 мес, 96 регионов'
+  description: 'Средневзвешенные сроки (мес.) и ставки (%) по жилищным кредитам — VFS 02_08, 4 листа:
+    срок/ставка × рубли/валюта. 90 мес, 96 регионов'
   header_row: 3
 - id: cbr_housing_debt
   name: Задолженность по жилищным кредитам по регионам (ЦБ РФ, 02_09)
@@ -2186,7 +2203,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Задолженность + просрочка по жилищным кредитам по регионам РФ (млн руб.) — VFS 02_09, 6 листов: рубли/валюта/итого × долг/просрочка. 90 мес, 96 регионов'
+  description: 'Задолженность + просрочка по жилищным кредитам по регионам РФ (млн руб.) — VFS 02_09,
+    6 листов: рубли/валюта/итого × долг/просрочка. 90 мес, 96 регионов'
   header_row: 3
 - id: cbr_scpa_quantity
   name: Кол-во ИЖК под залог прав требования (ЦБ РФ, 02_15)
@@ -2199,7 +2217,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Количество ИЖК под залог прав требования (ДДУ) по регионам (шт.) — 3 листа. 90 мес, 96 регионов
+  description: Количество ИЖК под залог прав требования (ДДУ) по регионам (шт.) — 3 листа. 90 мес, 96
+    регионов
   header_row: 2
 - id: cbr_scpa_volume
   name: Объём ИЖК под залог прав требования (ЦБ РФ, 02_16)
@@ -2212,7 +2231,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Объём ИЖК под залог прав требования (ДДУ) по регионам (млн руб.) — 3 листа. 90 мес, 96 регионов
+  description: Объём ИЖК под залог прав требования (ДДУ) по регионам (млн руб.) — 3 листа. 90 мес, 96
+    регионов
   header_row: 2
 - id: cbr_scpa_rates
   name: Ставки и сроки ИЖК под залог прав требования (ЦБ РФ, 02_17)
@@ -2225,7 +2245,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Средневзвешенные сроки (мес.) и ставки (%) по ИЖК под залог прав требования — 4 листа. 90 мес, 96 регионов
+  description: Средневзвешенные сроки (мес.) и ставки (%) по ИЖК под залог прав требования — 4 листа.
+    90 мес, 96 регионов
   header_row: 2
 - id: cbr_scpa_debt
   name: Задолженность ИЖК под залог прав требования (ЦБ РФ, 02_18)
@@ -2238,7 +2259,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Задолженность + просрочка + приобретённые права по ИЖК под залог прав требования — 12 листов. 90/63 мес, 96 регионов
+  description: Задолженность + просрочка + приобретённые права по ИЖК под залог прав требования — 12 листов.
+    90/63 мес, 96 регионов
   header_row: 2
 - id: cbr_ihc_quantity
   name: Кол-во ИЖК на цели ИЖС (ЦБ РФ, 02_42)
@@ -2251,7 +2273,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Количество ИЖК на цели ИЖС (создание/приобретение) — 9 листов. 30 мес (Jan 2024 – Jun 2026), 96 регионов
+  description: Количество ИЖК на цели ИЖС (создание/приобретение) — 9 листов. 30 мес (Jan 2024 – Jun 2026),
+    96 регионов
   header_row: 3
 - id: cbr_ihc_volume
   name: Объём ИЖК на цели ИЖС (ЦБ РФ, 02_43)
@@ -2304,7 +2327,8 @@ sources:
   - year
   - quarter
   - indicator
-  description: 'Квартальные снимки по регионам: 03_02 (досрочное погашение, 6 индикаторов), 03_03 (объём/долг/погашение, 5 индикаторов), 04_02 (рефинансирование, 8 индикаторов). Q2 2026, 96 регионов'
+  description: 'Квартальные снимки по регионам: 03_02 (досрочное погашение, 6 индикаторов), 03_03 (объём/долг/погашение,
+    5 индикаторов), 04_02 (рефинансирование, 8 индикаторов). Q2 2026, 96 регионов'
   header_row: 7
 - id: rosstat_housing_input_operational
   name: Строительство жилых домов (оперативные данные, Росстат)
@@ -2318,7 +2342,8 @@ sources:
   - report_year
   - report_month
   - indicator
-  description: 'Помесячные оперативные данные по вводу жилья по 96-98 регионам: всего и ИЖС населением, накопленный и месячный объём, % г/г. 19 листов (январь 2025 — июль 2026)'
+  description: 'Помесячные оперативные данные по вводу жилья по 96-98 регионам: всего и ИЖС населением,
+    накопленный и месячный объём, % г/г. 19 листов (январь 2025 — июль 2026)'
   header_row: 8
   indicators:
   - housing_input_total_cumulative
@@ -2335,7 +2360,8 @@ sources:
   - construction_volume_monthly_rf
   - construction_contracts_monthly_rf
   - buildings_completed_by_type
-  description: 'Ежемесячный доклад Росстата, раздел Строительство. 6 таблиц: объём СМР (помесячно), договоры/портфель заказов, ввод зданий по типам, ввод мощностей, ввод жилья, ввод соцкультуры. РФ уровень.'
+  description: 'Ежемесячный доклад Росстата, раздел Строительство. 6 таблиц: объём СМР (помесячно), договоры/портфель
+    заказов, ввод зданий по типам, ввод мощностей, ввод жилья, ввод соцкультуры. РФ уровень.'
   header_row: varies
 - id: rosstat_vds_quarterly_okved
   name: Валовая добавленная стоимость по ОКВЕД2, квартальная (Росстат)
@@ -2349,7 +2375,8 @@ sources:
   - year
   - quarter
   - series
-  description: 'Квартальная ВДС по 22 разделам ОКВЕД2 (A-T) + ВВП. 5 серий: номинал (текущие цены), реальные цены 2016 и 2021, индексы физического объема, дефляторы. 2011-2026, обновлено 17.06.2026'
+  description: 'Квартальная ВДС по 22 разделам ОКВЕД2 (A-T) + ВВП. 5 серий: номинал (текущие цены), реальные
+    цены 2016 и 2021, индексы физического объема, дефляторы. 2011-2026, обновлено 17.06.2026'
   header_row: 4
   series:
   - vds_nominal
@@ -2368,7 +2395,8 @@ sources:
   - region_name
   - year
   - month
-  description: 'Помесячная номинальная начисленная ЗП по полному кругу организаций, 97 регионов (РФ + 8 ФО + субъекты), 2013-2026. РФ май 2026: 110,216 руб'
+  description: 'Помесячная номинальная начисленная ЗП по полному кругу организаций, 97 регионов (РФ +
+    8 ФО + субъекты), 2013-2026. РФ май 2026: 110,216 руб'
   header_row: varies (row 3 for 2013-2018, row 2 for 2019+)
 - id: rosstat_real_wage_index_annual
   name: Индекс реальной среднемесячной начисленной ЗП по субъектам РФ (Росстат)
@@ -2394,8 +2422,10 @@ sources:
   - subtype
   - year
   - quarter
-  description: 'Квартальные опережающие индикаторы деловой активности в строительстве (ДАС). 7 индикаторов: индекс уверенности, портфель заказов, физический объем (факт+ожидания), занятость (факт+ожидания),
-    загрузка мощностей, экономическая ситуация (факт+ожидания), факторы-ограничения (3 фактора). 2006-2026, без новых территорий'
+  description: 'Квартальные опережающие индикаторы деловой активности в строительстве (ДАС). 7 индикаторов:
+    индекс уверенности, портфель заказов, физический объем (факт+ожидания), занятость (факт+ожидания),
+    загрузка мощностей, экономическая ситуация (факт+ожидания), факторы-ограничения (3 фактора). 2006-2026,
+    без новых территорий'
   header_row: 5
 - id: cbr_api_dataservice_mortgage
   name: ЦБ РФ API Data Service — ипотечные жилищные кредиты
@@ -2409,7 +2439,8 @@ sources:
   - region_name
   - currency
   - date
-  description: 'API ЦБ РФ: 7 индикаторов (кол-во, объём, задолженность, просрочка, срок, сезонно-скорр.) × 96 регионов × 3 валюты (руб/вал/всего). Feb 2019 - Jul 2026. 121K записей. categoryId=21, iIds=44,45,46,47,48'
+  description: 'API ЦБ РФ: 7 индикаторов (кол-во, объём, задолженность, просрочка, срок, сезонно-скорр.)
+    × 96 регионов × 3 валюты (руб/вал/всего). Feb 2019 - Jul 2026. 121K записей. categoryId=21, iIds=44,45,46,47,48'
   indicators:
     '44': Количество кредитов
     '45': Объем кредитов
@@ -2429,7 +2460,8 @@ sources:
   - question
   - adjustment
   - date
-  description: 'Помесячные данные мониторинга предприятий ЦБ РФ по ВЭД Строительство. 12 вопросов × 2 типа (исходные + сезонно скорректированные). Mar 2002 - Sep 2026. Источник: опросы предприятий'
+  description: 'Помесячные данные мониторинга предприятий ЦБ РФ по ВЭД Строительство. 12 вопросов × 2
+    типа (исходные + сезонно скорректированные). Mar 2002 - Sep 2026. Источник: опросы предприятий'
   questions:
   - ИБК (сводный)
   - ИБК (факт.)
@@ -2444,7 +2476,8 @@ sources:
   - Издержки производства
   - Условия кредитования
 - id: karpeko_2026_quiet
-  title: 'Карпеко Ф.А. (Банк России): QUIET — индикатор инфляционных ожиданий домохозяйств России и её регионов на основе данных поисковых систем'
+  title: 'Карпеко Ф.А. (Банк России): QUIET — индикатор инфляционных ожиданий домохозяйств России и её
+    регионов на основе данных поисковых систем'
   type: working_paper
   date: '2026'
   url: https://www.cbr.ru/StaticHtml/File/194046/wp_174.pdf
@@ -2463,3 +2496,27 @@ sources:
   - ardl
   - monetary-policy
   - cbr
+- id: search_nowcasting_construction_2026
+  title: 'Наукастинг строительной активности и ввода жилья поисковыми запросами: обзор литературы, официальные
+    кейсы, эмпирическая валидация'
+  type: research_review
+  date: '2026-08-25'
+  files:
+    md: queries/search-nowcasting-construction.md
+  tags:
+  - nowcasting
+  - construction
+  - housing-input
+  - yandex-wordstat
+  - google-trends
+  - midas
+  - pca
+  - cbr-monitoring
+  - das
+  - quiet
+  - rbi
+  - bundesbank
+  - oecd-weekly-tracker
+  - literature-review
+  relates_to:
+  - karpeko_2026_quiet

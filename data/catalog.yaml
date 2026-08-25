@@ -2443,3 +2443,23 @@ sources:
   - Ожидаемый темп прироста цен (3 мес, %)
   - Издержки производства
   - Условия кредитования
+- id: karpeko_2026_quiet
+  title: 'Карпеко Ф.А. (Банк России): QUIET — индикатор инфляционных ожиданий домохозяйств России и её регионов на основе данных поисковых систем'
+  type: working_paper
+  date: '2026'
+  url: https://www.cbr.ru/StaticHtml/File/194046/wp_174.pdf
+  files:
+    md: papers/karpeko_2026_quiet_inflation_expectations.RU.md
+    pdf: raw/papers/cbr_wp174_karpeko_2026_quiet.pdf
+  tags:
+  - inflation-expectations
+  - russia
+  - regions
+  - nowcasting
+  - google-trends
+  - yandex-wordstat
+  - pca
+  - midas
+  - ardl
+  - monetary-policy
+  - cbr

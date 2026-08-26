@@ -65,6 +65,18 @@ WHERE region_code IN (77,78,23,66,16)
 ORDER BY region_code, year, quarter""", con)
 ```
 
+## Размещение
+
+- Полная база также выложена в Google Drive (рядом с сырьём):
+  `rosreestr_deals_full.sqlite` — file id `1iwDjHwPLuPzoXZkdFeeyAvomXeESaQ7z`,
+  md5 `5169ad24c0fec401b133e46c7669797d`, 1.41 ГБ, загружена 2026-08-26.
+- Загрузка на Drive: resumable upload через OAuth Playground токен
+  (scope drive.file); refresh-токен сохранён в секретах Hermes
+  (`GOOGLE_OAUTH_REFRESH_TOKEN`) — новые access-токены:
+  POST oauth2.googleapis.com/token (client_id 407408718192.apps.googleusercontent.com,
+  redirect_uri https://developers.google.com/oauthplayground,
+  grant_type=refresh_token).
+
 ## Связи
 
 - Ипотечные выдачи ЦБ: `data/catalog.yaml` → `cbr_mortgage_new_loans`

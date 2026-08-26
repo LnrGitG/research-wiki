@@ -2537,3 +2537,22 @@ sources:
     (1.5 ГБ, локально, в git не входит). Сырьё: Google Drive папка Rosreestr_Data. ВАЖНО: с 2025 в данных
     резкое падение доли ДДУ (669→31 тыс./год) — разворот рынка к ДКП; разделитель CSV меняется между кварталами
     (; или ~), парсить с автодетектом.'
+- id: metriki-interesa-2026
+  name: Метрики интереса для макроэкономического анализа рынка недвижимости РФ
+  type: document
+  files:
+    md: papers/2026-Metriki-interesa.pdf.md
+  tags:
+    - russia
+    - data-sources
+    - FAVAR-MIDAS
+    - Yandex-Wordstat
+    - Google-Trends
+    - Telegram-metrics
+    - GDELT
+    - Similarweb
+    - real-estate
+    - high-frequency-proxies
+    - sentiment-index
+    - web-traffic
+  description: Обзор источников высокочастотных метрик (поиск, медиа, сентимент, веб‑трафик) для построения прокси в FAVAR-MIDAS моделях.

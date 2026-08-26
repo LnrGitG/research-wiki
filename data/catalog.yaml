@@ -2556,3 +2556,27 @@ sources:
     - sentiment-index
     - web-traffic
   description: Обзор источников высокочастотных метрик (поиск, медиа, сентимент, веб‑трафик) для построения прокси в FAVAR-MIDAS моделях.
+- id: digital-footprint-economics-2026
+  name: Цифровой след экономики: как интернет метрики меняют анализ ВВП, инфляции и рынка недвижимости
+  type: document
+  files:
+    md: papers/2026-digital-footprint-economics.pdf.md
+  tags:
+    - russia
+    - digital-footprint
+    - internet-metrics
+    - nowcasting
+    - GDP
+    - inflation
+    - housing-market
+    - search-trends
+    - online-prices
+    - sentiment-analysis
+    - LLM
+    - Factor-MIDAS
+    - Bayesian-models
+    - central-banks
+    - IMF
+    - BIS
+    - methodological-limitations
+  description: Обзор использования интернет‑метрик (поисковые тренды, онлайн‑цены, настроения в новостях и соцсетях) для макроэкономического анализа, с акцентом на опера‑тивное мониторинг и прогнозирование ВВП, инфляции и рынка недвижимости.

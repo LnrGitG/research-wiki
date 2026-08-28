@@ -83,7 +83,7 @@ a{color:#4fc3f7;text-decoration:none}
 <div class="modal" id="modal"></div>
 </div>
 
-<script>
+<script type="module">
 import {pipeline,env} from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0';
 
 // Configure: load model from HF Hub, cache in browser
@@ -272,6 +272,8 @@ modal.innerHTML=
 '</div>';
 }
 function closeDetail(){document.getElementById('modal-overlay').classList.remove('open');}
+// expose for inline onclick handlers (module scope is not global)
+window.openDetail=openDetail;window.closeDetail=closeDetail;
 document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target.id==='modal-overlay')closeDetail();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
 

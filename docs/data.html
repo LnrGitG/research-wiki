@@ -58,6 +58,7 @@ const SERIES={
 'employment':{'name':'Занятость','icon':'👷'},
 'materials':{'name':'Материалы','icon':'🧱'},
 'materials_m':{'name':'Материалы (мес)','icon':'📉'},
+'gdelt':{'name':'Новостной тон','icon':'📰'},
 'machinery':{'name':'Техника','icon':'🚜'},
 'ddu':{'name':'ДДУ (ДОМ.РФ)','icon':'📋'},
 'permits':{'name':'РНС (ДОМ.РФ)','icon':'📄'},
@@ -207,6 +208,39 @@ const cv=document.createElement('canvas');cv.id='chm';
 document.querySelector('.chart-card').appendChild(cv);
 drawMatM(e.target.value);
 });
+}
+
+else if(key==='gdelt'){
+if(!D.gdelt_sentiment_weekly||!D.gdelt_sentiment_weekly.length){
+c.innerHTML='<div class="chart-card"><h2>Нет данных</h2></div>';return;}
+const w=D.gdelt_sentiment_weekly,m=D.gdelt_sentiment_monthly;
+const zw=w.reduce((a,b)=>b.tone_z>a.tone_z?b:a);
+const zmin=w.reduce((a,b)=>b.tone_z<a.tone_z?b:a);
+const latest=w[w.length-1];
+c.innerHTML=`<div class="stats">
+<div class="stat red"><div class="val">${zmin.tone_z}</div><div class="label">Мин. тон-z (${zmin.week.slice(0,7)})</div></div>
+<div class="stat green"><div class="val">${zw.tone_z}</div><div class="label">Макс. тон-z (${zw.week.slice(0,7)})</div></div>
+<div class="stat"><div class="val">${latest.tone_z}</div><div class="label">Последняя неделя</div></div>
+</div>
+<div class="chart-card"><h2>GDELT: тональность новостей жилья/ипотеки РФ, z-score (недели)</h2>
+<canvas id="chg"></canvas></div>
+<div class="chart-card"><h2>Средняя тон-оценка, помесячно</h2>
+<canvas id="chgm" style="margin-top:10px"></canvas></div>`;
+new Chart(document.getElementById('chg'),{type:'line',data:{
+labels:w.map(x=>x.week),
+datasets:[
+{label:'Тон z-score',data:w.map(x=>x.tone_z),borderColor:'#4fc3f7',backgroundColor:'#4fc3f722',fill:true,pointRadius:0,tension:0.2},
+{label:'Объём (норм.)',data:w.map(x=>x.vol),borderColor:'#ce93d8',borderDash:[4,3],pointRadius:0,tension:0.3,yAxisID:'y1'}
+]
+},options:{plugins:{legend:{labels:{boxWidth:10,font:{size:10}}}},scales:{
+x:{ticks:{maxTicksLimit:8}},
+y:{title:{display:true,text:'Тон z'}},
+y1:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'Vol'}}
+}}});
+new Chart(document.getElementById('chgm'),{type:'bar',data:{
+labels:m.map(x=>x.month),
+datasets:[{label:'Тон, мес.',data:m.map(x=>x.tone),backgroundColor:x=>x.raw>0?'#81c784':'#ef5350'}]
+},options:{plugins:{legend:{display:false}},scales:{x:{ticks:{maxTicksLimit:12}}}}});
 }
 
 else if(key==='machinery'){

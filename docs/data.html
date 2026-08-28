@@ -57,6 +57,7 @@ const SERIES={
 'unfinished':{'name':'Незавершённое','icon':'⏳'},
 'employment':{'name':'Занятость','icon':'👷'},
 'materials':{'name':'Материалы','icon':'🧱'},
+'materials_m':{'name':'Материалы (мес)','icon':'📉'},
 'machinery':{'name':'Техника','icon':'🚜'},
 'ddu':{'name':'ДДУ (ДОМ.РФ)','icon':'📋'},
 'permits':{'name':'РНС (ДОМ.РФ)','icon':'📄'},
@@ -178,6 +179,33 @@ document.getElementById('ch').remove();
 const cv=document.createElement('canvas');cv.id='ch';
 document.querySelector('.chart-card').appendChild(cv);
 drawMat(e.target.value);
+});
+}
+
+else if(key==='materials_m'){
+if(!D.materials_monthly||!D.materials_monthly.length){
+c.innerHTML='<div class="chart-card"><h2>Нет данных</h2></div>';return;}
+const products=[...new Set(D.materials_monthly.map(x=>x.product))];
+const units=D.materials_monthly_units||{};
+c.innerHTML=`<div class="chart-card"><h2>Производство стройматериалов, помесячно (Росстат)</h2>
+<select id="prodm" style="padding:8px;background:#1a1d29;border:1px solid #2a2d3a;color:#e0e0e0;border-radius:6px;width:100%">
+${products.map(p=>`<option value="${p}">${p} (${units[p]||''})</option>`).join('')}
+</select>
+<canvas id="chm" style="margin-top:10px"></canvas></div>`;
+function drawMatM(prod){
+const d=D.materials_monthly.filter(x=>x.product===prod);
+const labels=d.map(x=>x.date.slice(0,7));
+new Chart(document.getElementById('chm'),{type:'line',data:{
+labels:labels,
+datasets:[{label:prod,data:d.map(x=>x.value),borderColor:'#4fc3f7',backgroundColor:'#4fc3f722',fill:true,pointRadius:0,tension:0.2}]
+},options:{plugins:{legend:{display:false}},scales:{x:{ticks:{maxTicksLimit:10}}}}});
+}
+drawMatM(products[0]);
+document.getElementById('prodm').addEventListener('change',e=>{
+document.getElementById('chm').remove();
+const cv=document.createElement('canvas');cv.id='chm';
+document.querySelector('.chart-card').appendChild(cv);
+drawMatM(e.target.value);
 });
 }
 

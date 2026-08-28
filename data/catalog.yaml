@@ -2557,7 +2557,7 @@ sources:
     - web-traffic
   description: Обзор источников высокочастотных метрик (поиск, медиа, сентимент, веб‑трафик) для построения прокси в FAVAR-MIDAS моделях.
 - id: digital-footprint-economics-2026
-  name: Цифровой след экономики: как интернет метрики меняют анализ ВВП, инфляции и рынка недвижимости
+  name: 'Цифровой след экономики: как интернет метрики меняют анализ ВВП, инфляции и рынка недвижимости'
   type: document
   files:
     md: papers/2026-digital-footprint-economics.pdf.md
@@ -2579,4 +2579,37 @@ sources:
     - IMF
     - BIS
     - methodological-limitations
-  description: Обзор использования интернет‑метрик (поисковые тренды, онлайн‑цены, настроения в новостях и соцсетях) для макроэкономического анализа, с акцентом на опера‑тивное мониторинг и прогнозирование ВВП, инфляции и рынка недвижимости.
+  description: Обзор использования интернет‑метрик (поисковые тренды, онлайн‑цены, настроения в новостях и соцсетях) для макроэкономического анализа, с акцентом на опера­тивное мониторинг и прогнозирование ВВП, инфляции и рынка недвижимости.
+- id: gdelt_housing_sentiment_rus
+  name: GDELT индекс тональности новостного фона рынка жилья РФ (ежедневный и еженедельный)
+  type: processed_timeseries
+  url: https://api.gdeltproject.org/api/v2/doc/doc
+  format: csv
+  table: gdelt_housing_sentiment_daily
+  primary_key:
+  - date
+  files:
+    daily: data/processed/gdelt_housing_sentiment_daily.csv
+    weekly: data/processed/gdelt_housing_sentiment_weekly.csv
+    per_query_raw: data/processed/gdelt_doc_housing_rus_daily.csv
+    script_backcast: scripts/gdelt_doc_backcast.py
+    script_daily: scripts/gdelt_sentiment_index.py
+    script_weekly: scripts/gdelt_sentiment_weekly.py
+  coverage: '2017-01-01 to 2026-08-28 (3502 days, 502 weeks)'
+  tags:
+  - gdelt
+  - sentiment
+  - news-tone
+  - housing
+  - real-estate
+  - mortgage
+  - russia
+  - nowcasting
+  - midas
+  - text-data
+  - alternative-data
+  description: 'Дневной и недельный индекс тональности мировых новостей по теме жилья/ипотеки
+    в России (GDELT DOC 2.0 API, без BigQuery). 4 запроса (mortgage Russia, real estate
+    Russia, housing Russia, mortgage sourcecountry:RS), средний AvgTone, z-score.
+    Недельный ряд выровнен по воскресеньям под Wordstat weekly для FAVAR-MIDAS.
+    Дыры: housing 2020 vol, sourcecountry:RS 2019 tone (компенсируются другими запросами).'

@@ -2613,3 +2613,22 @@ sources:
     Russia, housing Russia, mortgage sourcecountry:RS), средний AvgTone, z-score.
     Недельный ряд выровнен по воскресеньям под Wordstat weekly для FAVAR-MIDAS.
     Дыры: housing 2020 vol, sourcecountry:RS 2019 tone (компенсируются другими запросами).'
+- id: qwen_agent_models_housing_2026
+  name: 'Агентные модели в макроэкономике с учётом рынка жилья (Qwen AI диалог — заглушка)'
+  type: ai-dialog
+  date: '2026-08-28'
+  url: https://chat.qwen.ai/s/t_6a586d20-0c2c-400e-a14b-b535b95b3c27
+  files:
+    md: papers/2026-08-28-qwen-agent-models-housing.RU.md
+  tags:
+  - ai-dialog
+  - agent-based-models
+  - abm
+  - macro
+  - housing
+  - mortgage
+  - russia
+  - placeholder
+  description: 'Расшаренный ИИ-диалог Qwen о агентных моделях (ABM) в макроэкономике
+    с рынком жилья. ЗАГЛУШКА: содержимое недоступно (API Qwen: conversation deleted),
+    сохранён только заголовок и метаданные. Заполнить при повторном шаринге.'

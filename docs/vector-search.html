@@ -48,6 +48,7 @@ a{color:#4fc3f7;text-decoration:none}
 .modal .chips{display:flex;flex-wrap:wrap;gap:5px}
 .modal .chip{font-size:0.7rem;background:#1e2938;border:1px solid #2a3a4a;color:#9fc3e8;border-radius:12px;padding:3px 9px}
 .modal .chip.gray{color:#888;background:#1a1d29;border-color:#2a2d3a}
+.modal a.chip{cursor:pointer}
 .modal .actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
 .modal .btn{flex:1;min-width:140px;text-align:center;padding:10px 14px;border-radius:10px;font-size:0.85rem;border:1px solid #2a3a4a;cursor:pointer;background:#1a1d29;color:#e0e0e0}
 .modal .btn.primary{background:#1a3a4a;border-color:#4fc3f7;color:#4fc3f7;font-weight:600}
@@ -274,6 +275,47 @@ modal.innerHTML=
 function closeDetail(){document.getElementById('modal-overlay').classList.remove('open');}
 // expose for inline onclick handlers (module scope is not global)
 window.openDetail=openDetail;window.closeDetail=closeDetail;
+
+// ---- Bibliography detail modal ----
+window.openBibDetail=function(text){
+// find entry in cached BIB by exact text
+const e=(BIB||[]).find(b=>b.text===text);
+if(!e)return;
+const overlay=document.getElementById('modal-overlay');
+const modal=document.getElementById('modal');
+overlay.classList.add('open');
+const author=e.author?escapeHtml(e.author):'';
+let metaHtml='';
+if(author)metaHtml+='<b>'+author+'</b>';
+if(e.year)metaHtml+=(metaHtml?' · ':'')+'<b>'+escapeHtml(e.year)+'</b>';
+if(e.lang)metaHtml+=(metaHtml?' · ':'')+'<span style="color:#666">'+(e.lang==='ru'?'рускоязычный источник':'англоязычный источник')+'</span>';
+// full citation text (strip html markers)
+const fullText=escapeHtml(e.text.replace(/<\/?u>/g,'').replace(/\([^)]*иссл\.\)/g,'').trim());
+let citesHtml='';
+if(e.cites&&e.cites.length){
+citesHtml='<div class="sect"><h4>Цитируется в исследованиях wiki</h4>'+
+'<div class="chips">'+e.cites.map((p,i)=>{
+const t=(e.cite_titles&&e.cite_titles[i])||p;
+const viewerUrl='viewer.html?p='+encodeURIComponent(p);
+return '<a class="chip" style="text-decoration:none" href="'+viewerUrl+'">'+escapeHtml(t.length>45?t.slice(0,45)+'…':t)+'</a>';
+}).join('')+'</div></div>';
+}
+let doiHtml='';
+if(e.doi){
+doiHtml='<div class="sect"><h4>DOI</h4><p><a href="https://doi.org/'+escapeHtml(e.doi)+'" target="_blank" rel="noopener">'+escapeHtml(e.doi)+'</a></p></div>';
+}else{doiHtml='';}
+modal.innerHTML=
+'<button class="m-close" onclick="closeDetail()">✕</button>'+
+'<h2>Библиографическая запись</h2>'+
+(metaHtml?'<div class="meta">'+metaHtml+'</div>':'')+
+'<div class="sect"><h4>Полная ссылка</h4><p style="font-style:italic">'+fullText+'</p></div>'+
+doiHtml+
+citesHtml+
+'<div class="actions">'+
+(e.doi?'<a class="btn primary" href="https://doi.org/'+escapeHtml(e.doi)+'" target="_blank" rel="noopener">🔗 Открыть по DOI</a>':'')+
+'<button class="btn" onclick="closeDetail()">Закрыть</button>'+
+'</div>';
+};
 document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target.id==='modal-overlay')closeDetail();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
 
@@ -322,7 +364,7 @@ const author=escapeHtml(e.author||'');
 const year=e.year?`<span style="color:#81c784">(${e.year})</span>`:'';
 const lang=e.lang==='ru'?'<span style="color:#ffb74d;font-size:0.7rem">RU</span>':'';
 const text=escapeHtml(e.text.length>200?e.text.slice(0,200)+'…':e.text);
-return `<div class="result" style="cursor:default">
+return `<div class="result" style="cursor:default" onclick="openBibDetail(${JSON.stringify(e.text).replace(/"/g,'&quot;')})">
 <h3 style="font-size:0.82rem">${author} ${year} ${lang}</h3>
 <p style="font-size:0.78rem;color:#999">${text}</p>
 </div>`;

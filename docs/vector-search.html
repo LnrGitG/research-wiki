@@ -32,6 +32,25 @@ input[type=text]::placeholder{color:#555}
 .progress-fill{height:100%;background:linear-gradient(90deg,#4fc3f7,#81c784);transition:width .3s}
 a{color:#4fc3f7;text-decoration:none}
 .back{font-size:0.8rem;margin-bottom:10px;display:inline-block}
+/* Detail modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:100;display:none;align-items:flex-end;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:#161927;border:1px solid #2a2d3a;border-radius:16px 16px 0 0;width:100%;max-width:640px;max-height:88vh;overflow-y:auto;padding:18px 16px 28px;animation:slideup .22s ease-out}
+@keyframes slideup{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+@media(min-width:700px){.modal-overlay.open{align-items:center}.modal{border-radius:16px;padding:24px}}
+.modal .m-close{position:sticky;top:0;float:right;background:#1a1d29;border:1px solid #2a2d3a;color:#888;width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:pointer;line-height:1}
+.modal h2{font-size:1.05rem;color:#4fc3f7;margin:6px 0 8px;line-height:1.35;padding-right:36px}
+.modal .meta{font-size:0.78rem;color:#888;margin-bottom:10px;line-height:1.5}
+.modal .meta b{color:#b0bec5;font-weight:600}
+.modal .sect{margin:12px 0}
+.modal .sect h4{font-size:0.72rem;text-transform:uppercase;letter-spacing:.5px;color:#81c784;margin-bottom:6px}
+.modal .sect p{font-size:0.82rem;color:#b0bec5;line-height:1.55}
+.modal .chips{display:flex;flex-wrap:wrap;gap:5px}
+.modal .chip{font-size:0.7rem;background:#1e2938;border:1px solid #2a3a4a;color:#9fc3e8;border-radius:12px;padding:3px 9px}
+.modal .chip.gray{color:#888;background:#1a1d29;border-color:#2a2d3a}
+.modal .actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.modal .btn{flex:1;min-width:140px;text-align:center;padding:10px 14px;border-radius:10px;font-size:0.85rem;border:1px solid #2a3a4a;cursor:pointer;background:#1a1d29;color:#e0e0e0}
+.modal .btn.primary{background:#1a3a4a;border-color:#4fc3f7;color:#4fc3f7;font-weight:600}
 </style>
 </head>
 <body>
@@ -59,7 +78,12 @@ a{color:#4fc3f7;text-decoration:none}
 
 <div class="results" id="results"></div>
 
-<script type="module">
+<!-- Detail modal -->
+<div class="modal-overlay" id="modal-overlay">
+<div class="modal" id="modal"></div>
+</div>
+
+<script>
 import {pipeline,env} from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.0';
 
 // Configure: load model from HF Hub, cache in browser
@@ -197,7 +221,7 @@ const viewerUrl='viewer.html?p='+encodeURIComponent(filePath);
 const scorePct=(r.score*100).toFixed(0)+'%';
 const title=escapeHtml(m.t||m.f);
 const abs=m.a?escapeHtml(m.a):'';
-return '<div class="result" onclick="location.href=\''+viewerUrl+'\'">'+
+return '<div class="result" onclick="openDetail(\''+encodeURIComponent(filePath)+'\',\''+viewerUrl.replace(/'/g,'')+'\',\''+encodeURIComponent(title)+'\')">'+
 '<h3>'+title+' <span class="cat">'+catLabel+'</span>'+
 '<span class="score">'+scorePct+'</span></h3>'+
 (abs?'<p>'+abs+'</p>':'')+
@@ -209,6 +233,47 @@ container.innerHTML='<p class="no-results">Ошибка: '+e.message+'</p>';
 }
 
 function escapeHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// ---- Detail modal (paper-details.json) ----
+let DETAILS=null;
+const MODEL_RU={ 'hedonic':'гедонистические модели','repeat-sales':'метод повторных продаж','supply-elasticity':'оценка эластичности предложения','panel':'панельные данные','IV':'инструментальные переменные','DiD':'разность разностей (DiD)','RDD':'регрессия на разрывах (RDD)','VAR/FAVAR':'VAR/FAVAR модели','MIDAS':'MIDAS','DSGE':'DSGE','ARDL':'ARDL','PCA':'главные компоненты (PCA)','machine-learning':'машинное обучение','simulation':'калибровка / симуляции','event-study':'event study','GARCH':'GARCH','spatial-econometrics':'пространственная эконометрика','Bayesian':'байесовские методы','timeseries-filters':'фильтры временных рядов (HP/Калман)','structural-model':'структурные модели' };
+const DATA_RU={ 'Rosstat':'Росстат','CBR':'Банк России','ЕИСЖС':'ЕИСЖС (наш.дом.рф)','ДОМ.РФ':'ДОМ.РФ','Rosreestr':'Росреестр','ACS/перепись':'American Community Survey','census':'переписи населения','FHFA':'FHFA','Zillow':'Zillow','CoreLogic':'CoreLogic','LiBO':'кредитные истории (БКИ)','SPARK':'СПАРК','ЕМИСС':'ЕМИСС','NOSTROY':'НОСТРОЙ','GDELT':'GDELT','Wordstat':'Яндекс Wordstat','Google Trends':'Google Trends','admin-data':'административные данные','survey-data':'опросные данные','geospatial':'гео-данные (GIS/спутники)' };
+
+async function openDetail(filePathEnc, viewerUrl, titleEnc){
+const filePath=decodeURIComponent(filePathEnc);
+const overlay=document.getElementById('modal-overlay');
+const modal=document.getElementById('modal');
+overlay.classList.add('open');
+modal.innerHTML='<div class="loading"><span class="spinner"></span>Загрузка…</div>';
+if(!DETAILS){
+try{const r=await fetch('paper-details.json');DETAILS=await r.json();}
+catch(e){modal.innerHTML='<button class="m-close" onclick="closeDetail()">✕</button><p class="no-results">Не удалось загрузить детали</p>';return;}
+}
+const d=DETAILS[filePath]||{};
+const title=decodeURIComponent(titleEnc)||d.t||filePath;
+const authors=(d.authors&&d.authors.length)?d.authors.join(', '):'';
+let metaHtml='';
+if(authors)metaHtml+='<b>'+escapeHtml(authors)+'</b>';
+if(d.year)metaHtml+=(metaHtml?' · ':'')+'<b>'+escapeHtml(d.year)+'</b>';
+if(d.venue)metaHtml+=(metaHtml?' · ':'')+escapeHtml(d.venue);
+if(d.type)metaHtml+=(metaHtml?' · ':'')+'<span style="color:#666">'+escapeHtml(d.type)+'</span>';
+const chips=(arr,rus)=>arr&&arr.length?'<div class="chips">'+arr.map(x=>'<span class="chip">'+escapeHtml((rus&&rus[x])||x)+'</span>').join('')+'</div>':'';
+modal.innerHTML=
+'<button class="m-close" onclick="closeDetail()">✕</button>'+
+'<h2>'+escapeHtml(title)+'</h2>'+
+(metaHtml?'<div class="meta">'+metaHtml+'</div>':'')+
+(d.abstract?'<div class="sect"><h4>Аннотация</h4><p>'+escapeHtml(d.abstract)+'</p></div>':'')+
+((d.models&&d.models.length)?'<div class="sect"><h4>Модели и методы</h4>'+chips(d.models,MODEL_RU)+'</div>':'')+
+((d.data&&d.data.length)?'<div class="sect"><h4>Данные и источники</h4>'+chips(d.data,DATA_RU)+'</div>':'')+
+((d.tags&&d.tags.length)?'<div class="sect"><h4>Темы</h4>'+chips(d.tags.map(t=>t.replace(/-/g,' ')))+'</div>':'')+
+'<div class="actions">'+
+'<a class="btn primary" href="'+viewerUrl+'">📖 Открыть статью</a>'+
+(d.url?'<a class="btn" href="'+escapeHtml(d.url)+'" target="_blank" rel="noopener">🔗 Первоисточник</a>':'')+
+'</div>';
+}
+function closeDetail(){document.getElementById('modal-overlay').classList.remove('open');}
+document.getElementById('modal-overlay').addEventListener('click',e=>{if(e.target.id==='modal-overlay')closeDetail();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
 
 // Render bibliography list (filterable, no vector search)
 async function renderBib(query){

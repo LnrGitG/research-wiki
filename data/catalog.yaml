@@ -2923,3 +2923,11 @@ sources:
   url: cbr.ru (архив к статье «Квартальная прогнозная модель России с рынком труда»)
   tags: [cbr, dsge, dynare, quarterly-model, monetary-policy, labor-market, term-structure, fiscal, irf, matlab, favar-reference]
   notes: 'Рабочая модель ЦБ для среднесрочного прогноза: ядро 266 ур-й + term structure + fiscal + external; калибровка parameters_main. Housing-блока нет. Использование: сравнительная калибровка MIDAS-IRF, wage/labor факторы для FAVAR; запуск — Octave+Dynare (на Mac M-series реально).'
+- id: rosstat_nonresidential_buildings
+  name: 'Ввод в действие нежилых зданий (Росстат): годовые ряды и оперативные данные 2026'
+  type: dataset
+  year: 2026
+  path: 'DB rosreestr_deals.db: rosstat_nonres_buildings (годовые, ежегодник РСЕ-2025 табл. 18.6); rosstat_buildings_vvod (оперативно, vv-zd-oper_2kv-2026.xlsx — помесячно-накопительно с разбивкой: промышленные/сельскохозяйственные/коммерческие/административные/учебные/здравоохранение/другие)'
+  url: rosstat.gov.ru (оперативно) + Ежегодник «Строительство в России»/РСЕ 2025
+  tags: [rosstat, construction, nonresidential-buildings, commercial, industrial, ввод-зданий, стройматериалы, favar-input]
+  notes: 'Нежилые: 2000 = 8.3 млн м² (8.9 тыс. зд.), 2010 = 21.2 (14.8), 2022 = 33.5 (21.1), 2023 = 35.7 (19.7), 2024 = 38.4 млн м² (21.3 тыс., рекорд площади), 2026 H1 = 14.72 млн м² (8901 зд., +11% к H1-2025 условно). Структура 2024: коммерческие 9.5, промышленные 6.6, другие 8.8, учебные 6.4.'

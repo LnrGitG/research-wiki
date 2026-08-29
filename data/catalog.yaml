@@ -2913,3 +2913,13 @@ sources:
   - avg-price
   - primary-market
   - secondary-market
+- id: cbr_qpm_ddkp_code
+  name: 'КПМ ДДКП Банка России — программный код квартальной прогнозной модели с рынком труда'
+  type: model_code
+  authors: ['Банк России, Департамент денежно-кредитной политики']
+  year: 2026
+  path: raw/cbr/qpm_ddkp/
+  files: '5 .mod (Dynare/MATLAB), proc/, 5 наборов IRF (PNG), инструкция (PDF+txt), README'
+  url: cbr.ru (архив к статье «Квартальная прогнозная модель России с рынком труда»)
+  tags: [cbr, dsge, dynare, quarterly-model, monetary-policy, labor-market, term-structure, fiscal, irf, matlab, favar-reference]
+  notes: 'Рабочая модель ЦБ для среднесрочного прогноза: ядро 266 ур-й + term structure + fiscal + external; калибровка parameters_main. Housing-блока нет. Использование: сравнительная калибровка MIDAS-IRF, wage/labor факторы для FAVAR; запуск — Octave+Dynare (на Mac M-series реально).'

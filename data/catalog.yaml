@@ -2939,3 +2939,27 @@ sources:
   url: rosstat.gov.ru опер.данные («Введено в действие производственных мощностей»)
   tags: [rosstat, construction, production-capacity, industrial, monthly-cumulative, midas-predictor, cement, power-generation, favar-input]
   notes: '371 строка: мощности по видам (с/х помещения, теплицы, зерносушилки, скважины, цемент 650 тыс.т H1-2026, ЛЭП, дороги, ГЭС/ВИЭ-энергия) с разбивкой новое строительство/реконструкция. Частота — квартальная (накопительно с начала года). Прокси промышленного стройинвеста для MIDAS.'
+
+- id: rosstat_prikaz702_stroit_methodology
+  name: 'Официальная статистическая методология расчета выпуска и ИФО повиду деятельности «Строительство» (приказ Росстата №702 от 28.12.2023)'
+  type: methodology
+  year: 2023
+  path: 'raw/rosstat/methodology/rosstat_prikaz702_stroit_28.12.2023.pdf + met702_ocr.txt'
+  tags: [rosstat, methodology, construction, GDP-output, IFO, deflator, OKBED-F, prikaz702, midas-target-doc]
+  notes: '13 стр. Ядро: выпуск = Cs+Cr+Mzp+BB+Or+EXP-IMP по 3 секторам (нефинанс. корпорации, гос. управление, дом. хозяйства). Источники: все статформы (П-1, МП-сп, 1-ИП и др.) + инвестиции в осн.капитал + платежный баланс ЦБ. Используется СНС-управлением (Зарубина) для ВВП. Прямой документ-двойник целевого ряда construction_volume_monthly_rf.'
+
+- id: rosstat_prikaz544_reglament
+  name: 'Регламент оценки, корректировки и публикации данных наблюдения за строительством и инвестициями (приказ №544, 26.09.2016)'
+  type: methodology
+  year: 2016
+  path: 'raw/rosstat/methodology/rosstat_prikaz544_reglament_26.09.2016.pdf + met544_ocr.txt'
+  tags: [rosstat, methodology, publication-schedule, revisions, construction, investment, data-quality]
+  notes: '7 стр. Регламент оценки/корректировки/публикации данных по строительству и инвест. в основной капитал — расписание публикации, правила корректировки годовых итогов, пересмотры. База для понимания лагов и ревизий СМР-ряда.'
+
+- id: rosstat_stroit_methodology_2015
+  name: 'Методология по строительству 2015 (+изменения 2016, 2018) и форма C-1'
+  type: methodology
+  year: 2015
+  path: 'raw/rosstat/methodology/{Метод_строит_2015.txt, Изменения_26.04.2018.txt, Изменения_28.12.2016.txt, Ukaz_form_C-1.pdf, Stroi_met.docx}'
+  tags: [rosstat, methodology, construction, C-1-form, prikaz, midas-target-doc, revisions]
+  notes: 'Методологические основы 2015 (61k знаков) + 2 пакета правок: 28.12.2016 (2110 знаков), 26.04.2018 (7101 знаков). Предшественник №702. Приложение — форма C-1 (сведения о вводе зданий).'

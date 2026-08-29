@@ -65,6 +65,8 @@ const SERIES={
 'regional':{'name':'Регионы 2023','icon':'🗺️'},
 'domrf_index':{'name':'Индекс ДОМ.РФ','icon':'📊'},
 'rosstat_q':{'name':'Цены Росстат (кв)','icon':'🏛️'},
+'ind_saar':{'name':'Пром. производство','icon':'🏭'},
+'ind_reg':{'name':'Пром. по регионам','icon':'⚙️'},
 };
 
 function initTabs(){
@@ -327,6 +329,52 @@ c.innerHTML=`<div class="chart-card"><h2>Средняя цена 1 м² по Р�
 new Chart(document.getElementById('ch'),{type:'line',data:{
 labels:[...new Set(d.map(x=>`${x.year} ${x.q.replace(' квартал','')}`))],
 datasets:mkt.map(m=>{const ys=new Set();const map={};d.filter(x=>x.market===m).forEach(x=>{map[`${x.year} ${x.q.replace(' квартал','')}`]=x.price});return {label:names[m],data:[...new Set(d.map(x=>`${x.year} ${x.q.replace(' квартал','')}`))].map(k=>map[k]??null),borderColor:colors[m],tension:0.3,pointRadius:2,spanGaps:true}})},options:{plugins:{legend:{labels:{color:'#e0e0e0'}}},scales:{x:{ticks:{color:'#9aa0c0',maxTicksLimit:12}}}}});
+}
+
+else if(key==='ind_saar'){
+const saar=D.ind_prod_saar_rf||[];
+const sections={'B_mining':'Добыча','C_manufacturing':'Обработка','D_energy':'Электроэнергия','E_water':'Водоснабжение'};
+if(!saar.length){c.innerHTML='<p style="color:#ffb74d;padding:16px">Нет данных</p>';return;}
+const last=saar[saar.length-1];
+c.innerHTML=`<div class="chart-card"><h2>Индекс промышленного производства (Росстат, SAAR)</h2>
+<p style="color:#9aa0c0;font-size:13px">Последний месяц: ${last.month.slice(0,7)} · ${last.mom_saar>=0?'+':''}${last.mom_saar.toFixed(1)}% м/м (сезонно сглаженный), фактический ${last.mom_fact>=0?'+':''}${(last.mom_fact||0).toFixed(1)}%</p>
+<canvas id="ch1"></canvas></div>
+<div class="chart-card"><h2>По видам деятельности, SAAR % м/м</h2>
+<canvas id="ch2"></canvas></div>`;
+const labels=saar.map(x=>x.month.slice(0,7));
+new Chart(document.getElementById('ch1'),{type:'line',data:{labels,datasets:[
+{label:'Фактически, % м/м',data:saar.map(x=>x.mom_fact),borderColor:'#ef5350',tension:0.3,pointRadius:1},
+{label:'Сезонно сглаженный, % м/м',data:saar.map(x=>x.mom_saar),borderColor:'#4fc3f7',tension:0.3,pointRadius:1}]},
+options:{plugins:{legend:{labels:{color:'#e0e0e0'}}},scales:{x:{ticks:{color:'#9aa0c0',maxTicksLimit:12}}}}});
+const sLabels=saar.map(x=>x.month.slice(0,7));
+new Chart(document.getElementById('ch2'),{type:'line',data:{labels:sLabels,datasets:Object.entries(sections).map(([k,nm],i)=>{
+const s=D['ind_prod_saar_'+k]||[];const map={};s.forEach(x=>map[x.month.slice(0,7)]=x.mom_saar);
+return {label:nm,data:labels.map(l=>map[l]??null),borderColor:['#81c784','#ffb74d','#ce93d8','#4dd0e1'][i],tension:0.3,pointRadius:0,spanGaps:true}})},
+options:{plugins:{legend:{labels:{color:'#e0e0e0'}}},scales:{x:{ticks:{color:'#9aa0c0',maxTicksLimit:12}}}}});
+}
+
+else if(key==='ind_reg'){
+const rf=D.ind_prod_yoy_rf||[];
+const all=D.ind_prod_regions_yoy||[];
+if(!rf.length){c.innerHTML='<p style="color:#ffb74d;padding:16px">Нет данных</p>';return;}
+const lastM=rf[rf.length-1].month;
+const regions=[...new Set(all.map(x=>x.region))];
+const sel=`<select id="regsel2" style="width:100%;max-width:320px;padding:10px;font-size:15px;background:#16213e;color:#e0e0e0;border:1px solid #30365e;border-radius:8px;margin:10px 0"></select>`;
+c.innerHTML=`<div class="chart-card"><h2>Промышленное производство по регионам, % к соотв. месяцу прошлогоднему</h2>
+<p style="color:#9aa0c0;font-size:13px">Последний месяц: ${lastM.slice(0,7)}</p>${sel}<canvas id="chr"></canvas></div>`;
+const selEl=document.getElementById('regsel2');
+regions.forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=r;if(r==='Российская Федерация')o.selected=true;selEl.appendChild(o);});
+let chart=null;
+const draw=()=>{
+const reg=selEl.value, d=all.filter(x=>x.region===reg);
+const cfg={type:'line',data:{labels:d.map(x=>x.month.slice(0,7)),datasets:[
+{label:'% г/г',data:d.map(x=>x.yoy),borderColor:'#ffb74d',tension:0.3,pointRadius:0}]},
+options:{plugins:{legend:{labels:{color:'#e0e0e0'}}},scales:{x:{ticks:{color:'#9aa0c0',maxTicksLimit:12}}}}};
+if(chart)chart.destroy();
+chart=new Chart(document.getElementById('chr'),cfg);
+};
+selEl.addEventListener('change',draw);
+draw();
 }
 }
 

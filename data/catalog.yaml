@@ -2931,3 +2931,11 @@ sources:
   url: rosstat.gov.ru (оперативно) + Ежегодник «Строительство в России»/РСЕ 2025
   tags: [rosstat, construction, nonresidential-buildings, commercial, industrial, ввод-зданий, стройматериалы, favar-input]
   notes: 'Нежилые: 2000 = 8.3 млн м² (8.9 тыс. зд.), 2010 = 21.2 (14.8), 2022 = 33.5 (21.1), 2023 = 35.7 (19.7), 2024 = 38.4 млн м² (21.3 тыс., рекорд площади), 2026 H1 = 14.72 млн м² (8901 зд., +11% к H1-2025 условно). Структура 2024: коммерческие 9.5, промышленные 6.6, другие 8.8, учебные 6.4.'
+- id: rosstat_production_capacity_vvod
+  name: 'Ввод в действие производственных мощностей (Росстат, оперативные данные 2026)'
+  type: dataset
+  year: 2026
+  path: 'DB rosreestr_deals.db: rosstat_production_capacity_vvod; из vv-mosh-oper_2kv-2026.xlsx'
+  url: rosstat.gov.ru опер.данные («Введено в действие производственных мощностей»)
+  tags: [rosstat, construction, production-capacity, industrial, monthly-cumulative, midas-predictor, cement, power-generation, favar-input]
+  notes: '371 строка: мощности по видам (с/х помещения, теплицы, зерносушилки, скважины, цемент 650 тыс.т H1-2026, ЛЭП, дороги, ГЭС/ВИЭ-энергия) с разбивкой новое строительство/реконструкция. Частота — квартальная (накопительно с начала года). Прокси промышленного стройинвеста для MIDAS.'

@@ -2830,3 +2830,35 @@ sources:
    	nowcasting жилья: методика комбинирования ВВП (+500 моделей, факторы из
     высокий-частотных индикаторов 3 групп) + Жураковский 2021 (региональная разнородность).
     18 стр.'
+
+- id: imf_wp26_177_housing_affordability_europe
+  title: 'IMF WP/26/177: Locked Out — Drivers and Economic Implications of Declining Housing Affordability in Europe (Beyer, Biljanovska, Fotiou, Maneely, Toscani; Aug 2026)'
+  type: working_paper
+  date: 2026-08
+  url: https://www.imf.org/-/media/files/publications/wp/2026/english/wpiea2026177-source-pdf.ashx
+  files:
+    md: papers/imf_wp26-177_locked_out_europe.md
+  tags:
+  - imf
+  - europe
+  - housing-affordability
+  - house-prices
+  - supply-shocks
+  - structural-var
+  - shadow-rate
+  - eu-silc
+  - renter-owner-gap
+  - labor-mobility
+  - internal-migration
+  - decressin-fatas
+  - construction-labor-shortage
+  - policy-recommendations
+  - russia-comparison-candidate
+  description: 'Три блока анализа: (1) SVAR: в посленедogeneous эпохе драйвер цен жилья в ЕС - шоки
+    предложения (дефицит рабочей силы в стройке > финансовых ограничений), а не кредит, как до ПФК.
+    (2) EU-SILC: бремя на низкодоходных арендаторах в городах; вероятность перехода аренда->собственность
+    упала вдвое против до-ПФК для уязвимых групп. (3) Мобильность труда: низкая доступность жилья
+    блокирует ВЕЗДЕЗВЕСТНЫЙ приток в растущие регионы (асимметрия: вход ограничен, выход не
+    чувствителен); ~1 млн потерянных переездов в ЕС за декаду. Метод: BVAR знаковые ограничения,
+    EU-SILC панели, региональные регрессии Decressin-Fatas (1995) с взаимодействием шок-доступность.
+    Политика: наращивание предложения (земля, разрешения, финансирование застройщиков, кадры стройки).'

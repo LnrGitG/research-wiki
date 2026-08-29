@@ -63,6 +63,8 @@ const SERIES={
 'ddu':{'name':'ДДУ (ДОМ.РФ)','icon':'📋'},
 'permits':{'name':'РНС (ДОМ.РФ)','icon':'📄'},
 'regional':{'name':'Регионы 2023','icon':'🗺️'},
+'domrf_index':{'name':'Индекс ДОМ.РФ','icon':'📊'},
+'rosstat_q':{'name':'Цены Росстат (кв)','icon':'🏛️'},
 };
 
 function initTabs(){
@@ -286,6 +288,45 @@ c.innerHTML=`<div class="table-card"><h2>Цены 2023 по регионам (п
 <table><thead><tr><th>Регион</th><th>тыс.руб./м²</th></tr></thead><tbody>
 ${p.slice(0,30).map(x=>`<tr><td>${x.region}</td><td style="color:#4fc3f7">${x.price}</td></tr>`).join('')}
 </tbody></table></div>`;
+}
+
+else if(key==='domrf_index'){
+const rf=D.domrf_price_index_rf||[];
+const all=D.domrf_price_index||[];
+if(!rf.length){c.innerHTML='<p style="color:#ffb74d;padding:16px">Нет данных индекса ДОМ.РФ</p>';return;}
+const last=rf[rf.length-1];
+const sel=`<select id="regsel" style="width:100%;max-width:320px;padding:10px;font-size:15px;background:#16213e;color:#e0e0e0;border:1px solid #30365e;border-radius:8px;margin:10px 0"></select>`;
+const regions=[...new Set(all.map(x=>x.region))];
+c.innerHTML=`<div class="chart-card"><h2>Индекс цен на новостройки ДОМ.РФ (сделки, 01.2021=100)</h2>
+<p style="color:#9aa0c0;font-size:13px">Последний месяц: ${last.month.slice(0,7)} · РФ ${last.index} (${last.mom>=0?'+':''}${last.mom.toFixed(2)}% м/м)</p>
+${sel}<canvas id="ch"></canvas></div>`;
+const selEl=document.getElementById('regsel');
+regions.forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent=r;if(r==='Российская Федерация')o.selected=true;selEl.appendChild(o);});
+let chart=null;
+const draw=()=>{
+const reg=selEl.value, d=all.filter(x=>x.region===reg);
+const cfg={type:'line',data:{labels:d.map(x=>x.month.slice(0,7)),datasets:[
+{label:'Индекс',data:d.map(x=>x.index),borderColor:'#4fc3f7',tension:0.3,pointRadius:0}]},
+options:{plugins:{legend:{display:true,labels:{color:'#e0e0e0'}}},scales:{x:{ticks:{color:'#9aa0c0',maxTicksLimit:10},callback:{}}},interaction:{mode:'index',intersect:false}}};
+if(chart)chart.destroy();
+chart=new Chart(document.getElementById('ch'),cfg);
+};
+selEl.addEventListener('change',draw);
+draw();
+}
+
+else if(key==='rosstat_q'){
+const d=D.rosstat_prices_q_rf||[];
+if(!d.length){c.innerHTML='<p style="color:#ffb74d;padding:16px">Нет данных</p>';return;}
+const years=[...new Set(d.map(x=>x.year))];
+const mkt=['primary','secondary'];
+const names={primary:'Первичный рынок',secondary:'Вторичный рынок'};
+const colors={primary:'#4fc3f7',secondary:'#ffb74d'};
+c.innerHTML=`<div class="chart-card"><h2>Средняя цена 1 м² по РФ, конец квартала (тыс. руб., Росстат)</h2>
+<canvas id="ch"></canvas></div>`;
+new Chart(document.getElementById('ch'),{type:'line',data:{
+labels:[...new Set(d.map(x=>`${x.year} ${x.q.replace(' квартал','')}`))],
+datasets:mkt.map(m=>{const ys=new Set();const map={};d.filter(x=>x.market===m).forEach(x=>{map[`${x.year} ${x.q.replace(' квартал','')}`]=x.price});return {label:names[m],data:[...new Set(d.map(x=>`${x.year} ${x.q.replace(' квартал','')}`))].map(k=>map[k]??null),borderColor:colors[m],tension:0.3,pointRadius:2,spanGaps:true}})},options:{plugins:{legend:{labels:{color:'#e0e0e0'}}},scales:{x:{ticks:{color:'#9aa0c0',maxTicksLimit:12}}}}});
 }
 }
 

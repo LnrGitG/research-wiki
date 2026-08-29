@@ -2632,3 +2632,171 @@ sources:
   description: 'Расшаренный ИИ-диалог Qwen о агентных моделях (ABM) в макроэкономике
     с рынком жилья. ЗАГЛУШКА: содержимое недоступно (API Qwen: conversation deleted),
     сохранён только заголовок и метаданные. Заполнить при повторном шаринге.'
+
+- id: rosstat_industrial_production_base2023
+  name: Индексы производства по видам деятельности (РФ, базис 2023)
+  type: api
+  url: https://rosstat.gov.ru/storage/mediabank/ind_baza_2023_07-2026.xlsx
+  format: xlsx
+  local_path: raw/rosstat/data/ind_baza_2023_07-2026.xlsx
+  schedule: manual
+  table: rosstat_ind_prod_rf
+  primary_key:
+  - okved2
+  - period
+  - basis
+  description: 'Индексы производства по РФ, ОКВЭД2, базисный 2023 (месячные/годовые), до 07.2026.
+    листов структура: Содержание + 3 листа индексов (к пред.мес / к среднемес.базы / к соотв.мес.прошлого года). Обновление 26.08.2026.'
+  tags:
+  - rosstat
+  - industrial-production
+  - okved2
+  - monthly-index
+  - favar-input
+  - russia
+- id: rosstat_industrial_production_regions
+  name: Индексы производства по субъектам РФ (базис 2023)
+  type: api
+  url: https://rosstat.gov.ru/storage/mediabank/ind_sub_2023_07-2026.xlsx
+  format: xlsx
+  local_path: raw/rosstat/data/ind_sub_2023_07-2026.xlsx
+  schedule: manual
+  table: rosstat_ind_prod_regions
+  primary_key:
+  - region
+  - okved2
+  - period
+  description: 'Региональная панель индексов производства (субъект × месяцы с 2020) по разделам
+    BCDE и детальным ОКВЭД2. Волатильность малых регионов высокая (до 300%+ в отдельные
+    месяцы) - только SAAR или квартальное агрегирование. Не передаётся Росстатом на
+    федеральный уровень - это полный доступный разрез.'
+  tags:
+  - rosstat
+  - industrial-production
+  - regional-panel
+  - okved2
+  - monthly-index
+  - favar-input
+  - russia
+- id: rosstat_industrial_saar
+  name: Индексы промышленного производства SAAR (сезонно-календарно сглаженные)
+  type: api
+  url: https://rosstat.gov.ru/storage/mediabank/sezon_2023_07-2026.xlsx
+  format: xlsx
+  local_path: raw/rosstat/data/sezon_2023_07-2026.xlsx
+  schedule: manual
+  table: rosstat_ind_saar
+  primary_key:
+  - period
+  - okved2
+  - measure
+  description: 'SAAR: фактически / с исключением сезонного и календарного факторов /
+    к среднемесячному базисного 2023. Готовый вход для FAVAR-MIDAS - не нужно самим
+    настраивать X-13. Методика сглаживания Росстата (уточнить при верификации).'
+  tags:
+  - rosstat
+  - industrial-production
+  - saar
+  - seasonally-adjusted
+  - favar-input
+  - russia
+- id: rosstat_industrial_revisions
+  name: История ревизий индексов производства 2020-2026 (utoch_ind)
+  type: local_file
+  path: raw/rosstat/data/utoch_ind_2020-2026.xlsx
+  format: xlsx
+  table: rosstat_ind_revisions
+  primary_key:
+  - okved2
+  - period
+  - release
+  description: 'Ревизии: опубликовано сейчас vs первый релиз vs расхождение, помесячно
+    2020-2026, по BCDE и всем разделам/видам ОКВЭД2 (343 колонки). ЭМПИРИКА: средняя
+    |ревизия| 0.75 п.п., p90=2.1, max 3.4 (янв.2025); худшие - январи/декабри (календарный
+    фактор + сжатые сроки). Причины (приказ 470 от 18.08.2020): годовые отчёты микро-и
+    П-5(м), ошибки идентификации, дефляторы пересчитаны. Калибровка measurement error
+    для FAVAR-фильтра.'
+  tags:
+  - rosstat
+  - industrial-production
+  - revisions
+  - measurement-error
+  - nowcasting
+  - first-release-bias
+  - russia
+- id: rosstat_methodology_order7_2020
+  name: 'Методология индекса пром. производства (приказ Росстата №7 от 16.01.2020) - первоисточник'
+  type: methodology_document
+  date: '2020-01-16'
+  files:
+    pdf: raw/rosstat/methodology/met_indOKVED2_prikoz7_2020.pdf
+    ocr_txt: raw/rosstat/methodology/met_indOKVED2_ocr.txt
+  description: 'Официальная статистическая методология (32 стр., OCR). Ласпейрес: веса
+    1-го уровня - объём производства базисного года в средних ценах базы; далее -
+    структура ВДС базисного года из СНС (вкл. ненаблюдаемый сектор). Корзина из формы
+    1-натура-БМ (вкл. продукция ВПК, без давальческого сырья и внутреннего оборота).
+    Пропуски: временная дезагрегация; ошибки: ручное замещение; систематические уточнения:
+    экспертное редактирование 1-го релиза. Базис обновляется ~раз в 5 лет (2023 → ~2028)
+    с ретроспективным пересчётом.'
+  tags:
+  - rosstat
+  - industrial-production
+  - methodology
+  - laspeyres
+  - okved2
+  - official-methodology
+- id: rosstat_industrial_method_presentation
+  name: 'Методология расчета индекса промышленного производства (Омскстат-презентация, 2023)'
+  type: methodology_document
+  date: '2023'
+  files:
+    pdf: raw/rosstat/methodology/metod_ipp-2023.pdf
+    txt: raw/rosstat/methodology/met_ipp-2023.ru.txt
+  description: 'Презентационная версия (13 стр.): источники по формам (П-1 мес.
+    юрлица; ПМ-ПРОМ мес. малые; 1-ИП(мес) ИП; П-5(м) кварт.; 1-предприятие,
+    1-натура-БМ, МП(микро) годовые), схема расчёта, система весов, причины ревизий
+    (наглядно).'
+  tags:
+  - rosstat
+  - industrial-production
+  - methodology
+  - data-sources
+  - forms-registry
+- id: rosstat_industrial_met_prom_2025
+  name: 'Метод. рекомендации по разработке промышленной статистики за 2025 (met_prom_2025)'
+  type: methodology_document
+  date: '2026'
+  files:
+    docx: raw/rosstat/methodology/met_prom_2025.docx
+    txt: raw/rosstat/methodology/met_prom_2025.txt
+  description: 'Полный реестр форм с приказами: 1-предприятие/1-натура-БМ (№349 22.07.2025),
+    П-1/П-5(м) (№365 31.07.2023), ПМ-пром и 1-ИП(мес) (№704 13.10.2021), ПМ (№462),
+    МП(микро) (№533). 3 оценки годового индекса (1-я оперативная, 2-3 - с уточнением
+    дефляторов ЦПИ). Досчёт неформального сектора по данным ФНС (2-НК) + субсидиям.
+    Региональные индексы остаются в ТОГС (для ВРП). Спец-группировки: высокотехнологичные
+    обработки, обработка кроме первичной переработки.'
+  tags:
+  - rosstat
+  - industrial-production
+  - methodology
+  - forms-registry
+  - informal-sector
+  - three-estimates
+- id: rosstat_industrial_quarterly_base2023
+  name: Индексы производства квартальные (базис 2023)
+  type: api
+  url: https://rosstat.gov.ru/storage/mediabank/ind_baza_2023_2kv-2026.xlsx
+  format: xlsx
+  local_path: raw/rosstat/data/ind_baza_2023_2kv-2026.xlsx
+  schedule: manual
+  table: rosstat_ind_prod_qtr
+  primary_key:
+  - okved2
+  - quarter
+  description: Квартальные индексы по видам деятельности, 2021-2026 (для сглаживания
+    сверх-волатильных месячных региональных рядов)
+  tags:
+  - rosstat
+  - industrial-production
+  - quarterly
+  - favar-input

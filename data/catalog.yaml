@@ -2862,3 +2862,54 @@ sources:
     чувствителен); ~1 млн потерянных переездов в ЕС за декаду. Метод: BVAR знаковые ограничения,
     EU-SILC панели, региональные регрессии Decressin-Fatas (1995) с взаимодействием шок-доступность.
     Политика: наращивание предложения (земля, разрешения, финансирование застройщиков, кадры стройки).'
+
+- id: domrf_price_index_regions
+  name: 'Индекс цен на первичном рынке жилья ДОМ.РФ (по регионам, сделки Росреестра)'
+  type: api
+  url: 'https://дом.рф/price-index/ (API: POST https://дом.рф/api/v2/priceindex/living/mainchart/, формат дат YYYY.MM.DD)'
+  format: json->csv
+  local_path: raw/domrf/price_index/domrf_priceindex_all_regions.csv
+  table: domrf_price_index
+  primary_key:
+  - region
+  - month
+  description: 'Месячный индекс цен на новостройки (база 100 = январь 2021), 75 регионов, 2021-01..2026-07
+    (5025 строк). Метод: средневзвешенное изм. медианных цен по 6 кластерам (2 класса x 3 типа
+    квартир), веса = число сделок. Основа - сделки Росреестра (не предложения!). Композиционно
+    чистый. Также в raw: domrf_changes.xlsx (м/м, г/г, YTD), domrf_deals.xlsx (число сделок
+    по регионам). API эндпоинты: /api/v2/priceindex/living/mainchart/ (POST, полный ряд),
+    export/changes/ (GET, xlsx), export/deals/ (GET, xlsx).'
+  tags:
+  - domrf
+  - price-index
+  - regional-panel
+  - monthly
+  - deals-based
+  - rosreestr
+  - nowcasting-target
+  - housing-prices
+- id: rosstat_housing_avg_price_quarterly
+  name: 'Росстат: средние цены 1 кв.м на первичном/вторичном рынке по регионам (квартальные, 2016-2026)'
+  type: local_file
+  path: raw/rosstat/socioeconomic_regions/info-stat-2026/info-stat-06-2026/10 цены производителей/10-05 цены на первичном и вторичном рынках жилья.xls
+  format: xls
+  table: rosstat_housing_avg_price_q
+  primary_key:
+  - market
+  - region
+  - year
+  - quarter
+  description: 'Средние цены предложения 1 кв.м по 96 субъектам, конец квартала, 2016Q1-2026Q2
+    (7886 строк: primary+secondary). Источник: сборник Социально-экономическое положение
+    России (инфостат 06-2026). Плюс годовые средние и индексы цен (2001-2024) уже в
+    regions_panel.db (indicator LIKE %рынке жилья%). Квартальные ИНДЕКСЫ цен по регионам
+    (ЕМИСС 1.29.9 и dbinet.cgi?pl=1905005) за бот-защитой/удалены - только годовые +
+    средние цены. Для длинного месячного ряда - ДОМ.РФ индекс (domrf_price_index_regions).'
+  tags:
+  - rosstat
+  - housing-prices
+  - regional-panel
+  - quarterly
+  - avg-price
+  - primary-market
+  - secondary-market

@@ -1,0 +1,52 @@
+"field name","english description","russian description","format"
+"GA","Subjects of the Russian Federation","Субъекты Российской Федерации","text"
+"GB","Number of taxpayers applying benefits (deductions) established by Articles 381, 382, 385.1 of the Tax Code of the Russian Federation (units)","Количество налогоплательщиков, применяющих льготы (вычеты), установленные ст. 381, 382, 385.1 НК РФ
+(ед.)","text"
+"G1","Number of taxpayers using benefits provided in accordance with Article 7 of the Tax Code of the Russian Federation and international treaties of the Russian Federation (units)","Количество налогоплательщиков, применяющих льготы, предоставляемые в соответствии со ст.7 НК РФ международными договорами РФ
+(ед.)","text"
+"G2","Number of taxpayers applying benefits provided in accordance with paragraph 7 of Article 346.35 of the Tax Code of the Russian Federation to investors under PSA (units)","Количество налогоплательщиков применяющие льготы, предоставляемые в соответствии с п.7 ст.346.35 НК РФ инвесторам по СРП
+ (ед.)","text"
+"G3","Number of taxpayers applying benefits established in accordance with paragraph 2 of Article 372 of the Tax Code of the Russian Federation by legislative bodies of the constituent entities of the Russian Federation (units)","Количество налогоплательщиков применяющие льготы, установленные в соответствии с п.2 ст.372 НК РФ органами законодательной власти субъектов РФ
+(ед.)","text"
+"G4","Number of taxpayers applying the rate of ""0"" percent established by the law of the constituent entity of the Russian Federation (units)","Количество налогоплательщиков, применяющих, установленную законом субъекта Российской Федерации ставку в размере ""0"" процентов 
+(ед.)","text"
+"G5","Number of taxpayers applying tax rates established by paragraph 2 of Article 372.1 of the Tax Code of the Russian Federation (units)","Количество налогоплательщиков, применяющих налоговые ставки, установленные п. 2 статьи 372.1 НК РФ 
+(ед.)","text"
+"G6","Residual value of real estate recognized as a taxable object as of 12/31/2024 (thousand rubles)","Остаточная стоимость недвижимого имущества, признаваемого объектом налогообложения, на 31.12.2024 
+(тыс.руб.)","text"
+"G7","Average annual value of real estate for the tax period (thousand rubles)","Среднегодовая стоимость недвижимого имущества за налоговый период (тыс.руб.)","text"
+"G8","Tax base (thousand rubles)","Налоговая база (тыс.руб.)","text"
+"G9","Amount of tax calculated for payment to the budget (thousand rubles)","Сумма налога, исчисленная к уплате в бюдже (тыс.руб.)","text"
+"G10","The amount of tax not received by the budget due to the provision of tax benefits to taxpayers, in relation to property, the tax base for which is calculated as the average annual value under the benefits established by Articles 372.1, 381, 382, 385.1 of the Tax Code of the Russian Federation (thousand rubles)","Сумма налога, не поступившая в бюджет в связи с предоставлением налогоплательщикам налоговых льгот, в отношении имущества, налоговая база по которому исчисляется как среднегодовая стоимость по льготам, установленным ст. 372.1, 381, 382, 385.1 НК РФ
+(тыс.руб.)","text"
+"G11","The amount of tax not received by the budget in connection with the provision of tax benefits to taxpayers in relation to property, the tax base for which is calculated as the average annual value for benefits provided in accordance with Art. 7 of the Tax Code of the Russian Federation by international treaties of the Russian Federation (thousand rubles)","Сумма налога, не поступившая в бюджет в связи с предоставлением налогоплательщикам налоговых льгот, в отношении имущества, налоговая база по которому исчисляется как среднегодовая стоимость по льготам, предоставляемым в соответствии со ст. 7 НК РФ международными договорами Российской Федерации 
+(тыс.руб.)","text"
+"G12","The amount of tax not received by the budget in connection with the provision of tax benefits to taxpayers, in relation to property, the tax base for which is calculated as the average annual value for benefits provided in accordance with paragraph 7 of Article 346.35 of the Tax Code of the Russian Federation to investors under the PSA (thousand rubles)","Сумма налога, не поступившая в бюджет в связи с предоставлением налогоплательщикам налоговых льгот, в отношении имущества, налоговая база по которому исчисляется как среднегодовая стоимость по льготам, предоставляемым в соответствии с п.7 ст. 346.35 НК РФ инвесторам по СРП
+(тыс.руб.)","text"
+"G13","The amount of tax not received by the budget in connection with the provision of tax benefits to taxpayers, in relation to property, the tax base for which is calculated as the average annual value for benefits established in accordance with paragraph 2 of Article 372 of the Tax Code of the Russian Federation by the legislative authorities of the constituent entities of the Russian Federation (thousand rubles)","Сумма налога, не поступившая в бюджет в связи с предоставлением налогоплательщикам налоговых льгот, в отношении имущества, налоговая база по которому исчисляется как среднегодовая стоимость по льготам, установленным в соответствии с п.2 ст. 372 НК РФ органами законодательной власти субъектов РФ
+(тыс.руб.)","text"
+"G14","The amount of tax not received by the budget due to the application of the tax rate under paragraph 3.1 of Article 380 of the Tax Code of the Russian Federation (thousand rubles)","Сумма налога, не поступившая в бюджет в связи с применением налоговой ставки по п. 3.1 статьи 380 НК РФ
+(тыс.руб.)","text"
+"G15","The amount of tax not received by the budget due to the application of the tax rate under paragraph 3.2 of Article 380 of the Tax Code of the Russian Federation (thousand rubles)","Сумма налога, не поступившая в бюджет в связи с применением налоговой ставки по п. 3.2 статьи 380 НК РФ
+(тыс.руб.)","text"
+"G16","The amount of tax not received by the budget due to the application of the tax rate under paragraph 2 of Article 372.1 of the Tax Code of the Russian Federation (thousand rubles)","Сумма налога, не поступившая в бюджет в связи с применением налоговой ставки по п. 2 статьи 372.1 НК РФ 
+(тыс.руб.)","text"
+"G17","10. The amount of tax not received by the budget due to the calculation of tax taking into account Article 385.3 of the Tax Code of the Russian Federation (thousand rubles)","10. Сумма налога, не поступившая в бюджет в связи с исчислением налога с учетом статьи 385.3 НК РФ
+(тыс.руб.)","text"
+"G18","Number of taxpayers who have calculated the tax payable (units)","Количество налогоплательщиков, которыми исчислен налог к уплате 
+(ед.)","text"
+"G19","Number of taxpayers who were granted tax benefits (deductions) established by Articles 381, 382, 385.1 of the Tax Code of the Russian Federation (units)","Количество налогоплательщиков, которым предоставлены налоговые льготы (вычеты), установленные ст. 381, 382, 385.1 НК РФ
+(ед.)","text"
+"G20","Number of taxpayers who have been granted tax benefits provided in accordance with Art. 7 of the Tax Code of the Russian Federation by international treaties of the Russian Federation (units)","Количество налогоплательщиков, которым предоставлены налоговые льготы, предоставляемые в соответствии со ст. 7 НК РФ международными договорами Российской Федерации
+(ед.)","text"
+"G21","The number of taxpayers who have been granted tax benefits established in accordance with paragraph 2 of Article 372 of the Tax Code of the Russian Federation by the legislative authorities of the constituent entities of the Russian Federation (units)","Количество налогоплательщиков, которым предоставлены налоговые льготы, установленные в соответствии с п.2 ст. 372 НК РФ органами законодательной власти субъектов РФ
+(ед.)","text"
+"G22","The number of taxpayers who were assessed tax at tax rates established by the law of the constituent entity of the Russian Federation in the amount of ""0"" percent (units)","Количество налогоплательщиков, которым исчислен налог по налоговым ставкам, установленным законом субъекта Российской Федерации в размере «0» процентов 
+(ед.)","text"
+"G23","Number of objects for which tax payable is calculated","Количество объектов, в отношении которых исчислен налог к уплате","text"
+"G24","Cadastral value","Кадастровая стоимость","text"
+"G25","Tax base (cadastral value taking into account benefits)","Налоговая база (кадастровая стоимость с учетом льгот)","text"
+"G26","The amount of tax calculated for payment to the budget","Сумма налога, исчисленная к уплате в бюджет","text"
+"G27","The amount of tax not received by the budget due to the provision of tax benefits (deductions) to taxpayers established by Articles 381, 382, 385.1 of the Tax Code of the Russian Federation","Сумма налога, не поступившая в бюджет в связи с предоставлением налогоплательщикам налоговых льгот (вычетов), установленных ст. 381, 382, 385.1 НК РФ","text"
+"G28","The amount of tax not received by the budget in connection with the provision of tax benefits to taxpayers provided in accordance with Article 7 of the Tax Code of the Russian Federation by international treaties of the Russian Federation","Сумма налога, не поступившая в бюджет в связи с предоставлением налогоплательщикам налоговых льгот, предоставляемым в соответствии со ст. 7 НК РФ международными договорами Российской Федерации","text"
+"G29","The amount of tax not received by the budget due to the provision of tax benefits to taxpayers established in accordance with paragraph 2 of Article 372 of the Tax Code of the Russian Federation by the legislative authorities of the constituent entities of the Russian Federation","Сумма налога, не поступившая в бюджет в связи с предоставлением налогоплательщикам налоговых льгот, установленным в соответствии с п.2 ст. 372 НК РФ органами законодательной власти субъектов РФ","text"

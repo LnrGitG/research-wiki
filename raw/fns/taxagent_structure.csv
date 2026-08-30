@@ -1,0 +1,4 @@
+"field name","english description","russian description","format"
+"GA","Subject of the Russian Federation","Субьект РФ","text"
+"GB","Total amount of income paid by tax agents to individuals","Общая сумма дохода","выплаченная налоговыми агентами физическим лицам","integer"
+"G1","Total amount of personal income tax withheld by tax agents","Общая сумма удержанного налоговыми агентами налога на доходы физических лиц","integer"

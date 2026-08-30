@@ -1,0 +1,1843 @@
+Central European Journal of Economic Modelling and Econometrics
+What Makes a Successful Scientist in a Central
+Bank? Evidence From the RePEc Database
+Jakub Rybacki∗, Dobromił Serwa†
+Submitted: 12.04.2021, Accepted: 23.07.2021
+Abstract
+This research analyzes factors aﬀecting the scientiﬁc success of central
+bankers.
+We combine data from the RePEc and EDIRC databases, which
+contain information about economic publications of authors from 182 central
+banks. We construct a dataset containing information about 3312 authors and
+almost 80,000 scientiﬁc papers published between 1965 and 2020. The results
+from Poisson regressions of citation impact measure (called the h-index) on
+a number of research features suggest that economists from the U.S. Federal
+Reserve Banks, international ﬁnancial institutions, and some eurozone central
+banks are cited more frequently than economists with similar characteristics
+from central banks located in emerging markets. Researchers from some big
+emerging economies like Russia or Indonesia are cited particularly infrequently
+by the scientiﬁc community. Beyond these outcomes, we identify a signiﬁcant
+positive relationship between research networking and publication success.
+Moreover, economists cooperating with highly cited scientists also obtain a high
+number of citations even after controlling for the size of their research networks.
+Keywords: RePEc, scientiﬁc success, h-index, big data
+JEL Classiﬁcation: E58, D02, I23
+∗Polish Economic Institute, Poland; e-mail: jakub.rybacki@pie.net.pl;
+ORCID: 0000-0001-7248-9536
+†SGH Warsaw School of Economics, Collegium of Economic Analysis, Warsaw, Poland;
+e-mail: dserwa@sgh.waw.pl; ORCID: 0000-0002-1040-1815
+331
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+1
+Introduction
+The aim of this paper is to analyze factors aﬀecting the scientiﬁc success of economists
+from international central banks. The scientiﬁc success of an economist is measured in
+terms of the citation impact of her publications. As a measure of citation impact, we
+use the h-index, also known as the Hirsch index, proposed by Jorge E. Hirsch (2005).
+This index is deﬁned for each author as the maximum h number of her publications
+that have been cited at least h times. In recent years, this index has been one of the
+most widely used indicators of publishing productivity and research impact.
+The following arguments motivate interest in the productivity of central bank
+scientists. There is a wide consensus among central bankers and economists alike
+that monetary policy requires credibility in order to be eﬀective (Blinder, 2000;
+Bordo and Siklos, 2015; Goy et al., 2020). Maintaining credibility requires proven
+expertise of economic knowledge. Therefore, the institutional setup of research plays
+an important role in policymaking. Surprisingly, bibliometric analysis of scientiﬁc
+research is rarely used in the context of measuring eﬀectiveness of central bank
+governance and policymaking. This research may help highlight the characteristics
+of successful scientists, which can be used by governing bodies to develop a strong
+scientiﬁc basis for monetary policymaking.
+Central banks also need to be accountable and transparent (Hetzel, 2012; Buiter,
+2014). Central bank scientists with access to conﬁdential data and who also interact
+with policymakers have a clear research advantage over external academics. Their
+research may help identify important economic events and reveal factors aﬀecting
+decisions of policymakers that would be diﬃcult to observe otherwise. In this way,
+central bank scientists provide a value added to research on monetary issues.
+Finally, scientists in central banks are able to follow and understand the latest
+developments in economic research much more eﬀectively than any other central bank
+analysts because scientists interact frequently with academics outside the banking
+system. These interactions, research networks, and competition with academics often
+lead to the introduction of advanced models and methods as new tools of monetary
+policy.
+In this study, we measure the relationship between the author’s aﬃliation, publishing
+characteristics, and her citation impact. For example, it is interesting to learn how
+the variety of publishing outlets aﬀects the likelihood of a high h-index. We also
+investigate how the co-authorship networks are linked to publishing productivity. We
+obtain results based on the analysis of 182 central banks, 3312 authors, and around
+80,000 scientiﬁc papers published between 1965 and 2020.
+Our estimates suggest that central bankers from the U.S. Federal Reserve banks,
+international institutions such as Bank of International Settlements (BIS), European
+Central Bank, and some eurozone national banks are cited more frequently than
+economists with similar publishing characteristics from banks located in emerging
+markets.
+The h-indices of economists in these leading banking institutions are
+approximately 0.3 to 0.5 higher in comparison to the global median. There is also a
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+332
+
+
+What Makes a Successful . . .
+group of large emerging countries, including Russia, Indonesia, and Sri Lanka, where
+publishing authors perform evidently weaker than authors from advanced economies.
+We also identify a positive relationship between the value of h-index and the number of
+unique publication outlets and publishing years, but observe no additional statistically
+signiﬁcant impact of the variety of publication topics on the publishing productivity
+measured with the h-index.
+Finally, we detect a strong link between research networking and publishing success.
+The best researchers are capable of creating networks of co-authors that support their
+eﬀorts.
+Interestingly, publishing success is positively correlated with the research
+network size, the share of papers written with co-authors, and the total number of
+authors aﬃliated with the same banking institution.
+This document is structured as follows. Section 2 presents the literature review on the
+use of the h-index as a measure of citation impact. Section 3 discusses the impact of
+scholars on the activities of a central bank. Section 4 presents the RePEc database and
+its content, as well as basic statistics of constructed variables applied in our analysis.
+Section 5 describes the model used to measure dependence of the h-index on a number
+of authors’ features. Section 6 summarizes the model output, and Section 7 concludes
+the paper.
+2
+Measurement of scientiﬁc success
+This section presents a brief explanation of the Hirsch index (Hirsch, 2005), discusses
+its advantages and disadvantages, and the need for high quality publications in central
+banks. The h-index denotes the largest number of those papers authored by a single
+scientist that have been cited at least h times each. For example, an h-index equaling
+3 indicates that the author published at least 3 articles and each of these articles was
+cited at minimum 3 times.
+Frequent use of the h-index in research triggered a debate on whether it describes
+well the publishing productivity of speciﬁc authors. Hirsch (2007) highlights that the
+behavior of the h-index is rather predictable in subsequent years. The index cannot be
+artiﬁcially boosted by publishing a single paper in a co-authorship even if this paper
+is frequently cited. Opponents note that achieving a high value of this index requires
+frequent publishing. Ellison (2013) shows examples where distinct scholars, whose
+papers were cited 1000 times or more, attain relatively low h-index values just because
+they do not have a suﬃcient number of publications to increase the metrics. Jensen
+et al. (2009) highlight that the index does not consider the number of co-authors of
+a paper. A big research team may boost the h-index value by dishonest practices
+such as ghostwriting or extensive references to colleagues’ publications. Some authors
+may also strategically cite those papers with the number of citations just below these
+authors’ h-index values. Finally, another argument against this citation measure is
+that the average value of the h-index diﬀers strongly between ﬁelds of economics.
+Nevertheless, alternative citation indices, e.g., those focusing mainly on the most
+333
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+relevant author’s publications, have not gained much recognition (Perry and Reny,
+2016; Tol, 2009).
+The versatility of the h-index has induced research that tried to determine factors
+supporting success in a scientiﬁc career.
+Acuna et al.
+(2012) proposed a model
+describing the evolution of metrics based on a scholar’s characteristics, i.e., the
+number of published articles, and the number of years from the ﬁrst publication.
+Bosquet and Combes (2013) focused on the number of publications and the depth
+of research network. Based on the analysis of g-indices amongst French economists,
+Bosquet and Combes claim that there exist “increasing returns to scale” from greater
+research networks and more frequent publishing. Authors publishing more studies in
+collaboration with other researchers achieve higher values of h-indices or g-indices.
+Social ties and publishing in top journals also have a strong inﬂuence on scientiﬁc
+careers in economics (Colussi, 2018; Heckman and Moktan, 2020).
+Ayaz et al.
+(2018) ﬁnd that such factors as “average citations per paper, number of coauthors,
+years since publishing ﬁrst article, number of publications, number of impact factor
+publications, and number of publications in distinct journals performed better than
+all other combinations” in predicting future scientiﬁc impact in the ﬁeld of computer
+science. In our study, we use a similar set of explanatory variables to predict scientiﬁc
+success among economists in central banks.
+3
+Scholars and the central banks
+This section describes the rationale of maintaining economic research in the central
+banks. The work of researchers is an important part of central bank communication,
+the latter of which has increased signiﬁcantly in the last decades.
+Central banks
+started to communicate with households and corporations to shape their expectations,
+and to encourage saving, borrowing, consumption, investment, and other economic
+behavior. This instrument also helps central banks to increase their credibility (e.g.,
+Born et al. 2014; Cieslak and Schrimpf, 2019; Haldane and McMahon, 2018; Hansen
+et al., 2019). The research on expertise and knowledge management in central banks
+has been somewhat overlooked in the literature until now, although the role of central
+banks is inevitable in this area (Trichet, 2008; Claveau and Dion, 2018).
+The topics of scientiﬁc success and academic integrity have major relevance in central
+banking. For example, several papers show that metrics of scientiﬁc excellency are
+considered during the employment and salary negotiations of researchers (Ellison,
+2013; Hilmer et al., 2015).
+Therefore, economists have a ﬁnancial motivation to
+strategically approach their work.
+Central bankers are especially prone to the problem known as conﬁrmation bias (Frey,
+2003; Silvia, 2012). Analysts have a greater motivation to conformism rather than
+opposing the wrong ideas of their direct supervisors because analysts’ promotion is
+purely dependent on the supervisors’ opinions. Another frequent but less concerning
+issue is that authors tend to exaggerate their ﬁndings. Some studies showed that
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+334
+
+
+What Makes a Successful . . .
+researchers too often present parameters whose p-values lie too close to the common
+thresholds of signiﬁcance, i.e., 5% or 1% (Brodeur et al., 2016; Gorajek et al., 2021).
+Individual temptations and potential misconducts can be utilized by the monetary
+authorities to promote wrong decisions.
+Rybacki (2020) argues that central bank
+authorities should maintain diversiﬁed and versatile economic research to lower
+deviations of inﬂation from the central bank target. Unfortunately, this is not always
+the case. One example is provided by Fabo et al. (2020) who created a meta-analysis
+of research papers measuring the macroeconomic eﬀects of quantitative easing. Fabo
+et al. claim that manuscripts presented by central bankers showed stronger and more
+positive eﬀects compared to papers written by other academics. The most optimistic
+papers were authored by a senior central bank staﬀ. These examples further motivate
+the promotion of high-quality research in central banks and highlight the importance
+of analyzing factors aﬀecting publication success among central bankers.
+In this
+research, we focus on the structural drivers of publishing success. Our study may
+be treated as a starting point for more advanced analyses of publication biases among
+central bankers.
+4
+Database
+In this section, we discuss the construction of variables used in our research. This
+research employs information about research papers published by 3312 authors
+aﬃliated with one of the 182 international central banks, including international
+institutions like Bank of International Settlements (BIS) or European Central
+Bank (ECB). The list of all investigated organizations is presented in Table 1.
+The publication data are stored in the one of the most widely used databases
+indexing economic research, namely the RePEc (Research Papers in Economics)
+database. As stated by the authors, this is a “decentralized bibliographic database
+of working papers, journal articles, books, book chapters and software components,
+all maintained by volunteers” (cf. http://repec.org/). One of the main services
+contributing to RePEc is EDIRC (Economics Departments, Institutes and Research
+Centers in the World), which contains information about instigated central banks.
+We downloaded available information about authors and their publications using the
+special RePEc API; the API is discussed in more detail at https://ideas.repec.
+org/api.html.
+The RePEc database provides rankings of academic performance based on citations
+in a similar way to other academic services such as Scopus and the Web of Science.
+Contrary to the latter services, the metrics in the RePEc database are constructed
+not only based on high-quality peer-reviewed articles, but also on working papers.
+The advantage of the RePEc is that this database reﬂects a wider spectrum of works
+and allows for a prompter inﬂuence of new papers on the h-index statistic than other
+commercial services allow for. Still, this method leaves space for predatory practices
+335
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+Table 1: List of institutions analyzed during the research
+Africa
+Banque d’Algérie, Banco Nacional de Angola, Bank of Botswana, Commission de l’Union
+Économique et Monétaire Ouest Africaine (UEMOA), Banque de la République du Burundi,
+Central Bank of Cabo Verde, Banque des Etats de l’Afrique Centrale, Banque Centrale des
+Comores, Banque Centrale du Congo, Banque Centrale du Djibouti, Central Bank of Egypt, Bank
+of Eritrea, National Bank of Ethiopia, Central Bank of The Gambia, Bank of Ghana, Banque
+Centrale de la République de Guinée, Central Bank of Kenya, Central Bank of Lesotho, Central
+Bank of Liberia, Central Bank of Libya, Banque Centrale de Madagascar, Reserve Bank of Malawi,
+Bank of Mauritius, Banco de Moçambique, Bank Al-Maghrib, Bank of Namibia, Central Bank of
+Nigeria, Banque National du Rwanda, Banque Centrale des États de l’Afrique de l’Ouest (BCEAO),
+Central Bank of Seychelles, Bank of Sierra Leone, Central Bank of Somalia, South African Reserve
+Bank, Bank of South Sudan, Central Bank of Sudan, Central Bank of Swaziland, Bank of Tanzania,
+Banque Centrale de Tunisie, Bank of Uganda, Bank of Zambia, Reserve Bank of Zimbabwe
+Americas
+Banco Central de la República Argentina, Centrale Bank van Aruba, Bahamas Central Bank,
+Central Bank of Barbados, Central Bank of Belize, Banco Central de Bolivia, Banco Central do
+Brasil, Bank of Canada, Cayman Islands Monetary Authority, Banco Central de Chile, Banco
+de la Republica de Colombia, Banco Central de Costa Rica, Banco Central de Cuba, Centrale
+Bank van Curaçao en Sint Maarten, Banco Central de la República Dominicana, Banco Central
+del Ecuador, Banco Central de Reserva de El Salvador, Banco de Guatemala, Bank of Guyana,
+Banque de la République d’Haïti, Banco Central de Honduras, Bank of Jamaica, Banco de México,
+Banco Central de Nicaragua, Banco Central del Paraguay, Banco Central de Reserva del Perú,
+Eastern Caribbean Central Bank, Centrale Bank van Suriname, Central Bank of Trinidad and
+Tobago, Federal Reserve Bank of San Francisco, Federal Reserve Board (Board of Governors of
+the Federal Reserve System), Federal Reserve Bank of Atlanta, Federal Reserve Bank of Chicago,
+Federal Reserve Bank of Boston, Federal Reserve Bank of Minneapolis, Federal Reserve Bank of
+Kansas City, Federal Reserve Bank of St.
+Louis, Federal Reserve Bank of New York, Federal
+Reserve Bank of Cleveland, Federal Reserve Bank of Philadelphia, Federal Reserve Bank of Dallas,
+Federal Reserve Bank of Richmond, Banco Central de Uruguay, Banco Central de Venezuela
+Asia
+Da Afghanistan Bank, Central Bank of Bahrain, Bangladesh Bank, National Bank of Cambodia,
+Zhongguo Renmin Yinhang, Hong Kong Monetary Authority, Reserve Bank of India, Bank
+Indonesia, Central Bank of the Islamic Republic of Iran, Central Bank of Iraq, Bank of Israel, Bank
+of Japan, Central Bank of Jordan, National Bank of Kazakhstan, Eurasian Development Bank,
+Asian Infrastructure Investment Bank, Central Bank of Kuwait, National Bank of Kyrgyz Republic,
+Bank of the Lao PDR, Banque du Liban, Bank Negara Malaysia, Maldives Monetary Authority,
+Mongolbank, Central Bank of Myanmar, Nepal Rastra Bank, Central Bank of Oman, State Bank of
+Pakistan, Palestine Monetary Authority, Bangko Sentral Ng Pilipinas, Qatar Central Bank, Saudi
+Arabian Monetary Agency (SAMA), Monetary Authority of Singapore, Bank of Korea, Central
+Bank of Sri Lanka, Central Bank of Syria, Central Bank of the Republic of China, National Bank
+of the Republic of Tajikistan, Bank of Thailand, Banco Central de Timor-Leste, Türkmenistanyň
+Merkezi Banky, Central Bank of the United Arab Emirates, Central Bank of the Republic of
+Uzbekistan, State Bank of Vietnam, Central Bank of Yemen
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+336
+
+
+What Makes a Successful . . .
+Table 1: List of institutions analyzed during the research (cont.)
+Europe
+ECB, Bundesbank, Bank of France, Bank of Italy, Bank of Spain, Bank of Portugal, de
+Nederlandsche Bank, Oesterreichische Nationalbank, Suomen Pankki, Bank of Greece, Bank of
+Belgium, Central Bank of Ireland, Eesti Pank, Central Bank of Cyprus, Latvijas Banka, Lietuvos
+Bankas, Banque Centrale du Luxembourg, Bank Centrali ta’ Malta, Banka Slovenije, Národná
+Banka Slovenska, Bank of England, Danmarks Nationalbank, Sveriges Riksbank, Norges Bank,
+Magyar Nemzeti Bank (MNB), Narodowy Bank Polski, Česká Národní Banka, Banca Nationala
+a Romaniei, Bulgarian National Bank, Banka e Shqiperise, Central Bank of Armenia, National
+Bank of the Republic of Belarus, Centralna Banka Bosne i Hercegovine, Hrvatska Narodna Banka,
+National Bank of Georgia, Sedlabanki Íslands, Banka Qendror e Republikës së Kosovës, Banca
+Nationala a Moldovei, Centralna Banka Crne Gore (CBCG), Kuzey Kıbrıs Türk Cumhuriyeti
+Merkez Bankası, Narodna Banka na Republika Severna Makedonija, Central Bank of the Russian
+Federation, Banca Centrale della Repubblica di San Marino, Narodna Banka Srbije, Bank for
+International Settlements (BIS), Schweizerische Nationalbank (SNB), Türkiye Cumhuriyet Merkez
+Bankası, National Bank of Ukraine
+Oceania
+Reserve Bank of Australia, Reserve Bank of Fiji, Reserve Bank of New Zealand, Bank of Papua
+New Guinea, Central Bank of Samoa
+Source: EDIRC database.
+like strategic citing discussed in Section 2. We expect this problem to be relatively
+small, given that the RePEc is usually not considered as a source of information
+used for taking ﬁnancial decisions by scientiﬁc authorities, i.e., disposing grants. This
+issue also leads to another problem. Some authors and journals deliberately decide
+not to participate in the RePEc or update the list of published articles with signiﬁcant
+delays. Therefore, the values of the h-index in the RePEc may diﬀer from the ones
+reported by other databases. The problem of inconsistencies within metrics between
+databases is present in all of the bibliometric studies. A more detailed review can be
+found, for example, in Meho and Rogers (2008), and Seiler and Wohlrabe (2012).
+Our retrieved data contain information about papers published between January 1965
+and April 2020 (the month when we ran our download scripts). There are 79750 works
+published either as working papers, articles in peer-reviewed journals, book chapters,
+or monographs. We were able to derive the following information about central bank
+researchers from the RePEc database:
+1. The h-indices of authors based on the citations available in the CitEc (Citations
+in Economics) service and using citation information from the RePEc database;
+2. The authors’ career time span, i.e., the year of each publication, from the ﬁrst
+published paper to the last one;
+3. The full listing of co-authors of each publication;
+337
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+4. Information about the number of unique journals where each author published
+his or her papers;
+5. JEL (Journal of Economic Literature) codes corresponding to the author’s
+papers.
+The JEL classiﬁcation system of the American Economic Association “is a standard
+method of classifying scholarly literature in the ﬁeld of economics” and its JEL codes
+are used to classify this literature into 20 distinct economic categories (cf. https:
+//www.aeaweb.org/econlit/jelCodes.php?view=jel).
+Aggregating JEL codes by each author, we were able to identify the most frequently
+researched economic category for each central banker. In our study, we use these
+leading categories to predict the topics analyzed by central banking scientists that
+generate the highest (and the lowest) h-index values.
+We are interested in measuring the publishing success conditional on the predominant
+topic of research. One can observe in Figure 1 that studies on monetary policy and
+inﬂation (JEL code E) have greater priority in comparison to other research categories.
+We decided to use only main JEL categories because the subcategories are too granular
+and do not allow for meaningful interpretations. We removed authors’ publishing
+papers with categories: K (Law and Economics), M (Business Administration and
+Business Economics; Marketing; Accounting; Personnel Economics), N (Economic
+History), P (Economic Systems), and Z (Other Special Topics).
+The number of
+corresponding researchers in each case does not exceed 10, which means that central
+bankers are less interested in these speciﬁc topics (cf. Figure 1 (e)).
+In addition, we analyze the number of works published by each central banker, the
+number of publishing years (by subtracting the ﬁrst publication year from the last
+publication year of a given researcher), and the number of unique publication outlets
+(e.g., unique journal names) of each researcher. These statistics are used as the basic
+discriminatory factors explaining the values of the h-index.
+Based on the information about the co-authors of each published work, we also
+calculate the share of works by a researcher written with at least one co-author. This
+statistic will help predict the eﬀect of productivity gain from writing research papers
+in groups.
+Another related important statistic derived from the RePEc database
+is the number of co-authors linked to every researcher from a central bank. This
+statistic is complementary to the previous one in that it provides the size of the
+research network of a central banker, and it is not necessarily linked to the number
+of researchers aﬃliated within a speciﬁc central bank. We expected that the size of
+a research network will be positively correlated with the publication success due to
+possible productivity and knowledge gains. Researchers with larger research networks
+are considered to be more open to interactions with other scientists, cooperation
+initiatives, and new research topics.
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+338
+
+
+What Makes a Successful . . .
+Figure 1: Histograms of selected variables used in the study
+(a) h-index
+(b) years of publishing
+(c) works published
+(d) unique publication outlets
+(e) dominant JEL codes of authors
+(f) share of co-authored works
+Note: All variables are aggregated by speciﬁc authors.
+339
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+Figure 1: Histograms of selected variables used in the study (cont.)
+(g) network size
+(h) average h-index of co-authors
+Note: All variables are aggregated by speciﬁc authors.
+Table 2: Median value of H-index in selected European institutions
+No. Country / Institutions H-index No. Country / Institutions H-index
+1
+BIS
+9
+14
+England
+3
+2
+Austria
+6
+15
+France
+3
+3
+Portugal
+5
+16
+Germany
+3
+4
+ECB
+5
+17
+Netherlands
+3
+5
+Sweden
+5
+18
+Poland
+3
+6
+Finland
+4.5
+19
+Slovakia
+2.5
+7
+Belgium
+4
+20
+Czechia
+2
+8
+Greece
+4
+21
+Latvia
+2
+9
+Italy
+4
+22
+Hungary
+2
+10
+Spain
+4
+23
+Switzerland
+2
+11
+Luxembourg
+4
+24
+Turkey
+2
+12
+Ireland
+4
+25
+Russia
+0
+13
+Norway
+4
+26
+Lithuania
+0
+Source: RePEc database.
+The ﬁrst look at the dataset reveals that the aﬃliation of a researcher matters. As
+an example, median values of the h-index corresponding to authors aﬃliated within
+speciﬁc European institutions are presented in Table 2. Based on this metric, the
+Bank of International Settlements seems to be the most inﬂuential institution in the
+ﬁeld of economics. Moreover, the median h-index value for the European Central
+Bank is higher in comparison to the majority of central banks participating in the
+Eurosystem. Unfortunately, the RePEc database does not allow one to directly track
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+340
+
+
+What Makes a Successful . . .
+the career progress of central bankers. Therefore, we are unable to analyze whether
+those institutions recruit people who already possess high h-index values or whether
+it is the speciﬁc aﬃliation that helps authors in being cited more frequently.
+The distribution of the h-index in the majority of institutions is similar to Poisson or
+a lognormal distribution with a fat tail. The histograms of h-indices in the ECB, the
+Bundesbank, the Bank of England, and the Bank of France are presented in Figure 2.
+Figure 2: The distribution of H-indices in the selected institutions
+ 
+(a) The ECB
+(b) Bundesbank
+ 
+(c) Bank of England
+(d) Bank of France
+Source: RePEc database.
+Note: The presented distributions are similar to Poisson distribution, albeit there exist some fat tails
+related to high numbers of very frequently quoted researchers.
+There are several explanations for the fact that we observe a relatively high number
+of researchers with high h-index values. There is a well-known problem of copied
+citations.
+Authors automatically cite recognized papers and economists without
+gaining knowledge about the explicit contents of cited manuscripts (Simkin and
+Roychowdhury, 2007).
+Bibliometric analyses also show that top researchers often
+collaborate with the other leading experts in the ﬁeld (Ding, 2011). In addition, the
+personal relationships of researchers frequently do matter. Thus, economists with a
+341
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+greater number of contacts are more likely to succeed in their academic work (Cisneros
+et al., 2018).
+5
+Methodology
+This section describes the methodology of our research. We propose a quantitative
+model
+predicting
+the
+h-indices
+of
+authors
+conditional
+on
+their
+publication
+characteristics with a Poisson regression.
+The Poisson regression formula explaining the value of the h-index with a linear
+combination of explanatory variables takes the following form:
+log (E (Yi|xi)) = α0 + α1x1i + α2x2i + ... + αkxki,
+(1)
+where Yi is the value of h-index for author i, xji is the value of j-th control variable for
+author i, and αj is the j-th parameter measuring impact of the j-th control variable
+on Y .
+The expected value of the h-index for author i, conditional on information contained
+in control variables can be measured as
+E (Yi|xi) = exp(α0 + α1x1i + α2x2i + ... + αkxki)
+(2)
+and the Poisson distribution’s probability mass function p (Yi = y|xi) conditional on
+independent variables xi is given by
+p (Yi = y|xi) = exp(y · xi · α)
+y!
+exp (−exp (xi · α)) ,
+(3)
+where xi is a vector of independent variables including the constant term, α is a
+vector of regression parameters, and y is the value of the h-index. We estimate the
+parameters of the Poisson regression using the maximum likelihood method.
+6
+Estimation results
+We begin by estimating the impact of a publishing time window (Yearsi), the number
+of items published (Manuscriptsi), and the number of distinct publication journals
+(Journalsi) for each author on the value of the Hirsch index.
+The Hirsch index
+depends, by deﬁnition, on the number of published papers. It is also well known
+that the h-index depends heavily on the number of publishing years (Schreiber, 2015).
+Therefore, we expect a positive impact of all the control variables. The model formula
+is presented in Equation (4):
+log (E (Yi|xi)) = α0 + α1Manuscriptsi + α2Journalsi + α3Yearsi.
+(4)
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+342
+
+
+What Makes a Successful . . .
+Table 3 presents the estimation results. Each additional year of publishing experience
+increases the potential to increase the h-index by approximately 4% (ceteris paribus).
+This result is robust to diﬀerent model speciﬁcations.
+Table 3: Parameter estimates of the Poisson regression with basic control variables
+Estimate
+Standard error
+t-ratio
+p-value
+Intercept
+0.577
+0.016
+35.747
+0.000
+Items
+-0.002
+0.000
+-5.880
+0.000
+Unique journals
+0.031
+0.001
+26.198
+0.000
+Years of publishing
+0.041
+0.001
+37.537
+0.000
+Number of observations
+3296
+R-squared
+0.39
+Mean dependent variable
+4.44
+Adjusted R-squared
+0.39
+S.D. dependent variable
+4.71
+S.E. of regression
+3.68
+Akaike information criterion
+4.28
+Sum squared resid
+44530.14
+Schwarz criterion
+4.29
+Log likelihood
+-7045.63
+Hannan-Quinn criterion
+4.28
+Restr. log likelihood
+-11104.43 LR statistic
+8118.60
+Note: The model is estimated based on Equation (4). The positive parameter for unique journals suggests
+that successful authors need to diversify their audience and make an eﬀort to cooperate with multiple
+editorial teams.
+Interestingly, the diversity of publication journals plays a more important role than
+the number of published papers here.
+This is due to the fact that the number
+of unique journals and the total number of papers are strongly correlated (e.g.,
+with the Spearman’s ρ equaling 0.94 and the Pearson correlation of 0.90), and the
+journal diversity aﬀects the h-index slightly stronger than the number of publications.
+According to the results presented in Table 3, each additional unique publication
+outlet increases the predicted h-index of an author by about 3%. This value decreases
+to just above 1% when additional factors are considered.
+Next, we account for various economic dimensions covered by publications of the
+analyzed central bankers. We introduce two additional explanatory variables, namely,
+the number of unique JEL codes (JELsi) and the main JEL category identiﬁer
+(mainJELj,i, where j=A, B, . . . , Z) taking the value of 1 when the leading JEL
+category for a given author is the category j and zero otherwise.
+log (E (Yi|xi)) = α0 + α1Manuscriptsi +
++ α2Journalsi + α3Yearsi + α4JELsi +
+Z
+X
+j=A
+αj,5mainJELj,i.
+(5)
+The results are presented in Table 4.
+Again, the number of unique publishing
+categories covered by one author does not have an additional positive eﬀect on the
+343
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+value of the Hirsch index beyond the number of unique publication outlets. Among
+the three variables, i.e., published items, unique journals, and unique JEL codes, the
+latter one is the least correlated with the h-index variable and it is strongly correlated
+with the two former variables.
+Table 4: Parameter estimates of the Poisson regression with basic control variables
+and JEL codes
+Estimate Standard error t-ratio p-value
+Intercept
+0.102
+0.180
+0.567
+0.570
+Items
+-0.001
+0.000
+-3.063
+0.002
+Unique journals
+0.029
+0.001
+23.244
+0.000
+Years of publishing
+0.037
+0.001
+32.802
+0.000
+Unique JEL codes
+-0.001
+0.001
+-1.550
+0.121
+JEL B
+0.046
+0.283
+0.161
+0.872
+JEL C
+0.452
+0.181
+2.493
+0.013
+JEL D
+0.516
+0.183
+2.824
+0.005
+JEL E
+0.618
+0.180
+3.431
+0.001
+JEL F
+0.574
+0.182
+3.161
+0.002
+JEL G
+0.666
+0.181
+3.684
+0.000
+JEL H
+0.439
+0.192
+2.286
+0.022
+JEL I
+0.625
+0.204
+3.062
+0.002
+JEL J
+0.619
+0.185
+3.352
+0.001
+JEL L
+0.516
+0.201
+2.568
+0.010
+JEL O
+0.023
+0.195
+0.118
+0.906
+JEL Q
+0.602
+0.208
+2.900
+0.004
+JEL R
+0.535
+0.202
+2.656
+0.008
+Number of observations
+2926
+R-squared
+0.48
+Mean dependent var
+4.811
+Adjusted R-squared
+0.48
+S.D. dependent var
+4.838
+S.E. of regression
+3.508
+Akaike info criterion
+4.34
+Sum squared resid
+35780.44 Schwarz criterion
+4.38
+Log likelihood
+-6330.83
+Hannan-Quinn criter.
+4.35
+Restr. log likelihood
+-9913.2
+LR statistic
+7164.73
+Note: The model is estimated based on Equation (5).
+Figure 3 presents the sorted impact values of respective JEL categories. The highest
+impact on the h-index is observed for authors publishing research in the areas of
+ﬁnancial economics (G), health, education, and welfare (I), labor and demographic
+economics (J), and macroeconomics and monetary economics (E). While the eﬀects
+of categories G and E are clear because central bankers are simply specialists in
+these ﬁelds of economics, the publication success of authors in categories I and J
+may result from the speciﬁcs of the general numbers of citations in these areas of
+science. Nonetheless, most of the other economic categories assert a similar impact
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+344
+
+
+What Makes a Successful . . .
+on the h-index. Only the categories containing topics like economic development,
+innovation, technological change, and growth (O), and the history of economic
+thought, methodology, and heterodox approaches (B) reveal a signiﬁcantly lower
+impact than other categories.
+Figure 3: Estimated parameters of respective JEL categories
+-0,4
+-0,2
+0,0
+0,2
+0,4
+0,6
+0,8
+1,0
+O
+B
+H
+C
+L
+D
+R
+F
+Q
+E
+J
+I
+G
+estimate
+minus S.D.
+plus S.D.
+Note: The number of the h-index is signiﬁcantly higher, especially in the cases of ﬁnancial economists (G),
+microeconomists analyzing health, education, and welfare (I), labor and demographic economists (J), and
+macro and monetary economists (E).
+We also control for the authors’ aﬃliations by using dummy variables (Bankk,i, where
+k is the bank identiﬁer). It is worth noting that several authors have work experience
+for at least two central banks. There are 300 such researchers. This phenomenon
+is mostly related to the eurozone region where numerous transfers between national
+central banks to the European Central Bank take place. For these cases, we select ECB
+as a leading aﬃliation. There are also a few transfers to neighboring central banks
+where authors have similar numbers of published papers, e.g., transfers between the
+Norges Bank and Riksbank in Scandinavia. In these cases, we attribute aﬃliation
+lexicographically. In the mentioned example, authors are assumed to be aﬃliated
+with the Norges Bank. There are approximately 30 such cases. We selected the Polish
+central bank (Narodowy Bank Polski) as a benchmark because the world median level
+of the h-index is close to the median value observed in this bank.
+We analyze how the value of the h-index depends on the central bank that the author
+is aﬃliated with. In this analysis, we only study the central banks with at least 20
+assigned authors and treat the other banks with fewer authors as the “other banks”
+group. One disadvantage of this approach is that several central banks with high-
+quality authors are mixed with central banks with low-quality authors in the same
+group, but at least we can compare estimated parameters for those central banks with
+a larger number of authors. Figure 4 presents the relationship between the estimated
+parameters of central bank identiﬁers and the numbers of authors aﬃliated within
+345
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+the investigated central banks. It shows that no simple link between the number of
+authors in a central bank and their publishing success exists.
+Figure 4: Relationship between estimated parameters of central bank aﬃliations and
+the total numbers of authors from respective central banks
+y = 0,0008x + 0,0446
+R² = 0,0325
+-1,0
+-0,8
+-0,6
+-0,4
+-0,2
+0,0
+0,2
+0,4
+0,6
+0,8
+0
+50
+100
+150
+200
+250
+300
+Parameter estimate
+Total number of authors from respective central bank
+Note: The scatter plot shows a weak relationship between the number of authors in a central bank and
+an estimated parameter corresponding to this institution’s dummy variable in Equation (6). Although the
+variable may be statistically signiﬁcant, it has a rather weak explanatory power (R-squared equals to 0.03).
+This may be discouraging, but aﬃliation matters. Researchers from the U.S. Federal
+Reserve Banks, international institutions like BIS, the ECB, or some eurozone central
+banks have h-index values that are greater by 0.3 to 0.5 pp than researchers from
+less developed regions. On the other hand, researchers from emerging economies are
+less frequently quoted despite the fact that large research communities are created
+in their central banks (e.g., in Russia or in Colombia). Table 6 presents the detailed
+listing. Quantitative eﬀects of aﬃliation on the value of the h-index are presented
+in Table 7. The ﬁndings conﬁrm the existence of the so-called Mathew eﬀect. The
+most prestigious institutions are capable of attracting the most talented researchers
+with higher salaries. The accumulated scientiﬁc potential makes applying for new
+grants easier, which in turn helps maintain leadership positions by these institutions.
+The phenomenon is visible not only in the world of central banking, but also in
+the correlation of expenditures and the number of publications in such a prestigious
+scientiﬁc journal as Nature (Bogocz et al., 2014).
+Moreover, experimental studies
+suggest that journal editors are more willing to publish papers of authors from
+prestigious institutions than from unknown institutions (e.g., Dadkhah et al., 2015).
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+346
+
+
+What Makes a Successful . . .
+Table 5: Parameter estimates of the Poisson regression with basic control variables
+and JEL codes, central bank aﬃliation, and the network eﬀects
+Estimate Standard error t-ratio p-value
+Intercept
+-0.548
+0.194
+-2.825
+0.005
+Items
+0.001
+0.000
+2.574
+0.010
+Unique journals
+0.014
+0.001
+9.707
+0.000
+Years of publishing
+0.039
+0.001
+31.671
+0.000
+Unique JEL codes
+0.002
+0.001
+3.047
+0.002
+Number of authors in a central bank
+0.016
+0.005
+3.244
+0.001
+Share of works written with co authors
+0.684
+0.041
+16.581
+0.000
+Network size
+0.005
+0.001
+5.741
+0.000
+JELs
+. . .
+. . .
+. . .
+. . .
+Aﬃliations
+. . .
+. . .
+. . .
+. . .
+Number of observations
+2926
+R-squared
+0.69
+Mean dependent var
+4.811
+Adjusted R-squared
+0.69
+S.D. dependent var
+4.838
+S.E. of regression
+7.316
+Akaike info criterion
+4.03
+Sum squared resid
+20974.26 Schwarz criterion
+4.15
+Log likelihood
+-5833.44
+Hannan-Quinn criter.
+4.07
+Restr. log likelihood
+-9913.20
+LR statistic
+8159.52
+Note: The model is estimated based on Equation (6).
+347
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+Table 6: Parameter estimates for central bank identiﬁers
+Parameter
+estimate
+Standard error
+t-ratio
+p-value
+Banco Central do Brasil
+-0.7348
+0.2603
+-2.8232
+0.0048
+Bank of England
+-2.7907
+0.9134
+-3.0552
+0.0022
+Bank of France
+-2.5381
+0.7448
+-3.4075
+0.0007
+Bank of Portugal
+-0.5616
+0.1984
+-2.8302
+0.0047
+Central Bank of the Russian Federation
+-1.2774
+0.2222
+-5.7481
+0.0000
+Federal Reserve Bank of New York
+0.2235
+0.1056
+2.1174
+0.0342
+Oesterreichische Nationalbank
+-0.0886
+0.1310
+-0.6765
+0.4987
+Schweizerische Nationalbank (SNB)
+-1.3186
+0.4114
+-3.2051
+0.0014
+Slovenska Narodna Banka
+-1.3827
+0.3590
+-3.8509
+0.0001
+Banco Central de Chile
+-0.8264
+0.2229
+-3.7068
+0.0002
+Banco Central de la República Argentina
+-0.6909
+0.1558
+-4.4352
+0.0000
+Banco Central de Reserva del Peru
+-0.8930
+0.2052
+-4.3516
+0.0000
+European Central Bank
+-3.3345
+1.1117
+-2.9996
+0.0027
+Banco de la Republica de Colombia
+-1.7663
+0.4547
+-3.8841
+0.0001
+Banco de Mexico
+-0.5909
+0.1762
+-3.3537
+0.0008
+Bank for International Settlements (BIS)
+-0.6999
+0.3346
+-2.0918
+0.0365
+Bank of Belgium
+-0.2868
+0.1238
+-2.3168
+0.0205
+Bank of Canada
+-2.2463
+0.7204
+-3.1181
+0.0018
+Bank of Greece
+-0.5641
+0.1725
+-3.2711
+0.0011
+Bank of Italy
+-3.9146
+1.2154
+-3.2208
+0.0013
+Bank of Japan
+-0.1864
+0.1163
+-1.6027
+0.1090
+Bank of Spain
+-1.6597
+0.5072
+-3.2722
+0.0011
+Bundesbank
+-2.2619
+0.7204
+-3.1399
+0.0017
+Central Bank of Ireland
+-0.2297
+0.1564
+-1.4686
+0.1419
+de Nederlandsche Bank
+-1.1669
+0.4052
+-2.8798
+0.0040
+Federal Reserve Bank of Cleveland
+0.0247
+0.1103
+0.2238
+0.8229
+Federal Reserve Bank of Kansas City
+0.0179
+0.1302
+0.1373
+0.8908
+Federal Reserve Board
+-2.2983
+0.8334
+-2.7576
+0.0058
+Magyar Nemzeti Bank (MNB)
+-0.5667
+0.1562
+-3.6285
+0.0003
+Narodowy Bank Polski
+-0.6044
+0.1886
+-3.2052
+0.0013
+Norges Bank
+-0.0087
+0.1201
+-0.0725
+0.9422
+Reserve Bank of Australia
+0.1693
+0.1241
+1.3642
+0.1725
+Reserve Bank of New Zealand
+0.0478
+0.1668
+0.2866
+0.7744
+State Bank of Pakistan
+-0.3342
+0.1506
+-2.2182
+0.0265
+Suomen Pankki
+-0.4927
+0.1161
+-4.2448
+0.0000
+Sveriges Riksbank
+-0.0609
+0.1490
+-0.4091
+0.6825
+Central Bank of the Republic of Turkey
+-1.6986
+0.4610
+-3.6843
+0.0002
+Federal Reserve Bank of Chicago
+0.3107
+0.0967
+3.2140
+0.0013
+Note: Other model parameter estimates are presented in Table 5. All parameters are estimated based on
+Equation (6). The table suggests that economists from the U.S. Federal Reserve Board and some Euro
+area central banks are more frequently cited compared to the National Bank of Poland. On the other hand,
+analysts from big emerging economies like Russia and Turkey receive lower number of citations. However,
+this is not the full eﬀect of aﬃliation because the full eﬀect should also consider the impact of the number
+of aﬃliated scientists in a given central bank according to Equation (6).
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+348
+
+
+What Makes a Successful . . .
+Table 7: Impact of aﬃliation on publication success
+Central bank
+Number of
+aﬃliated
+authors
+Eﬀect related
+to the number
+of authors
+Other eﬀects
+of central bank
+aﬃliation
+Total
+eﬀect on
+log(h-index)
+Central Bank of the Russian Federation
+35
+0.564
+-1.277
+-0.714
+Banco Central de la Republica Argentina
+24
+0.386
+-0.691
+-0.304
+Banco Central de Reserva del Peru
+46
+0.741
+-0.893
+-0.152
+Banco de la Republica de Colombia
+103
+1.659
+-1.766
+-0.108
+Suomen Pankki
+26
+0.419
+-0.493
+-0.074
+Slovenska Narodna Banka
+83
+1.337
+-1.383
+-0.046
+Magyar Nemzeti Bank (MNB)
+33
+0.531
+-0.567
+-0.035
+Central Bank of Turkey
+104
+1.675
+-1.699
+-0.024
+Banco Central de Chile
+53
+0.853
+-0.826
+0.027
+Banco de Mexico
+41
+0.660
+-0.591
+0.069
+Bank of France
+162
+2.609
+-2.538
+0.071
+State Bank of Pakistan
+28
+0.451
+-0.334
+0.117
+Narodowy Bank Polski
+46
+0.741
+-0.604
+0.136
+Bank of Greece
+44
+0.709
+-0.564
+0.144
+Bank of Spain
+114
+1.836
+-1.660
+0.176
+Schweizerische Nationalbank (SNB)
+94
+1.514
+-1.319
+0.195
+Bank of Belgium
+30
+0.483
+-0.287
+0.196
+Bank of Italy
+257
+4.139
+-3.915
+0.224
+Bank of Portugal
+50
+0.805
+-0.562
+0.244
+Banco Central do Brasil
+62
+0.998
+-0.735
+0.264
+Bank of Japan
+28
+0.451
+-0.186
+0.265
+Bundesbank
+157
+2.528
+-2.262
+0.266
+Bank of Canada
+157
+2.528
+-2.246
+0.282
+de Nederlandsche Bank
+93
+1.498
+-1.167
+0.331
+Bank of England
+196
+3.156
+-2.791
+0.366
+Reserve Bank of New Zealand
+21
+0.338
+0.048
+0.386
+Federal Reserve Bank of Kansas City
+23
+0.370
+0.018
+0.388
+Federal Reserve Bank of Cleveland
+23
+0.370
+0.025
+0.395
+Central Bank of Ireland
+39
+0.628
+-0.230
+0.398
+Norges Bank
+28
+0.451
+-0.009
+0.442
+Oesterreichische Nationalbank
+34
+0.548
+-0.089
+0.459
+ECB
+236
+3.800
+-3.335
+0.466
+Sveriges Riksbank
+39
+0.628
+-0.061
+0.567
+Bank for International Settlements (BIS)
+79
+1.272
+-0.700
+0.572
+Federal Reserve Board
+180
+2.899
+-2.298
+0.600
+Reserve Bank of Australia
+29
+0.467
+0.169
+0.636
+Federal Reserve Bank of New York
+29
+0.467
+0.224
+0.691
+Federal Reserve Bank of Chicago
+25
+0.403
+0.311
+0.713
+349
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+The ﬁnal stage of our research is the analysis of network eﬀects on publication
+achievements.
+We not only investigate the number of authors aﬃliated within a
+central bank as a separate explanatory variable in the model (AuthorsInBanki),
+independent of central bank identiﬁers, but we also include two variables describing
+co-authorship networks. The ﬁrst variable measures the share of papers written with
+co-authors (ShareCoAuthorsi), as the co-authorship should theoretically increase the
+eﬃciency of produced research output. The second variable measures the network
+size of distinct co-authors (NetworkSizei). The high number of co-authors widens
+the potential area of research, increases the potential to develop publication skills,
+and helps avoid dead ends, i.e., sticking to research topics that are uninteresting for
+readers and other researchers. The ﬁnal equation is the following:
+log (E (Yi|xi)) = α0 + α1Manuscriptsi + α2Journalsi + α3Yearsi +
++ α4JELsi +
+Z
+X
+j=A
+αj,5mainJELj,i + αk,6Bankk,i +
++ α7AuthorsInBanki + α8ShareCoAuthorsi + α9NetworkSizei. (6)
+It is clear that co-authorship networks are not only built within a single bank, but may
+have much greater inter-institutional coverage. A simple correlation analysis conﬁrms
+this presumption. The correlation of the number of authors within a single institution
+with the two other network variables is weak, which suggests that successful authors
+are more prone to building international research networks.
+What is important,
+however, is that the two other network measures have a strong statistical impact
+on the value of the h-index, while the size of a publishing group in a bank has a
+somewhat weaker but still signiﬁcant eﬀect. The most important variable seems to be
+the network size because it is the most correlated with the Hirsch index, but it is also
+correlated with the number of articles written and the number of distinct publication
+journals of the same author. Therefore, the eﬀect of the co-authorship network size
+is not the most strongly pronounced in the Poisson regression.
+Nevertheless, the
+h-index of the researcher who wrote all the papers with co-authors is almost 100%
+(exp(0.684) −1) greater than the h-index of an author who works alone. The results
+of the parameter estimates are presented in Table 5.
+As a robustness check, we also analyzed bootstrapped standard errors of parameter
+estimates as in Manly (2011) and obtained qualitatively the same results to those
+presented in Table 5. All the statistically signiﬁcant variables remain signiﬁcant. The
+estimated values are also very similar, with the exception of the constant term and
+central bank binary variables because some bootstrap samples aﬀect the precision of
+respective parameter estimates when speciﬁc banks have very few observations. We
+conclude that our general results are robust to potential model misspeciﬁcation.
+We also analyze the average h-index (Figure 5) of all co-authors of a given author
+and call it “Network h-index” (NetworkHIndexi). We expect the dependence between
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+350
+
+
+What Makes a Successful . . .
+Figure 5: Bivariate histogram of the H-index and network H-index variables
+Note:
+Dark colors denote less frequent cases and light grey colors denote more frequent cases in the
+histogram.
+this variable and the original h-index to be bidirectional. Highly skilled co-authors
+have a higher likelihood of cooperating with successful authors. On the other hand, a
+frequently cited author ﬁnds good-quality authors more easily than an inexperienced
+author does. In order to compare the Network h-index with the original h-index of
+an investigated author, we round Network h-index values to integer numbers and
+run a Poisson regression of the transformed variable on the same set of explanatory
+variables as we did for the original h-index variable. The set of explanatory variables
+is the same as in Equation (6).
+log (E (NetworkHIndexi|xi)) = α0 + α1Manuscriptsi + α2Journalsi +
++ α3Yearsi + α4JELsi +
+Z
+X
+j=A
+αj,5mainJELj,i +
++ αk,6Bankk,i + α7AuthorsInBanki +
++ α8ShareCoAuthorsi + α9NetworkSizei.
+(7)
+Standardized residuals from this regression are then compared with standardized
+residuals of the h-index regression. Figure 6 presents a histogram and a scatter plot
+of both residuals from the regressions (6) and (7).
+The Pearson, Kendall, and Spearman correlations between the h-index and Network
+h-index residuals are equal to 0.196, 0.288, and 0.243, respectively, and they are all
+351
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+Figure 6: Bivariate histogram and scatter plot of the H-index and network H-index
+(a) Histogram
+-5
+0
+5
+Network h-index residuals
+-5
+-4
+-3
+-2
+-1
+0
+1
+2
+3
+4
+5
+h-index residuals
+(b) Scatterplot
+Note:
+Dark colors denote less frequent cases and light grey colors denote more frequent cases in the
+histogram.
+statistically signiﬁcantly diﬀerent from zero with p-values lower than 0.01.
+These
+results indicate that publishing success is positively correlated with the average h-
+indices of co-authors even after controlling for the impact of control variables like the
+number of publications, size of the co-authorship network, research area, and central
+bank aﬃliation.
+These results suggest that large social networks and cooperation with distinct
+scholars are important factors supporting publication careers in central banks. The
+literature reveals some motivation behind this phenomenon. Some studies suggest
+that collaboration improves both understanding of economic processes and research
+productivity (Ductor, 2015; Lee and Bozeman, 2005). Moreover, those researchers
+who collaborate publish more, and, therefore, they are less exposed to the risk of
+prolonged reviews and rejections (Barnett et al., 1988).
+Finally, research grants
+provide ﬁnancial incentives for cooperation with other scientists (Ductor, 2015).
+7
+Conclusions
+This research enables the prediction of the h-index for a central banker based on her
+publication, aﬃliation, and research topic characteristics. An author with median
+numbers of published works (15), unique publication outlets (8), publication years
+(10), unique JEL codes (12), share of co-authors (67%), and network size (7), with
+the main interest in monetary economics (JEL code equaling E), and aﬃliated with
+the Polish central bank (together with 46 aﬃliated authors) has a predicted h-index
+equaling approximately 3 (cf. Figure 7).
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+352
+
+
+What Makes a Successful . . .
+Figure 7: Probability distribution functions of H-index values for authors from three
+selected central banks
+0
+5
+10
+15
+20
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+0.35
+Central Bank of the Russian Federation
+Narodowy Bank Polski
+Federal Reserve Bank of Chicago
+Note:
+The probability distributions are conditional on the number of published works (15), unique
+publication outlets (8), publication years (10), the number of unique JEL codes (12), share of co-authored
+papers (67%), network size (7), the main interest in monetary economics (JEL code equaling E), and on
+a central bank aﬃliation and the number of authors in a given central bank. Calculations are based on
+Formula (3) and Estimation Equation (6).
+An author with the same characteristics has a predicted h-index above 5 if she
+is aﬃliated with the Federal Reserve Bank of Chicago (25 aﬃliated authors), and
+just above 1 if aﬃliated with the Central Bank of Russian Federation (35 aﬃliated
+authors). These predictions suggest that aﬃliation of a central banker provides a
+good benchmark to assess potential for the number of citations. At the same time,
+this is a challenge for central banks in emerging economies.
+The experiences of
+federal reserve banks may not be appropriate for Asian or South American economies.
+Therefore, more eﬀort for increasing regional collaboration between researchers should
+be beneﬁcial.
+We are aware that analyzing data on researchers’ salaries and education, as well
+as changes of aﬃliations through time, would bring more information regarding the
+impact of aﬃliations on publishing success. Future analyses may ﬁll this gap.
+Our research also conﬁrms that the chosen research dimension has an impact on the
+number of citations. Among the most cited areas are the topics related to ﬁnancial
+and monetary economics. This empirical fact provides a good opportunity for central
+banks to communicate their policies and establish a solid reputation.
+Networking aﬀects publishing success. This result immediately suggests that banks
+353
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+with larger research departments generate more successful publications. In the wake
+of a prolonged period of missing the inﬂation target, central bank authorities should
+investigate whether such an approach does not lead to problems when researchers
+become overly supportive to their closest collaborators. Interestingly, the network of
+co-authors does not have to be related to the size of the local central bank community
+because the size of the publishing network improves the potential for publishing
+success even after controlling for the number of colleague authors working in the
+same banking institution. Networks are often developed among foreign partners, e.g.,
+during scientiﬁc workshops and conferences, and may be related to other factors like
+friendships or common research interests of scientists.
+Our research ﬁnds that the net of highly skilled co-authors is positively associated with
+the number of cited papers of a given author. The causality may be bidirectional, but
+it indicates that cooperation with more experienced authors improves the chances of
+publishing success in addition to the number of co-authors in general. This link, as well
+as factors explaining diﬀerences among central banks, could be further investigated
+in future analyses.
+References
+[1] Acuna D. E., Allesina S., Kording K. P., (2012), Future impact: Predicting
+scientiﬁc success. Nature 489(7415), 201–202, DOI: 10.1038/489201a.
+[2] Ayaz S., Masood N., Islam M. A., (2018), Predicting scientiﬁc impact based on
+h-index. Scientometrics 114, 993–1010, DOI: 10.1007/s11192-017-2618-1.
+[3] Barnett A. H., Ault R. W., Kaserman D. L., (1988), The rising incidence of
+co-authorship in economics: Further evidence. The review of Economics and
+statistics, 539–543, DOI: 10.2307/1926798.
+[4] Blinder A. S., (2000), Central-bank credibility:
+Why do we care?
+How
+do
+we
+build
+it?,
+American
+Economic
+Review
+90(5),
+1421–1431,
+DOI:
+10.1257/aer.90.5.1421.
+[5] Bogocz J., Bak A., Polanski J., (2014), No free lunches in nature? An analysis of
+the regional distribution of the aﬃliations of Nature publications, Scientometrics
+101(1), 547–568, DOI: 10.1007/s11192-014-1252-4.
+[6] Bordo M. D., Siklos P. L., (2015), Central Bank Credibility: An Historical and
+Quantitative Exploration, NBER Working Papers 20824, National Bureau of
+Economic Research, Inc.
+[7] Born B., Ehrmann M. Fratzscher M., (2014), Central Bank Communication
+on
+Financial
+Stability,
+The
+Economic
+Journal
+124,
+701–734,
+DOI:
+10.1111/ecoj.12039.
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+354
+
+
+What Makes a Successful . . .
+[8] Bosquet C., Combes P. P., (2013), Are academics who publish more also
+more cited?
+Individual determinants of publication and citation records,
+Scientometrics 97, 831–857, DOI: 10.1007/s11192-013-0996-6.
+[9] Brodeur A., Mathias L., Marc S., Yanos Z., (2016), Star Wars: The Empirics
+Strike Back Star Wars: The Empirics Strike Back, American Economic Journal:
+Applied Economics 8(1), 1–32.
+[10] Buiter W., (2014), Central Banks:
+Powerful, Political and Unaccountable?,
+CEPR Discussion Papers 10223, C, available at:
+https://mpra.ub.uni-
+muenchen.de/59477/1/MPRA_paper_59477.pdf.
+[11] Cieslak
+A.,
+Schrimpf
+A.,
+(2019)
+Non-monetary
+news
+in
+central
+bank
+communication,
+Journal of International Economics
+118,
+293–315,
+DOI
+10.1016/j.jinteco.2019.01.012.
+[12] Cisneros L., Ibanescu M., Keen C., Lobato-Calleros O., Niebla-Zatarain J.,
+(2018), Bibliometric study of family business succession between 1939 and 2017:
+mapping and analyzing authors’ networks, Scientometrics 117, 919–951, DOI:
+10.1007/s11192-018-2889-1.
+[13] Claveau F., Dion J., (2018), Quantifying central banks’ scientization: why and
+how to do a quantiﬁed organizational history of economics, Journal of Economic
+Methodology 25(4), 349-366, DOI: 10.1080/1350178X.2018.1529216.
+[14] Colussi T., (2018), Social Ties in Academia: A Friend Is a Treasure, The Review
+of Economics and Statistics 100(1), 45–50, DOI: 10.1162/REST_a_00666.
+[15] Dadkhah M., Alharbi A. M., Al-khresheh M. H., Sutikno T., Jazi M. D.,
+Shamshirband S., (2015), Aﬃliation Oriented Journals: Don’t Worry About
+Peer Review If You Have Good Aﬃliation, International Journal of Electrical
+and Computer Engineering 5(4), 621–625.
+[16] Ding Y., (2011), Scientiﬁc collaboration and endorsement: Network analysis of
+coauthorship and citation networks, Journal of Informetrics 5(1), 187-203, DOI:
+10.1016/j.joi.2010.10.008.
+[17] Ductor L., (2015), Does co-authorship lead to higher academic productivity?,
+Oxford
+Bulletin
+of
+Economics
+and
+Statistics
+77(3),
+385–407,
+DOI:
+10.1111/obes.12070.
+[18] Ellison G., (2013), How does the market use citation data? The Hirsch index in
+economics, American Economic Journal: Applied Economics 5(3), 63–90, DOI:
+10.1257/app.5.3.63.
+355
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+
+
+Jakub Rybacki and Dobromił Serwa
+[19] Fabo B., Jancokova M., Kempf E., Pastor L., (2020), Fifty Shades of QE:
+Conﬂicts of Interest in Economic Research, SSRN Electronic Journal, DOI:
+10.2139/ssrn.3693344.
+[20] Frey
+B.
+S.,
+(2003),
+Publishing
+as
+prostitution?
+-
+Choosing
+between
+one’s own ideas and academic success, Public Choice 116, 205–223. DOI:
+10.1023/A:1024208701874.
+[21] Gorajek A., Bank J., Staib A., Malin B., Fitchett H., (2021), Star Wars at
+Central Banks, RBA Research Discussion Papers, No. rdp2021-02.
+[22] Goy G., Hommes C., Mavromatis K., (2020), Forward guidance and the role
+of central bank credibility under heterogeneous beliefs, Journal of Economic
+Behavior and Organization, DOI: 10.1016/j.jebo.2020.06.025.
+[23] Haldane A., McMahon M., (2018), Central Bank Communications and the
+General Public, AEA Papers and Proceedings 108, 578–583, available at: https:
+//www.jstor.org/stable/10.2307/26452805.
+[24] Hansen S., McMahon M., Tong M., (2019), The long-run information eﬀect
+of central bank communication, Journal of Monetary Economics 108, 185–202,
+DOI: 10.1016/j.jmoneco.2019.09.002.
+[25] Heckman J. J., Moktan S., (2020), Publishing and promotion in economics: the
+tyranny of the top ﬁve, Journal of Economic Literature 58(2), 419–70, DOI:
+10.1257/jel.20191574.
+[26] Hetzel R. L., (2012), Central bank accountability and independence:
+Are
+they
+inconsistent?
+Journal
+of
+Macroeconomics
+34(3),
+616–625,
+DOI:
+doi.org/10.1016/j.jmacro.2012.02.010.
+[27] Hilmer M. J., Ransom M. R., Hilmer C. E., (2015), Fame and the fortune of
+academic economists: How the market rewards inﬂuential research in economics,
+Southern Economic Journal 82(2), 430-452, DOI: 10.1002/soej.12037.
+[28] Hirsch J. E., (2005), An index to quantify an individual’s scientiﬁc research
+output, Proceedings of the National Academy of Sciences of the United States of
+America, DOI: 10.1073/pnas.0507655102.
+[29] Hirsch J. E., (2007), Does the h index have predictive power?, Proceedings
+of the National Academy of Sciences of the United States of America, DOI:
+10.1073/pnas.0707962104.
+[30] Jensen P., Rouquier J. B., Croissant Y., (2009), Testing bibliometric indicators
+by their prediction of scientists promotions, Scientometrics 78, 467–479, DOI:
+10.1007/s11192-007-2014-3.
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)
+356
+
+
+What Makes a Successful . . .
+[31] Lee S.,
+Bozeman B.,
+(2005),
+The Impact of Research Collaboration on
+Scientiﬁc
+Productivity,
+Social
+Studies
+of
+Science
+35(5),
+673–702,
+DOI:
+10.1177/0306312705052359.
+[32] Manly
+B.
+F.,
+(2011),
+Bootstrapping
+with
+models
+for
+count
+data,
+Journal
+of
+biopharmaceutical
+statistics
+21(6),
+1164–1176,
+DOI:10.1080/10543406.2011.607748.
+[33] Meho L. I., Rogers Y., (2008), Citation counting, citation ranking, and h-index
+of human-computer interaction researchers: a comparison of Scopus and Web of
+Science, Journal of the American Society for Information Science and Technology
+59(11), 1711–1726, DOI: 10.1002/asi.20874.
+[34] Perry B. M., Reny P. J., (2016), How to count citations if you must, American
+Economic Review 106(9), 2722-41, DOI: 10.1257/aer.20140850.
+[35] Rybacki J., (2020), Are Central Banks’ Research Teams Fragile Because of
+Groupthink in the Area of Monetary Policy? – Evidence on Inﬂation Targeting,
+Gospodarka Narodowa 4(304), 81–103, DOI: 10.33119/gn/128216.
+[36] Schreiber M., (2015), Restricting the h-index to a publication and citation time
+window: A case study of a timed Hirsch index, Journal of Informetrics 9(1),
+150–155, DOI: 10.1016/j.joi.2014.12.005.
+[37] Silvia J. E., (2012), The biases that limit our thinking about the economic outlook
+and policy, Business Economics 47(4), 297–301, DOI: 10.1057/be.2012.10.
+[38] Simkin M. V., Roychowdhury V. P., (2007), Do Copied Citations Create
+Renowned
+Papers?,
+Annals
+of
+Improbable
+Research
+11(1),
+24-27,
+DOI
+10.3142/107951405781748210.
+[39] Tol R. S. J., (2009), The h-index and its alternatives: An application to the 100
+most proliﬁc economists, Scientometrics 80, 317–324, DOI: 10.1007/s11192-008-
+2079-7.
+[40] Trichet J.C.,
+(2008) Central banks and the public:
+the importance of
+communication, Speech at The Lord Roll Memorial Lecture Organised by
+the Daiwa Anglo-Japanese Foundation, London, 18 November 2008, available
+at:
+https://www.ecb.europa.eu/press/key/date/2008/html/sp081118_2.
+en.html.
+357
+J. Rybacki and D. Serwa
+CEJEME 13: 331-357 (2021)

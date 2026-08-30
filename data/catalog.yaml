@@ -2982,3 +2982,16 @@ sources:
     tags: [repec, dataset, sociology-of-economics, economics-profession, labor-economics, bibliometrics, open-data]
     topics: ["библиометрия", "наука о науке", "экономика труда"]
     date_added: 2026-08-30
+
+  - id: rybacki_serwa_2021_cejeme
+    title: "What Makes a Successful Scientist in a Central Bank? Evidence From the RePEc Database (Rybacki & Serwa 2021, CEJEME 13(3):331-357)"
+    file: raw/papers/rybacki_serwa_2021_cejeme.pdf
+    summary: papers/rybacki_serwa_2021_summary.md
+    authors: [Jakub Rybacki, Dobromił Serwa]
+    year: 2021
+    publisher: Central European Journal of Economic Modelling and Econometrics
+    type: journal_article
+    language: en
+    tags: [repec, bibliometrics, central-banks, h-index, poisson-regression, sociology-of-economics, russia]
+    topics: ["наукометрия", "центральные банки"]
+    date_added: 2026-08-30

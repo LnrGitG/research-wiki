@@ -1,0 +1,65 @@
+[
+ {
+  "form": "1-НМ",
+  "code": "poved",
+  "period": "20260101",
+  "url": "https://data.nalog.ru/opendata/7707329152-poved/data-20260101-structure-20260101.csv",
+  "rows_total": 85,
+  "kept": 4,
+  "file": "raw/fns/poved_20260101.csv"
+ },
+ {
+  "form": "1-НОМ",
+  "code": "1nom",
+  "period": "20260401",
+  "url": "https://data.nalog.ru/opendata/7707329152-1nom/data-20260401-structure-20260401.csv",
+  "rows_total": 85,
+  "kept": 0,
+  "file": "raw/fns/1nom_20260401.csv"
+ },
+ {
+  "form": "5-П",
+  "code": "profitorg",
+  "period": "20260101",
+  "url": "https://data.nalog.ru/opendata/7707329152-profitorg/data-20260101-structure-20260101.csv",
+  "rows_total": 85,
+  "kept": 4,
+  "file": "raw/fns/profitorg_20260101.csv"
+ },
+ {
+  "form": "5-УСН",
+  "code": "usn",
+  "period": "20260709",
+  "url": "https://data.nalog.ru/opendata/7707329152-usn/data-20260709-structure-20250101.csv",
+  "rows_total": 86,
+  "kept": 3,
+  "file": "raw/fns/usn_20260709.csv"
+ },
+ {
+  "form": "5-НП",
+  "code": "np",
+  "period": "20250101",
+  "url": "https://data.nalog.ru/opendata/7707329152-np/data-20250101-structure-20250101.csv",
+  "rows_total": 85,
+  "kept": 0,
+  "file": "raw/fns/np_20250101.csv"
+ },
+ {
+  "form": "5-НИО",
+  "code": "assetorg",
+  "period": "20260722",
+  "url": "https://data.nalog.ru/opendata/7707329152-assetorg/data-20260722-structure-20250101.csv",
+  "rows_total": 86,
+  "kept": 4,
+  "file": "raw/fns/assetorg_20260722.csv"
+ },
+ {
+  "form": "5-ТН",
+  "code": "ttorg",
+  "period": "20260724",
+  "url": "https://data.nalog.ru/opendata/7707329152-ttorg/data-20260724-structure-20250101.csv",
+  "rows_total": 86,
+  "kept": 3,
+  "file": "raw/fns/ttorg_20260724.csv"
+ }
+]

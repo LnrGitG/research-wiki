@@ -67,6 +67,8 @@ const SERIES={
 'rosstat_q':{'name':'Цены Росстат (кв)','icon':'🏛️'},
 'ind_saar':{'name':'Пром. производство','icon':'🏭'},
 'ind_reg':{'name':'Пром. по регионам','icon':'⚙️'},
+'vvod_reg':{'name':'Ввод жилья (рег)','icon':'🏢'},
+'backlog':{'name':'Незавершёнка','icon':'🏗️'},
 };
 
 function initTabs(){
@@ -84,6 +86,29 @@ function render(key){
 const c=document.getElementById('content');
 const D=DATA;
 
+if(key==='vvod_reg'){
+const d=D.housing_input_annual||{};
+const rf=d.rf_series||[];
+const top=d.top_regions_2020_2024||[];
+const latest=rf[rf.length-1], peak=rf.reduce((a,b)=>b.value>a.value?b:a);
+let html=`<div class="stats">
+<div class="stat"><div class="val">${peak.value}</div><div class="label">Пик РФ (${peak.year})</div></div>
+<div class="stat green"><div class="val">${latest.value}</div><div class="label">${latest.year}</div></div>
+</div>
+<div class="chart-card"><h2>РФ: ввод жилья, млн м² 2000–2024</h2><canvas id="chv"></canvas></div>
+<div class="table-card"><h2>Топ-15 регионов 2020–2024 (млн м²)</h2><table><tr><th>Регион</th><th>млн м²</th></tr>
+${top.map(x=>`<tr><td>${x.region}</td><td>${x.sum_mln_m2}</td></tr>`).join('')}</table></div>`;
+c.innerHTML=html;
+new Chart(document.getElementById('chv'),{type:'line',data:{labels:rf.map(x=>x.year),
+datasets:[{label:'млн м²',data:rf.map(x=>x.value),borderColor:'#4fc3f7',tension:.3,pointRadius:2}]},options:{plugins:{legend:{display:false}}}});
+return;}
+if(key==='backlog'){
+const b=D.housing_backlog_ratio||{}; const s=b.rf_series||[];
+c.innerHTML=`<div class="chart-card"><h2>Незавершённое строительство / годовой ввод (РФ)</h2><canvas id="chb"></canvas></div>
+<div class="search-hint">Отношение общей площади незавершённых жилых домов к годовому вводу. Рост = стройки затягиваются.</div>`;
+new Chart(document.getElementById('chb'),{type:'line',data:{labels:s.map(x=>x.year),
+datasets:[{label:'ratio',data:s.map(x=>x.ratio),borderColor:'#ffb74d',tension:.3,pointRadius:2}]},options:{plugins:{legend:{display:false}}}});
+return;}
 if(key==='input'){
 const d=D.housing_input_annual;
 const latest=d[d.length-1],peak=d.reduce((a,b)=>b.value>a.value?b:a);

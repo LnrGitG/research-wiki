@@ -2995,3 +2995,14 @@ sources:
     tags: [repec, bibliometrics, central-banks, h-index, poisson-regression, sociology-of-economics, russia]
     topics: ["наукометрия", "центральные банки"]
     date_added: 2026-08-30
+
+  - id: openalex_housing_russia_slice
+    title: "OpenAlex slice: housing+Russia works 2011-2025 (216 items, RU institutions)"
+    file: data/openalex_housing_russia_works.json
+    summary: papers/openalex_housing_russia_slice_summary.md (создать при ингесте)
+    year: 2026
+    type: processed_timeseries
+    language: en
+    tags: [openalex, bibliometrics, housing, russia, institutions, authors]
+    topics: ["наукометрия", "жилищный рынок"]
+    date_added: 2026-08-30

@@ -2970,3 +2970,15 @@ sources:
   path: 'raw/rosstat/reports/Stroit_kompleks_2025.{pdf,txt}'
   tags: [rosstat, construction, annual-review, SRM, housing, IZHS, regions, wages, fornenclosed, midas-target]
   notes: '28 стр., 57k знаков. СМР 2025: 18815.1 млрд руб (+2.5% реальн.); динамика 2020-2025: 9686/11048/13149/15244/17062/18815 (реальный темп 102.1/107.0/107.5/109.0/103.8/102.5). Жильё: 1341.6 тыс. квартир, 108.1 млн кв.м (100.3%), ИЖС-доля 58.8%. Структура СМР: здания 37.6%, дороги 19.3%. Лидеры СМР: Москва 13.8%, Татарстан 5.4%, МО 4.6%. Занятость 2497.2 тыс. (+зп 100853 руб, +17.8%). Барьеры по опросам: налоги 30%, кадры 25%. Приложения: СМР/занятость/зп по всем регионам.
+  - id: stlouisfed_2026_018_repec
+    title: "RePEc, a Tool and Open Dataset for and about Economists (Schlaack & Zimmermann 2026, FRB St. Louis WP 2026-018)"
+    file: raw/papers/stlouisfed_2026_018_repec.pdf
+    summary: papers/stlouisfed_2026_018_repec_summary.md
+    authors: [Anna Oates Schlaack, Christian Zimmermann]
+    year: 2026
+    publisher: Federal Reserve Bank of St. Louis
+    type: working_paper
+    language: en
+    tags: [repec, dataset, sociology-of-economics, economics-profession, labor-economics, bibliometrics, open-data]
+    topics: ["библиометрия", "наука о науке", "экономика труда"]
+    date_added: 2026-08-30

@@ -1,0 +1,398 @@
+RePEc, a Tool and Open Dataset for and about Economists
+ECONOMIC RESEARCH
+FEDERAL RESERVE BANK OF ST. LOUIS
+WORKING PAPER SERIES
+Authors
+Anna Oates Schlaack, and Christian Zimmermann
+Working Paper Number
+2026-018A
+Creation Date
+August 2026
+Citable Link
+https://doi.org/10.20955/wp.2026.018
+Suggested Citation
+Schlaack, A.O., Zimmermann, C., 2026; RePEc, a Tool and Open Dataset for and
+about Economists, Federal Reserve Bank of St. Louis Working Paper 2026-018. URL
+https://doi.org/10.20955/wp.2026.018
+Federal Reserve Bank of St. Louis, Research Division, P.O. Box 442, St. Louis, MO 63166
+The views expressed in this paper are those of the author(s) and do not necessarily reflect the views of the Federal Reserve
+System, the Board of Governors, or the regional Federal Reserve Banks. Federal Reserve Bank of St. Louis Working Papers
+are preliminary materials circulated to stimulate discussion and critical comment.
+
+
+RePEc, a Tool and Open Dataset for and about Economists 
+ 
+Anna Oates Schlaack 
+University of Illinois Urbana-Champaign 
+University Library 
+Urbana, Illinois, USA 
+annaio2@illinois.edu 
+ 
+Christian Zimmermann 
+Federal Reserve Bank of St. Louis 
+Research Division 
+St. Louis, Missouri, USA 
+christian.zimmermann@stls.frb.org 
+ 
+Abstract 
+RePEc is an initiative created by economists for economists in 1997. It functions primarily as a 
+bibliographic tool, but it also collects various linked metadata about economists, their 
+institutions, and their impact. Thus, a labor economist may be interested in RePEc beyond 
+literature searches and tracking—namely, as a dataset describing a profession, its members, and 
+their output. 
+This essay describes RePEc’s origins and history, the many facets of its data and how the data 
+can be accessed. It also provides some examples of scholarly studies leveraging RePEc data that 
+could be of interest to labor economists and lead them to other uses of RePEc data. 
+ 
+JEL Classification: A11, A14, J44, J45 
+ 
+Keywords: RePEc, dataset, sociology of economics, economics profession 
+ 
+ 
+This text is slated to appear as a chapter in the Handbook of Labor, Human Resources and 
+Population Economics edited by Klaus F. Zimmermann at Springer-Nature. This handbook is a 
+living reference work that will be updated. The views in this paper are those of the authors and 
+do not necessarily reflect the views of the Federal Reserve Bank of St. Louis or the Federal 
+Reserve System. 
+
+
+ 
+1. RePEc, a short history 
+Publication delays are nothing new in economics. While there may be evidence that delays have 
+gotten worse over time (Ellison 2002; Hadavand et al. 2021), they have always been the curse of 
+academic economists. But, as economists would predict when a market suffers from major 
+frictions, participants adapt to the circumstances. In this case, a culture of disseminating 
+preprints, under the name of working papers or discussion papers, emerged among top 
+institutions to speed up the visibility of the most recent work. Decades ago, papers would be 
+sent by postal mail to friends, other departments, and, in some cases, to paying subscribers.  
+This solution had a major drawback, though: Only the top institutions had ways to 
+disseminate the frontier of research among their contacts, mostly other top institutions, while the 
+rest of the economics profession was left to discover where the frontier of research was a few 
+years ago in published journals. This system led to frustration for those left out. 
+The emergence of the Internet for broader academic use enabled significant change. In 1992, 
+Thomas Krichel, then a graduate student at the University of Surrey, organized lists of working 
+paper titles to be disseminated by email using the Coryfee mailing list. In 1993, the late Bob 
+Parks, then an associate professor at Washington University in St. Louis, created EconWPA 
+using an early arXiv codebase, which allowed the upload and download of working papers 
+through email. When a linked file transfer protocol called Gopher was introduced, Thomas 
+Krichel and José Manuel Barrueco Cruz, a librarian at the University of Valencia, made 
+directories of papers available through that protocol in 1993. After the advent of the World Wide 
+Web, the years of cumulated efforts moved to the Web in 1994 and Thomas Krichel created a 
+series of websites under the NetEc umbrella that catalogued more and more economic research: 
+EconWPA, BibEc, and WoPEc. Eventually, this stream of new papers online became too much 
+to handle for a few volunteers to track by themselves. To ensure efforts were sustainable, 
+Thomas Krichel developed a schema in 1997 to decentralize the cataloging. Thus, RePEc was 
+born.  
+RePEc stands for Research Papers in Economics. Its stated goal is to enhance the 
+dissemination of economic research, both for authors and readers. Its basic principle is that all 
+the necessary indexing of economic literature is decentralized. Each contributing publisher is 
+responsible for maintaining an inventory of their publications. For RePEc, a publisher is any 
+institution, from an academic press to a university economics department, a research center, a 
+think tank, or a policy institution, such as a central bank or a government ministry. Most of these 
+institutions have some sort of academic output, which is a major focus in RePEc: formal journal 
+articles, books, and chapters or informal working papers or software components. 
+The decentralized model ensures that those who benefit the most from RePEc are also those 
+who bear the cost of indexing, thus, the core team of RePEc volunteers, initially Thomas 
+Krichel, and José Manuel Barrueco Cruz then joined by others, can concentrate on coordinating, 
+monitoring, and providing user services. The cost to users can be kept at a minimum (zero 
+beyond the labor for indexing by publishers) thanks to some sponsorship for hosting services. 
+The data that enter RePEc are available in a machine-readable format, but not in a way that 
+is readily consumable by human users for easy discovery across publishers. Thus, the core team 
+of volunteers created a set of websites to transform the data and make it more accessible. 
+Initially, WoPEc and BibEc provided this access. Later, IDEAS and EconPapers made RePEc 
+
+
+data available for bibliographic discovery. Other, broader bibliographic tools later started 
+indexing RePEc-aggregated metadata, including Google Scholar, OpenAIRE, Proquest, 
+OpenAlex, Econlit, and more. (All mentioned websites are listed at the end of this chapter.) 
+Over time the scope of the data collected has expanded beyond traditional bibliographic 
+items to more robust metadata describing the larger research information lifecycle, such as 
+person and institution metadata. The bibliographic services themselves were also enhanced, 
+adding features such as extracted references that are matched with items indexed in RePEc, thus 
+supporting citation tracking, and disseminating new papers through various channels such as 
+email lists.  
+In many ways, RePEc was an open research information pioneer, organized before other 
+services emerged, such as ORCID, Research Organization Registry (ROR), CrossRef, and 
+OpenCITE, which operate across all sciences and were preceded by corresponding RePEc 
+services, services that are still active. While RePEc had all its projects natively linked with each 
+other from the start, ORCID, ROR, and other services were all independently created and 
+without interoperability designed natively. Some, such as ORCID and Google Scholar, even 
+started by using seed data from RePEc. 
+ 
+2. A walk through RePEc metadata 
+RePEc provides both metadata and user services that also collect additional data that can be 
+leveraged by the various RePEc services. This section walks through the different object types as 
+a way to describe those RePEc services. 
+The foundation of all the data collected by RePEc is the metadata about publications 
+provided by the participating publishers. The basic principle is that publishers host the data in a 
+“RePEc archive” on their own server—permitted protocols include ftp, http, and https—at a 
+web address that is known to RePEc. RePEc further disseminates this address, and the corpus of 
+the metadata is thus available in a decentralized fashion to anyone who wants to use it. The core 
+RePEc volunteers further add value by presenting the metadata corpus in a searchable way that is 
+readily consumable by human users. 
+Each publisher’s RePEc archive can contain one or several “RePEc series,” of which there 
+are five possible types of works: papers (working papers), articles (journal articles), books, 
+chapters (book chapters), and software. Each of the series then contains items with metadata of 
+the corresponding work type. At the time of this writing, there are over 2,400 RePEc archives. 
+The data are highly decentralized, which can make collecting and interpreting the raw data 
+complicated for the end-user. While the data are in a format that can be easily read by a human 
+and are machine readable because they have an easy structure and a limited set of elements, the 
+format is unique and there is no widespread tool for machine ingest. Thus, a custom interface 
+allows end-users to work with this data. An example data template for this chapter is below, with 
+some fictitious information for the purpose of a more complete illustration. Note the use of 
+handles for cross-linking of data. Other object types follow similar structures. 
+ 
+Template-Type ReDIF-Chapter 1.0 
+Title: RePEc, a Tool and Dataset for and about Economists 
+Author-Name: Anna Oates Schlaack 
+
+
+Author-Person: poa7 
+Author-Workplace-Name: University of Illinois, Urbana-Champaign 
+Author-Name: Christian Zimmermann 
+Author-Person: pzi1 
+Author-Workplace-Name: Federal Reserve Bank of St. Louis 
+Abstract: RePEc is an initiative created by economists for economists in 1997. […] 
+Year: 2026 
+Month: September 
+File-URL: https://link.springer.com/rwe/10.1007/978-3-319-57365-6_412-1 
+DOI: 10.1007/978-3-319-57365-6_412-1 
+Classification-JEL: A11, A14, J44, J45 
+Book-Title: Handbook of Labor, Human Resources and Population Economics 
+In-Book: RePEc:spr:sprbok:978-3-319-57365-6 
+Handle: RePEc:spr:sprchp:978-3-319-57365-6_412-1 
+ 
+Two websites, EconPapers and IDEAS, allow the general user to interact with the data: 
+browsing through various facets of the data or using an internal search engine. Other services 
+like Google Scholar, OpenAlex, Econlit, etc. index RePEc data alongside other resources. In 
+addition to EconPapers and IDEAS, RePEc offers two dissemination services for new material, 
+NEP (via emails, RSS feed, and social media) and MyIDEAS (via a user account and emails). 
+While the publication data are useful for literature discovery, the real power of RePEc is 
+realized in the data relationships between object types. Additional RePEc services collect or 
+manage data, enabling meaningful connections between publication data or bibliographic 
+resources, as well as other object types, such as persons and institutions. This relational data is 
+particularly powerful in that the data are natively linked within RePEc through publicly available 
+RePEc handles. RePEc services leverage these relationships, adding value to the core data, and 
+end-users can easily identify linkages and create networks between object types when using the 
+RePEc raw data. 
+Many readers should be familiar with the RePEc Author Service, which allows authors to 
+create an online profile that lists their publications indexed in RePEc, along with their 
+affiliation(s) and various other details about their online presence. An important aspect of this 
+service is that the user must explicitly acknowledge and claim authorship of the items the RePEc 
+Author Service identified based on author name matches. This author review resolves issues with 
+attributions of works across homonyms or near homonyms (initialed names) that could fail with 
+automatic attributions. Publishers may provide RePEc author handles in the item records, which 
+will automatically match items to authors in the RePEc Author Service. The Author Service also 
+links different versions of a work based on two criteria: title similarity and whether the different 
+versions of a work are associated with an author’s profile. 
+Another set of metadata stems from a service called EDIRC, or Economics Departments, 
+Institutes and Research Centers in the World, which actually predates RePEc by two years. 
+EDIRC is a directory of institutions that principally employ economists; its metadata is used 
+
+
+mainly as a controlled vocabulary for affiliations in the RePEc Author Service and to identify 
+some publishers. 
+The RePEc Genealogy is an academic family tree that collects information about the 
+education of registered authors, including year of graduation, institution, and advisor(s). It 
+leverages metadata about institutions and persons from EDIRC and the RePEc Author Service, 
+respectively. It is an open wiki, so any registered RePEc Author Service user can contribute to 
+the collected data. For example, a user might add alumni from their graduate program. 
+There is also CitEc, a reference extraction and citation service. It attempts to extract 
+references from any indexed item that has corresponding full text that CitEc can access. CitEc 
+then attempts to match references with the existing items indexed in RePEc. Because 
+commercial publishers have paywalls and do not make references openly available, many 
+publishers supply the references separately; authors can also enter missing references in CitEc. 
+Finally, CollEc is a project that creates a co-authorship network across registered authors and 
+defines various measures of network centrality and network betweenness for each author within 
+that network. 
+ 
+ 
+Figure 1: An illustration of the links between object types in RePEc 
+ 
+ 
+The universe of RePEc metadata is a mesh linking various object types: archives, series, 
+works of different types, persons, and institutions. Even the links can be of various relationship 
+types. For example, a link between a person and an institution can be through current affiliation 
+or alma mater. A link between a work and an institution can exist because the institution 
+published the work or because a person affiliated with the institution authored the work. Finally, 
+links between works may exist because they are different versions, references, or citations.  
+In addition, all these collected data allow RePEc to create various metrics for evaluating 
+RePEc series, authors, their institutions, and graduate programs. The evaluation service, RePEc 
+Rankings, supplies many definitions of citation metrics, including various impact factors, the h-
+index, Euclidian citation scores, and others. 
+At the time of this writing, RePEc collects data from 2,400 archives (publishers), has indexed 
+5.5 million works, has 74,000 registered authors (including 27,000 with genealogy records), lists 
+
+
+15,000 institutions, has extracted 100 million references, and has 36 million citations matched to 
+indexed works.  
+ 
+3. How to access RePEc data 
+RePEc data are publicly accessible on the various RePEc services with few exceptions due to 
+privacy and general relevance considerations. Namely, email addresses are not currently made 
+public and rankings beyond the top ones stay private. In principle, one can scrape the various 
+RePEc websites to obtain the desired information. This is not advisable, though, for two 
+reasons. First, web scraping does not guarantee completeness. IDEAS, for example, has over 6 
+million web pages, and a scraping script can easily get lost or overwhelmed. Second, web 
+scraping can stress RePEc servers, especially with ill-configured scripts that run in loops across 
+all the links. Therefore, the recommended approach to retrieve RePEc data is through Perl 
+scripts provided by RePEc. The scripts allow users to mirror content from all ~2,400 publishers, 
+as well as person and institution data. There are also portals that allow users to obtain all or part 
+of the data through ftp, rsync, or OAI-PMH protocols. Finally, two APIs are available. One is 
+dedicated to CitEc data, and the other spans all RePEc data and includes some massaging of raw 
+data, such as enhanced paper version relationships, statistics, and particular subsets of data. APIs 
+are not ideal for downloading the full corpus of data, though; they are designed to obtain many 
+small snippets of data.  
+ 
+4. RePEc metadata as a source for labor economists 
+While RePEc is a bibliographic database, it has information that supports the study of 
+economists within the profession more broadly. Indeed, each registered author has a publication 
+history and a measure of the strength of that history as a performance metric. Often, the data 
+include the economist’s employer, the type and strength of that employer, where the economist 
+studied and the strength of that institution. In addition, RePEc has inferred the person’s gender 
+from their full name with manual corrections for quality control. A major drawback of the 
+RePEc data model is that RePEc does not support a complete affiliation history, only current 
+affiliation(s) and graduated from institutions.  
+Despite some limitations, the highly relational data means that one can study the 
+characteristics of professionals with high human capital and potentially high geographic mobility. 
+The data can indicate gender, subfields in which economists work, how they perform over time 
+across many metrics, and with whom they choose to work, including the characteristics of those 
+collaborators. Events can be dated: graduation year if reported in RePEc Genealogy; always a 
+year of first publication, which can function as a proxy for age; the publication history; and some 
+dates of death.  
+While these data do not rise to the level of administrative data, as their collection is voluntary 
+and relies on the goodwill of participants, it is quite a large and rich dataset for the scope of a 
+highly specialized profession. For example, the 74,000 registered and published authors are a 
+multiple of the 15,000 members of the American Economic Association, the largest professional 
+society in economics. In many countries, the registered author count is high enough to obtain a 
+statistically sufficient dataset. The same applies to many subfields of economics. Also, while 
+other datasets that have been assembled to study economists focus on a few journals or authors 
+
+
+within a narrow set of institutions, the RePEc dataset expands the scope worldwide, including 
+the Global South. Of particular interest is the dating of working papers, which allows to date 
+more precisely when research was performed compared with a publication date in a journal, 
+which may be several years after the research was conducted. 
+ 
+5. Examples of uses of RePEc metadata in labor economics 
+Over a hundred studies have been conducted using RePEc data, either in part or wholly (a link 
+to a maintained list of studies is at the end of the chapter). This section presents a few studies 
+that are most relevant to a labor economist and that highlight the usefulness of RePEc data. 
+Other common uses fall into bibliometrics, including various ways to rank journals and 
+economists; studying the dissemination of research; and patterns of citations, for example. 
+The ability to track economists’ publishing performance is of prime interest to labor 
+economists. This can be measured by the RePEc rankings of the economists or in more detail by 
+tracking their publication year by year with the associated citation measures for the article or 
+impact factors of the outlets.  
+One strand of studies tracks the careers of economists and looks at factors that can explain 
+them. For example, Krapf et al. (2017) links a survey of economists to their RePEc author 
+profiles and, thus, their publication timelines to tease out the impact of also being a parent of 
+young children. They find that fatherhood has a positive impact on publication success and that 
+mothers seem to outperform non-mothers after an initial penalty period, except for unmarried 
+mothers and those having children before age 30.  
+One can also study career choices. An early choice is that of the dissertation advisor. García-
+Suaza et al. (2020) studies the impact of student-advisor matches and find that advisor choice 
+matters little in top PhD programs unless they are co-authors. In other programs, the quality of 
+the advisor matters much more. These results are obtained by leveraging RePEc profiles of 
+authors in RePEc Genealogy, ranking data for authors and departments, as well as journal impact 
+factors from RePEc.  
+Another early choice is whether one should diversify one’s fields of research. Conventional 
+wisdom is that one should concentrate on the field of the PhD field until tenure is obtained. 
+Dellas et al. (2026) contradicts this by using measures of research field dispersion and publication 
+success, both extracted from RePEc data. Early diversifiers show better scores throughout their 
+careers, even when restricted to graduates from top programs (with information from the RePEc 
+Genealogy). 
+More generally, one can ask what it takes to be a successful professional and apply it to 
+economists. Using data from EDIRC, RePEc author profiles, and institutional and author h-
+indices, Rybacki and Serwa (2021) predict h-indices for central banks and central bankers. The 
+conclusion is that central bankers are more successful if they work in well-connected, larger, 
+Western central banks. Zacchia (2021) concentrates on women, using RePEc authors rankings 
+and matching authors with their academic status. The conclusion is that women achieve less 
+career promotion success compared to men after controlling for their ranking. 
+Another aspect of academic labor that can be studied with RePEc data is the impact of an 
+economist and how they are valued: what is the contribution of an individual author to a 
+research field? Hsieh et al. (2020) uses RePEc data to create a co-authorship network from 
+
+
+RePEc author profiles and run experiments by removing an author and looking at how the new 
+network as whole produces research. This allows one to isolate how authors contribute to 
+research by elevating others.  
+The economics profession is also a social construct where belonging to specific networks 
+helps in one’s career. Kleemans and Thornton (2021) looks at NBER membership using CVs for 
+economists at R1 universities and RePEc and finds that publications in the top 5 journals matter 
+more than an economist’s total publications. Connections with current NBER members, either 
+the advisor or colleagues, have significant impact on one’s success. Tol (2022) studies the 
+student-advisor network among economics Nobel Prize laureates using RePEc Genealogy 
+(academic family tree) and other sources and finds the laureate network to be highly 
+concentrated. 
+There are many more studies using RePEc data in one way or another, and future labor 
+economists will surely find innovative ways to continue exploiting this data. 
+ 
+6. Conclusion 
+RePEc has been collecting information about economics publications and the economics 
+profession for about 30 years. The data can be informative not just to understand the publication 
+landscape, but also how a profession functions: What drives performance, how do people 
+respond to incentives, who do they choose to work with, what work strategies do they adopt. 
+Economists are highly educated, are usually very mobile, have high standards, and are passionate 
+about their work. RePEc data allow one to analyse not only the economics profession with these 
+characteristics, but also other professions with these characteristics. 
+RePEc has data about many facets of an economists work and work environment. The data 
+are freely accessible and have already been used to answer some research questions. Labor 
+economists are strongly encouraged to find more use for it and further contribute to their 
+literature, which will duly be indexed in RePEc. 
+ 
+7. Mentioned, active websites and web pages 
+Works using RePEc data https://ideas.repec.org/k/repecdt.html  
+How to obtain RePEc data https://ideas.repec.org/getdata.html  
+arXiv https://arxiv.org/  
+CitEc https://citec.repec.org/  
+CollEc https://collec.repec.org/  
+CrossRef https://www.crossref.org/  
+Econlit https://aeaweb.org/econlit/  
+EconPapers https://econpapers.repec.org/  
+EconWPA https://econwpa.ub.uni-muenchen.de/  (archived) 
+EDIRC https://edirc.repec.org/  
+Google Scholar https://scholar.google.com/  
+IDEAS https://ideas.repec.org/  
+
+
+MyIDEAS https://ideas.repec.org/cgi-bin/myideas.cgi  
+New Economics Papers (NEP) https://nep.repec.org/  
+OpenCITE https://opencite.space/  
+OpenAIRE https://www.openaire.eu/  
+OpenAlex https://openalex.org/  
+ORCID https://orcid.org/  
+Proquest https://www.proquest.com/  
+RePEc  http://repec.org/  
+RePEc Author Service https://authors.repec.org/  
+RePEc Genealogy https://genealogy.repec.org/  
+Research Organization Registry (ROR) https://ror.org/  
+ 
+8. References  
+Conde-Ruiz JI, Díaz-Salazar M, Ganuza J-J, García M (2025) Citation gender gaps in top 
+economics journals. SERIEs 16:659–697. https://doi.org/10.1007/s13209-025-00322-z 
+Dellas H, García M, Garriga C, Zimmermann C (2026). Specialization vs. diversification: 
+Research strategy and performance in economics. Working Paper, Federal Reserve Bank of St. 
+Louis. 
+Ellison G (2002) The Slowdown of the economics publishing process. Journal of Political 
+Economy 110:947-993 
+García-Suaza A, Otero J, Winkelmann R (2020) Predicting early career productivity of PhD 
+economists: Does advisor-match matter? Scientometrics 122:429–449 
+Gibson J, Anderson DL, Tressler J (2014) Which journal rankings best explain academic salaries? 
+Evidence from the University of California. Economic Inquiry 52:1322–1340 
+Hadavand A, Hamermesh DS, Wilson WW (2021) Publishing economics: How slow? Why slow? 
+Is slow productive? Dixing slow? IZA Discussion Paper 
+Kleemans M, Thornton RL (2021) Who belongs? The determinants of selective membership 
+into the National Bureau of Economic Research. AEA Papers and Proceedings 111:117–122 
+Koenig M, Hsieh C-S, Liu X, Zimmermann C (2020) Collaboration in bipartite networks, with 
+an Application to coauthorship networks. CEPR Discussion Paper 
+Krapf M, Ursprung HW, Zimmermann C (2017) Parenthood and productivity of highly skilled 
+labor: Evidence from the groves of academe. Journal of Economic Behavior & Organization 
+140:147–175 
+Rybacki J, Serwa D (2021) What makes a successful scientist in a central bank? Evidence from 
+the RePEc database. Central European Journal of Economic Modelling and Econometrics 
+13:331–357 
+Tol RSJ (2022) Rise of the Kniesians: the professor-student network of Nobel laureates in 
+economics. The European Journal of the History of Economic Thought 29:680–703 
+Zacchia G (2021) What does it take to be top women economists? An analysis using rankings in 
+RePEc. Review of Political Economy 33:170–193 

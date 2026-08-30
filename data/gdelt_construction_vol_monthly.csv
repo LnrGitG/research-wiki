@@ -1,0 +1,73 @@
+month,query,n_days,vol_mean
+2022-01,'construction',31,0.256
+2022-01,'infrastructure project',31,0.032
+2022-02,'construction',28,0.286
+2022-02,'infrastructure project',28,0.04
+2022-03,'construction',31,0.244
+2022-03,'infrastructure project',31,0.033
+2022-04,'construction',30,0.273
+2022-04,'infrastructure project',30,0.037
+2022-05,'construction',31,0.228
+2022-05,'infrastructure project',31,0.03
+2022-06,'construction',30,0.271
+2022-06,'infrastructure project',30,0.038
+2022-07,'construction',31,0.241
+2022-07,'infrastructure project',31,0.035
+2022-08,'construction',31,0.252
+2022-08,'infrastructure project',31,0.034
+2022-09,'construction',30,0.247
+2022-09,'infrastructure project',30,0.035
+2022-10,'construction',31,0.264
+2022-10,'infrastructure project',31,0.044
+2022-11,'construction',30,0.281
+2022-11,'infrastructure project',30,0.047
+2022-12,'construction',31,0.357
+2022-12,'infrastructure project',31,0.077
+2023-01,'infrastructure project',31,0.434
+2023-02,'infrastructure project',28,0.538
+2023-03,'infrastructure project',30,0.416
+2023-04,'infrastructure project',30,0.22
+2023-05,'infrastructure project',31,0.018
+2023-06,'infrastructure project',30,0.024
+2023-07,'infrastructure project',31,0.02
+2023-08,'infrastructure project',31,0.022
+2023-09,'infrastructure project',30,0.024
+2023-10,'infrastructure project',31,0.022
+2023-11,'infrastructure project',30,0.023
+2023-12,'infrastructure project',31,0.024
+2024-01,'infrastructure project',31,0.016
+2024-02,'infrastructure project',29,0.023
+2024-03,'infrastructure project',31,0.019
+2024-04,'infrastructure project',30,0.023
+2024-05,'infrastructure project',31,0.018
+2024-06,'infrastructure project',30,0.023
+2024-07,'infrastructure project',31,0.025
+2024-08,'infrastructure project',31,0.022
+2024-09,'infrastructure project',30,0.026
+2024-10,'infrastructure project',31,0.025
+2024-11,'infrastructure project',30,0.026
+2024-12,'infrastructure project',31,0.028
+2025-01,'construction',31,0.171
+2025-01,'infrastructure project',31,0.021
+2025-02,'construction',28,0.214
+2025-02,'infrastructure project',28,0.028
+2025-03,'construction',31,0.208
+2025-03,'infrastructure project',31,0.029
+2025-04,'construction',30,0.213
+2025-04,'infrastructure project',30,0.031
+2025-05,'construction',31,0.201
+2025-05,'infrastructure project',31,0.028
+2025-06,'construction',14,0.203
+2025-06,'infrastructure project',14,0.033
+2025-07,'construction',30,0.237
+2025-07,'infrastructure project',30,0.034
+2025-08,'construction',31,0.235
+2025-08,'infrastructure project',31,0.037
+2025-09,'construction',30,0.257
+2025-09,'infrastructure project',30,0.039
+2025-10,'construction',31,0.246
+2025-10,'infrastructure project',31,0.04
+2025-11,'construction',30,0.24
+2025-11,'infrastructure project',30,0.039
+2025-12,'construction',31,0.26
+2025-12,'infrastructure project',31,0.043

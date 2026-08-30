@@ -2968,41 +2968,51 @@ sources:
   type: report
   year: 2026
   path: 'raw/rosstat/reports/Stroit_kompleks_2025.{pdf,txt}'
-  tags: [rosstat, construction, annual-review, SRM, housing, IZHS, regions, wages, fornenclosed, midas-target]
-  notes: '28 стр., 57k знаков. СМР 2025: 18815.1 млрд руб (+2.5% реальн.); динамика 2020-2025: 9686/11048/13149/15244/17062/18815 (реальный темп 102.1/107.0/107.5/109.0/103.8/102.5). Жильё: 1341.6 тыс. квартир, 108.1 млн кв.м (100.3%), ИЖС-доля 58.8%. Структура СМР: здания 37.6%, дороги 19.3%. Лидеры СМР: Москва 13.8%, Татарстан 5.4%, МО 4.6%. Занятость 2497.2 тыс. (+зп 100853 руб, +17.8%). Барьеры по опросам: налоги 30%, кадры 25%. Приложения: СМР/занятость/зп по всем регионам.
-  - id: stlouisfed_2026_018_repec
-    title: "RePEc, a Tool and Open Dataset for and about Economists (Schlaack & Zimmermann 2026, FRB St. Louis WP 2026-018)"
-    file: raw/papers/stlouisfed_2026_018_repec.pdf
-    summary: papers/stlouisfed_2026_018_repec_summary.md
-    authors: [Anna Oates Schlaack, Christian Zimmermann]
-    year: 2026
-    publisher: Federal Reserve Bank of St. Louis
-    type: working_paper
-    language: en
-    tags: [repec, dataset, sociology-of-economics, economics-profession, labor-economics, bibliometrics, open-data]
-    topics: ["библиометрия", "наука о науке", "экономика труда"]
-    date_added: 2026-08-30
-
-  - id: rybacki_serwa_2021_cejeme
-    title: "What Makes a Successful Scientist in a Central Bank? Evidence From the RePEc Database (Rybacki & Serwa 2021, CEJEME 13(3):331-357)"
-    file: raw/papers/rybacki_serwa_2021_cejeme.pdf
-    summary: papers/rybacki_serwa_2021_summary.md
-    authors: [Jakub Rybacki, Dobromił Serwa]
-    year: 2021
-    publisher: Central European Journal of Economic Modelling and Econometrics
-    type: journal_article
-    language: en
-    tags: [repec, bibliometrics, central-banks, h-index, poisson-regression, sociology-of-economics, russia]
-    topics: ["наукометрия", "центральные банки"]
-    date_added: 2026-08-30
-
-  - id: openalex_housing_russia_slice
-    title: "OpenAlex slice: housing+Russia works 2011-2025 (216 items, RU institutions)"
-    file: data/openalex_housing_russia_works.json
-    summary: papers/openalex_housing_russia_slice_summary.md (создать при ингесте)
-    year: 2026
-    type: processed_timeseries
-    language: en
-    tags: [openalex, bibliometrics, housing, russia, institutions, authors]
-    topics: ["наукометрия", "жилищный рынок"]
-    date_added: 2026-08-30
+  tags: [rosstat, construction, annual-review, SRM, housing, IZHS, regions, wages, midas-target]
+  notes: 'СМР 2025: 18815.1 млрд руб (+2.5% реальн.); динамика 2020-2025: 9686/11048/13149/15244/17062/18815. Жильё: 1341.6 тыс. квартир, 108.1 млн кв.м (100.3%), ИЖС-доля 58.8%. Занятость 2497.2 тыс., зп 100853 руб (+17.8%).'
+- id: atlantafed_2025_12_model_aggregation
+  title: 'On Model Aggregation and Forecast Combination (Gospodinov and Maasoumi 2025, FRB Atlanta WP 2025-12)'
+  file: papers/atlantafed_2025_12_model_aggregation.md
+  source_pdf: 'https://www.atlantafed.org/-/media/Project/Atlanta/FRBA/Documents/research/publication/working-paper/2025/10/09/12-on-model-aggregation-and-forecast-combination.pdf'
+  authors: [Nikolay Gospodinov, Esfandiar Maasoumi]
+  year: 2025
+  publisher: 'Federal Reserve Bank of Atlanta'
+  doi: 10.29338/wp2025-12
+  type: working_paper
+  language: en
+  tags: [forecast-combination, entropy, hellinger-distance, ces-aggregator, model-uncertainty, robust-policy, bregman-loss, inflation, nowcasting, model-averaging]
+  topics: ['комбинирование прогнозов', 'модельная неопределённость', 'наукастинг']
+  date_added: 2026-08-30
+- id: stlouisfed_2026_018_repec
+  title: 'RePEc, a Tool and Open Dataset for and about Economists (Schlaack and Zimmermann 2026, FRB St. Louis WP 2026-018)'
+  file: raw/papers/stlouisfed_2026_018_repec.pdf
+  summary: papers/stlouisfed_2026_018_repec_summary.md
+  authors: [Anna Oates Schlaack, Christian Zimmermann]
+  year: 2026
+  publisher: 'Federal Reserve Bank of St. Louis'
+  type: working_paper
+  language: en
+  tags: [repec, dataset, sociology-of-economics, bibliometrics, open-data]
+  topics: ['библиометрия', 'экономика труда']
+  date_added: 2026-08-30
+- id: rybacki_serwa_2021_cejeme
+  title: 'What Makes a Successful Scientist in a Central Bank? Evidence From RePEc (Rybacki and Serwa 2021, CEJEME 13(3))'
+  file: raw/papers/rybacki_serwa_2021_cejeme.pdf
+  summary: papers/rybacki_serwa_2021_summary.md
+  authors: [Jakub Rybacki, Dobromil Serwa]
+  year: 2021
+  publisher: CEJEME
+  type: journal_article
+  language: en
+  tags: [repec, bibliometrics, central-banks, h-index, poisson-regression, russia]
+  topics: ['наукометрия', 'центральные банки']
+  date_added: 2026-08-30
+- id: openalex_housing_russia_slice
+  title: 'OpenAlex slice: housing+Russia works 2011-2025 (216 items, RU institutions)'
+  file: data/openalex_housing_russia_works.json
+  year: 2026
+  type: processed_timeseries
+  language: en
+  tags: [openalex, bibliometrics, housing, russia, institutions, authors]
+  topics: ['наукометрия', 'жилищный рынок']
+  date_added: 2026-08-30

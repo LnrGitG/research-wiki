@@ -11,8 +11,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Новые ипотечные кредиты по регионам РФ (млн руб.) — VFS 02_04, 3 листа: рубли/валюта/итого.
-    90 мес (Jan 2019 → Jun 2026), 96 регионов'
+  description: 'Новые ипотечные кредиты по регионам РФ (млн руб.) — VFS 02_04, 3 листа:
+    рубли/валюта/итого. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
   header_row: 2
 - id: cbr_usd_rate
   name: Курс USD (ЦБ РФ, динамика)
@@ -242,8 +242,8 @@ sources:
   - prices
   - construction
 - id: cmwp_demographic_2040
-  title: 'CMWP RANEPA: Влияние демографических изменений на рынок жилья в России: долгосрочный прогноз
-    до 2040 года'
+  title: 'CMWP RANEPA: Влияние демографических изменений на рынок жилья в России:
+    долгосрочный прогноз до 2040 года'
   type: research_report
   date: '2024'
   url: https://www.cmwp.ru/upload/sprint.editor/aa6/5i532x0wrc56sdck62492ckjgmk5jrcd.pdf
@@ -259,7 +259,8 @@ sources:
   - population-projection
   - '2040'
 - id: cmwp_supply_elasticity
-  title: 'CMWP RANEPA: Эластичность предложения жилья в российских регионах: оценки и факторы'
+  title: 'CMWP RANEPA: Эластичность предложения жилья в российских регионах: оценки
+    и факторы'
   type: research_report
   date: '2024'
   url: https://www.cmwp.ru/upload/iblock/7b8/1drfkt7eb9y8ulgddxxng5jrd7w0lh2v.pdf
@@ -302,7 +303,8 @@ sources:
   - etalong
   - glorax
 - id: stroygaz_labor_crisis_2026
-  title: 'Строительная газета: Переманивать или растить? Кадровый кризис в стройотрасли (форум «Движение»)'
+  title: 'Строительная газета: Переманивать или растить? Кадровый кризис в стройотрасли
+    (форум «Движение»)'
   type: industry_article
   date: '2026-06-26'
   url: https://stroygaz.ru/publication/kadry/peremanivat-ili-rastit-na-forume-nedvizhimosti-dvizhenie-obsudili-kadrovyy-krizis-v-stroyotrasli/
@@ -320,7 +322,8 @@ sources:
   - forum-dvizhenie
   - '2026'
 - id: cmwp_construction_debt_burden_2026
-  title: 'ЦМАКП: Долговая нагрузка строительных компаний России — критический уровень (481% от EBITDA)'
+  title: 'ЦМАКП: Долговая нагрузка строительных компаний России — критический уровень
+    (481% от EBITDA)'
   type: macro_analysis
   date: 2026-02
   url: https://www.cmwp.ru/
@@ -377,7 +380,8 @@ sources:
   - demand-weakness
   - max-analytics
 - id: veb_china_real_estate_2026
-  title: 'ВЭБ/Noah Smith: Китайский кризис недвижимости — структурный сбой модели (янв-фев 2026)'
+  title: 'ВЭБ/Noah Smith: Китайский кризис недвижимости — структурный сбой модели
+    (янв-фев 2026)'
   type: comparative_analysis
   date: 2026-02
   url: https://veb.ru/
@@ -414,7 +418,8 @@ sources:
   - policy-counterfactuals
   - research-design
 - id: gis_zhkh_housing_stock_2025
-  title: 'ГИС ЖКХ: Фонд многоквартирных домов России — износ, аварийность, пробелы в данных (2025)'
+  title: 'ГИС ЖКХ: Фонд многоквартирных домов России — износ, аварийность, пробелы
+    в данных (2025)'
   type: government_data
   date: 2025-12
   url: https://t.me/sq_metre
@@ -708,7 +713,8 @@ sources:
   - verhulst-2026-reference
   - couillard-2025-reference
 - id: census_satellite_housing_starts_2024
-  title: 'Census Bureau: Single-Family Housing Starts Using Satellite Imagery (Experimental Data Product)'
+  title: 'Census Bureau: Single-Family Housing Starts Using Satellite Imagery (Experimental
+    Data Product)'
   type: methodology_documentation
   date: '2024-12-19'
   url: https://www.census.gov/data/experimental-data-products/single-family-housing-satellite-imagery.html
@@ -810,7 +816,8 @@ sources:
   - spatial-equilibrium
   - submarket
 - id: sherpa_2026_h1_construction
-  title: 'Sherpa Group: Строительство в российских регионах: итоги первого полугодия 2026 года'
+  title: 'Sherpa Group: Строительство в российских регионах: итоги первого полугодия
+    2026 года'
   type: industry_report
   date: '2026-08-05'
   url: https://sherpagroup.ru/analytics/pdf/e6hkwd5.pdf
@@ -865,8 +872,8 @@ sources:
   - cbr
   - transmission-mechanism
 - id: nber_criw_2026_ch2_blended_housing_starts
-  title: 'A Blended Data Approach to Measuring Monthly Housing Starts: Satellite Imagery, Survey Data
-    and More!'
+  title: 'A Blended Data Approach to Measuring Monthly Housing Starts: Satellite Imagery,
+    Survey Data and More!'
   type: paper
   date: 2026-03
   url: https://www.nber.org/papers/w35113
@@ -899,7 +906,8 @@ sources:
   - measurement
   - US
 - id: nber_criw_2026_ch3_geographic_pagerank
-  title: 'Measuring Housing Quality Using Revealed Preference: A Geographic PageRank Approach'
+  title: 'Measuring Housing Quality Using Revealed Preference: A Geographic PageRank
+    Approach'
   type: paper
   date: 2026-03
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/measuring-housing-quality-using-revealed-preference-geographic-pagerank-approach
@@ -927,7 +935,8 @@ sources:
   - amenities
   - measurement
 - id: nber_criw_2026_ch4_spillovers_vad
-  title: The Positive Spillovers to Risky Investments in Vacant, Abandoned, and Disinvested Properties
+  title: The Positive Spillovers to Risky Investments in Vacant, Abandoned, and Disinvested
+    Properties
   type: paper
   date: 2026-02
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/positive-spillovers-risky-investments-vacant-abandoned-and-disinvested-properties
@@ -975,7 +984,8 @@ sources:
   - US
   - 1914-2006
 - id: nber_criw_2026_ch6_land_supply
-  title: The Effect of Land Supply for New Homes on Residential Investment and House Prices
+  title: The Effect of Land Supply for New Homes on Residential Investment and House
+    Prices
   type: paper
   date: 2026-02
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/effect-land-supply-new-homes-residential-investment-and-house-prices
@@ -1058,7 +1068,8 @@ sources:
   - measurement
   - US
 - id: nber_criw_2026_ch9_mice_missing_data
-  title: 'Filling the Gaps with MICE: Addressing Missing Data in Real Estate Price Indices'
+  title: 'Filling the Gaps with MICE: Addressing Missing Data in Real Estate Price
+    Indices'
   type: paper
   date: 2026-04
   url: https://www.nber.org/papers/w35139
@@ -1086,8 +1097,8 @@ sources:
   - Austria
   - real-estate
 - id: nber_criw_2026_ch10_lands_opportunity
-  title: 'Lands of Opportunity: Differences in the Geography of Wealth and Income Mobility in the United
-    States'
+  title: 'Lands of Opportunity: Differences in the Geography of Wealth and Income
+    Mobility in the United States'
   type: paper
   date: 2026-05
   url: https://www.nber.org/papers/w35219
@@ -1121,7 +1132,8 @@ sources:
   - census
   - Great-Recession
 - id: nber_criw_2026_ch11_rental_ownership
-  title: Toward a Methodology for Measuring Rental Property Ownership in the United States
+  title: Toward a Methodology for Measuring Rental Property Ownership in the United
+    States
   type: paper
   date: 2026-05
   book_chapter: https://www.nber.org/books-and-chapters/measurement-housing-and-housing-sector/toward-methodology-measuring-rental-property-ownership-united-states
@@ -1223,8 +1235,8 @@ sources:
   - pricing
   - Finance-Theory-Practice
 - id: popova_2026_covid_preferential_mortgage
-  title: 'The impact of COVID-19 and preferential mortgage lending programs on mortgage lending: Evidence
-    from Russia'
+  title: 'The impact of COVID-19 and preferential mortgage lending programs on mortgage
+    lending: Evidence from Russia'
   type: article
   date: '2026'
   venue: Journal of the New Economic Association
@@ -1241,7 +1253,8 @@ sources:
   - preferential-lending
   - NEA
 - id: louie_2025_supply_constraints_nber
-  title: Supply constraints do not explain house price and quantity growth across US cities
+  title: Supply constraints do not explain house price and quantity growth across
+    US cities
   type: working_paper
   date: '2025'
   venue: NBER Working Paper 33576
@@ -1261,7 +1274,8 @@ sources:
   - housing-quantity
   - WURI
 - id: zhirnov_2025_supply_demand_RU_housing
-  title: The Contribution of Supply and Demand Factors to the Dynamics of Primary Housing Prices in Russia
+  title: The Contribution of Supply and Demand Factors to the Dynamics of Primary
+    Housing Prices in Russia
   type: article
   date: '2025'
   venue: Studies on Russian Economic Development
@@ -1300,7 +1314,8 @@ sources:
   - modernization
   - SRED
 - id: rodriguez_2026_housing_vulnerabilities_mp
-  title: 'Housing Market Vulnerabilities and Monetary Policy: Lessons From two Decades of European Data'
+  title: 'Housing Market Vulnerabilities and Monetary Policy: Lessons From two Decades
+    of European Data'
   type: article
   date: '2026'
   venue: The Journal of Real Estate Finance and Economics
@@ -1386,8 +1401,8 @@ sources:
   - BPEA
   - Glaeser-Gyourko
 - id: volkova_2026_housing_demography_RU
-  title: Impact of Housing Affordability on Social Sustainability and Demographic Development in Russian
-    Regions
+  title: Impact of Housing Affordability on Social Sustainability and Demographic
+    Development in Russian Regions
   type: article
   date: '2026'
   venue: Veredas do Direito
@@ -1405,8 +1420,8 @@ sources:
   - demography
   - regions
 - id: matvienko_2024_sanctions_mortgage
-  title: Assessment of the Impact of Unilateral Restrictive Measures on the Mortgage Lending Market in
-    the RF
+  title: Assessment of the Impact of Unilateral Restrictive Measures on the Mortgage
+    Lending Market in the RF
   type: article
   date: '2024'
   venue: Economic Problems and Legal Practice
@@ -1421,7 +1436,8 @@ sources:
   - mortgage-lending
   - financial-legal
 - id: shevtsova_2026_RU_housing_policy
-  title: 'External Shocks and Multi-Level Governance Adaptation: the Case of Russian Housing Policy'
+  title: 'External Shocks and Multi-Level Governance Adaptation: the Case of Russian
+    Housing Policy'
   type: article
   date: '2026'
   venue: Russian Politics
@@ -1439,7 +1455,8 @@ sources:
   - governance
   - sanctions
 - id: hedlund_2025_mortgage_mp_inflation
-  title: Mortgage Market Structure and the Transmission of Monetary Policy During the Great Inflation
+  title: Mortgage Market Structure and the Transmission of Monetary Policy During
+    the Great Inflation
   type: working_paper
   date: '2025'
   venue: Working Paper
@@ -1456,7 +1473,8 @@ sources:
   - mortgage-market-structure
   - great-inflation
 - id: van_nieuwerburgh_2026_great_revaluation
-  title: 'The Great Revaluation: COVID-19 and the Structural Transformation of the American Housing Market'
+  title: 'The Great Revaluation: COVID-19 and the Structural Transformation of the
+    American Housing Market'
   type: working_paper
   date: '2026'
   venue: SSRN Working Paper
@@ -1471,7 +1489,8 @@ sources:
   - structural-transformation
   - SSRN
 - id: koziol_2026_monetary_transmission_cpi
-  title: 'Mapping Monetary Transmission: Housing, CPI Measurement and the Two Faces of Inflation'
+  title: 'Mapping Monetary Transmission: Housing, CPI Measurement and the Two Faces
+    of Inflation'
   type: working_paper
   date: '2026'
   venue: SSRN Working Paper
@@ -1503,7 +1522,8 @@ sources:
   - monetary-transmission
   - housing-sector
 - id: kiley_2022_anchored
-  title: 'Anchored or Not: How Much Information Does 21st Century Data Contain on Inflation Dynamics?'
+  title: 'Anchored or Not: How Much Information Does 21st Century Data Contain on
+    Inflation Dynamics?'
   type: working-paper
   date: '2022'
   venue: Federal Reserve Board, FEDS Working Paper 2022.016
@@ -1523,7 +1543,8 @@ sources:
   - FED
   - FEDS-paper
 - id: demichelis_2024_persistent
-  title: Has the Inflation Process Become More Persistent? Evidence from the Major Advanced Economies
+  title: Has the Inflation Process Become More Persistent? Evidence from the Major
+    Advanced Economies
   type: feds-note
   date: '2024'
   venue: Federal Reserve Board, FEDS Notes / NBER WP w31197
@@ -1611,7 +1632,8 @@ sources:
   - monetary-policy
   - FEDS-paper
 - id: cascaldigarcia_2023_drivers
-  title: Drivers of Post-pandemic Inflation in Selected Advanced Economies and Implications for the Outlook
+  title: Drivers of Post-pandemic Inflation in Selected Advanced Economies and Implications
+    for the Outlook
   type: feds-note
   date: '2023'
   venue: Federal Reserve Board, FEDS Notes
@@ -1651,7 +1673,8 @@ sources:
   - SVAR
   - NBER
 - id: cbr_2026_economic_growth_factors
-  title: 'Экономический рост в России через призму факторов производства: прошлое и возможное будущее'
+  title: 'Экономический рост в России через призму факторов производства: прошлое
+    и возможное будущее'
   type: research-report
   date: '2026'
   venue: Банк России, аналитическая записка
@@ -1731,7 +1754,8 @@ sources:
   - profitability
   - credit-ratings
 - id: dvizhenie_2026_regional_developers_zero_profit
-  title: 'Прибыли в региональном девелопменте больше нет: застройщики работают в ноль или в убыток'
+  title: 'Прибыли в региональном девелопменте больше нет: застройщики работают в ноль
+    или в убыток'
   type: industry-news
   date: 2026-08
   venue: Движение.ру в MAX
@@ -1825,16 +1849,17 @@ sources:
   - default-risk
   - methodology
 - id: econometrics_r_packages_2026
-  name: 'Экономика строительства в R: Стратегический выбор пакетов для оценки, наукастинга и прогнозирования'
+  name: 'Экономика строительства в R: Стратегический выбор пакетов для оценки, наукастинга
+    и прогнозирования'
   type: pdf
   file: papers/economics_r_packages_econometrics_2026.md
   raw_file: raw/papers/Economics_R_packages_econometrics_2026.pdf
   format: md+pdf
   pages: 28
   references: 113
-  description: 'Обзор R-пакетов для эконометрического анализа в строительстве: fixest, marginaleffects,
-    bsts, forecast, fable, CausalImpact, xtbreak. 5-шаговый workflow: подготовка → EDA → оценка → наукастинг
-    → прогнозирование.'
+  description: 'Обзор R-пакетов для эконометрического анализа в строительстве: fixest,
+    marginaleffects, bsts, forecast, fable, CausalImpact, xtbreak. 5-шаговый workflow:
+    подготовка → EDA → оценка → наукастинг → прогнозирование.'
   tags:
   - econometrics
   - R
@@ -1867,8 +1892,8 @@ sources:
   - structural-breaks
   - data-integration
 - id: housing_provision_eu_aidukaite_2026
-  title: 'Housing provision: A comparative study of housing availability, accessibility, and adequacy
-    in EU member states'
+  title: 'Housing provision: A comparative study of housing availability, accessibility,
+    and adequacy in EU member states'
   authors:
   - Jolanta Aidukaitė
   year: 2026
@@ -2087,8 +2112,9 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Задолженность + просрочка по ипотечным кредитам по регионам РФ (млн руб.) — VFS 02_05,
-    6 листов: рубли/валюта/итого × долг/просрочка. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
+  description: 'Задолженность + просрочка по ипотечным кредитам по регионам РФ (млн
+    руб.) — VFS 02_05, 6 листов: рубли/валюта/итого × долг/просрочка. 90 мес (Jan
+    2019 → Jun 2026), 96 регионов'
   header_row: 2
 - id: cbr_corporate_new_loans
   name: Новые корпоративные кредиты по регионам (ЦБ РФ, 01_04)
@@ -2102,8 +2128,8 @@ sources:
   - report_date
   - indicator
   - currency
-  description: 'Новые корпоративные кредиты по регионам РФ (млн руб.) — VFS 01_04, 3 листа: рубли/валюта/итого.
-    90 мес (Jan 2019 → Jun 2026), 96 регионов'
+  description: 'Новые корпоративные кредиты по регионам РФ (млн руб.) — VFS 01_04,
+    3 листа: рубли/валюта/итого. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
   header_row: 2
 - id: cbr_corporate_debt
   name: Задолженность по корпоративным кредитам по регионам (ЦБ РФ, 01_05)
@@ -2117,8 +2143,9 @@ sources:
   - report_date
   - indicator
   - currency
-  description: 'Задолженность + просрочка по корпоративным кредитам по регионам РФ (млн руб.) — VFS 01_05,
-    6 листов: рубли/валюта/итого × долг/просрочка. 90 мес (Jan 2019 → Jun 2026), 96 регионов'
+  description: 'Задолженность + просрочка по корпоративным кредитам по регионам РФ
+    (млн руб.) — VFS 01_05, 6 листов: рубли/валюта/итого × долг/просрочка. 90 мес
+    (Jan 2019 → Jun 2026), 96 регионов'
   header_row: 2
 - id: cbr_mortgage_bulletin
   name: Бюллетень «Сведения о рынке ИЖК в России» (ЦБ РФ, Tag 211)
@@ -2131,9 +2158,10 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Ежемесячный информационный бюллетень №74 (июнь 2026): 38 листов, 18 региональных (Т_16–Т_33):
-    кол-во/объём ИЖК, ДДУ, ИЖС, задолженность, просрочка, ставки, доли, средний размер — 13 мес (Jun 2025
-    → Jun 2026), 96 регионов. Т_34 — цены 1 кв.м (квартальная, 2025Q1–2026Q1)'
+  description: 'Ежемесячный информационный бюллетень №74 (июнь 2026): 38 листов, 18
+    региональных (Т_16–Т_33): кол-во/объём ИЖК, ДДУ, ИЖС, задолженность, просрочка,
+    ставки, доли, средний размер — 13 мес (Jun 2025 → Jun 2026), 96 регионов. Т_34
+    — цены 1 кв.м (квартальная, 2025Q1–2026Q1)'
   header_row: 4
 - id: cbr_escrow
   name: Проектное финансирование и счета эскроу по регионам (ЦБ РФ, Tag 167)
@@ -2146,9 +2174,10 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Ежемесячные данные по проектному финансированию застройщиков с эскроу: 9 индикаторов (кол-во/сумма
-    кредитных договоров, задолженность, счета эскроу, остатки, ставка, раскрытые счета, перечисления).
-    55 файлов (Jan 2022 → Jul 2026), 86 регионов. Один файл = один месяц, имя файла = DDMMYYYY'
+  description: 'Ежемесячные данные по проектному финансированию застройщиков с эскроу:
+    9 индикаторов (кол-во/сумма кредитных договоров, задолженность, счета эскроу,
+    остатки, ставка, раскрытые счета, перечисления). 55 файлов (Jan 2022 → Jul 2026),
+    86 регионов. Один файл = один месяц, имя файла = DDMMYYYY'
   header_row: 3
 - id: cbr_housing_loans_count
   name: Количество жилищных кредитов по регионам (ЦБ РФ, 02_06)
@@ -2161,8 +2190,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Количество жилищных кредитов по регионам РФ (шт.) — VFS 02_06, 3 листа: рубли/валюта/итого.
-    90 мес (Jan 2019 – Jun 2026), 96 регионов'
+  description: 'Количество жилищных кредитов по регионам РФ (шт.) — VFS 02_06, 3 листа:
+    рубли/валюта/итого. 90 мес (Jan 2019 – Jun 2026), 96 регионов'
   header_row: 3
 - id: cbr_housing_loans_volume
   name: Объём жилищных кредитов по регионам (ЦБ РФ, 02_07)
@@ -2175,8 +2204,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Объём жилищных кредитов по регионам РФ (млн руб.) — VFS 02_07, 3 листа. 90 мес (Jan 2019
-    – Jun 2026), 96 регионов
+  description: Объём жилищных кредитов по регионам РФ (млн руб.) — VFS 02_07, 3 листа.
+    90 мес (Jan 2019 – Jun 2026), 96 регионов
   header_row: 3
 - id: cbr_housing_rates_terms
   name: Ставки и сроки по жилищным кредитам (ЦБ РФ, 02_08)
@@ -2189,8 +2218,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Средневзвешенные сроки (мес.) и ставки (%) по жилищным кредитам — VFS 02_08, 4 листа:
-    срок/ставка × рубли/валюта. 90 мес, 96 регионов'
+  description: 'Средневзвешенные сроки (мес.) и ставки (%) по жилищным кредитам —
+    VFS 02_08, 4 листа: срок/ставка × рубли/валюта. 90 мес, 96 регионов'
   header_row: 3
 - id: cbr_housing_debt
   name: Задолженность по жилищным кредитам по регионам (ЦБ РФ, 02_09)
@@ -2203,8 +2232,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: 'Задолженность + просрочка по жилищным кредитам по регионам РФ (млн руб.) — VFS 02_09,
-    6 листов: рубли/валюта/итого × долг/просрочка. 90 мес, 96 регионов'
+  description: 'Задолженность + просрочка по жилищным кредитам по регионам РФ (млн
+    руб.) — VFS 02_09, 6 листов: рубли/валюта/итого × долг/просрочка. 90 мес, 96 регионов'
   header_row: 3
 - id: cbr_scpa_quantity
   name: Кол-во ИЖК под залог прав требования (ЦБ РФ, 02_15)
@@ -2217,8 +2246,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Количество ИЖК под залог прав требования (ДДУ) по регионам (шт.) — 3 листа. 90 мес, 96
-    регионов
+  description: Количество ИЖК под залог прав требования (ДДУ) по регионам (шт.) —
+    3 листа. 90 мес, 96 регионов
   header_row: 2
 - id: cbr_scpa_volume
   name: Объём ИЖК под залог прав требования (ЦБ РФ, 02_16)
@@ -2231,8 +2260,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Объём ИЖК под залог прав требования (ДДУ) по регионам (млн руб.) — 3 листа. 90 мес, 96
-    регионов
+  description: Объём ИЖК под залог прав требования (ДДУ) по регионам (млн руб.) —
+    3 листа. 90 мес, 96 регионов
   header_row: 2
 - id: cbr_scpa_rates
   name: Ставки и сроки ИЖК под залог прав требования (ЦБ РФ, 02_17)
@@ -2245,8 +2274,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Средневзвешенные сроки (мес.) и ставки (%) по ИЖК под залог прав требования — 4 листа.
-    90 мес, 96 регионов
+  description: Средневзвешенные сроки (мес.) и ставки (%) по ИЖК под залог прав требования
+    — 4 листа. 90 мес, 96 регионов
   header_row: 2
 - id: cbr_scpa_debt
   name: Задолженность ИЖК под залог прав требования (ЦБ РФ, 02_18)
@@ -2259,8 +2288,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Задолженность + просрочка + приобретённые права по ИЖК под залог прав требования — 12 листов.
-    90/63 мес, 96 регионов
+  description: Задолженность + просрочка + приобретённые права по ИЖК под залог прав
+    требования — 12 листов. 90/63 мес, 96 регионов
   header_row: 2
 - id: cbr_ihc_quantity
   name: Кол-во ИЖК на цели ИЖС (ЦБ РФ, 02_42)
@@ -2273,8 +2302,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Количество ИЖК на цели ИЖС (создание/приобретение) — 9 листов. 30 мес (Jan 2024 – Jun 2026),
-    96 регионов
+  description: Количество ИЖК на цели ИЖС (создание/приобретение) — 9 листов. 30 мес
+    (Jan 2024 – Jun 2026), 96 регионов
   header_row: 3
 - id: cbr_ihc_volume
   name: Объём ИЖК на цели ИЖС (ЦБ РФ, 02_43)
@@ -2287,7 +2316,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Объём ИЖК на цели ИЖС (создание/приобретение, млн руб.) — 9 листов. 30 мес, 96 регионов
+  description: Объём ИЖК на цели ИЖС (создание/приобретение, млн руб.) — 9 листов.
+    30 мес, 96 регионов
   header_row: 3
 - id: cbr_ihc_share
   name: Доля ИЖС в ИЖК (ЦБ РФ, 02_44)
@@ -2300,7 +2330,8 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Доля ИЖК на цели ИЖС в общем объёме ИЖК (%) — 9 листов. 30 мес, 96 регионов
+  description: Доля ИЖК на цели ИЖС в общем объёме ИЖК (%) — 9 листов. 30 мес, 96
+    регионов
   header_row: 3
 - id: cbr_ihc_rates
   name: Ставки и сроки ИЖК на цели ИЖС (ЦБ РФ, 02_45)
@@ -2313,10 +2344,12 @@ sources:
   - region_name
   - report_date
   - indicator
-  description: Средневзвешенные сроки (мес.) и ставки (%) по ИЖК на цели ИЖС — 12 листов. 30 мес, 96 регионов
+  description: Средневзвешенные сроки (мес.) и ставки (%) по ИЖК на цели ИЖС — 12
+    листов. 30 мес, 96 регионов
   header_row: 3
 - id: cbr_mortgage_quarterly_snapshots
-  name: 'Квартальные снимки: досрочное погашение, показатели, рефинансирование (ЦБ РФ, 03_02/03_03/04_02)'
+  name: 'Квартальные снимки: досрочное погашение, показатели, рефинансирование (ЦБ
+    РФ, 03_02/03_03/04_02)'
   type: api
   url: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/
   format: xlsx
@@ -2327,8 +2360,9 @@ sources:
   - year
   - quarter
   - indicator
-  description: 'Квартальные снимки по регионам: 03_02 (досрочное погашение, 6 индикаторов), 03_03 (объём/долг/погашение,
-    5 индикаторов), 04_02 (рефинансирование, 8 индикаторов). Q2 2026, 96 регионов'
+  description: 'Квартальные снимки по регионам: 03_02 (досрочное погашение, 6 индикаторов),
+    03_03 (объём/долг/погашение, 5 индикаторов), 04_02 (рефинансирование, 8 индикаторов).
+    Q2 2026, 96 регионов'
   header_row: 7
 - id: rosstat_housing_input_operational
   name: Строительство жилых домов (оперативные данные, Росстат)
@@ -2342,8 +2376,9 @@ sources:
   - report_year
   - report_month
   - indicator
-  description: 'Помесячные оперативные данные по вводу жилья по 96-98 регионам: всего и ИЖС населением,
-    накопленный и месячный объём, % г/г. 19 листов (январь 2025 — июль 2026)'
+  description: 'Помесячные оперативные данные по вводу жилья по 96-98 регионам: всего
+    и ИЖС населением, накопленный и месячный объём, % г/г. 19 листов (январь 2025
+    — июль 2026)'
   header_row: 8
   indicators:
   - housing_input_total_cumulative
@@ -2360,8 +2395,9 @@ sources:
   - construction_volume_monthly_rf
   - construction_contracts_monthly_rf
   - buildings_completed_by_type
-  description: 'Ежемесячный доклад Росстата, раздел Строительство. 6 таблиц: объём СМР (помесячно), договоры/портфель
-    заказов, ввод зданий по типам, ввод мощностей, ввод жилья, ввод соцкультуры. РФ уровень.'
+  description: 'Ежемесячный доклад Росстата, раздел Строительство. 6 таблиц: объём
+    СМР (помесячно), договоры/портфель заказов, ввод зданий по типам, ввод мощностей,
+    ввод жилья, ввод соцкультуры. РФ уровень.'
   header_row: varies
 - id: rosstat_vds_quarterly_okved
   name: Валовая добавленная стоимость по ОКВЕД2, квартальная (Росстат)
@@ -2375,8 +2411,9 @@ sources:
   - year
   - quarter
   - series
-  description: 'Квартальная ВДС по 22 разделам ОКВЕД2 (A-T) + ВВП. 5 серий: номинал (текущие цены), реальные
-    цены 2016 и 2021, индексы физического объема, дефляторы. 2011-2026, обновлено 17.06.2026'
+  description: 'Квартальная ВДС по 22 разделам ОКВЕД2 (A-T) + ВВП. 5 серий: номинал
+    (текущие цены), реальные цены 2016 и 2021, индексы физического объема, дефляторы.
+    2011-2026, обновлено 17.06.2026'
   header_row: 4
   series:
   - vds_nominal
@@ -2395,8 +2432,8 @@ sources:
   - region_name
   - year
   - month
-  description: 'Помесячная номинальная начисленная ЗП по полному кругу организаций, 97 регионов (РФ +
-    8 ФО + субъекты), 2013-2026. РФ май 2026: 110,216 руб'
+  description: 'Помесячная номинальная начисленная ЗП по полному кругу организаций,
+    97 регионов (РФ + 8 ФО + субъекты), 2013-2026. РФ май 2026: 110,216 руб'
   header_row: varies (row 3 for 2013-2018, row 2 for 2019+)
 - id: rosstat_real_wage_index_annual
   name: Индекс реальной среднемесячной начисленной ЗП по субъектам РФ (Росстат)
@@ -2408,7 +2445,8 @@ sources:
   primary_key:
   - region_name
   - year
-  description: 'Индекс реальной ЗП (% к предыдущему году), 97 регионов, 2000-2025. РФ 2025: 105.2%'
+  description: 'Индекс реальной ЗП (% к предыдущему году), 97 регионов, 2000-2025.
+    РФ 2025: 105.2%'
   header_row: varies (row 4 for 2000-2017, row 3 for 2018+)
 - id: rosstat_das_construction_sentiment
   name: Опережающие индикаторы в строительстве (ДАС, Росстат)
@@ -2422,10 +2460,10 @@ sources:
   - subtype
   - year
   - quarter
-  description: 'Квартальные опережающие индикаторы деловой активности в строительстве (ДАС). 7 индикаторов:
-    индекс уверенности, портфель заказов, физический объем (факт+ожидания), занятость (факт+ожидания),
-    загрузка мощностей, экономическая ситуация (факт+ожидания), факторы-ограничения (3 фактора). 2006-2026,
-    без новых территорий'
+  description: 'Квартальные опережающие индикаторы деловой активности в строительстве
+    (ДАС). 7 индикаторов: индекс уверенности, портфель заказов, физический объем (факт+ожидания),
+    занятость (факт+ожидания), загрузка мощностей, экономическая ситуация (факт+ожидания),
+    факторы-ограничения (3 фактора). 2006-2026, без новых территорий'
   header_row: 5
 - id: cbr_api_dataservice_mortgage
   name: ЦБ РФ API Data Service — ипотечные жилищные кредиты
@@ -2439,8 +2477,9 @@ sources:
   - region_name
   - currency
   - date
-  description: 'API ЦБ РФ: 7 индикаторов (кол-во, объём, задолженность, просрочка, срок, сезонно-скорр.)
-    × 96 регионов × 3 валюты (руб/вал/всего). Feb 2019 - Jul 2026. 121K записей. categoryId=21, iIds=44,45,46,47,48'
+  description: 'API ЦБ РФ: 7 индикаторов (кол-во, объём, задолженность, просрочка,
+    срок, сезонно-скорр.) × 96 регионов × 3 валюты (руб/вал/всего). Feb 2019 - Jul
+    2026. 121K записей. categoryId=21, iIds=44,45,46,47,48'
   indicators:
     '44': Количество кредитов
     '45': Объем кредитов
@@ -2460,8 +2499,9 @@ sources:
   - question
   - adjustment
   - date
-  description: 'Помесячные данные мониторинга предприятий ЦБ РФ по ВЭД Строительство. 12 вопросов × 2
-    типа (исходные + сезонно скорректированные). Mar 2002 - Sep 2026. Источник: опросы предприятий'
+  description: 'Помесячные данные мониторинга предприятий ЦБ РФ по ВЭД Строительство.
+    12 вопросов × 2 типа (исходные + сезонно скорректированные). Mar 2002 - Sep 2026.
+    Источник: опросы предприятий'
   questions:
   - ИБК (сводный)
   - ИБК (факт.)
@@ -2476,8 +2516,8 @@ sources:
   - Издержки производства
   - Условия кредитования
 - id: karpeko_2026_quiet
-  title: 'Карпеко Ф.А. (Банк России): QUIET — индикатор инфляционных ожиданий домохозяйств России и её
-    регионов на основе данных поисковых систем'
+  title: 'Карпеко Ф.А. (Банк России): QUIET — индикатор инфляционных ожиданий домохозяйств
+    России и её регионов на основе данных поисковых систем'
   type: working_paper
   date: '2026'
   url: https://www.cbr.ru/StaticHtml/File/194046/wp_174.pdf
@@ -2497,8 +2537,8 @@ sources:
   - monetary-policy
   - cbr
 - id: search_nowcasting_construction_2026
-  title: 'Наукастинг строительной активности и ввода жилья поисковыми запросами: обзор литературы, официальные
-    кейсы, эмпирическая валидация'
+  title: 'Наукастинг строительной активности и ввода жилья поисковыми запросами: обзор
+    литературы, официальные кейсы, эмпирическая валидация'
   type: research_review
   date: '2026-08-25'
   files:
@@ -2531,55 +2571,60 @@ sources:
   - year
   - quarter
   - region_code
-  description: 'Квартальные срезы сделок и аренды из выгрузок Росреестра (2024q1–2026q2, 85 регионов).
-    Агрегаты: число сделок, ДКП/ДДУ split, медианная цена ₽/м² (все/ДКП/ДДУ), аренда — медианная ставка
-    ₽/м² и площадь. Полная база 7.57 млн сделок + 486 тыс. аренд: ~/rosreestr/rosreestr_deals_full.sqlite
-    (1.5 ГБ, локально, в git не входит). Сырьё: Google Drive папка Rosreestr_Data. ВАЖНО: с 2025 в данных
-    резкое падение доли ДДУ (669→31 тыс./год) — разворот рынка к ДКП; разделитель CSV меняется между кварталами
-    (; или ~), парсить с автодетектом.'
+  description: 'Квартальные срезы сделок и аренды из выгрузок Росреестра (2024q1–2026q2,
+    85 регионов). Агрегаты: число сделок, ДКП/ДДУ split, медианная цена ₽/м² (все/ДКП/ДДУ),
+    аренда — медианная ставка ₽/м² и площадь. Полная база 7.57 млн сделок + 486 тыс.
+    аренд: ~/rosreestr/rosreestr_deals_full.sqlite (1.5 ГБ, локально, в git не входит).
+    Сырьё: Google Drive папка Rosreestr_Data. ВАЖНО: с 2025 в данных резкое падение
+    доли ДДУ (669→31 тыс./год) — разворот рынка к ДКП; разделитель CSV меняется между
+    кварталами (; или ~), парсить с автодетектом.'
 - id: metriki-interesa-2026
   name: Метрики интереса для макроэкономического анализа рынка недвижимости РФ
   type: document
   files:
     md: papers/2026-Metriki-interesa.pdf.md
   tags:
-    - russia
-    - data-sources
-    - FAVAR-MIDAS
-    - Yandex-Wordstat
-    - Google-Trends
-    - Telegram-metrics
-    - GDELT
-    - Similarweb
-    - real-estate
-    - high-frequency-proxies
-    - sentiment-index
-    - web-traffic
-  description: Обзор источников высокочастотных метрик (поиск, медиа, сентимент, веб‑трафик) для построения прокси в FAVAR-MIDAS моделях.
+  - russia
+  - data-sources
+  - FAVAR-MIDAS
+  - Yandex-Wordstat
+  - Google-Trends
+  - Telegram-metrics
+  - GDELT
+  - Similarweb
+  - real-estate
+  - high-frequency-proxies
+  - sentiment-index
+  - web-traffic
+  description: Обзор источников высокочастотных метрик (поиск, медиа, сентимент, веб‑трафик)
+    для построения прокси в FAVAR-MIDAS моделях.
 - id: digital-footprint-economics-2026
-  name: 'Цифровой след экономики: как интернет метрики меняют анализ ВВП, инфляции и рынка недвижимости'
+  name: 'Цифровой след экономики: как интернет метрики меняют анализ ВВП, инфляции
+    и рынка недвижимости'
   type: document
   files:
     md: papers/2026-digital-footprint-economics.pdf.md
   tags:
-    - russia
-    - digital-footprint
-    - internet-metrics
-    - nowcasting
-    - GDP
-    - inflation
-    - housing-market
-    - search-trends
-    - online-prices
-    - sentiment-analysis
-    - LLM
-    - Factor-MIDAS
-    - Bayesian-models
-    - central-banks
-    - IMF
-    - BIS
-    - methodological-limitations
-  description: Обзор использования интернет‑метрик (поисковые тренды, онлайн‑цены, настроения в новостях и соцсетях) для макроэкономического анализа, с акцентом на опера­тивное мониторинг и прогнозирование ВВП, инфляции и рынка недвижимости.
+  - russia
+  - digital-footprint
+  - internet-metrics
+  - nowcasting
+  - GDP
+  - inflation
+  - housing-market
+  - search-trends
+  - online-prices
+  - sentiment-analysis
+  - LLM
+  - Factor-MIDAS
+  - Bayesian-models
+  - central-banks
+  - IMF
+  - BIS
+  - methodological-limitations
+  description: Обзор использования интернет‑метрик (поисковые тренды, онлайн‑цены,
+    настроения в новостях и соцсетях) для макроэкономического анализа, с акцентом
+    на опера­тивное мониторинг и прогнозирование ВВП, инфляции и рынка недвижимости.
 - id: gdelt_housing_sentiment_rus
   name: GDELT индекс тональности новостного фона рынка жилья РФ (ежедневный и еженедельный)
   type: processed_timeseries
@@ -2595,7 +2640,7 @@ sources:
     script_backcast: scripts/gdelt_doc_backcast.py
     script_daily: scripts/gdelt_sentiment_index.py
     script_weekly: scripts/gdelt_sentiment_weekly.py
-  coverage: '2017-01-01 to 2026-08-28 (3502 days, 502 weeks)'
+  coverage: 2017-01-01 to 2026-08-28 (3502 days, 502 weeks)
   tags:
   - gdelt
   - sentiment
@@ -2611,10 +2656,10 @@ sources:
   description: 'Дневной и недельный индекс тональности мировых новостей по теме жилья/ипотеки
     в России (GDELT DOC 2.0 API, без BigQuery). 4 запроса (mortgage Russia, real estate
     Russia, housing Russia, mortgage sourcecountry:RS), средний AvgTone, z-score.
-    Недельный ряд выровнен по воскресеньям под Wordstat weekly для FAVAR-MIDAS.
-    Дыры: housing 2020 vol, sourcecountry:RS 2019 tone (компенсируются другими запросами).'
+    Недельный ряд выровнен по воскресеньям под Wordstat weekly для FAVAR-MIDAS. Дыры:
+    housing 2020 vol, sourcecountry:RS 2019 tone (компенсируются другими запросами).'
 - id: qwen_agent_models_housing_2026
-  name: 'Агентные модели в макроэкономике с учётом рынка жилья (Qwen AI диалог — заглушка)'
+  name: Агентные модели в макроэкономике с учётом рынка жилья (Qwen AI диалог — заглушка)
   type: ai-dialog
   date: '2026-08-28'
   url: https://chat.qwen.ai/s/t_6a586d20-0c2c-400e-a14b-b535b95b3c27
@@ -2632,7 +2677,6 @@ sources:
   description: 'Расшаренный ИИ-диалог Qwen о агентных моделях (ABM) в макроэкономике
     с рынком жилья. ЗАГЛУШКА: содержимое недоступно (API Qwen: conversation deleted),
     сохранён только заголовок и метаданные. Заполнить при повторном шаринге.'
-
 - id: rosstat_industrial_production_base2023
   name: Индексы производства по видам деятельности (РФ, базис 2023)
   type: api
@@ -2645,8 +2689,9 @@ sources:
   - okved2
   - period
   - basis
-  description: 'Индексы производства по РФ, ОКВЭД2, базисный 2023 (месячные/годовые), до 07.2026.
-    листов структура: Содержание + 3 листа индексов (к пред.мес / к среднемес.базы / к соотв.мес.прошлого года). Обновление 26.08.2026.'
+  description: 'Индексы производства по РФ, ОКВЭД2, базисный 2023 (месячные/годовые),
+    до 07.2026. листов структура: Содержание + 3 листа индексов (к пред.мес / к среднемес.базы
+    / к соотв.мес.прошлого года). Обновление 26.08.2026.'
   tags:
   - rosstat
   - industrial-production
@@ -2666,10 +2711,10 @@ sources:
   - region
   - okved2
   - period
-  description: 'Региональная панель индексов производства (субъект × месяцы с 2020) по разделам
-    BCDE и детальным ОКВЭД2. Волатильность малых регионов высокая (до 300%+ в отдельные
-    месяцы) - только SAAR или квартальное агрегирование. Не передаётся Росстатом на
-    федеральный уровень - это полный доступный разрез.'
+  description: Региональная панель индексов производства (субъект × месяцы с 2020)
+    по разделам BCDE и детальным ОКВЭД2. Волатильность малых регионов высокая (до
+    300%+ в отдельные месяцы) - только SAAR или квартальное агрегирование. Не передаётся
+    Росстатом на федеральный уровень - это полный доступный разрез.
   tags:
   - rosstat
   - industrial-production
@@ -2690,8 +2735,8 @@ sources:
   - period
   - okved2
   - measure
-  description: 'SAAR: фактически / с исключением сезонного и календарного факторов /
-    к среднемесячному базисного 2023. Готовый вход для FAVAR-MIDAS - не нужно самим
+  description: 'SAAR: фактически / с исключением сезонного и календарного факторов
+    / к среднемесячному базисного 2023. Готовый вход для FAVAR-MIDAS - не нужно самим
     настраивать X-13. Методика сглаживания Росстата (уточнить при верификации).'
   tags:
   - rosstat
@@ -2725,19 +2770,20 @@ sources:
   - first-release-bias
   - russia
 - id: rosstat_methodology_order7_2020
-  name: 'Методология индекса пром. производства (приказ Росстата №7 от 16.01.2020) - первоисточник'
+  name: Методология индекса пром. производства (приказ Росстата №7 от 16.01.2020)
+    - первоисточник
   type: methodology_document
   date: '2020-01-16'
   files:
     pdf: raw/rosstat/methodology/met_indOKVED2_prikoz7_2020.pdf
     ocr_txt: raw/rosstat/methodology/met_indOKVED2_ocr.txt
-  description: 'Официальная статистическая методология (32 стр., OCR). Ласпейрес: веса
-    1-го уровня - объём производства базисного года в средних ценах базы; далее -
-    структура ВДС базисного года из СНС (вкл. ненаблюдаемый сектор). Корзина из формы
-    1-натура-БМ (вкл. продукция ВПК, без давальческого сырья и внутреннего оборота).
+  description: 'Официальная статистическая методология (32 стр., OCR). Ласпейрес:
+    веса 1-го уровня - объём производства базисного года в средних ценах базы; далее
+    - структура ВДС базисного года из СНС (вкл. ненаблюдаемый сектор). Корзина из
+    формы 1-натура-БМ (вкл. продукция ВПК, без давальческого сырья и внутреннего оборота).
     Пропуски: временная дезагрегация; ошибки: ручное замещение; систематические уточнения:
-    экспертное редактирование 1-го релиза. Базис обновляется ~раз в 5 лет (2023 → ~2028)
-    с ретроспективным пересчётом.'
+    экспертное редактирование 1-го релиза. Базис обновляется ~раз в 5 лет (2023 →
+    ~2028) с ретроспективным пересчётом.'
   tags:
   - rosstat
   - industrial-production
@@ -2746,16 +2792,16 @@ sources:
   - okved2
   - official-methodology
 - id: rosstat_industrial_method_presentation
-  name: 'Методология расчета индекса промышленного производства (Омскстат-презентация, 2023)'
+  name: Методология расчета индекса промышленного производства (Омскстат-презентация,
+    2023)
   type: methodology_document
   date: '2023'
   files:
     pdf: raw/rosstat/methodology/metod_ipp-2023.pdf
     txt: raw/rosstat/methodology/met_ipp-2023.ru.txt
-  description: 'Презентационная версия (13 стр.): источники по формам (П-1 мес.
-    юрлица; ПМ-ПРОМ мес. малые; 1-ИП(мес) ИП; П-5(м) кварт.; 1-предприятие,
-    1-натура-БМ, МП(микро) годовые), схема расчёта, система весов, причины ревизий
-    (наглядно).'
+  description: 'Презентационная версия (13 стр.): источники по формам (П-1 мес. юрлица;
+    ПМ-ПРОМ мес. малые; 1-ИП(мес) ИП; П-5(м) кварт.; 1-предприятие, 1-натура-БМ, МП(микро)
+    годовые), схема расчёта, система весов, причины ревизий (наглядно).'
   tags:
   - rosstat
   - industrial-production
@@ -2763,7 +2809,7 @@ sources:
   - data-sources
   - forms-registry
 - id: rosstat_industrial_met_prom_2025
-  name: 'Метод. рекомендации по разработке промышленной статистики за 2025 (met_prom_2025)'
+  name: Метод. рекомендации по разработке промышленной статистики за 2025 (met_prom_2025)
   type: methodology_document
   date: '2026'
   files:
@@ -2800,9 +2846,9 @@ sources:
   - industrial-production
   - quarterly
   - favar-input
-
 - id: cbr_modeling_note_2021
-  title: 'Банк России: О подготовке сценарного макропрогноза и модельном аппарате (Могилат, Селезнев, Жабина, март 2021)'
+  title: 'Банк России: О подготовке сценарного макропрогноза и модельном аппарате
+    (Могилат, Селезнев, Жабина, март 2021)'
   type: methodology_note
   date: 2021-03
   source: cbr
@@ -2823,16 +2869,17 @@ sources:
   - garch
   description: 'Модельный аппарат ЦБ РФ (12 блоков): ССП внешнего сектора (BVAR нефть);
     КСП 2 кв. - ставки (ECM+фильтр Калмана, IRS-трансмиссия), курс (GARCH ежедневные),
-    ВВП (комбинирование ~500 моделей: сценарные+MF+AR, Жемков 2021), инфляция (по субиндексам);
-    среднесрочка - КПМ новокейнсианская (разрывы, Тейлор) + 4 DSGE; BVAR денежно-кредитные
-    показатели; МФП квартальная (4 сектора, дефляторы, КОД/ECM кредит); сателлиты
-    (перенос курса в инфляцию по регионам - Жураковский и др. 2021). Для FAVAR-MIDAS
-   	nowcasting жилья: методика комбинирования ВВП (+500 моделей, факторы из
-    высокий-частотных индикаторов 3 групп) + Жураковский 2021 (региональная разнородность).
+    ВВП (комбинирование ~500 моделей: сценарные+MF+AR, Жемков 2021), инфляция (по
+    субиндексам); среднесрочка - КПМ новокейнсианская (разрывы, Тейлор) + 4 DSGE;
+    BVAR денежно-кредитные показатели; МФП квартальная (4 сектора, дефляторы, КОД/ECM
+    кредит); сателлиты (перенос курса в инфляцию по регионам - Жураковский и др. 2021).
+    Для FAVAR-MIDAS nowcasting жилья: методика комбинирования ВВП (+500 моделей, факторы
+    из высокий-частотных индикаторов 3 групп) + Жураковский 2021 (региональная разнородность).
     18 стр.'
-
 - id: imf_wp26_177_housing_affordability_europe
-  title: 'IMF WP/26/177: Locked Out — Drivers and Economic Implications of Declining Housing Affordability in Europe (Beyer, Biljanovska, Fotiou, Maneely, Toscani; Aug 2026)'
+  title: 'IMF WP/26/177: Locked Out — Drivers and Economic Implications of Declining
+    Housing Affordability in Europe (Beyer, Biljanovska, Fotiou, Maneely, Toscani;
+    Aug 2026)'
   type: working_paper
   date: 2026-08
   url: https://www.imf.org/-/media/files/publications/wp/2026/english/wpiea2026177-source-pdf.ashx
@@ -2854,31 +2901,33 @@ sources:
   - construction-labor-shortage
   - policy-recommendations
   - russia-comparison-candidate
-  description: 'Три блока анализа: (1) SVAR: в посленедogeneous эпохе драйвер цен жилья в ЕС - шоки
-    предложения (дефицит рабочей силы в стройке > финансовых ограничений), а не кредит, как до ПФК.
-    (2) EU-SILC: бремя на низкодоходных арендаторах в городах; вероятность перехода аренда->собственность
-    упала вдвое против до-ПФК для уязвимых групп. (3) Мобильность труда: низкая доступность жилья
-    блокирует ВЕЗДЕЗВЕСТНЫЙ приток в растущие регионы (асимметрия: вход ограничен, выход не
-    чувствителен); ~1 млн потерянных переездов в ЕС за декаду. Метод: BVAR знаковые ограничения,
-    EU-SILC панели, региональные регрессии Decressin-Fatas (1995) с взаимодействием шок-доступность.
-    Политика: наращивание предложения (земля, разрешения, финансирование застройщиков, кадры стройки).'
-
+  description: 'Три блока анализа: (1) SVAR: в посленедogeneous эпохе драйвер цен
+    жилья в ЕС - шоки предложения (дефицит рабочей силы в стройке > финансовых ограничений),
+    а не кредит, как до ПФК. (2) EU-SILC: бремя на низкодоходных арендаторах в городах;
+    вероятность перехода аренда->собственность упала вдвое против до-ПФК для уязвимых
+    групп. (3) Мобильность труда: низкая доступность жилья блокирует ВЕЗДЕЗВЕСТНЫЙ
+    приток в растущие регионы (асимметрия: вход ограничен, выход не чувствителен);
+    ~1 млн потерянных переездов в ЕС за декаду. Метод: BVAR знаковые ограничения,
+    EU-SILC панели, региональные регрессии Decressin-Fatas (1995) с взаимодействием
+    шок-доступность. Политика: наращивание предложения (земля, разрешения, финансирование
+    застройщиков, кадры стройки).'
 - id: domrf_price_index_regions
-  name: 'Индекс цен на первичном рынке жилья ДОМ.РФ (по регионам, сделки Росреестра)'
+  name: Индекс цен на первичном рынке жилья ДОМ.РФ (по регионам, сделки Росреестра)
   type: api
-  url: 'https://дом.рф/price-index/ (API: POST https://дом.рф/api/v2/priceindex/living/mainchart/, формат дат YYYY.MM.DD)'
+  url: 'https://дом.рф/price-index/ (API: POST https://дом.рф/api/v2/priceindex/living/mainchart/,
+    формат дат YYYY.MM.DD)'
   format: json->csv
   local_path: raw/domrf/price_index/domrf_priceindex_all_regions.csv
   table: domrf_price_index
   primary_key:
   - region
   - month
-  description: 'Месячный индекс цен на новостройки (база 100 = январь 2021), 75 регионов, 2021-01..2026-07
-    (5025 строк). Метод: средневзвешенное изм. медианных цен по 6 кластерам (2 класса x 3 типа
-    квартир), веса = число сделок. Основа - сделки Росреестра (не предложения!). Композиционно
-    чистый. Также в raw: domrf_changes.xlsx (м/м, г/г, YTD), domrf_deals.xlsx (число сделок
-    по регионам). API эндпоинты: /api/v2/priceindex/living/mainchart/ (POST, полный ряд),
-    export/changes/ (GET, xlsx), export/deals/ (GET, xlsx).'
+  description: 'Месячный индекс цен на новостройки (база 100 = январь 2021), 75 регионов,
+    2021-01..2026-07 (5025 строк). Метод: средневзвешенное изм. медианных цен по 6
+    кластерам (2 класса x 3 типа квартир), веса = число сделок. Основа - сделки Росреестра
+    (не предложения!). Композиционно чистый. Также в raw: domrf_changes.xlsx (м/м,
+    г/г, YTD), domrf_deals.xlsx (число сделок по регионам). API эндпоинты: /api/v2/priceindex/living/mainchart/
+    (POST, полный ряд), export/changes/ (GET, xlsx), export/deals/ (GET, xlsx).'
   tags:
   - domrf
   - price-index
@@ -2889,9 +2938,11 @@ sources:
   - nowcasting-target
   - housing-prices
 - id: rosstat_housing_avg_price_quarterly
-  name: 'Росстат: средние цены 1 кв.м на первичном/вторичном рынке по регионам (квартальные, 2016-2026)'
+  name: 'Росстат: средние цены 1 кв.м на первичном/вторичном рынке по регионам (квартальные,
+    2016-2026)'
   type: local_file
-  path: raw/rosstat/socioeconomic_regions/info-stat-2026/info-stat-06-2026/10 цены производителей/10-05 цены на первичном и вторичном рынках жилья.xls
+  path: raw/rosstat/socioeconomic_regions/info-stat-2026/info-stat-06-2026/10 цены
+    производителей/10-05 цены на первичном и вторичном рынках жилья.xls
   format: xls
   table: rosstat_housing_avg_price_q
   primary_key:
@@ -2901,10 +2952,10 @@ sources:
   - quarter
   description: 'Средние цены предложения 1 кв.м по 96 субъектам, конец квартала, 2016Q1-2026Q2
     (7886 строк: primary+secondary). Источник: сборник Социально-экономическое положение
-    России (инфостат 06-2026). Плюс годовые средние и индексы цен (2001-2024) уже в
-    regions_panel.db (indicator LIKE %рынке жилья%). Квартальные ИНДЕКСЫ цен по регионам
-    (ЕМИСС 1.29.9 и dbinet.cgi?pl=1905005) за бот-защитой/удалены - только годовые +
-    средние цены. Для длинного месячного ряда - ДОМ.РФ индекс (domrf_price_index_regions).'
+    России (инфостат 06-2026). Плюс годовые средние и индексы цен (2001-2024) уже
+    в regions_panel.db (indicator LIKE %рынке жилья%). Квартальные ИНДЕКСЫ цен по
+    регионам (ЕМИСС 1.29.9 и dbinet.cgi?pl=1905005) за бот-защитой/удалены - только
+    годовые + средние цены. Для длинного месячного ряда - ДОМ.РФ индекс (domrf_price_index_regions).'
   tags:
   - rosstat
   - housing-prices
@@ -2914,98 +2965,219 @@ sources:
   - primary-market
   - secondary-market
 - id: cbr_qpm_ddkp_code
-  name: 'КПМ ДДКП Банка России — программный код квартальной прогнозной модели с рынком труда'
+  name: КПМ ДДКП Банка России — программный код квартальной прогнозной модели с рынком
+    труда
   type: model_code
-  authors: ['Банк России, Департамент денежно-кредитной политики']
+  authors:
+  - Банк России, Департамент денежно-кредитной политики
   year: 2026
   path: raw/cbr/qpm_ddkp/
-  files: '5 .mod (Dynare/MATLAB), proc/, 5 наборов IRF (PNG), инструкция (PDF+txt), README'
+  files: 5 .mod (Dynare/MATLAB), proc/, 5 наборов IRF (PNG), инструкция (PDF+txt),
+    README
   url: cbr.ru (архив к статье «Квартальная прогнозная модель России с рынком труда»)
-  tags: [cbr, dsge, dynare, quarterly-model, monetary-policy, labor-market, term-structure, fiscal, irf, matlab, favar-reference]
-  notes: 'Рабочая модель ЦБ для среднесрочного прогноза: ядро 266 ур-й + term structure + fiscal + external; калибровка parameters_main. Housing-блока нет. Использование: сравнительная калибровка MIDAS-IRF, wage/labor факторы для FAVAR; запуск — Octave+Dynare (на Mac M-series реально).'
+  tags:
+  - cbr
+  - dsge
+  - dynare
+  - quarterly-model
+  - monetary-policy
+  - labor-market
+  - term-structure
+  - fiscal
+  - irf
+  - matlab
+  - favar-reference
+  notes: 'Рабочая модель ЦБ для среднесрочного прогноза: ядро 266 ур-й + term structure
+    + fiscal + external; калибровка parameters_main. Housing-блока нет. Использование:
+    сравнительная калибровка MIDAS-IRF, wage/labor факторы для FAVAR; запуск — Octave+Dynare
+    (на Mac M-series реально).'
 - id: rosstat_nonresidential_buildings
-  name: 'Ввод в действие нежилых зданий (Росстат): годовые ряды и оперативные данные 2026'
+  name: 'Ввод в действие нежилых зданий (Росстат): годовые ряды и оперативные данные
+    2026'
   type: dataset
   year: 2026
-  path: 'DB rosreestr_deals.db: rosstat_nonres_buildings (годовые, ежегодник РСЕ-2025 табл. 18.6); rosstat_buildings_vvod (оперативно, vv-zd-oper_2kv-2026.xlsx — помесячно-накопительно с разбивкой: промышленные/сельскохозяйственные/коммерческие/административные/учебные/здравоохранение/другие)'
+  path: 'DB rosreestr_deals.db: rosstat_nonres_buildings (годовые, ежегодник РСЕ-2025
+    табл. 18.6); rosstat_buildings_vvod (оперативно, vv-zd-oper_2kv-2026.xlsx — помесячно-накопительно
+    с разбивкой: промышленные/сельскохозяйственные/коммерческие/административные/учебные/здравоохранение/другие)'
   url: rosstat.gov.ru (оперативно) + Ежегодник «Строительство в России»/РСЕ 2025
-  tags: [rosstat, construction, nonresidential-buildings, commercial, industrial, ввод-зданий, стройматериалы, favar-input]
-  notes: 'Нежилые: 2000 = 8.3 млн м² (8.9 тыс. зд.), 2010 = 21.2 (14.8), 2022 = 33.5 (21.1), 2023 = 35.7 (19.7), 2024 = 38.4 млн м² (21.3 тыс., рекорд площади), 2026 H1 = 14.72 млн м² (8901 зд., +11% к H1-2025 условно). Структура 2024: коммерческие 9.5, промышленные 6.6, другие 8.8, учебные 6.4.'
+  tags:
+  - rosstat
+  - construction
+  - nonresidential-buildings
+  - commercial
+  - industrial
+  - ввод-зданий
+  - стройматериалы
+  - favar-input
+  notes: 'Нежилые: 2000 = 8.3 млн м² (8.9 тыс. зд.), 2010 = 21.2 (14.8), 2022 = 33.5
+    (21.1), 2023 = 35.7 (19.7), 2024 = 38.4 млн м² (21.3 тыс., рекорд площади), 2026
+    H1 = 14.72 млн м² (8901 зд., +11% к H1-2025 условно). Структура 2024: коммерческие
+    9.5, промышленные 6.6, другие 8.8, учебные 6.4.'
 - id: rosstat_production_capacity_vvod
-  name: 'Ввод в действие производственных мощностей (Росстат, оперативные данные 2026)'
+  name: Ввод в действие производственных мощностей (Росстат, оперативные данные 2026)
   type: dataset
   year: 2026
   path: 'DB rosreestr_deals.db: rosstat_production_capacity_vvod; из vv-mosh-oper_2kv-2026.xlsx'
   url: rosstat.gov.ru опер.данные («Введено в действие производственных мощностей»)
-  tags: [rosstat, construction, production-capacity, industrial, monthly-cumulative, midas-predictor, cement, power-generation, favar-input]
-  notes: '371 строка: мощности по видам (с/х помещения, теплицы, зерносушилки, скважины, цемент 650 тыс.т H1-2026, ЛЭП, дороги, ГЭС/ВИЭ-энергия) с разбивкой новое строительство/реконструкция. Частота — квартальная (накопительно с начала года). Прокси промышленного стройинвеста для MIDAS.'
-
+  tags:
+  - rosstat
+  - construction
+  - production-capacity
+  - industrial
+  - monthly-cumulative
+  - midas-predictor
+  - cement
+  - power-generation
+  - favar-input
+  notes: '371 строка: мощности по видам (с/х помещения, теплицы, зерносушилки, скважины,
+    цемент 650 тыс.т H1-2026, ЛЭП, дороги, ГЭС/ВИЭ-энергия) с разбивкой новое строительство/реконструкция.
+    Частота — квартальная (накопительно с начала года). Прокси промышленного стройинвеста
+    для MIDAS.'
 - id: rosstat_prikaz702_stroit_methodology
-  name: 'Официальная статистическая методология расчета выпуска и ИФО повиду деятельности «Строительство» (приказ Росстата №702 от 28.12.2023)'
+  name: Официальная статистическая методология расчета выпуска и ИФО повиду деятельности
+    «Строительство» (приказ Росстата №702 от 28.12.2023)
   type: methodology
   year: 2023
-  path: 'raw/rosstat/methodology/rosstat_prikaz702_stroit_28.12.2023.pdf + met702_ocr.txt'
-  tags: [rosstat, methodology, construction, GDP-output, IFO, deflator, OKBED-F, prikaz702, midas-target-doc]
-  notes: '13 стр. Ядро: выпуск = Cs+Cr+Mzp+BB+Or+EXP-IMP по 3 секторам (нефинанс. корпорации, гос. управление, дом. хозяйства). Источники: все статформы (П-1, МП-сп, 1-ИП и др.) + инвестиции в осн.капитал + платежный баланс ЦБ. Используется СНС-управлением (Зарубина) для ВВП. Прямой документ-двойник целевого ряда construction_volume_monthly_rf.'
-
+  path: raw/rosstat/methodology/rosstat_prikaz702_stroit_28.12.2023.pdf + met702_ocr.txt
+  tags:
+  - rosstat
+  - methodology
+  - construction
+  - GDP-output
+  - IFO
+  - deflator
+  - OKBED-F
+  - prikaz702
+  - midas-target-doc
+  notes: '13 стр. Ядро: выпуск = Cs+Cr+Mzp+BB+Or+EXP-IMP по 3 секторам (нефинанс.
+    корпорации, гос. управление, дом. хозяйства). Источники: все статформы (П-1, МП-сп,
+    1-ИП и др.) + инвестиции в осн.капитал + платежный баланс ЦБ. Используется СНС-управлением
+    (Зарубина) для ВВП. Прямой документ-двойник целевого ряда construction_volume_monthly_rf.'
 - id: rosstat_prikaz544_reglament
-  name: 'Регламент оценки, корректировки и публикации данных наблюдения за строительством и инвестициями (приказ №544, 26.09.2016)'
+  name: Регламент оценки, корректировки и публикации данных наблюдения за строительством
+    и инвестициями (приказ №544, 26.09.2016)
   type: methodology
   year: 2016
-  path: 'raw/rosstat/methodology/rosstat_prikaz544_reglament_26.09.2016.pdf + met544_ocr.txt'
-  tags: [rosstat, methodology, publication-schedule, revisions, construction, investment, data-quality]
-  notes: '7 стр. Регламент оценки/корректировки/публикации данных по строительству и инвест. в основной капитал — расписание публикации, правила корректировки годовых итогов, пересмотры. База для понимания лагов и ревизий СМР-ряда.'
-
+  path: raw/rosstat/methodology/rosstat_prikaz544_reglament_26.09.2016.pdf + met544_ocr.txt
+  tags:
+  - rosstat
+  - methodology
+  - publication-schedule
+  - revisions
+  - construction
+  - investment
+  - data-quality
+  notes: 7 стр. Регламент оценки/корректировки/публикации данных по строительству
+    и инвест. в основной капитал — расписание публикации, правила корректировки годовых
+    итогов, пересмотры. База для понимания лагов и ревизий СМР-ряда.
 - id: rosstat_stroit_methodology_2015
-  name: 'Методология по строительству 2015 (+изменения 2016, 2018) и форма C-1'
+  name: Методология по строительству 2015 (+изменения 2016, 2018) и форма C-1
   type: methodology
   year: 2015
-  path: 'raw/rosstat/methodology/{Метод_строит_2015.txt, Изменения_26.04.2018.txt, Изменения_28.12.2016.txt, Ukaz_form_C-1.pdf, Stroi_met.docx}'
-  tags: [rosstat, methodology, construction, C-1-form, prikaz, midas-target-doc, revisions]
-  notes: 'Методологические основы 2015 (61k знаков) + 2 пакета правок: 28.12.2016 (2110 знаков), 26.04.2018 (7101 знаков). Предшественник №702. Приложение — форма C-1 (сведения о вводе зданий).'
+  path: raw/rosstat/methodology/{Метод_строит_2015.txt, Изменения_26.04.2018.txt,
+    Изменения_28.12.2016.txt, Ukaz_form_C-1.pdf, Stroi_met.docx}
+  tags:
+  - rosstat
+  - methodology
+  - construction
+  - C-1-form
+  - prikaz
+  - midas-target-doc
+  - revisions
+  notes: 'Методологические основы 2015 (61k знаков) + 2 пакета правок: 28.12.2016
+    (2110 знаков), 26.04.2018 (7101 знаков). Предшественник №702. Приложение — форма
+    C-1 (сведения о вводе зданий).'
 - id: rosstat_stroit_kompleks_2025
-  name: 'Строительный комплекс РФ в 2025 году (аналитический доклад Росстата, 28 стр.)'
+  name: Строительный комплекс РФ в 2025 году (аналитический доклад Росстата, 28 стр.)
   type: report
   year: 2026
-  path: 'raw/rosstat/reports/Stroit_kompleks_2025.{pdf,txt}'
-  tags: [rosstat, construction, annual-review, SRM, housing, IZHS, regions, wages, midas-target]
-  notes: 'СМР 2025: 18815.1 млрд руб (+2.5% реальн.); динамика 2020-2025: 9686/11048/13149/15244/17062/18815. Жильё: 1341.6 тыс. квартир, 108.1 млн кв.м (100.3%), ИЖС-доля 58.8%. Занятость 2497.2 тыс., зп 100853 руб (+17.8%).'
+  path: raw/rosstat/reports/Stroit_kompleks_2025.{pdf,txt}
+  tags:
+  - rosstat
+  - construction
+  - annual-review
+  - SRM
+  - housing
+  - IZHS
+  - regions
+  - wages
+  - midas-target
+  notes: 'СМР 2025: 18815.1 млрд руб (+2.5% реальн.); динамика 2020-2025: 9686/11048/13149/15244/17062/18815.
+    Жильё: 1341.6 тыс. квартир, 108.1 млн кв.м (100.3%), ИЖС-доля 58.8%. Занятость
+    2497.2 тыс., зп 100853 руб (+17.8%).'
 - id: atlantafed_2025_12_model_aggregation
-  title: 'On Model Aggregation and Forecast Combination (Gospodinov and Maasoumi 2025, FRB Atlanta WP 2025-12)'
+  title: On Model Aggregation and Forecast Combination (Gospodinov and Maasoumi 2025,
+    FRB Atlanta WP 2025-12)
   file: papers/atlantafed_2025_12_model_aggregation.md
-  source_pdf: 'https://www.atlantafed.org/-/media/Project/Atlanta/FRBA/Documents/research/publication/working-paper/2025/10/09/12-on-model-aggregation-and-forecast-combination.pdf'
-  authors: [Nikolay Gospodinov, Esfandiar Maasoumi]
+  source_pdf: https://www.atlantafed.org/-/media/Project/Atlanta/FRBA/Documents/research/publication/working-paper/2025/10/09/12-on-model-aggregation-and-forecast-combination.pdf
+  authors:
+  - Nikolay Gospodinov
+  - Esfandiar Maasoumi
   year: 2025
-  publisher: 'Federal Reserve Bank of Atlanta'
+  publisher: Federal Reserve Bank of Atlanta
   doi: 10.29338/wp2025-12
   type: working_paper
   language: en
-  tags: [forecast-combination, entropy, hellinger-distance, ces-aggregator, model-uncertainty, robust-policy, bregman-loss, inflation, nowcasting, model-averaging]
-  topics: ['комбинирование прогнозов', 'модельная неопределённость', 'наукастинг']
+  tags:
+  - forecast-combination
+  - entropy
+  - hellinger-distance
+  - ces-aggregator
+  - model-uncertainty
+  - robust-policy
+  - bregman-loss
+  - inflation
+  - nowcasting
+  - model-averaging
+  topics:
+  - комбинирование прогнозов
+  - модельная неопределённость
+  - наукастинг
   date_added: 2026-08-30
 - id: stlouisfed_2026_018_repec
-  title: 'RePEc, a Tool and Open Dataset for and about Economists (Schlaack and Zimmermann 2026, FRB St. Louis WP 2026-018)'
+  title: RePEc, a Tool and Open Dataset for and about Economists (Schlaack and Zimmermann
+    2026, FRB St. Louis WP 2026-018)
   file: raw/papers/stlouisfed_2026_018_repec.pdf
   summary: papers/stlouisfed_2026_018_repec_summary.md
-  authors: [Anna Oates Schlaack, Christian Zimmermann]
+  authors:
+  - Anna Oates Schlaack
+  - Christian Zimmermann
   year: 2026
-  publisher: 'Federal Reserve Bank of St. Louis'
+  publisher: Federal Reserve Bank of St. Louis
   type: working_paper
   language: en
-  tags: [repec, dataset, sociology-of-economics, bibliometrics, open-data]
-  topics: ['библиометрия', 'экономика труда']
+  tags:
+  - repec
+  - dataset
+  - sociology-of-economics
+  - bibliometrics
+  - open-data
+  topics:
+  - библиометрия
+  - экономика труда
   date_added: 2026-08-30
 - id: rybacki_serwa_2021_cejeme
-  title: 'What Makes a Successful Scientist in a Central Bank? Evidence From RePEc (Rybacki and Serwa 2021, CEJEME 13(3))'
+  title: What Makes a Successful Scientist in a Central Bank? Evidence From RePEc
+    (Rybacki and Serwa 2021, CEJEME 13(3))
   file: raw/papers/rybacki_serwa_2021_cejeme.pdf
   summary: papers/rybacki_serwa_2021_summary.md
-  authors: [Jakub Rybacki, Dobromil Serwa]
+  authors:
+  - Jakub Rybacki
+  - Dobromil Serwa
   year: 2021
   publisher: CEJEME
   type: journal_article
   language: en
-  tags: [repec, bibliometrics, central-banks, h-index, poisson-regression, russia]
-  topics: ['наукометрия', 'центральные банки']
+  tags:
+  - repec
+  - bibliometrics
+  - central-banks
+  - h-index
+  - poisson-regression
+  - russia
+  topics:
+  - наукометрия
+  - центральные банки
   date_added: 2026-08-30
 - id: openalex_housing_russia_slice
   title: 'OpenAlex slice: housing+Russia works 2011-2025 (216 items, RU institutions)'
@@ -3013,6 +3185,40 @@ sources:
   year: 2026
   type: processed_timeseries
   language: en
-  tags: [openalex, bibliometrics, housing, russia, institutions, authors]
-  topics: ['наукометрия', 'жилищный рынок']
+  tags:
+  - openalex
+  - bibliometrics
+  - housing
+  - russia
+  - institutions
+  - authors
+  topics:
+  - наукометрия
+  - жилищный рынок
   date_added: 2026-08-30
+- id: timofeeva_2026_nns_investment_cycle
+  title: Диагностика отклонений инвестиционного цикла объектов незавершенного строительства
+    в государственном секторе (Тимофеева 2026, Вестник ИЭ РАН 2026-4)
+  file: raw/papers/timofeeva_2026_vestnik_ie_ran.pdf
+  summary: papers/timofeeva_2026_nns_investment_cycle.md
+  authors:
+  - Ольга Ивановна Тимофеева
+  year: 2026
+  publisher: Вестник Института экономики РАН
+  doi: 10.52180/2073-6487_2026_4_48_69
+  type: journal_article
+  language: ru
+  tags:
+  - unfinished-construction
+  - budget-investments
+  - investment-cycle
+  - diagnostics
+  - regions
+  - fiscal-efficiency
+  - housing
+  - flyvbjerg
+  topics:
+  - незавершённое строительство
+  - бюджетные инвестиции
+  - инвестиционный цикл
+  date_added: '2026-08-31'

@@ -3222,3 +3222,29 @@ sources:
   - бюджетные инвестиции
   - инвестиционный цикл
   date_added: '2026-08-31'
+- id: lyziak_pedersen_stanislawska_2022_nbp347
+  title: Consumer inflation expectations and regional price changes (Łyziak, Pedersen, Stanisławska 2022, NBP WP 347)
+  file: raw/papers/lyziak_pedersen_stanislawska_2022.pdf
+  summary: papers/lyziak_pedersen_stanislawska_2022.md
+  authors:
+  - Tomasz Łyziak
+  - Michael Pedersen
+  - Ewa Stanisławska
+  year: 2022
+  publisher: Narodowy Bank Polski (NBP Working Paper No. 347)
+  issn: 2084-624X
+  url: https://static.nbp.pl/publikacje/materialy-i-studia/347_en.pdf
+  type: working_paper
+  language: en
+  tags:
+  - inflation-expectations
+  - regional-prices
+  - sticky-information
+  - learning-from-experience
+  - household-surveys
+  - disagreement
+  - monetary-policy
+  topics:
+  - инфляционные ожидания
+  - региональные цены
+  date_added: '2026-08-31'

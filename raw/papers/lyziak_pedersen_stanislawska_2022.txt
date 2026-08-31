@@ -1,0 +1,2134 @@
+NBP Working Paper No. 347
+Consumer inflation expectations 
+and regional price changes
+Tomasz Łyziak, Michael Pedersen, Ewa Stanisławska
+
+NBP Working Paper No. 347
+Consumer inflation expectations 
+and regional price changes
+Tomasz Łyziak, Michael Pedersen, Ewa Stanisławska
+Narodowy Bank Polski
+Warsaw 2022
+
+Published by: 
+Narodowy Bank Polski 
+Education & Publishing Department 
+ul. Świętokrzyska 11/21 
+00-919 Warszawa, Poland  
+www.nbp.pl
+ISSN 2084-624X
+© Copyright Narodowy Bank Polski 2022
+Tomasz Łyziak – Narodowy Bank Polski
+Michael Pedersen – Universidad Adolfo Ibáñez Business School
+Ewa Stanisławska – Narodowy Bank Polski
+The views expressed in this study reflect the authors’ opinions and are not necessarily those 
+of Narodowy Bank Polski.
+
+Contents
+Abstract	
+4
+1. Introduction	
+5
+2. Data and descriptive statistics	
+9
+3. Regional inflation and disagreement in inflation expectations	
+12
+4. Regional inflation and the level of inflation expectations	
+16
+4.1. Sticky information model	
+16
+4.2. Learning-from-experience model	
+19
+5. Final comments	
+22
+References	
+23
+Appendix A. SCE survey	
+26
+Appendix B. Descriptive statistics	
+27
+
+Narodowy Bank Polski
+4
+Abstract
+Abstract 
+Employing micro and aggregate observations on inflation expectations, 
+we analyze the extent to which US consumers are affected by regional price 
+swings when reporting their predictions of inflation. We begin with the 
+aggregate data analysis based on a generalized sticky information model. 
+The results indicate that regional differences in inflation rates do exert 
+a statistically significant impact on disagreement in inflation expectations 
+among consumers. However, the quantitative importance of this effect is small. 
+The second part of the analysis employs micro survey observations to assess the 
+importance of regional prices in the formation of inflation expectations. This 
+is done, firstly, by considering a framework in which information is sticky and, 
+secondly, in a context where consumer’s experience of inflation matters when 
+forming expectations. We find that regional rather than national inflation rates 
+affect consumers’ views on inflation in short- and medium-term horizon.  
+ 
+ 
+JEL: C23, E31, E58. 
+Keywords: Inflation, consumer expectations, experience, sticky information, local 
+prices. 
+ 
+ 
+
+5
+NBP Working Paper No. 347
+Chapter 1
+1. Introduction 
+For the conduct of economic policies, expectations of economic agents are important 
+inputs that must be considered. Academic researchers (e.g., Sargent, 1982; Blinder, 2000; 
+Woodford, 2003) have recognized this and so have monetary policy makers (e.g., 
+Bernanke, 2007; Yellen, 2015; Draghi, 2018). As expressed by Bernanke (2013): 
+“… expectations matter so much that a central bank may be able to help make policy 
+more effective by working to shape those expectations.” and Yellen (2016): “… many 
+central banks have sought additional ways to stimulate their economies, including 
+adopting policies that are directly aimed at influencing expectations of future interest 
+rates and inflation.”     
+The analysis in the paper at hand focuses on consumers’ inflation expectations, which are 
+likely to affect their decisions to consume and thereby the output growth and aggregate 
+price developments. We employ the Survey of Consumer Expectations (SCE) conducted 
+by the Federal Reserve Bank of New York (FRBNY) and the Survey of Consumers made 
+by the University of Michigan (MSC) to explore which factors affect the way households 
+form inflation expectations and thereby to get a better understanding of the household-
+expectation channel in the monetary transmission mechanism. Particularly we are 
+interested in how developments of local prices affect consumer views on future 
+developments of the inflation rate.  
+Despite the important role of consumers’ inflation expectations for actual inflation 
+developments (e.g., Coibion and Gorodnichenko, 2015; Friedrich, 2016), the knowledge 
+of the formation process is still limited. Some studies (e.g., Johannsen, 2014; Malmendier 
+and Nagel, 2016) focus on the role of life-time experienced inflation in the expectation 
+formation process, but with the development of detailed surveys of households’ 
+expectations, and the publication of micro-level data, it has become possible for 
+researchers to investigate the impact of heterogeneity on expectations. The literature 
+in this respect is scarce, even though the issue is addressed in a couple of recently 
+
+Narodowy Bank Polski
+6
+published papers. Diamond et al. (2020) apply data from a Japanese consumer survey and 
+argue that inflation expectations increase with age, while Bachmann et al. (2021) 
+document the presence of partisan bias in US inflation expectations.  
+Our analysis suggests that regional differences in inflation rates affect the formation 
+of consumers’ inflation expectations. The results based on a generalized version of the 
+sticky-information model estimated on aggregate MSC data indicate that disagreement 
+among consumers, given by cross-sectional variance of their inflation expectations, can 
+be partially attributed to differences in inflation rates across US regions. Additionally, 
+using micro data from the CSE we find that the regional inflation rates, as opposed to 
+country-wide observations, affect consumer inflation expectations. 
+Relation to existing literature. The present analysis builds mainly on two observations 
+in the expectation-formation literature. One demonstrates how consumers’ personal 
+experiences matter for how they answer questions with respect to the future inflation rate 
+and another argues that information is sticky. We employ these observations and argue 
+that consumers form their inflation expectations based on the prices they observe locally. 
+Sticky information models, discussed by e.g., Mankiw and Reis (2002, 2006), where 
+agents do not update their information instantaneously, have been successful in 
+explaining the dynamics of output and inflation. The microeconomic foundations for 
+these models have been elaborated by Carroll (2003, 2006), in his epidemiological model 
+of expectations. He argues that US survey data on inflation expectations are consistent 
+with a model where only some of the households use the expectations of experts. The rest 
+of them use past expectations as they find it costly to update their information. 
+Using the inflation expectations of MSC, Branch (2007) claims that the formation of these 
+expectations is consistent with a sticky information model with a time-varying 
+distribution structure. Lanne et al. (2009) show that these expectations are consistent with 
+a simpler model of the same type, when a large part of the households form their opinions 
+using the most recent inflation rate and not the expert forecast. The sticky information 
+model has also shown to be consistent with inflation expectations outside the US, e.g., 
+
+7
+NBP Working Paper No. 347
+Introduction
+by Döpke et al. (2008), who find support for this model with European data (France, 
+Germany, Italy, and UK).    
+Mankiw et al. (2003) explore disagreement about inflation expectations and find that 
+a sticky information model, where some agents employ outdated information to form 
+expectations, can explain central tendency and dispersion of US inflation expectations. 
+In the present paper we also explore the disagreement dimension by adopting the 
+framework of Łyziak and Sheng (2018), which allows for analyzing several sources 
+of disagreement in inflation expectations.  
+As a part of our analysis, we also explore how consumers’ personal experiences affect 
+their inflation expectations. Johannsen (2014) constructs household specific inflation 
+rates by calculating separate consumption bundles with data from the Consumer 
+Expenditure Survey (CES) conducted by the Bureau of Labor Statistics (BLS). 
+Employing survey data on inflation expectations from the MSC, he shows that 
+demographic groups with higher dispersion in experienced inflation also disagree more 
+about the future rate. Also applying the MSC, Madeira and Zafar (2015) argue that life-
+time experience of inflation has impact on one-year-ahead expectations, while public 
+information is more relevant for those of longer horizons. Malmendier and Nagel (2016) 
+also find evidence that life-time inflation experience mattes for the formation of inflation 
+expectations. With 57 years of individual MSC expectations, they find significant 
+differences across consumers with different age in periods with high inflation volatility. 
+The experienced inflation seems to have a persistent role in the formation of expectation. 
+In a recent study, Goldfayn-Frank and Wohlfart (2020) document that East Germans 
+expect higher rates than West Germans long time after the German reunification, which, 
+they argue, is due to the experienced inflation shock after the reunion.  
+Another type of experience, which has attracted less attention in the literature, regards 
+what agents feel in the everyday life. Bruine de Bruin et al. (2011) present two studies, 
+where they ask participants to form inflation expectations under different scenarios. 
+The results show that individuals asked to recall a specific price change reported more 
+
+Narodowy Bank Polski
+8
+extreme one-year-ahead inflation expectation, and more disagreement, than those who 
+were asked to recall average changes. It also turned out that, even when individuals were 
+asked not to recall any specific price changes, more than half of them did so anyway when 
+forming their one-year-ahead inflation expectations. D’Acunto et al. (2019) analyze US 
+grocery shopping observations and find that consumers rely on these prices when forming 
+the inflation expectations. 
+The rest of the paper. The remainder of the paper is structured as follows. The next 
+section describes the data employed in the empirical analysis. Section 3 presents the 
+analysis of disagreement made with aggregated data, while section 4 discusses the extent 
+to which regional price changes matter for the formation of consumers’ inflation 
+expectations. The latter analysis is based on observations of individual expectations. Final 
+comments are included in section 5. 
+ 
+
+9
+NBP Working Paper No. 347
+Chapter 2
+2. Data and descriptive statistics 
+There are four main sources of the data employed in the empirical analysis. Time series 
+observations of inflation rates, national and regional, are from the BLS, and expert 
+forecast are measured by the Survey of Professional Forecasters (SPF) conducted by the 
+Federal Reserve Bank of Philadelphia. For the analysis of disagreement, which is made 
+with aggregated observations, we use data of MSC from the University of Michigan, 
+while panel observations are from SCE of the FRBNY. The reason for applying survey 
+data from different sources is that the MSC is available for a longer period, while SCE 
+has a rotating panel structure and provides more details on characteristics of respondents. 
+Time series observations. To measure national and regional price changes, we employ 
+BLS data for headline and core inflation as well as food, energy, and gasoline prices. 
+Descriptive statistics are reported in Tables B2 and B3 in Appendix B. The times series 
+show some heterogeneity across regions, but without statistically significant differences 
+in the averages. From MSC and SPF we utilize quarterly averages calculated with 
+individual replies to the one-year-ahead inflation expectations. The sample period starts 
+in 1981Q3, and it ends in 2021Q1. For dispersions we employ variances. Descriptive 
+statistics are shown in Table B4 in Appendix B. 
+Panel observations. We apply individual observations from FRBNY SCE, and our 
+database contains observations from June 2013 to December 2019, a total of more than 
+100,000 observations.1 The questions of interest are inflation expectations twelve and 36 
+months ahead2 and Table 1 reports some descriptive statistics on the replies across 
+months.  
+ 
+ 
+1 Appendix A presents a brief description of the survey. 
+2 The formulations of the questions are “Over the next 12 months, I expect the rate of [inflation/deflation] 
+to be __%” and “Over the 12-month period between [Month, Year - 24 months from survey date] and 
+[Month, Year - 36 months from survey date], I expect the rate of [inflation/deflation] to be ___ % “ 
+ 
+
+Narodowy Bank Polski
+10
+ 
+Table 1. Descriptive statistics on inflation expectations, SCE survey  
+(2013M6 – 2019M12) 
+One-year-ahead 
+ 
+#obs 
+Min 
+P10 
+P25 
+P50 
+P75 
+P90 
+Max 
+p50 
+1,308  
+-100.0  
+ 2.0  
+2.0  
+3.0  
+5.0  
+10.0  
+65.0  
+avg 
+1,313  
+-77.6  
+0.6  
+2.0  
+3.1  
+5.4  
+12.7  
+281.6  
+sd 
+79  
+16.5  
+0.7  
+0.0  
+0.3  
+0.8  
+2.2  
+1,267.5  
+min 
+1,171  
+-100.0  
+-2.0  
+2.0  
+3.0  
+5.0  
+10.0  
+65.0  
+max 
+1,758  
+-50.0  
+1.5  
+2.0  
+4.0  
+8.0  
+20.0  
+11,200.0  
+mode 1,306  
+-100.0  
+1.0  
+2.0  
+3.0  
+5.0  
+15.0  
+100.0  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Three-years-ahead 
+ 
+#obs 
+Min 
+p10 
+p25 
+p50 
+p75 
+p90 
+Max 
+p50 
+1,311  
+-200.0  
+-2.0  
+2.0  
+3.0  
+5.0  
+10.0  
+75.0  
+avg 
+1,315  
+-88.9  
+0.1  
+2.0  
+3.2  
+5.7  
+13.4  
+123.5  
+sd 
+79  
+21.0  
+0.9  
+0.1  
+0.4  
+1.0  
+1.8  
+119.8  
+min 
+1,174  
+-200.0  
+-2.0  
+2.0  
+3.0  
+5.0  
+10.0  
+75.0  
+max 
+1,759  
+-50.0  
+1.2  
+2.5  
+4.0  
+8.0  
+15.0  
+1,000.0  
+mode 1,325  
+-100.0  
+1.0  
+ 2.0  
+3.0  
+5.0  
+15.0  
+100.0  
+Notes: The table shows median (p50), average (avg), standard deviation (sd), minimum (min), maximum 
+(max), and mode (mode) for the following statistics calculated across months: number of observations 
+(#obs), minimum (min), percentiles 10th, 25th, 50th, 75th and 90th (p10, p25, p50, p75, p90), and maximum 
+(max). For example, the cell (p50, #obs) shows the median of the number of monthly observations.  
+Source: Federal Reserve Bank of New York and own calculations. 
+There are some striking outcomes in Table 1. Firstly, the number of observations per 
+survey is quite constant with between 1,200 and 1,400 respondents. Only seven of the 
+surveys are outside this range. Except for the two first months, the distribution across 
+regions is also relatively stable with 24% of the observation from Midwest, 19% from 
+Northeast, 34% from South and 23% from West (Figure 1). Secondly, there are some 
+large outliers with exceptionally low and high responses. For this reason, we winsorize 
+the data prior to estimations. Thirdly, the 25th percentile for the question on the one-year-
+ahead inflation rate is 2% in all surveys (there are only few exceptions for the three-
+months-ahead question), while the median is close to 3% in the majority of them.  
+
+11
+NBP Working Paper No. 347
+Data and descriptive statistics
+Figure 1. Percentages of answers across regions and months 
+ 
+Source: Bureau of Labor Statistics and own calculation. 
+Table B1 in Appendix B shows descriptive statistics across regions. There are some 
+differences, but the averages do not deviate significantly from each other. The table also 
+shows statistics for the probability distributions across bins, which are supplied by the 
+consumers and included in the micro-observations of SCE. The medians and means 
+of these distributions do not contain the same extreme values. To measure uncertainty 
+in the price expectations, the table reports the variance and the difference between the 
+percentile 75 and 25 calculated by FRBNY with the bin distributions.  
+ 
+0
+0.2
+0.4
+0.6
+0.8
+1
+2013
+2014
+2015
+2016
+2017
+2018
+2019
+Midwest
+Northeast
+South
+West
+
+Narodowy Bank Polski
+12
+Chapter 3
+3. Regional inflation and disagreement in inflation 
+expectations 
+We start the analysis with testing whether regional differences in inflation rates drive 
+differences in consumer views on future inflation. For this purpose, we refer to the sticky 
+information (epidemiological) framework (Mankiw and Reis, 2002; Carroll, 2003, 2006). 
+The version of the epidemiological model applied is based on the generalization of the 
+original Carroll (2003, 2006) model, presented by Łyziak and Sheng (2018). 
+Let us assume that the consumer i’s inflation expectation at time t, denoted as ܿ௜,௧, evolves 
+according to the following formula: ܿ
+௜,௧= ߤ௜+ ߣ௜݌௜,௧+ ߚ௜ܿ௜,௧ିଵ+ ߛ௜ݎ௜,௧ିଵ+݁
+௜,௧,                                  (1) 
+where ݌௜,௧ is the publicly available inflation forecast by the expert, whose opinions the 
+individual i is following, ݎ௜,௧ିଵ is the most recent inflation rate observed by the individual 
+i in his or her location, ߤ௜ is individual-specific intercept capturing consumer i’s time-
+invariant belief on the long-run level of inflation (“fundamental inflation”)3, ߣ௜ is 
+consumer i’s propensity to learn from expert forecasts, ߚ௜ is the weight on consumer i’s 
+previous inflation expectations, ߛ௜ is consumer i’s propensity to adjust expectations on 
+the basis of current inflation in his/her location, while ݁௜,௧ is the random shock. 
+We denote ݔ̅௧ as the cross-sectional average of ݔ௜,௧ and ߪ௫,௧
+ଶ as the cross-sectional variance 
+of ݔ௜,௧. The dynamics of mean inflation expectation, ܿ̅ ௧, is given by: ܿ̅
+௧= ߤ̅ + ߣ̅݌̅௧+ ߚ̅ܿ̅ ௧ିଵ+ ߛ̅ݎ̅௧ିଵ+݁̅
+௧.                                         (2) 
+ 
+3 More specifically, fundamental inflation of consumer i, ܿ௜
+∗, can be calculated on the basis of equation (1) 
+as: ܿ௜
+∗= ߤ௜(1 െߣ௜െߚ௜െߛ௜)
+
+. 
+
+13
+NBP Working Paper No. 347
+Regional inflation and disagreement in inflation expectations
+Under the assumption that ߤ௜, ܿ௜,௧ିଵ, ߣ௜, ߚ௜, ݌௜,௧, ߛ௜ and ݎ௜,௧ିଵ are orthogonal to each other4, 
+we obtain consumer forecast disagreement as follows: 
+ߪ௖,௧
+ଶ= ߪఓ
+ଶ+ ൫ߪఉ
+ଶ+ ߚ̅ଶ൯ߪ௖,௧ିଵ
+ଶ
++ ൫ߪఒ
+ଶ+ ߣ̅ଶ൯ߪ௣,௧
+ଶ+ 
+ +൫ߪఊ
+ଶ+ ߛ̅ଶ൯ߪ௥,௧ିଵ
+ଶ
++ ߪఒ
+ଶ݌̅௧
+ଶ+ ߪఉ
+ଶܿ̅
+௧ିଵ
+ଶ
++ ߪఊ
+ଶݎ̅௧ିଵ
+ଶ
++ ߪ௘,௧
+ଶ.                      (3) 
+According to equation (3), disagreement among consumers in assessing future inflation 
+comes from eight sources: 
+• heterogeneity in fundamental inflation, ߪఓ
+ଶ; 
+• consumers’ divergent past expectations, ߪ௖,௧ିଵ
+ଶ
+, 
+• experts’ different views about future inflation, ߪ௣,௧
+ଶ, 
+• differences in regional inflation, ߪ௥,௧ିଵ
+ଶ
+, 
+• differences in the weights placed on consumers’ own past forecasts, ߪఉ
+ଶ, 
+• differences in consumers’ propensities to learn from experts, ߪఒ
+ଶ, 
+• differences in consumers’ propensities to adjust expectations based on current 
+regional inflation, ߪఊ
+ଶ, and 
+• heterogeneity due to random shocks, ߪ௘,௧
+ଶ. 
+We estimate equations (2) and (3) as a system using the Seemingly Unrelated Regression 
+(SUR) method and rely on MSC data. As far as regional inflation rates are concerned, we 
+apply BLS data for inflation in the four US regions (Midwest, Northeast, South and 
+West). The estimated model is very general, and all the parameters are assumed to be 
+heterogenous among the agents.  
+Estimation results suggest that the average regional inflation is statistically significant in 
+the equation for the level of inflation expectations (Table 2). More specifically, in a given 
+ 
+4 This assumption seems plausible and is not very restrictive given that ߤ௜, ߣ௜, ߚ௜ and ߛ௜ are constant over 
+time – hence they are independent of ܿ௜,௧ିଵ, ݌௜,௧ and ݎ௜,௧ିଵ, ݌௜,௧ and ܿ௜,௧ିଵ  are independent since consumers 
+are assumed to learn from experts, but not vice versa, ݌௜,௧ and ݎ௜,௧ିଵ are independent because of the 
+assumption that experts forecasting US inflation do not pay attention to regional inflation developments 
+and ܿ௜,௧ିଵ and ݎ௜,௧ିଵ are independent due to publication lags. 
+
+Narodowy Bank Polski
+14
+quarter there are approx. 52% of consumers, who do not modify their previous 
+expectations, 14% of consumers following expert forecasts regarding US inflation and 
+12% of consumers observing and making use of inflation rates in their locations.5 
+A statistically significant role of average regional inflation in the equation for the level 
+of consumer inflation expectations – in line with the logic of the model (3) – implies that 
+regional differences have impact on disagreement in consumer inflation expectations. 
+Estimation results of the equation for cross-sectional variance of inflation expectations 
+reveal that the propensities of consumers to learn from experts and to follow either 
+consumers’ previous expectations or regional inflation are statistically significant, which 
+suggests that these propensities are heterogenous among consumers. This heterogeneity 
+seems quantitatively large, especially in the case of the propensity of consumers to learn 
+from experts and to follow previously set expectations (Figure 2). Hence, it seems 
+to constitute a relevant driver of cross-sectional divergences in consumer expectations.  
+Interestingly, among consumers updating their expectations based on expert forecasts, 
+58% of individuals change their expectations in the direction consistent with experts, 
+while 42% of individuals display a negative propensity to learn, i.e., they modify their 
+expectations in the direction opposite to experts. The above finding is largely in line with 
+Pfajfar and Santoro (2013) and Łyziak and Sheng (2018). In the case of consumers 
+following regional inflation or previous expectations, the percentage of individuals 
+modifying their expectations in the direction opposite to changes of the above 
+benchmarks is somewhat smaller, equal to 38% and 22%, respectively. 
+The above results imply that a part of cross-sectional differences in inflation expectations 
+formed by consumers is likely to be related to regional differences in inflation. However, 
+in quantitative terms the importance of this factor is limited as the differences in regional 
+inflation explain approx. 5% of the cross-sectional variance of inflation expectations.6 
+ 
+5 The remaining part of consumers (approx. 22%) hold constant expectations, equal to 5% on average.  
+6 Our results suggest that factors related to previous expectations and expert forecasts explain 75% and 16% 
+of cross-sectional variance of consumer expectations respectively, while factors related to regional inflation 
+and to fundamental inflation explain approx. 5% of disagreement each. 
+
+15
+NBP Working Paper No. 347
+Regional inflation and disagreement in inflation expectations
+It is not very surprising given that heterogeneity of regional inflation rates is rather small 
+(see Table B4 in Appendix B). 
+Table 2. Sticky-information model with regional inflation rates,  
+12-month-ahead inflation expectations, aggregate data 
+   
+ 
+Eq. (2)/ (3) 
+ 
+ 
+Eq. (3) 
+ࣅഥ 
+0.137* 
+(0.074) 
+ ࣌
+ࣅ 
+0.672*** 
+(0.105) 
+ࢼഥ 
+0.522*** 
+(0.096) 
+ ࣌
+ࢼ 
+0.708*** 
+(0.037) 
+ࢽഥ 
+0.124** 
+(0.058) 
+ ࣌
+ࢽ 
+0.399*** 
+(0.039) 
+ࣆഥ 
+1.085*** 
+(0.242) 
+ ࣌
+ࣆ 
+1.006 
+(0.619) 
+Adj. R2 
+0.81 
+ 
+Adj. R2 
+0.70 
+Notes: Estimated as a system with Seemingly Unrelated Regression (SUR) method. Sample: 1981Q3-
+2021Q1. Standard errors in parentheses. * p<.1; ** p<.05; *** p<.01. 
+  
+Figure 2. Distributions of propensities to learn from experts  
+and to follow previous expectations or regional inflation 
+ 
+0
+0.2
+0.4
+0.6
+0.8
+1
+1.2
+-2.0
+-1.8
+-1.6
+-1.4
+-1.2
+-1.0
+-0.8
+-0.6
+-0.4
+-0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4
+1.6
+1.8
+2.0
+2.2
+2.4
+propensity to learn from experts
+propensity to follow previous expectations
+propensity to follow regional inflation
+
+Narodowy Bank Polski
+16
+Chapter 4
+4. Regional inflation and the level of inflation expectations 
+In this section we take advantage of the micro-level data from SCE to investigate 
+importance of national and regional price developments in shaping consumer inflation 
+expectations. In the empirical analysis we refer to two theoretical frameworks: sticky 
+information model and learning-from-experience model. 
+4.1. Sticky information model 
+We employ FRBNY SCE data to estimate a version of the sticky-information model 
+of inflation expectations formation at the micro level. The model—which allows both, 
+regional and national, inflation rates to affect inflation views— is as follows:  ܿ
+௜,௧= ߚ௜,଴+ ߚଵܿ௜,௧ିଵ+ ߚଶݎ௜,௧+ ߚଷ݊
+௧+ ߚସ݌௧+ Π்ܺ
+௜,௧+݁
+௜௧,                      (4) 
+where ܿ
+௜,௧ denotes 12-month-ahead or 36-month-ahead inflation expectations 
+of consumer i in period t, ݎ௜,௧ is the regional inflation rate in period t specific to the place 
+of residence of consumer i, ݊௧ is the national inflation rate and ݌௧ is the consensus expert 
+forecast. We account for individual heterogeneity by including in ܺ
+௜,௧ a wide set 
+of demographic characteristics of the consumer (gender, age, age squared, income, 
+number of children in household, education level, race, numeracy score7) and a set 
+of dummy variables related to the number of surveys already answered by the respondent 
+(tenure) in order to account for the panel conditioning effect (Kim and Binder, 2020).8 
+We prefer this specification over individual fixed effects, because we want to exploit 
+cross-sectional variability, which is especially important in a situation when respondents 
+stay in the panel for a relatively short time span.9 Alternatively, national inflation rate and 
+ 
+7 The numeracy score measures ability to use numbers is everyday life. It is based on five test questions 
+referring to calculating price after discount, familiarity with compound interest rate, and using percentages. 
+8 Kim and Binder (2020) show that consumers with more survey experience have lower inflation 
+expectations and they find larger panel conditioning effects in SCE survey than MSC, probably due 
+to longer time between interviews in the latter. 
+9 The same approach for modelling SCE panel data is taken by Kuchler and Zafar (2019). 
+
+17
+NBP Working Paper No. 347
+Regional inflation and the level of inflation expectations
+SPF forecast might be replaced with a set of time dummies (ܶ௧) which account for all 
+kind of information available to all respondents in period t, including national inflation 
+rate and recent expert inflation forecasts. 
+Estimation results presented in Table 3 and 4 reveal that the regional inflation rate 
+provides an important input to consumers’ expectation formation, while no strong 
+evidence suggest that the national inflation rate does. This holds for both horizons 
+of inflation expectations, short- and medium-term. Specifications with time dummies 
+confirm that regional inflation rates affect consumer inflation opinions significantly. 
+Surprisingly, we get counter-intuitive (negative) estimate of the parameter related 
+to expert forecast, suggesting that consumers revise their inflation expectations in the 
+opposite direction of experts’ prediction. Even if researchers typically find a positive 
+relation between mean consumer inflation expectations and consensus expert forecast, 
+Pfajfar and Santoro (2013) show that on micro-level as much as half of the consumers 
+revise their inflation expectations in the opposite direction than consensus forecast. This 
+result is also broadly consistent with the heterogeneity of propensity of consumers to learn 
+from experts, as presented in the previous section. Another explanation is that the period 
+under consideration is relatively short and characterized by very stable SPF forecasts 
+(about 2%), which makes it difficult to identify a robust relationship between consumer 
+inflation expectations and expert forecasts. 
+Next, we disaggregate regional inflation rate into three components: core inflation, food 
+inflation, gasoline inflation. The results suggest that for short-term inflation expectations, 
+the regional differences in food inflation play the most important role. This is different 
+for the medium-term inflation expectations, for which differences in the core inflation 
+is the only regional variable that matters. In both cases, regional gasoline prices do not 
+affect inflation expectations. 
+ 
+
+Narodowy Bank Polski
+18
+Table 3. Sticky-information model with regional inflation rates,  
+12-month-ahead inflation expectations   
+ 
+(1) 
+(2) 
+(3) 
+Lagged expectations 
+0.374*** 
+0.378*** 
+0.377*** 
+Regional CPI inflation rate 
+0.129*** 
+0.121*** 
+- 
+National CPI inflation rate 
+-0.036 
+- 
+- 
+Regional core inflation 
+- 
+- 
+0.085* 
+Regional food inflation 
+- 
+- 
+0.113** 
+Regional gasoline inflation 
+- 
+- 
+0.003 
+SPF inflation forecast 
+-0.634*** 
+- 
+- 
+Personal characteristics 
+Yes 
+Yes 
+Yes 
+Tenure dummy 
+Yes 
+Yes 
+Yes 
+Time dummy 
+No 
+Yes 
+Yes 
+#obs 
+79,308 
+79,308 
+79,308 
+R2 (overall) 
+0.343 
+0.344 
+0.344 
+Notes: Inflation expectations are measured as mean of the subjective forecast distribution. Random effects 
+estimator with robust standard errors. * p<.1; ** p<.05; *** p<.01. 
+ 
+Table 4. Sticky-information model with regional inflation rates,  
+36-month-ahead inflation expectations   
+ 
+(1) 
+(2) 
+(3) 
+Lagged expectations 
+0.326*** 
+0.328*** 
+0.328*** 
+Regional CPI inflation rate 
+0.120*** 
+0.110** 
+- 
+National CPI inflation rate 
+-0.026 
+- 
+- 
+Regional core inflation 
+- 
+- 
+0.113** 
+Regional food inflation 
+- 
+- 
+0.072 
+Regional gasoline inflation 
+- 
+- 
+-0.002 
+SPF inflation forecast 
+-0.788*** 
+- 
+- 
+Personal characteristics 
+Yes 
+Yes 
+Yes 
+Tenure dummy 
+Yes 
+Yes 
+Yes 
+Time dummy 
+No 
+Yes 
+Yes 
+#obs 
+79,461 
+79,461 
+79,461 
+R2 (overall) 
+0.320 
+0.320 
+0.320 
+Notes: Inflation expectations are measured as mean of the subjective forecast distribution. Random effects 
+estimator with robust standard errors. * p<.1; ** p<.05; *** p<.01. 
+
+19
+NBP Working Paper No. 347
+Regional inflation and the level of inflation expectations
+4.2. Learning-from-experience model 
+The learning-from-experience model refers to a constant gain adaptive learning model 
+of expectation formation, which stresses the role of inflation experienced over lifetime 
+(Malmendier and Nagel, 2016). According to this approach, consumers form inflation 
+expectations based on an autoregressive model of inflation with unknown parameter 
+values, which they try to infer recursively. The important assumption is that more recent 
+data affect expectations more strongly than more distant data. Apart from inflation 
+experienced by consumers during their lifetime, other common factors (like professional 
+inflation forecasts) might affect consumers’ inflation expectations. We modify the 
+learning-from-experience model by allowing consumers to learn from national and local 
+inflation rates. 
+We use the empirical specification like the one employed by Goldfayn-Frank and 
+Wohlfart (2020) and Kuchler and Zafar (2019): ܿ
+௜,௧= ߚ௜,଴+ ߚଵݎ̃௜,௧+ ߚଶ݊෤௜,௧+ ߚଷ݌௧+ Π்ܺ
+௜௧+߳
+௜௧,                                   (5) 
+where: ݎ̃௜,௧ is inflation experienced by the respondent i over some period based on local 
+price developments and assuming weighting of past data with parameter ߣ, while ݊෤௜,௧ is 
+the corresponding inflation experience based on national-level inflation rate. 
+As previously, ܺ௜,௧ includes personal characteristics of respondent and the number of SCE 
+surveys already taken.  
+The formula for constructing average inflation rates based on regional data is the 
+following: 
+ݎ̃௜,௧= ∑
+ݓ௜௧(݇, ߣ)ݎ௧ି௞
+௄
+௞ୀ଴
+,                                                    (6) 
+ݓ௜௧(݇, ߣ) =
+(௄ି௞)ഊ
+∑
+(௄ି௞)಼
+ೖసబ
+ഊ,                                                             (7) 
+where ܭ is the number of months and ߣ is the weighting parameter. In the case of the 
+average inflation rates based on country-wide data we use an analogous formula. 
+
+Narodowy Bank Polski
+20
+To construct historical inflation rates experienced by respondents, we consider a period 
+of the past one to five years. For each time span, we consider weighting parameters 
+ranging from zero to five (with a step of 0.1). If  ߣ equals zero, we get simple averages; 
+higher values of ߣ correspond to higher weights of more recent observations. We choose 
+K and ߣ to which maximize the overall R2 of the model.10 It turns out that US consumers 
+take into consideration about 4 years of historical inflation rates, and that they put only 
+slightly larger weight on more recent observations or, in the case of medium-term 
+inflation expectations, use simple average.  
+Estimation results of model (5) are presented in Table 5 and Table 6. Like in the sticky 
+information framework, we find that regional inflation rates affect one-year ahead 
+consumer inflation expectations, while national inflation rates are statistically 
+insignificant. The learning-from-experience model points to a positive and statistically 
+significant role of expert forecasts in shaping one-year ahead consumer inflation 
+expectations. In the case of medium-term inflation expectations, the evidence in favors 
+of importance of regional inflation rates is weaker, as this variable is statistically 
+significant only in the model without time dummies. 
+Finally, we disaggregate the overall inflation rate into three components: core inflation, 
+food inflation, and gas price inflation. Such a disaggregation does not give us more insight 
+into drivers of consumer inflation expectations as for most of parametrizations 
+the experienced inflation is statistically insignificant.  
+ 
+ 
+10 We choose it separately for model explaining short-term inflation expectations and medium-term 
+inflation expectations. For models with time effects, we use the same weighted averages of past inflation 
+as for the baseline model. 
+
+21
+NBP Working Paper No. 347
+Regional inflation and the level of inflation expectations
+Table 5. Learning-from-experience model with regional inflation rates, 12-month-
+ahead inflation expectations  
+ 
+(1) 
+(2) 
+(3) 
+Regional CPI inflation rate 
+0.320*** 
+0.269*** 
+- 
+National CPI inflation rate 
+0.182 
+- 
+- 
+Regional core inflation 
+- 
+- 
+0.116 
+Regional food inflation 
+- 
+- 
+0.186 
+Regional gasoline inflation 
+- 
+- 
+0.010 
+SPF inflation forecast 
+0.302** 
+- 
+- 
+Personal characteristics 
+Yes 
+Yes 
+Yes 
+Tenure dummy 
+Yes 
+Yes 
+Yes 
+Time dummy 
+No 
+Yes 
+Yes 
+#obs 
+100,499 
+100,499 
+100,499 
+R2 (overall) 
+0.029 
+0.0335 
+0.0334 
+Notes: Inflation expectations are measured as mean of subjective forecast distribution. SFP forecast is CPI 
+inflation forecast 4-quarters ahead. Random effects estimator with robust standard errors. * p<.1; ** p<.05; 
+*** p<.01. 
+ 
+Table 6. Learning-from-experience model with regional inflation rates, 36-month-
+ahead inflation expectations  
+ 
+(1) 
+(2) 
+(3) 
+Regional CPI inflation rate 
+0.205** 
+0.143 
+- 
+National CPI inflation rate 
+0.224* 
+- 
+- 
+Regional core inflation 
+- 
+- 
+0.040 
+Regional food inflation 
+- 
+- 
+0.170 
+Regional gasoline inflation 
+- 
+- 
+-0.010 
+SPF inflation forecast 
+0.055 
+- 
+- 
+Personal characteristics 
+Yes 
+Yes 
+Yes 
+Tenure dummy 
+Yes 
+Yes 
+Yes 
+Time dummy 
+No 
+Yes 
+Yes 
+#obs 
+100,740 
+100,740 
+100,740 
+R2 (overall) 
+0.0227 
+0.0267 
+0.0267 
+Notes: Inflation expectations are measured as mean of subjective forecast distribution. SFP forecast is CPI 
+inflation forecast 4-quarters ahead. Random effects estimator with robust standard errors. * p<.1; ** p<.05; 
+*** p<.01. 
+ 
+
+Narodowy Bank Polski
+22
+Chapter 5
+5. Final comments 
+To what extent do consumers consider regional price development when forming their 
+inflation expectations? The paper at hand responds this question by analyzing, firstly, 
+how disagreement in inflation expectations can be explained by regional factors and, 
+secondly, by exploring the extent to which regional price swings have an impact 
+on consumer inflation expectations. We find that regional differences in inflation rates 
+exert a statistically significant impact on disagreement in inflation expectations among 
+consumers, even though the quantitative importance of this effect is small. Evidence from 
+micro-level analysis suggests that regional differences in inflation rates matter for short- 
+and medium-term inflation expectations. It seems that in the former case differences 
+in food inflation particularly matter, while in the latter case differences in core inflation 
+play an important role.  
+The fact that regional factors influence how consumers form expectations implies that 
+policy makers must pay attention to both national and local news when extracting 
+information from consumers’ economic expectations. This may be particularly important 
+when there are substantial differences across the regions.  
+The present analysis was made with regional observations, and it would be interesting 
+to explore if the results are robust to an application with observations with a higher degree 
+of disaggregation, e.g., state-level observations. Another area where there is scope for 
+future research is with respect to the New Keynesian Phillips Curve. Estimations of this 
+relationship with regional inflation expectations may expand our knowledge of the 
+inflation-unemployment dynamics. Finally, a forecast horse race may reveal whether 
+consumers’ expectations are more accurate with respect to regional rates rather than with 
+the national ones. Maybe survey questions to consumers should be more related to local 
+developments rather than the national one. Future investigations may shed more 
+light upon these important questions. 
+
+23
+NBP Working Paper No. 347
+References
+References 
+Armantier, O., G. Topa, W. van der Klaauw and B. Zafar (2017). An overview of the 
+survey of consumer expectations. FRBNY Economic Policy Review, December, 31-72. 
+Bachmann, O., K. Gründler, N. Potrafke and R. Seiberlich (2021). Partisan bias in 
+inflation expectations. Public Choice, 186, 513-536. 
+Ben-David, I., E. Fermand, C. M. Kuhnen and G. Li (2018). Expectations uncertainty and 
+household economic behavior. Working Paper No. 25336, National Bureau of Economic 
+Research. 
+Bernanke, B. S. (2007). Inflation expectations and inflation forecasting. Speech at the 
+Monetary Economics Workshop of the National Bureau of Economic Research Summer 
+Institute, Cambridge, 10 July. 
+Bernanke, B. S. (2013). Communication and monetary policy. Herbert Stein Memorial 
+Lecture, National Economists Club Annual Dinner, Washington D.C., 19 November. 
+Blinder, A. S. (2000). Central-bank credibility: Why do we care? How do we build it? 
+American Economic Review, 90(5), 1421-1431. 
+Branch, W. A. (2007). Sticky information and model uncertainty in survey data on 
+inflation expectations. Journal of Economic Dynamics and Control, 31(1), 245-276. 
+Bruine de Bruin, W., W. van der Klaauw and G. Topa (2011). Expectations of inflation: 
+Biasing effect of thoughts about specific prices. Staff Report No. 489, Federal Reserve 
+Bank of New York. 
+Carroll, C. D. (2003). Macroeconomic expectations of households and professional 
+forecasters. Quarterly Journal of Economics, 118(1), 269-298. 
+Carroll, C. D. (2006). The epidemiology of macroeconomic expectations. In The 
+Economy as a Complex System, III. Current Perspectives and Future Directions, edited 
+by Blume, L.E. and S. N. Durlauf, 5-29. New York: Oxford University Press. 
+Coibion, O. and Y. Gorodnichenko (2015). Is the Phillips Curve alive and well after all? 
+Inflation expectations and the missing disinflation. American Economic Journal: 
+Macroeconomics, 7(1), 197-232. 
+Crump, R. K., S. Eusepi, A. Tambalotti and G. Topa (2019). Subjective intertemporal 
+substitution. Staff Report No. 734, Federal Reserve Bank of New York. 
+D’Acunto, F., U. Malmendier, J. Ospina and M. Weber (2019). Exposure to daily price 
+changes and inflation expectations. Working Paper No. 26237, National Bureau of 
+Economic Research. 
+
+Narodowy Bank Polski
+24
+Diamond, J., K. Watanabe and T. Watanabe (2020). The formation of consumer inflation 
+expectations: New evidence from Japan’s deflation experience. International Economic 
+Review, 61(1), 241-281. 
+Döpke, J., J. Dovern, U. Fritsche and J. Slacalek (2008). The dynamics of European 
+inflation expectation. The B.E. Journal of Macroeconomics, 8(1), 1-23. 
+Draghi, M. (2018). Monetary policy in the euro area. Speech at the ECB Forum on Central 
+Banking, Sintra, 19 June. 
+Friedrich, C. (2016). Global inflation dynamics in the post-crisis period: What explains 
+the puzzles? Economics Letters, 142(C), 31-34. 
+Goldfayn-Frank, O. and J. Wohlfart (2020). Expectation formation in a new environment: 
+Evidence from the German reunification. Journal of Monetary Economics, 115, 301-320. 
+Johannsen, B. K. (2014). Inflation experience and inflation expectations: Dispersion and 
+disagreement within demographic groups. Finance and Economic Discussion Series No. 
+2014-89, Board of Governors of the Federal Reserve System. 
+Kim, G. and C. Binder (2020). Learning-through-survey in inflation expectations. 
+Manuscript available at https://ssrn.com/abstract=3790834. 
+Kuchler, T. and B. Zafar (2019). Personal experiences and expectations about aggregate 
+outcomes. Journal of Finance, 74(5), 2491-2542. 
+Lanne, M., A. Luoma and J. Luoto (2009). A naïve sticky information model 
+of households’ inflation expectations. Journal of Economic Dynamics and Control, 33(6), 
+1332-1344. 
+Łyziak, T. and X. S. Sheng (2018). Disagreement in consumer inflation expectations. 
+NBP Working Paper No. 278, Narodowy Bank Polski. 
+Madeira, C. and B. Zafar (2015). Heterogenous inflation expectations and learning. 
+Journal of Money Credit and Banking, 47(5), 867-896. 
+Malmendier, U. and S. Nagel (2016). Learning from inflation experiences. The Quarterly 
+Journal of Economics, 131(1), 53-87. 
+Mankiw, N. G. and R. Reis (2002). Sticky information versus sticky prices: a proposal to 
+replace the new Keynesian Phillips curve. Quarterly Journal of Economics, 117(4), 1295-
+1328. 
+Mankiw, N. G. and R. Reis (2006). Pervasive stickiness. AEA Papers and Proceedings, 
+96(2), 164-169. 
+Mankiw, N. G., R. Reis and J. Wolfers (2003). Disagreement about inflation expectations. 
+NBER Macroeconomics Annual, 18, 209-248. 
+
+25
+NBP Working Paper No. 347
+References
+Mueller, A. I., J. Spinnewijn and G. Topa (2021). Job seekers’ perceptions and 
+employment prospects: Heterogeneity, duration dependence and bias. American 
+Economic Review, 111(1), 324-363. 
+Pfajfar, D. and E. Santoro (2013). News on inflation and the epidemiology of inflation 
+expectations. Journal of Money, Credit and Banking, 45(6), 1045-1067. 
+Sargent, T. J. (1982). The ends of four big inflations. In Inflation: Causes and Effects, 
+edited by Hall, R. E., University of Chicago Press. 
+Woodford, M. (2003). Interest and Prices: Foundations of a Theory of Monetary Policy. 
+Princeton University Press. 
+Yellen, J. L. (2015). Inflation dynamics and monetary policy. Phillip Gamble Memorial 
+Lecture, University of Massachusetts, Amherst, 24 September.  
+Yellen, J. L. (2016). Macroeconomic research after the crisis. Speech at “The Elusive 
+‘Great’ Recovery: Causes and Implications for Future Business Cycle Dynamics” 
+60th annual economic conference sponsored by the Federal Reserve Bank of Boston, 
+Boston, 14 October. 
+
+Narodowy Bank Polski
+26
+Appendix A
+Appendix A. SCE survey 
+The SCE survey has a rotating panel structure, where a representative sample of about 
+1,300 household heads are interviewed every month for a period of up to 12 months 
+(Armantier et al., 2017). Micro data are available from June 2013 and are published with 
+a delay of nine months. Participants are paid an amount of 20 USD for completing the 
+questionnaire, which includes questions on the financial situation of the household as well 
+as macroeconomic variables such as employment, stock market performance, growth, and 
+inflation. Furthermore, it includes questions to define characteristic of the respondents, 
+such as geographical location, age, education, and income, as well as questions to clarify 
+how they use numbers in everyday life.11 
+ 
+11 Recent studies that employ data from the survey include those of Ben-David et al. (2018), Crump et al. 
+(2019), Kuchler and Zafar (2019), Bachmann et al. (2021), and Mueller et al. (2021). 
+
+27
+NBP Working Paper No. 347
+Appendix B
+Appendix B. Descriptive statistics 
+B.1. Panel observations 
+Table B1. Inflation expectations across regions (2013M3 – 2019M12) 
+ 
+area 
+min 
+p10 
+p50 
+p90 
+max 
+avg 
+sd 
+#obs 
+Inflation (12m) 
+MW 
+-100.0 
+1.0 
+3.0 
+10.0 
+2,025.0 
+4.8 
+16.6 
+24,757 
+ 
+NE 
+-100.0 
+1.0 
+3.0 
+10.0 
+100.0 
+4.9 
+11.6 
+20,797 
+ 
+S 
+-100.0 
+0.7 
+3.0 
+15.0 
+1,000.0 
+5.7 
+14.4 
+34,947 
+ 
+W 
+-100.0 
+1.0 
+3.0 
+12.0 
+11,200.0 
+5.8 
+74.4 
+23,189 
+  Dist. Answers 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+      P50       
+MW 
+-27.6 
+0.0 
+2.8 
+7.9 
+29.2 
+3.5 
+4.6 
+24,304 
+ 
+NE 
+-25.0 
+0.0 
+2.7 
+7.7 
+36.3 
+3.4 
+4.8 
+20,470 
+ 
+S 
+-36.3 
+0.0 
+2.9 
+9.4 
+36.3 
+3.7 
+5.1 
+34,244 
+ 
+W 
+-25.0 
+0.4 
+3.0 
+8.7 
+36.3 
+3.8 
+4.9 
+22,822 
+      Avg 
+MW 
+-25.0 
+0.0 
+2.8 
+8.0 
+28.0 
+3.5 
+4.5 
+24,304 
+ 
+NE 
+-25.0 
+0.0 
+2.8 
+7.9 
+36.3 
+3.5 
+4.7 
+20,470 
+ 
+S 
+-36.3 
+0.0 
+2.9 
+9.0 
+36.3 
+3.7 
+5.0 
+34,244 
+ 
+W 
+-25.0 
+0.4 
+3.0 
+8.6 
+36.3 
+3.9 
+4.8 
+22,822 
+     Var 
+MW 
+0.2 
+0.3 
+2.2 
+41.7 
+463.7 
+14.3 
+35.4 
+24,304 
+ 
+NE 
+0.2 
+0.3 
+1.9 
+45.3 
+480.3 
+13.7 
+34.8 
+20,470 
+ 
+S 
+0.2 
+0.3 
+2.7 
+61.1 
+481.0 
+19.6 
+43.9 
+34,244 
+ 
+W 
+0.1 
+0.3 
+2.2 
+42.5 
+449.3 
+13.7 
+33.0 
+22,822 
+     Iqr 
+MW 
+0.5 
+1.0 
+2.1 
+9.5 
+37.0 
+3.8 
+4.3 
+24,304 
+ 
+NE 
+0.5 
+1.0 
+2.0 
+9.8 
+37.9 
+3.7 
+4.4 
+20,470 
+ 
+S 
+0.6 
+1.0 
+2.3 
+12.2 
+38.0 
+4.5 
+5.1 
+34,244 
+ 
+W 
+0.5 
+1.0 
+2.1 
+9.6 
+36.0 
+3.8 
+4.2 
+22,822 
+Inflation (36m) 
+MW 
+-100.0 
+1.0 
+3.0 
+12.0 
+115.0 
+5.0 
+11.0 
+24,757 
+ 
+NE 
+-100.0 
+1.0 
+3.0 
+10.0 
+555.0 
+5.0 
+12.8 
+20,823 
+ 
+S 
+-200.0 
+-1.0 
+3.0 
+15.0 
+420.0 
+5.7 
+14.0 
+34,985 
+ 
+W 
+-144.0 
+1.0 
+3.0 
+12.0 
+1,000.0 
+5.3 
+12.9 
+23,215 
+  Dist. Answers 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+      P50       
+MW 
+-31.4 
+0.0 
+2.3 
+6.5 
+36.3 
+2.9 
+4.5 
+16,782 
+ 
+NE 
+-25.7 
+0.0 
+2.3 
+7.1 
+36.3 
+3.0 
+4.8 
+13,845 
+ 
+S 
+-27.9 
+0.0 
+2.4 
+8.1 
+36.3 
+3.2 
+5.1 
+23,329 
+ 
+W 
+-25.0 
+0.0 
+2.5 
+8.0 
+36.3 
+3.2 
+4.8 
+15,034 
+      Avg 
+MW 
+-26.6 
+0.0 
+2.9 
+8.5 
+28.0 
+3.6 
+4.8 
+24,370 
+ 
+NE 
+-25.0 
+0.0 
+2.9 
+8.0 
+36.3 
+3.5 
+4.8 
+20,529 
+ 
+S 
+-26.7 
+0.0 
+3.0 
+9.3 
+36.3 
+3.7 
+5.3 
+34,320 
+ 
+W 
+-27.5 
+0.0 
+3.0 
+9.0 
+36.3 
+3.9 
+5.0 
+22,864 
+      Var 
+MW 
+0.2 
+0.4 
+2.4 
+45.1 
+481.0 
+14.6 
+35.3 
+24,370 
+ 
+NE 
+0.2 
+0.3 
+2.1 
+45.0 
+481.0 
+13.8 
+34.3 
+20,529 
+ 
+S 
+0.2 
+0.4 
+2.9 
+61.2 
+477.0 
+19.8 
+43.6 
+34,320 
+ 
+W 
+0.1 
+0.4 
+2.4 
+42.6 
+458.5 
+14.0 
+32.8 
+22,864 
+      Iqr 
+MW 
+0.5 
+1.0 
+2.2 
+9.9 
+38.0 
+4.0 
+4.4 
+24,370 
+ 
+NE 
+0.6 
+1.0 
+2.1 
+9.7 
+38.0 
+3.8 
+4.3 
+20,529 
+ 
+S 
+0.6 
+1.0 
+2.5 
+12.2 
+37.7 
+4.6 
+5.1 
+34,320 
+ 
+W 
+0.5 
+1.0 
+2.2 
+9.7 
+36.6 
+3.9 
+4.2 
+22,864 
+Notes: The regions are Midwest (MW), Northeast (NE), South (S), and West (W). Inflation (12m) and 
+Inflation (36m) are point expectations of the inflation rates 12 and 36 months ahead. Dist. Answers show 
+moments of the probability distributions that are supplied by the respondents: median (P50), average (Avg), 
+variance (Var) and differences between the percentiles 75 and 25 (Iqr). The columns report minimum (min), 
+percentiles 10, 50 and 90 (p10, p50, p90), maximum (max), average (avg), standard deviation (sd) and 
+number of observations (#obs).  
+Source: Federal Reserve Bank of New York and own calculations. 
+
+Narodowy Bank Polski
+28
+B.2. Time series observations 
+Table B2. Descriptive statistics on CPI and core inflation (2013M3 – 2019M12) 
+ 
+area 
+min 
+p10 
+p50 
+p90 
+max 
+avg 
+sd 
+CPI y/y 
+Country 
+-0.20 
+0.17 
+1.70 
+2.46 
+2.95 
+1.55 
+0.78 
+ 
+MW 
+-1.07 
+-0.33 
+1.39 
+2.17 
+2.47 
+1.15 
+0.87 
+ 
+NE 
+-0.41 
+-0.09 
+1.50 
+2.24 
+2.70 
+1.32 
+0.78 
+ 
+S 
+-0.60 
+-0.13 
+1.56 
+2.40 
+2.88 
+1.42 
+0.85 
+ 
+W 
+0.68 
+1.12 
+2.33 
+3.24 
+3.64 
+2.23 
+0.79 
+CPI m/m 
+Country 
+-0.57 
+-0.25 
+0.12 
+0.51 
+0.64 
+0.12 
+0.28 
+ 
+MW 
+-0.70 
+-0.46 
+0.11 
+0.56 
+0.89 
+0.09 
+0.35 
+ 
+NE 
+-0.50 
+-0.20 
+0.09 
+0.44 
+0.64 
+0.11 
+0.24 
+ 
+S 
+-0.70 
+-0.27 
+0.12 
+0.54 
+0.74 
+0.11 
+0.32 
+ 
+W 
+-0.59 
+-0.20 
+0.16 
+0.52 
+0.81 
+0.18 
+0.29 
+CORE y/y 
+Country 
+1.57 
+1.68 
+1.96 
+2.27 
+2.39 
+1.97 
+0.24 
+ 
+MW 
+1.05 
+1.24 
+1.63 
+1.95 
+2.19 
+1.59 
+0.27 
+ 
+NE 
+0.91 
+1.10 
+1.71 
+2.07 
+2.36 
+1.66 
+0.33 
+ 
+S 
+1.51 
+1.62 
+1.89 
+2.20 
+2.39 
+1.91 
+0.21 
+ 
+W 
+1.61 
+1.78 
+2.77 
+3.02 
+3.18 
+2.58 
+0.45 
+CORE m/m 
+Country 
+-0.20 
+-0.03 
+0.16 
+0.38 
+0.47 
+0.16 
+0.15 
+ 
+MW 
+-0.27 
+-0.11 
+0.11 
+0.37 
+0.47 
+0.13 
+0.17 
+ 
+NE 
+-0.28 
+-0.12 
+0.16 
+0.33 
+0.54 
+0.13 
+0.17 
+ 
+S 
+-0.21 
+-0.08 
+0.13 
+0.39 
+0.57 
+0.15 
+0.17 
+ 
+W 
+-0.09 
+0.01 
+0.22 
+0.42 
+0.56 
+0.21 
+0.15 
+Notes: See table B1. The table reports statistics for annual (y/y) and monthly (m/m) inflation rates for 
+headline (CPI) and headline excluding food and energy (CORE) prices. The rows “Country” show the 
+statistics for the US economy.  
+Source: Bureau of Labor Statistics and own calculation. 
+
+29
+NBP Working Paper No. 347
+Appendix B
+Table B3. Descriptive statistics on inflation rate for price groups  
+(2013M3 – 2019M12) 
+ 
+area 
+min 
+p10 
+p50 
+p90 
+max 
+avg 
+sd 
+Food (y/y) 
+Country 
+-0.39 
+0.22 
+1.40 
+2.55 
+3.41 
+1.43 
+0.83 
+ 
+MW 
+-0.60 
+-0.03 
+1.13 
+2.60 
+3.56 
+1.20 
+0.92 
+ 
+NE 
+-0.22 
+0.07 
+1.43 
+2.30 
+3.11 
+1.39 
+0.78 
+ 
+S 
+-0.70 
+-0.02 
+1.46 
+2.49 
+3.22 
+1.34 
+0.88 
+ 
+W 
+-0.43 
+0.90 
+1.66 
+2.90 
+3.82 
+1.78 
+0.92 
+Food (m/m) 
+Country 
+-0.33 
+-0.15 
+0.13 
+0.34 
+0.47 
+0.12 
+0.18 
+ 
+MW 
+-0.42 
+-0.25 
+0.11 
+0.46 
+0.58 
+0.10 
+0.26 
+ 
+NE 
+-0.44 
+-0.20 
+0.10 
+0.48 
+0.65 
+0.12 
+0.25 
+ 
+S 
+-0.34 
+-0.18 
+0.14 
+0.36 
+0.56 
+0.11 
+0.20 
+ 
+W 
+-0.43 
+-0.21 
+0.20 
+0.46 
+0.65 
+0.15 
+0.25 
+Energy (y/y) 
+Country 
+-19.59 
+-15.02 
+-0.34 
+10.14 
+15.19 
+-1.53 
+8.94 
+ 
+MW 
+-22.25 
+-15.60 
+-1.50 
+9.63 
+17.67 
+-2.07 
+9.23 
+ 
+NE 
+-19.73 
+-17.85 
+-0.45 
+11.81 
+15.83 
+-1.57 
+9.84 
+ 
+S 
+-21.14 
+-17.07 
+-0.26 
+10.08 
+15.42 
+-2.04 
+9.20 
+ 
+W 
+-18.66 
+-12.73 
+1.08 
+10.82 
+14.91 
+-0.10 
+8.28 
+Energy (m/m) 
+Country 
+-8.18 
+-4.36 
+-0.22 
+3.78 
+5.21 
+-0.15 
+2.84 
+ 
+MW 
+-9.94 
+-5.02 
+-0.44 
+4.57 
+7.70 
+-0.22 
+3.63 
+ 
+NE 
+-5.64 
+-3.54 
+-0.21 
+2.64 
+5.61 
+-0.14 
+2.29 
+ 
+S 
+-8.77 
+-4.82 
+-0.47 
+4.08 
+6.85 
+-0.18 
+3.05 
+ 
+W 
+-7.96 
+-4.36 
+-0.10 
+4.36 
+9.57 
+-0.01 
+3.41 
+Gas (y/y) 
+Country 
+-35.40 
+-24.08 
+-2.14 
+19.28 
+30.66 
+-2.99 
+15.26 
+ 
+MW 
+-38.94 
+-25.46 
+-4.64 
+17.57 
+38.53 
+-3.51 
+16.13 
+ 
+NE 
+-34.42 
+-26.93 
+-2.08 
+19.74 
+30.11 
+-3.09 
+15.86 
+ 
+S 
+-36.38 
+-27.78 
+-2.96 
+18.90 
+32.52 
+-3.75 
+16.23 
+ 
+W 
+-32.73 
+-22.59 
+0.40 
+17.29 
+25.86 
+-1.14 
+14.18 
+Gas (m/m) 
+Country 
+-17.13 
+-6.29 
+-0.20 
+6.57 
+10.61 
+-0.24 
+5.39 
+ 
+MW 
+-19.88 
+-10.35 
+-0.35 
+8.39 
+20.44 
+-0.28 
+6.81 
+ 
+NE 
+-16.03 
+-6.01 
+-0.03 
+6.39 
+12.73 
+-0.24 
+4.83 
+ 
+S 
+-17.13 
+-8.19 
+-0.08 
+7.36 
+15.81 
+-0.29 
+5.76 
+ 
+W 
+-15.70 
+-6.75 
+-0.08 
+6.29 
+19.41 
+-0.03 
+5.80 
+Notes: See table B2. The table reports statistics for annual and monthly inflation rates for food, energy, and 
+gas prices. 
+Source: Bureau of Labor Statistics and own calculation. 
+ 
+Table B4. Descriptive statistics on Michigan Survey  
+and Survey of Professional Forecasters (1981Q3 – 2021Q1) 
+Michigan Survey 
+ 
+min 
+p10 
+p50 
+p90 
+max 
+avg 
+sd 
+P50 
+1.07 
+2.56 
+3.00 
+3.81 
+6.50 
+3.11 
+0.67 
+Avg 
+1.50 
+2.99 
+3.83 
+5.07 
+8.03 
+3.92 
+0.92 
+Var 
+9.33 
+10.67 
+18.67 
+48.87 
+84.00 
+26.22 
+16.65 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Survey of Professional Forecasters 
+ 
+min 
+p10 
+p50 
+p90 
+max 
+avg 
+sd 
+P50 
+1.80 
+2.04 
+2.50 
+4.70 
+8.00 
+3.07 
+1.23 
+Avg 
+1.83 
+2.04 
+2.46 
+4.68 
+7.93 
+3.06 
+1.19 
+Var 
+0.08 
+0.19 
+0.39 
+1.27 
+7.99 
+0.70 
+0.91 
+Notes: See Table B1. The table reports statistics across quarterly individual answers (averages of the 
+monthly statistics in the case of the Michigan Survey).  
+Sources: University of Michigan, Federal Reserve Bank of Philadelphia, and own calculations. 
+
+www.nbp.pl

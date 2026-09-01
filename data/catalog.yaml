@@ -3297,3 +3297,30 @@ sources:
   - цены на жильё
   - ипотека
   date_added: '2026-09-01'
+- id: glazova_nevalennyi_sinyakov_2025_cbr_wp154
+  title: 'Учебная модель малой открытой экономики для анализа ДКП (Глазова, Неваленный, Синяков 2025, Банк России №154)'
+  file: raw/papers/glazova_nevalennyi_sinyakov_2025_cbr_wp154.pdf
+  summary: papers/glazova_nevalennyi_sinyakov_2025_cbr_wp154.md
+  authors:
+  - Александра Глазова
+  - Максим Неваленный
+  - Андрей Синяков
+  year: 2025
+  publisher: Банк России (Серия докладов об экономических исследованиях №154)
+  url: https://cbr.ru
+  type: working_paper
+  language: ru
+  tags:
+  - monetary-policy
+  - small-open-economy
+  - inflation-targeting
+  - exchange-rate
+  - global-financial-cycle
+  - dilemma-not-trilemma
+  - capital-controls
+  - cbr
+  topics:
+  - денежно-кредитная политика
+  - валютный курс
+  - инфляционное таргетирование
+  date_added: '2026-09-01'

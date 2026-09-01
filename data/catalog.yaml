@@ -3272,3 +3272,28 @@ sources:
   - цены на жильё
   - демография
   date_added: '2026-09-01'
+- id: banai_vago_2018_house_prices_bank_risk_nbp289
+  title: 'The effect of house prices on bank risk: empirical evidence from Hungary (Banai, Vago 2018, NBP WP 289)'
+  file: raw/papers/banai_vago_2018_house_prices_bank_risk.pdf
+  summary: papers/banai_vago_2018_house_prices_bank_risk.md
+  authors:
+  - Adam Banai
+  - Nikolett Vago
+  year: 2018
+  publisher: Narodowy Bank Polski (NBP Working Paper No. 289)
+  issn: 2084-624X
+  url: https://static.nbp.pl/publikacje/materialy-i-studia/289_en.pdf
+  type: working_paper
+  language: en
+  tags:
+  - bank-risk
+  - house-prices
+  - mortgage
+  - macroprudential-policy
+  - deviation-hypothesis
+  - dynamic-panel
+  topics:
+  - банковский риск
+  - цены на жильё
+  - ипотека
+  date_added: '2026-09-01'

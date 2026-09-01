@@ -69,6 +69,10 @@ const SERIES={
 'ind_reg':{'name':'Пром. по регионам','icon':'⚙️'},
 'vvod_reg':{'name':'Ввод жилья (рег)','icon':'🏢'},
 'backlog':{'name':'Незавершёнка','icon':'🏗️'},
+'fns':{'name':'ФНС опендата','icon':'💰'},
+'ws_infl':{'name':'Внимание: инфляция','icon':'🔍'},
+'ws_infl_reg':{'name':'Инфляция: регионы','icon':'🗺️'},
+'ws_housing':{'name':'Внимание: цены жилья','icon':'🏠'},
 };
 
 function initTabs(){
@@ -400,6 +404,92 @@ chart=new Chart(document.getElementById('chr'),cfg);
 };
 selEl.addEventListener('change',draw);
 draw();
+}
+
+else if(key==='fns'){
+const defs=[
+['fns_rev_profit','Прибыль организаций','#4fc3f7'],
+['fns_exp_sales_profit','Расходы организаций','#ef5350'],
+['fns_nds_accrued_total','НДС начисленный','#81c784'],
+['fns_ndfl_withheld','НДФЛ удержанный','#ffb74d'],
+['fns_usn_income','УСН: доходы','#ce93d8'],
+['fns_usn_expense','УСН: расходы','#4dd0e1'],
+['fns_tnpayers','Налогоплательщики','#9ccc65'],
+];
+const avail=defs.filter(x=>D[x[0]]);
+const latest={};
+avail.forEach(x=>{const s=D[x[0]].data;latest[x[0]]=s[s.length-1];});
+c.innerHTML=avail.map((x,i)=>`<div class="chart-card"><h2>${x[1]} (ФНС, млрд руб./год)</h2>
+<p style="color:#9aa0c0;font-size:12px">${latest[x[0]][0]}: ${latest[x[0]][1].toLocaleString('ru-RU')}</p>
+<canvas id="fns${i}"></canvas></div>`).join('');
+avail.forEach((x,i)=>{
+const s=D[x[0]].data;
+new Chart(document.getElementById('fns'+i),{type:'line',data:{labels:s.map(p=>p[0]),
+datasets:[{label:x[1],data:s.map(p=>p[1]),borderColor:x[2],backgroundColor:x[2]+'22',fill:true,tension:.3,pointRadius:2}]},
+options:{plugins:{legend:{display:false}},scales:{y:{ticks:{callback:v=>(v/1000).toFixed(1)+' трлн'}}}}});
+});
+}
+
+else if(key==='ws_infl'){
+const d=D.wordstat_infl_attention_macro||[];
+if(!d.length){c.innerHTML='<p style="color:#ffb74d;padding:16px">Нет данных</p>';return;}
+const regs=[...new Set(d.flatMap(x=>Object.keys(x).filter(k=>k!=='date')))];
+const colors=['#4fc3f7','#81c784','#ffb74d','#ef5350','#ce93d8','#4dd0e1','#9ccc65','#ff8a65','#ba68c8'];
+const labels=d.map(x=>x.date.slice(0,7));
+c.innerHTML=`<div class="chart-card"><h2>Внимание к инфляции по макрорегионам (Wordstat, запросов на 100 тыс.)</h2>
+<p style="color:#9aa0c0;font-size:12px">Фразы «инфляция», «рост цен», «подорожание» · виден пик марта 2022</p>
+<canvas id="ch"></canvas></div>`;
+new Chart(document.getElementById('ch'),{type:'line',data:{labels,
+datasets:regs.map((r,i)=>({label:r,data:d.map(x=>x[r]??null),borderColor:colors[i%9],tension:.3,pointRadius:0,borderWidth:i===0?2:1.2}))},
+options:{plugins:{legend:{labels:{boxWidth:10,font:{size:9},color:'#e0e0e0'}}},scales:{x:{ticks:{maxTicksLimit:10,color:'#9aa0c0'}}},interaction:{mode:'index',intersect:false}}});
+}
+
+else if(key==='ws_infl_reg'){
+const s=D.wordstat_infl_attention_subjects||{};
+const all=s.data||[], keyRegs=s.regions||[];
+if(!all.length){c.innerHTML='<p style="color:#ffb74d;padding:16px">Нет данных</p>';return;}
+const labels=all.map(x=>x.date.slice(0,7));
+// selector with all subjects
+const regs=Object.keys(all[0]).filter(k=>k!=='date');
+const sel=`<select id="subjsel" style="width:100%;max-width:320px;padding:10px;font-size:15px;background:#16213e;color:#e0e0e0;border:1px solid #30365e;border-radius:8px;margin:10px 0"></select>`;
+// stats: latest spread
+const last=all[all.length-1];
+const vals=regs.map(r=>last[r]).filter(v=>v!=null);
+const mn=Math.min(...vals),mx=Math.max(...vals);
+c.innerHTML=`<div class="chart-card"><h2>Внимание к инфляции: субъекты РФ (запросов на 100 тыс.)</h2>
+<div class="stats">
+<div class="stat"><div class="val">${mx.toFixed(0)}</div><div class="label">Максимум (посл. мес.)</div></div>
+<div class="stat red"><div class="val">${mn.toFixed(0)}</div><div class="label">Минимум</div></div>
+</div>
+<p style="color:#9aa0c0;font-size:12px">${regs.length} гео-единиц · фраза «инфляция» · 2018-01…2026-07</p>
+${sel}<canvas id="chs"></canvas></div>`;
+const selEl=document.getElementById('subjsel');
+regs.forEach((r,i)=>{const o=document.createElement('option');o.value=r;o.textContent=r;if(keyRegs.includes(r))o.selected=false;selEl.appendChild(o);});
+selEl.value='Москва и область' in last ? 'Москва и область':regs[0];
+let chart=null;
+const draw=()=>{
+const reg=selEl.value;
+const cfg={type:'line',data:{labels,datasets:[
+{label:reg,data:all.map(x=>x[reg]??null),borderColor:'#4fc3f7',backgroundColor:'#4fc3f722',fill:true,tension:.3,pointRadius:0},
+{label:'Медиана по РФ',data:all.map(x=>{const v=regs.map(r=>x[r]).filter(v=>v!=null).sort((a,b)=>a-b);return v.length?v[Math.floor(v.length/2)]:null}),borderColor:'#ef5350',borderDash:[4,3],tension:.3,pointRadius:0}]},
+options:{plugins:{legend:{labels:{boxWidth:10,color:'#e0e0e0'}}},scales:{x:{ticks:{maxTicksLimit:10,color:'#9aa0c0'}}},interaction:{mode:'index',intersect:false}}};
+if(chart)chart.destroy();
+chart=new Chart(document.getElementById('chs'),cfg);};
+selEl.addEventListener('change',draw);
+draw();
+}
+
+else if(key==='ws_housing'){
+const d=D.wordstat_housing_attention||[];
+if(!d.length){c.innerHTML='<p style="color:#ffb74d;padding:16px">Нет данных</p>';return;}
+const regs=[...new Set(d.flatMap(x=>Object.keys(x).filter(k=>k!=='date')))];
+const colors=['#4fc3f7','#81c784','#ffb74d','#ef5350','#ce93d8','#4dd0e1','#9ccc65','#ff8a65','#ba68c8'];
+const labels=d.map(x=>x.date.slice(0,7));
+c.innerHTML=`<div class="chart-card"><h2>Внимание к ценам на жильё по макрорегионам (запросов на 100 тыс.)</h2>
+<p style="color:#9aa0c0;font-size:12px">Фразы «цены на квартиры», «стоит ли покупать квартиру»</p>
+<canvas id="chh"></canvas></div>`;
+new Chart(document.getElementById('chh'),{type:'line',data:{labels,datasets:regs.map((r,i)=>({label:r,data:d.map(x=>x[r]??null),borderColor:colors[i%9],tension:.3,pointRadius:0,borderWidth:1.2}))},
+options:{plugins:{legend:{labels:{boxWidth:10,font:{size:9},color:'#e0e0e0'}}},scales:{x:{ticks:{maxTicksLimit:10,color:'#9aa0c0'}}},interaction:{mode:'index',intersect:false}}});
 }
 }
 

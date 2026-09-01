@@ -3248,3 +3248,27 @@ sources:
   - инфляционные ожидания
   - региональные цены
   date_added: '2026-08-31'
+- id: heo_2018_aging_housing_prices_nbp288
+  title: 'Population aging and housing prices: who are we calling old? (Heo 2018, NBP WP 288)'
+  file: raw/papers/hee_2018_aging_housing_prices.pdf
+  summary: papers/hee_2018_aging_housing_prices.md
+  authors:
+  - Ye Jin Heo
+  year: 2018
+  publisher: Narodowy Bank Polski (NBP Working Paper No. 288)
+  issn: 2084-624X
+  url: https://static.nbp.pl/publikacje/materialy-i-studia/288_en.pdf
+  type: working_paper
+  language: en
+  tags:
+  - population-aging
+  - housing-prices
+  - demographics
+  - retirement-age
+  - life-cycle
+  - oecd
+  topics:
+  - старение населения
+  - цены на жильё
+  - демография
+  date_added: '2026-09-01'

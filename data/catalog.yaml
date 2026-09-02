@@ -3324,3 +3324,59 @@ sources:
   - валютный курс
   - инфляционное таргетирование
   date_added: '2026-09-01'
+- id: premik_stanislawska_2017_nbp_wp255
+  title: 'The impact of inflation expectations on Polish consumers'' spending and saving (Premik, Stanisławska 2017, NBP WP 255)'
+  summary: papers/premik_stanislawska_2017_inflation_expectations_polish_consumers.RU.md
+  authors:
+  - Filip Premik
+  - Ewa Stanisławska
+  year: 2017
+  publisher: Narodowy Bank Polski (NBP Working Paper No. 255)
+  issn: 2084-624X
+  url: https://static.nbp.pl/publikacje/materialy-i-studia/255_en.pdf
+  type: working_paper
+  language: en
+  tags:
+  - inflation-expectations
+  - consumption
+  - savings
+  - survey-data
+  - consumer-sentiment
+  - deflation
+  - zero-lower-bound
+  - ordered-probit
+  - poland
+  topics:
+  - инфляционные ожидания
+  - потребление
+  - сбережения
+  - дефляция
+  date_added: '2026-09-02'
+- id: paccagnini_2017_nbp_wp256
+  title: 'Forecasting with FAVAR: macroeconomic versus financial factors (Paccagnini 2017, NBP WP 256)'
+  summary: papers/paccagnini_2017_favar_macro_financial_factors.RU.md
+  authors:
+  - Alessia Paccagnini
+  year: 2017
+  publisher: Narodowy Bank Polski (NBP Working Paper No. 256)
+  issn: 2084-624X
+  url: https://static.nbp.pl/publikacje/materialy-i-studia/256_en.pdf
+  type: working_paper
+  language: en
+  tags:
+  - favar
+  - bvar
+  - var
+  - factor-models
+  - forecasting
+  - latent-factors
+  - macro-factors
+  - financial-factors
+  - great-recession
+  - united-states
+  topics:
+  - факторные модели
+  - прогнозирование
+  - байесовские VAR
+  - макрофакторы
+  date_added: '2026-09-02'

@@ -3380,3 +3380,35 @@ sources:
   - байесовские VAR
   - макрофакторы
   date_added: '2026-09-02'
+- id: fernandez_villaverde_rubio_ramirez_schorfheide_2016_nber_wp21862
+  title: 'Solution and Estimation Methods for DSGE Models (Fernández-Villaverde, Rubio-Ramírez, Schorfheide 2016, NBER WP 21862)'
+  file: raw/papers/fernandez_villaverde_rubio_ramirez_schorfheide_2016_solution_estimation_dsge.pdf
+  summary: papers/fernandez_villaverde_rubio_ramirez_schorfheide_2016_solution_estimation_dsge.RU.md
+  authors:
+  - Jesús Fernández-Villaverde
+  - Juan F. Rubio-Ramírez
+  - Frank Schorfheide
+  year: 2016
+  publisher: NBER Working Paper No. 21862 (also Handbook of Macroeconomics Vol. 2, Elsevier)
+  url: https://www.nber.org/system/files/working_papers/w21862/w21862.pdf
+  type: working_paper
+  language: en
+  tags:
+  - dsge
+  - bayesian-estimation
+  - numerical-methods
+  - perturbation
+  - projection
+  - kalman-filter
+  - mcmc
+  - smc
+  - likelihood
+  - state-space
+  - monetary-policy
+  - business-cycle
+  topics:
+  - DSGE-модели
+  - байесовская оценка
+  - численные методы
+  - монетарная политика
+  date_added: '2026-09-02'

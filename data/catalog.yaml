@@ -3440,3 +3440,53 @@ sources:
     - ИЦСП
     - сталь арматурная
   date_added: '2026-09-03'
+- id: sherpa_national_projects_h1_2026
+  title: 'Нацпроекты: итоги I пол. 2026 г. (Sherpa Group, 21.07.2026)'
+  authors:
+    - Sherpa Group
+  year: 2026
+  source: Sherpa Group
+  url: 'https://sherpagroup.ru/analytics/cz7y5wh'
+  file: papers/sherpa_national_projects_h1_2026.RU.md
+  type: report
+  tags:
+    - нацпроекты
+    - бюджетное исполнение
+    - инфраструктура
+    - госзаказ
+    - транспортная система
+    - жилищное строительство
+  topics:
+    - федеральный бюджет
+    - дефицит бюджета
+    - планка финансирования
+    - ОКПД2 41
+    - ОКПД2 42
+    - ВСМ
+    - аэродромы
+  date_added: '2026-09-03'
+- id: sherpa_construction_regions_h1_2026
+  title: 'Строительство в российских регионах: итоги I пол. 2026 г. (Sherpa Group, 05.08.2026)'
+  authors:
+    - Sherpa Group
+  year: 2026
+  source: Sherpa Group
+  url: 'https://sherpagroup.ru/analytics/e6hkwd5'
+  file: papers/sherpa_construction_regions_h1_2026.RU.md
+  type: report
+  tags:
+    - СМР
+    - региональная статистика
+    - строительная инфляция
+    - инфраструктурные расходы
+    - федеральные округа
+    - прогноз
+  topics:
+    - объём СМР
+    - сопоставимые цены
+    - ИЦСП
+    - регбюджеты
+    - ДВФО
+    - СФО
+    - nowcasting
+  date_added: '2026-09-03'

@@ -3490,6 +3490,16 @@ sources:
     - СФО
     - nowcasting
   date_added: '2026-09-03'
+- id: expertra_developers_under_pressure_2026
+  title: "Жилищное строительство: под давлением (Эксперт РА, ЕРЗ-тренды)"
+  authors: ["Сергиенко, Дмитрий"]
+  year: 2026
+  publisher: "Эксперт РА"
+  type: report
+  tags: [debt, ebitda, interest_coverage, margin, developers, esckrow, key_rate, financial_health]
+  summary_file: papers/expertra_developers_under_pressure_2026.RU.md
+  date_added: "2026-09-04"
+    
 - id: oneill_velasco_2026_fabart
   title: "Let the Tree Decide: FABART. A Non-Parametric Factor Model for Nonlinear Oil Shock Transmission"
   authors: ["O'Neill, Eoghan", "Velasco, Sofia"]

@@ -3490,3 +3490,33 @@ sources:
     - СФО
     - nowcasting
   date_added: '2026-09-03'
+- id: vzhokov_developers_h1_2026_financials
+  title: '6 девелоперов за 6М 2026: выручка падает, прибыль испаряется, долг давит (@vzhokov)'
+  authors:
+    - '@vzhokov'
+  year: 2026
+  source: Telegram
+  url: ''
+  file: papers/vzhokov_developers_h1_2026_financials.RU.md
+  type: analysis
+  tags:
+    - девелоперы
+    - финансовая отчётность
+    - Debt/Equity
+    - дистресс
+    - ПИК
+    - Самолёт
+    - А101
+    - Эталон
+    - ДАРС
+    - АПРИ
+  topics:
+    - выручка
+    - EBITDA
+    - чистая прибыль
+    - долговая нагрузка
+    - эскроу
+    - обесценение inventory
+    - НКР
+    - ЕРЗ
+  date_added: '2026-09-03'

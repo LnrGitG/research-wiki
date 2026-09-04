@@ -1,0 +1,128 @@
+{
+  "developer": "Главстрой",
+  "inn": "7715918377",
+  "organization": {
+    "id": 260841,
+    "name": "ООО \"ГЛАВСТРОЙ\"",
+    "okved2": "43.22",
+    "status": "ACTIVE"
+  },
+  "bfo_count": 5,
+  "financials": [
+    {
+      "period": "2022",
+      "correction_id": 46072516,
+      "balance": {
+        "non_current_assets": 5464.0,
+        "current_assets": 205298.0,
+        "total_assets": 210762.0,
+        "equity": 67531.0,
+        "long_term_debt": null,
+        "short_term_debt": 435.0,
+        "total_debt": 435.0
+      },
+      "income_statement": {
+        "revenue": 351053.0,
+        "operating_profit": 16915.0,
+        "net_profit": 13475.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.006441486132294798
+      },
+      "okved2": "Производство санитарно-технических работ, монтаж отопительных систем и систем кондиционирования воздуха",
+      "knd": "0710099"
+    },
+    {
+      "period": "2021",
+      "correction_id": 42260963,
+      "balance": {
+        "non_current_assets": 9355.0,
+        "current_assets": 206074.0,
+        "total_assets": 215429.0,
+        "equity": 54429.0,
+        "long_term_debt": null,
+        "short_term_debt": null,
+        "total_debt": 0
+      },
+      "income_statement": {
+        "revenue": 483710.0,
+        "operating_profit": 51674.0,
+        "net_profit": 52123.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.0
+      },
+      "okved2": "Производство санитарно-технических работ, монтаж отопительных систем и систем кондиционирования воздуха",
+      "knd": "0710099"
+    },
+    {
+      "period": "2024",
+      "correction_id": 51654425,
+      "balance": {
+        "non_current_assets": 18814.0,
+        "current_assets": 381050.0,
+        "total_assets": 399864.0,
+        "equity": 28113.0,
+        "long_term_debt": 13333.0,
+        "short_term_debt": 1375.0,
+        "total_debt": 14708.0
+      },
+      "income_statement": {
+        "revenue": 431626.0,
+        "operating_profit": 38318.0,
+        "net_profit": 12243.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.5231743321594992
+      },
+      "okved2": "Производство санитарно-технических работ, монтаж отопительных систем и систем кондиционирования воздуха",
+      "knd": "0710099"
+    },
+    {
+      "period": "2023",
+      "correction_id": 49718053,
+      "balance": {
+        "non_current_assets": 21848.0,
+        "current_assets": 300986.0,
+        "total_assets": 322834.0,
+        "equity": 90545.0,
+        "long_term_debt": 23333.0,
+        "short_term_debt": 12050.0,
+        "total_debt": 35383.0
+      },
+      "income_statement": {
+        "revenue": 708495.0,
+        "operating_profit": 32451.0,
+        "net_profit": 23014.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.3907780661549506
+      },
+      "okved2": "Производство санитарно-технических работ, монтаж отопительных систем и систем кондиционирования воздуха",
+      "knd": "0710099"
+    },
+    {
+      "period": "2025",
+      "correction_id": 56485601,
+      "balance": {
+        "non_current_assets": 29819.0,
+        "current_assets": 723625.0,
+        "total_assets": 753444.0,
+        "equity": 60853.0,
+        "long_term_debt": 3333.0,
+        "short_term_debt": 31836.0,
+        "total_debt": 35169.0
+      },
+      "income_statement": {
+        "revenue": 543976.0,
+        "operating_profit": 78704.0,
+        "net_profit": 52740.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.5779337091022628
+      },
+      "okved2": null,
+      "knd": "0710099"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "developer": "ЛСР",
+  "inn": "7716957114",
+  "organization": {
+    "id": 11597431,
+    "name": "ООО \"ЛСР\"",
+    "okved2": "41.20",
+    "status": "INACTIVE"
+  },
+  "bfo_count": 1,
+  "financials": [
+    {
+      "period": "2021",
+      "correction_id": 41735510,
+      "balance": {
+        "non_current_assets": null,
+        "current_assets": null,
+        "total_assets": 17429.0,
+        "equity": 87.0,
+        "long_term_debt": null,
+        "short_term_debt": null,
+        "total_debt": 0
+      },
+      "income_statement": {
+        "revenue": 14483.0,
+        "operating_profit": null,
+        "net_profit": 38.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.0
+      },
+      "okved2": "Строительство жилых и нежилых зданий",
+      "knd": "0710096"
+    }
+  ]
+}

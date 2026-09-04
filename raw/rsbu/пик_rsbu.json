@@ -1,0 +1,82 @@
+{
+  "developer": "ПИК",
+  "inn": "7713011336",
+  "organization": {
+    "id": 6661875,
+    "name": "ПАО \"ПИК СЗ\"",
+    "okved2": "64.99.3",
+    "status": "ACTIVE"
+  },
+  "bfo_count": 3,
+  "financials": [
+    {
+      "period": "2021",
+      "correction_id": 42451423,
+      "balance": {
+        "non_current_assets": 87269484.0,
+        "current_assets": 101636038.0,
+        "total_assets": 188905522.0,
+        "equity": 106478509.0,
+        "long_term_debt": 38632799.0,
+        "short_term_debt": 22021161.0,
+        "total_debt": 60653960.0
+      },
+      "income_statement": {
+        "revenue": 24320277.0,
+        "operating_profit": 8345180.0,
+        "net_profit": 71086455.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.5696356999138671
+      },
+      "okved2": "Строительство жилых и нежилых зданий",
+      "knd": "0710099"
+    },
+    {
+      "period": "2023",
+      "correction_id": 48991275,
+      "balance": {
+        "non_current_assets": 140195458.0,
+        "current_assets": 156271116.0,
+        "total_assets": 296466574.0,
+        "equity": 183896454.0,
+        "long_term_debt": 68778075.0,
+        "short_term_debt": 467932.0,
+        "total_debt": 69246007.0
+      },
+      "income_statement": {
+        "revenue": 39960617.0,
+        "operating_profit": 18542571.0,
+        "net_profit": 27483958.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.37654889745726144
+      },
+      "okved2": "Строительство жилых и нежилых зданий",
+      "knd": "0710099"
+    },
+    {
+      "period": "2022",
+      "correction_id": 45798511,
+      "balance": {
+        "non_current_assets": 108078054.0,
+        "current_assets": 105174017.0,
+        "total_assets": 213252071.0,
+        "equity": 156412496.0,
+        "long_term_debt": 32282644.0,
+        "short_term_debt": 164514.0,
+        "total_debt": 32447158.0
+      },
+      "income_statement": {
+        "revenue": 22621435.0,
+        "operating_profit": 4779735.0,
+        "net_profit": 49933398.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.20744607259512055
+      },
+      "okved2": "Строительство жилых и нежилых зданий",
+      "knd": "0710099"
+    }
+  ]
+}

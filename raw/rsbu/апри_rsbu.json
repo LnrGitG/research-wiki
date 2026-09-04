@@ -1,0 +1,128 @@
+{
+  "developer": "АПРИ",
+  "inn": "7810708323",
+  "organization": {
+    "id": 5025296,
+    "name": "АО \"АПРИ\"",
+    "okved2": "68.20",
+    "status": "ACTIVE"
+  },
+  "bfo_count": 5,
+  "financials": [
+    {
+      "period": "2022",
+      "correction_id": 45133485,
+      "balance": {
+        "non_current_assets": null,
+        "current_assets": null,
+        "total_assets": 85327.0,
+        "equity": 73001.0,
+        "long_term_debt": null,
+        "short_term_debt": 146.0,
+        "total_debt": 146.0
+      },
+      "income_statement": {
+        "revenue": 6434.0,
+        "operating_profit": null,
+        "net_profit": 66293.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.001999972603115026
+      },
+      "okved2": "Аренда и управление собственным или арендованным недвижимым имуществом",
+      "knd": "0710096"
+    },
+    {
+      "period": "2023",
+      "correction_id": 49626703,
+      "balance": {
+        "non_current_assets": null,
+        "current_assets": null,
+        "total_assets": 72962.0,
+        "equity": 46324.0,
+        "long_term_debt": 4000.0,
+        "short_term_debt": 146.0,
+        "total_debt": 4146.0
+      },
+      "income_statement": {
+        "revenue": 24556.0,
+        "operating_profit": null,
+        "net_profit": -25677.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.08950004317416457
+      },
+      "okved2": "Аренда и управление собственным или арендованным недвижимым имуществом",
+      "knd": "0710096"
+    },
+    {
+      "period": "2021",
+      "correction_id": 42850760,
+      "balance": {
+        "non_current_assets": null,
+        "current_assets": null,
+        "total_assets": 18078.0,
+        "equity": 6808.0,
+        "long_term_debt": null,
+        "short_term_debt": 146.0,
+        "total_debt": 146.0
+      },
+      "income_statement": {
+        "revenue": 7151.0,
+        "operating_profit": null,
+        "net_profit": -1595.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.02144535840188014
+      },
+      "okved2": "Аренда и управление собственным или арендованным недвижимым имуществом",
+      "knd": "0710096"
+    },
+    {
+      "period": "2025",
+      "correction_id": 55289606,
+      "balance": {
+        "non_current_assets": null,
+        "current_assets": null,
+        "total_assets": 83135.0,
+        "equity": 1260.0,
+        "long_term_debt": 31538.0,
+        "short_term_debt": 618.0,
+        "total_debt": 32156.0
+      },
+      "income_statement": {
+        "revenue": 65188.0,
+        "operating_profit": null,
+        "net_profit": -30421.0
+      },
+      "ratios": {
+        "debt_to_equity": 25.520634920634922
+      },
+      "okved2": null,
+      "knd": "0710096"
+    },
+    {
+      "period": "2024",
+      "correction_id": 51856830,
+      "balance": {
+        "non_current_assets": null,
+        "current_assets": null,
+        "total_assets": 55291.0,
+        "equity": 31692.0,
+        "long_term_debt": 3680.0,
+        "short_term_debt": 146.0,
+        "total_debt": 3826.0
+      },
+      "income_statement": {
+        "revenue": 29488.0,
+        "operating_profit": null,
+        "net_profit": -14632.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.12072447305313644
+      },
+      "okved2": "Аренда и управление собственным или арендованным недвижимым имуществом",
+      "knd": "0710096"
+    }
+  ]
+}

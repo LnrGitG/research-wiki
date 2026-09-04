@@ -1,0 +1,914 @@
+[
+  {
+    "developer": "ПИК",
+    "inn": "7713011336",
+    "organization": {
+      "id": 6661875,
+      "name": "ПАО \"ПИК СЗ\"",
+      "okved2": "64.99.3",
+      "status": "ACTIVE"
+    },
+    "bfo_count": 3,
+    "financials": [
+      {
+        "period": "2021",
+        "correction_id": 42451423,
+        "balance": {
+          "non_current_assets": 87269484.0,
+          "current_assets": 101636038.0,
+          "total_assets": 188905522.0,
+          "equity": 106478509.0,
+          "long_term_debt": 38632799.0,
+          "short_term_debt": 22021161.0,
+          "total_debt": 60653960.0
+        },
+        "income_statement": {
+          "revenue": 24320277.0,
+          "operating_profit": 8345180.0,
+          "net_profit": 71086455.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.5696356999138671
+        },
+        "okved2": "Строительство жилых и нежилых зданий",
+        "knd": "0710099"
+      },
+      {
+        "period": "2023",
+        "correction_id": 48991275,
+        "balance": {
+          "non_current_assets": 140195458.0,
+          "current_assets": 156271116.0,
+          "total_assets": 296466574.0,
+          "equity": 183896454.0,
+          "long_term_debt": 68778075.0,
+          "short_term_debt": 467932.0,
+          "total_debt": 69246007.0
+        },
+        "income_statement": {
+          "revenue": 39960617.0,
+          "operating_profit": 18542571.0,
+          "net_profit": 27483958.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.37654889745726144
+        },
+        "okved2": "Строительство жилых и нежилых зданий",
+        "knd": "0710099"
+      },
+      {
+        "period": "2022",
+        "correction_id": 45798511,
+        "balance": {
+          "non_current_assets": 108078054.0,
+          "current_assets": 105174017.0,
+          "total_assets": 213252071.0,
+          "equity": 156412496.0,
+          "long_term_debt": 32282644.0,
+          "short_term_debt": 164514.0,
+          "total_debt": 32447158.0
+        },
+        "income_statement": {
+          "revenue": 22621435.0,
+          "operating_profit": 4779735.0,
+          "net_profit": 49933398.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.20744607259512055
+        },
+        "okved2": "Строительство жилых и нежилых зданий",
+        "knd": "0710099"
+      }
+    ]
+  },
+  {
+    "developer": "Самолёт",
+    "inn": "9731004688",
+    "organization": {
+      "id": 10719658,
+      "name": "ПАО \"ГК \"САМОЛЕТ\"",
+      "okved2": "70.22",
+      "status": "ACTIVE"
+    },
+    "bfo_count": 5,
+    "financials": [
+      {
+        "period": "2024",
+        "correction_id": 52460528,
+        "balance": {
+          "non_current_assets": 177229370.0,
+          "current_assets": 93742047.0,
+          "total_assets": 270971417.0,
+          "equity": 18204731.0,
+          "long_term_debt": 173236678.0,
+          "short_term_debt": 71534929.0,
+          "total_debt": 244771607.0
+        },
+        "income_statement": {
+          "revenue": 9434044.0,
+          "operating_profit": 8122103.0,
+          "net_profit": 797902.0
+        },
+        "ratios": {
+          "debt_to_equity": 13.445494305848298
+        },
+        "okved2": "Консультирование по вопросам коммерческой деятельности и управления",
+        "knd": "0710099"
+      },
+      {
+        "period": "2021",
+        "correction_id": 42539438,
+        "balance": {
+          "non_current_assets": 53339523.0,
+          "current_assets": 15754709.0,
+          "total_assets": 69094232.0,
+          "equity": 7371158.0,
+          "long_term_debt": 51836755.0,
+          "short_term_debt": 9310474.0,
+          "total_debt": 61147229.0
+        },
+        "income_statement": {
+          "revenue": 1551190.0,
+          "operating_profit": 643832.0,
+          "net_profit": 2315651.0
+        },
+        "ratios": {
+          "debt_to_equity": 8.295471213613926
+        },
+        "okved2": "Консультирование по вопросам коммерческой деятельности и управления",
+        "knd": "0710099"
+      },
+      {
+        "period": "2023",
+        "correction_id": 48898389,
+        "balance": {
+          "non_current_assets": 145662449.0,
+          "current_assets": 44645914.0,
+          "total_assets": 190308363.0,
+          "equity": 17473552.0,
+          "long_term_debt": 113717737.0,
+          "short_term_debt": 56105096.0,
+          "total_debt": 169822833.0
+        },
+        "income_statement": {
+          "revenue": 6841987.0,
+          "operating_profit": 5228521.0,
+          "net_profit": 7667268.0
+        },
+        "ratios": {
+          "debt_to_equity": 9.718850122745508
+        },
+        "okved2": "Консультирование по вопросам коммерческой деятельности и управления",
+        "knd": "0710099"
+      },
+      {
+        "period": "2022",
+        "correction_id": 45966689,
+        "balance": {
+          "non_current_assets": 83678567.0,
+          "current_assets": 27885459.0,
+          "total_assets": 111564026.0,
+          "equity": 9413406.0,
+          "long_term_debt": 84378766.0,
+          "short_term_debt": 17112183.0,
+          "total_debt": 101490949.0
+        },
+        "income_statement": {
+          "revenue": 3209771.0,
+          "operating_profit": 1913668.0,
+          "net_profit": 7475995.0
+        },
+        "ratios": {
+          "debt_to_equity": 10.781533166634903
+        },
+        "okved2": "Консультирование по вопросам коммерческой деятельности и управления",
+        "knd": "0710099"
+      },
+      {
+        "period": "2025",
+        "correction_id": 57483790,
+        "balance": {
+          "non_current_assets": 221325358.0,
+          "current_assets": 30026449.0,
+          "total_assets": 251351807.0,
+          "equity": 10958236.0,
+          "long_term_debt": 179967801.0,
+          "short_term_debt": 58462595.0,
+          "total_debt": 238430396.0
+        },
+        "income_statement": {
+          "revenue": 15057478.0,
+          "operating_profit": 14479519.0,
+          "net_profit": 1585634.0
+        },
+        "ratios": {
+          "debt_to_equity": 21.75810011757367
+        },
+        "okved2": null,
+        "knd": "0710099"
+      }
+    ]
+  },
+  {
+    "developer": "А101",
+    "inn": "7704810149",
+    "organization": {
+      "id": 587902,
+      "name": "ООО \"А101\"",
+      "okved2": "68.10.23",
+      "status": "ACTIVE"
+    },
+    "bfo_count": 5,
+    "financials": [
+      {
+        "period": "2023",
+        "correction_id": 48476582,
+        "balance": {
+          "non_current_assets": 106701951.0,
+          "current_assets": 38643979.0,
+          "total_assets": 145345930.0,
+          "equity": 34644898.0,
+          "long_term_debt": 40604606.0,
+          "short_term_debt": null,
+          "total_debt": 40604606.0
+        },
+        "income_statement": {
+          "revenue": 12850402.0,
+          "operating_profit": 6352166.0,
+          "net_profit": -5021038.0
+        },
+        "ratios": {
+          "debt_to_equity": 1.172022674161142
+        },
+        "okved2": "Строительство жилых и нежилых зданий",
+        "knd": "0710099"
+      },
+      {
+        "period": "2021",
+        "correction_id": 41695814,
+        "balance": {
+          "non_current_assets": 47926358.0,
+          "current_assets": 94157425.0,
+          "total_assets": 142083784.0,
+          "equity": 53808744.0,
+          "long_term_debt": 38505382.0,
+          "short_term_debt": 0.0,
+          "total_debt": 38505382.0
+        },
+        "income_statement": {
+          "revenue": 19075736.0,
+          "operating_profit": 12607751.0,
+          "net_profit": 1658558.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.7155971155914734
+        },
+        "okved2": "Строительство жилых и нежилых зданий",
+        "knd": "0710099"
+      },
+      {
+        "period": "2022",
+        "correction_id": 45339121,
+        "balance": {
+          "non_current_assets": 96235354.0,
+          "current_assets": 50061355.0,
+          "total_assets": 146296709.0,
+          "equity": 86584284.0,
+          "long_term_debt": 47021820.0,
+          "short_term_debt": 0.0,
+          "total_debt": 47021820.0
+        },
+        "income_statement": {
+          "revenue": 36183365.0,
+          "operating_profit": 27167699.0,
+          "net_profit": 13593534.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.5430756925818085
+        },
+        "okved2": "Строительство жилых и нежилых зданий",
+        "knd": "0710099"
+      },
+      {
+        "period": "2025",
+        "correction_id": 55134176,
+        "balance": {
+          "non_current_assets": 107557068.0,
+          "current_assets": 41317852.0,
+          "total_assets": 148874920.0,
+          "equity": 38081901.0,
+          "long_term_debt": 60309553.0,
+          "short_term_debt": 15570300.0,
+          "total_debt": 75879853.0
+        },
+        "income_statement": {
+          "revenue": 21202430.0,
+          "operating_profit": 12333934.0,
+          "net_profit": 16040081.0
+        },
+        "ratios": {
+          "debt_to_equity": 1.9925437283186047
+        },
+        "okved2": null,
+        "knd": "0710099"
+      },
+      {
+        "period": "2024",
+        "correction_id": 50837812,
+        "balance": {
+          "non_current_assets": 108106017.0,
+          "current_assets": 34124248.0,
+          "total_assets": 142230264.0,
+          "equity": 49041819.0,
+          "long_term_debt": 62196599.0,
+          "short_term_debt": 0.0,
+          "total_debt": 62196599.0
+        },
+        "income_statement": {
+          "revenue": 10678994.0,
+          "operating_profit": 5609916.0,
+          "net_profit": 16114922.0
+        },
+        "ratios": {
+          "debt_to_equity": 1.2682359722423835
+        },
+        "okved2": "Строительство жилых и нежилых зданий",
+        "knd": "0710099"
+      }
+    ]
+  },
+  {
+    "developer": "Эталон",
+    "inn": "7826009627",
+    "organization": {
+      "id": 3961853,
+      "name": "АО \"ЭТАЛОН\"",
+      "okved2": "68.20.2",
+      "status": "INACTIVE"
+    },
+    "bfo_count": 5,
+    "financials": [
+      {
+        "period": "2023",
+        "correction_id": 49341832,
+        "balance": {
+          "non_current_assets": 24724.0,
+          "current_assets": 27630.0,
+          "total_assets": 52354.0,
+          "equity": 35696.0,
+          "long_term_debt": null,
+          "short_term_debt": null,
+          "total_debt": 0
+        },
+        "income_statement": {
+          "revenue": 59327.0,
+          "operating_profit": -3020.0,
+          "net_profit": -13789.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.0
+        },
+        "okved2": "Аренда и управление собственным или арендованным нежилым недвижимым имуществом",
+        "knd": "0710099"
+      },
+      {
+        "period": "2022",
+        "correction_id": 47160089,
+        "balance": {
+          "non_current_assets": 25555.0,
+          "current_assets": 43033.0,
+          "total_assets": 68588.0,
+          "equity": 49484.0,
+          "long_term_debt": null,
+          "short_term_debt": null,
+          "total_debt": 0
+        },
+        "income_statement": {
+          "revenue": 54673.0,
+          "operating_profit": -1157.0,
+          "net_profit": -42753.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.0
+        },
+        "okved2": "Аренда и управление собственным или арендованным нежилым недвижимым имуществом",
+        "knd": "0710099"
+      },
+      {
+        "period": "2021",
+        "correction_id": 43194787,
+        "balance": {
+          "non_current_assets": 23996.0,
+          "current_assets": 90115.0,
+          "total_assets": 114111.0,
+          "equity": 92237.0,
+          "long_term_debt": null,
+          "short_term_debt": null,
+          "total_debt": 0
+        },
+        "income_statement": {
+          "revenue": 55940.0,
+          "operating_profit": 4324.0,
+          "net_profit": 1233.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.0
+        },
+        "okved2": "Аренда и управление собственным или арендованным нежилым недвижимым имуществом",
+        "knd": "0710099"
+      },
+      {
+        "period": "2025",
+        "correction_id": 56785358,
+        "balance": {
+          "non_current_assets": 27017.0,
+          "current_assets": 22693.0,
+          "total_assets": 49710.0,
+          "equity": 34482.0,
+          "long_term_debt": null,
+          "short_term_debt": null,
+          "total_debt": 0
+        },
+        "income_statement": {
+          "revenue": 63304.0,
+          "operating_profit": -9725.0,
+          "net_profit": 11729.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.0
+        },
+        "okved2": null,
+        "knd": "0710099"
+      },
+      {
+        "period": "2024",
+        "correction_id": 51457285,
+        "balance": {
+          "non_current_assets": 24061.0,
+          "current_assets": 23013.0,
+          "total_assets": 47074.0,
+          "equity": 31136.0,
+          "long_term_debt": null,
+          "short_term_debt": null,
+          "total_debt": 0
+        },
+        "income_statement": {
+          "revenue": 68379.0,
+          "operating_profit": 3703.0,
+          "net_profit": -7669.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.0
+        },
+        "okved2": "Аренда и управление собственным или арендованным нежилым недвижимым имуществом",
+        "knd": "0710099"
+      }
+    ]
+  },
+  {
+    "developer": "ДАРС",
+    "inn": "2322028526",
+    "organization": {
+      "id": 2985200,
+      "name": "ООО \"ДАРС\"",
+      "okved2": "41.2",
+      "status": "INACTIVE"
+    },
+    "bfo_count": 1,
+    "financials": [
+      {
+        "period": "2021",
+        "correction_id": 41216241,
+        "balance": {
+          "non_current_assets": null,
+          "current_assets": 10.0,
+          "total_assets": 10.0,
+          "equity": 10.0,
+          "long_term_debt": null,
+          "short_term_debt": null,
+          "total_debt": 0
+        },
+        "income_statement": {
+          "revenue": null,
+          "operating_profit": null,
+          "net_profit": null
+        },
+        "ratios": {
+          "debt_to_equity": 0.0
+        },
+        "okved2": "Строительство жилых и нежилых зданий",
+        "knd": "0710099"
+      }
+    ]
+  },
+  {
+    "developer": "АПРИ",
+    "inn": "7810708323",
+    "organization": {
+      "id": 5025296,
+      "name": "АО \"АПРИ\"",
+      "okved2": "68.20",
+      "status": "ACTIVE"
+    },
+    "bfo_count": 5,
+    "financials": [
+      {
+        "period": "2022",
+        "correction_id": 45133485,
+        "balance": {
+          "non_current_assets": null,
+          "current_assets": null,
+          "total_assets": 85327.0,
+          "equity": 73001.0,
+          "long_term_debt": null,
+          "short_term_debt": 146.0,
+          "total_debt": 146.0
+        },
+        "income_statement": {
+          "revenue": 6434.0,
+          "operating_profit": null,
+          "net_profit": 66293.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.001999972603115026
+        },
+        "okved2": "Аренда и управление собственным или арендованным недвижимым имуществом",
+        "knd": "0710096"
+      },
+      {
+        "period": "2023",
+        "correction_id": 49626703,
+        "balance": {
+          "non_current_assets": null,
+          "current_assets": null,
+          "total_assets": 72962.0,
+          "equity": 46324.0,
+          "long_term_debt": 4000.0,
+          "short_term_debt": 146.0,
+          "total_debt": 4146.0
+        },
+        "income_statement": {
+          "revenue": 24556.0,
+          "operating_profit": null,
+          "net_profit": -25677.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.08950004317416457
+        },
+        "okved2": "Аренда и управление собственным или арендованным недвижимым имуществом",
+        "knd": "0710096"
+      },
+      {
+        "period": "2021",
+        "correction_id": 42850760,
+        "balance": {
+          "non_current_assets": null,
+          "current_assets": null,
+          "total_assets": 18078.0,
+          "equity": 6808.0,
+          "long_term_debt": null,
+          "short_term_debt": 146.0,
+          "total_debt": 146.0
+        },
+        "income_statement": {
+          "revenue": 7151.0,
+          "operating_profit": null,
+          "net_profit": -1595.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.02144535840188014
+        },
+        "okved2": "Аренда и управление собственным или арендованным недвижимым имуществом",
+        "knd": "0710096"
+      },
+      {
+        "period": "2025",
+        "correction_id": 55289606,
+        "balance": {
+          "non_current_assets": null,
+          "current_assets": null,
+          "total_assets": 83135.0,
+          "equity": 1260.0,
+          "long_term_debt": 31538.0,
+          "short_term_debt": 618.0,
+          "total_debt": 32156.0
+        },
+        "income_statement": {
+          "revenue": 65188.0,
+          "operating_profit": null,
+          "net_profit": -30421.0
+        },
+        "ratios": {
+          "debt_to_equity": 25.520634920634922
+        },
+        "okved2": null,
+        "knd": "0710096"
+      },
+      {
+        "period": "2024",
+        "correction_id": 51856830,
+        "balance": {
+          "non_current_assets": null,
+          "current_assets": null,
+          "total_assets": 55291.0,
+          "equity": 31692.0,
+          "long_term_debt": 3680.0,
+          "short_term_debt": 146.0,
+          "total_debt": 3826.0
+        },
+        "income_statement": {
+          "revenue": 29488.0,
+          "operating_profit": null,
+          "net_profit": -14632.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.12072447305313644
+        },
+        "okved2": "Аренда и управление собственным или арендованным недвижимым имуществом",
+        "knd": "0710096"
+      }
+    ]
+  },
+  {
+    "developer": "ЛСР",
+    "inn": "7716957114",
+    "organization": {
+      "id": 11597431,
+      "name": "ООО \"ЛСР\"",
+      "okved2": "41.20",
+      "status": "INACTIVE"
+    },
+    "bfo_count": 1,
+    "financials": [
+      {
+        "period": "2021",
+        "correction_id": 41735510,
+        "balance": {
+          "non_current_assets": null,
+          "current_assets": null,
+          "total_assets": 17429.0,
+          "equity": 87.0,
+          "long_term_debt": null,
+          "short_term_debt": null,
+          "total_debt": 0
+        },
+        "income_statement": {
+          "revenue": 14483.0,
+          "operating_profit": null,
+          "net_profit": 38.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.0
+        },
+        "okved2": "Строительство жилых и нежилых зданий",
+        "knd": "0710096"
+      }
+    ]
+  },
+  {
+    "developer": "Главстрой",
+    "inn": "7715918377",
+    "organization": {
+      "id": 260841,
+      "name": "ООО \"ГЛАВСТРОЙ\"",
+      "okved2": "43.22",
+      "status": "ACTIVE"
+    },
+    "bfo_count": 5,
+    "financials": [
+      {
+        "period": "2022",
+        "correction_id": 46072516,
+        "balance": {
+          "non_current_assets": 5464.0,
+          "current_assets": 205298.0,
+          "total_assets": 210762.0,
+          "equity": 67531.0,
+          "long_term_debt": null,
+          "short_term_debt": 435.0,
+          "total_debt": 435.0
+        },
+        "income_statement": {
+          "revenue": 351053.0,
+          "operating_profit": 16915.0,
+          "net_profit": 13475.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.006441486132294798
+        },
+        "okved2": "Производство санитарно-технических работ, монтаж отопительных систем и систем кондиционирования воздуха",
+        "knd": "0710099"
+      },
+      {
+        "period": "2021",
+        "correction_id": 42260963,
+        "balance": {
+          "non_current_assets": 9355.0,
+          "current_assets": 206074.0,
+          "total_assets": 215429.0,
+          "equity": 54429.0,
+          "long_term_debt": null,
+          "short_term_debt": null,
+          "total_debt": 0
+        },
+        "income_statement": {
+          "revenue": 483710.0,
+          "operating_profit": 51674.0,
+          "net_profit": 52123.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.0
+        },
+        "okved2": "Производство санитарно-технических работ, монтаж отопительных систем и систем кондиционирования воздуха",
+        "knd": "0710099"
+      },
+      {
+        "period": "2024",
+        "correction_id": 51654425,
+        "balance": {
+          "non_current_assets": 18814.0,
+          "current_assets": 381050.0,
+          "total_assets": 399864.0,
+          "equity": 28113.0,
+          "long_term_debt": 13333.0,
+          "short_term_debt": 1375.0,
+          "total_debt": 14708.0
+        },
+        "income_statement": {
+          "revenue": 431626.0,
+          "operating_profit": 38318.0,
+          "net_profit": 12243.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.5231743321594992
+        },
+        "okved2": "Производство санитарно-технических работ, монтаж отопительных систем и систем кондиционирования воздуха",
+        "knd": "0710099"
+      },
+      {
+        "period": "2023",
+        "correction_id": 49718053,
+        "balance": {
+          "non_current_assets": 21848.0,
+          "current_assets": 300986.0,
+          "total_assets": 322834.0,
+          "equity": 90545.0,
+          "long_term_debt": 23333.0,
+          "short_term_debt": 12050.0,
+          "total_debt": 35383.0
+        },
+        "income_statement": {
+          "revenue": 708495.0,
+          "operating_profit": 32451.0,
+          "net_profit": 23014.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.3907780661549506
+        },
+        "okved2": "Производство санитарно-технических работ, монтаж отопительных систем и систем кондиционирования воздуха",
+        "knd": "0710099"
+      },
+      {
+        "period": "2025",
+        "correction_id": 56485601,
+        "balance": {
+          "non_current_assets": 29819.0,
+          "current_assets": 723625.0,
+          "total_assets": 753444.0,
+          "equity": 60853.0,
+          "long_term_debt": 3333.0,
+          "short_term_debt": 31836.0,
+          "total_debt": 35169.0
+        },
+        "income_statement": {
+          "revenue": 543976.0,
+          "operating_profit": 78704.0,
+          "net_profit": 52740.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.5779337091022628
+        },
+        "okved2": null,
+        "knd": "0710099"
+      }
+    ]
+  },
+  {
+    "developer": "Брусника",
+    "inn": "7000003653",
+    "organization": {
+      "id": 12103225,
+      "name": "ООО \"СИБАКАДЕМСТРОЙ\"",
+      "okved2": "41.20",
+      "status": "ACTIVE"
+    },
+    "bfo_count": 3,
+    "financials": [
+      {
+        "period": "2025",
+        "correction_id": 57848501,
+        "balance": {
+          "non_current_assets": 89250.0,
+          "current_assets": 427497.0,
+          "total_assets": 516747.0,
+          "equity": 54236.0,
+          "long_term_debt": null,
+          "short_term_debt": 0.0,
+          "total_debt": 0
+        },
+        "income_statement": {
+          "revenue": 261266.0,
+          "operating_profit": -56036.0,
+          "net_profit": -40684.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.0
+        },
+        "okved2": null,
+        "knd": "0710099"
+      },
+      {
+        "period": "2024",
+        "correction_id": 51562517,
+        "balance": {
+          "non_current_assets": 73392.0,
+          "current_assets": 485282.0,
+          "total_assets": 558674.0,
+          "equity": 94494.0,
+          "long_term_debt": null,
+          "short_term_debt": 55050.0,
+          "total_debt": 55050.0
+        },
+        "income_statement": {
+          "revenue": 911148.0,
+          "operating_profit": 51540.0,
+          "net_profit": 88149.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.5825766715347006
+        },
+        "okved2": "Разработка строительных проектов",
+        "knd": "0710099"
+      },
+      {
+        "period": "2023",
+        "correction_id": 47609317,
+        "balance": {
+          "non_current_assets": 87565.0,
+          "current_assets": 400042.0,
+          "total_assets": 487607.0,
+          "equity": 6344.0,
+          "long_term_debt": null,
+          "short_term_debt": 55050.0,
+          "total_debt": 55050.0
+        },
+        "income_statement": {
+          "revenue": 320186.0,
+          "operating_profit": 8919.0,
+          "net_profit": 5344.0
+        },
+        "ratios": {
+          "debt_to_equity": 8.677490542244641
+        },
+        "okved2": "Строительство автомобильных дорог и автомагистралей",
+        "knd": "0710099"
+      }
+    ]
+  },
+  {
+    "developer": "Крост",
+    "inn": "0411103450",
+    "organization": {
+      "id": 295470,
+      "name": "ООО \"КРОСТ-3\"",
+      "okved2": "68.20.2",
+      "status": "INACTIVE"
+    },
+    "bfo_count": 1,
+    "financials": [
+      {
+        "period": "2021",
+        "correction_id": 40236988,
+        "balance": {
+          "non_current_assets": null,
+          "current_assets": null,
+          "total_assets": 12.0,
+          "equity": 12.0,
+          "long_term_debt": null,
+          "short_term_debt": null,
+          "total_debt": 0
+        },
+        "income_statement": {
+          "revenue": null,
+          "operating_profit": null,
+          "net_profit": -2604.0
+        },
+        "ratios": {
+          "debt_to_equity": 0.0
+        },
+        "okved2": "Аренда и управление собственным или арендованным нежилым недвижимым имуществом",
+        "knd": "0710096"
+      }
+    ]
+  }
+]

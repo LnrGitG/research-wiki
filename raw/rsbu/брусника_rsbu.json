@@ -1,0 +1,82 @@
+{
+  "developer": "Брусника",
+  "inn": "7000003653",
+  "organization": {
+    "id": 12103225,
+    "name": "ООО \"СИБАКАДЕМСТРОЙ\"",
+    "okved2": "41.20",
+    "status": "ACTIVE"
+  },
+  "bfo_count": 3,
+  "financials": [
+    {
+      "period": "2025",
+      "correction_id": 57848501,
+      "balance": {
+        "non_current_assets": 89250.0,
+        "current_assets": 427497.0,
+        "total_assets": 516747.0,
+        "equity": 54236.0,
+        "long_term_debt": null,
+        "short_term_debt": 0.0,
+        "total_debt": 0
+      },
+      "income_statement": {
+        "revenue": 261266.0,
+        "operating_profit": -56036.0,
+        "net_profit": -40684.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.0
+      },
+      "okved2": null,
+      "knd": "0710099"
+    },
+    {
+      "period": "2024",
+      "correction_id": 51562517,
+      "balance": {
+        "non_current_assets": 73392.0,
+        "current_assets": 485282.0,
+        "total_assets": 558674.0,
+        "equity": 94494.0,
+        "long_term_debt": null,
+        "short_term_debt": 55050.0,
+        "total_debt": 55050.0
+      },
+      "income_statement": {
+        "revenue": 911148.0,
+        "operating_profit": 51540.0,
+        "net_profit": 88149.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.5825766715347006
+      },
+      "okved2": "Разработка строительных проектов",
+      "knd": "0710099"
+    },
+    {
+      "period": "2023",
+      "correction_id": 47609317,
+      "balance": {
+        "non_current_assets": 87565.0,
+        "current_assets": 400042.0,
+        "total_assets": 487607.0,
+        "equity": 6344.0,
+        "long_term_debt": null,
+        "short_term_debt": 55050.0,
+        "total_debt": 55050.0
+      },
+      "income_statement": {
+        "revenue": 320186.0,
+        "operating_profit": 8919.0,
+        "net_profit": 5344.0
+      },
+      "ratios": {
+        "debt_to_equity": 8.677490542244641
+      },
+      "okved2": "Строительство автомобильных дорог и автомагистралей",
+      "knd": "0710099"
+    }
+  ]
+}

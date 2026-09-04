@@ -1,0 +1,128 @@
+{
+  "developer": "А101",
+  "inn": "7704810149",
+  "organization": {
+    "id": 587902,
+    "name": "ООО \"А101\"",
+    "okved2": "68.10.23",
+    "status": "ACTIVE"
+  },
+  "bfo_count": 5,
+  "financials": [
+    {
+      "period": "2023",
+      "correction_id": 48476582,
+      "balance": {
+        "non_current_assets": 106701951.0,
+        "current_assets": 38643979.0,
+        "total_assets": 145345930.0,
+        "equity": 34644898.0,
+        "long_term_debt": 40604606.0,
+        "short_term_debt": null,
+        "total_debt": 40604606.0
+      },
+      "income_statement": {
+        "revenue": 12850402.0,
+        "operating_profit": 6352166.0,
+        "net_profit": -5021038.0
+      },
+      "ratios": {
+        "debt_to_equity": 1.172022674161142
+      },
+      "okved2": "Строительство жилых и нежилых зданий",
+      "knd": "0710099"
+    },
+    {
+      "period": "2021",
+      "correction_id": 41695814,
+      "balance": {
+        "non_current_assets": 47926358.0,
+        "current_assets": 94157425.0,
+        "total_assets": 142083784.0,
+        "equity": 53808744.0,
+        "long_term_debt": 38505382.0,
+        "short_term_debt": 0.0,
+        "total_debt": 38505382.0
+      },
+      "income_statement": {
+        "revenue": 19075736.0,
+        "operating_profit": 12607751.0,
+        "net_profit": 1658558.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.7155971155914734
+      },
+      "okved2": "Строительство жилых и нежилых зданий",
+      "knd": "0710099"
+    },
+    {
+      "period": "2022",
+      "correction_id": 45339121,
+      "balance": {
+        "non_current_assets": 96235354.0,
+        "current_assets": 50061355.0,
+        "total_assets": 146296709.0,
+        "equity": 86584284.0,
+        "long_term_debt": 47021820.0,
+        "short_term_debt": 0.0,
+        "total_debt": 47021820.0
+      },
+      "income_statement": {
+        "revenue": 36183365.0,
+        "operating_profit": 27167699.0,
+        "net_profit": 13593534.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.5430756925818085
+      },
+      "okved2": "Строительство жилых и нежилых зданий",
+      "knd": "0710099"
+    },
+    {
+      "period": "2025",
+      "correction_id": 55134176,
+      "balance": {
+        "non_current_assets": 107557068.0,
+        "current_assets": 41317852.0,
+        "total_assets": 148874920.0,
+        "equity": 38081901.0,
+        "long_term_debt": 60309553.0,
+        "short_term_debt": 15570300.0,
+        "total_debt": 75879853.0
+      },
+      "income_statement": {
+        "revenue": 21202430.0,
+        "operating_profit": 12333934.0,
+        "net_profit": 16040081.0
+      },
+      "ratios": {
+        "debt_to_equity": 1.9925437283186047
+      },
+      "okved2": null,
+      "knd": "0710099"
+    },
+    {
+      "period": "2024",
+      "correction_id": 50837812,
+      "balance": {
+        "non_current_assets": 108106017.0,
+        "current_assets": 34124248.0,
+        "total_assets": 142230264.0,
+        "equity": 49041819.0,
+        "long_term_debt": 62196599.0,
+        "short_term_debt": 0.0,
+        "total_debt": 62196599.0
+      },
+      "income_statement": {
+        "revenue": 10678994.0,
+        "operating_profit": 5609916.0,
+        "net_profit": 16114922.0
+      },
+      "ratios": {
+        "debt_to_equity": 1.2682359722423835
+      },
+      "okved2": "Строительство жилых и нежилых зданий",
+      "knd": "0710099"
+    }
+  ]
+}

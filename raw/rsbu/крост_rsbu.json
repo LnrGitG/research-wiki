@@ -1,0 +1,36 @@
+{
+  "developer": "Крост",
+  "inn": "0411103450",
+  "organization": {
+    "id": 295470,
+    "name": "ООО \"КРОСТ-3\"",
+    "okved2": "68.20.2",
+    "status": "INACTIVE"
+  },
+  "bfo_count": 1,
+  "financials": [
+    {
+      "period": "2021",
+      "correction_id": 40236988,
+      "balance": {
+        "non_current_assets": null,
+        "current_assets": null,
+        "total_assets": 12.0,
+        "equity": 12.0,
+        "long_term_debt": null,
+        "short_term_debt": null,
+        "total_debt": 0
+      },
+      "income_statement": {
+        "revenue": null,
+        "operating_profit": null,
+        "net_profit": -2604.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.0
+      },
+      "okved2": "Аренда и управление собственным или арендованным нежилым недвижимым имуществом",
+      "knd": "0710096"
+    }
+  ]
+}

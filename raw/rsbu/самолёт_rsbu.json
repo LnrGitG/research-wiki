@@ -1,0 +1,128 @@
+{
+  "developer": "Самолёт",
+  "inn": "9731004688",
+  "organization": {
+    "id": 10719658,
+    "name": "ПАО \"ГК \"САМОЛЕТ\"",
+    "okved2": "70.22",
+    "status": "ACTIVE"
+  },
+  "bfo_count": 5,
+  "financials": [
+    {
+      "period": "2024",
+      "correction_id": 52460528,
+      "balance": {
+        "non_current_assets": 177229370.0,
+        "current_assets": 93742047.0,
+        "total_assets": 270971417.0,
+        "equity": 18204731.0,
+        "long_term_debt": 173236678.0,
+        "short_term_debt": 71534929.0,
+        "total_debt": 244771607.0
+      },
+      "income_statement": {
+        "revenue": 9434044.0,
+        "operating_profit": 8122103.0,
+        "net_profit": 797902.0
+      },
+      "ratios": {
+        "debt_to_equity": 13.445494305848298
+      },
+      "okved2": "Консультирование по вопросам коммерческой деятельности и управления",
+      "knd": "0710099"
+    },
+    {
+      "period": "2021",
+      "correction_id": 42539438,
+      "balance": {
+        "non_current_assets": 53339523.0,
+        "current_assets": 15754709.0,
+        "total_assets": 69094232.0,
+        "equity": 7371158.0,
+        "long_term_debt": 51836755.0,
+        "short_term_debt": 9310474.0,
+        "total_debt": 61147229.0
+      },
+      "income_statement": {
+        "revenue": 1551190.0,
+        "operating_profit": 643832.0,
+        "net_profit": 2315651.0
+      },
+      "ratios": {
+        "debt_to_equity": 8.295471213613926
+      },
+      "okved2": "Консультирование по вопросам коммерческой деятельности и управления",
+      "knd": "0710099"
+    },
+    {
+      "period": "2023",
+      "correction_id": 48898389,
+      "balance": {
+        "non_current_assets": 145662449.0,
+        "current_assets": 44645914.0,
+        "total_assets": 190308363.0,
+        "equity": 17473552.0,
+        "long_term_debt": 113717737.0,
+        "short_term_debt": 56105096.0,
+        "total_debt": 169822833.0
+      },
+      "income_statement": {
+        "revenue": 6841987.0,
+        "operating_profit": 5228521.0,
+        "net_profit": 7667268.0
+      },
+      "ratios": {
+        "debt_to_equity": 9.718850122745508
+      },
+      "okved2": "Консультирование по вопросам коммерческой деятельности и управления",
+      "knd": "0710099"
+    },
+    {
+      "period": "2022",
+      "correction_id": 45966689,
+      "balance": {
+        "non_current_assets": 83678567.0,
+        "current_assets": 27885459.0,
+        "total_assets": 111564026.0,
+        "equity": 9413406.0,
+        "long_term_debt": 84378766.0,
+        "short_term_debt": 17112183.0,
+        "total_debt": 101490949.0
+      },
+      "income_statement": {
+        "revenue": 3209771.0,
+        "operating_profit": 1913668.0,
+        "net_profit": 7475995.0
+      },
+      "ratios": {
+        "debt_to_equity": 10.781533166634903
+      },
+      "okved2": "Консультирование по вопросам коммерческой деятельности и управления",
+      "knd": "0710099"
+    },
+    {
+      "period": "2025",
+      "correction_id": 57483790,
+      "balance": {
+        "non_current_assets": 221325358.0,
+        "current_assets": 30026449.0,
+        "total_assets": 251351807.0,
+        "equity": 10958236.0,
+        "long_term_debt": 179967801.0,
+        "short_term_debt": 58462595.0,
+        "total_debt": 238430396.0
+      },
+      "income_statement": {
+        "revenue": 15057478.0,
+        "operating_profit": 14479519.0,
+        "net_profit": 1585634.0
+      },
+      "ratios": {
+        "debt_to_equity": 21.75810011757367
+      },
+      "okved2": null,
+      "knd": "0710099"
+    }
+  ]
+}

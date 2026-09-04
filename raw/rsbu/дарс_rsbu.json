@@ -1,0 +1,36 @@
+{
+  "developer": "ДАРС",
+  "inn": "2322028526",
+  "organization": {
+    "id": 2985200,
+    "name": "ООО \"ДАРС\"",
+    "okved2": "41.2",
+    "status": "INACTIVE"
+  },
+  "bfo_count": 1,
+  "financials": [
+    {
+      "period": "2021",
+      "correction_id": 41216241,
+      "balance": {
+        "non_current_assets": null,
+        "current_assets": 10.0,
+        "total_assets": 10.0,
+        "equity": 10.0,
+        "long_term_debt": null,
+        "short_term_debt": null,
+        "total_debt": 0
+      },
+      "income_statement": {
+        "revenue": null,
+        "operating_profit": null,
+        "net_profit": null
+      },
+      "ratios": {
+        "debt_to_equity": 0.0
+      },
+      "okved2": "Строительство жилых и нежилых зданий",
+      "knd": "0710099"
+    }
+  ]
+}

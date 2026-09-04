@@ -1,0 +1,128 @@
+{
+  "developer": "Эталон",
+  "inn": "7826009627",
+  "organization": {
+    "id": 3961853,
+    "name": "АО \"ЭТАЛОН\"",
+    "okved2": "68.20.2",
+    "status": "INACTIVE"
+  },
+  "bfo_count": 5,
+  "financials": [
+    {
+      "period": "2023",
+      "correction_id": 49341832,
+      "balance": {
+        "non_current_assets": 24724.0,
+        "current_assets": 27630.0,
+        "total_assets": 52354.0,
+        "equity": 35696.0,
+        "long_term_debt": null,
+        "short_term_debt": null,
+        "total_debt": 0
+      },
+      "income_statement": {
+        "revenue": 59327.0,
+        "operating_profit": -3020.0,
+        "net_profit": -13789.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.0
+      },
+      "okved2": "Аренда и управление собственным или арендованным нежилым недвижимым имуществом",
+      "knd": "0710099"
+    },
+    {
+      "period": "2022",
+      "correction_id": 47160089,
+      "balance": {
+        "non_current_assets": 25555.0,
+        "current_assets": 43033.0,
+        "total_assets": 68588.0,
+        "equity": 49484.0,
+        "long_term_debt": null,
+        "short_term_debt": null,
+        "total_debt": 0
+      },
+      "income_statement": {
+        "revenue": 54673.0,
+        "operating_profit": -1157.0,
+        "net_profit": -42753.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.0
+      },
+      "okved2": "Аренда и управление собственным или арендованным нежилым недвижимым имуществом",
+      "knd": "0710099"
+    },
+    {
+      "period": "2021",
+      "correction_id": 43194787,
+      "balance": {
+        "non_current_assets": 23996.0,
+        "current_assets": 90115.0,
+        "total_assets": 114111.0,
+        "equity": 92237.0,
+        "long_term_debt": null,
+        "short_term_debt": null,
+        "total_debt": 0
+      },
+      "income_statement": {
+        "revenue": 55940.0,
+        "operating_profit": 4324.0,
+        "net_profit": 1233.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.0
+      },
+      "okved2": "Аренда и управление собственным или арендованным нежилым недвижимым имуществом",
+      "knd": "0710099"
+    },
+    {
+      "period": "2025",
+      "correction_id": 56785358,
+      "balance": {
+        "non_current_assets": 27017.0,
+        "current_assets": 22693.0,
+        "total_assets": 49710.0,
+        "equity": 34482.0,
+        "long_term_debt": null,
+        "short_term_debt": null,
+        "total_debt": 0
+      },
+      "income_statement": {
+        "revenue": 63304.0,
+        "operating_profit": -9725.0,
+        "net_profit": 11729.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.0
+      },
+      "okved2": null,
+      "knd": "0710099"
+    },
+    {
+      "period": "2024",
+      "correction_id": 51457285,
+      "balance": {
+        "non_current_assets": 24061.0,
+        "current_assets": 23013.0,
+        "total_assets": 47074.0,
+        "equity": 31136.0,
+        "long_term_debt": null,
+        "short_term_debt": null,
+        "total_debt": 0
+      },
+      "income_statement": {
+        "revenue": 68379.0,
+        "operating_profit": 3703.0,
+        "net_profit": -7669.0
+      },
+      "ratios": {
+        "debt_to_equity": 0.0
+      },
+      "okved2": "Аренда и управление собственным или арендованным нежилым недвижимым имуществом",
+      "knd": "0710099"
+    }
+  ]
+}

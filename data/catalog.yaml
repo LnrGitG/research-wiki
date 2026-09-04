@@ -3490,6 +3490,19 @@ sources:
     - СФО
     - nowcasting
   date_added: '2026-09-03'
+- id: oneill_velasco_2026_fabart
+  title: "Let the Tree Decide: FABART. A Non-Parametric Factor Model for Nonlinear Oil Shock Transmission"
+  authors: ["O'Neill, Eoghan", "Velasco, Sofia"]
+  year: 2026
+  publisher: "Banco de España"
+  series: "Documentos de Trabajo N.º 2627"
+  doi: "10.53479/44248"
+  type: working_paper
+  tags: [favar, bart, nonlinear, oil_shocks, factor_models, nonparametric, asymmetry, regional_heterogeneity]
+  summary_file: papers/oneill_velasco_2026_fabart_nonlinear_oil_shock.RU.md
+  raw_file: raw/papers/bde_dt2627e_fabart.pdf
+  date_added: "2026-09-04"
+    
 - id: vzhokov_developers_h1_2026_financials
   title: '6 девелоперов за 6М 2026: выручка падает, прибыль испаряется, долг давит (@vzhokov)'
   authors:

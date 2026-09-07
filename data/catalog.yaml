@@ -3543,3 +3543,26 @@ sources:
     - НКР
     - ЕРЗ
   date_added: '2026-09-03'
+- id: micro_macro_nowcasting_hong_huang_zhu_2026
+  title: "From Micro to Macro: Learning Real-Time Economic Signals from Firm-Level Accounting Data"
+  type: academic_article
+  date: 2026-05-13
+  url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6457199
+  author: "Yongmiao Hong, Naijing Huang, Shijie Zhu"
+  affiliation: "UCAS; CUFE; SSRN WP 6457199"
+  journal: SSRN working paper
+  pages: 22
+  files:
+    md: papers/micro_macro_nowcasting_hong_huang_zhu_2026.md
+    txt: raw/papers/micro_macro_nowcasting_hong_huang_zhu_2026.txt
+    pdf: raw/papers/micro_macro_nowcasting_hong_huang_zhu_2026.pdf
+  tags:
+    - nowcasting
+    - micro-to-macro
+    - machine-learning
+    - random-forest
+    - firm-level-accounting
+    - MIDAS
+    - real-time-data
+    - russia-adaptation
+  date_added: 2026-09-07

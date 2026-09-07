@@ -1,0 +1,1098 @@
+From Micro to Macro: Learning Real-Time Economic
+Signals from Firm-Level Accounting Data∗
+Yongmiao Hong†
+Naijing Huang‡
+Shijie Zhu§
+May 13, 2026
+Abstract
+How can real-time information about aggregate economic activity be extracted from
+firm-level accounting data?
+This paper proposes a micro-to-macro nowcasting approach
+that uses machine learning algorithms to directly exploit the full cross-section of accounting
+information from 21, 061 publicly listed U.S. firms for nowcasting U.S. aggregate output.
+Rather than relying on aggregated corporate indicators, the proposed framework preserves
+the rich information contained in firm-level heterogeneity and cross-firm interactions that
+is often lost through aggregation. The empirical results show that the proposed approach
+significantly improves nowcasting accuracy, reducing the root mean squared error by more
+than 70% relative to a random walk benchmark and substantially outperforming models
+based on aggregated accounting data. Firm-level corporate accounting data also improve
+nowcasting performance by about 17.35% relative to models using mixed-frequency aggregate
+macroeconomic and financial predictors. Our feature-importance analysis shows that the
+firms with larger assets, lower book-to-market ratios, or lower leverage, and the firms in
+∗We are grateful for comments and suggestions from Andrii Babii, Raffaella Giacomini, Jia Li, and par-
+ticipants at 2025 International Symposium on Forecasting (Beijing, China), 2025 National Conference on the
+Digital Economy (Beijing, China), 2025 China Econometricians Forum (Changsha, China), 2025 XMU–CEA
+(UK/Europe) Symposium on AI and the Digital Economy (Xiamen, China), 2026 RIBAF Symposium on
+Economic Statistics (Nanchang, China), and 2026 Spring Conference on China’s Macroeconomic Forecasting
+and Analysis (Kuala Lumpur, Malaysia). Hong is supported by MOE Social Sciences Innovative Group
+on Complex Systems Modeling in Economic Management in the Era of Digital Intelligence, University of
+Chinese Academy of Sciences (Grant No. E5820801) and National Science Foundation of China (NSFC)
+(Grant No. 71988101). Huang is supported by the National Science Foundation of China (NSFC) (Grant
+No. 72473166).
+†School of Economics and Management, University of Chinese Academy of Sciences, and Center for
+Forecasting Science, Chinese Academy of Sciences. E-mail: yh20@cornell.edu
+‡Corresponding author: School of Economics, Central University of Finance and Economics. E-mail:
+huang.naijing@cufe.edu.cn. Full postal address: School of Economics, No. 1 Shunsha Road, Shahe Higher
+Education Park, Changping District, Beijing, P.R.C.
+§School
+of
+Economics,
+Central
+University
+of
+Finance
+and
+Economics.
+E-mail:
+zhu.shijie@email.cufe.edu.cn
+1
+
+the industrials, utilities, and consumer discretionary sectors have greater importance for
+nowcasting U.S. GDP. Furthermore, although the number and composition of the firms that
+release quarterly financial reports differ over time before the end of a quarter, the GDP
+nowcasts remain quite stable. Overall, the results underscore the value of directly exploiting
+firm-level accounting data from all publicly listed firms for nowcasting aggregate economic
+activity.
+Keywords: GDP Nowcasting, Firm-Level Accounting Data, Firm Heterogeneity, Aggrega-
+tion, Machine Learning
+JEL code: C53, C55, E01, E60, M41
+1
+Introduction
+Timely measurement of macroeconomic conditions is crucial for economic decision-making by
+both policymakers and economic agents (e.g., Aruoba and Diebold 2010, Aruoba, Diebold,
+and Scotti 2009).
+In practice, however, key macroeconomic statistics are released with
+substantial delays, particularly for low-frequency indicators such as gross domestic product
+(GDP). These informational frictions highlight the distinction between forecasting and now-
+casting. While forecasting targets future economic outcomes, nowcasting focuses on assessing
+current conditions in real time, providing estimates of the present, the very near future, or
+the recent past (Ba´nbura, Giannone, Modugno, and Reichlin 2013). By exploiting timely,
+often higher-frequency information and accounting for the flow of data releases, macroeco-
+nomic nowcasting helps bridge this information gap by producing early estimates of economic
+activity before official data become available (e.g., Andreou, Ghysels, and Kourtellos 2013,
+Antol´ın-D´ıaz, Drechsel, and Petrella 2024, Babii, Ghysels, and Striaukas 2022, Barnett,
+Chauvet, and Leiva-Leon 2016, Clements and Galv˜ao 2008, 2009, Giannone, Reichlin, and
+Small 2008, Wright 2019).
+In recent years, accounting information of listed firms has been increasingly used in
+macroeconomic forecasting and nowcasting because of its timeliness and close connection to
+aggregate economic activity. Unlike traditional macroeconomic variables, which are often
+subject to publication delays and revisions, corporate financial reports—released quarterly
+and containing measures such as earnings, revenues, and returns on capital—provide timely
+signals that reflect real-time conditions at the corporate level.
+These signals are closely
+linked to fluctuations in macroeconomic output. In a seminal study, Konchitchki and Pata-
+toukas (2014a) show that aggregate accounting earnings contain predictive information for
+2
+
+future GDP growth, establishing a direct link between accounting information and macroe-
+conomic activity, and Konchitchki and Patatoukas (2014b) provide evidence that accounting
+profitability offers predictive content for GDP beyond that reflected in stock returns. Nal-
+lareddy and Ogneva (2017) find that earnings dispersion adds incremental value in predicting
+future GDP growth. Studies such as Kalay, Nallareddy, and Sadka (2018), Kim, Pandit, and
+Wasley (2016), and Konchitchki, Luo, Ma, and Wu (2016) highlight the correlation between
+accounting information and future macroeconomic shocks. Ball, Gallo, and Ghysels (2019)
+show that smoother earnings improve GDP prediction, while Gaertner, Kausar, and Steele
+(2020) report that negative earnings changes are more informative for future GDP than
+positive changes. Abdalla and Carabias (2022) show that aggregate special items provide
+timely signals for real GDP growth, and Abdalla, Carabias, and Patatoukas (2021) show that
+sector-level accounting data enhance nowcasting accuracy within the canonical dynamic fac-
+tor nowcasting framework of Giannone, Reichlin, and Small (2008). More recently, Gallo,
+Jin, and Sridharan (2026) further examine the relationship between aggregate earnings and
+GDP and investigate how aggregate accounting measures signal future economic conditions.
+Collectively, these studies underscore the value of accounting data as a complementary source
+of information, offering timely predictive signals that are not fully captured by conventional
+macroeconomic or aggregate predictors.
+In the existing literature, firm-level accounting information is typically aggregated into
+higher-level measures before being used for macroeconomic forecasting or nowcasting. For
+example, Konchitchki and Patatoukas (2014a,b) aggregate firm-level accounting variables
+into value-weighted market-level averages.
+Similarly, Abdalla, Carabias, and Patatoukas
+(2021) construct sector-level aggregates and incorporate them into a dynamic factor model
+(DFM ) for GDP nowcasting.
+However, aggregation of firm-level accounting data inevitably leads to information loss
+(Feige and Watts 1972, Orcutt, Watts, and Edwards 1968). Mechanically, these aggregation
+approaches compress the cross-sectional distribution of firm outcomes into a low-dimensional
+representation, eliminating firm heterogeneity, cross-firm interactions, nonlinear dynamics,
+and sudden structural changes, thereby reducing the effective information available for es-
+timation and prediction. This raises a key question at the heart of our study: how can
+new real-time economic signals be learned from firm-level accounting data for macroeco-
+nomic nowcasting, while preserving the richness of firm-level information and minimizing
+the information loss inherent in conventional aggregation approaches?
+To address this question, we propose a micro-to-macro nowcasting approach that learns
+real-time economic signals from a large panel of firm-level accounting data covering all 21,061
+3
+
+publicly listed U.S. firms to nowcast the U.S. aggregate output. Unlike conventional ap-
+proaches that aggregate firm-level variables into sector- or market-level measures or into
+latent factors via factor extraction, the proposed approach operates directly on the large
+firm-level panel, retaining the richness of micro-level accounting information. We employ
+machine learning methods to exploit firm-level heterogeneity and interactions. Through reg-
+ularization and related techniques, these methods can effectively handle high-dimensional
+panels and capture both linear and nonlinear relationships, thereby minimizing the informa-
+tion loss inherent in conventional aggregation approaches.
+More specifically, we construct a predictive panel based on three firm-level accounting
+variables that are widely used in the literature to forecast or nowcast macroeconomic ac-
+tivity: return on net operating assets (RNOA), revenue growth (Growth), and accounting
+earnings (Earnings). These measures provide informative signals of corporate activity while
+capturing complementary dimensions of firm performance—profitability, growth, and oper-
+ating outcomes. RNOA captures operating profitability and capital efficiency, measuring
+how effectively firms generate income from invested capital and thus serving as a proxy for
+supply-side productivity. Growth reflects expansion in sales and demand conditions, provid-
+ing information about changes in output and market activity on the demand side. Earnings,
+in turn, summarizes overall profit performance, thereby capturing broader corporate profit
+conditions. Using these firm-level accounting measures for all publicly listed U.S. firms yields
+a large predictive panel. We then apply a range of machine learning methods to this large
+panel to nowcast U.S. real GDP. Our main findings are as follows:
+First, our micro-to-macro nowcasting approach substantially improves the accuracy of
+real GDP growth nowcasts relative to the random walk (RW ) benchmark, reducing RMSE by
+more than 70% on average. Among alternative variable combinations, the pair of RNOA and
+Earnings performs best, achieving the lowest average RMSE ratio of 0.287, while adding a
+third accounting variable yields little further improvement. This suggests that, in accounting-
+based nowcasting, more accounting variables are not necessarily better; a parsimonious choice
+may be sufficient to capture the most informative dimensions of firm fundamentals.
+In
+addition, our method works well even early in the quarter, when more than 40% of firms
+have yet to report accounting information for the previous quarter, and nowcasts are already
+nearly as accurate as those at the end of the quarter. This highlights an important advantage
+of the micro-to-macro approach, namely its ability to extract useful real-time macroeconomic
+signals from limited firm-level information available early in the quarter. These gains remain
+robust during periods of heightened economic uncertainty and volatility, including the 2008
+global financial crisis and the COVID-19 pandemic.
+4
+
+Second, to quantify how much information is lost when firm-level accounting signals are
+aggregated, we compare our micro-to-macro nowcasts with those based on aggregated ac-
+counting data, including value-weighted market- or sector-level measures and dynamic factor
+model (DFM )-extracted factors. Our approach delivers substantial gains over these alter-
+natives across all variable combinations, highlighting the value of exploiting firm-level infor-
+mation directly rather than through aggregation. Specifically, the micro-to-macro nowcasts
+reduce RMSE by 25.13% over market-level aggregates, 15.21% over sector-level aggregates,
+and 46.52% over the DFM -based factors. Moreover, among value-weighted accounting ag-
+gregates, nowcasting performance improves as the level of aggregation decreases: sector-level
+aggregates outperform market-level aggregates, while firm-level data perform best overall.
+These results underscore a key insight of our paper: exploiting firm-level accounting data at
+the micro level is crucial for improving nowcasting performance, as it preserves heterogeneity
+across firms and interactions among them that are largely masked by aggregation.
+Third, we assess whether firm-level accounting variables contain incremental information
+for nowcasting over and above that captured by mixed-frequency macroeconomic and finan-
+cial predictors. We use a macro-financial dataset that is widely used in the macroeconomic
+nowcasting literature and provides broad coverage of U.S. economic conditions, spanning
+real activity, consumption, labor markets, prices, housing and construction, external trade,
+and financial conditions. Our results show that firm-level accounting data deliver superior
+nowcasting performance, with a 15.99% reduction in RMSE over macroeconomic and fi-
+nancial predictors. While combining the two information sets yields a 16.18% reduction, it
+provides little improvement over accounting data alone, suggesting limited incremental value
+of aggregate predictors once firm-level information is incorporated.
+Lastly, we examine feature importance of individual firms in economic output nowcasting.
+Firm-level importance is highly heterogeneous and varies over time, with limited overlap early
+in the quarter and greater stability toward the end of the quarter. When firms are sorted
+separately by characteristics, larger firms, firms with lower book-to-market ratios, and firms
+with lower leverage account for a large share of total importance. At the sectoral level,
+industrials, utilities, and consumer discretionary play especially important roles. Over time,
+industrials dominate early in the sample, while utilities rise steadily after the global financial
+crisis and become the leading sector by around 2013. These findings further highlight the
+value of using firm-level accounting data, as the importance of individual firms varies across
+firm characteristics, sectors, and over time in ways that are masked by aggregation, making
+it harder to identify the firms most relevant for nowcasting.
+The remainder of the article is organized as follows. Section 2 describes our micro-to-
+5
+
+macro nowcasting approach. Section 3 details the data construction and sample. Section 4
+reports the main empirical results on GDP nowcasting performance. Section 5 compares our
+nowcasts with those based on aggregate accounting variables. Section 6 evaluates individual
+accounting predictors alongside mixed-frequency macroeconomic and financial predictors.
+Section 7 examines the cross-sectional importance of firms in nowcasting. Section 8 con-
+cludes. Additional results and supporting materials are provided in the Appendix.
+4
+Main Results
+In this section, we present the empirical results to evaluate the effectiveness of our micro-
+to-macro nowcasting approach. Specifically, we assess the extent to which incorporating
+individual firm-level accounting data improves GDP nowcasting performance relative to the
+benchmark model. We examine both overall (static) predictive accuracy and time-varying
+performance, with particular attention to periods of macroeconomic instability such as re-
+cessions, the global financial crisis, and the COVID-19 pandemic.
+4.1
+Comparison with the Benchmark Model
+Table 1 reports out-of-sample root mean squared error (RMSE) ratios for our micro-to-macro
+nowcasting models relative to the random walk (RW ) benchmark for U.S. real GDP growth.
+The use of the RW benchmark is consistent with prior literature (e.g., Abdalla et al. 2021,
+Andreou et al. 2010, Giannone et al. 2008).1 An RMSE ratio below one indicates that a
+model outperforms the RW benchmark. Each panel reports results for the best-performing
+model—defined as the model with the lowest average RMSE across algorithms—within each
+variable specification. In most cases, Random Forest (RF) delivers the best overall per-
+formance among all machine learning algorithms considered.2 Across all specifications, the
+average RMSE ratios range from 0.29 to 0.31, implying roughly a 70% reduction in forecasting
+error relative to the RW model. These findings underscore the value of our micro-to-macro
+approach, which fully uses the rich cross-sectional information embedded in the firm-level ac-
+1Formal definitions of RMSE and the RW model are provided in Appendix A.2.
+2RF is a nonlinear and relatively dense machine learning algorithm that is well suited to capturing in-
+teraction effects and complex patterns across individual firms, which contributes to its strong nowcasting
+performance. This result is in line with Cui et al. (2026), Giannone et al. (2021), and Shen and Xiu (2025),
+who likewise emphasize the advantages of dense and non-linear algorithms in high-dimensional macroeco-
+nomic forecasting settings. Detailed comparisons across all machine learning algorithms are provided in
+Appendix C.1.
+6
+
+Table 1: RMSE Ratios Relative to the RW Model: U.S. Real GDP Growth
+Variable
+Specification
+Information Cutoff Date
+t=-8
+t=-7
+t=-6
+t=-5
+t=-4
+t=-3
+t=-2
+t=-1
+t=0
+Avg.
+Panel (a): Single Accounting Variable
+RNOA
+0.296
+0.302
+0.297
+0.292
+0.296
+0.296
+0.292
+0.290
+0.298
+0.296
+Growth
+0.307
+0.318
+0.303
+0.299
+0.301
+0.299
+0.303
+0.304
+0.296
+0.303
+Earnings
+0.298
+0.299
+0.307
+0.311
+0.312
+0.320
+0.313
+0.325
+0.311
+0.311
+Panel (b): Two Accounting Variables
+RNOA–Growth
+0.291
+0.291
+0.291
+0.291
+0.294
+0.294
+0.297
+0.294
+0.294
+0.293
+RNOA–Earnings
+0.287
+0.285
+0.281
+0.285
+0.289
+0.289
+0.289
+0.289
+0.289
+0.287
+Growth–Earnings
+0.302
+0.299
+0.303
+0.303
+0.297
+0.298
+0.299
+0.297
+0.298
+0.300
+Panel (c): Three Accounting Variables
+RNOA–Growth–Earnings
+0.287
+0.289
+0.287
+0.292
+0.291
+0.295
+0.293
+0.292
+0.294
+0.291
+Notes: The table reports, for each information cutoff date t, RMSE ratios for nowcasts of U.S. real
+GDP growth generated by each micro-to-macro nowcasting model relative to the RW benchmark model
+over the out-of-sample period (2000:Q3–2024:Q2). “Avg.” denotes the average RMSE ratio across all
+information cutoff dates.
+Each panel reports results for the best-performing model (i.e., the model
+with the lowest average RMSE across machine learning algorithms) within the corresponding variable
+specification. Panel (a) reports results for three single-variable models based on RNOA, Growth, and
+Earnings. Panel (b) reports results for three two-variable combinations: RNOA–Growth, RNOA–
+Earnings, and Growth–Earnings. Panel (c) reports results for the three-variable model combining
+RNOA, Growth, and Earnings. The RMSE ratio of the best-performing model is highlighted in bold.
+Corresponding RMSE values are reported in Appendix C.1.
+counting panel by exploiting heterogeneity and interaction information across firms, thereby
+substantially improving GDP nowcasting accuracy over the RW benchmark.
+Examining performance across different information cutoff dates, we find no clear evi-
+dence that RMSE ratios systematically decline as the quarter progresses. This highlights a
+key advantage of the micro-to-macro approach: even at t = −8, when more than 40% of
+firms have yet to report accounting information for the previous quarter, nowcasts based on
+the available firm-level information perform nearly as well as those constructed at t = 0. This
+suggests that much of the useful predictive content is already available early in the quarter.
+A plausible explanation is that firms are exposed to common macroeconomic and industry
+shocks and are connected through production and information networks. As a result, ac-
+counting information released by early-reporting firms can also be informative about firms
+that report later. Moreover, early reporters are not necessarily a random subset of firms.
+They are often bellwether firms within their industries, and their disclosures may therefore
+contain disproportionately important information about sectoral and aggregate economic
+conditions (Foster 1981). This interpretation is consistent with the granular view of aggre-
+gate fluctuations: in economies with fat-tailed firm-size distributions, the performance of
+7
+
+large firms can have non-negligible effects on aggregate activity (Carvalho and Gabaix 2013,
+Gabaix 2011). It is also consistent with the network view that firm- and sector-level shocks
+can propagate through input-output linkages, further amplifying the macroeconomic rele-
+vance of information released by central or bellwether firms (Acemoglu et al. 2012). In this
+sense, early disclosures may partly substitute for information that becomes available only
+later, enabling the model to produce accurate nowcasts well before the end of the quarter,
+even when reporting coverage remains incomplete.
+Comparisons across specifications reveal several important patterns. Among the single-
+variable models, RNOA delivers the lowest average RMSE ratio, followed closely by Growth,
+with Earnings performing slightly worse. This suggests that operating profitability con-
+tains somewhat stronger contemporaneous signals than revenue or earnings growth when
+considered alone. The differences, however, are statistically small.
+Moving from one-variable to two-variable specifications generally improves performance.
+The combination of RNOA and Earnings performs best overall, achieving the lowest average
+RMSE ratio (0.287), corresponding to about a 71% reduction over the RW benchmark.3
+In contrast, adding the third accounting variable does not yield substantial additional
+gains. The three-variable specification achieves an average RMSE ratio of 0.291, which is
+slightly worse than the best two-variable model. This finding indicates that most of the
+relevant macroeconomic information embedded in firm-level accounting data can already be
+captured by a parsimonious combination of RNOA and Earnings, with limited incremental
+benefit from further including Growth.
+The strong nowcasting performance of RNOA-based models is economically intuitive.
+RNOA captures operating profitability relative to invested capital and thus reflects firms’
+production efficiency. At the aggregate level, GDP growth reflects value added from the uti-
+lization of labor and capital, making RNOA a micro-level proxy for aggregate productivity.
+Moreover, firm profits contribute to aggregate corporate profits, which constitute an impor-
+tant component of economic output and income (Fischer and Merton 1984, Marcuss 2004),
+implying that firm-level operating profitability provides timely signals of aggregate economic
+performance. The predictive value of RNOA for aggregate output is also supported by prior
+evidence (Abdalla et al. 2021, Konchitchki and Patatoukas 2014b).
+The large predictive gains from combining RNOA and Earnings likely reflect the com-
+3The superior performance of the RNOA–Earnings combination is consistent with the Model Confidence
+Set (MCS) results reported in Table C.4 in Appendix C.1, where the specification is selected as the best-
+performing model for eight out of nine information cutoff dates.
+8
+
+plementary information captured by these two variables. While RNOA summarizes firms’
+operating efficiency and production-side performance, Earnings captures broader bottom-
+line profitability that incorporates revenue changes, cost adjustments, financial conditions,
+and other non-operating components.
+Prior evidence suggests that the predictive power
+of earnings for aggregate economic activity operates through several macroeconomic chan-
+nels, including aggregate corporate profits (e.g., Abdalla and Carabias 2022, Konchitchki
+and Patatoukas 2014a), inflation (Shivakumar and Urcan 2017), monetary policy (Gallo
+et al. 2016), and the labor market (e.g., Gallo et al. 2026, Hann et al. 2021, Nallareddy
+and Ogneva 2017). Taken together, these variables capture both operational efficiency and
+broader income dynamics that are closely linked to aggregate economic output.
+The limited incremental gain from adding Growth to the RNOA–Earnings specification
+likely reflects both the nature of the information captured by revenue growth and its overlap
+with the other two variables. Growth measures top-line revenue growth and therefore mainly
+captures changes in demand conditions and other short-run fluctuations faced by firms,
+consistent with prior studies that interpret firm-level sales dynamics in this way (e.g., Bloom
+et al. 2007, Guiso and Parigi 1999, Love and Zicchino 2006). This helps explain why the
+RNOA–Growth combination performs reasonably well.
+However, compared with RNOA,
+revenue growth is a less direct measure of economic value creation because it does not
+account for operating costs or the capital employed to generate sales. Moreover, the marginal
+contribution of Growth is limited because much of the economic information it contains is
+already captured by RNOA and Earnings. Sales growth affects operating income and is
+therefore reflected in RNOA through operating profitability, while its effects on net income—
+after operating costs, financing expenses, taxes, and other adjustments—are captured by
+Earnings. As a result, once RNOA and Earnings are jointly included, Growth adds little
+incremental information for nowcasting GDP.
+4.2
+Time-Varying Predictability
+Accurately nowcasting GDP growth is particularly challenging during periods of macroe-
+conomic instability—such as recessions, the 2008 global financial crisis, and the COVID-19
+pandemic—when the economic environment becomes more complex and less predictable. We
+now conduct an analysis to investigate the effectiveness of our micro-to-macro nowcasting
+approach during high-volatility periods. The recession periods, as identified by the NBER,
+are defined as 2008:Q1–2009:Q2 and 2020Q1–2020:Q2. In addition, we analyze two broader
+periods of instability: the global financial crisis spanning from 2007:Q2 to 2010:Q2, and the
+9
+
+COVID-19 period ranging from 2020:Q1 to 2022:Q1.
+Figure 1: Realized U.S. Real GDP Growth and Nowcasts from RW and Micro-to-Macro
+Nowcasting Models: RNOA–Earnings
+Notes: The figure reports realized U.S. real GDP growth, nowcasts from the RW benchmark, and now-
+casts at t = 0 from the micro-to-macro nowcasting approach. The micro-to-macro nowcasts are based
+on the RF model, which has the lowest average RMSE for real GDP growth among the machine learn-
+ing algorithms, and on the RNOA–Earnings specification, which performs best among the accounting
+variable combinations. NBER recession periods, the global financial crisis, and the COVID-19 period
+are highlighted by gray, blue, and orange shading, respectively.
+Figure 1 plots realized U.S. real GDP growth together with nowcasts from the RW bench-
+mark and the micro-to-macro approach, allowing a direct comparison of their time-varying
+nowcasting performance. Visually, the micro-to-macro approach tracks realized GDP growth
+more closely over time, with forecast deviations that are generally smaller than those of the
+RW benchmark. This advantage is especially pronounced during periods of high volatil-
+ity, including recessionary episodes and the COVID-19 period, when the RW benchmark
+exhibits substantially larger forecast misses.
+The figure also suggests that the micro-to-
+macro approach performs particularly well in episodes of negative growth, where accurately
+assessing the extent of economic deterioration is especially important. In particular, for
+observations with negative realized GDP growth during high-volatility periods, the average
+forecast error, defined as forecast minus actual growth, is 7.39% for the micro-to-macro ap-
+proach, compared with 16.53% for the RW benchmark. Thus, although both models tend to
+overpredict growth during downturns, the degree of overprediction is much smaller for our
+method.
+We also compute the average absolute forecast errors of the two models. The micro-to-
+macro approach consistently outperforms the RW benchmark during periods of high volatil-
+ity. Specifically, the average absolute forecast error of the micro-to-macro approach is ap-
+proximately 65.21% lower than that of the RW benchmark in these periods.4 Taken together,
+4The results reported for absolute forecast errors in high-volatility periods and forecast errors in negative-
+growth episodes are averaged over all information cutoff dates. Detailed results for each information cutoff
+date are reported in Appendix C.2.
+10
+
+the evidence from both the absolute forecast errors and forecast errors in negative-growth
+episodes points to the same conclusion: incorporating firm-level accounting information sub-
+stantially improves real-time macroeconomic nowcasting, particularly when macroeconomic
+conditions are volatile and downside risks are most relevant.
+4.3
+Robustness Check
+We examine the robustness of our results by nowcasting nominal GDP growth. The micro-
+to-macro models deliver substantial improvements over the RW benchmark, with RMSE
+reductions of about 70%. We next consider real gross domestic income (GDI) growth, an
+alternative measure of economic activity representing the income side of the BEA’s NIPA.
+Prior research, such as Nalewaik (2010), highlights the value of GDI as a complementary
+indicator to GDP. Our approach again delivers clear improvements in nowcasting accuracy
+over the benchmark. Due to space limitations, all these results are reported in Appendix
+C.3. Overall, the results are consistent with those for real GDP growth, supporting the
+reliability and generalizability of the micro-to-macro approach.
+7
+Feature Importance
+In this section, we examine the feature importance of firm-level accounting data for GDP
+nowcasting. Specifically, we assess the heterogeneous contributions of individual firms to
+GDP nowcasts, investigate how importance varies across firm characteristics, and explore
+differences across industry sectors. This analysis underscores a key advantage of our micro-
+to-macro approach over existing methods, especially those based on aggregation. Because our
+approach retains firm-level information, it enables us to identify the firms most relevant for
+GDP nowcasting and to examine the firm characteristics associated with their importance.
+This, in turn, offers a new empirical insight into how heterogeneous firms contribute to
+aggregate macroeconomic outcomes.
+The analysis focuses on models using RNOA and Earnings, which deliver the best overall
+nowcasts for real GDP growth. All importance results are based on the RF model, which
+emerges as the top-performing algorithm under this accounting-variable specification.5
+5Details on the calculation of feature importance are provided in Appendix B.2.
+11
+
+7.1
+Firm-Level Analysis
+• Heterogeneous Importance Across Firms
+Figure 2: Word Cloud of Important Firms at t = 0
+Notes: The figure displays the tickers of the 200 firms with the highest feature importance over the
+out-of-sample period for t = 0.
+We first examine the top 200 firms with the largest contributions at each information
+cutoff date.6 Figure 2 visualizes firm importance at the information cutoff date t = 0, when
+the accounting information set is most complete. Each word in the cloud corresponds to a
+listed firm’s ticker, with its size reflecting the relative importance of that firm’s accounting
+information for GDP nowcasts. For example, the relatively large size of “OMC” indicates
+that the accounting information of Omnicom Group Inc. contributes substantially to GDP
+nowcasts.
+For a given information cutoff date, the contributions of individual firms differ substan-
+tially. For example, at t = 0, the wide variation in word sizes in the word cloud indicates
+pronounced heterogeneity in firm importance. Specifically, the most influential firm accounts
+for approximately 3.06% of total importance, while the next four firms each contribute be-
+tween 1.10% and 0.73%. In contrast, the firm ranked 200th contributes only about 0.13%,
+implying an importance level less than one-twentieth of that of the top-ranked firm.
+The composition of important firms also varies substantially as new accounting infor-
+mation becomes available.
+Table 2 reports the pairwise overlap of firms in the top-200
+importance rankings across different information cutoff dates. The set of top 200 firms at
+t = 0 differs markedly from that at t = −8, with only 99 firms appearing in both rank-
+ings. For example, at the early cutoff date t = −8, the top five firms include Omnicom
+Group Inc., Universal Health Services Inc., Dover Corp., Penske Automotive Group Inc.,
+and McDonald’s Corp. In contrast, at the quarter-end cutoff t = 0, the most influential
+6Due to space limitations, the full list of the top 200 firms and their corresponding feature importance
+percentages are reported in Table C.14 in Appendix C.6.
+12
+
+firms shift to Omnicom Group Inc., Alabama Power Co., Six Flags Entertainment Corp.,
+Sherwin-Williams Co., and Lafarge North America Inc., reflecting a substantially different
+firm composition. At the same time, the overlap increases as more accounting information
+becomes available: at t = −4, as many as 181 firms in the top-200 list also appear at t = 0.
+This suggests that the composition of influential firms becomes more stable as corporate
+financial statements are released and accounting information accumulates over the quarter.
+Table 2: Pairwise Overlap of Top 200 Most Important Firms by Information Cutoff Date
+Information Cutoff Date
+Information Cutoff Date
+t = -8
+t = -4
+t = 0
+t = -8
+200
+−
+−
+t = -4
+100
+200
+−
+t = 0
+99
+181
+200
+Notes: The table reports the pairwise overlap of firms in the top-200 lists at t ∈{−8, −4, 0}. The rows
+and columns represent information cutoff dates. Each entry shows the number of firms in the top-200
+list for the row cutoff date which also appear in the top-200 list for the column cutoff date.
+Moreover, across all information cutoff dates, we find that 362 distinct firms appear at
+least once in the top-200 importance rankings, while only 83 firms—22.93% of the total—are
+selected at all cutoff dates. This result further indicates that firms’ contributions to GDP
+nowcasts change over time. The set of key contributing firms evolves as new information
+arrives, rather than remaining the same throughout the quarter. This highlights the flexibil-
+ity of our micro-to-macro approach in accommodating time-varying predictability. As the
+information environment evolves, our approach allows the relative importance of individual
+firms to adjust dynamically with the flow of accounting disclosures.
+• Importance by Firm Characteristics
+Next, we assess how individual firms’ nowcasting importance varies with firm charac-
+teristics. Firms are separately sorted, for each firm characteristic, into two equally sized
+groups—Top 1/2 and Bottom 1/2—based on cross-sectional rankings. These characteristics
+include firm size, book-to-market (BM ) ratio, and leverage. Firm size captures differences
+in the scale of firms’ economic activity, BM ratio reflects cross-sectional variation in firms’
+valuation relative to their accounting fundamentals, and leverage characterizes differences in
+capital structure and reliance on debt financing.7
+7Firm size is measured as the natural logarithm of market capitalization, which requires market capi-
+talization to be positive. As a robustness check (not reported in the paper), we alternatively use the natural
+13
+
+Table 3: Group-Level Feature Importance by Firm Characteristics
+Firm
+Characteristic
+Category
+Information Cutoff Date
+t = -8
+t = -7
+t = -6
+t = -5
+t = -4
+t = -3
+t = -2
+t = -1
+t = 0
+Avg.
+Firm Size
+Top 1/2
+67.78%
+61.63%
+58.85%
+58.59%
+57.59%
+60.46%
+61.01%
+61.06%
+60.35%
+60.81%
+Bottom 1/2
+17.45%
+19.63%
+20.52%
+21.09%
+23.05%
+19.62%
+18.50%
+17.92%
+18.09%
+19.54%
+BM Ratio
+Top 1/2
+23.68%
+24.58%
+23.29%
+23.77%
+25.73%
+26.18%
+26.09%
+25.64%
+25.25%
+24.91%
+Bottom 1/2
+59.78%
+54.86%
+54.37%
+54.06%
+52.98%
+51.80%
+51.22%
+51.14%
+51.00%
+53.47%
+Leverage
+Top 1/2
+40.72%
+38.22%
+36.72%
+36.29%
+34.49%
+36.62%
+36.47%
+36.35%
+36.17%
+36.89%
+Bottom 1/2
+46.12%
+47.33%
+48.03%
+46.72%
+46.95%
+43.75%
+43.47%
+43.24%
+43.22%
+45.43%
+Notes: This table reports group-level importance, expressed as percentages of total importance, for firms
+sorted by selected characteristics. The results are based on the RF model, which is the best-performing
+micro-to-macro nowcasting model under the RNOA–Earnings specification.
+For each characteristic,
+firms are split into two equally sized groups based on cross-sectional rankings: Top 1/2 and Bottom 1/2.
+The AR terms and the Other category are excluded; therefore, the reported shares do not sum to 100%.
+Table 3 reports the importance percentages of characteristic-sorted firm groups at each
+information cutoff date.
+When firms are grouped by firm size, larger firms consistently
+contribute more to GDP nowcasting. Firms in the top half of the size distribution account
+for approximately 60% of total importance at all information cutoff dates. This difference is
+particularly pronounced at earlier cutoff dates, where larger firms account for 67.78% of total
+importance at t = −8. This pattern may reflect the fact that accounting information from
+larger firms captures broader aggregate economic activity and is released more promptly.
+As a result, such firms play a more important role, especially early in the quarter when
+accounting information is relatively sparse.
+We also find clear differences when firms are grouped by BM ratio. Firms with low BM
+ratios exhibit greater importance over firms with high ratios in GDP nowcasting. On aver-
+age, the low BM group accounts for 53.47% of total importance, compared with only 24.91%
+for the high BM group, a gap that remains stable across information cutoff dates. One pos-
+sible interpretation of this pattern relates to differences in firms’ economic conditions and
+growth prospects. Firms with high BM ratios are often associated with relatively distressed
+states, with market valuations already incorporating unfavorable expectations about future
+profitability (Fama and French 1992). In such cases, accounting outcomes are more likely to
+reflect ex post realizations of adverse macroeconomic conditions, which may limit their use-
+fulness for macroeconomic nowcasting. In contrast, firms with low BM ratios tend to exhibit
+stronger growth prospects and more persistent expansion, making their operating perfor-
+logarithm of total assets and obtain similar results. BM ratio is defined as shareholders’ equity divided by
+market capitalization, with both components required to be positive. Leverage is measured as the ratio of
+total interest-bearing debt to total assets, where total assets must be positive.
+14
+
+mance more responsive to short-run fluctuations in aggregate demand (Fama and French
+1995). Moreover, because the valuation of low BM firms depends more heavily on future
+investment opportunities, their performance may be more sensitive to investment-related
+macroeconomic shocks (Papanikolaou 2011), thereby making accounting information from
+these firms more informative for real-time macroeconomic nowcasting.
+When firms are grouped by leverage, lower-leverage firms account for a larger share of
+total importance at all information cutoff dates, with the difference being modest at early
+cutoff dates and more pronounced toward the end of the quarter. Prior work shows that
+firms with lower leverage (lower default risk) respond more strongly and directly to aggregate
+shocks, as their investment and operating decisions are less distorted by financial frictions,
+whereas high-leverage firms’ responses are dampened by financing constraints (Ottonello
+and Winberry 2020). In addition, high leverage can restrict firms’ investment and growth
+through debt overhang and cash-flow crowding-out effects (e.g., Lang et al. 1996, Myers
+1977), limiting their ability to adjust real activities in response to new information. As a
+result, information from low-leverage firms, which may respond more flexibly, plays a larger
+role in explaining aggregate outcomes and accounts for a greater share of total importance.
+7.2
+Sector-Level Analysis
+We now examine how feature importance varies across industry sectors. Firms are classi-
+fied according to the Global Industry Classification Standard (GICS) industry sectors: (1)
+energy; (2) materials; (3) industrials; (4) consumer discretionary; (5) consumer staples;
+(6) health care; (7) financials; (8) information technology; (9) communication services; (10)
+utilities; (11) real estate.8 Sector-level importance is constructed by aggregating firm-level
+importance within each industry sector.
+Table 4 details the importance of each industry sector across different information cutoff
+dates, where the reported numbers represent the mean relative sectoral importance (as a
+percentage of the total) averaged over the entire out-of-sample period.
+The three most important sectors for nowcasting U.S. real GDP growth are industrials,
+utilities, and consumer discretionary. Among them, firms in the industrials sector stand out
+with an average importance of around 20% across all information cutoff dates, while firms
+8Firm-level GICS classifications are not reported in Compustat Unrestated Quarterly. We obtain the
+GICS classification variable from Compustat Fundamentals Quarterly. Firms that cannot be matched across
+the two datasets are assigned to a group labeled non-classified. We also include lagged GDP growth rates
+as a separate category, labeled AR terms.
+15
+
+Table 4: Sectoral Importance for U.S. Real GDP Growth Nowcast: RNOA–Earnings
+Sector
+Information Cutoff Date
+t = -8
+t = -7
+t = -6
+t = -5
+t = -4
+t = -3
+t = -2
+t = -1
+t = 0
+Avg.
+Industrials
+21.97%
+20.08%
+20.32%
+20.56%
+19.05%
+18.46%
+18.14%
+18.28%
+18.45%
+19.48%
+Utilities
+8.21%
+14.33%
+15.78%
+15.29%
+15.89%
+16.18%
+14.74%
+14.62%
+14.59%
+14.40%
+Consumer Discretionary
+16.35%
+13.08%
+11.84%
+10.98%
+11.21%
+12.00%
+12.56%
+12.70%
+12.51%
+12.58%
+Financials
+8.07%
+8.66%
+8.40%
+8.17%
+8.35%
+8.52%
+8.75%
+8.66%
+8.90%
+8.50%
+Health Care
+9.76%
+9.73%
+8.74%
+8.12%
+7.16%
+7.41%
+7.49%
+7.54%
+7.43%
+8.15%
+Materials
+8.60%
+7.44%
+6.71%
+6.74%
+6.55%
+6.53%
+6.69%
+6.86%
+6.80%
+6.99%
+Real Estate
+3.26%
+4.23%
+5.38%
+6.41%
+8.19%
+8.65%
+8.84%
+8.53%
+8.67%
+6.90%
+Communication Services
+6.59%
+6.05%
+5.27%
+6.07%
+6.17%
+5.93%
+6.05%
+5.90%
+5.96%
+6.00%
+Information Technology
+6.25%
+5.43%
+5.04%
+5.09%
+4.35%
+4.61%
+4.65%
+4.65%
+4.52%
+4.95%
+Consumer Staples
+3.39%
+4.03%
+5.12%
+4.96%
+5.03%
+3.20%
+3.19%
+3.24%
+3.23%
+3.93%
+Energy
+2.95%
+2.85%
+3.11%
+3.51%
+3.84%
+4.06%
+4.38%
+4.46%
+4.41%
+3.73%
+AR Terms
+3.47%
+3.20%
+3.36%
+3.31%
+3.44%
+3.76%
+3.80%
+3.86%
+3.81%
+3.56%
+Non-Classified
+1.13%
+0.89%
+0.92%
+0.80%
+0.77%
+0.69%
+0.72%
+0.70%
+0.72%
+0.82%
+Notes: The table reports detailed results for sectoral importance, expressed as shares of total importance
+in percentage terms, based on the RF model, which is the best-performing micro-to-macro nowcasting
+model under the RNOA–Earnings specification. The last column represents the mean relative feature
+importance across all information cutoff dates. The three most important industries are highlighted in
+bold.
+in both utilities and consumer discretionary also show important contributions, each with
+an average importance above 10%. The industrials sector—including manufacturing, trans-
+portation, construction, and infrastructure—accounts for a substantial share of supply-side
+activity and closely tracks fluctuations in industrial production. The utilities sector, provid-
+ing electricity, natural gas, and water, supports both industrial operations and household
+consumption, making shifts in utility usage an early signal of changes in overall economic ac-
+tivity. Consumer discretionary industries, typically including durable goods, luxury goods,
+entertainment, leisure activities, and automobiles, are highly sensitive to macroeconomic
+conditions. Their activity responds strongly to expansions and contractions in the business
+cycle (e.g., Attanasio et al. 2022, Baxter 1996, Bils and Klenow 1998, Gomes et al. 2009,
+Stock and Watson 2002). In contrast, consumer staples exhibit much lower elasticity and
+show little variation over time.
+As a result, activity in consumer discretionary provides
+timely signals of changes in personal consumption, the largest component of U.S. GDP.
+Figure 3 presents the time-varying feature importance of the three leading sectors in
+nowcasting U.S. real GDP growth during the out-of-sample period.9 Firms in the industrials
+sector maintain a leading position in sectoral importance during the earlier part of the out-
+9The time-varying feature importance is calculated as the average feature importance for each sector
+across different information cutoff dates.
+16
+
+Figure 3: Feature Importance: Top Three Industry Sectors
+Notes: The figure depicts the importance of the three leading sectors over the out-of-sample period
+(2000:Q3–2024:Q2), expressed as percentages of total importance and averaged across information cutoff
+dates, based on the RF model, which is the best-performing micro-to-macro nowcasting model under
+the RNOA–Earnings specification. The NBER recession periods, the global financial crisis period, and
+the COVID-19 period are highlighted in gray, blue, and orange shading, respectively.
+of-sample period. The importance of utilities increases steadily after the global financial
+crisis of 2008–2009 and, by around 2013, surpasses industrials and consumer discretionary
+to become the most important sector. This leading position is further reinforced during the
+COVID-19 period.
+After the global financial crisis, the U.S. economy entered a prolonged period of excep-
+tionally low interest rates and gradual recovery, a macro-financial environment that was
+particularly favorable to the utilities sector. Given the regulated nature of the industry,
+relatively inelastic demand, stable cash flows, and large capital expenditure requirements,
+utility firms were well positioned to expand investment in generation, transmission, and dis-
+tribution infrastructure under persistently accommodative financial conditions. At the same
+time, energy infrastructure investment rose markedly in the following decade. Evidence from
+the U.S. Energy Information Administration (EIA) shows that the growth in utility spending
+was driven to a large extent by capital investment in electric infrastructure, especially the
+expansion and upgrading of transmission and distribution systems. These sectoral features
+may have allowed utility firms’ financial statements to reflect macroeconomic changes in
+investment, demand, and costs earlier and more steadily than those of more cyclical sectors,
+thereby increasing the marginal informational value of utilities for GDP nowcasting over
+time.
+17
+
+8
+Conclusion
+In this paper, we propose a micro-to-macro approach that uses a large panel of firm-level
+accounting data to nowcast aggregate economic output. Our results show that the micro-
+to-macro approach substantially improves nowcasting accuracy for real GDP growth upon
+the RW benchmark, reducing RMSE by more than 70% on average and maintaining strong
+performance during periods of heightened economic uncertainty. Among alternative account-
+ing variable combinations, the pair of RNOA and Earnings performs best, while adding a
+third accounting variable (Growth) yields little further improvement. The micro-to-macro
+nowcasting approach performs well early in the quarter, indicating that useful macroeco-
+nomic signals can already be extracted from limited firm-level information before reporting
+coverage becomes complete.
+The superior performance over the use of aggregated accounting predictors further high-
+lights the advantage of the micro-to-macro approach in preserving firm-level heterogeneity
+and cross-firm interactions that are typically lost in aggregation. Moreover, compared with
+mixed-frequency macroeconomic and financial predictors, firm-level accounting data already
+contain rich and timely signals of aggregate economic activity, while combining the two
+information sets yields little additional gains.
+The feature-importance analysis reveals substantial heterogeneity in firm-level contribu-
+tions to GDP nowcasting across both firms and information cutoff dates. Firms with larger
+assets, lower book-to-market ratios, or lower leverage contribute more to GDP nowcasts. At
+the sector level, firms in industrials, utilities, and consumer discretionary play particularly
+important roles. These findings highlight an important advantage of the micro-to-macro
+approach: it not only improves GDP nowcasting accuracy but also offers insights into which
+firms and sectors contain predictive information.
+Overall, our study shows that firm-level accounting data contain rich macroeconomic
+information that can be effectively extracted without prior aggregation. By bridging micro-
+level corporate behavior and macroeconomic outcomes, our micro-to-macro approach offers a
+novel perspective on real-time economic measurement and a useful tool for assessing current
+economic conditions.
+18
+
+References
+Abdalla, A. M. and J. M. Carabias (2022). From accounting to economics: The role of
+aggregate special items in gauging the state of the economy. Accounting Review 97(1),
+1–27.
+Abdalla, A. M., J. M. Carabias, and P. N. Patatoukas (2021). The real-time macro content
+of corporate financial reports: A dynamic factor model approach. Journal of Monetary
+Economics 118, 260–280.
+Acemoglu, D., V. M. Carvalho, A. Ozdaglar, and A. Tahbaz-Salehi (2012). The network
+origins of aggregate fluctuations. Econometrica : journal of the Econometric Society 80(5),
+1977–2016.
+Andreou, E., E. Ghysels, and A. Kourtellos (2010). Regression models with mixed sampling
+frequencies. Journal of Econometrics 158(2), 246–261.
+Andreou, E., E. Ghysels, and A. Kourtellos (2013). Should macroeconomic forecasters look
+at daily financial data? Journal of Business and Economic Statistics 31(2), 240–251.
+Antol´ın-D´ıaz, J., T. Drechsel, and I. Petrella (2024). Advances in nowcasting economic ac-
+tivity: The role of heterogeneous dynamics and fat tails. Journal of Econometrics 238(2),
+105634.
+Aruoba, S. B. and F. X. Diebold (2010).
+Real-Time Macroeconomic Monitoring: Real
+Activity, Inflation, and Interactions. American Economic Review 100(2), 20–24.
+Aruoba, S. B., F. X. Diebold, and C. Scotti (2009). Real-Time Measurement of Business
+Conditions. Journal of Business and Economic Statistics 27(4), 417–427.
+Attanasio, O., K. Larkin, M. O. Ravn, and M. Padula (2022).
+(S)Cars and the Great
+Recession. Econometrica 90(5), 2319–2356.
+Babii, A., E. Ghysels, and J. Striaukas (2022). Machine Learning Time Series Regressions
+With an Application to Nowcasting. Journal of Business and Economic Statistics 40(3),
+1094–1106.
+Ball, R. T., L. Gallo, and E. Ghysels (2019). Tilting the evidence: The role of firm-level earn-
+ings attributes in the relation between aggregated earnings and gross domestic product.
+Review of Accounting Studies 24(2), 570–592.
+Ba´nbura, M., D. Giannone, M. Modugno, and L. Reichlin (2013). Now-Casting and the
+Real-Time Data Flow. In Handbook of Economic Forecasting, Volume 2, pp. 195–237.
+Elsevier B.V.
+Barnett, W. A., M. Chauvet, and D. Leiva-Leon (2016). Real-time nowcasting of nominal
+GDP with structural breaks. Journal of Econometrics 191(2), 312–324.
+Baxter, M. (1996). Are Consumer Durables Important for Business Cycles?
+Review of
+19
+
+Economics and Statistics 78(1), 147–155.
+Bils, M. and P. J. Klenow (1998). Using Consumer Theory to Test Competing Business
+Cycle Models. Journal of Political Economy 106(2), 233–261.
+Bloom, N., S. Bond, and J. van Reenen (2007). Uncertainty and Investment Dynamics.
+Review of Economic Studies 74(2), 391–415.
+Carvalho, V. and X. Gabaix (2013). The great diversification and its undoing. American
+Economic Review 103(5), 1697–1727.
+Clements, M. P. and A. B. Galv˜ao (2008). Macroeconomic Forecasting with Mixed-Frequency
+Data: Forecasting Output Growth in the United States. Journal of Business and Economic
+Statistics 26, 546–554.
+Clements, M. P. and A. B. Galv˜ao (2009). Forecasting US output growth using leading
+indicators: An appraisal using MIDAS models. Journal of Applied Econometrics 24(7),
+1187–1206.
+Cui, Y., Y. Hong, N. Huang, and Y. Wang (2026). Forecasting GDP Growth Rates Using
+Accounting Earnings: A Large Panel Microdata Approach. Management Science.
+Fama, E. F. and K. R. French (1992). The Cross-Section of Expected Stock Returns. Journal
+of Finance 47(2), 427–465.
+Fama, E. F. and K. R. French (1995). Size and Book-to-Market Factors in Earnings and
+Returns. Journal of Finance 50(1), 131–155.
+Feige, E. L. and H. W. Watts (1972).
+An Investigation of the Consequences of Partial
+Aggregation of Micro-economic Data. Econometrica, 343–360.
+Fischer, S. and R. C. Merton (1984). Macroeconomics and Finance: The Role of the Stock
+Market. Technical Report w1291, National Bureau of Economic Research.
+Foster, G. (1981). Intra-industry information transfers associated with earnings releases.
+Journal of Accounting and Economics 3(3), 201–232.
+Gabaix, X. (2011). The granular origins of aggregate fluctuations. Econometrica : journal
+of the Econometric Society 79(3), 733–772.
+Gaertner, F. B., A. Kausar, and L. B. Steele (2020). Negative accounting earnings and gross
+domestic product. Review of Accounting Studies 25, 1382–1409.
+Gallo, L. A., R. N. Hann, and C. Li (2016). Aggregate earnings surprises, monetary policy,
+and stock returns. Journal of Accounting and Economics 62(1), 103–120.
+Gallo, L. A., H. Jin, and S. A. Sridharan (2026). Unraveling the time-series dynamics between
+aggregate earnings and GDP. Journal of Accounting and Economics 81(1), 101806.
+Giannone, D., M. Lenza, and G. E. Primiceri (2021). Economic Predictions With Big Data:
+The Illusion of Sparsity. Econometrica 89(5), 2409–2437.
+Giannone, D., L. Reichlin, and D. Small (2008). Nowcasting: The real-time informational
+20
+
+content of macroeconomic data. Journal of Monetary Economics 55(4), 665–676.
+Gomes, J. F., L. Kogan, and M. Yogo (2009). Durability of Output and Expected Stock
+Returns. Journal of Political Economy 117(5), 941–986.
+Guiso, L. and G. Parigi (1999). Investment and Demand Uncertainty. Quarterly Journal of
+Economics 114(1), 185–227.
+Hann, R. N., C. Li, and M. Ogneva (2021). Another Look at the Macroeconomic Infor-
+mation Content of Aggregate Earnings: Evidence from the Labor Market. Accounting
+Review 96(2), 365–390.
+Kalay, A., S. Nallareddy, and G. Sadka (2018). Uncertainty and sectoral shifts: The inter-
+action between firm-level and aggregate-level shocks, and macroeconomic activity. Man-
+agement Science 64(1), 198–214.
+Kim, K., S. Pandit, and C. E. Wasley (2016). Macroeconomic uncertainty and management
+earnings forecasts. Accounting Horizons 30(1), 157–172.
+Konchitchki, Y., Y. Luo, M. L. Ma, and F. Wu (2016). Accounting-based downside risk,
+cost of capital, and the macroeconomy. Review of Accounting Studies 21, 1–36.
+Konchitchki, Y. and P. N. Patatoukas (2014a). Accounting earnings and gross domestic
+product. Journal of Accounting and Economics 57(1), 76–88.
+Konchitchki, Y. and P. N. Patatoukas (2014b). Taking the pulse of the real economy us-
+ing financial statement analysis: Implications for macro forecasting and stock valuation.
+Accounting Review 89(2), 669–694.
+Lang, L., E. Ofek, and Ren´eM. Stulz (1996). Leverage, investment, and firm growth. Journal
+of Financial Economics 40(1), 3–29.
+Love, I. and L. Zicchino (2006). Financial development and dynamic investment behavior:
+Evidence from panel VAR. Quarterly Review of Economics and Finance 46(2), 190–210.
+Marcuss, R. (2004). Corporate profits in the GDP accounts. Technical Report 0040, United
+States Department of Commerce, Economics and Statistics Administration, Bureau of
+Economic Analysis.
+Myers, S. C. (1977).
+Determinants of corporate borrowing.
+Journal of Financial Eco-
+nomics 5(2), 147–175.
+Nalewaik, J. J. (2010). The Income- and Expenditure-Side Estimates of U.S. Output Growth.
+Brookings Papers on Economic Activity 2010(1), 71–106.
+Nallareddy, S. and M. Ogneva (2017). Predicting restatements in macroeconomic indicators
+using accounting information. Accounting Review 92(2), 151–182.
+Orcutt, G. H., H. W. Watts, and J. B. Edwards (1968). Data Aggregation and Information
+Loss. American Economic Review 58(4), 773–787.
+Ottonello, P. and T. Winberry (2020). Financial Heterogeneity and the Investment Channel
+21
+
+of Monetary Policy. Econometrica 88(6), 2473–2502.
+Papanikolaou, D. (2011). Investment Shocks and Asset Prices. Journal of Political Econ-
+omy 119(4), 639–685.
+Shen, Z. and D. Xiu (2025, January). Can Machines learn weak signals? NBER Working
+Paper 33421, National Bureau of Economic Research.
+Shivakumar, L. and O. Urcan (2017). Why does aggregate earnings growth reflect informa-
+tion about future inflation? Accounting Review 92(6), 247–276.
+Stock, J. H. and M. W. Watson (2002). Has the Business Cycle Changed and Why? NBER
+Macroeconomics Annual 17, 159–218.
+Wright, J. H. (2019). Some observations on forecasting and policy. International Journal of
+Forecasting 35(3), 1186–1192.
+22

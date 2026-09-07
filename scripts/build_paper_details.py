@@ -187,7 +187,8 @@ def main():
         authors = cat.get("authors") if cat and cat.get("authors") else fm.get("authors")
         if isinstance(authors, str):
             authors = [authors]
-        year = (cat.get("date", "") if cat else "")[:4] or str(fm.get("year", ""))
+        _d = cat.get("date", "") if cat else ""
+        year = (str(_d) if not isinstance(_d, str) else _d)[:4] or str(fm.get("year", ""))
         venue = None
         if cat:
             venue = cat.get("venue") or cat.get("journal") or cat.get("publisher")

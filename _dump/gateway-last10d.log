@@ -1,0 +1,1053 @@
+2026-08-28 00:35:57,523 INFO gateway.run: Invalidated run generation for agent:main:telegram:dm:430232790 → 198 (session_reset)
+2026-08-28 00:35:57,605 INFO gateway.platforms.base: [Telegram] Sending response (234 chars) to 430232790
+2026-08-28 00:36:25,969 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user photo at /home/lnr/.hermes/cache/images/img_944747304909.jpg
+2026-08-28 00:36:26,774 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing photo batch agent:main:telegram:dm:430232790:photo-burst with 1 image(s)
+2026-08-28 00:36:26,792 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Производство цемента. Падение остановилось  После длительного периода падения, р' reply_to_id=None reply_to_text=''
+2026-08-28 00:36:26,832 INFO gateway.run: Image routing: text (mode=text). Pre-analyzing 1 image(s) via vision_analyze.
+2026-08-28 00:37:02,796 INFO gateway.run: response ready: platform=telegram chat=430232790 time=36.0s api_calls=1 response=1052 chars
+2026-08-28 00:37:02,854 INFO gateway.platforms.base: [Telegram] Sending response (1052 chars) to 430232790
+2026-08-28 00:41:37,548 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (6 chars)
+2026-08-28 00:41:37,557 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Скачай' reply_to_id=None reply_to_text=''
+2026-08-28 00:49:38,611 INFO gateway.run: response ready: platform=telegram chat=430232790 time=481.1s api_calls=90 response=1546 chars
+2026-08-28 00:49:38,737 INFO gateway.platforms.base: [Telegram] Sending response (1546 chars) to 430232790
+2026-08-28 01:17:31,817 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (79 chars)
+2026-08-28 01:17:31,827 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Продолжай, одновременно собери из этих источников другие строительные материалы' reply_to_id=None reply_to_text=''
+2026-08-28 01:23:35,523 INFO gateway.run: response ready: platform=telegram chat=430232790 time=363.7s api_calls=49 response=1602 chars
+2026-08-28 01:23:35,597 INFO gateway.platforms.base: [Telegram] Sending response (1602 chars) to 430232790
+2026-08-28 02:23:39,774 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3604s)
+2026-08-28 02:23:39,775 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-08-28 03:47:40,258 INFO gateway.run: Invalidated run generation for agent:main:telegram:dm:430232790 → 202 (session_reset)
+2026-08-28 03:47:40,332 INFO gateway.platforms.base: [Telegram] Sending response (224 chars) to 430232790
+2026-08-28 03:50:38,151 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (198 chars)
+2026-08-28 03:50:38,161 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Возобновим задачу для gdelt для России, найди способ получения исторических рядо' reply_to_id=None reply_to_text=''
+2026-08-28 04:25:03,141 INFO gateway.run: response ready: platform=telegram chat=430232790 time=2065.0s api_calls=24 response=2299 chars
+2026-08-28 04:25:03,221 INFO gateway.platforms.base: [Telegram] Sending response (2299 chars) to 430232790
+2026-08-28 04:29:18,432 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (46 chars)
+2026-08-28 04:29:18,443 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Почему ты перестал указывать счетчик токенов ?' reply_to_id=None reply_to_text=''
+2026-08-28 04:29:18,535 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=48, memory=50); preserving live conversation context (possible FTS write corruption)
+2026-08-28 04:29:27,067 INFO gateway.run: response ready: platform=telegram chat=430232790 time=8.6s api_calls=5 response=647 chars
+2026-08-28 04:29:27,116 INFO gateway.platforms.base: [Telegram] Sending response (647 chars) to 430232790
+2026-08-28 04:30:44,127 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-08-28 04:30:44,136 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-08-28 04:30:44,213 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=58, memory=60); preserving live conversation context (possible FTS write corruption)
+2026-08-28 05:59:12,747 INFO gateway.run: response ready: platform=telegram chat=430232790 time=5308.6s api_calls=90 response=1766 chars
+2026-08-28 05:59:13,129 INFO gateway.platforms.base: [Telegram] Sending response (1766 chars) to 430232790
+2026-08-28 06:49:48,568 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-08-28 06:49:48,616 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[IMPORTANT: Background process proc_095706f1748b completed normally (exit code 0' reply_to_id=None reply_to_text=''
+2026-08-28 06:49:49,012 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=241, memory=243); preserving live conversation context (possible FTS write corruption)
+2026-08-28 06:50:19,017 INFO gateway.run: response ready: platform=telegram chat=430232790 time=30.4s api_calls=8 response=1383 chars
+2026-08-28 06:50:19,083 INFO gateway.platforms.base: [Telegram] Sending response (1383 chars) to 430232790
+2026-08-28 07:51:01,061 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (5 chars)
+2026-08-28 07:51:01,073 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Делай' reply_to_id=None reply_to_text=''
+2026-08-28 07:51:01,204 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=257, memory=259); preserving live conversation context (possible FTS write corruption)
+2026-08-28 07:52:17,020 INFO gateway.run: response ready: platform=telegram chat=430232790 time=75.9s api_calls=17 response=1300 chars
+2026-08-28 07:52:17,194 INFO gateway.platforms.base: [Telegram] Sending response (1300 chars) to 430232790
+2026-08-28 08:02:37,396 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (39 chars)
+2026-08-28 08:02:37,408 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как посмотреть ряды по стройматериалам?' reply_to_id=None reply_to_text=''
+2026-08-28 08:02:37,549 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=291, memory=293); preserving live conversation context (possible FTS write corruption)
+2026-08-28 08:03:23,263 INFO gateway.run: response ready: platform=telegram chat=430232790 time=45.9s api_calls=11 response=2497 chars
+2026-08-28 08:03:23,325 INFO gateway.platforms.base: [Telegram] Sending response (2497 chars) to 430232790
+2026-08-28 08:05:59,416 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (31 chars)
+2026-08-28 08:05:59,439 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как смотреть с телефона? В .db?' reply_to_id=None reply_to_text=''
+2026-08-28 08:05:59,650 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=316, memory=318); preserving live conversation context (possible FTS write corruption)
+2026-08-28 08:06:21,959 INFO hermes_plugins.telegram_platform.adapter: Telegram clarify button resolved (id=366c748352, choice='Добавить серию в data.html (ваш GitHub Pages дашборд — график Chart.js на телефоне, офлайн после кэша)', user=Ленар)
+2026-08-28 08:07:37,737 INFO gateway.run: response ready: platform=telegram chat=430232790 time=98.3s api_calls=16 response=1193 chars
+2026-08-28 08:07:37,907 INFO gateway.platforms.base: [Telegram] Sending response (1193 chars) to 430232790
+2026-08-28 08:44:56,855 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (12 chars)
+2026-08-28 08:44:56,877 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Добавь gdelt' reply_to_id=None reply_to_text=''
+2026-08-28 08:44:57,049 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=348, memory=350); preserving live conversation context (possible FTS write corruption)
+2026-08-28 08:45:43,612 INFO gateway.run: response ready: platform=telegram chat=430232790 time=46.7s api_calls=7 response=955 chars
+2026-08-28 08:45:43,670 INFO gateway.platforms.base: [Telegram] Sending response (955 chars) to 430232790
+2026-08-28 08:52:09,469 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (11 chars)
+2026-08-28 08:52:09,481 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Нет вкладки' reply_to_id=None reply_to_text=''
+2026-08-28 08:52:09,621 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=362, memory=364); preserving live conversation context (possible FTS write corruption)
+2026-08-28 08:52:32,590 INFO gateway.run: response ready: platform=telegram chat=430232790 time=23.1s api_calls=6 response=2251 chars
+2026-08-28 08:52:32,644 INFO gateway.platforms.base: [Telegram] Sending response (2251 chars) to 430232790
+2026-08-28 09:02:51,846 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (308 chars)
+2026-08-28 09:02:51,855 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Добавь в функционал страницы векторный поиск открытие окна/или другой формы ( бе' reply_to_id=None reply_to_text=''
+2026-08-28 09:02:51,960 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=374, memory=376); preserving live conversation context (possible FTS write corruption)
+2026-08-28 09:08:37,843 INFO gateway.run: response ready: platform=telegram chat=430232790 time=346.0s api_calls=38 response=1658 chars
+2026-08-28 09:08:38,140 INFO gateway.platforms.base: [Telegram] Sending response (1658 chars) to 430232790
+2026-08-28 09:11:47,295 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (52 chars)
+2026-08-28 09:11:47,332 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Что такое regex-детекции? Используй корректные фразы' reply_to_id=None reply_to_text=''
+2026-08-28 09:11:47,725 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=450, memory=452); preserving live conversation context (possible FTS write corruption)
+2026-08-28 09:11:56,453 INFO gateway.run: response ready: platform=telegram chat=430232790 time=9.1s api_calls=2 response=1641 chars
+2026-08-28 09:11:56,509 INFO gateway.platforms.base: [Telegram] Sending response (1641 chars) to 430232790
+2026-08-28 09:15:19,909 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (51 chars)
+2026-08-28 09:15:19,923 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Страницы с векторами не открывается, пишет загрузка' reply_to_id=None reply_to_text=''
+2026-08-28 09:15:20,048 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=454, memory=456); preserving live conversation context (possible FTS write corruption)
+2026-08-28 09:15:48,546 INFO gateway.run: response ready: platform=telegram chat=430232790 time=28.6s api_calls=8 response=1100 chars
+2026-08-28 09:15:48,611 INFO gateway.platforms.base: [Telegram] Sending response (1100 chars) to 430232790
+2026-08-28 09:17:24,457 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (13 chars)
+2026-08-28 09:17:24,468 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Напиши ссылку' reply_to_id=None reply_to_text=''
+2026-08-28 09:17:24,637 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=470, memory=472); preserving live conversation context (possible FTS write corruption)
+2026-08-28 09:17:29,576 INFO gateway.run: response ready: platform=telegram chat=430232790 time=5.1s api_calls=2 response=269 chars
+2026-08-28 09:17:29,626 INFO gateway.platforms.base: [Telegram] Sending response (269 chars) to 430232790
+2026-08-28 09:46:33,006 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (61 chars)
+2026-08-28 09:46:33,018 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Добавь такую же функциональность для страницы с библиографией' reply_to_id=None reply_to_text=''
+2026-08-28 09:46:33,177 WARNING [20260828_034740_45cc9474] gateway.run: Persisted transcript lagged live cached history for session agent:main:telegram:dm:430232790 (disk=474, memory=476); preserving live conversation context (possible FTS write corruption)
+2026-08-28 09:53:28,726 INFO gateway.run: response ready: platform=telegram chat=430232790 time=415.7s api_calls=61 response=1366 chars
+2026-08-28 09:53:29,011 INFO gateway.platforms.base: [Telegram] Sending response (1366 chars) to 430232790
+2026-08-28 10:54:50,920 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3682s)
+2026-08-28 10:54:50,930 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-08-28 12:56:44,864 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (61 chars)
+2026-08-28 12:56:44,880 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://chat.qwen.ai/s/t_6a586d20-0c2c-400e-a14b-b535b95b3c27' reply_to_id=None reply_to_text=''
+2026-08-28 12:57:49,065 INFO gateway.run: response ready: platform=telegram chat=430232790 time=64.2s api_calls=13 response=1176 chars
+2026-08-28 12:57:49,127 INFO gateway.platforms.base: [Telegram] Sending response (1176 chars) to 430232790
+2026-08-28 13:13:55,961 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (37 chars)
+2026-08-28 13:13:55,974 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Сохрани это сообщение в papers и репо' reply_to_id=None reply_to_text=''
+2026-08-28 13:14:40,950 INFO gateway.run: response ready: platform=telegram chat=430232790 time=45.0s api_calls=9 response=1167 chars
+2026-08-28 13:14:41,063 INFO gateway.platforms.base: [Telegram] Sending response (1167 chars) to 430232790
+2026-08-28 13:39:52,069 INFO gateway.platforms.base: [Telegram] Sending response (395 chars) to 430232790
+2026-08-28 13:40:11,683 INFO gateway.run: Invalidated run generation for agent:main:telegram:dm:430232790 → 219 (session_reset)
+2026-08-28 13:40:11,764 INFO gateway.platforms.base: [Telegram] Sending response (229 chars) to 430232790
+2026-08-29 01:29:06,168 INFO gateway.run: Image cache cleanup: removed 1 stale file(s)
+2026-08-29 01:33:30,188 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (72 chars)
+2026-08-29 01:33:30,197 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://huggingface.co/models?other=base_model:quantized:zai-org/GLM-5.3' reply_to_id=None reply_to_text=''
+2026-08-29 01:33:38,450 INFO gateway.run: response ready: platform=telegram chat=430232790 time=8.3s api_calls=2 response=1305 chars
+2026-08-29 01:33:38,510 INFO gateway.platforms.base: [Telegram] Sending response (1305 chars) to 430232790
+2026-08-29 01:36:49,823 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (74 chars)
+2026-08-29 01:36:49,839 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Какой Mac подойдет для модели? Может стоит рассмотреть б/у м4-m2 с ОЗУ 96?' reply_to_id=None reply_to_text=''
+2026-08-29 01:36:58,142 INFO gateway.run: response ready: platform=telegram chat=430232790 time=8.3s api_calls=1 response=2022 chars
+2026-08-29 01:36:58,193 INFO gateway.platforms.base: [Telegram] Sending response (2022 chars) to 430232790
+2026-08-29 01:40:16,300 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-08-29 01:40:16,309 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-08-29 01:40:35,456 INFO gateway.run: response ready: platform=telegram chat=430232790 time=19.1s api_calls=2 response=1039 chars
+2026-08-29 01:40:35,500 INFO gateway.platforms.base: [Telegram] Sending response (1039 chars) to 430232790
+2026-08-29 01:41:13,236 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (16 chars)
+2026-08-29 01:41:13,244 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Сделай веб обзор' reply_to_id=None reply_to_text=''
+2026-08-29 01:41:44,486 INFO gateway.run: response ready: platform=telegram chat=430232790 time=31.2s api_calls=4 response=1833 chars
+2026-08-29 01:41:44,526 INFO gateway.platforms.base: [Telegram] Sending response (1833 chars) to 430232790
+2026-08-29 01:46:25,220 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (78 chars)
+2026-08-29 01:46:25,229 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Сделай гайд по покупке в сша и оаэ , у кого и Чз какие площадки можно купить ?' reply_to_id=None reply_to_text=''
+2026-08-29 01:46:56,148 INFO gateway.run: response ready: platform=telegram chat=430232790 time=30.9s api_calls=4 response=5270 chars
+2026-08-29 01:46:56,209 INFO gateway.platforms.base: [Telegram] Sending response (5270 chars) to 430232790
+2026-08-29 01:52:40,203 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-08-29 01:52:40,212 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-08-29 01:52:52,370 INFO gateway.run: response ready: platform=telegram chat=430232790 time=12.2s api_calls=3 response=339 chars
+2026-08-29 01:52:52,454 INFO gateway.platforms.base: [Telegram] Sending response (339 chars) to 430232790
+2026-08-29 01:55:48,017 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2633 chars)
+2026-08-29 01:55:48,029 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='245\xa0977\xa0₽ До 300 000 ₽ взаймы на что угодно  Mac Studio 2025 M4 Max / все конфиг' reply_to_id=None reply_to_text=''
+2026-08-29 01:56:03,455 INFO gateway.run: response ready: platform=telegram chat=430232790 time=15.4s api_calls=4 response=1747 chars
+2026-08-29 01:56:03,499 INFO gateway.platforms.base: [Telegram] Sending response (1747 chars) to 430232790
+2026-08-29 02:04:24,564 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (945 chars)
+2026-08-29 02:04:24,573 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='485\xa0000\xa0₽ До 300 000 ₽ взаймы на что угодно  Mac Studio m3 ultra 96gb 1tb    Иго' reply_to_id=None reply_to_text=''
+2026-08-29 02:04:38,313 INFO gateway.run: response ready: platform=telegram chat=430232790 time=13.7s api_calls=4 response=1197 chars
+2026-08-29 02:04:38,357 INFO gateway.platforms.base: [Telegram] Sending response (1197 chars) to 430232790
+2026-08-29 02:07:50,211 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (947 chars)
+2026-08-29 02:07:50,220 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='535\xa0000\xa0₽ 575\xa0000\xa0₽  До 300 000 ₽ взаймы на что угодно  Mac Studio M3 Ultra 96GB' reply_to_id=None reply_to_text=''
+2026-08-29 02:08:07,313 INFO gateway.run: response ready: platform=telegram chat=430232790 time=17.1s api_calls=2 response=1400 chars
+2026-08-29 02:08:07,352 INFO gateway.platforms.base: [Telegram] Sending response (1400 chars) to 430232790
+2026-08-29 02:13:05,360 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user photo at /home/lnr/.hermes/cache/images/img_69b62326dbe8.jpg
+2026-08-29 02:13:06,161 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing photo batch agent:main:telegram:dm:430232790:photo-burst with 1 image(s)
+2026-08-29 02:13:06,169 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-08-29 02:13:06,209 INFO gateway.run: Image routing: text (mode=text). Pre-analyzing 1 image(s) via vision_analyze.
+2026-08-29 02:13:45,560 INFO gateway.run: response ready: platform=telegram chat=430232790 time=39.4s api_calls=6 response=2597 chars
+2026-08-29 02:13:45,631 INFO gateway.platforms.base: [Telegram] Sending response (2597 chars) to 430232790
+2026-08-29 02:14:11,207 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (18 chars)
+2026-08-29 02:14:11,224 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Это скрин Для ms52' reply_to_id=None reply_to_text=''
+2026-08-29 02:14:16,539 INFO gateway.run: response ready: platform=telegram chat=430232790 time=5.3s api_calls=2 response=486 chars
+2026-08-29 02:14:16,585 INFO gateway.platforms.base: [Telegram] Sending response (486 chars) to 430232790
+2026-08-29 02:20:23,037 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (89 chars)
+2026-08-29 02:20:23,050 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Если куплю, Сколько времени можно использовать этот вариант и когда оптимально п' reply_to_id=None reply_to_text=''
+2026-08-29 02:20:39,309 INFO gateway.run: response ready: platform=telegram chat=430232790 time=16.3s api_calls=3 response=2943 chars
+2026-08-29 02:20:39,357 INFO gateway.platforms.base: [Telegram] Sending response (2943 chars) to 430232790
+2026-08-29 02:32:37,989 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (1059 chars)
+2026-08-29 02:32:37,998 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='576\xa0600\xa0₽ 620\xa0000\xa0₽  –7% До 300 000 ₽ взаймы на что угодно  Mac Studio M3 ultra ' reply_to_id=None reply_to_text=''
+2026-08-29 02:32:47,233 INFO gateway.run: response ready: platform=telegram chat=430232790 time=9.2s api_calls=2 response=1601 chars
+2026-08-29 02:32:47,277 INFO gateway.platforms.base: [Telegram] Sending response (1601 chars) to 430232790
+2026-08-29 02:34:31,504 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (39 chars)
+2026-08-29 02:34:31,516 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Напиши сообщение запрос для Авито ms-52' reply_to_id=None reply_to_text=''
+2026-08-29 02:34:44,231 INFO gateway.run: response ready: platform=telegram chat=430232790 time=12.7s api_calls=4 response=3658 chars
+2026-08-29 02:34:44,281 INFO gateway.platforms.base: [Telegram] Sending response (3658 chars) to 430232790
+2026-08-29 02:37:38,987 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (1812 chars)
+2026-08-29 02:37:38,995 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='магазинах сети DNS стартовали предзаказы на ПК Apple Mac mini M6, M5 Pro, Studio' reply_to_id=None reply_to_text=''
+2026-08-29 02:37:49,733 INFO gateway.run: response ready: platform=telegram chat=430232790 time=10.7s api_calls=2 response=2393 chars
+2026-08-29 02:37:49,775 INFO gateway.platforms.base: [Telegram] Sending response (2393 chars) to 430232790
+2026-08-29 02:41:34,846 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (60 chars)
+2026-08-29 02:41:34,854 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Сделай web обзор других анонсов M5 ultra , может dns ошибка?' reply_to_id=None reply_to_text=''
+2026-08-29 02:41:49,255 INFO gateway.run: response ready: platform=telegram chat=430232790 time=14.4s api_calls=3 response=2444 chars
+2026-08-29 02:41:49,333 INFO gateway.platforms.base: [Telegram] Sending response (2444 chars) to 430232790
+2026-08-29 03:10:22,905 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (110 chars)
+2026-08-29 03:10:22,919 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://cdek.shopping/p/71539753/nastolnyi-kompyuter-apple-mac-studio-m5-max-202' reply_to_id=None reply_to_text=''
+2026-08-29 03:11:10,319 INFO gateway.run: response ready: platform=telegram chat=430232790 time=47.4s api_calls=7 response=2622 chars
+2026-08-29 03:11:10,368 INFO gateway.platforms.base: [Telegram] Sending response (2622 chars) to 430232790
+2026-08-29 03:15:25,776 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (7 chars)
+2026-08-29 03:15:25,783 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='498 тыс' reply_to_id=None reply_to_text=''
+2026-08-29 03:15:48,200 INFO gateway.run: response ready: platform=telegram chat=430232790 time=22.4s api_calls=2 response=1704 chars
+2026-08-29 03:15:48,243 INFO gateway.platforms.base: [Telegram] Sending response (1704 chars) to 430232790
+2026-08-29 03:16:06,567 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (30 chars)
+2026-08-29 03:16:06,576 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Это Apple M5 Max (18CPU/40GPU)' reply_to_id=None reply_to_text=''
+2026-08-29 03:16:12,861 INFO gateway.run: response ready: platform=telegram chat=430232790 time=6.3s api_calls=2 response=569 chars
+2026-08-29 03:16:12,899 INFO gateway.platforms.base: [Telegram] Sending response (569 chars) to 430232790
+2026-08-29 03:18:46,585 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (50 chars)
+2026-08-29 03:18:46,594 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Apple M5 Ultra (30CPU/64GPU). 96/1 tb, Цена 543151' reply_to_id=None reply_to_text=''
+2026-08-29 03:19:03,168 INFO gateway.run: response ready: platform=telegram chat=430232790 time=16.6s api_calls=4 response=1621 chars
+2026-08-29 03:19:03,241 INFO gateway.platforms.base: [Telegram] Sending response (1621 chars) to 430232790
+2026-08-29 03:19:54,291 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (8 chars)
+2026-08-29 03:19:54,301 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Это sdek' reply_to_id=None reply_to_text=''
+2026-08-29 03:20:01,250 INFO gateway.run: response ready: platform=telegram chat=430232790 time=6.9s api_calls=2 response=1153 chars
+2026-08-29 03:20:01,289 INFO gateway.platforms.base: [Telegram] Sending response (1153 chars) to 430232790
+2026-08-29 03:20:52,642 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (111 chars)
+2026-08-29 03:20:52,654 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Sdek предзаказ Настольный компьютер Apple Mac Studio M5 Ultra (2026), 36CPU/80GP' reply_to_id=None reply_to_text=''
+2026-08-29 03:21:02,701 INFO gateway.run: response ready: platform=telegram chat=430232790 time=10.0s api_calls=2 response=1928 chars
+2026-08-29 03:21:02,747 INFO gateway.platforms.base: [Telegram] Sending response (1928 chars) to 430232790
+2026-08-29 03:22:50,930 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (111 chars)
+2026-08-29 03:22:50,941 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='СДЕК предзаказ Настольный компьютер Apple Mac Studio M5 Ultra (2026), 30CPU/64GP' reply_to_id=None reply_to_text=''
+2026-08-29 03:23:02,190 INFO gateway.run: response ready: platform=telegram chat=430232790 time=11.2s api_calls=2 response=1993 chars
+2026-08-29 03:23:02,234 INFO gateway.platforms.base: [Telegram] Sending response (1993 chars) to 430232790
+2026-08-29 03:29:22,181 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (141 chars)
+2026-08-29 03:29:22,191 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Опиши предполагаемый сценарий использования m5 max? Как использовать Hermes с мо' reply_to_id=None reply_to_text=''
+2026-08-29 03:29:41,849 INFO gateway.run: response ready: platform=telegram chat=430232790 time=19.7s api_calls=2 response=4803 chars
+2026-08-29 03:29:41,898 INFO gateway.platforms.base: [Telegram] Sending response (4803 chars) to 430232790
+2026-08-29 03:40:02,721 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (112 chars)
+2026-08-29 03:40:02,729 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='СДЕК предзаказ Настольный компьютер Apple Mac Studio M5 Max (2026), 18CPU/32GPU,' reply_to_id=None reply_to_text=''
+2026-08-29 03:40:13,737 INFO gateway.run: response ready: platform=telegram chat=430232790 time=11.0s api_calls=2 response=905 chars
+2026-08-29 03:40:16,992 INFO gateway.platforms.base: [Telegram] Sending response (905 chars) to 430232790
+2026-08-29 03:41:56,625 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (99 chars)
+2026-08-29 03:41:56,637 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='А для моего сценария wiki подойдет? Если использовать модели поменьше, для тяжел' reply_to_id=None reply_to_text=''
+2026-08-29 03:42:12,663 INFO gateway.run: response ready: platform=telegram chat=430232790 time=16.0s api_calls=3 response=3477 chars
+2026-08-29 03:42:12,703 INFO gateway.platforms.base: [Telegram] Sending response (3477 chars) to 430232790
+2026-08-29 03:47:30,907 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (94 chars)
+2026-08-29 03:47:30,919 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Настольный компьютер Apple Mac Studio M5 Max (2026), 18CPU/32GPU, 36Гб/1Тб, Silv' reply_to_id=None reply_to_text=''
+2026-08-29 03:47:40,217 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (14 chars)
+2026-08-29 03:47:49,412 INFO gateway.run: response ready: platform=telegram chat=430232790 time=18.5s api_calls=2 response=1684 chars
+2026-08-29 03:47:49,454 INFO gateway.platforms.base: [Telegram] Sending response (1684 chars) to 430232790
+2026-08-29 03:48:51,538 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (46 chars)
+2026-08-29 03:48:51,549 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='А можно будет делать переводы статей локально?' reply_to_id=None reply_to_text=''
+2026-08-29 03:49:01,287 INFO gateway.run: response ready: platform=telegram chat=430232790 time=9.7s api_calls=2 response=2466 chars
+2026-08-29 03:49:01,329 INFO gateway.platforms.base: [Telegram] Sending response (2466 chars) to 430232790
+2026-08-29 03:52:37,335 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (52 chars)
+2026-08-29 03:52:37,343 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Я также предполагаю строить эконометрические  модели' reply_to_id=None reply_to_text=''
+2026-08-29 03:52:48,642 INFO gateway.run: response ready: platform=telegram chat=430232790 time=11.3s api_calls=1 response=3379 chars
+2026-08-29 03:52:48,733 INFO gateway.platforms.base: [Telegram] Sending response (3379 chars) to 430232790
+2026-08-29 03:59:21,436 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (56 chars)
+2026-08-29 03:59:21,445 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Сдэк добавляет к ms -59 таможенные расходы , цена 311645' reply_to_id=None reply_to_text=''
+2026-08-29 03:59:38,102 INFO gateway.run: response ready: platform=telegram chat=430232790 time=16.7s api_calls=3 response=1987 chars
+2026-08-29 03:59:38,144 INFO gateway.platforms.base: [Telegram] Sending response (1987 chars) to 430232790
+2026-08-29 04:04:56,355 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (100 chars)
+2026-08-29 04:04:56,364 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Настольный компьютер Apple Mac Mini M5 Pro (2026), 15CPU/16GPU, 10G Ethernet, 64' reply_to_id=None reply_to_text=''
+2026-08-29 04:05:10,262 INFO gateway.run: response ready: platform=telegram chat=430232790 time=13.9s api_calls=2 response=1851 chars
+2026-08-29 04:05:10,317 INFO gateway.platforms.base: [Telegram] Sending response (1851 chars) to 430232790
+2026-08-29 04:11:19,583 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (1734 chars)
+2026-08-29 04:11:19,595 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Ваш заказ Услуга по выкупу и доставке товаров:  Настольный компьютер Apple Mac S' reply_to_id=None reply_to_text=''
+2026-08-29 04:11:43,872 INFO gateway.run: response ready: platform=telegram chat=430232790 time=24.3s api_calls=3 response=2479 chars
+2026-08-29 04:11:43,917 INFO gateway.platforms.base: [Telegram] Sending response (2479 chars) to 430232790
+2026-08-29 05:11:44,611 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3601s)
+2026-08-29 05:11:44,614 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-08-29 06:32:00,460 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (470 chars)
+2026-08-29 06:32:00,470 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Mac Studio m4 max 128gb 512GB    iqmi Отвечает на сообщения за\xa0несколько\xa0часов 4' reply_to_id=None reply_to_text=''
+2026-08-29 06:32:24,117 INFO gateway.run: response ready: platform=telegram chat=430232790 time=23.6s api_calls=4 response=1946 chars
+2026-08-29 06:32:24,160 INFO gateway.platforms.base: [Telegram] Sending response (1946 chars) to 430232790
+2026-08-29 06:48:07,460 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (37 chars)
+2026-08-29 06:48:07,477 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://github.com/ayghri/i-have-adhd' reply_to_id=None reply_to_text=''
+2026-08-29 06:48:17,296 INFO gateway.run: response ready: platform=telegram chat=430232790 time=9.8s api_calls=2 response=1338 chars
+2026-08-29 06:48:17,396 INFO gateway.platforms.base: [Telegram] Sending response (1338 chars) to 430232790
+2026-08-29 07:37:39,460 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (34 chars)
+2026-08-29 07:37:39,477 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://github.com/nicepkg/ctxport' reply_to_id=None reply_to_text=''
+2026-08-29 07:37:57,930 INFO gateway.run: response ready: platform=telegram chat=430232790 time=18.5s api_calls=2 response=1891 chars
+2026-08-29 07:37:57,983 INFO gateway.platforms.base: [Telegram] Sending response (1891 chars) to 430232790
+2026-08-29 07:44:39,996 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (18 chars)
+2026-08-29 07:44:40,008 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Ms-60 цена 500 тыс' reply_to_id=None reply_to_text=''
+2026-08-29 07:44:50,157 INFO gateway.run: response ready: platform=telegram chat=430232790 time=10.1s api_calls=2 response=1253 chars
+2026-08-29 07:44:50,203 INFO gateway.platforms.base: [Telegram] Sending response (1253 chars) to 430232790
+2026-08-29 08:47:06,066 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3736s)
+2026-08-29 08:47:06,070 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-08-29 13:04:14,121 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (54 chars)
+2026-08-29 13:04:14,138 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Магазин Ivam Москва  Mac Studio M4 max 32/ 512 211 тыс' reply_to_id=None reply_to_text=''
+2026-08-29 13:04:33,733 INFO gateway.run: response ready: platform=telegram chat=430232790 time=19.6s api_calls=3 response=1695 chars
+2026-08-29 13:04:33,800 INFO gateway.platforms.base: [Telegram] Sending response (1695 chars) to 430232790
+2026-08-29 13:39:41,205 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (44 chars)
+2026-08-29 13:39:41,222 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://rosstat.gov.ru/enterprise_industrial' reply_to_id=None reply_to_text=''
+2026-08-29 13:40:11,832 INFO gateway.run: response ready: platform=telegram chat=430232790 time=30.6s api_calls=2 response=2763 chars
+2026-08-29 13:40:11,882 INFO gateway.platforms.base: [Telegram] Sending response (2763 chars) to 430232790
+2026-08-29 13:44:14,595 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (58 chars)
+2026-08-29 13:44:14,615 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Скачай также методологию, что бы понимать кто отчитывается' reply_to_id=None reply_to_text=''
+2026-08-29 13:45:33,158 INFO gateway.run: response ready: platform=telegram chat=430232790 time=78.5s api_calls=14 response=2927 chars
+2026-08-29 13:45:33,266 INFO gateway.platforms.base: [Telegram] Sending response (2927 chars) to 430232790
+2026-08-29 13:51:16,656 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_f29dd9dd00aa_utoch_ind_2020-2026.xlsx (application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
+2026-08-29 13:51:16,666 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-08-29 13:51:56,862 INFO gateway.run: response ready: platform=telegram chat=430232790 time=40.2s api_calls=5 response=2099 chars
+2026-08-29 13:51:56,914 INFO gateway.platforms.base: [Telegram] Sending response (2099 chars) to 430232790
+2026-08-29 13:53:35,894 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_e16c1c594d76_met_prom_2025.docx (application/vnd.openxmlformats-officedocument.wordprocessingml.document)
+2026-08-29 13:53:35,905 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-08-29 13:54:07,243 INFO gateway.run: response ready: platform=telegram chat=430232790 time=31.3s api_calls=4 response=3367 chars
+2026-08-29 13:54:07,463 INFO gateway.platforms.base: [Telegram] Sending response (3367 chars) to 430232790
+2026-08-29 13:54:36,440 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_6d674e5ff67f_met_indOKVED2.pdf (application/pdf)
+2026-08-29 13:54:36,473 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-08-29 14:02:11,147 INFO gateway.run: response ready: platform=telegram chat=430232790 time=454.7s api_calls=17 response=3041 chars
+2026-08-29 14:02:11,260 INFO gateway.platforms.base: [Telegram] Sending response (3041 chars) to 430232790
+2026-08-29 14:05:07,911 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-08-29 14:05:07,929 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-08-29 14:06:20,024 INFO gateway.run: response ready: platform=telegram chat=430232790 time=72.1s api_calls=15 response=1713 chars
+2026-08-29 14:06:20,153 INFO gateway.platforms.base: [Telegram] Sending response (1713 chars) to 430232790
+2026-08-29 14:10:55,365 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (135 chars)
+2026-08-29 14:10:55,381 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Firecrawl не работает для сегмента Ru , какими инструментами можно парсить данны' reply_to_id=None reply_to_text=''
+2026-08-29 14:13:21,672 INFO gateway.run: response ready: platform=telegram chat=430232790 time=146.3s api_calls=3 response=4294 chars
+2026-08-29 14:13:21,757 INFO gateway.platforms.base: [Telegram] Sending response (4294 chars) to 430232790
+2026-08-29 15:17:46,089 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3864s)
+2026-08-29 15:17:46,100 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-08-29 16:12:50,349 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (69 chars)
+2026-08-29 16:12:50,364 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Нам нужны только ряды с индексами цен по регионам, как можно получить' reply_to_id=None reply_to_text=''
+2026-08-29 16:13:14,718 INFO gateway.run: response ready: platform=telegram chat=430232790 time=24.4s api_calls=2 response=3426 chars
+2026-08-29 16:13:14,773 INFO gateway.platforms.base: [Telegram] Sending response (3426 chars) to 430232790
+2026-08-29 16:26:15,527 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_8a67a8632ebc_inf_note_mar_0521.pdf (application/pdf)
+2026-08-29 16:26:15,536 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-08-29 16:26:50,639 INFO gateway.run: response ready: platform=telegram chat=430232790 time=35.1s api_calls=8 response=2964 chars
+2026-08-29 16:26:50,799 INFO gateway.platforms.base: [Telegram] Sending response (2964 chars) to 430232790
+2026-08-29 16:28:12,876 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (153 chars)
+2026-08-29 16:28:12,904 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://www.imf.org/en/publications/wp/issues/2026/08/28/locked-out-drivers-and-' reply_to_id=None reply_to_text=''
+2026-08-29 16:28:26,553 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (90 chars)
+2026-08-29 16:29:02,448 INFO gateway.run: response ready: platform=telegram chat=430232790 time=49.5s api_calls=3 response=3187 chars
+2026-08-29 16:29:02,523 INFO gateway.platforms.base: [Telegram] Sending response (3187 chars) to 430232790
+2026-08-29 16:47:37,307 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (66 chars)
+2026-08-29 16:47:37,320 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Распарси дом.рф и росстат, проверь перед этим наличие в нашей базе' reply_to_id=3671 reply_to_text='Ряды индексов цен на жильё по регионам РФ — где брать  1️⃣ ДОМ.РФ Индекс цен — 🥇'
+2026-08-29 16:50:54,354 INFO hermes_plugins.telegram_platform.adapter: Telegram button resolved 0 approval(s) for session agent:main:telegram:dm:430232790 (choice=once, user=Ленар)
+2026-08-29 16:58:00,077 INFO gateway.run: response ready: platform=telegram chat=430232790 time=622.8s api_calls=76 response=2259 chars
+2026-08-29 16:58:00,235 INFO gateway.platforms.base: [Telegram] Sending response (2259 chars) to 430232790
+2026-08-29 17:13:29,276 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (67 chars)
+2026-08-29 17:13:29,286 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='В какие даты месяца обновляется индекс дом.рф? Поставь задачу после' reply_to_id=None reply_to_text=''
+2026-08-29 17:14:30,388 INFO gateway.run: response ready: platform=telegram chat=430232790 time=61.1s api_calls=6 response=1517 chars
+2026-08-29 17:14:30,453 INFO gateway.platforms.base: [Telegram] Sending response (1517 chars) to 430232790
+2026-08-29 17:17:08,560 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-08-29 17:17:08,586 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=3680 reply_to_text='Статья скачана, полная версия сохранена в wiki, запись в catalog.yaml (коммит e3'
+2026-08-29 17:17:52,108 INFO gateway.run: response ready: platform=telegram chat=430232790 time=43.5s api_calls=8 response=2721 chars
+2026-08-29 17:17:52,423 INFO gateway.platforms.base: [Telegram] Sending response (2721 chars) to 430232790
+2026-08-29 18:18:04,517 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3613s)
+2026-08-29 18:18:04,522 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-08-29 18:27:49,669 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (41 chars)
+2026-08-29 18:27:49,682 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Обнови страницу с данными на GitHub pages' reply_to_id=None reply_to_text=''
+2026-08-29 18:30:28,439 INFO gateway.run: response ready: platform=telegram chat=430232790 time=158.8s api_calls=23 response=1523 chars
+2026-08-29 18:30:28,559 INFO gateway.platforms.base: [Telegram] Sending response (1523 chars) to 430232790
+2026-08-29 18:48:08,499 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (30 chars)
+2026-08-29 18:48:08,517 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Добавь промышленную статистику' reply_to_id=None reply_to_text=''
+2026-08-29 18:51:49,345 INFO gateway.run: response ready: platform=telegram chat=430232790 time=220.8s api_calls=17 response=1783 chars
+2026-08-29 18:51:49,811 INFO gateway.platforms.base: [Telegram] Sending response (1783 chars) to 430232790
+2026-08-29 18:53:57,250 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_5a065c481f56_kpm_ddkp.rar (application/rar)
+2026-08-29 18:53:57,262 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-08-29 18:54:48,541 INFO gateway.run: response ready: platform=telegram chat=430232790 time=51.3s api_calls=10 response=1978 chars
+2026-08-29 18:54:48,656 INFO gateway.platforms.base: [Telegram] Sending response (1978 chars) to 430232790
+2026-08-29 19:05:25,333 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (60 chars)
+2026-08-29 19:05:25,350 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Какие уравнения в модели отражают инвестиции и отрасли ВВП ?' reply_to_id=None reply_to_text=''
+2026-08-29 19:06:39,021 INFO gateway.run: response ready: platform=telegram chat=430232790 time=73.7s api_calls=14 response=2991 chars
+2026-08-29 19:06:39,259 INFO gateway.platforms.base: [Telegram] Sending response (2991 chars) to 430232790
+2026-08-29 19:09:38,995 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (76 chars)
+2026-08-29 19:09:39,014 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Обьем ввода нежилых зданий , посмотри в нашей базе и найди импорт с росстата' reply_to_id=None reply_to_text=''
+2026-08-29 19:12:24,839 INFO gateway.run: response ready: platform=telegram chat=430232790 time=165.8s api_calls=36 response=2063 chars
+2026-08-29 19:12:25,154 INFO gateway.platforms.base: [Telegram] Sending response (2063 chars) to 430232790
+2026-08-29 19:15:41,179 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (33 chars)
+2026-08-29 19:15:41,192 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Почему ввод мощностей это прокси?' reply_to_id=None reply_to_text=''
+2026-08-29 19:15:50,720 INFO gateway.run: response ready: platform=telegram chat=430232790 time=9.5s api_calls=1 response=2794 chars
+2026-08-29 19:15:50,843 INFO gateway.platforms.base: [Telegram] Sending response (2794 chars) to 430232790
+2026-08-29 19:19:24,472 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (59 chars)
+2026-08-29 19:19:24,485 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да, рассмотри ввод мощностей, включи в базу ежемесячный ряд' reply_to_id=None reply_to_text=''
+2026-08-29 19:22:28,246 INFO gateway.run: response ready: platform=telegram chat=430232790 time=183.8s api_calls=24 response=2371 chars
+2026-08-29 19:22:28,566 INFO gateway.platforms.base: [Telegram] Sending response (2371 chars) to 430232790
+2026-08-29 19:28:25,623 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (13 chars)
+2026-08-29 19:28:25,632 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Проверь Емисс' reply_to_id=None reply_to_text=''
+2026-08-29 19:30:28,564 INFO gateway.run: response ready: platform=telegram chat=430232790 time=122.9s api_calls=23 response=2062 chars
+2026-08-29 19:30:28,967 INFO gateway.platforms.base: [Telegram] Sending response (2062 chars) to 430232790
+2026-08-29 19:37:01,528 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-08-29 19:37:01,543 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-08-29 19:38:04,197 INFO gateway.run: response ready: platform=telegram chat=430232790 time=62.7s api_calls=9 response=1871 chars
+2026-08-29 19:38:04,333 INFO gateway.platforms.base: [Telegram] Sending response (1871 chars) to 430232790
+2026-08-29 19:41:58,983 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (87 chars)
+2026-08-29 19:41:59,002 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Давай проработаем варианты поисковых запросов для наукастинга обьема строительны' reply_to_id=None reply_to_text=''
+2026-08-29 19:49:50,769 INFO gateway.run: response ready: platform=telegram chat=430232790 time=471.8s api_calls=20 response=2268 chars
+2026-08-29 19:49:51,390 INFO gateway.platforms.base: [Telegram] Sending response (2268 chars) to 430232790
+2026-08-29 19:54:21,414 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (6 chars)
+2026-08-29 19:54:21,451 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Добавь' reply_to_id=None reply_to_text=''
+2026-08-29 19:54:56,089 INFO gateway.run: response ready: platform=telegram chat=430232790 time=34.6s api_calls=7 response=929 chars
+2026-08-29 19:54:56,195 INFO gateway.platforms.base: [Telegram] Sending response (929 chars) to 430232790
+2026-08-29 20:05:29,864 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (43 chars)
+2026-08-29 20:05:29,880 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://github.com/DenchPokepon/fedstatAPIr' reply_to_id=None reply_to_text=''
+2026-08-29 20:36:25,509 INFO hermes_plugins.telegram_platform.adapter: Telegram clarify button resolved (id=159cae218d, choice='Портировать логику на Python (GET ids + POST data.do с браузерными заголовками) — поставит R не нужен', user=Ленар)
+2026-08-29 20:37:49,730 INFO gateway.run: response ready: platform=telegram chat=430232790 time=1939.8s api_calls=17 response=1876 chars
+2026-08-29 20:37:50,348 INFO gateway.platforms.base: [Telegram] Sending response (1876 chars) to 430232790
+2026-08-29 20:40:37,270 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (9 chars)
+2026-08-29 20:40:37,306 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Поставь R' reply_to_id=None reply_to_text=''
+2026-08-29 20:42:22,794 INFO hermes_plugins.telegram_platform.adapter: Telegram button resolved 1 approval(s) for session agent:main:telegram:dm:430232790 (choice=once, user=Ленар)
+2026-08-29 20:42:44,885 INFO hermes_plugins.telegram_platform.adapter: Telegram button resolved 1 approval(s) for session agent:main:telegram:dm:430232790 (choice=once, user=Ленар)
+2026-08-29 20:47:53,180 INFO gateway.run: response ready: platform=telegram chat=430232790 time=435.9s api_calls=21 response=1592 chars
+2026-08-29 20:47:54,024 INFO gateway.platforms.base: [Telegram] Sending response (1592 chars) to 430232790
+2026-08-29 20:50:10,024 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (9 chars)
+2026-08-29 20:50:10,044 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Pandaxdmx' reply_to_id=None reply_to_text=''
+2026-08-29 20:50:33,093 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (9 chars)
+2026-08-29 20:50:33,096 INFO gateway.run: Gateway intercepted clarify text response (session=agent:main:telegram:dm:430232790, id=c945f9e77c)
+2026-08-29 20:51:49,391 INFO gateway.run: response ready: platform=telegram chat=430232790 time=99.3s api_calls=9 response=1219 chars
+2026-08-29 20:51:49,501 INFO gateway.platforms.base: [Telegram] Sending response (1219 chars) to 430232790
+2026-08-29 20:53:19,743 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (32 chars)
+2026-08-29 20:53:19,757 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Давай поставим vpn на сервер VPs' reply_to_id=None reply_to_text=''
+2026-08-29 20:59:04,085 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_40f9631b1865_jil_dom-oper_07-2026.xls (application/vnd.ms-excel)
+2026-08-29 20:59:56,120 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_567d4e8f4cd9_vv-mosh-sub_2kv-2026.xlsx (application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
+2026-08-29 21:00:19,483 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_338bf8afa10f_vv-zd-oper_2kv-2026.xlsx (application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
+2026-08-29 21:00:56,911 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_a11d40f21325_Operativ_06.xlsx (application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
+2026-08-29 21:05:03,024 INFO gateway.run: response ready: platform=telegram chat=430232790 time=703.3s api_calls=1 response=0 chars
+2026-08-29 21:05:03,038 INFO hermes_plugins.telegram_platform.adapter: Telegram clarify button resolved (id=da36123c5c, choice='Установить VPN-клиент и купить/подключить коммерческий RU-выход (Nekoray/Outline-стиль)', user=Ленар)
+2026-08-29 21:07:16,521 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_e9e4f311ffb7_met702-281223.pdf (application/pdf)
+2026-08-29 21:07:16,531 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-08-29 21:07:45,497 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_48cde16c0bfe_met_reglam.pdf (application/pdf)
+2026-08-29 21:08:19,713 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_3a7662597f07_metod-stroit-15.rar (application/rar)
+2026-08-29 21:11:42,688 INFO gateway.run: response ready: platform=telegram chat=430232790 time=266.2s api_calls=12 response=2037 chars
+2026-08-29 21:11:42,800 INFO gateway.platforms.base: [Telegram] Sending response (2037 chars) to 430232790
+2026-08-29 21:29:45,784 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_ea7e88d22e5c_Stroit_kompleks_2025.pdf (application/pdf)
+2026-08-29 21:29:45,800 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-08-29 21:31:01,808 INFO gateway.run: response ready: platform=telegram chat=430232790 time=76.0s api_calls=18 response=1704 chars
+2026-08-29 21:31:02,123 INFO gateway.platforms.base: [Telegram] Sending response (1704 chars) to 430232790
+2026-08-29 21:54:15,730 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (72 chars)
+2026-08-29 21:54:15,744 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Оцени валидность значений по сделкам из базы Росреестра на данных дом.рф' reply_to_id=None reply_to_text=''
+2026-08-29 21:56:14,619 INFO gateway.run: response ready: platform=telegram chat=430232790 time=118.9s api_calls=28 response=2776 chars
+2026-08-29 21:56:14,933 INFO gateway.platforms.base: [Telegram] Sending response (2776 chars) to 430232790
+2026-08-29 22:00:19,254 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (44 chars)
+2026-08-29 22:00:19,273 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Проверь Парсинг исходников Росреестра заново' reply_to_id=None reply_to_text=''
+2026-08-29 22:03:29,031 INFO gateway.run: response ready: platform=telegram chat=430232790 time=189.8s api_calls=21 response=2054 chars
+2026-08-29 22:03:29,748 INFO gateway.platforms.base: [Telegram] Sending response (2054 chars) to 430232790
+2026-08-29 22:14:31,154 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (232 chars)
+2026-08-29 22:14:31,186 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Оцени возможность наукастинга инвестиций в основной капитал ( кварт)на данных об' reply_to_id=None reply_to_text=''
+2026-08-29 22:17:46,465 INFO gateway.run: response ready: platform=telegram chat=430232790 time=195.3s api_calls=14 response=4325 chars
+2026-08-29 22:17:46,703 INFO gateway.platforms.base: [Telegram] Sending response (4325 chars) to 430232790
+2026-08-29 22:37:47,833 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-08-29 22:37:47,844 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-08-29 22:40:51,318 INFO gateway.run: response ready: platform=telegram chat=430232790 time=183.5s api_calls=34 response=2354 chars
+2026-08-29 22:40:51,529 INFO gateway.platforms.base: [Telegram] Sending response (2354 chars) to 430232790
+2026-08-29 22:54:28,241 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_62c90f9dfaca_wp-feb21.pdf (application/pdf)
+2026-08-29 22:54:28,258 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-08-29 22:55:40,620 INFO gateway.run: response ready: platform=telegram chat=430232790 time=72.4s api_calls=16 response=2108 chars
+2026-08-29 22:55:40,901 INFO gateway.platforms.base: [Telegram] Sending response (2108 chars) to 430232790
+2026-08-29 23:00:53,467 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (21 chars)
+2026-08-29 23:00:53,480 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Что такое IKV? Кратко' reply_to_id=None reply_to_text=''
+2026-08-29 23:00:57,494 INFO gateway.run: response ready: platform=telegram chat=430232790 time=4.0s api_calls=1 response=410 chars
+2026-08-29 23:00:57,590 INFO gateway.platforms.base: [Telegram] Sending response (410 chars) to 430232790
+2026-08-29 23:01:56,695 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (29 chars)
+2026-08-29 23:01:56,705 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как Жемков прогнозирует ВНОК?' reply_to_id=None reply_to_text=''
+2026-08-29 23:02:40,912 INFO gateway.run: response ready: platform=telegram chat=430232790 time=44.2s api_calls=8 response=2800 chars
+2026-08-29 23:02:41,011 INFO gateway.platforms.base: [Telegram] Sending response (2800 chars) to 430232790
+2026-08-29 23:13:08,789 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (21 chars)
+2026-08-29 23:13:08,894 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Что такое Е АЭС файл?' reply_to_id=None reply_to_text=''
+2026-08-29 23:13:14,264 INFO gateway.run: response ready: platform=telegram chat=430232790 time=5.4s api_calls=1 response=908 chars
+2026-08-29 23:13:14,579 INFO gateway.platforms.base: [Telegram] Sending response (908 chars) to 430232790
+2026-08-29 23:14:37,961 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (24 chars)
+2026-08-29 23:14:37,970 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Посмотри ряд ИОК в емсис' reply_to_id=None reply_to_text=''
+2026-08-29 23:19:12,470 INFO gateway.run: response ready: platform=telegram chat=430232790 time=274.5s api_calls=45 response=1854 chars
+2026-08-29 23:19:12,834 INFO gateway.platforms.base: [Telegram] Sending response (1854 chars) to 430232790
+2026-08-29 23:27:20,554 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (24 chars)
+2026-08-29 23:27:20,562 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://roschart.ru/docs' reply_to_id=None reply_to_text=''
+2026-08-29 23:29:39,494 INFO gateway.run: response ready: platform=telegram chat=430232790 time=138.9s api_calls=29 response=2171 chars
+2026-08-29 23:29:39,724 INFO gateway.platforms.base: [Telegram] Sending response (2171 chars) to 430232790
+2026-08-29 23:34:23,790 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (103 chars)
+2026-08-29 23:34:23,799 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как соотнести с ВДС по F ? Имеет ли ценность его наукастинга для целей моделиров' reply_to_id=None reply_to_text=''
+2026-08-29 23:35:03,933 INFO gateway.run: response ready: platform=telegram chat=430232790 time=40.1s api_calls=5 response=3340 chars
+2026-08-29 23:35:04,212 INFO gateway.platforms.base: [Telegram] Sending response (3340 chars) to 430232790
+2026-08-29 23:39:30,212 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (44 chars)
+2026-08-29 23:39:30,223 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='При ответах используй всегда русские термины' reply_to_id=None reply_to_text=''
+2026-08-29 23:41:49,161 INFO gateway.run: response ready: platform=telegram chat=430232790 time=138.9s api_calls=5 response=737 chars
+2026-08-29 23:41:49,372 INFO gateway.platforms.base: [Telegram] Sending response (737 chars) to 430232790
+2026-09-01 01:51:52,017 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (189 chars)
+2026-09-01 01:51:52,029 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Я не понимаю некоторые фразы, Переформулируй результаты разбора последней статьи' reply_to_id=None reply_to_text=''
+2026-09-01 01:52:00,308 INFO gateway.run: response ready: platform=telegram chat=430232790 time=8.3s api_calls=1 response=3457 chars
+2026-09-01 01:52:00,351 INFO gateway.platforms.base: [Telegram] Sending response (3457 chars) to 430232790
+2026-09-01 01:57:40,543 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (269 chars)
+2026-09-01 01:57:40,553 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как в исследовании учли региональные ожидания? Откуда взяли данные? В рф есть ре' reply_to_id=None reply_to_text=''
+2026-09-01 01:57:57,628 INFO gateway.run: response ready: platform=telegram chat=430232790 time=17.1s api_calls=1 response=4675 chars
+2026-09-01 01:57:57,674 INFO gateway.platforms.base: [Telegram] Sending response (4675 chars) to 430232790
+2026-09-01 02:09:14,438 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-09-01 02:09:14,445 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-09-01 02:14:40,211 INFO gateway.run: response ready: platform=telegram chat=430232790 time=325.8s api_calls=34 response=1835 chars
+2026-09-01 02:14:40,334 INFO gateway.platforms.base: [Telegram] Sending response (1835 chars) to 430232790
+2026-09-01 03:18:55,803 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3856s)
+2026-09-01 03:18:55,810 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-01 04:01:11,852 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-01 04:01:11,883 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[IMPORTANT: Background process proc_d1c3eb2ea9db completed normally (exit code 0' reply_to_id=None reply_to_text=''
+2026-09-01 04:01:48,424 INFO gateway.run: response ready: platform=telegram chat=430232790 time=36.5s api_calls=5 response=744 chars
+2026-09-01 04:01:48,469 INFO gateway.platforms.base: [Telegram] Sending response (744 chars) to 430232790
+2026-09-01 04:01:53,430 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-01 04:01:53,441 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[IMPORTANT: Background process proc_dd9a4252cdf4 completed normally (exit code 0' reply_to_id=None reply_to_text=''
+2026-09-01 04:02:13,924 INFO gateway.run: response ready: platform=telegram chat=430232790 time=20.5s api_calls=3 response=1207 chars
+2026-09-01 04:02:13,979 INFO gateway.platforms.base: [Telegram] Sending response (1207 chars) to 430232790
+2026-09-01 04:31:31,495 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (62 chars)
+2026-09-01 04:31:31,507 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://static.nbp.pl/publikacje/materialy-i-studia/289_en.pdf' reply_to_id=None reply_to_text=''
+2026-09-01 04:31:44,004 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (62 chars)
+2026-09-01 04:43:36,380 INFO gateway.run: response ready: platform=telegram chat=430232790 time=724.9s api_calls=14 response=2122 chars
+2026-09-01 04:43:36,595 INFO gateway.platforms.base: [Telegram] Sending response (2122 chars) to 430232790
+2026-09-01 04:47:39,234 INFO hermes_plugins.telegram_platform.adapter: Telegram button resolved 0 approval(s) for session agent:main:telegram:dm:430232790 (choice=always, user=Ленар)
+2026-09-01 04:47:47,831 INFO hermes_plugins.telegram_platform.adapter: Telegram button resolved 0 approval(s) for session agent:main:telegram:dm:430232790 (choice=always, user=Ленар)
+2026-09-01 05:00:46,658 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-01 05:00:46,700 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[IMPORTANT: Background process proc_e1b36d118463 completed normally (exit code 0' reply_to_id=None reply_to_text=''
+2026-09-01 05:00:58,777 INFO gateway.run: response ready: platform=telegram chat=430232790 time=12.1s api_calls=2 response=244 chars
+2026-09-01 05:00:58,848 INFO gateway.platforms.base: [Telegram] Sending response (244 chars) to 430232790
+2026-09-01 05:10:23,774 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (18 chars)
+2026-09-01 05:10:23,788 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Разбери nbp wp 289' reply_to_id=None reply_to_text=''
+2026-09-01 05:11:59,517 INFO gateway.run: response ready: platform=telegram chat=430232790 time=95.7s api_calls=10 response=2008 chars
+2026-09-01 05:11:59,584 INFO gateway.platforms.base: [Telegram] Sending response (2008 chars) to 430232790
+2026-09-01 05:15:04,193 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (26 chars)
+2026-09-01 05:15:04,243 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Напиши подробнее по модели' reply_to_id=None reply_to_text=''
+2026-09-01 05:15:49,361 INFO gateway.run: response ready: platform=telegram chat=430232790 time=45.1s api_calls=2 response=6262 chars
+2026-09-01 05:15:49,508 INFO gateway.platforms.base: [Telegram] Sending response (6262 chars) to 430232790
+2026-09-01 05:29:29,784 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-01 05:29:29,795 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[IMPORTANT: Background process proc_a5a11f4cdcb2 completed normally (exit code 0' reply_to_id=None reply_to_text=''
+2026-09-01 05:29:41,754 INFO gateway.run: response ready: platform=telegram chat=430232790 time=12.0s api_calls=2 response=248 chars
+2026-09-01 05:29:41,837 INFO gateway.platforms.base: [Telegram] Sending response (248 chars) to 430232790
+2026-09-01 06:34:12,629 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3871s)
+2026-09-01 06:34:16,954 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-01 08:07:19,792 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (91 chars)
+2026-09-01 08:07:19,808 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Добавь на страницу визуализации последние загруженные в базу данные ( фнс, words' reply_to_id=None reply_to_text=''
+2026-09-01 08:09:15,257 INFO gateway.run: response ready: platform=telegram chat=430232790 time=115.4s api_calls=20 response=1239 chars
+2026-09-01 08:09:15,371 INFO gateway.platforms.base: [Telegram] Sending response (1239 chars) to 430232790
+2026-09-01 08:29:24,497 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (24 chars)
+2026-09-01 08:29:24,509 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Скинь ссылку на страницу' reply_to_id=None reply_to_text=''
+2026-09-01 08:29:30,956 INFO gateway.run: response ready: platform=telegram chat=430232790 time=6.4s api_calls=1 response=201 chars
+2026-09-01 08:29:30,999 INFO gateway.platforms.base: [Telegram] Sending response (201 chars) to 430232790
+2026-09-01 09:29:33,932 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3603s)
+2026-09-01 09:29:33,935 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-01 14:20:59,593 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_250e78c3119b_wp_154.pdf (application/pdf)
+2026-09-01 14:20:59,605 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-09-01 14:22:59,557 INFO gateway.run: response ready: platform=telegram chat=430232790 time=120.0s api_calls=18 response=2116 chars
+2026-09-01 14:22:59,701 INFO gateway.platforms.base: [Telegram] Sending response (2116 chars) to 430232790
+2026-09-01 14:26:09,179 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (65 chars)
+2026-09-01 14:26:09,216 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Какие зависимые и независимые переменные отслеживаются в модели ?' reply_to_id=None reply_to_text=''
+2026-09-01 14:26:23,001 INFO gateway.run: response ready: platform=telegram chat=430232790 time=13.8s api_calls=1 response=2881 chars
+2026-09-01 14:26:23,075 INFO gateway.platforms.base: [Telegram] Sending response (2881 chars) to 430232790
+2026-09-01 14:42:20,063 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-01 14:42:20,083 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[IMPORTANT: Background process proc_eced70bdad3e completed normally (exit code 0' reply_to_id=None reply_to_text=''
+2026-09-01 14:42:32,894 INFO gateway.run: response ready: platform=telegram chat=430232790 time=12.8s api_calls=2 response=257 chars
+2026-09-01 14:42:32,960 INFO gateway.platforms.base: [Telegram] Sending response (257 chars) to 430232790
+2026-09-01 14:47:02,166 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (42 chars)
+2026-09-01 14:47:02,179 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://github.com/firecrawl/pdf-inspector' reply_to_id=None reply_to_text=''
+2026-09-01 14:47:44,181 INFO gateway.run: response ready: platform=telegram chat=430232790 time=42.0s api_calls=7 response=1897 chars
+2026-09-01 14:47:44,588 INFO gateway.platforms.base: [Telegram] Sending response (1897 chars) to 430232790
+2026-09-01 14:51:34,587 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-09-01 14:51:34,597 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-09-01 14:52:28,691 INFO gateway.run: response ready: platform=telegram chat=430232790 time=54.1s api_calls=8 response=1127 chars
+2026-09-01 14:52:28,743 INFO gateway.platforms.base: [Telegram] Sending response (1127 chars) to 430232790
+2026-09-01 14:55:23,915 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (142 chars)
+2026-09-01 14:55:23,930 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Оцени целесообразность включения в пайплайн перевод аннотаций, введения и заключ' reply_to_id=None reply_to_text=''
+2026-09-01 14:56:07,250 INFO gateway.run: response ready: platform=telegram chat=430232790 time=43.3s api_calls=8 response=2211 chars
+2026-09-01 14:56:07,299 INFO gateway.platforms.base: [Telegram] Sending response (2211 chars) to 430232790
+2026-09-01 14:58:19,511 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-09-01 14:58:19,520 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-09-01 15:02:01,002 INFO hermes_plugins.telegram_platform.adapter: Telegram button resolved 1 approval(s) for session agent:main:telegram:dm:430232790 (choice=session, user=Ленар)
+2026-09-01 15:02:48,194 INFO gateway.run: response ready: platform=telegram chat=430232790 time=268.7s api_calls=20 response=1353 chars
+2026-09-01 15:02:48,400 INFO gateway.platforms.base: [Telegram] Sending response (1353 chars) to 430232790
+2026-09-01 15:02:53,206 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-01 15:02:53,228 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[IMPORTANT: Background process proc_153d6ea9eded completed normally (exit code 0' reply_to_id=None reply_to_text=''
+2026-09-01 15:04:28,173 INFO gateway.run: response ready: platform=telegram chat=430232790 time=94.9s api_calls=9 response=1204 chars
+2026-09-01 15:04:28,270 INFO gateway.platforms.base: [Telegram] Sending response (1204 chars) to 430232790
+2026-09-01 15:06:20,419 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (75 chars)
+2026-09-01 15:06:20,428 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Напомни какие исследовательские и аналитические вопросы меня интересовали ?' reply_to_id=None reply_to_text=''
+2026-09-01 15:06:39,497 INFO gateway.run: response ready: platform=telegram chat=430232790 time=19.1s api_calls=5 response=2725 chars
+2026-09-01 15:06:39,590 INFO gateway.platforms.base: [Telegram] Sending response (2725 chars) to 430232790
+2026-09-01 15:12:13,886 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (148 chars)
+2026-09-01 15:12:13,895 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Добавь в наукастинг оценку инвестиций (ближайший квартал, текущий год и средний ' reply_to_id=None reply_to_text=''
+2026-09-01 15:14:06,494 INFO gateway.run: response ready: platform=telegram chat=430232790 time=112.6s api_calls=17 response=1876 chars
+2026-09-01 15:14:06,727 INFO gateway.platforms.base: [Telegram] Sending response (1876 chars) to 430232790
+2026-09-01 15:19:06,389 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (181 chars)
+2026-09-01 15:19:06,401 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Опиши данные оценки в виде подробной аналитической записки с обоснованием ( испо' reply_to_id=None reply_to_text=''
+2026-09-01 15:23:07,859 INFO gateway.run: response ready: platform=telegram chat=430232790 time=241.5s api_calls=20 response=1435 chars
+2026-09-01 15:23:08,120 INFO gateway.platforms.base: [Telegram] Sending response (1364 chars) to 430232790
+2026-09-01 15:32:31,480 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (55 chars)
+2026-09-01 15:32:31,490 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Чья отчетность по МСФО за 2 квартал есть у нас в базе ?' reply_to_id=None reply_to_text=''
+2026-09-01 15:33:27,693 INFO gateway.run: response ready: platform=telegram chat=430232790 time=56.2s api_calls=10 response=1563 chars
+2026-09-01 15:33:27,797 INFO gateway.platforms.base: [Telegram] Sending response (1563 chars) to 430232790
+2026-09-01 15:34:39,522 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-09-01 15:34:39,534 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-09-01 15:36:22,292 INFO gateway.run: response ready: platform=telegram chat=430232790 time=102.8s api_calls=13 response=1957 chars
+2026-09-01 15:36:22,650 INFO gateway.platforms.base: [Telegram] Sending response (1957 chars) to 430232790
+2026-09-01 15:45:09,143 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (83 chars)
+2026-09-01 15:45:09,156 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Может создадим таблицу в нашей базе с отчетностью МСФО и найдем исторические ряд' reply_to_id=None reply_to_text=''
+2026-09-01 15:54:46,511 INFO gateway.run: response ready: platform=telegram chat=430232790 time=577.4s api_calls=29 response=1720 chars
+2026-09-01 15:54:46,719 INFO gateway.platforms.base: [Telegram] Sending response (1720 chars) to 430232790
+2026-09-01 16:07:42,598 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (145 chars)
+2026-09-01 16:07:42,609 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как проверить являются ли показатели ввода жилых или нежилых помещений предиктор' reply_to_id=None reply_to_text=''
+2026-09-01 16:11:53,427 INFO gateway.run: response ready: platform=telegram chat=430232790 time=250.8s api_calls=30 response=2615 chars
+2026-09-01 16:11:53,639 INFO gateway.platforms.base: [Telegram] Sending response (2615 chars) to 430232790
+2026-09-01 16:34:28,511 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (25 chars)
+2026-09-01 16:34:28,520 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Делай и расшифруй ИФО СМР' reply_to_id=None reply_to_text=''
+2026-09-01 16:36:51,003 INFO gateway.run: response ready: platform=telegram chat=430232790 time=142.5s api_calls=11 response=2184 chars
+2026-09-01 16:36:51,197 INFO gateway.platforms.base: [Telegram] Sending response (2184 chars) to 430232790
+2026-09-01 17:05:13,056 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (45 chars)
+2026-09-01 17:05:13,066 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как учтена бюджетная отчетность в нашей базе?' reply_to_id=None reply_to_text=''
+2026-09-01 17:05:53,099 INFO gateway.run: response ready: platform=telegram chat=430232790 time=40.0s api_calls=7 response=2758 chars
+2026-09-01 17:05:53,345 INFO gateway.platforms.base: [Telegram] Sending response (2758 chars) to 430232790
+2026-09-01 17:12:29,624 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (330 chars)
+2026-09-01 17:12:29,635 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Меня интересует вся доступная оперативная информация о состоянии строительной от' reply_to_id=None reply_to_text=''
+2026-09-01 17:13:13,667 INFO gateway.run: response ready: platform=telegram chat=430232790 time=44.0s api_calls=2 response=1088 chars
+2026-09-01 17:13:13,790 INFO gateway.platforms.base: [Telegram] Sending response (1088 chars) to 430232790
+2026-09-01 17:20:59,596 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-01 17:20:59,621 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[ASYNC DELEGATION BATCH COMPLETE — deleg_850b43a2] A background fan-out of 1 sub' reply_to_id=None reply_to_text=''
+2026-09-01 17:25:04,047 INFO gateway.run: response ready: platform=telegram chat=430232790 time=244.4s api_calls=5 response=1558 chars
+2026-09-01 17:25:04,174 INFO gateway.platforms.base: [Telegram] Sending response (1558 chars) to 430232790
+2026-09-01 17:26:35,816 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-01 17:26:35,836 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[ASYNC DELEGATION BATCH COMPLETE — deleg_b92dcedc] A background fan-out of 1 sub' reply_to_id=None reply_to_text=''
+2026-09-01 17:26:54,608 INFO gateway.run: response ready: platform=telegram chat=430232790 time=18.8s api_calls=3 response=1752 chars
+2026-09-01 17:26:54,742 INFO gateway.platforms.base: [Telegram] Sending response (1752 chars) to 430232790
+2026-09-01 17:31:48,288 INFO hermes_plugins.telegram_platform.adapter: Telegram button resolved 0 approval(s) for session agent:main:telegram:dm:430232790 (choice=session, user=Ленар)
+2026-09-01 17:33:46,150 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-01 17:33:46,171 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[ASYNC DELEGATION BATCH COMPLETE — deleg_5203c85d] A background fan-out of 1 sub' reply_to_id=None reply_to_text=''
+2026-09-01 17:34:35,471 INFO gateway.run: response ready: platform=telegram chat=430232790 time=49.3s api_calls=4 response=2232 chars
+2026-09-01 17:34:35,580 INFO gateway.platforms.base: [Telegram] Sending response (2232 chars) to 430232790
+2026-09-01 18:02:46,846 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (238 chars)
+2026-09-01 18:02:46,855 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Установи интеграцию с сервисом  pip install hermes-keenable-web hermes plugins e' reply_to_id=None reply_to_text=''
+2026-09-01 18:03:07,843 INFO gateway.run: response ready: platform=telegram chat=430232790 time=21.0s api_calls=1 response=248 chars
+2026-09-01 18:03:07,948 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-01 18:10:52,286 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (206 chars)
+2026-09-01 18:10:52,309 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='pip install hermes-keenable-web hermes plugins enable keenable hermes config set' reply_to_id=None reply_to_text=''
+2026-09-01 18:11:03,939 INFO gateway.run: response ready: platform=telegram chat=430232790 time=11.6s api_calls=1 response=248 chars
+2026-09-01 18:11:04,048 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-01 18:13:46,588 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (230 chars)
+2026-09-01 18:13:46,602 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Добавь mcp   {   "mcpServers": {     "keenable": {       "url": "https://api.kee' reply_to_id=None reply_to_text=''
+2026-09-01 18:13:57,444 INFO gateway.run: response ready: platform=telegram chat=430232790 time=10.8s api_calls=1 response=248 chars
+2026-09-01 18:13:57,541 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-01 18:22:57,476 INFO gateway.platforms.base: [Telegram] Sending response (388 chars) to 430232790
+2026-09-01 18:25:16,886 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (17 chars)
+2026-09-01 18:25:16,897 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Добавь mcp сервер' reply_to_id=None reply_to_text=''
+2026-09-01 18:25:57,957 INFO gateway.run: response ready: platform=telegram chat=430232790 time=41.1s api_calls=2 response=1153 chars
+2026-09-01 18:25:58,018 INFO gateway.platforms.base: [Telegram] Sending response (1086 chars) to 430232790
+2026-09-01 18:27:29,386 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (20 chars)
+2026-09-01 18:27:29,394 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Напиши адрес сервера' reply_to_id=None reply_to_text=''
+2026-09-01 18:28:16,510 INFO gateway.run: Invalidated run generation for agent:main:telegram:dm:430232790 → 390 (new_command)
+2026-09-01 18:28:16,523 INFO gateway.run: Invalidated run generation for agent:main:telegram:dm:430232790 → 391 (session_reset)
+2026-09-01 18:28:16,592 INFO gateway.platforms.base: [Telegram] Sending command '/new' response (213 chars) to 430232790
+2026-09-01 18:28:33,396 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (16 chars)
+2026-09-01 18:28:33,405 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Напиши адрес VPs' reply_to_id=None reply_to_text=''
+2026-09-01 18:29:14,247 INFO gateway.run: response ready: platform=telegram chat=430232790 time=40.8s api_calls=1 response=277 chars
+2026-09-01 18:29:14,310 INFO gateway.platforms.base: [Telegram] Sending response (277 chars) to 430232790
+2026-09-01 18:39:14,468 INFO gateway.platforms.base: [Telegram] Sending response (347 chars) to 430232790
+2026-09-02 03:19:34,050 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (9 chars)
+2026-09-02 03:19:34,063 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как дела?' reply_to_id=None reply_to_text=''
+2026-09-02 03:19:49,442 INFO gateway.run: response ready: platform=telegram chat=430232790 time=15.4s api_calls=4 response=505 chars
+2026-09-02 03:19:49,495 INFO gateway.platforms.base: [Telegram] Sending response (505 chars) to 430232790
+2026-09-02 03:20:17,587 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-09-02 03:20:17,598 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-09-02 03:20:30,447 INFO gateway.run: response ready: platform=telegram chat=430232790 time=12.8s api_calls=3 response=88 chars
+2026-09-02 03:20:30,488 INFO gateway.platforms.base: [Telegram] Sending response (88 chars) to 430232790
+2026-09-02 03:20:57,954 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (16 chars)
+2026-09-02 03:20:57,964 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Не надо, исключи' reply_to_id=None reply_to_text=''
+2026-09-02 03:21:03,937 INFO gateway.run: response ready: platform=telegram chat=430232790 time=6.0s api_calls=2 response=28 chars
+2026-09-02 03:21:03,978 INFO gateway.platforms.base: [Telegram] Sending response (28 chars) to 430232790
+2026-09-02 03:21:31,775 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (19 chars)
+2026-09-02 03:21:31,787 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Проверь, работу mcp' reply_to_id=None reply_to_text=''
+2026-09-02 03:21:36,939 INFO gateway.run: response ready: platform=telegram chat=430232790 time=5.2s api_calls=2 response=186 chars
+2026-09-02 03:21:36,981 INFO gateway.platforms.base: [Telegram] Sending response (186 chars) to 430232790
+2026-09-02 03:22:17,238 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (159 chars)
+2026-09-02 03:22:17,248 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='{   "mcpServers": {     "keenable": {       "url": "https://api.keenable.ai/mcp"' reply_to_id=None reply_to_text=''
+2026-09-02 03:27:03,952 INFO hermes_plugins.telegram_platform.adapter: Telegram clarify button resolved (id=9478d020d2, choice='Да, пришлю ключ сейчас', user=Ленар)
+2026-09-02 03:27:12,345 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (36 chars)
+2026-09-02 03:35:26,109 INFO gateway.run: response ready: platform=telegram chat=430232790 time=788.9s api_calls=58 response=911 chars
+2026-09-02 03:35:26,195 INFO gateway.platforms.base: [Telegram] Sending response (889 chars) to 430232790
+2026-09-02 03:41:34,331 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (80 chars)
+2026-09-02 03:41:34,341 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='keen_vrkrfqmsv5_619150bdec5ad8f00b2190c165bab40e9ca97ad1d6937688b533742d25c44a5a' reply_to_id=None reply_to_text=''
+2026-09-02 03:41:55,677 INFO gateway.run: response ready: platform=telegram chat=430232790 time=21.3s api_calls=4 response=660 chars
+2026-09-02 03:41:55,719 INFO gateway.platforms.base: [Telegram] Sending response (656 chars) to 430232790
+2026-09-02 03:54:31,932 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (354 chars)
+2026-09-02 03:54:31,944 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Давай прогоним через mcp задачу поиска всей доступной оперативной информации о с' reply_to_id=None reply_to_text=''
+2026-09-02 03:56:06,792 INFO gateway.run: response ready: platform=telegram chat=430232790 time=94.8s api_calls=5 response=758 chars
+2026-09-02 03:56:06,852 INFO gateway.platforms.base: [Telegram] Sending response (758 chars) to 430232790
+2026-09-02 03:59:45,297 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-02 03:59:45,323 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[ASYNC DELEGATION BATCH COMPLETE — deleg_eaa6677d] A background fan-out of 1 sub' reply_to_id=None reply_to_text=''
+2026-09-02 03:59:52,208 INFO gateway.run: response ready: platform=telegram chat=430232790 time=6.9s api_calls=2 response=192 chars
+2026-09-02 03:59:52,275 INFO gateway.platforms.base: [Telegram] Sending response (192 chars) to 430232790
+2026-09-02 04:00:35,354 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-02 04:00:35,372 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[ASYNC DELEGATION BATCH COMPLETE — deleg_23726481] A background fan-out of 1 sub' reply_to_id=None reply_to_text=''
+2026-09-02 04:00:43,004 INFO gateway.run: response ready: platform=telegram chat=430232790 time=7.6s api_calls=2 response=94 chars
+2026-09-02 04:00:43,069 INFO gateway.platforms.base: [Telegram] Sending response (94 chars) to 430232790
+2026-09-02 04:02:39,451 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-02 04:02:39,466 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[ASYNC DELEGATION BATCH COMPLETE — deleg_109b6838] A background fan-out of 1 sub' reply_to_id=None reply_to_text=''
+2026-09-02 04:04:06,462 INFO gateway.run: response ready: platform=telegram chat=430232790 time=87.0s api_calls=8 response=1831 chars
+2026-09-02 04:04:06,552 INFO gateway.platforms.base: [Telegram] Sending response (1831 chars) to 430232790
+2026-09-02 05:06:52,433 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3766s)
+2026-09-02 05:06:52,439 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-02 06:45:13,971 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (40 chars)
+2026-09-02 06:45:13,983 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://github.com/Ademking/MD-This-Page' reply_to_id=None reply_to_text=''
+2026-09-02 06:45:37,368 INFO gateway.run: response ready: platform=telegram chat=430232790 time=23.4s api_calls=2 response=1194 chars
+2026-09-02 06:45:37,421 INFO gateway.platforms.base: [Telegram] Sending response (1194 chars) to 430232790
+2026-09-02 07:47:07,406 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3690s)
+2026-09-02 07:47:07,411 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-02 14:28:33,646 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (78 chars)
+2026-09-02 14:28:33,662 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Уфа 941 Store MacBook Pro 16 (2026,M5 Pro) 48/1024 Black 18C 20G 216490 рублей' reply_to_id=None reply_to_text=''
+2026-09-02 14:29:37,821 INFO gateway.run: Document cache cleanup: removed 1 stale file(s)
+2026-09-02 14:30:38,678 INFO gateway.run: response ready: platform=telegram chat=430232790 time=125.0s api_calls=6 response=1118 chars
+2026-09-02 14:30:38,737 INFO gateway.platforms.base: [Telegram] Sending response (1118 chars) to 430232790
+2026-09-02 15:32:54,419 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3736s)
+2026-09-02 15:32:54,422 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-02 17:45:13,900 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (107 chars)
+2026-09-02 17:45:13,917 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://academic.oup.com/edited-volume/38595/chapter-abstract/334671730?login=fa' reply_to_id=None reply_to_text=''
+2026-09-02 17:45:50,172 INFO gateway.run: response ready: platform=telegram chat=430232790 time=36.3s api_calls=5 response=2121 chars
+2026-09-02 17:45:50,227 INFO gateway.platforms.base: [Telegram] Sending response (2121 chars) to 430232790
+2026-09-02 17:48:42,588 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (62 chars)
+2026-09-02 17:48:42,603 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://static.nbp.pl/publikacje/materialy-i-studia/256_en.pdf' reply_to_id=None reply_to_text=''
+2026-09-02 17:49:13,889 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (62 chars)
+2026-09-02 17:50:30,132 INFO gateway.run: response ready: platform=telegram chat=430232790 time=107.5s api_calls=2 response=658 chars
+2026-09-02 17:50:30,178 INFO gateway.platforms.base: [Telegram] Sending response (658 chars) to 430232790
+2026-09-02 18:00:22,452 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (50 chars)
+2026-09-02 18:00:22,463 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да, переведи введение, заключение и сохрани в wiki' reply_to_id=None reply_to_text=''
+2026-09-02 18:00:37,297 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-09-02 18:02:48,411 INFO gateway.run: response ready: platform=telegram chat=430232790 time=145.9s api_calls=15 response=1076 chars
+2026-09-02 18:02:48,524 INFO gateway.platforms.base: [Telegram] Sending response (1076 chars) to 430232790
+2026-09-02 18:05:42,094 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (69 chars)
+2026-09-02 18:05:42,107 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Найди альтернативные источники учебника по байесовской макроэкономике' reply_to_id=None reply_to_text=''
+2026-09-02 18:06:11,680 INFO gateway.run: response ready: platform=telegram chat=430232790 time=29.6s api_calls=4 response=2693 chars
+2026-09-02 18:06:11,781 INFO gateway.platforms.base: [Telegram] Sending response (2693 chars) to 430232790
+2026-09-02 18:08:01,108 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-09-02 18:08:01,119 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-09-02 18:09:26,531 INFO gateway.run: response ready: platform=telegram chat=430232790 time=85.4s api_calls=10 response=648 chars
+2026-09-02 18:09:26,635 INFO gateway.platforms.base: [Telegram] Sending response (648 chars) to 430232790
+2026-09-02 19:13:16,364 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3830s)
+2026-09-02 19:13:16,368 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-02 20:29:40,285 INFO gateway.run: curator: curator: snapshot created (2026-09-02T20-29-39Z)
+2026-09-02 20:29:40,537 INFO gateway.run: curator: curator: auto: 3 marked stale, 1 reactivated; llm: skipped (consolidation off)
+2026-09-03 02:22:09,446 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (304 chars)
+2026-09-03 02:22:09,464 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Предложи изменить правила skill ingestion. Обнови после моего подтверждения. Над' reply_to_id=None reply_to_text=''
+2026-09-03 02:22:40,233 INFO gateway.run: response ready: platform=telegram chat=430232790 time=30.8s api_calls=5 response=607 chars
+2026-09-03 02:22:40,279 INFO gateway.platforms.base: [Telegram] Sending response (607 chars) to 430232790
+2026-09-03 02:26:11,187 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (9 chars)
+2026-09-03 02:26:11,197 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как дела?' reply_to_id=None reply_to_text=''
+2026-09-03 02:26:23,049 INFO gateway.run: response ready: platform=telegram chat=430232790 time=11.9s api_calls=1 response=621 chars
+2026-09-03 02:26:23,094 INFO gateway.platforms.base: [Telegram] Sending response (621 chars) to 430232790
+2026-09-03 02:27:12,180 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (32 chars)
+2026-09-03 02:27:12,189 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Текст скопировал сообщением выше' reply_to_id=None reply_to_text=''
+2026-09-03 02:27:52,801 INFO gateway.run: response ready: platform=telegram chat=430232790 time=40.6s api_calls=5 response=742 chars
+2026-09-03 02:27:52,850 INFO gateway.platforms.base: [Telegram] Sending response (742 chars) to 430232790
+2026-09-03 02:29:40,358 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_ac4e94450237_Тезисы финансовый дистресс.pdf (application/pdf)
+2026-09-03 02:29:40,368 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-09-03 02:31:10,089 INFO gateway.run: response ready: platform=telegram chat=430232790 time=89.7s api_calls=4 response=2900 chars
+2026-09-03 02:31:10,171 INFO gateway.platforms.base: [Telegram] Sending response (2900 chars) to 430232790
+2026-09-03 02:51:40,406 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (139 chars)
+2026-09-03 02:51:40,417 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Оцени возможность получения сводной статистики в рамках закупочных процедур ( го' reply_to_id=None reply_to_text=''
+2026-09-03 02:52:10,702 INFO gateway.run: response ready: platform=telegram chat=430232790 time=30.3s api_calls=2 response=1843 chars
+2026-09-03 02:52:10,766 INFO gateway.platforms.base: [Telegram] Sending response (1843 chars) to 430232790
+2026-09-03 02:54:23,822 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-03 02:54:23,838 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[ASYNC DELEGATION BATCH COMPLETE — deleg_0f1785fa] A background fan-out of 1 sub' reply_to_id=None reply_to_text=''
+2026-09-03 02:55:01,393 INFO gateway.run: response ready: platform=telegram chat=430232790 time=37.6s api_calls=6 response=2300 chars
+2026-09-03 02:55:01,442 INFO gateway.platforms.base: [Telegram] Sending response (2300 chars) to 430232790
+2026-09-03 03:21:45,039 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (32 chars)
+2026-09-03 03:21:45,048 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='SQCTdvSFHtPTV7Jm1bMElCoNENgbR0cj' reply_to_id=None reply_to_text=''
+2026-09-03 03:23:21,163 INFO gateway.run: response ready: platform=telegram chat=430232790 time=96.1s api_calls=11 response=1070 chars
+2026-09-03 03:23:21,260 INFO gateway.platforms.base: [Telegram] Sending response (1070 chars) to 430232790
+2026-09-03 03:36:46,232 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-09-03 03:36:46,242 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-09-03 03:37:52,444 INFO gateway.run: response ready: platform=telegram chat=430232790 time=66.2s api_calls=6 response=511 chars
+2026-09-03 03:37:52,487 INFO gateway.platforms.base: [Telegram] Sending response (511 chars) to 430232790
+2026-09-03 03:38:15,675 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (81 chars)
+2026-09-03 03:38:15,685 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Сделай разбор сайта с mcp , там есть агрегированные данные по отраслям с глубино' reply_to_id=None reply_to_text=''
+2026-09-03 03:41:15,934 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (36 chars)
+2026-09-03 03:41:15,936 INFO gateway.run: Gateway intercepted clarify text response (session=agent:main:telegram:dm:430232790, id=5f1b188774)
+2026-09-03 03:42:34,209 INFO gateway.run: response ready: platform=telegram chat=430232790 time=258.5s api_calls=15 response=4393 chars
+2026-09-03 03:42:34,341 INFO gateway.platforms.base: [Telegram] Sending response (4393 chars) to 430232790
+2026-09-03 04:44:10,788 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3697s)
+2026-09-03 04:44:10,795 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-03 07:26:42,676 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_1b2aca832d1c_ДОМ_РФ_Жилищное_строительство_в_России_за_2_квартал_2026_года_ав.pdf (application/pdf)
+2026-09-03 07:26:43,353 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Жилищное строительство в России за 2 квартал 2026 года (август 2026) от ДОМ.РФ' reply_to_id=None reply_to_text=''
+2026-09-03 07:29:29,056 INFO gateway.run: response ready: platform=telegram chat=430232790 time=165.7s api_calls=12 response=853 chars
+2026-09-03 07:29:29,151 INFO gateway.platforms.base: [Telegram] Sending response (853 chars) to 430232790
+2026-09-03 07:29:40,559 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (40 chars)
+2026-09-03 07:29:40,572 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://sherpagroup.ru/analytics/cz7y5wh' reply_to_id=None reply_to_text=''
+2026-09-03 07:30:05,456 INFO gateway.run: response ready: platform=telegram chat=430232790 time=24.9s api_calls=2 response=1838 chars
+2026-09-03 07:30:05,640 INFO gateway.platforms.base: [Telegram] Sending response (1838 chars) to 430232790
+2026-09-03 07:30:32,759 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (40 chars)
+2026-09-03 07:30:32,771 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://sherpagroup.ru/analytics/e6hkwd5' reply_to_id=None reply_to_text=''
+2026-09-03 07:31:10,209 INFO gateway.run: response ready: platform=telegram chat=430232790 time=37.4s api_calls=2 response=2226 chars
+2026-09-03 07:31:10,287 INFO gateway.platforms.base: [Telegram] Sending response (2226 chars) to 430232790
+2026-09-03 07:34:35,663 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-09-03 07:34:35,707 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-09-03 07:36:27,746 INFO gateway.run: response ready: platform=telegram chat=430232790 time=112.0s api_calls=4 response=991 chars
+2026-09-03 07:36:28,368 INFO gateway.platforms.base: [Telegram] Sending response (991 chars) to 430232790
+2026-09-03 08:39:37,201 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3790s)
+2026-09-03 08:39:37,206 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-03 15:26:25,662 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (23 chars)
+2026-09-03 15:26:25,720 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Проверь api по закупкам' reply_to_id=None reply_to_text=''
+2026-09-03 15:26:46,106 INFO gateway.run: response ready: platform=telegram chat=430232790 time=20.4s api_calls=2 response=421 chars
+2026-09-03 15:26:46,249 INFO gateway.platforms.base: [Telegram] Sending response (421 chars) to 430232790
+2026-09-03 16:30:23,867 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3818s)
+2026-09-03 16:30:23,870 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-03 18:29:50,400 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (89 chars)
+2026-09-03 18:29:50,408 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Проработай вариант подключения к российским api через ноутбук с локальным клиент' reply_to_id=None reply_to_text=''
+2026-09-03 18:30:24,688 INFO gateway.run: response ready: platform=telegram chat=430232790 time=34.3s api_calls=2 response=2861 chars
+2026-09-03 18:30:24,740 INFO gateway.platforms.base: [Telegram] Sending response (2861 chars) to 430232790
+2026-09-03 18:33:21,914 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (19 chars)
+2026-09-03 18:33:21,942 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Windows 10, нет, да' reply_to_id=None reply_to_text=''
+2026-09-03 18:33:43,239 INFO gateway.run: response ready: platform=telegram chat=430232790 time=21.3s api_calls=1 response=2847 chars
+2026-09-03 18:33:43,691 INFO gateway.platforms.base: [Telegram] Sending response (2847 chars) to 430232790
+2026-09-03 18:45:25,050 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (27 chars)
+2026-09-03 18:45:25,062 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Ноут не видит домашнюю wifi' reply_to_id=None reply_to_text=''
+2026-09-03 18:45:48,230 INFO gateway.run: response ready: platform=telegram chat=430232790 time=23.2s api_calls=1 response=1991 chars
+2026-09-03 18:45:48,286 INFO gateway.platforms.base: [Telegram] Sending response (1991 chars) to 430232790
+2026-09-03 18:53:12,051 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (28 chars)
+2026-09-03 18:53:12,067 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='В сетевых адаптерах нет wlan' reply_to_id=None reply_to_text=''
+2026-09-03 18:53:30,723 INFO gateway.run: response ready: platform=telegram chat=430232790 time=18.7s api_calls=1 response=1671 chars
+2026-09-03 18:53:30,773 INFO gateway.platforms.base: [Telegram] Sending response (1671 chars) to 430232790
+2026-09-03 19:55:44,577 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3734s)
+2026-09-03 19:55:44,581 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-04 00:17:45,634 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user photo at /home/lnr/.hermes/cache/images/img_cb82fc3e8dbc.jpg
+2026-09-04 00:17:46,444 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing photo batch agent:main:telegram:dm:430232790:photo-burst with 1 image(s)
+2026-09-04 00:17:46,487 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='6 девелоперов за 6М 2026: выручка падает, прибыль испаряется, долг давит Собрал ' reply_to_id=None reply_to_text=''
+2026-09-04 00:17:46,641 INFO gateway.run: Image routing: text (mode=text). Pre-analyzing 1 image(s) via vision_analyze.
+2026-09-04 00:19:46,828 INFO gateway.run: response ready: platform=telegram chat=430232790 time=120.3s api_calls=5 response=863 chars
+2026-09-04 00:19:46,868 INFO gateway.platforms.base: [Telegram] Sending response (863 chars) to 430232790
+2026-09-04 00:22:27,753 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (62 chars)
+2026-09-04 00:22:27,764 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Найди web источник для загрузки отчетности девелоперов по РПБУ' reply_to_id=None reply_to_text=''
+2026-09-04 00:22:58,925 INFO gateway.run: response ready: platform=telegram chat=430232790 time=31.2s api_calls=3 response=2716 chars
+2026-09-04 00:22:58,970 INFO gateway.platforms.base: [Telegram] Sending response (2716 chars) to 430232790
+2026-09-04 00:25:03,189 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-09-04 00:25:03,197 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-09-04 00:34:31,934 INFO gateway.run: response ready: platform=telegram chat=430232790 time=568.7s api_calls=54 response=1945 chars
+2026-09-04 00:34:32,285 INFO gateway.platforms.base: [Telegram] Sending response (1945 chars) to 430232790
+2026-09-04 00:42:16,672 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (154 chars)
+2026-09-04 00:42:16,700 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Найди источники для оперативных данных , промежуточной отчетности , нужно воспро' reply_to_id=None reply_to_text=''
+2026-09-04 00:43:48,988 INFO gateway.run: response ready: platform=telegram chat=430232790 time=92.3s api_calls=6 response=1562 chars
+2026-09-04 00:43:49,061 INFO gateway.platforms.base: [Telegram] Sending response (1562 chars) to 430232790
+2026-09-04 00:53:25,276 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (6 chars)
+2026-09-04 00:53:25,285 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Напиши' reply_to_id=None reply_to_text=''
+2026-09-04 00:55:54,688 INFO gateway.run: response ready: platform=telegram chat=430232790 time=149.4s api_calls=12 response=1398 chars
+2026-09-04 00:55:54,902 INFO gateway.platforms.base: [Telegram] Sending response (1398 chars) to 430232790
+2026-09-04 01:20:30,500 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (24 chars)
+2026-09-04 01:20:30,508 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Проверь другие источники' reply_to_id=None reply_to_text=''
+2026-09-04 01:23:57,354 INFO gateway.run: response ready: platform=telegram chat=430232790 time=206.8s api_calls=9 response=1851 chars
+2026-09-04 01:23:57,406 INFO gateway.platforms.base: [Telegram] Sending response (1851 chars) to 430232790
+2026-09-04 01:30:10,727 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (250 chars)
+2026-09-04 01:30:10,740 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Меня интересуют панель оперативных оценок ( МСФО и/или промежуточной отчетности ' reply_to_id=None reply_to_text=''
+2026-09-04 01:36:10,358 INFO gateway.run: response ready: platform=telegram chat=430232790 time=359.6s api_calls=17 response=2447 chars
+2026-09-04 01:36:10,446 INFO gateway.platforms.base: [Telegram] Sending response (2447 chars) to 430232790
+2026-09-04 02:29:47,649 INFO gateway.run: Document cache cleanup: removed 1 stale file(s)
+2026-09-04 02:36:23,589 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3613s)
+2026-09-04 02:36:23,627 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-04 07:07:26,711 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (284 chars)
+2026-09-04 07:07:26,727 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Проверь факт не соответствия между снижением обьема строительных работ ( за посл' reply_to_id=None reply_to_text=''
+2026-09-04 07:11:19,435 INFO gateway.run: response ready: platform=telegram chat=430232790 time=232.7s api_calls=14 response=2256 chars
+2026-09-04 07:11:19,537 INFO gateway.platforms.base: [Telegram] Sending response (2256 chars) to 430232790
+2026-09-04 07:29:48,870 INFO gateway.run: Document cache cleanup: removed 1 stale file(s)
+2026-09-04 08:11:56,320 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3637s)
+2026-09-04 08:11:56,325 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-04 10:54:45,732 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (115 chars)
+2026-09-04 10:54:45,750 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://www.bde.es/f/webbe/SES/Secciones/Publicaciones/PublicacionesSeriadas/Doc' reply_to_id=None reply_to_text=''
+2026-09-04 10:56:27,240 INFO gateway.run: response ready: platform=telegram chat=430232790 time=101.5s api_calls=10 response=2309 chars
+2026-09-04 10:56:27,296 INFO gateway.platforms.base: [Telegram] Sending response (2309 chars) to 430232790
+2026-09-04 11:39:52,008 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user photo at /home/lnr/.hermes/cache/images/img_9277b7628e22.jpg
+2026-09-04 11:39:52,085 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user photo at /home/lnr/.hermes/cache/images/img_28cbce0e6cd3.jpg
+2026-09-04 11:39:52,185 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user photo at /home/lnr/.hermes/cache/images/img_a7184d960657.jpg
+2026-09-04 11:39:52,996 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='🤩 ЕРЗ-тренды: Ситуация в стройотрасли начнет стабилизироваться при\xa0приближении к' reply_to_id=None reply_to_text=''
+2026-09-04 11:39:53,054 INFO gateway.run: Image routing: text (mode=text). Pre-analyzing 3 image(s) via vision_analyze.
+2026-09-04 11:44:28,988 INFO gateway.run: response ready: platform=telegram chat=430232790 time=276.0s api_calls=5 response=1870 chars
+2026-09-04 11:44:29,080 INFO gateway.platforms.base: [Telegram] Sending response (1870 chars) to 430232790
+2026-09-04 12:37:10,836 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (140 chars)
+2026-09-04 12:37:10,851 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Найди международные и отечественные макроэкономические исследования с примерами ' reply_to_id=None reply_to_text=''
+2026-09-04 12:39:22,756 INFO gateway.run: response ready: platform=telegram chat=430232790 time=131.9s api_calls=9 response=2501 chars
+2026-09-04 12:39:22,806 INFO gateway.platforms.base: [Telegram] Sending response (2501 chars) to 430232790
+2026-09-04 13:01:27,432 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (29 chars)
+2026-09-04 13:01:27,447 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Скачай доступные исследования' reply_to_id=None reply_to_text=''
+2026-09-04 13:06:43,306 INFO gateway.run: response ready: platform=telegram chat=430232790 time=315.9s api_calls=15 response=2004 chars
+2026-09-04 13:06:43,622 INFO gateway.platforms.base: [Telegram] Sending response (2004 chars) to 430232790
+2026-09-04 14:07:43,320 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3660s)
+2026-09-04 14:07:43,361 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-04 14:31:15,187 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (1857 chars)
+2026-09-04 14:31:15,201 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://download.ssrn.com/2026/4/17/5151633.pdf?response-content-disposition=att' reply_to_id=None reply_to_text=''
+2026-09-04 14:31:24,858 INFO gateway.run: response ready: platform=telegram chat=430232790 time=9.7s api_calls=1 response=247 chars
+2026-09-04 14:31:24,920 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-04 14:31:38,751 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (1820 chars)
+2026-09-04 14:31:38,763 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://download.ssrn.com/2026/5/13/6457199.pdf?response-content-disposition=inl' reply_to_id=None reply_to_text=''
+2026-09-04 14:31:49,675 INFO gateway.run: response ready: platform=telegram chat=430232790 time=10.9s api_calls=1 response=247 chars
+2026-09-04 14:31:49,725 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-04 14:34:18,103 INFO gateway.run: Invalidated run generation for agent:main:telegram:dm:430232790 → 442 (session_reset)
+2026-09-04 14:34:18,187 INFO gateway.platforms.base: [Telegram] Sending response (199 chars) to 430232790
+2026-09-04 14:35:03,201 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (9 chars)
+2026-09-04 14:35:03,211 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как дела?' reply_to_id=None reply_to_text=''
+2026-09-04 14:35:13,203 INFO gateway.run: response ready: platform=telegram chat=430232790 time=10.0s api_calls=1 response=247 chars
+2026-09-04 14:35:13,263 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-04 15:37:52,726 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3760s)
+2026-09-04 15:37:52,730 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-04 15:38:12,985 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (69 chars)
+2026-09-04 15:38:12,998 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://raexpert.ru/researches/development/housing_construction_2026/' reply_to_id=None reply_to_text=''
+2026-09-04 15:38:21,092 INFO gateway.run: response ready: platform=telegram chat=430232790 time=8.1s api_calls=1 response=247 chars
+2026-09-04 15:38:21,146 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-04 15:57:12,405 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_1f9805cd48f4_SP_Тренды_ИЖС_итоги_первого_полугодия_2026_год_2.pdf (application/pdf)
+2026-09-04 15:57:12,417 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-09-04 15:57:21,611 INFO gateway.run: response ready: platform=telegram chat=430232790 time=9.2s api_calls=1 response=247 chars
+2026-09-04 15:57:21,661 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-04 16:01:12,917 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user photo at /home/lnr/.hermes/cache/images/img_6cb9acb08341.jpg
+2026-09-04 16:01:12,963 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user photo at /home/lnr/.hermes/cache/images/img_c233b245f79d.jpg
+2026-09-04 16:01:13,775 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='По оценке Аналитического центра ДОМ.PФ, в августе банки предоставили 87 тыс. ипо' reply_to_id=None reply_to_text=''
+2026-09-04 16:01:13,819 INFO gateway.run: Image routing: text (mode=text). Pre-analyzing 2 image(s) via vision_analyze.
+2026-09-04 16:01:23,196 INFO gateway.run: response ready: platform=telegram chat=430232790 time=9.4s api_calls=1 response=247 chars
+2026-09-04 16:01:23,251 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-04 16:20:10,631 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (9 chars)
+2026-09-04 16:20:10,644 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как дела?' reply_to_id=None reply_to_text=''
+2026-09-04 16:20:22,529 INFO gateway.run: response ready: platform=telegram chat=430232790 time=11.9s api_calls=1 response=66 chars
+2026-09-04 16:20:22,584 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-04 16:22:00,787 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (7 chars)
+2026-09-04 16:22:00,802 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Статус?' reply_to_id=None reply_to_text=''
+2026-09-04 16:22:12,995 INFO gateway.run: response ready: platform=telegram chat=430232790 time=12.2s api_calls=1 response=66 chars
+2026-09-04 16:22:13,046 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-04 16:22:53,792 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (8 chars)
+2026-09-04 16:22:53,805 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Статус ?' reply_to_id=None reply_to_text=''
+2026-09-04 16:23:03,239 INFO gateway.run: response ready: platform=telegram chat=430232790 time=9.4s api_calls=1 response=66 chars
+2026-09-04 16:23:03,298 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-04 17:23:03,167 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3600s)
+2026-09-04 17:23:03,171 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-05 00:28:41,183 INFO gateway.platforms.base: [Telegram] Sending response (338 chars) to 430232790
+2026-09-05 00:29:52,847 INFO gateway.run: Image cache cleanup: removed 1 stale file(s)
+2026-09-05 00:34:59,848 INFO gateway.platforms.base: [Telegram] Sending response (121 chars) to 430232790
+2026-09-05 00:35:13,504 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (6 chars)
+2026-09-05 00:35:13,512 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Статус' reply_to_id=None reply_to_text=''
+2026-09-05 00:35:25,271 INFO gateway.run: response ready: platform=telegram chat=430232790 time=11.8s api_calls=1 response=66 chars
+2026-09-05 00:35:25,311 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-05 00:35:46,319 INFO gateway.platforms.base: [Telegram] Sending response (121 chars) to 430232790
+2026-09-05 00:36:54,830 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (6 chars)
+2026-09-05 00:36:54,840 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Статус' reply_to_id=None reply_to_text=''
+2026-09-05 00:37:02,698 INFO gateway.run: response ready: platform=telegram chat=430232790 time=7.9s api_calls=1 response=247 chars
+2026-09-05 00:37:02,740 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-05 01:38:51,859 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3709s)
+2026-09-05 01:38:51,862 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-05 01:57:55,716 INFO gateway.platforms.base: [Telegram] Sending response (42 chars) to 430232790
+2026-09-05 01:58:28,125 INFO gateway.platforms.base: [Telegram] Sending response (149 chars) to 430232790
+2026-09-05 02:00:02,692 INFO gateway.platforms.base: [Telegram] Sending response (90 chars) to 430232790
+2026-09-05 02:00:19,701 INFO gateway.platforms.base: [Telegram] Sending response (52 chars) to 430232790
+2026-09-05 02:00:26,800 INFO gateway.run: kanban dispatcher: reaped 1 zombie worker(s), pids=[137382]
+2026-09-05 02:00:46,085 INFO gateway.run: Update finished (exit=1), notified agent:main:telegram:dm:430232790
+2026-09-05 02:01:26,897 ERROR gateway.run: kanban dispatcher: tick failed on board default
+2026-09-05 02:01:35,202 INFO gateway.platforms.base: [Telegram] Sending response (54 chars) to 430232790
+2026-09-05 02:02:10,887 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='/curator' reply_to_id=None reply_to_text=''
+2026-09-05 02:02:10,892 WARNING gateway.session: gateway.session: state.db routing save failed: database or disk is full
+2026-09-05 02:02:10,896 ERROR gateway.platforms.base: [Telegram] Error handling message: [Errno 28] No space left on device
+2026-09-05 06:14:47,091 INFO gateway.run: Session storage: /home/lnr/.hermes/sessions
+2026-09-05 06:14:47,111 INFO gateway.run: Agent budget: max_iterations=90 (agent.max_turns from config.yaml, or HERMES_MAX_ITERATIONS from .env, or default 90)
+2026-09-05 06:14:47,112 INFO gateway.run: Secret redaction: ENABLED (tool output, logs, and chat responses are scrubbed before delivery)
+2026-09-05 06:14:47,138 INFO gateway.run: Previous gateway exited cleanly — skipping session suspension
+2026-09-05 06:14:47,155 INFO gateway.run: Connecting to telegram...
+2026-09-05 06:14:47,164 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Discovering Telegram API fallback IPs via DNS-over-HTTPS…
+2026-09-05 06:14:47,200 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Auto-discovered Telegram fallback IPs: 149.154.166.110
+2026-09-05 06:14:47,200 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Telegram fallback IPs active: 149.154.166.110
+2026-09-05 06:14:47,232 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Connecting to Telegram (attempt 1/8)…
+2026-09-05 06:14:47,327 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Connected to Telegram (polling mode)
+2026-09-05 06:14:47,584 INFO gateway.run: ✓ telegram connected
+2026-09-05 06:14:47,622 INFO gateway.run: Gateway running with 1 platform(s)
+2026-09-05 06:14:47,653 INFO hermes_plugins.telegram_platform.adapter: [Telegram] set_my_commands OK for scope BotCommandScopeDefault (60 cmds)
+2026-09-05 06:14:47,678 INFO hermes_plugins.telegram_platform.adapter: [Telegram] set_my_commands OK for scope BotCommandScopeAllPrivateChats (60 cmds)
+2026-09-05 06:14:47,689 INFO gateway.run: Channel directory built: 2 target(s)
+2026-09-05 06:14:47,705 INFO hermes_plugins.telegram_platform.adapter: [Telegram] set_my_commands OK for scope BotCommandScopeAllGroupChats (60 cmds)
+2026-09-05 06:14:47,705 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Telegram menu: 60 commands registered, 98 hidden (over 60 limit). Use /commands for full list.
+2026-09-05 06:14:48,698 INFO gateway.run: Press Ctrl+C to stop
+2026-09-05 06:14:48,706 INFO gateway.run: Gateway housekeeping started (interval=60s)
+2026-09-05 06:14:48,708 INFO gateway.run: kanban dispatcher: holding singleton dispatcher lock (/home/lnr/.hermes/kanban/.dispatcher.lock)
+2026-09-05 06:14:53,709 INFO gateway.run: kanban dispatcher: embedded in gateway (interval=60.0s)
+2026-09-05 06:56:09,939 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (8 chars)
+2026-09-05 06:56:10,101 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как дела' reply_to_id=None reply_to_text=''
+2026-09-05 06:56:10,149 INFO gateway.run: Rehydrated persisted /model override for session=agent:main:telegram:dm:430232790: model=glm-5.1 provider=ollama-cloud
+2026-09-05 06:56:23,581 INFO gateway.run: response ready: platform=telegram chat=430232790 time=13.5s api_calls=1 response=247 chars
+2026-09-05 06:56:23,622 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-05 06:56:58,184 ERROR gateway.run: kanban dispatcher: tick failed on board default
+2026-09-05 06:57:58,281 ERROR gateway.run: kanban dispatcher: tick failed on board default
+2026-09-05 08:00:58,728 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3875s)
+2026-09-05 08:00:58,733 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-05 12:13:49,941 INFO gateway.run: Image cache cleanup: removed 3 stale file(s)
+2026-09-05 16:13:50,727 INFO gateway.run: Image cache cleanup: removed 2 stale file(s)
+2026-09-05 16:13:50,730 INFO gateway.run: Document cache cleanup: removed 1 stale file(s)
+2026-09-05 19:21:14,524 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (22 chars)
+2026-09-05 19:21:14,542 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://api.exit10.ru/' reply_to_id=None reply_to_text=''
+2026-09-05 19:21:24,018 INFO gateway.run: response ready: platform=telegram chat=430232790 time=9.5s api_calls=1 response=247 chars
+2026-09-05 19:21:24,089 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-05 20:10:54,583 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram network error, scheduling reconnect: Bad Gateway
+2026-09-05 20:10:54,585 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram network error (attempt 1/10), reconnecting in 5s. Error: Bad Gateway
+2026-09-05 20:11:02,940 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram polling reconnect failed: Bad Gateway
+2026-09-05 20:11:02,940 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram network error (attempt 2/10), reconnecting in 10s. Error: Bad Gateway
+2026-09-05 20:11:33,018 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram polling reconnect failed: Timed out
+2026-09-05 20:11:33,018 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram network error (attempt 3/10), reconnecting in 20s. Error: Timed out
+2026-09-05 20:12:13,076 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram polling reconnect failed: Timed out
+2026-09-05 20:12:13,076 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram network error (attempt 4/10), reconnecting in 40s. Error: Timed out
+2026-09-05 20:13:13,156 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram polling reconnect failed: Timed out
+2026-09-05 20:13:13,156 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram network error (attempt 5/10), reconnecting in 60s. Error: Timed out
+2026-09-05 20:14:33,225 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram polling reconnect failed: Timed out
+2026-09-05 20:14:33,225 WARNING hermes_plugins.telegram_platform.adapter: [Telegram] Telegram network error (attempt 6/10), reconnecting in 60s. Error: Timed out
+2026-09-05 20:15:33,282 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Telegram polling restarted after network error (attempt 6); health pending getUpdates progress
+2026-09-05 20:22:07,234 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3643s)
+2026-09-05 20:22:07,236 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-06 02:49:05,368 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (52 chars)
+2026-09-06 02:49:05,381 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://e-disclosure.ru/portal/company.aspx?id=39797' reply_to_id=None reply_to_text=''
+2026-09-06 02:49:15,151 INFO gateway.run: response ready: platform=telegram chat=430232790 time=9.8s api_calls=1 response=247 chars
+2026-09-06 02:49:15,189 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-06 03:52:49,148 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3814s)
+2026-09-06 03:52:49,150 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-06 18:24:31,047 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (8 chars)
+2026-09-06 18:24:31,059 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как дела' reply_to_id=None reply_to_text=''
+2026-09-06 18:24:40,494 INFO gateway.run: response ready: platform=telegram chat=430232790 time=9.4s api_calls=1 response=247 chars
+2026-09-06 18:24:40,545 INFO gateway.platforms.base: [Telegram] Sending response (84 chars) to 430232790
+2026-09-06 19:29:21,202 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3881s)
+2026-09-06 19:29:21,203 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-07 05:32:17,734 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (22 chars)
+2026-09-07 05:32:17,746 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://api.exit10.ru/' reply_to_id=None reply_to_text=''
+2026-09-07 05:33:01,441 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 05:33:01,442 INFO gateway.run: response ready: platform=telegram chat=430232790 time=43.7s api_calls=10 response=4473 chars
+2026-09-07 05:35:37,371 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (55 chars)
+2026-09-07 05:35:37,385 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Что можно получить в источнике:  https://api.exit10.ru/' reply_to_id=None reply_to_text=''
+2026-09-07 05:35:56,619 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 05:35:56,619 INFO gateway.run: response ready: platform=telegram chat=430232790 time=19.2s api_calls=5 response=2294 chars
+2026-09-07 05:37:47,797 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (43 chars)
+2026-09-07 05:37:47,807 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='https://www.youtube.com/watch?v=9vM4p9NN0Ts' reply_to_id=None reply_to_text=''
+2026-09-07 05:38:24,590 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 05:38:24,590 INFO gateway.run: response ready: platform=telegram chat=430232790 time=36.8s api_calls=12 response=4560 chars
+2026-09-07 06:08:45,231 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Cached user document at /home/lnr/.hermes/cache/documents/doc_91814093121a_ssrn-6457199.pdf (application/pdf)
+2026-09-07 06:08:45,240 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='' reply_to_id=None reply_to_text=''
+2026-09-07 06:08:58,926 WARNING gateway.channel_directory: Channel directory: failed to write: [Errno 28] No space left on device
+2026-09-07 06:09:25,341 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 06:09:25,342 INFO gateway.run: response ready: platform=telegram chat=430232790 time=40.1s api_calls=14 response=4417 chars
+2026-09-07 06:09:25,380 ERROR gateway.run: Agent error in session agent:main:telegram:dm:430232790
+2026-09-07 06:41:59,553 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (102 chars)
+2026-09-07 06:41:59,563 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Оцени вопрос использования базы данных с бухгалтерской отчетностью для репликаци' reply_to_id=4655 reply_to_text='- Midas-nowcasting контур: тезис 4 — фирменные квартальные данные могут доминиро'
+2026-09-07 06:41:59,649 INFO [20260904_143418_6c869e4b] gateway.run: Agent cache invalidated for session agent:main:telegram:dm:430232790: message_count changed (70 -> 77), possible cross-process write
+2026-09-07 06:43:27,451 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 06:43:27,451 INFO gateway.run: response ready: platform=telegram chat=430232790 time=87.9s api_calls=15 response=3610 chars
+2026-09-07 07:19:03,048 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (7 chars)
+2026-09-07 07:19:03,071 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Загрузи' reply_to_id=None reply_to_text=''
+2026-09-07 07:21:12,700 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 07:21:12,701 INFO gateway.run: response ready: platform=telegram chat=430232790 time=129.6s api_calls=18 response=1085 chars
+2026-09-07 07:40:33,033 INFO gateway.run: Watch pattern notification — injecting for telegram chat=430232790 thread=None
+2026-09-07 07:40:33,148 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='[IMPORTANT: Background process proc_28b36e9c12b8 completed normally (exit code 0' reply_to_id=None reply_to_text=''
+2026-09-07 07:40:48,757 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 07:40:48,761 INFO gateway.run: response ready: platform=telegram chat=430232790 time=15.6s api_calls=3 response=288 chars
+2026-09-07 08:45:36,801 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3888s)
+2026-09-07 08:45:36,867 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-07 10:53:46,299 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (58 chars)
+2026-09-07 10:53:46,311 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Как подключить gpt astra или fable 5.1? И оплатить из рф ?' reply_to_id=None reply_to_text=''
+2026-09-07 10:54:17,321 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 10:54:17,321 INFO gateway.run: response ready: platform=telegram chat=430232790 time=31.0s api_calls=5 response=2746 chars
+2026-09-07 11:56:02,744 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3706s)
+2026-09-07 11:56:02,746 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-07 13:32:54,541 ERROR gateway.run: kanban dispatcher: tick failed on board default
+2026-09-07 13:33:36,874 WARNING gateway.channel_directory: Channel directory: failed to write: [Errno 28] No space left on device
+2026-09-07 13:33:54,631 ERROR gateway.run: kanban dispatcher: tick failed on board default
+2026-09-07 13:34:54,738 ERROR gateway.run: kanban dispatcher: tick failed on board default
+2026-09-07 13:35:54,838 ERROR gateway.run: kanban dispatcher: tick failed on board default
+2026-09-07 13:36:54,939 ERROR gateway.run: kanban dispatcher: tick failed on board default
+2026-09-07 18:02:08,742 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (14 chars)
+2026-09-07 18:02:08,844 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Почисти память' reply_to_id=None reply_to_text=''
+2026-09-07 18:02:21,764 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 18:02:21,777 INFO gateway.run: response ready: platform=telegram chat=430232790 time=12.9s api_calls=3 response=341 chars
+2026-09-07 18:02:42,295 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (2 chars)
+2026-09-07 18:02:42,309 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Да' reply_to_id=None reply_to_text=''
+2026-09-07 18:02:45,061 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 18:02:45,061 INFO gateway.run: response ready: platform=telegram chat=430232790 time=2.8s api_calls=2 response=71 chars
+2026-09-07 18:03:18,926 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (35 chars)
+2026-09-07 18:03:18,949 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Почисти память VPs , на диске и ОЗУ' reply_to_id=None reply_to_text=''
+2026-09-07 18:04:01,955 INFO hermes_plugins.telegram_platform.adapter: Telegram button resolved 1 approval(s) for session agent:main:telegram:dm:430232790 (choice=session, user=Ленар)
+2026-09-07 18:05:35,831 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 18:05:35,852 INFO gateway.run: response ready: platform=telegram chat=430232790 time=136.9s api_calls=10 response=1625 chars
+2026-09-07 18:07:47,658 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (44 chars)
+2026-09-07 18:07:47,694 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Удали rosreestr_deals , данные пока не нужны' reply_to_id=None reply_to_text=''
+2026-09-07 18:07:52,214 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 18:07:52,214 INFO gateway.run: response ready: platform=telegram chat=430232790 time=4.5s api_calls=2 response=202 chars
+2026-09-07 18:10:05,177 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (8 chars)
+2026-09-07 18:10:05,190 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Статус ?' reply_to_id=None reply_to_text=''
+2026-09-07 18:10:32,357 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 18:10:32,358 INFO gateway.run: response ready: platform=telegram chat=430232790 time=27.2s api_calls=5 response=1108 chars
+2026-09-07 18:11:33,555 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (40 chars)
+2026-09-07 18:11:33,566 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Сделай дамп по сценарию в сообщении выше' reply_to_id=None reply_to_text=''
+2026-09-07 18:12:48,289 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (406 chars)
+2026-09-07 18:12:48,292 INFO gateway.run: Gateway intercepted clarify text response (session=agent:main:telegram:dm:430232790, id=cf37f78d58)
+2026-09-07 18:13:11,218 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 18:13:11,219 INFO gateway.run: response ready: platform=telegram chat=430232790 time=97.7s api_calls=6 response=865 chars
+2026-09-07 19:16:22,990 INFO gateway.run: Agent cache idle-TTL evict: session=agent:main:telegram:dm:430232790 (idle=3792s)
+2026-09-07 19:16:23,087 INFO gateway.run: Agent cache idle sweep: evicted 1 agent(s)
+2026-09-07 23:06:32,498 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (16 chars)
+2026-09-07 23:06:32,509 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Добавь agents.md' reply_to_id=None reply_to_text=''
+2026-09-07 23:06:44,055 INFO gateway.run: Suppressing normal final send for session agent:main:telegram:dm:430232790: final delivery already confirmed (streamed=True previewed=False content_delivered=True).
+2026-09-07 23:06:44,056 INFO gateway.run: response ready: platform=telegram chat=430232790 time=11.5s api_calls=5 response=734 chars
+2026-09-07 23:07:42,764 INFO hermes_plugins.telegram_platform.adapter: [Telegram] Flushing text batch agent:main:telegram:dm:430232790 (43 chars)
+2026-09-07 23:07:42,776 INFO gateway.run: inbound message: platform=telegram user=Ленар chat=430232790 msg='Добавь debug.txt и log за последние 10 дней' reply_to_id=None reply_to_text=''

@@ -61,7 +61,7 @@ confidence: high
 ## 4. План эмпирики (этапы)
 
 1. **База** (1–2 нед.): удлинить ИКВ до 2005 (ЕАЭС/ЕМИСС); собрать месяц-квартал матрицу предикторов; скоринг S6-B2B фраз (Wordstat, 100 зап./час).
-2. **Бенчмарки** (1 нед.): bridge, MIDAS-Almon, MF-VAR, DFM (EM-алгоритм) — pseudo-OOO rolling 2018–2026.
+2. **Бенчмарки** (1 нед.): bridge, MIDAS-Almon, U-MIDAS, MFBVAR (лидер РФ-литературы: Станкевич 2020, Фокин 2023), MF-VAR, DFM (EM-алгоритм) — pseudo-OOO rolling 2018–2026. Горизонты по Kuzin et al. 2011: MIDAS 0–4 мес., MF-VAR/DFM 5–9 мес.; ML — поворотные точки (Dauphin et al. 2022).
 3. **Фирменный блок** (2–3 нед.): РСБУ-панель → признаки на квартал → structured ML (arXiv 2307.02673) / gradient boosting.
 4. **Комбинация**: Bates-Granger / constrained least squares поверх; DM-тесты, MSE-decomposition, real-time vintages.
 5. **Региональное расширение**: ИКВ 96 рег. × эскроу-регион × ввод — cross-section-валидация (опционально, вторая часть статьи).

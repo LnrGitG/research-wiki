@@ -163,3 +163,4 @@
 - Updated: hypotheses.yaml +H-007 (эскроу lag2 ≥0.7, testing) +H-008 (firm-level блок −10% RMSE, active)
 - Updated: index.md (1 query entry)
 - Делегат по литературе (MIDAS/bridge/DFM для инвестиций) работает параллельно — итоги влить в дизайн по завершении
+- Обзор международного опыта nowcasting GFCF (deleg_64c9f9c5, deepseek): queries/vnok-nowcasting-international-review.md — 9 классов, ключевые: Kuzin et al. 2011 (MIDAS 0-4 мес > MF-VAR 5-9), MFBVAR лидер РФ (Станкевич 2020, Фокин 2023), Gareev 2020 (ML уже для GFCF РФ), Tarsidin 2018 (цемент-прокси кросс-страново), Макеева-Станкевич 2022 (прямой прототип). Дизайн и карточка обновлены: +MFBVAR в бенчмарки, +горизонты

@@ -156,3 +156,10 @@
 - Исправлено: 5 unquoted YAML title (модели + 2 queries + review), добавлены типы review/news/reference/annotation в схему линтера
 - Obsidian: MOC.md (тематическая карта), docs/obsidian-setup.md (vault-настройки, Dataview/Kanban/Obsidian Git), .gitignore дополнен (workspace, cache, plugin-байнари)
 - Cron research-radar-weekly (job 54ce92865069): понедельник 10:00 UTC — скан arXiv/NBER/SSRN/CBR, сверка с hypotheses.yaml, запись queries/research-radar-*
+
+## 2026-09-08 — Дизайн публикации: nowcasting ВНОК/ИКВ
+- Created: queries/vnok-nowcasting-design.md (целевые ряды: ВНОК IFO 56 кв. SA + ИКВ 25 кв. + 96 рег.; 6 блоков предикторов с скорингом пилота; стек bridge/MIDAS/MF-VAR/DFM/ML/firm-level по IMF WP 22/52, Bundesbank DKP 26/2014, Hong et al. 2026, ЦБ WPS 8/КПМ; план 5 этапов; риски: малая выборка, эскроу 2022+, слом 2026Q1)
+- Created: models/nowcasting/vnok-icv-midas.md (карточка H-007/H-008, пилотные corr перенесены)
+- Updated: hypotheses.yaml +H-007 (эскроу lag2 ≥0.7, testing) +H-008 (firm-level блок −10% RMSE, active)
+- Updated: index.md (1 query entry)
+- Делегат по литературе (MIDAS/bridge/DFM для инвестиций) работает параллельно — итоги влить в дизайн по завершении

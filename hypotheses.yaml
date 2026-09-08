@@ -131,3 +131,34 @@ hypotheses:
     relates_to: ["concepts/transmisionnyi-mehanizm-dkp-zhile", "queries/literature-gap-map"]
     next_check: "Региональная вариация как proxy: ужесточение по регионам неравномерно (доля льготной ипотеки) — DiD"
     created: 2026-09-08
+
+  - id: H-007
+    kind: hypothesis
+    title: "Эскроу-притоки опережают ИКВ на 2 квартала"
+    status: testing
+    statement: "Темп роста эскроу-притоков (проектное финансирование, ЦБ, Tag 167) коррелирует с yoy ИКВ на лаге 2 квартала с corr ≥ 0.7; на ВНОК аналогичное отставание подтверждается через строительную компоненту ВНОК."
+    evidence_for:
+      - "Пилот: corr +0.75 @lag2 на 13 кв. (queries/ikv-nowcasting-pilot.md, 2026-08)"
+      - "OLS-пилот R2=0.75 (эскроу l1 + зарплата l1 + wordstat l1)"
+    evidence_against:
+      - "Короткая выборка: 55 мес эскроу (2022+), режим нестационарен"
+    sources: [cbr, rosstat-inv]
+    tags: [nowcasting, escrow, investment, leading-indicators]
+    relates_to: ["queries/vnok-nowcasting-design", "queries/ikv-nowcasting-pilot", "H-003"]
+    next_check: "Перекатить на 2026Q2 ВНОК (публикация сентябрь); скоринг на SA-ряде"
+    created: 2026-09-08
+
+  - id: H-008
+    kind: hypothesis
+    title: "Firm-level блок (РСБУ/IFRS) улучшает nowcast ИКВ относительно агрегированных HF-предикторов"
+    status: active
+    statement: "Модель с фирменным блоком (revenue/CapEx девелоперов и подрядчиков из РСБУ/IFRS/ФНС на квартал-мес. частотах) даёт RMSE ниже bridge-модели на тех же датах минимум на 10% (аналог Hong et al. 2026: +17% для GDP США)."
+    evidence_for:
+      - "Hong-Huang-Zhu 2026 (SSRN 6457199): cross-section без агрегации +17%"
+      - "Management Science 2025: RMSE −70% vs RW, −17% vs агрегированные на фирменных данных"
+    evidence_against: []
+    sources: [rsbu, ifrs, fns-opendata]
+    tags: [nowcasting, firm-level, machine-learning, investment]
+    relates_to: ["queries/vnok-nowcasting-design", "queries/microdata-macroeconomic-research-review"]
+    next_check: "Собрать квартальную РСБУ-матрицу девелоперов → structured ML backtest 2018-2026"
+    created: 2026-09-08

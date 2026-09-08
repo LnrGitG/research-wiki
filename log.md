@@ -149,3 +149,10 @@
 ## 2026-09-08 — Пересборка векторного слоя
 - scripts/rebuild_embeddings.py: 633 файлов (papers 423 + ru_papers + queries + новый literature-gap-map) → docs/embeddings-f32.json (1523 KB) + docs/search-index.json (633 entries)
 - Смоук-тест косинусного поиска по запросу про эластичность/финансовые ограничения — релевантные статьи найдены (Iacoviello SVAR, глэзер supply, monetary transmission), индекс согласован
+
+## 2026-09-08 — Models, CI, Obsidian, research-radar (элементы плана Qwen)
+- Created: models/nowcasting/midas-wordstat-smr.md (H-006), models/transmission/dev-supply-elasticity-panel.md (H-002/H-003), models/transmission/did-mpl-elasticity-regions.md (H-005/H-004); шаблон templates/model-card.md; SCHEMA.md: тип model + раздел Model Pages
+- Created: scripts/ci/check_wiki_links.py (wikilinks/frontmatter/catalog dup/hypotheses; exit 0: 0 errors, 139 warnings — legacy frontmatter и маркеры сносок) и .github/workflows/wiki-ci.yml (wiki check + markdownlint non-blocking)
+- Исправлено: 5 unquoted YAML title (модели + 2 queries + review), добавлены типы review/news/reference/annotation в схему линтера
+- Obsidian: MOC.md (тематическая карта), docs/obsidian-setup.md (vault-настройки, Dataview/Kanban/Obsidian Git), .gitignore дополнен (workspace, cache, plugin-байнари)
+- Cron research-radar-weekly (job 54ce92865069): понедельник 10:00 UTC — скан arXiv/NBER/SSRN/CBR, сверка с hypotheses.yaml, запись queries/research-radar-*

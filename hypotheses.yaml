@@ -1,0 +1,29 @@
+# Реестр исследовательских гипотез (см. skill hypothesis-tracker)
+hypotheses:
+  - id: H-001
+    kind: hypothesis
+    title: "Wordstat-композит S2–S5 лидирует над yoy СМР на 1 месяц"
+    status: testing
+    statement: "Композит поисковых фраз S2+S3+S4+S5 коррелирует 0.63 с yoy СМР при лаге -1 месяц; S1 (ИЖС) сигнал слабый."
+    evidence_for:
+      - "data/wordstat_weekly_construction.csv, corr=0.63 lead-1m (2026-08)"
+    evidence_against: []
+    sources: [wordstat, rosstat-smr]
+    tags: [nowcasting, leading-indicators, search-data]
+    relates_to: ["catalog:wordstat-cmr-composite"]
+    next_check: "Перекатить на свежий месяц ИФО СМР"
+    created: 2026-08-15
+
+  - id: X-001
+    kind: contradiction
+    title: "Парадокс СМР↓ vs занятость в строительстве↑"
+    status: active
+    statement: "ИФО СМР показывает спад, занятость в строительстве растёт (6816 тыс.); структура СМР 41=37.7% 42=39.6% 43=22.7%."
+    evidence_for:
+      - "Rosstat employment F 6816 тыс.; СМР структура 2026-08"
+    evidence_against: []
+    sources: [rosstat]
+    tags: [construction, employment, rosstat]
+    relates_to: []
+    next_check: "Сверить с NOSTROY и ЕИСЖС по кварталу"
+    created: 2026-08-15

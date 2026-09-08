@@ -139,3 +139,9 @@
 - Updated: hypotheses.yaml: +5 гипотез (H-002 financial-constrained supply elasticity; H-003 escrow release → starts; H-004 замещение × спред; H-005 МПЛ × эластичность региона; H-006 MIDAS Wordstat+GDELT+ЕИСЖС vs AR) и +2 противоречия (X-002 расхождение индексов цен 1.1/1.37/4.1%; X-003 асимметрия ДКП US-литература vs РФ-эмпирика)
 - Updated: index.md (1 query entry)
 - Параллельно: каталогизация papers/ (424 файла) в papers/catalog.md — 3 делегата, идёт
+
+## 2026-09-08 — Каталогизация papers/ в papers/catalog.md (фаза 2, delegation)
+- 3 параллельных делегата обработали 423 .md из papers/ → 319 карточек (8-10 строк: title/authors/year/method/data/key_result/relevance/status) + 63 dup-ссылки на файлы-близнецы (например Bailey/Balcilar/Cepni/Corsetti/Eickmeier/Das — карточка на первом имени пары)
+- Дедупликация: пары "_/-" имён схлопнуты; литовский HPI 4 варианта, Корея 3, BIS bull 3 — по одной карточке с dup-пометками
+- Проверка: 0 дубликатов заголовков, 0 битых dup-ссылок, покрытие 423/423 (карточка или dup-ссылка); файл 3317 строк
+- Пропуски: NBER-CRIW-2026-Ch4 отсутствует на диске (корректно); пустые/error-экстракции (dipasquale-wheaton-1994, rbnz-2025-dfm) помечены relevance: low

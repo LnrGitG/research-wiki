@@ -27,3 +27,107 @@ hypotheses:
     relates_to: []
     next_check: "Сверить с NOSTROY и ЕИСЖС по кварталу"
     created: 2026-08-15
+
+  - id: H-002
+    kind: hypothesis
+    title: "Эластичность предложения жилья у финансово ограниченных девелоперов ниже"
+    status: active
+    statement: "У девелоперов с Net Debt/EBITDA > 4x или Interest Coverage < 2 отклик ввода на рост цен (эластичность) статистически значимо ниже, чем у слабо закредитованных; эффект сильнее в малых и средних девелоперах."
+    evidence_for:
+      - "Теоретический канал Bernanke-Gertler-Gilchrist (balance sheet channel) — research-ideas-russia-housing §1B"
+      - "Долг/EBITDA сектора 481% (cmwp_debt_burden_2026)"
+    evidence_against: []
+    sources: [spark, eiszhc, fnn-opendata]
+    tags: [supply-elasticity, developer-finance, financial-constraints]
+    relates_to: ["queries/literature-gap-map", "queries/supply-elasticity-estimation-design", "Baum-Snow & Han 2024", "Saiz 2010"]
+    next_check: "Собрать SPARK-панель 2015-2025, IV-FE панель с интеракцией финансового ограничения"
+    created: 2026-09-08
+
+  - id: H-003
+    kind: hypothesis
+    title: "Синхронные release escrow-балансов ускоряют старт новых проектов"
+    status: active
+    statement: "Экзогенный во времени приток денежной выручки от раскрытия эскроу-счетов (сдвиг завершённых очередей) вызывает рост стартов новых проектов у соответствующего девелопера в течение 1-2 кварталов; эффект ослабевает с ростом закредитованности."
+    evidence_for:
+      - "Механизм 214-ФЗ: 100% выручка замораживается до передачи ключей; release timing = экзогенный cash-flow шок (research-ideas-russia-housing §2)"
+    evidence_against: []
+    sources: [domrf, eiszhc, spark]
+    tags: [escrow, financial-constraints, developer-finance, identification]
+    relates_to: ["queries/literature-gap-map"]
+    next_check: "Нужны данные ЕИСЖС о датах завершения + SPARK о стартах; международных аналогов нет"
+    created: 2026-09-08
+
+  - id: H-004
+    kind: hypothesis
+    title: "Эффект замещения льготной ипотеки падает при высоких рыночных ставках"
+    status: active
+    statement: "Доля субсидируемых кредитов, которые были бы выданы и по рыночной ставке (эффект замещения), отрицательно зависит от спреда рыночная-льготная ставка: при спреде >10 п.п. замещение <40%, при спреде <3 п.п. (2020) >70%."
+    evidence_for:
+      - "Оценка замещения 60-80% в среднем (wiki, effekt-zamescheniya) — но без зависимости от спреда"
+      - "Контрциклическая логика: программа эффективнее в кризис"
+    evidence_against: []
+    sources: [domrf, cbr]
+    tags: [mortgage-subsidy, substitution-effect, mortgage, macroprudential]
+    relates_to: ["concepts/effekt-zamescheniya", "queries/literature-gap-map"]
+    next_check: "Панельные данные ДОМ.РФ по когортам льготных программ 2020-2025 × спред"
+    created: 2026-09-08
+
+  - id: H-005
+    kind: hypothesis
+    title: "Интеракция МПЛ × эластичность предложения региона определяет эффект лимитов"
+    status: active
+    statement: "Макропруденциальные лимиты (МПЛ, DSTI) сильнее снижают цены в регионах с высокой эластичностью предложения (эффект через ограничение спроса при гибком предложении) и почти не действуют в неэластичных регионах (Санкт-Петербург, Москва), где вместо цен сжимаются транзакции."
+    evidence_for:
+      - "ЦБ 2025: МПЛ снизили долю высокорисковых кредитов 46%→3%"
+      - "Лаптева 2025: лаг 2 квартала, длительность ~6 месяцев"
+      - "Региональная гетерогенность (Demidova 2025, Zvereva 2025)"
+    evidence_against: []
+    sources: [cbr, rosstat-regions]
+    tags: [macroprudential, supply-elasticity, regional-differentiation]
+    relates_to: ["concepts/macroprudentialnaya-politika-rynok-zhilya", "concepts/regionalnaya-differenciaciya", "Andaloussi et al. 2024"]
+    next_check: "Панель регионов: цена × транзакции × МПЛ-эпизоды 2023-2025, разность разностей"
+    created: 2026-09-08
+
+  - id: H-006
+    kind: hypothesis
+    title: "Mixed-frequency модель Wordstat+GDELT+ЕИСЖС обгоняет AR-бенчмарк nowcasting СМР"
+    status: active
+    statement: "MIDAS/U-MIDAS с блоками: поисковые лиды (lead-1m, corr 0.63), GDELT-упоминания строительства, еженедельные данные ЕИСЖС даёт RMSE ниже квартального AR по yoy СМР на горизонте 1 месяц."
+    evidence_for:
+      - "H-001: wordstat-композит corr 0.63 lead-1m"
+      - "Литература: FAVAR/MIDAS для nowcasting (Koop 2019, Bork 2012); для строительства search-data аналог отсутствует"
+    evidence_against: []
+    sources: [wordstat, gdelt, eiszhc, rosstat-smr]
+    tags: [nowcasting, mixed-frequency, search-data, leading-indicators]
+    relates_to: ["queries/search-nowcasting-construction", "H-001"]
+    next_check: "Собрать блоки, backtest 2022-2026 vs AR"
+    created: 2026-09-08
+
+  - id: X-002
+    kind: contradiction
+    title: "Расхождение индексов цен жилья: Росстат (4.1%) vs Ко-Инвест (1.1%) vs Ласкин/Пупенцова (1.37%)"
+    status: active
+    statement: "Годовые оценки жилищной инфляции расходятся в 3-4 раза: Росстат (строительство) 4.1%, Ко-Инвест 1.1%, Ласкин/Пупенцова 1.37% — методология индекса (первичный/вторичный рынок, строит. себестоимость vs сделки) не сопоставима."
+    evidence_for:
+      - "wiki concepts/zhilischnaya-inflyaciya: три источника, разброс 1.1-4.1%"
+    evidence_against: []
+    sources: [rosstat, koinvest, laskin-pupentsova]
+    tags: [shelter-inflation, price-indices, measurement]
+    relates_to: ["concepts/zhilischnaya-inflyaciya", "shelter-inflation-optimal-monetary-policy"]
+    next_check: "Декомпозировать методологии индексов; гипотеза разрешения: Росстат меряет себестоимость ввода, не рыночные цены"
+    created: 2026-09-08
+
+  - id: X-003
+    kind: contradiction
+    title: "Асимметрия ДКП (сдерживание сильнее смягчения): US-литература vs отсутствие РФ-эмпирики"
+    status: active
+    statement: "Wang (2024) для США: сдерживающая ДКП влияет на цены жилья сильнее стимулирующей; в РФ за 2020-2026 доминирует эпизод мягкой политики (2020-2022) + один эпизод ужесточения (2023-2025) — сопоставимой симметрии оценить нельзя, а российские оценки (Sinyakov 1.5-2.3% на 1 п.п.) предполагают слабый линейный эффект."
+    evidence_for:
+      - "Wang 2024 (США): асимметрия значима, сдерживание сильнее"
+      - "Sinyakov & Shelovanova 2025 (РФ): слабая эластичность спроса по ставке"
+    evidence_against: []
+    sources: [us-literature, cbr, sinyakov-2025]
+    tags: [monetary-policy, asymmetry, transmission-mechanism]
+    relates_to: ["concepts/transmisionnyi-mehanizm-dkp-zhile", "queries/literature-gap-map"]
+    next_check: "Региональная вариация как proxy: ужесточение по регионам неравномерно (доля льготной ипотеки) — DiD"
+    created: 2026-09-08

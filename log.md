@@ -133,3 +133,9 @@
 - Created: queries/ai-mindset-research-planning-case.md (both cases, RU summary + pipeline mapping)
 - Updated: index.md (2 new query entries)
 - Key takeaway: extraction/publishing stronger than case; gaps = LLM research-plan/gap generation, auto-tagging with confidence, auto-review assembly -> fit llm_pipeline.py
+
+## 2026-09-08 — Gap-map, гипотезы H-002..H-006, противоречия X-002..X-003
+- Created: queries/literature-gap-map.md (матрица 9 вопросов, 5 приоритетных пробелов: firm-level эластичность, escrow-канал, mixed-frequency nowcasting, dual system ставок, асимметрия ДКП)
+- Updated: hypotheses.yaml: +5 гипотез (H-002 financial-constrained supply elasticity; H-003 escrow release → starts; H-004 замещение × спред; H-005 МПЛ × эластичность региона; H-006 MIDAS Wordstat+GDELT+ЕИСЖС vs AR) и +2 противоречия (X-002 расхождение индексов цен 1.1/1.37/4.1%; X-003 асимметрия ДКП US-литература vs РФ-эмпирика)
+- Updated: index.md (1 query entry)
+- Параллельно: каталогизация papers/ (424 файла) в papers/catalog.md — 3 делегата, идёт

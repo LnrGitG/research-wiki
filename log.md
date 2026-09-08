@@ -145,3 +145,7 @@
 - Дедупликация: пары "_/-" имён схлопнуты; литовский HPI 4 варианта, Корея 3, BIS bull 3 — по одной карточке с dup-пометками
 - Проверка: 0 дубликатов заголовков, 0 битых dup-ссылок, покрытие 423/423 (карточка или dup-ссылка); файл 3317 строк
 - Пропуски: NBER-CRIW-2026-Ch4 отсутствует на диске (корректно); пустые/error-экстракции (dipasquale-wheaton-1994, rbnz-2025-dfm) помечены relevance: low
+
+## 2026-09-08 — Пересборка векторного слоя
+- scripts/rebuild_embeddings.py: 633 файлов (papers 423 + ru_papers + queries + новый literature-gap-map) → docs/embeddings-f32.json (1523 KB) + docs/search-index.json (633 entries)
+- Смоук-тест косинусного поиска по запросу про эластичность/финансовые ограничения — релевантные статьи найдены (Iacoviello SVAR, глэзер supply, monetary transmission), индекс согласован

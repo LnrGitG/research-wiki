@@ -1,0 +1,27 @@
+name: Wiki CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  lint-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Wiki integrity check
+        run: python scripts/ci/check_wiki_links.py
+
+      - name: Markdownlint
+        continue-on-error: true   # предупреждения не блокируют
+        run: npx -y markdownlint-cli '**/*.md' --ignore node_modules --ignore raw --ignore papers --ignore '.obsidian'

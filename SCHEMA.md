@@ -20,7 +20,7 @@
 title: Название страницы
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
-type: entity | concept | comparison | query | summary
+type: entity | concept | comparison | query | summary | model | region-dashboard | research-task | indicator | annotation
 tags: [from taxonomy below]
 sources: [raw/papers/source-name.pdf]
 confidence: high | medium | low
@@ -103,6 +103,15 @@ add it here first, then use it. This prevents tag sprawl.
 - Межстрановые сравнения жилищной политики
 - Сравнение эффектов разных мер поддержки
 - Сопоставление эконометрических подходов
+
+## Model Pages (models/<model-class>/<slug>.md)
+- Карточки моделей по шаблону templates/model-card.md
+- Обязательная связка с hypotheses.yaml (поле hypotheses: [H-XXX])
+- Код/данные/результаты с датой прогонов; модели не считаются в вики — карточки только описывают
+
+## Obsidian
+- Репо = vault (см. docs/obsidian-setup.md); MOC.md — точка входа
+- Имена файлов латиницей; кириллические wikilinks в legacy — нормализуются при правке
 
 ## Update Policy
 1. Check the dates — newer sources generally supersede older ones

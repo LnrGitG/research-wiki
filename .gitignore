@@ -8,6 +8,9 @@ _archive/
 # Obsidian
 .obsidian/workspace.json
 .obsidian/workspace-mobile.json
+.obsidian/cache/
+# Obsidian community plugins — синхронизировать вручную, тяжёлые данные не в git
+.obsidian/plugins/*/*.min.js
 # Large Rosstat RAR archives (extracted contents tracked, RARs local only)
 raw/rosstat/socioeconomic_regions/*.rar
 raw/rosstat/socioeconomic_regions/fed_okr_*.rar

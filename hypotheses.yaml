@@ -150,15 +150,17 @@ hypotheses:
 
   - id: H-008
     kind: hypothesis
-    title: "Firm-level блок (РСБУ/IFRS) улучшает nowcast ИКВ относительно агрегированных HF-предикторов"
-    status: active
-    statement: "Модель с фирменным блоком (revenue/CapEx девелоперов и подрядчиков из РСБУ/IFRS/ФНС на квартал-мес. частотах) даёт RMSE ниже bridge-модели на тех же датах минимум на 10% (аналог Hong et al. 2026: +17% для GDP США)."
+    title: "Firm-level блок (МСФО-кварталы публичных девелоперов) улучшает nowcast ИКВ"
+    status: narrowed
+    statement: "Квартальная МСФО-панель публичных девелоперов (ПИК, ЛСР, Эталон, Самолёт, Брусника; RNOA/CapEx/revenue-признаки с real-time vintage по actualBfoDate) даёт RMSE ниже bridge-модели минимум на 10% (аналог Hong et al. 2026: +17% для GDP США)."
     evidence_for:
       - "Hong-Huang-Zhu 2026 (SSRN 6457199): cross-section без агрегации +17%"
       - "Management Science 2025: RMSE −70% vs RW, −17% vs агрегированные на фирменных данных"
-    evidence_against: []
+    evidence_against:
+      - "Первая проверка (2026-09-08): годовые РСБУ-выручки 6 девелоперов vs yoy ИКВ corr = −0.4 (n=5) — годовой секторный сигнал не подтверждён (признание выручки по передаче квартир ≠ инвестиционная активность)"
+      - "БФО годовая у большинства; quarterly — только промежуточная отчётность эмитентов"
     sources: [rsbu, ifrs, fns-opendata]
     tags: [nowcasting, firm-level, machine-learning, investment]
     relates_to: ["queries/vnok-nowcasting-design", "queries/microdata-macroeconomic-research-review"]
-    next_check: "Собрать квартальную РСБУ-матрицу девелоперов → structured ML backtest 2018-2026"
+    next_check: "Квартальная МСФО-матрица 5 эмитентов (knd 0710010) → structured ML backtest; признак actualBfoDate как real-time фильтр"
     created: 2026-09-08

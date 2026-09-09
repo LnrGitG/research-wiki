@@ -166,3 +166,13 @@
 - Обзор международного опыта nowcasting GFCF (deleg_64c9f9c5, deepseek): queries/vnok-nowcasting-international-review.md — 9 классов, ключевые: Kuzin et al. 2011 (MIDAS 0-4 мес > MF-VAR 5-9), MFBVAR лидер РФ (Станкевич 2020, Фокин 2023), Gareev 2020 (ML уже для GFCF РФ), Tarsidin 2018 (цемент-прокси кросс-страново), Макеева-Станкевич 2022 (прямой прототип). Дизайн и карточка обновлены: +MFBVAR в бенчмарки, +горизонты
 - Вторая итерация обзора (deleg_834a732c): дополнения в queries/vnok-nowcasting-international-review.md — U-MIDAS границы применимости, Жемков 2021 (MF-FAVAR неустойчив 1.79-2.38), Hong 2026 точные RMSE + bellwether-эффект, Degiannakis 2022 (фондовый рынок→GFCF, структурный аналог эскроу), Polbin-Shumilov 2025 (квантильный MIDAS РФ), ограничение БФО годовой частоты → vintage-дизайн actualBfoDate
 - Инфраструктурная записка queries/yandex-cloud-data-infra.md: прерываемая ВМ+Object Storage+Yandex Disk, ~300-800₽/мес, пилот-план ЕМИСС/БФО/СПАРК
+
+## 09.09: Петрова–Трунин 2023 (EPU-РФ) — разбор + H-009/H-010
+
+- PDF статьи + приложения прочитаны; разбор queries/petrova-trunin-epu-rf.md
+- hypotheses.yaml: +H-009 (EPU в nowcast ИКВ, active), +H-010 (EPU × эскроу взаимодействие, proposed)
+
+### Ключевые факты
+- epu_new (4 СМИ, 1999-2022) vs RVI corr 0.855; epu_bbd vs RVI 0.525 — модифицированный индекс лучше оригинального Бейкера-Блума-Дэвиса
+- Шок EPU → инвестиции −0.45 п.п. через 2 кв. (значимо до 4-го); epu_bbd незначим для инвестиций — канал реальных опционов
+- Расширения категории «политика» робастны (corr 0.992-0.999, Приложение 1)

@@ -164,3 +164,31 @@ hypotheses:
     relates_to: ["queries/vnok-nowcasting-design", "queries/microdata-macroeconomic-research-review"]
     next_check: "Секторный агрегат выручки ОКВЭД F (Точно-ст RFSD-срезы, 423К фирм) в MIDAS: годовой corr с ИКВ 0.96 lag0 / 0.99 lag1 подтверждён (2026-09-09); далее — RFSD-Parquet для длинного ряда 2011-2023 + квартализация через СМР"
     created: 2026-09-08
+
+  - id: H-009
+    kind: hypothesis
+    title: "Продлённый новостной EPU-РФ (методика Петровой–Трунин 2023) улучшает nowcast ИКВ"
+    status: active
+    statement: "EPU-РФ на квартальной частоте (4 источника, категории экономика+неопределённость+политика) в bridge-модели ИКВ снижает OOS RMSE ≥10% относительно AR+esc+cem на тех же датах. Базовый факт: шок EPU → инвестиции −0.45 п.п. через 2 кв., значимо до 4-го (Петрова–Трунин 2023, VAR 2001Q1–2022Q1, канал реальных опционов); epu_bbd для инвестиций незначим"
+    evidence_for:
+      - "Петрова–Трунин 2023: epu_new vs RVI corr 0.855; инвестиции чувствительнее ВВП (−0.45 vs −0.17 п.п.)"
+      - "Причинность по Грейнджеру: EPU → ВВП, обратное неверно"
+    evidence_against:
+      - "Индекс авторов кончается 2022.12 — нужен самостоятельный сбор 2023-2026"
+    next_check: "Сбор epu_new 2023-2026 (4 СМИ, 3 категории) → скоринг vs yoy ИКВ на кварталах 2012-2026"
+    sources: [rjmf, text-analysis]
+    tags: [uncertainty, epu, nowcasting, real-options, investment]
+    relates_to: ["queries/petrova-trunin-epu-rf", "queries/vnok-nowcasting-design"]
+    created: 2026-09-09
+
+  - id: H-010
+    kind: hypothesis
+    title: "Взаимодействие неопределённости и эскроу-канала"
+    status: proposed
+    statement: "Информативность эскроу-притоков (lag2) для ИКВ выше в кварталах высокой EPU: wait-and-see усиливает опционный канал, финансовые потоки-предшественники точнее предсказывают реализацию инвестиционных решений"
+    evidence: []
+    next_check: "Квартальная регрессия с взаимодействием esc_lag2 × epu_q на 2012-2026"
+    sources: [rjmf]
+    tags: [uncertainty, escrow, real-options]
+    relates_to: ["queries/petrova-trunin-epu-rf", "H-007"]
+    created: 2026-09-09

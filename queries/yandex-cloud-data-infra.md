@@ -70,6 +70,16 @@ related: ["queries/vnok-nowcasting-design", "queries/ikv-nowcasting-pilot"]
 ## next_check
 Пилот-подключение: yc CLI → ВМ → тест ЕМИСС/БФО/СПАРК с YC-IP. Если все 3 отвечают — перенос сбора, VPS остаётся на LLM/cron-джобы.
 
+## Задание для YC-ВМ (task.json, план Фазы 7) — 09.09, согласовано с пользователем
+
+Архитектура (пользователь выполняет Фазы 1–6): сервисные аккаунты compute-as/functions-as → бакет agent-vm-exchange → прерываемая ВМ analytics-vm (standard-v3, 4/16, 100 ГБ SSD, публичный NAT-IP) → Cloud Functions start-vm/stop-vm/run-task → API Gateway с API-ключом → S3-ключ для агента. SSH-доступ — резерв (аварийный ремонт); run-task — основной канал (один эндпоинт /run: задача в бакет + включение ВМ).
+
+Пайплайн на ВМ после включения:
+1. **RFSD-Parquet:** годы 2011–2025, URL `https://huggingface.co/datasets/irlspbru/RFSD/resolve/main/RFSD/year%3D{Y}/part-0.parquet` (~518 МБ/год); качать по одному году, фильтр ОКВЭД F (41/42/43) + L, агрегаты → `fns_tochno_sectors_full.db` + CSV → бакет → удалять паркет (VPS переполнен — 20 ГБ на 100%)
+2. **ЕМИСС-витрина 34129** с YC-IP (квартальные ИФО ИКВ 2005–2011; urllib + ssl.CERT_NONE)
+3. **clearspending API** (`openapi.clearspending.ru/restapi/v3/contracts/search/?perpage=1`): с VPS 500 (Starlette/Sphinx-авария сервера) 01.09 и 09.09; с YC-IP 200/401 → гео-блок, запускать сбор ОКПД2 41/42/43 с ВМ; 500 и с РФ-IP → ждать восстановления
+4. **zakupki.gov.ru** с YC-IP (SOAP недоступен с зарубежных IP)
+
 ## Связанные страницы
 - [[vnok-nowcasting-design]] — этапы, требующие ИКВ 2005–2011 (квартальные)
 - [[ikv-nowcasting-pilot]] — пилот, где витрина ЕМИСС заблокирована

@@ -162,5 +162,5 @@ hypotheses:
     sources: [rsbu, ifrs, fns-opendata]
     tags: [nowcasting, firm-level, machine-learning, investment]
     relates_to: ["queries/vnok-nowcasting-design", "queries/microdata-macroeconomic-research-review"]
-    next_check: "Квартальная МСФО-матрица 5 эмитентов (knd 0710010) → structured ML backtest; признак actualBfoDate как real-time фильтр"
+    next_check: "Секторный агрегат выручки ОКВЭД F (Точно-ст RFSD-срезы, 423К фирм) в MIDAS: годовой corr с ИКВ 0.96 lag0 / 0.99 lag1 подтверждён (2026-09-09); далее — RFSD-Parquet для длинного ряда 2011-2023 + квартализация через СМР"
     created: 2026-09-08

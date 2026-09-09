@@ -73,3 +73,9 @@ related: ["queries/vnok-nowcasting-design", "queries/ikv-nowcasting-pilot"]
 - [[ikv-nowcasting-pilot]] — пилот, где витрина ЕМИСС заблокирована
 - [[rsbu-firm-panel]] — РСБУ-сборщик, масштабируемый на YC
 - H-008 (hypotheses.yaml) — квартальная МСФО-панель, нуждается в полном БФО-срезе
+## ОБНОВЛЕНИЕ 09.09: RFSD (Nature Sci Data 2025) + прямая связь с YC-инфраструктурой
+
+- Статья: Bondarkov, Ledenev, Skougarevskiy 2025, Sci Data 12:995 (doi:10.1038/s41597-025-05150-1) — RFSD: все юрлица РФ, 56.6 млн firm-year, 2011-2023 (репо: до 2025, v3.1.0 02.09.2026), Parquet, Zenodo 14622208 + HuggingFace irlspbru/RFSD, код github.com/irlcode/RFSD (CC-BY)
+- Источники данных: Росстат CSV (2012-2018, opendata?tag=13) + ФНС БФО XML (2019-2023, платный API GIR BO); imputation + articulation + harmonization; non-filing фирмы сохранены
+- КЛЮЧЕВОЕ: вики уже каталогизировала производную — «Точно-ст» rfsd_152 (queries/fns-tochno-st-financial-reporting.md): срезы по разделам ОКВЭД на ОТКРЫТОМ Yandex Object Storage bucket! Проверено: раздел F 2021-2025 (85 МБ/год, 423К фирм × 224 кол., line_2110/1600, okved, region) — HTTP 200, открытый доступ БЕЗ резидентного IP
+- Следствие для YC-плана: потребность в YC-ВМ для БФО-дампа СНИЖАЕТСЯ — срезы ОКВЭД F/L 187 показателей качаются с VPS напрямую; YC-ВМ остаётся только для ЕМИСС-витрины 34129 и, при необходимости, платного API GIR BO (у RFSD уже выкуплена — можно использовать их выгрузку вместо своей)

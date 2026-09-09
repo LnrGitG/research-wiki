@@ -26,3 +26,5 @@ data/cbr_lending.db
 # DB cleanup archive: JSONL backups of removed DOM.RF marginal blocks (106 MB local only)
 data/archive/*.jsonl
 rosreestr_deals.db
+raw/fns/tochno-st/by_section/
+data/fns_tochno_sectors.db

@@ -103,6 +103,7 @@ hypotheses:
     relates_to: ["queries/search-nowcasting-construction", "H-001"]
     next_check: "Собрать блоки, backtest 2022-2026 vs AR"
     created: 2026-09-08
+    methodology_ref: "queries/hfd-preprocessing-methodology"
 
   - id: X-002
     kind: contradiction

@@ -43,3 +43,4 @@
 - [[queries/vnok-nowcasting-international-review|Международный опыт nowcasting GFCF]] — 9 классов методов с точными результатами (Kuzin: MIDAS 0–4 мес > MF-VAR; MFBVAR > MIDAS по РФ-литературе; Gareev 2020 — ML уже для GFCF РФ); позиционирование новизны: эскроу-канал никем не описан
 - [[queries/vnok-nowcasting-design|Дизайн: Nowcasting инвестиций в основной капитал (ВНОК/ИКВ)]] — целевые ряды (ВНОК IFO 56 кв. SA, ИКВ 25 кв. + 96 регионов), 6 блоков HF-предикторов с скорингом, методологический стек (bridge/MIDAS/MF-VAR/DFM/ML/firm-level), план эмпирики 5 этапов, гипотезы H-007/H-008; целевые журналы JHRES/RED
 - [Разбор Петрова–Трунин 2023 (EPU-РФ)](queries/petrova-trunin-epu-rf.md) — H-009/H-010
+- [[hfd-preprocessing-methodology|Методология обработки HFD в nowcasting]] — частотная синхронизация, MIDAS/MF-VAR/DFM/combination, пайплайн предобработки, ragged-edge, фирменный блок; связи с H-006–H-010

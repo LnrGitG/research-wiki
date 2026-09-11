@@ -13,6 +13,7 @@ hypotheses:
     relates_to: ["catalog:wordstat-cmr-composite"]
     next_check: "Перекатить на свежий месяц ИФО СМР"
     created: 2026-08-15
+    methodology_ref: "queries/hfd-preprocessing-methodology"
 
   - id: X-001
     kind: contradiction
@@ -147,6 +148,7 @@ hypotheses:
     relates_to: ["queries/vnok-nowcasting-design", "queries/ikv-nowcasting-pilot", "H-003"]
     next_check: "Перекатить на 2026Q2 ВНОК (публикация сентябрь); скоринг на SA-ряде"
     created: 2026-09-08
+    methodology_ref: "queries/hfd-preprocessing-methodology"
 
   - id: H-008
     kind: hypothesis
@@ -164,6 +166,7 @@ hypotheses:
     relates_to: ["queries/vnok-nowcasting-design", "queries/microdata-macroeconomic-research-review"]
     next_check: "Секторный агрегат выручки ОКВЭД F (Точно-ст RFSD-срезы, 423К фирм) в MIDAS: годовой corr с ИКВ 0.96 lag0 / 0.99 lag1 подтверждён (2026-09-09); далее — RFSD-Parquet для длинного ряда 2011-2023 + квартализация через СМР"
     created: 2026-09-08
+    methodology_ref: "queries/hfd-preprocessing-methodology"
 
   - id: H-009
     kind: hypothesis
@@ -178,7 +181,7 @@ hypotheses:
     next_check: "Сбор epu_new 2023-2026 (4 СМИ, 3 категории) → скоринг vs yoy ИКВ на кварталах 2012-2026"
     sources: [rjmf, text-analysis]
     tags: [uncertainty, epu, nowcasting, real-options, investment]
-    relates_to: ["queries/petrova-trunin-epu-rf", "queries/vnok-nowcasting-design"]
+    relates_to: ["queries/petrova-trunin-epu-rf", "queries/vnok-nowcasting-design", "queries/hfd-preprocessing-methodology"]
     created: 2026-09-09
 
   - id: H-010
@@ -190,5 +193,5 @@ hypotheses:
     next_check: "Квартальная регрессия с взаимодействием esc_lag2 × epu_q на 2012-2026"
     sources: [rjmf]
     tags: [uncertainty, escrow, real-options]
-    relates_to: ["queries/petrova-trunin-epu-rf", "H-007"]
+    relates_to: ["queries/petrova-trunin-epu-rf", "queries/hfd-preprocessing-methodology", "H-007"]
     created: 2026-09-09

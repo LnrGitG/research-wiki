@@ -5,6 +5,16 @@
 > Actions: ingest, update, query, lint, create, archive, delete
 > When this file exceeds 500 entries, rotate: rename to log-YYYY.md, start fresh.
 
+## [2026-09-11] update | GDELT GKG fetch за 2026-09-10
+- Cron-прогон `scripts/gdelt_fetch.py`: 96 hourly-файлов, 119 837 строк GKG, отфильтровано 7 записей по RUS → `data/raw/gdelt/gdelt_gkg_rus_20260910.csv`.
+- Уровень в норме для этого фильтра (ср. 20260909: 3 строки, 20260907: 19 строк).
+
+## [2026-09-10] update | YC VP для скрейпинга и хранения research-wiki
+- Актуализирован план `/home/lnr/.hermes/plans/2026-09-09-yc-vm-bucket-setup.md` на основе YC-инфраструктурного skill, локальных MD и контекста прошлых сессий.
+- Добавлены raw/staging/curated-слои Object Storage, manifests/checksum, SQLite → Parquet/DuckDB, systemd timers и acceptance-критерии.
+- Зафиксировано: YC VP не является резидентным IP и не должна использоваться для обхода антибота/геоблокировок; API-first для ЦБ, Росстата, ДОМ.РФ/ЕИСЖС, Росреестра.
+- Cloud Functions/API Gateway оставлены только в историческом архиве плана; публичные управляющие POST не использовать.
+
 ## [2026-07-16] create | Wiki initialized
 - Domain: AI/ML research → updated to: Экономика жилья / ипотека / недвижимость
 - Path: ~/research-wiki

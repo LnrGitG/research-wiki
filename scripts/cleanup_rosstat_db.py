@@ -9,9 +9,16 @@ import os
 import sys
 import json
 from datetime import datetime
+from pathlib import Path
+from gcs_sync import ensure_db
 
-DB = '/home/lnr/research-wiki/data/rosstat_construction.db'
-ARCHIVE_DIR = '/home/lnr/research-wiki/data/archive'
+from pathlib import Path
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA = REPO_ROOT / 'data'
+
+
+DB = 'str(ensure_db('rosstat_construction.db'))'
+ARCHIVE_DIR = str(DATA / 'archive')
 
 def get_count(cur, sql, params=()):
     return cur.execute(sql, params).fetchone()[0]

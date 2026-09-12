@@ -3,9 +3,11 @@
 Схема файла: '| Продукт | код |' затем '| Единица | код |', затем '| Федеральный округ | код | v_июль | v_июнь | ytd |'
 Мы берём строку РФ ('Российская Федерация без учета') в первой единице измерения (обычно тыс.тонн/тыс.м3/млн м3)"""
 import re, sqlite3, datetime
+from pathlib import Path
+from gcs_sync import ensure_db
 
 T = open('/home/lnr/.hermes/cache/web/rosstat.gov.ru-8fbd06702e.md').read()
-con = sqlite3.connect('/home/lnr/research-wiki/data/rosstat_construction.db')
+con = sqlite3.connect('str(ensure_db('rosstat_construction.db'))')
 now = datetime.datetime.now().isoformat()
 
 # Интересующие продукты для стройцикла (продукт-подстрока в md): (название в базе, regex якорь)

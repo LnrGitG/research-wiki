@@ -8,9 +8,14 @@
 import json, time, sys, urllib.request, urllib.parse
 from collections import defaultdict
 
+from pathlib import Path
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA = REPO_ROOT / 'data'
+
+
 QUERIES = ['construction', 'infrastructure project']
 UA = {'User-Agent': 'Mozilla/5.0'}
-OUT = '/home/lnr/research-wiki/data/gdelt_construction_vol_monthly.csv'
+OUT = str(DATA / 'gdelt_construction_vol_monthly.csv')
 
 def fetch(q, sd, ed, tries=3):
     url = ('https://api.gdeltproject.org/api/v2/doc/doc?query=' + urllib.parse.quote(q)

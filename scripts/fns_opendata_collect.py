@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Полная загрузка: все снимки 7 форм ФНС (по ~187 CSV) + structure-справочники. Возобновляемый."""
 import re, ssl, urllib.request, json, csv, io, os, time
+from pathlib import Path
 
 ctx = ssl.create_default_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
 UA = {'User-Agent': 'Mozilla/5.0'}
@@ -14,7 +15,7 @@ def get(url, tries=3):
             if i == tries - 1: raise
             time.sleep(3 * (i + 1))
 
-BASE = '/home/lnr/research-wiki/raw/fns'
+BASE = str(Path(__file__).resolve().parent.parent / 'raw' / 'fns')
 os.makedirs(BASE, exist_ok=True)
 scan = {x['code']: x for x in json.load(open('/tmp/fns_scan.json'))}
 WANT = ['profitorg', 'taxagent', 'usn', 'assetorg', '1nds', 'ttorg', '1nom', 'poved']

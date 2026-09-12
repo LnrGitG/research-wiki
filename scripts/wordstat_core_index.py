@@ -7,12 +7,19 @@ exploratory, NOT inference. Full 2018-2026 index saved for future targets.
 """
 import csv, sqlite3, math
 from collections import defaultdict
+from pathlib import Path
+from gcs_sync import ensure_db
+
+from pathlib import Path
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA = REPO_ROOT / 'data'
+
 
 def qof(date):  # 'YYYY-MM-DD' -> 'YYYYQn'
     y, m = int(date[:4]), int(date[5:7])
     return f"{y}Q{(m-1)//3+1}"
 
-rows = list(csv.DictReader(open('/home/lnr/research-wiki/data/wordstat_weekly_core.csv', encoding='utf-8')))
+rows = list(csv.DictReader(open(str(DATA / 'wordstat_weekly_core.csv'), encoding='utf-8')))
 
 # ---- weekly aggregation: count by phrase-date
 cnt = defaultdict(int)          # (date, phrase) -> count
@@ -45,7 +52,7 @@ for d in dates:
         'rii_C': round(g.get('C_panic', 0) / D, 5),
     })
 
-with open('/home/lnr/research-wiki/data/wordstat_demand_indices_weekly.csv', 'w', newline='', encoding='utf-8') as f:
+with open(str(DATA / 'wordstat_demand_indices_weekly.csv'), 'w', newline='', encoding='utf-8') as f:
     w = csv.DictWriter(f, fieldnames=list(out_w[0].keys()))
     w.writeheader(); w.writerows(out_w)
 
@@ -66,12 +73,12 @@ for qq in quarters:
                   'rii_A': round(g.get('A_invest', 0)/D, 5),
                   'rii_B': round(g.get('B_rent', 0)/D, 5),
                   'rii_C': round(g.get('C_panic', 0)/D, 5)})
-with open('/home/lnr/research-wiki/data/wordstat_demand_indices_quarterly.csv', 'w', newline='', encoding='utf-8') as f:
+with open(str(DATA / 'wordstat_demand_indices_quarterly.csv'), 'w', newline='', encoding='utf-8') as f:
     w = csv.DictWriter(f, fieldnames=list(out_q[0].keys()))
     w.writeheader(); w.writerows(out_q)
 
 # ---- validation vs Rosreestr deals
-con = sqlite3.connect('/home/lnr/research-wiki/data/rosreestr_deals.db')
+con = sqlite3.connect('str(ensure_db('rosreestr_deals.db'))')
 deals = {f"{y}Q{q}": (n, nd) for y, q, n, nd in
          con.execute("SELECT year,q,n,ndkp FROM deals_rf_quarterly")}
 

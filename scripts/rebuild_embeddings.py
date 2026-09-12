@@ -8,9 +8,9 @@ print("Model loaded.", flush=True)
 
 # Gather all files
 all_files = []
-papers_dir = "/home/lnr/research-wiki/papers"
-ru_dir = "/home/lnr/research-wiki/papers/ru_papers"
-q_dir = "/home/lnr/research-wiki/queries"
+papers_dir = str(REPO_ROOT / 'papers')
+ru_dir = str(REPO_ROOT / 'papers' / 'ru_papers')
+q_dir = str(REPO_ROOT / 'queries')
 
 for f in os.listdir(papers_dir):
     if f.endswith(".md"):
@@ -91,7 +91,7 @@ output = {
     "meta": metas,
 }
 
-out_path = "/home/lnr/research-wiki/docs/embeddings-f32.json"
+out_path = str(REPO_ROOT / 'docs' / 'embeddings-f32.json')
 with open(out_path, "w", encoding="utf-8") as f:
     json.dump(output, f, ensure_ascii=False)
 
@@ -109,7 +109,7 @@ for m in metas:
         viewer_url += f"papers/{m['f']}"
     search_entries.append({"title": m["t"], "file": m["f"], "category": m["c"], "url": viewer_url, "abstract": m["a"]})
 
-idx_path = "/home/lnr/research-wiki/docs/search-index.json"
+idx_path = str(REPO_ROOT / 'docs' / 'search-index.json')
 with open(idx_path, "w", encoding="utf-8") as f:
     json.dump(search_entries, f, ensure_ascii=False)
 

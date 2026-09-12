@@ -11,20 +11,29 @@ _archive/
 .obsidian/cache/
 # Obsidian community plugins — синхронизировать вручную, тяжёлые данные не в git
 .obsidian/plugins/*/*.min.js
-# Large Rosstat RAR archives (extracted contents tracked, RARs local only)
+
+# Large Rosstat RAR archives (extracted contents tracked, RARs in GCS only)
 raw/rosstat/socioeconomic_regions/*.rar
 raw/rosstat/socioeconomic_regions/fed_okr_*.rar
 
-# Large SQLite database (757 MB with DOM.RF data)
-data/rosstat_construction.db
+# ── GCS-backed heavy data (local = symlink to gcs-wiki or cached copy) ──
+# raw/ is a symlink to ~/gcs-wiki/raw/ (GCS bucket via gcsfuse)
+# All heavy raw data lives on GCS, not in git
+raw/
 
+# Large SQLite databases (downloaded on-demand via gcs_sync.ensure_db)
+data/rosstat_construction.db
 data/regions_panel.db
+data/cbr_lending.db
+data/fns_tochno_sectors.db
+rosreestr_deals.db
+
+# DB cleanup archive: JSONL backups of removed DOM.RF marginal blocks (GCS only)
+data/archive/*.jsonl
+
+# FNS tochno-st xlsx files (GCS only)
+raw/fns/tochno-st/by_section/
+
+# Rosstat regions collection (GCS only)
 raw/rosstat/regions_collection_102/*.parquet
 raw/rosstat/regions_collection_102/*.zip
-data/cbr_lending.db
-
-# DB cleanup archive: JSONL backups of removed DOM.RF marginal blocks (106 MB local only)
-data/archive/*.jsonl
-rosreestr_deals.db
-raw/fns/tochno-st/by_section/
-data/fns_tochno_sectors.db

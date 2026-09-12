@@ -11,12 +11,12 @@
 ```
 papers/            # научные статьи (EN, .md после конверсии из PDF)
 papers/ru_papers/  # переводы: topic_author1_author2_year.RU.md
-raw/               # исходники (PDF, выгрузки) — НЕ редактировать
+raw/               # → symlink на ~/gcs-wiki/raw/ (GCS бакет, gcsfuse)
 concepts/          # концепты-синтезы
 entities/          # сущности (девелоперы, регионы, банки)
 comparisons/       # сравнительные таблицы
 queries/           # аналитические записки и списки источников
-data/              # обработанные данные (CSV)
+data/              # обработанные данные (CSV) + локальный кэш DB
 scripts/           # пайплайны сбора и обработки
 catalog.yaml       # реестр работ с метаданными и тегами
 hypotheses.yaml    # реестр гипотез (skill: hypothesis-tracker)
@@ -37,12 +37,23 @@ index.md, log.md   # оглавление и журнал действий
 - `collect_panel.py` (1429 зап, 14 комп), `collect_smartlab.py`, `collect_rsbu.py`
 - `wordstat_api.py` (100 зап/час), `wordstat_construction_collect.py`
 - `translate_papers.py` — EN→RU переводы
+- `gcs_sync.py` — синхронизация с GCS: `ensure_db()`, `raw_path()`, CLI sync/pull/status/verify
 - Python: `~/.hermes/hermes-agent/venv/bin/python3` (PEP 668 на системном 3.12)
 
+## GCS-хранилище (тяжёлые данные)
+- **Бакет:** `wiki-research-508405` (GCS, gcsfuse `~/gcs-wiki/`)
+- **raw/** → symlink на `~/gcs-wiki/raw/` (PDF, XLSX, JSON, RAR — 2.1 ГБ)
+- **data/db/** → GCS-источник для SQLite DB (1.35 ГБ); `ensure_db()` скачивает по требованию
+- **data/archive/** → JSONL-архивы на GCS (106 МБ)
+- **Скрипты** используют `from gcs_sync import ensure_db` для DB и symlink `raw/` для исходников
+- CLI: `python3 scripts/gcs_sync.py sync|pull|status|verify`
+- **НЕ удалять локальные DB** (rosstat_construction.db и др.) — это горячий кэш
+
 ## Что не трогать
-- `raw/` — исходники, только добавление
+- `raw/` — symlink на GCS; исходники только добавлять (через `gcs_sync.py sync`)
 - `.env` — секреты; никогда не коммитить
 - `latest.zip`, `_archive/` — архивы
+- Локальные `data/*.db` — кэш; не коммитить (в .gitignore)
 
 ## Перед коммитом
 - catalog.yaml обновлён, если добавлялись/менялись работы

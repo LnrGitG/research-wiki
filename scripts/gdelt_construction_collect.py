@@ -81,7 +81,12 @@ for (ym, q), (n, vals) in sorted(agg.items()):
     out.append({'month': ym, 'query': q, 'n_days': n, 'vol_mean': round(statistics.mean(vals), 3)})
 df = out
 import csv as _csv
-with open('/home/lnr/research-wiki/data/gdelt_construction_daily_raw.csv', 'w', newline='') as f:
+
+from pathlib import Path
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA = REPO_ROOT / 'data'
+
+with open(str(DATA / 'gdelt_construction_daily_raw.csv'), 'w', newline='') as f:
     w = _csv.writer(f)
     w.writerow(['month', 'query', 'n_days', 'vol_mean'])
     for r in out:

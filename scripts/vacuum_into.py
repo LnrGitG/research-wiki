@@ -4,9 +4,16 @@ P6b: VACUUM через VACUUM INTO (безопаснее при малом ме�
 потом переименование). Если места не хватит — упадёт, не повредив исходник.
 """
 import sqlite3, os, time
+from pathlib import Path
+from gcs_sync import ensure_db
 
-DB = '/home/lnr/research-wiki/data/rosstat_construction.db'
-TMP = '/home/lnr/research-wiki/data/rosstat_construction_vacuumed.db'
+from pathlib import Path
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA = REPO_ROOT / 'data'
+
+
+DB = 'str(ensure_db('rosstat_construction.db'))'
+TMP = str(DATA / 'rosstat_construction_vacuumed.db')
 
 size_before = os.path.getsize(DB)
 print(f"До: {size_before/1024/1024:.0f} МБ")

@@ -7,9 +7,11 @@ Monthly 2018-01..2026-08. Output: data/wordstat_infl_exp_regions.csv
 (date, subject_id, subject_name, phrase, group, count, share).
 """
 import sys, os, csv, time
-sys.path.insert(0, '/home/lnr/research-wiki/scripts')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 os.chdir('/home/lnr/research-wiki')
 from wordstat_api import dynamics
+from pathlib import Path
+
 
 PHRASES = [
     ("инфляция", "G_infl"),

@@ -5,10 +5,12 @@ One API call per phrase covers 2018->now (verified client wordstat_api.py).
 Output: data/wordstat_weekly_core.csv (long format: date,phrase,group,count,share)
 """
 import sys, time, csv
-sys.path.insert(0, '/home/lnr/research-wiki/scripts')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import os
 os.chdir('/home/lnr/research-wiki')
 from wordstat_api import dynamics
+from pathlib import Path
+
 
 PHRASES = [
     # group A: investment / primary market demand

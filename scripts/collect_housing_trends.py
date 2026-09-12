@@ -6,6 +6,11 @@ import pandas as pd
 import numpy as np
 from pytrends.request import TrendReq
 
+from pathlib import Path
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA = REPO_ROOT / 'data'
+
+
 DICT = {
     'ипотека': 'mortgage',
     'ключевая ставка': 'key_rate',
@@ -83,6 +88,6 @@ for col, s in series.items():
     result[col] = s / k
 
 df_all = pd.DataFrame(result)
-df_all.to_csv('/home/lnr/research-wiki/data/search_trends_housing_raw.csv', float_format='%.2f')
+df_all.to_csv('str(DATA / 'search_trends_housing_raw.csv')', float_format='%.2f')
 print("\ncollected:", df_all.shape)
 print(df_all.describe().round(1).loc[['mean', 'min', 'max']].to_string())

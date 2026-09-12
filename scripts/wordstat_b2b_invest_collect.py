@@ -5,9 +5,11 @@ Output: data/wordstat_weekly_b2b_invest.csv (date, phrase, group, count, share)
 Rate limit: 100 req/hour → 6 phrases fits easily.
 """
 import sys, os, csv, time
-sys.path.insert(0, '/home/lnr/research-wiki/scripts')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 os.chdir('/home/lnr/research-wiki')
 from wordstat_api import dynamics
+from pathlib import Path
+
 
 PHRASES = [
     # S6a. Machinery purchase (capex signal — покупка, не аренда)

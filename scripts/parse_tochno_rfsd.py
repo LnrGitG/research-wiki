@@ -4,9 +4,11 @@
 Выход: data/fns_tochno_sectors.db (tables: firms_<SECTION>_<YEAR> колонки-выборка; sector_aggregate).
 """
 import openpyxl, sqlite3, os, sys
+from pathlib import Path
+from gcs_sync import ensure_db
 
-DB = '/home/lnr/research-wiki/data/fns_tochno_sectors.db'
-RAW = '/home/lnr/research-wiki/raw/fns/tochno-st/by_section'
+DB = 'str(ensure_db('fns_tochno_sectors.db'))'
+RAW = 'str(Path(__file__).resolve().parent.parent / 'raw' / 'fns' / 'tochno-st' / 'by_section')'
 # Колонки для long-формата: идентификаторы + ключевые фин. строки
 KEEP = ['year', 'inn', 'okved', 'region', 'filed', 'financial', 'simplified',
         'line_1600', 'line_2110', 'line_2120', 'line_2200', 'line_2400',

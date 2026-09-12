@@ -4,9 +4,11 @@
 Запуск: python3 scripts/export_dashboard.py (после каждого обновления БД).
 """
 import sqlite3, json, os
+from pathlib import Path
+from gcs_sync import ensure_db
 
-DB = '/home/lnr/research-wiki/data/rosstat_construction.db'
-OUT = '/home/lnr/research-wiki/docs/data'
+DB = 'str(ensure_db('rosstat_construction.db'))'
+OUT = str(REPO_ROOT / 'docs' / 'data')
 os.makedirs(OUT, exist_ok=True)
 
 db = sqlite3.connect(DB)

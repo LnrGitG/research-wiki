@@ -7,8 +7,10 @@ P6: Пересоздание индексов + VACUUM rosstat_construction.db.
 import sqlite3
 import os
 import time
+from pathlib import Path
+from gcs_sync import ensure_db
 
-DB = '/home/lnr/research-wiki/data/rosstat_construction.db'
+DB = 'str(ensure_db('rosstat_construction.db'))'
 
 def main():
     size_before = os.path.getsize(DB)

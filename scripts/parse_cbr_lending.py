@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Parse CBR lending XLSX files into SQLite cbr_lending.db."""
 import re, sqlite3, glob, os
+from pathlib import Path
 from openpyxl import load_workbook
+from gcs_sync import ensure_db
 
-RAW = "/home/lnr/research-wiki/raw/cbr"
-DB = "/home/lnr/research-wiki/data/cbr_lending.db"
+RAW = str(Path(__file__).resolve().parent.parent / 'raw' / 'cbr')
+DB = str(ensure_db('cbr_lending.db'))
 
 MONTHS = {"январь":1,"февраль":2,"март":3,"апрель":4,"май":5,"июнь":6,"июль":7,
           "август":8,"сентябрь":9,"октябрь":10,"ноябрь":11,"декабрь":12}

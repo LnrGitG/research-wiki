@@ -6,8 +6,13 @@
 API не агрессивный: 10 компаний × ~4 запроса, sleep 3с.
 """
 import sys, json, time, csv
-sys.path.insert(0, '/home/lnr/research-wiki/scripts')
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from collect_rsbu import DEVELOPERS, find_organization, get_bfo
+
+from pathlib import Path
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA = REPO_ROOT / 'data'
+
 
 LINES = {"2110": "revenue", "2200": "op_profit", "2400": "net_profit"}
 
@@ -56,7 +61,7 @@ if rows and not any(r['metric'] == 'revenue' for r in rows):
     org = find_organization(DEVELOPERS['ПИК']['inn']); bfo = get_bfo(org['id'])
     print(json.dumps(bfo[0], ensure_ascii=False)[:1500])
 
-with open('/home/lnr/research-wiki/data/developers_rsbu.csv', 'w', newline='', encoding='utf-8') as f:
+with open(str(DATA / 'developers_rsbu.csv'), 'w', newline='', encoding='utf-8') as f:
     w = csv.DictWriter(f, fieldnames=["company", "period", "metric", "value", "actual_date"])
     w.writeheader(); w.writerows(rows)
 print("saved:", len(rows), "-> data/developers_rsbu.csv")

@@ -1,8 +1,10 @@
 import sqlite3, json, os
+from pathlib import Path
+from gcs_sync import ensure_db
 
-db = sqlite3.connect('/home/lnr/research-wiki/data/rosstat_construction.db')
+db = sqlite3.connect('str(ensure_db('rosstat_construction.db'))')
 cur = db.cursor()
-OUT = '/home/lnr/research-wiki/docs/data'
+OUT = str(REPO_ROOT / 'docs' / 'data')
 os.makedirs(OUT, exist_ok=True)
 
 D = {}

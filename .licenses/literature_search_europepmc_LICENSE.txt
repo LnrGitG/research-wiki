@@ -1,7 +1,0 @@
-Europe PMC License Notice
-========================
-User was notified to check the terms at https://europepmc.org/ and to always
-check the license of individual papers retrieved for any restrictions.
-Europe PMC content is provided under various open-access licenses (CC-BY, CC-BY-NC, etc.)
-— each paper's license must be reviewed before redistribution or commercial use.
-Timestamp: 2026-09-13T00:00:00Z

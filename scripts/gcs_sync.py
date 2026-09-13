@@ -61,6 +61,14 @@ DB_FILES = {
         "local": DATA_DIR / "fns_tochno_sectors.db",
         "gcs": f"{GCS_DB_PREFIX}/fns_tochno_sectors.db",
     },
+    "rosreestr_deals.db": {
+        "local": DATA_DIR / "rosreestr_deals.db",
+        "gcs": f"{GCS_DB_PREFIX}/rosreestr_deals.db",
+    },
+    "developers_ifrs.db": {
+        "local": DATA_DIR / "developers_ifrs.db",
+        "gcs": f"{GCS_DB_PREFIX}/developers_ifrs.db",
+    },
 }
 
 # Maximum local cache size in bytes (default: 2 GB)
@@ -70,7 +78,8 @@ MAX_CACHE_BYTES = int(os.environ.get("MAX_CACHE_BYTES", 2 * 1024 ** 3))
 
 def _gsutil(*args: str, check: bool = True) -> subprocess.CompletedProcess:
     """Run gsutil command."""
-    cmd = ["gsutil", "-q"] + list(args)
+    gsutil_path = os.environ.get("GSUTIL_PATH", "gsutil")
+    cmd = [gsutil_path, "-q"] + list(args)
     result = subprocess.run(cmd, capture_output=True, text=True)
     if check and result.returncode != 0:
         raise RuntimeError(f"gsutil failed: {result.stderr}")

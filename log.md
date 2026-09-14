@@ -203,3 +203,6 @@
 
 - Created: docs/help.md (~16K): все CLI-команды v0.21.2 (gathered from live --help) по 12 разделам — глобальные флаги, сессии, модели/провайдеры, gateway, автоматизация (cron/kanban/webhook), skills+curator, память, инструменты, безопасность (vault/security/pause), обслуживание (doctor/backup/logs/prompt-size), инфраструктура (dashboard/serve/acp/profile), типовые операции нашего сетапа; плюс полная таблица slash-команд из skill-референса
 - Заодно зафиксировано: skills.write_approval=true гейт, curator consolidate=true, типовые команды обслуживания
+
+## 14.09: Research Radar (еженедельный скан литературы)
+- Created: queries/research-radar-2026-09-14.md — 4 работы за 7-дневное окно (NBER/SSRN/arXiv/Philly Fed/BIS); Graybill–Mangum 2026 (WP 26-33R): покупатели чувствительнее к ставке, чем продавцы к lock-in → X-003 evidence_for пополнен (patch в hypotheses.yaml, дата проверки); идеи: survival-модели tenures → эскроу-балансы (H-003), дюрации ЕИСЖС как блок H-006, зомби-классификация BIS 1375 → контрол H-002; пробелы №1 (firm-level эластичность) и №2 (escrow shock) остаются открытыми — конкурентов не появилось

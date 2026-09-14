@@ -44,3 +44,4 @@
 - [[queries/vnok-nowcasting-design|Дизайн: Nowcasting инвестиций в основной капитал (ВНОК/ИКВ)]] — целевые ряды (ВНОК IFO 56 кв. SA, ИКВ 25 кв. + 96 регионов), 6 блоков HF-предикторов с скорингом, методологический стек (bridge/MIDAS/MF-VAR/DFM/ML/firm-level), план эмпирики 5 этапов, гипотезы H-007/H-008; целевые журналы JHRES/RED
 - [Разбор Петрова–Трунин 2023 (EPU-РФ)](queries/petrova-trunin-epu-rf.md) — H-009/H-010
 - [[hfd-preprocessing-methodology|Методология обработки HFD в nowcasting]] — частотная синхронизация, MIDAS/MF-VAR/DFM/combination, пайплайн предобработки, ragged-edge, фирменный блок; связи с H-006–H-010
+- [[queries/research-radar-2026-09-14|Research Radar 2026-09-14]] — недельный скан: 4 работы (Graybill–Mangum lock-in/tightness, D'Amico–Soltas–Wang дюрации строительства, Berry Toronto, BIS 1375 зомби-фирмы); X-003 пополнен evidence_for, пробелы №1–3 gap-map подтверждены открытыми

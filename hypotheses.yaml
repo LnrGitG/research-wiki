@@ -127,6 +127,7 @@ hypotheses:
     evidence_for:
       - "Wang 2024 (США): асимметрия значима, сдерживание сильнее"
       - "Sinyakov & Shelovanova 2025 (РФ): слабая эластичность спроса по ставке"
+      - "Graybill & Mangum 2026 (Philly Fed WP 26-33, rev. 2026-09): покупатели чувствительнее к ипотечной ставке, чем продавцы к lock-in — снижение ставки растит объёмы сделок, но не снимает тайтнесс (асимметрия спрос/предложение внутри трансмиссии; косвенная поддержка, проверено 2026-09-14, research-radar-2026-09-14)"
     evidence_against: []
     sources: [us-literature, cbr, sinyakov-2025]
     tags: [monetary-policy, asymmetry, transmission-mechanism]

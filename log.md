@@ -198,3 +198,8 @@
 - Created: docs/hermes-agent-setup-guide.md (~35K, 12 разделов): установкa на VPS (RAM/CPU из реальных замеров), 5 стратегий LLM-провайдеров и роутинг (дешёвый движок + эскалация флагманом, aux.approval слой), инструменты и MCP, скиллы и Curator (практики и предостережения), слоистая память (SOUL/USER/MEMORY/AGENTS + session search, анти-паттерн «память 2200 символов»), профили/мультиагентность, автоматизация (cron/loops/heartbeats/webhooks), безопасность (approvals, vault, изоляция, каналы доверия), сводная таблица 28 грабель из 3-частной саги Paspartu, чеклист внедрения
 - Источники: Habr (5 статей: neodavinchi 1032656, AMLAI 1044574/1045892/1065282, ohld 1053846), дайджест r/hermesagent (The Lurk Report, май 2026), Medium/JIN разбор архитектуры, официальные доки llms.txt; Reddit-треды через дайджесты (прямой доступ к reddit.com блокирован с этого IP)
 - База для дальнейших решений: роутинг моделей у нас (glm-5.3-flash/ollama-cloud + fallback), слоистая память, cron-джобы на пинненых моделях
+
+## 14.09: Справка по сервисным командам Hermes
+
+- Created: docs/help.md (~16K): все CLI-команды v0.21.2 (gathered from live --help) по 12 разделам — глобальные флаги, сессии, модели/провайдеры, gateway, автоматизация (cron/kanban/webhook), skills+curator, память, инструменты, безопасность (vault/security/pause), обслуживание (doctor/backup/logs/prompt-size), инфраструктура (dashboard/serve/acp/profile), типовые операции нашего сетапа; плюс полная таблица slash-команд из skill-референса
+- Заодно зафиксировано: skills.write_approval=true гейт, curator consolidate=true, типовые команды обслуживания

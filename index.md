@@ -45,3 +45,4 @@
 - [Разбор Петрова–Трунин 2023 (EPU-РФ)](queries/petrova-trunin-epu-rf.md) — H-009/H-010
 - [[hfd-preprocessing-methodology|Методология обработки HFD в nowcasting]] — частотная синхронизация, MIDAS/MF-VAR/DFM/combination, пайплайн предобработки, ragged-edge, фирменный блок; связи с H-006–H-010
 - [[queries/research-radar-2026-09-14|Research Radar 2026-09-14]] — недельный скан: 4 работы (Graybill–Mangum lock-in/tightness, D'Amico–Soltas–Wang дюрации строительства, Berry Toronto, BIS 1375 зомби-фирмы); X-003 пополнен evidence_for, пробелы №1–3 gap-map подтверждены открытыми
+- [[queries/ml-zombie-firm-classification|ML-классификация зомби-фирм (arXiv 2306.08165)]] — XGBoost с неслучайными пропусками отчётности как признаками (Италия, 305К фирм); кандидат в робастность H-002 (контроль зомби-статуса) и фильтр слабых фирм для H-008; релевантно панели ФНС (87% УСН, пропуски информативны)

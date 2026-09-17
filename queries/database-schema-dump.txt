@@ -1,0 +1,590 @@
+================================================================================
+СТРУКТУРА БАЗЫ ДАННЫХ research_wiki
+PostgreSQL 16.15 | Yandex Cloud, ВМ research-db (46.243.210.160)
+================================================================================
+Снято: 2026-09-17 03:41
+
+СХЕМЫ:
+  core     — справочники и факты (12 таблиц)
+  meta     — маппинги, классификаторы, разрывы рядов (5 таблиц)
+  derived  — производные показатели (1 таблица)
+  marts    — витрины-представления (создаются по мере надобности)
+  pipeline — журнал работы пайплайна (1 таблица)
+  staging  — слепок исходных SQLite-данных (появится при миграции)
+
+Расширения: pg_trgm 1.6 (нечёткий текстовый поиск), vector 0.6.0 (pgvector, эмбеддинги)
+Всего таблиц: 19
+
+ПРИНЦИП ВЕРСИОННОСТИ (ключ наблюдения):
+  (metric_id, region_id, frequency_id, period_start,
+   source_id, release_id, assessment_type, sub_dimension)
+  Разные релизы/источники/типы оценок = РАЗНЫЕ строки.
+  Старые значения НЕ перезаписываются — только добавление.
+
+================================================================================
+  core.region
+================================================================================
+Назначение: Географические сущности: страна, федеральные округа, регионы, города, агрегаты.
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  region_id                bigint                   NO    Уникальный идентификатор (PK, автоинкремент)
+  region_code              text                     NO    Машинный код латиницей: moscow, spb, dnr, ufd, ntd
+  name_ru                  text                     NO    Каноническое русское название
+  short_name               text                     YES   Краткое название
+  level                    text                     NO    Уровень: country | federal_district | region | aggregate | city
+  parent_id                bigint                   YES   Родитель (FK region_id): регион → округ → страна
+  is_active                boolean                  NO    Признак актуальности
+  valid_from               date                     YES   Дата начала действия
+  valid_to                 date                     YES   Дата окончания действия
+  oktmo                    text                     YES   Код ОКТМО
+  okato                    text                     YES   Код ОКАТО
+  iso_code                 text                     YES   Код ISO
+  created_at               timestamp with time zone NO    Дата создания записи
+  aggregation              text                     YES   Признак агрегации: base | with_ao_included | sum_of_new_territories
+  aggregate_of             text                     YES   Состав агрегата через ; (dnr;lnr;zaporozhye;kherson)
+
+  Ограничения целостности:
+    • region_check
+      CHECK (((level <> 'country'::text) OR (parent_id IS NULL)))
+    • region_level_check
+      CHECK ((level = ANY (ARRAY['country'::text, 'federal_district'::text, 'region'::text, 'foreign_country'::text, 'foreign_region'::text, 'aggregate'::te
+    • region_parent_id_fkey
+      FOREIGN KEY (parent_id) REFERENCES core.region(region_id)
+    • region_pkey
+      PRIMARY KEY (region_id)
+    • region_region_code_key
+      UNIQUE (region_code)
+
+================================================================================
+  core.unit
+================================================================================
+Назначение: Справочник единиц измерения.
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  unit_id                  bigint                   NO    Уникальный идентификатор (PK)
+  unit_code                text                     NO    Код: RUB, MLN_RUB, SQM, PCT, COUNT
+  name_ru                  text                     NO    Наименование
+  description              text                     YES   Описание
+  created_at               timestamp with time zone NO    Дата создания
+
+  Ограничения целостности:
+    • unit_pkey
+      PRIMARY KEY (unit_id)
+    • unit_unit_code_key
+      UNIQUE (unit_code)
+
+================================================================================
+  core.frequency
+================================================================================
+Назначение: Справочник частот временных рядов.
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  frequency_id             bigint                   NO    Уникальный идентификатор (PK)
+  frequency_code           text                     NO    Код: D, M, Q, A, CUM
+  name_ru                  text                     NO    Наименование
+  period_type              text                     NO    Тип: date|month|quarter|year|cumulative
+  months_per_period        integer                  YES   Месяцев в периоде (1-12)
+
+  Ограничения целостности:
+    • frequency_frequency_code_key
+      UNIQUE (frequency_code)
+    • frequency_months_per_period_check
+      CHECK (((months_per_period >= 1) AND (months_per_period <= 12)))
+    • frequency_period_type_check
+      CHECK ((period_type = ANY (ARRAY['date'::text, 'month'::text, 'quarter'::text, 'year'::text, 'cumulative'::text])))
+    • frequency_pkey
+      PRIMARY KEY (frequency_id)
+
+================================================================================
+  core.source
+================================================================================
+Назначение: Справочник источников данных (Росстат, ЦБ, ДОМ.РФ, ФНС...).
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  source_id                bigint                   NO    Уникальный идентификатор (PK)
+  source_code              text                     NO    Машинный код (UNIQUE)
+  name_ru                  text                     NO    Наименование
+  publisher                text                     YES   Издатель/ведомство
+  url                      text                     YES   Адрес
+  license                  text                     YES   Лицензия
+  reliability              text                     YES   Надёжность: official|primary|secondary|derived|unknown
+  is_active                boolean                  NO    Статус
+  created_at               timestamp with time zone NO    Дата создания
+
+  Ограничения целостности:
+    • source_pkey
+      PRIMARY KEY (source_id)
+    • source_reliability_check
+      CHECK ((reliability = ANY (ARRAY['official'::text, 'primary'::text, 'secondary'::text, 'derived'::text, 'unknown'::text])))
+    • source_source_code_key
+      UNIQUE (source_code)
+
+================================================================================
+  core.release
+================================================================================
+Назначение: Релиз источника — версия публикации. КЛЮЧ ВЕРСИОННОСТИ.
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  release_id               bigint                   NO    Уникальный идентификатор (PK)
+  source_id                bigint                   NO    Источник (FK)
+  release_label            text                     YES   Метка релиза
+  published_at             timestamp with time zone YES   Дата публикации источника
+  ingested_at              timestamp with time zone NO    Дата загрузки нами
+  url                      text                     YES   Адрес релиза
+  content_hash             text                     YES   
+  status                   text                     NO    Статус: registered|parsed|validated|loaded|failed|superseded
+  notes                    text                     YES   
+
+  Ограничения целостности:
+    • release_pkey
+      PRIMARY KEY (release_id)
+    • release_source_id_fkey
+      FOREIGN KEY (source_id) REFERENCES core.source(source_id)
+    • release_source_id_release_label_key
+      UNIQUE (source_id, release_label)
+    • release_status_check
+      CHECK ((status = ANY (ARRAY['registered'::text, 'parsed'::text, 'validated'::text, 'loaded'::text, 'failed'::text, 'superseded'::text])))
+
+================================================================================
+  core.file_registry
+================================================================================
+Назначение: Метаданные файлов. Сами файлы — в объектном хранилище YC.
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  file_id                  bigint                   NO    Уникальный идентификатор (PK)
+  source_id                bigint                   YES   Источник (FK)
+  release_id               bigint                   YES   Релиз (FK)
+  uri                      text                     NO    Путь: s3://bucket/... или локальный
+  file_name                text                     NO    Имя файла
+  mime_type                text                     YES   MIME-тип
+  sha256                   text                     NO    Хеш SHA256
+  size_bytes               bigint                   NO    Размер в байтах
+  downloaded_at            timestamp with time zone NO    
+  status                   text                     NO    Статус: registered|processing|processed|failed|archived
+
+  Ограничения целостности:
+    • file_registry_pkey
+      PRIMARY KEY (file_id)
+    • file_registry_release_id_fkey
+      FOREIGN KEY (release_id) REFERENCES core.release(release_id)
+    • file_registry_size_bytes_check
+      CHECK ((size_bytes >= 0))
+    • file_registry_source_id_fkey
+      FOREIGN KEY (source_id) REFERENCES core.source(source_id)
+    • file_registry_status_check
+      CHECK ((status = ANY (ARRAY['registered'::text, 'processing'::text, 'processed'::text, 'failed'::text, 'archived'::text])))
+    • file_registry_uri_sha256_key
+      UNIQUE (uri, sha256)
+
+================================================================================
+  core.metric
+================================================================================
+Назначение: Справочник показателей с единым машиночитаемым кодом.
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  metric_id                bigint                   NO    Уникальный идентификатор (PK)
+  metric_code              text                     NO    Машиночитаемый код (UNIQUE)
+  name_ru                  text                     NO    Наименование на русском
+  short_name_ru            text                     YES   
+  description              text                     YES   Описание
+  unit_id                  bigint                   NO    Единица (FK core.unit)
+  frequency_id             bigint                   NO    Частота (FK core.frequency)
+  metric_type              text                     NO    Тип: primary|derived|nowcast_model
+  index_base               text                     YES   База сравнения индекса (2011, 2021)
+  is_derived               boolean                  NO    Признак производного
+  formula_text             text                     YES   
+  status                   text                     NO    Статус: active|deprecated|merged
+  tags                     ARRAY                    NO    Теги
+  created_at               timestamp with time zone NO    Дата создания
+
+  Ограничения целостности:
+    • metric_check
+      CHECK ((NOT ((metric_type = 'primary'::text) AND (index_base IS NULL) AND (tags && '{index}'::text[]))))
+    • metric_frequency_id_fkey
+      FOREIGN KEY (frequency_id) REFERENCES core.frequency(frequency_id)
+    • metric_metric_code_key
+      UNIQUE (metric_code)
+    • metric_metric_type_check
+      CHECK ((metric_type = ANY (ARRAY['primary'::text, 'derived'::text, 'nowcast_model'::text])))
+    • metric_pkey
+      PRIMARY KEY (metric_id)
+    • metric_status_check
+      CHECK ((status = ANY (ARRAY['active'::text, 'deprecated'::text, 'merged'::text])))
+    • metric_unit_id_fkey
+      FOREIGN KEY (unit_id) REFERENCES core.unit(unit_id)
+
+================================================================================
+  core.observation
+================================================================================
+Назначение: ОСНОВНАЯ таблица фактов. Одно наблюдение = одно значение показателя.
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  obs_id                   bigint                   NO    Уникальный идентификатор (PK)
+  metric_id                bigint                   NO    Показатель (FK core.metric)
+  region_id                bigint                   NO    Регион (FK core.region)
+  frequency_id             bigint                   NO    Частота (FK core.frequency)
+  period_start             date                     NO    Начало периода
+  period_end               date                     NO    Конец периода
+  value                    numeric                  YES   Значение (числовое)
+  value_str                text                     YES   Значение (текст/диапазон)
+  assessment_type          text                     NO    Тип оценки: flash|preliminary|revised|final|nowcast|forecast|estimated
+  observation_status       text                     NO    Статус: raw|validated|rejected|superseded
+  source_id                bigint                   NO    Источник (FK core.source)
+  release_id               bigint                   NO    Релиз (FK core.release) — версионность
+  quality_flags            ARRAY                    NO    Флаги: outlier, break_in_series, imputed, cumulative
+  sub_dimension            text                     NO    Подразрез показателя (напр. "жилого назначения")
+  notes                    text                     YES   Примечание
+  created_at               timestamp with time zone NO    Дата создания записи
+
+  Ограничения целостности:
+    • observation_assessment_type_check
+      CHECK ((assessment_type = ANY (ARRAY['flash'::text, 'preliminary'::text, 'revised'::text, 'final'::text, 'nowcast'::text, 'forecast'::text, 'estimated
+    • observation_check
+      CHECK ((period_end >= period_start))
+    • observation_frequency_id_fkey
+      FOREIGN KEY (frequency_id) REFERENCES core.frequency(frequency_id)
+    • observation_metric_id_fkey
+      FOREIGN KEY (metric_id) REFERENCES core.metric(metric_id)
+    • observation_observation_status_check
+      CHECK ((observation_status = ANY (ARRAY['raw'::text, 'validated'::text, 'rejected'::text, 'superseded'::text])))
+    • observation_pkey
+      PRIMARY KEY (obs_id)
+    • observation_region_id_fkey
+      FOREIGN KEY (region_id) REFERENCES core.region(region_id)
+    • observation_release_id_fkey
+      FOREIGN KEY (release_id) REFERENCES core.release(release_id)
+    • observation_source_id_fkey
+      FOREIGN KEY (source_id) REFERENCES core.source(source_id)
+    • uq_observation
+      UNIQUE (metric_id, region_id, frequency_id, period_start, source_id, release_id, assessment_type, sub_dimension)
+
+================================================================================
+  derived.derived_metric
+================================================================================
+Назначение: Производные показатели (темпы роста, сезонная корректировка).
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  dm_id                    bigint                   NO    Уникальный идентификатор (PK)
+  output_metric_id         bigint                   NO    Результирующий показатель (FK)
+  input_metric_ids         ARRAY                    NO    
+  transform_type           text                     NO    mom|yoy|ytd|sa|x13_arima|link_relative|aggregate_sum|aggregate_avg|custom
+  formula_text             text                     NO    
+  params                   jsonb                    NO    Параметры расчёта
+  code_version             text                     NO    Версия кода (git SHA)
+  code_path                text                     YES   
+  computed_at              timestamp with time zone NO    Дата расчёта
+  output_release_id        bigint                   YES   Релиз результата (FK)
+  notes                    text                     YES   Примечание
+
+  Ограничения целостности:
+    • derived_metric_output_metric_id_fkey
+      FOREIGN KEY (output_metric_id) REFERENCES core.metric(metric_id)
+    • derived_metric_output_release_id_fkey
+      FOREIGN KEY (output_release_id) REFERENCES core.release(release_id)
+    • derived_metric_pkey
+      PRIMARY KEY (dm_id)
+    • derived_metric_transform_type_check
+      CHECK ((transform_type = ANY (ARRAY['mom'::text, 'yoy'::text, 'ytd'::text, 'sa'::text, 'x13_arima'::text, 'link_relative'::text, 'aggregate_sum'::text
+
+================================================================================
+  meta.classifier
+================================================================================
+Назначение: Справочник классификаторов и их редакций (ОКВЭД2, ОКПД2, ОКТМО).
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  classifier_id            bigint                   NO    Уникальный идентификатор (PK)
+  cls_code                 text                     NO    Код
+  edition                  text                     NO    Редакция
+  name_ru                  text                     NO    Наименование
+  valid_from               date                     YES   Действует с
+  valid_to                 date                     YES   Действует до
+  source_url               text                     YES   
+
+  Ограничения целостности:
+    • classifier_cls_code_edition_key
+      UNIQUE (cls_code, edition)
+    • classifier_pkey
+      PRIMARY KEY (classifier_id)
+
+================================================================================
+  meta.metric_classifier_mapping
+================================================================================
+Назначение: Связь показателя с классификатором и его редакцией.
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  id                       bigint                   NO    Уникальный идентификатор (PK)
+  metric_id                bigint                   NO    Показатель (FK)
+  classifier_id            bigint                   NO    Классификатор (FK)
+  classifier_entry_code    text                     NO    Код записи классификатора
+  valid_from               date                     YES   Действует с
+  valid_to                 date                     YES   Действует до
+  notes                    text                     YES   
+
+  Ограничения целостности:
+    • metric_classifier_mapping_classifier_id_fkey
+      FOREIGN KEY (classifier_id) REFERENCES meta.classifier(classifier_id)
+    • metric_classifier_mapping_metric_id_classifier_id_classifie_key
+      UNIQUE (metric_id, classifier_id, classifier_entry_code)
+    • metric_classifier_mapping_metric_id_fkey
+      FOREIGN KEY (metric_id) REFERENCES core.metric(metric_id)
+    • metric_classifier_mapping_pkey
+      PRIMARY KEY (id)
+
+================================================================================
+  meta.series_comparability
+================================================================================
+Назначение: Методологические разрывы длинных рядов (ИФО 2011→2021, ОКВЭД1→ОКВЭД2).
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  sc_id                    bigint                   NO    Уникальный идентификатор (PK)
+  metric_id                bigint                   NO    Показатель (FK)
+  region_id                bigint                   YES   Регион (FK)
+  break_date               date                     NO    Дата разрыва
+  break_type               text                     NO    classifier_change|index_base_change|methodology_change|boundary_change|unit_change
+  description              text                     NO    Описание
+  pre_break_base           text                     YES   База до разрыва
+  post_break_base          text                     YES   База после разрыва
+  conversion_rule          text                     YES   
+  source_id                bigint                   YES   Источник (FK) — официальный сопоставимый ряд Росстата
+  created_at               timestamp with time zone NO    
+
+  Ограничения целостности:
+    • series_comparability_break_type_check
+      CHECK ((break_type = ANY (ARRAY['classifier_change'::text, 'index_base_change'::text, 'methodology_change'::text, 'boundary_change'::text, 'unit_chang
+    • series_comparability_metric_id_fkey
+      FOREIGN KEY (metric_id) REFERENCES core.metric(metric_id)
+    • series_comparability_metric_id_region_id_break_date_break_t_key
+      UNIQUE (metric_id, region_id, break_date, break_type)
+    • series_comparability_pkey
+      PRIMARY KEY (sc_id)
+    • series_comparability_region_id_fkey
+      FOREIGN KEY (region_id) REFERENCES core.region(region_id)
+    • series_comparability_source_id_fkey
+      FOREIGN KEY (source_id) REFERENCES core.source(source_id)
+
+================================================================================
+  meta.source_metric_mapping
+================================================================================
+Назначение: Маппинг: оригинальное название в источнике → целевой показатель.
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  mapping_id               bigint                   NO    Уникальный идентификатор (PK)
+  source_id                bigint                   NO    Источник (FK)
+  raw_metric               text                     NO    Название в источнике
+  raw_region               text                     YES   Название региона в источнике
+  metric_id                bigint                   NO    Целевой показатель (FK)
+  region_id                bigint                   YES   Целевой регион (FK)
+  unit_convert_rule        text                     YES   
+  frequency_convert_rule   text                     YES   
+  confidence               text                     NO    Уверенность: exact|manual|inferred|needs_review
+  review_status            text                     NO    Статус ревью: pending|approved|rejected
+  created_at               timestamp with time zone NO    
+
+  Ограничения целостности:
+    • source_metric_mapping_confidence_check
+      CHECK ((confidence = ANY (ARRAY['exact'::text, 'manual'::text, 'inferred'::text, 'needs_review'::text])))
+    • source_metric_mapping_metric_id_fkey
+      FOREIGN KEY (metric_id) REFERENCES core.metric(metric_id)
+    • source_metric_mapping_pkey
+      PRIMARY KEY (mapping_id)
+    • source_metric_mapping_region_id_fkey
+      FOREIGN KEY (region_id) REFERENCES core.region(region_id)
+    • source_metric_mapping_review_status_check
+      CHECK ((review_status = ANY (ARRAY['pending'::text, 'approved'::text, 'rejected'::text])))
+    • source_metric_mapping_source_id_fkey
+      FOREIGN KEY (source_id) REFERENCES core.source(source_id)
+    • source_metric_mapping_source_id_raw_metric_raw_region_key
+      UNIQUE (source_id, raw_metric, raw_region)
+
+================================================================================
+  meta.region_alias
+================================================================================
+Назначение: Альтернативные написания регионов (435 алиасов из 6 баз).
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  alias                    text                     NO    Сырое написание (PK часть)
+  region_id                bigint                   NO    Канонический регион (FK)
+  source_id                bigint                   NO    Источник (PK часть)
+  confidence               text                     NO    Уверенность: exact|manual|inferred|needs_review
+  created_at               timestamp with time zone NO    Дата создания
+
+  Ограничения целостности:
+    • region_alias_confidence_check
+      CHECK ((confidence = ANY (ARRAY['exact'::text, 'manual'::text, 'inferred'::text, 'needs_review'::text])))
+    • region_alias_pkey
+      PRIMARY KEY (alias, source_id)
+    • region_alias_region_id_fkey
+      FOREIGN KEY (region_id) REFERENCES core.region(region_id)
+    • region_alias_source_id_fkey
+      FOREIGN KEY (source_id) REFERENCES core.source(source_id)
+
+================================================================================
+  core.document
+================================================================================
+Назначение: Документы (статьи, отчёты) — для библиографии.
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  document_id              bigint                   NO    Уникальный идентификатор (PK)
+  doc_code                 text                     NO    Код документа (UNIQUE)
+  title_ru                 text                     NO    Заголовок
+  doc_type                 text                     NO    Тип: wiki_page|paper|report|methodology|news|other
+  file_id                  bigint                   YES   Файл (FK)
+  url                      text                     YES   Ссылка
+  sha256                   text                     YES   
+  published_at             date                     YES   
+  created_at               timestamp with time zone NO    Дата создания
+
+  Ограничения целостности:
+    • document_doc_code_key
+      UNIQUE (doc_code)
+    • document_doc_type_check
+      CHECK ((doc_type = ANY (ARRAY['wiki_page'::text, 'paper'::text, 'report'::text, 'methodology'::text, 'news'::text, 'other'::text])))
+    • document_file_id_fkey
+      FOREIGN KEY (file_id) REFERENCES core.file_registry(file_id)
+    • document_pkey
+      PRIMARY KEY (document_id)
+
+================================================================================
+  core.hypothesis
+================================================================================
+Назначение: Реестр исследовательских гипотез (синхронизируется с hypotheses.yaml).
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  hypothesis_id            bigint                   NO    Уникальный идентификатор (PK)
+  hyp_code                 text                     NO    Код гипотезы (H-001)
+  kind                     text                     YES   
+  title_ru                 text                     NO    
+  statement                text                     YES   Формулировка
+  status                   text                     NO    Статус: open|testing|supported|refuted|archived
+  evidence_for             ARRAY                    YES   Доводы за
+  evidence_against         ARRAY                    YES   Доводы против
+  tags                     ARRAY                    NO    Теги
+  next_check               date                     YES   
+  methodology_ref          text                     YES   
+  created_at               timestamp with time zone NO    Дата создания
+
+  Ограничения целостности:
+    • hypothesis_hyp_code_key
+      UNIQUE (hyp_code)
+    • hypothesis_pkey
+      PRIMARY KEY (hypothesis_id)
+    • hypothesis_status_check
+      CHECK ((status = ANY (ARRAY['open'::text, 'testing'::text, 'supported'::text, 'refuted'::text, 'archived'::text])))
+
+================================================================================
+  core.person
+================================================================================
+Назначение: Ключевые лица (авторы, эксперты).
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  person_id                bigint                   NO    Уникальный идентификатор (PK)
+  full_name                text                     NO    Полное имя
+  organization             text                     YES   Организация
+  role                     text                     YES   Роль
+  source_url               text                     YES   
+  notes                    text                     YES   Примечание
+  created_at               timestamp with time zone NO    Дата создания
+
+  Ограничения целостности:
+    • person_full_name_organization_key
+      UNIQUE (full_name, organization)
+    • person_pkey
+      PRIMARY KEY (person_id)
+
+================================================================================
+  core.note
+================================================================================
+Назначение: Заметки, привязанные к показателям/регионам/источникам/гипотезам.
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  note_id                  bigint                   NO    Уникальный идентификатор (PK)
+  metric_id                bigint                   YES   Показатель (FK)
+  region_id                bigint                   YES   Регион (FK)
+  source_id                bigint                   YES   Источник (FK)
+  file_id                  bigint                   YES   Файл (FK)
+  document_id              bigint                   YES   Документ (FK)
+  hypothesis_id            bigint                   YES   Гипотеза (FK)
+  obs_id                   bigint                   YES   Наблюдение (FK)
+  body                     text                     NO    Текст заметки
+  created_at               timestamp with time zone NO    Дата создания
+
+  Ограничения целостности:
+    • note_document_id_fkey
+      FOREIGN KEY (document_id) REFERENCES core.document(document_id)
+    • note_file_id_fkey
+      FOREIGN KEY (file_id) REFERENCES core.file_registry(file_id)
+    • note_hypothesis_id_fkey
+      FOREIGN KEY (hypothesis_id) REFERENCES core.hypothesis(hypothesis_id)
+    • note_metric_id_fkey
+      FOREIGN KEY (metric_id) REFERENCES core.metric(metric_id)
+    • note_obs_id_fkey
+      FOREIGN KEY (obs_id) REFERENCES core.observation(obs_id)
+    • note_pkey
+      PRIMARY KEY (note_id)
+    • note_region_id_fkey
+      FOREIGN KEY (region_id) REFERENCES core.region(region_id)
+    • note_source_id_fkey
+      FOREIGN KEY (source_id) REFERENCES core.source(source_id)
+
+================================================================================
+  pipeline.pipeline_log
+================================================================================
+Назначение: Журнал работы пайплайна (этапы 1-9, статусы, ошибки).
+
+  Поле                     Тип                      NULL  Описание
+  ------------------------ ------------------------ ----- ----------------------------------
+  log_id                   bigint                   NO    Уникальный идентификатор (PK)
+  release_id               bigint                   YES   
+  stage                    smallint                 NO    Этап (1-9)
+  status                   text                     NO    Статус: ok|failed|skipped
+  started_at               timestamp with time zone NO    Начало
+  finished_at              timestamp with time zone YES   Окончание
+  rows_affected            bigint                   YES   
+  error_text               text                     YES   
+
+  Ограничения целостности:
+    • pipeline_log_pkey
+      PRIMARY KEY (log_id)
+    • pipeline_log_stage_check
+      CHECK (((stage >= 1) AND (stage <= 9)))
+    • pipeline_log_status_check
+      CHECK ((status = ANY (ARRAY['ok'::text, 'failed'::text, 'skipped'::text])))
+
+================================================================================
+  ТЕКУЩЕЕ СОСТОЯНИЕ ДАННЫХ (на момент снятия)
+================================================================================
+  core.region : 102 записи
+      1 страна (ru) + 8 федеральных округов + 91 регион
+      + 1 агрегат (ntd) + 1 город (sochi)
+      Новые территории: dnr, lnr, zaporozhye, kherson → родитель ufd (ЮФО)
+      Агрегаты с составом:
+        ntd             = dnr;lnr;zaporozhye;kherson
+        arkhangelsk_nao = arkhangelsk;nenets_ao
+        tyumen_ao       = tyumen;khanty;yamal
+
+  Пусты (ждут миграции):
+    core.observation, core.metric, core.source, core.release,
+    core.unit, core.frequency, meta.classifier
+
+  Предстоит перенести:
+    6 SQLite-баз | 5 903 507 строк | 80 таблиц | ~1.45 ГБ
+    → staging (слепок) → core (гармонизация)
+================================================================================

@@ -50,3 +50,4 @@
 - [[queries/database-target-spec]] — техзадание: структура БД, пайплайн, план трансформации
 - [[queries/regions-reference]] — канонический справочник регионов (98 записей, 435 алиасов)
 - [[queries/database-deployment-plan]] — постановка на развёртывание БД в YC (6 фаз)
+- [[queries/retrieve-for-train-google]] — разбор Retrieve-for-Train (Google/ICML 2026): RL-компиляция поиска

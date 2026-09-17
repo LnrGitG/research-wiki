@@ -54,3 +54,4 @@
 - [[queries/yandex-cloud-services]] — сервисы YC для вики: pgvector, DataLens, Search API
 - [[queries/search-user-flow]] — пользовательский путь: полнотекстовый поиск + переход в документ
 - [[queries/acceptance-criteria-check]] — проверка пяти критериев приёмки единой БД
+- [[queries/harmonization-plan]] — гармонизация staging → core: план и рубежи

@@ -1,1 +1,445 @@
 raw_name,count,region_code,canonical_name,level,aggregation,aggregate_of,method,sources
+moscow city,81643,moscow,Москва,region,base,,exact,fns_tochno_sectors
+sankt-petersburg,35834,spb,Санкт-Петербург,region,base,,exact,fns_tochno_sectors
+moscow reg.,22518,moscow_obl,Московская область,region,base,,exact-norm,fns_tochno_sectors
+Московская область,20821,moscow_obl,Московская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Пермский край,20627,perm,Пермский край,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Ленинградская область,20578,leningrad,Ленинградская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Омская область,20542,omsk,Омская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Красноярский край,20540,krasnoyarsk,Красноярский край,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Самарская область,20510,samara,Самарская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Краснодарский край,20499,krasnodar,Краснодарский край,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Калининградская область,20497,kaliningrad,Калининградская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Ростовская область,20474,rostov,Ростовская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Новосибирская область,20451,novosibirsk,Новосибирская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Приморский край,20448,primorsky,Приморский край,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Оренбургская область,20447,orenburg,Оренбургская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Нижегородская область,20446,nizhni,Нижегородская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Свердловская область,20438,sverdlovsk,Свердловская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Хабаровский край,20422,khabarovsk,Хабаровский край,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Воронежская область,20410,voronezh,Воронежская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Саратовская область,20410,saratov,Саратовская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Челябинская область,20402,chelyabinsk,Челябинская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Иркутская область,20392,irkutsk,Иркутская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Вологодская область,20389,vologda,Вологодская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Ярославская область,20388,yaroslavl,Ярославская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Тульская область,20374,tula,Тульская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Владимирская область,20367,vladimir,Владимирская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Тверская область,20357,tver,Тверская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Калужская область,20356,kaluga,Калужская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Ставропольский край,20354,stavropol,Ставропольский край,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Белгородская область,20351,belgorod,Белгородская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Саха (Якутия),20346,sakha,Республика Саха (Якутия),region,base,,exact-norm,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Башкортостан,20344,bashkortostan,Республика Башкортостан,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Смоленская область,20336,smolensk,Смоленская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Астраханская область,20323,astrakhan,Астраханская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Томская область,20323,tomsk,Томская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Бурятия,20321,buryatia,Республика Бурятия,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Курская область,20307,kursk,Курская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Сахалинская область,20292,sakhalin,Сахалинская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Карелия,20272,karelia,Республика Карелия,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Рязанская область,20270,ryazan,Рязанская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Волгоградская область,20269,volgograd,Волгоградская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Ивановская область,20266,ivanovo,Ивановская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Забайкальский край,20264,zabaikalsk,Забайкальский край,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Брянская область,20257,bryansk,Брянская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Удмуртская Республика,20255,udmurtia,Удмуртская Республика,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Орловская область,20253,oryol,Орловская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Кабардино-Балкарская Республика,20252,kabardino,Кабардино-Балкарская Республика,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Тамбовская область,20246,tambov,Тамбовская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Марий Эл,20226,marij_el,Республика Марий Эл,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Липецкая область,20217,lipetsk,Липецкая область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Пензенская область,20214,penza,Пензенская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Камчатский край,20212,kamchatka,Камчатский край,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Новгородская область,20196,novgorod,Новгородская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Алтайский край,20185,altai_terr,Алтайский край,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Коми,20183,komi,Республика Коми,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Псковская область,20167,pskov,Псковская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Амурская область,20159,amur,Амурская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Ульяновская область,20157,ulyanovsk,Ульяновская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Хакасия,20156,khakasia,Республика Хакасия,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Мордовия,20154,mordovia,Республика Мордовия,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Мурманская область,20148,murmansk,Мурманская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Костромская область,20146,kostroma,Костромская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Кировская область,20137,kirov,Кировская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Дагестан,20064,dagestan,Республика Дагестан,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Курганская область,20046,kurgan,Курганская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Тыва,20042,tuva,Республика Тыва,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Алтай,19988,altai_rep,Республика Алтай,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Карачаево-Черкесская Республика,19974,karachaevo,Карачаево-Черкесская Республика,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Калмыкия,19938,kalmykia,Республика Калмыкия,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Магаданская область,19897,magadan,Магаданская область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Крым,19892,crimea,Республика Крым,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Чеченская Республика,19858,chechnya,Чеченская Республика,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Республика Ингушетия,19841,ingushetia,Республика Ингушетия,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+Тюменская область,17210,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,base,"cbr_lending,rosreestr_deals,rosstat_construction"
+tatarstan,17163,tatarstan,Республика Татарстан,region,base,,exact,fns_tochno_sectors
+Архангельская область,17109,arkhangelsk,Архангельская область (без НАО),region,base,,exact,"cbr_lending,rosreestr_deals,rosstat_construction"
+г. Санкт-Петербург,16629,spb,Санкт-Петербург,region,base,,canonical,"cbr_lending,rosreestr_deals,rosstat_construction"
+Республика Татарстан (Татарстан),16565,tatarstan,Республика Татарстан,region,base,,exact-norm,"cbr_lending,rosreestr_deals,rosstat_construction"
+Чувашская Республика - Чувашия,16403,chuvashia,Чувашская Республика,region,base,,exact,"cbr_lending,rosstat_construction"
+Республика Северная Осетия - Алания,16321,north_ossetia,Республика Северная Осетия — Алания,region,base,,exact,"cbr_lending,rosreestr_deals,rosstat_construction"
+г. Москва,16236,moscow,Москва,region,base,,canonical,"cbr_lending,rosreestr_deals,rosstat_construction"
+Республика Адыгея (Адыгея),16154,adygea,Республика Адыгея,region,base,,exact-norm,"cbr_lending,rosstat_construction"
+г. Севастополь,16003,sevastopol,Севастополь,region,base,,canonical,"cbr_lending,rosreestr_deals,rosstat_construction"
+Кемеровская область - Кузбасс,15463,kemerovo,Кемеровская область — Кузбасс,region,base,,exact,"cbr_lending,rosreestr_deals,rosstat_construction"
+krasnodar,14735,krasnodar,Краснодарский край,region,base,,exact,fns_tochno_sectors
+sverdlovsk,14240,sverdlovsk,Свердловская область,region,base,,exact,fns_tochno_sectors
+bashkortostan,13031,bashkortostan,Республика Башкортостан,region,base,,exact,fns_tochno_sectors
+samara,12812,samara,Самарская область,region,base,,exact,fns_tochno_sectors
+Еврейская автономная область,11583,jewish_ao,Еврейская автономная область,region,base,,canonical,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+novosibirsk,11322,novosibirsk,Новосибирская область,region,base,,exact,fns_tochno_sectors
+Чукотский автономный округ,10739,chukotka,Чукотский автономный округ,region,base,,exact,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+nizhni novgorod,9450,nizhni,Нижегородская область,region,base,,exact,fns_tochno_sectors
+chelyabinsk,9090,chelyabinsk,Челябинская область,region,base,,exact,fns_tochno_sectors
+Дальневосточный ФО,8376,dfd,Дальневосточный федеральный округ,federal_district,base,,exact,"cbr_lending,rosstat_construction"
+Приволжский ФО,8376,pfd,Приволжский федеральный округ,federal_district,base,,exact,"cbr_lending,rosstat_construction"
+Северо-Западный ФО,8376,szfd,Северо-Западный федеральный округ,federal_district,base,,exact,"cbr_lending,rosstat_construction"
+Сибирский ФО,8376,sfd,Сибирский федеральный округ,federal_district,base,,exact,"cbr_lending,rosstat_construction"
+Уральский ФО,8376,urfd,Уральский федеральный округ,federal_district,base,,exact,"cbr_lending,rosstat_construction"
+Центральный ФО,8376,cfd,Центральный федеральный округ,federal_district,base,,exact,"cbr_lending,rosstat_construction"
+Южный ФО,8376,ufd,Южный федеральный округ,federal_district,base,,exact,"cbr_lending,rosstat_construction"
+Северо-Кавказский ФО,8375,skfd,Северо-Кавказский федеральный округ,federal_district,base,,exact,"cbr_lending,rosstat_construction"
+Ямало-Ненецкий АО,8103,yamal,Ямало-Ненецкий автономный округ,region,base,,exact,"rosreestr_deals,rosstat_construction"
+Ханты-Мансийский АО - Югра,8031,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,"rosreestr_deals,rosstat_construction"
+Чукотский АО,7999,chukotka,Чукотский автономный округ,region,base,,exact,"rosreestr_deals,rosstat_construction"
+Ненецкий АО,7984,nenets_ao,Ненецкий автономный округ,region,base,,exact,"rosreestr_deals,rosstat_construction"
+Еврейская АО,7929,jewish_ao,Еврейская автономная область,region,base,,exact,rosstat_construction
+Донецкая Народная Республика,7919,dnr,Донецкая Народная Республика,region,base,,canonical,rosstat_construction
+Луганская Народная Республика,7912,lnr,Луганская Народная Республика,region,base,,canonical,rosstat_construction
+Херсонская область,7900,kherson,Херсонская область,region,base,,canonical,rosstat_construction
+Запорожская область,7892,zaporozhye,Запорожская область,region,base,,canonical,rosstat_construction
+rostov,7651,rostov,Ростовская область,region,base,,exact,fns_tochno_sectors
+krasnoyarsk,7464,krasnoyarsk,Красноярский край,region,base,,exact,fns_tochno_sectors
+perm,7333,perm,Пермский край,region,base,,exact,fns_tochno_sectors
+в том числе Ханты-Мансийский автономный округ - Югра,6568,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,"cbr_lending,rosstat_construction"
+в том числе Ямало-Ненецкий автономный округ,6550,yamal,Ямало-Ненецкий автономный округ,region,base,,exact,"cbr_lending,rosstat_construction"
+voronezh,6483,voronezh,Воронежская область,region,base,,exact,fns_tochno_sectors
+tyumen,6457,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact,fns_tochno_sectors
+vologda,6378,vologda,Вологодская область,region,base,,exact,fns_tochno_sectors
+в том числе Ненецкий автономный округ,6345,nenets_ao,Ненецкий автономный округ,region,base,,exact,"cbr_lending,rosstat_construction"
+Архангельская область без данных по Ненецкому автономному округу,5881,arkhangelsk,Архангельская область (без НАО),region,base,,exact,"cbr_lending,rosstat_construction"
+Тюменская область без данных по Ханты-Мансийскому автономному округу - Югре и Ямало-Ненецкому автономному округу,5847,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact,"cbr_lending,rosstat_construction"
+irkutsk,5755,irkutsk,Иркутская область,region,base,,exact,fns_tochno_sectors
+omsk,5511,omsk,Омская область,region,base,,exact,fns_tochno_sectors
+primorsky terr.,5404,primorsky,Приморский край,region,base,,exact-norm,fns_tochno_sectors
+yaroslavl,4953,yaroslavl,Ярославская область,region,base,,exact,fns_tochno_sectors
+altai terr.,4948,altai_terr,Алтайский край,region,base,,exact-norm,fns_tochno_sectors
+Кемеровская область,4884,kemerovo,Кемеровская область — Кузбасс,region,base,,exact,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+ЦЕНТРАЛЬНЫЙ ФЕДЕРАЛЬНЫЙ ОКРУГ,4713,cfd,Центральный федеральный округ,federal_district,base,,exact,rosstat_construction
+kaliningrad,4647,kaliningrad,Калининградская область,region,base,,exact,fns_tochno_sectors
+udmurtia,4532,udmurtia,Удмуртская Республика,region,base,,exact,fns_tochno_sectors
+Ямало-Ненецкий автономный округ,4466,yamal,Ямало-Ненецкий автономный округ,region,base,,exact,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+СИБИРСКИЙ ФЕДЕРАЛЬНЫЙ ОКРУГ,4456,sfd,Сибирский федеральный округ,federal_district,base,,exact,rosstat_construction
+khanty-mansijsk,4445,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,fns_tochno_sectors
+ПРИВОЛЖСКИЙ ФЕДЕРАЛЬНЫЙ ОКРУГ,4433,pfd,Приволжский федеральный округ,federal_district,base,,exact,rosstat_construction
+СЕВЕРО-ЗАПАДНЫЙ ФЕДЕРАЛЬНЫЙ ОКРУГ,4429,szfd,Северо-Западный федеральный округ,federal_district,base,,exact,rosstat_construction
+ЮЖНЫЙ ФЕДЕРАЛЬНЫЙ ОКРУГ,4335,ufd,Южный федеральный округ,federal_district,base,,exact,rosstat_construction
+khabarovsk,4335,khabarovsk,Хабаровский край,region,base,,exact,fns_tochno_sectors
+dagestan,4330,dagestan,Республика Дагестан,region,base,,exact,fns_tochno_sectors
+belgorod,4278,belgorod,Белгородская область,region,base,,exact,fns_tochno_sectors
+Центральный федеральный округ,4276,cfd,Центральный федеральный округ,federal_district,base,,exact,"regions_panel,rosreestr_deals,rosstat_construction"
+Северо-Западный федеральный округ,4264,szfd,Северо-Западный федеральный округ,federal_district,base,,exact,"regions_panel,rosreestr_deals,rosstat_construction"
+ДАЛЬНЕВОСТОЧНЫЙ ФЕДЕРАЛЬНЫЙ ОКРУГ,4258,dfd,Дальневосточный федеральный округ,federal_district,base,,exact,rosstat_construction
+Ненецкий автономный округ,4248,nenets_ao,Ненецкий автономный округ,region,base,,exact,"cbr_lending,regions_panel,rosreestr_deals,rosstat_construction"
+УРАЛЬСКИЙ ФЕДЕРАЛЬНЫЙ ОКРУГ,4247,urfd,Уральский федеральный округ,federal_district,base,,exact,rosstat_construction
+СЕВЕРО-КАВКАЗСКИЙ ФЕДЕРАЛЬНЫЙ ОКРУГ,4229,skfd,Северо-Кавказский федеральный округ,federal_district,base,,exact,rosstat_construction
+Приволжский федеральный округ,4189,pfd,Приволжский федеральный округ,federal_district,base,,exact,"regions_panel,rosreestr_deals,rosstat_construction"
+Уральский федеральный округ,4186,urfd,Уральский федеральный округ,federal_district,base,,exact,"regions_panel,rosreestr_deals,rosstat_construction"
+Северо-Кавказский федеральный округ,4129,skfd,Северо-Кавказский федеральный округ,federal_district,base,,exact,"regions_panel,rosreestr_deals,rosstat_construction"
+Дальневосточный федеральный округ,4068,dfd,Дальневосточный федеральный округ,federal_district,base,,exact,"regions_panel,rosreestr_deals,rosstat_construction"
+Сибирский федеральный округ,4051,sfd,Сибирский федеральный округ,federal_district,base,,exact,"regions_panel,rosreestr_deals,rosstat_construction"
+Южный федеральный округ,3957,ufd,Южный федеральный округ,federal_district,base,,exact,"regions_panel,rosreestr_deals,rosstat_construction"
+saratov,3890,saratov,Саратовская область,region,base,,exact,fns_tochno_sectors
+Республика Адыгея,3884,adygea,Республика Адыгея,region,base,,exact-norm,"regions_panel,rosreestr_deals,rosstat_construction"
+Республика Татарстан,3853,tatarstan,Республика Татарстан,region,base,,exact-norm,"regions_panel,rosreestr_deals,rosstat_construction"
+Чувашская Республика,3847,chuvashia,Чувашская Республика,region,base,,canonical,"regions_panel,rosreestr_deals,rosstat_construction"
+stavropol,3733,stavropol,Ставропольский край,region,base,,exact,fns_tochno_sectors
+kemerovo,3655,kemerovo,Кемеровская область — Кузбасс,region,base,,exact,fns_tochno_sectors
+leningrad,3618,leningrad,Ленинградская область,region,base,,exact,fns_tochno_sectors
+tula,3495,tula,Тульская область,region,base,,exact,fns_tochno_sectors
+crimea,3429,crimea,Республика Крым,region,base,,exact,fns_tochno_sectors
+yakutia,3348,sakha,Республика Саха (Якутия),region,base,,exact,fns_tochno_sectors
+volgograd,3277,volgograd,Волгоградская область,region,base,,exact,fns_tochno_sectors
+Тюменская область (без автономных округов),3257,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact,"regions_panel,rosstat_construction"
+orenburg,3235,orenburg,Оренбургская область,region,base,,exact,fns_tochno_sectors
+Республика Северная Осетия — Алания,3223,north_ossetia,Республика Северная Осетия — Алания,region,base,,exact,"regions_panel,rosreestr_deals"
+Тюменская область (с автономными округами),3221,tyumen_ao,Тюменская область (с ХМАО и ЯНАО),region,with_ao_included,tyumen;khanty;yamal,exact,regions_panel
+tver,3220,tver,Тверская область,region,base,,exact,fns_tochno_sectors
+Архангельская область (с автономным округом),3218,arkhangelsk_nao,Архангельская область (с НАО),region,with_ao_included,arkhangelsk;nenets_ao,exact,regions_panel
+Ханты-Мансийский автономный округ — Югра,3203,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,regions_panel
+Севастополь,3197,sevastopol,Севастополь,region,base,,canonical,"regions_panel,rosreestr_deals"
+Архангельская область (без автономного округа),3185,arkhangelsk,Архангельская область (без НАО),region,base,,exact,regions_panel
+ivanovo,3168,ivanovo,Ивановская область,region,base,,exact,fns_tochno_sectors
+ryazan,3157,ryazan,Рязанская область,region,base,,exact,fns_tochno_sectors
+Москва,3113,moscow,Москва,region,base,,canonical,"regions_panel,rosreestr_deals"
+Санкт-Петербург,3065,spb,Санкт-Петербург,region,base,,canonical,"regions_panel,rosreestr_deals"
+smolensk,2989,smolensk,Смоленская область,region,base,,exact,fns_tochno_sectors
+lipetzk,2987,lipetsk,Липецкая область,region,base,,exact,fns_tochno_sectors
+tomsk,2862,tomsk,Томская область,region,base,,exact,fns_tochno_sectors
+kaluga,2649,kaluga,Калужская область,region,base,,exact,fns_tochno_sectors
+kirov,2560,kirov,Кировская область,region,base,,exact,fns_tochno_sectors
+chuvashia,2532,chuvashia,Чувашская Республика,region,base,,exact,fns_tochno_sectors
+ulyanovsk,2527,ulyanovsk,Ульяновская область,region,base,,exact,fns_tochno_sectors
+vladimir,2410,vladimir,Владимирская область,region,base,,exact,fns_tochno_sectors
+kursk,2302,kursk,Курская область,region,base,,exact,fns_tochno_sectors
+penza,2238,penza,Пензенская область,region,base,,exact,fns_tochno_sectors
+buryatia,2137,buryatia,Республика Бурятия,region,base,,exact,fns_tochno_sectors
+karelia,2097,karelia,Республика Карелия,region,base,,exact,fns_tochno_sectors
+arkhangelsk,2036,arkhangelsk,Архангельская область (без НАО),region,base,,exact,fns_tochno_sectors
+sakhalin,1823,sakhalin,Сахалинская область,region,base,,exact,fns_tochno_sectors
+chechnya,1681,chechnya,Чеченская Республика,region,base,,exact,fns_tochno_sectors
+tambov,1642,tambov,Тамбовская область,region,base,,exact,fns_tochno_sectors
+bryansk,1631,bryansk,Брянская область,region,base,,exact,fns_tochno_sectors
+komi,1595,komi,Республика Коми,region,base,,exact,fns_tochno_sectors
+amur,1588,amur,Амурская область,region,base,,exact,fns_tochno_sectors
+kostroma,1495,kostroma,Костромская область,region,base,,exact,fns_tochno_sectors
+sevastopol,1424,sevastopol,Севастополь,region,base,,exact,fns_tochno_sectors
+oryol,1416,oryol,Орловская область,region,base,,exact,fns_tochno_sectors
+novgorod,1347,novgorod,Новгородская область,region,base,,exact,fns_tochno_sectors
+murmansk,1341,murmansk,Мурманская область,region,base,,exact,fns_tochno_sectors
+astrakhan,1326,astrakhan,Астраханская область,region,base,,exact,fns_tochno_sectors
+zabaikalsk terr.,1323,zabaikalsk,Забайкальский край,region,base,,exact-norm,fns_tochno_sectors
+yamal-nenets ao,1309,yamal,Ямало-Ненецкий автономный округ,region,base,,exact,fns_tochno_sectors
+pskov,1303,pskov,Псковская область,region,base,,exact,fns_tochno_sectors
+mordovia,1196,mordovia,Республика Мордовия,region,base,,exact,fns_tochno_sectors
+ingushetia,1153,ingushetia,Республика Ингушетия,region,base,,exact,fns_tochno_sectors
+kurgan,1143,kurgan,Курганская область,region,base,,exact,fns_tochno_sectors
+marij el,1068,marij_el,Республика Марий Эл,region,base,,exact,fns_tochno_sectors
+Ханты-Мансийский автономный округ - Югра,1055,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,"cbr_lending,rosreestr_deals,rosstat_construction"
+kamchatka,1030,kamchatka,Камчатский край,region,base,,exact,fns_tochno_sectors
+kabardino-balkaria,1013,kabardino,Кабардино-Балкарская Республика,region,base,,exact,fns_tochno_sectors
+north ossetia,940,north_ossetia,Республика Северная Осетия — Алания,region,base,,exact,fns_tochno_sectors
+khakasia,844,khakasia,Республика Хакасия,region,base,,exact,fns_tochno_sectors
+adygeya,656,adygea,Республика Адыгея,region,base,,exact,fns_tochno_sectors
+karachaevo-chercessia,644,karachaevo,Карачаево-Черкесская Республика,region,base,,exact,fns_tochno_sectors
+г. Москва1,636,moscow,Москва,region,base,,canonical,rosstat_construction
+Всего,589,ru,Российская Федерация,country,base,,exact,rosstat_construction
+altai rep.,454,altai_rep,Республика Алтай,region,base,,exact-norm,fns_tochno_sectors
+Республика Северная Осетия-Алания,441,north_ossetia,Республика Северная Осетия — Алания,region,base,,exact,"rosreestr_deals,rosstat_construction"
+donetsk,437,dnr,Донецкая Народная Республика,region,base,,exact,fns_tochno_sectors
+Город Санкт-Петербург,372,spb,Санкт-Петербург,region,base,,canonical,"rosreestr_deals,rosstat_construction"
+kalmykia,351,kalmykia,Республика Калмыкия,region,base,,exact,fns_tochno_sectors
+Итого по РФ,340,ru,Российская Федерация,country,base,,exact,cbr_lending
+Архангельская область (кроме Ненецкого автономного округа),333,arkhangelsk,Архангельская область (без НАО),region,base,,exact,"rosreestr_deals,rosstat_construction"
+г.Санкт-Петербург,326,spb,Санкт-Петербург,region,base,,canonical,"rosreestr_deals,rosstat_construction"
+Город Москва,323,moscow,Москва,region,base,,canonical,"rosreestr_deals,rosstat_construction"
+magadan,315,magadan,Магаданская область,region,base,,exact,fns_tochno_sectors
+г.Москва,300,moscow,Москва,region,base,,canonical,"rosreestr_deals,rosstat_construction"
+tuva,298,tuva,Республика Тыва,region,base,,exact,fns_tochno_sectors
+Архангельская область без автономного округа,268,arkhangelsk,Архангельская область (без НАО),region,base,,exact-norm,"rosreestr_deals,rosstat_construction"
+г.Севастополь,251,sevastopol,Севастополь,region,base,,canonical,"rosreestr_deals,rosstat_construction"
+Чукотский авт.округ,206,chukotka,Чукотский автономный округ,region,base,,exact,rosstat_construction
+Тюменская область (кроме Ханты-Мансийского автономного округа-Югры и Ямало-Ненецкого автономного округа),185,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact,rosstat_construction
+Еврейская авт.область,184,jewish_ao,Еврейская автономная область,region,base,,exact,rosstat_construction
+в том числе Ненецкий авт.округ,184,nenets_ao,Ненецкий автономный округ,region,base,,exact,rosstat_construction
+Тюменская область без авт. округов,179,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact,rosstat_construction
+luhansk,177,lnr,Луганская Народная Республика,region,base,,exact,fns_tochno_sectors
+jewish ao,174,jewish_ao,Еврейская автономная область,region,base,,exact,fns_tochno_sectors
+Тюменская область без автономных округов,170,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact,"rosreestr_deals,rosstat_construction"
+Дальневосточный федеральный округ3,168,dfd,Дальневосточный федеральный округ,federal_district,base,,exact,"rosreestr_deals,rosstat_construction"
+Ямало-Ненецкий авт. округ,162,yamal,Ямало-Ненецкий автономный округ,region,base,,exact,rosstat_construction
+Архангельская область без авт. округа.,158,arkhangelsk,Архангельская область (без НАО),region,base,,exact,rosstat_construction
+Ханты-Мансийский авт. округ - Югра,158,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosstat_construction
+Кемеровская область-Кузбасс,136,kemerovo,Кемеровская область — Кузбасс,region,base,,exact,"rosreestr_deals,rosstat_construction"
+Город Севастополь,127,sevastopol,Севастополь,region,base,,canonical,rosstat_construction
+Малороссийский ФО,115,ntd,Новые территории (свод),aggregate,sum_of_new_territories,dnr;lnr;zaporozhye;kherson,exact,rosstat_construction
+Приволжский               федеральный округ,109,pfd,Приволжский федеральный округ,federal_district,base,,exact,rosreestr_deals
+"Тюменская область 
+без автономных округов",109,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact,rosreestr_deals
+Уральский             федеральный округ,109,urfd,Уральский федеральный округ,federal_district,base,,exact,rosreestr_deals
+в том числе:                     Ханты-Мансийский       автономный округ - Югра,109,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosreestr_deals
+в том числе: Ханты-Мансийский автономный округ - Югра,106,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosstat_construction
+Республика Северная  Осетия - Алания,105,north_ossetia,Республика Северная Осетия — Алания,region,base,,exact,rosreestr_deals
+nenets ao,95,nenets_ao,Ненецкий автономный округ,region,base,,exact,fns_tochno_sectors
+Республика Северная Осетия,89,north_ossetia,Республика Северная Осетия — Алания,region,base,,exact,"rosreestr_deals,rosstat_construction"
+Тюменская область (кроме Ханты-Мансийского автономного округа - Югры и Ямало-Ненецкого автономного округа),88,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact,rosstat_construction
+в том числе               Ненецкий автономный округ,85,nenets_ao,Ненецкий автономный округ,region,base,,exact,rosreestr_deals
+Сибирский федеральный округ3,84,sfd,Сибирский федеральный округ,federal_district,base,,exact,rosstat_construction
+Южный федеральный округ2,84,ufd,Южный федеральный округ,federal_district,base,,exact,rosstat_construction
+Северо-Кавказский                 федеральный округ,84,skfd,Северо-Кавказский федеральный округ,federal_district,base,,exact,rosreestr_deals
+Сибирский           федеральный округ3,84,sfd,Сибирский федеральный округ,federal_district,base,,exact,rosreestr_deals
+Южный                   федеральный округ2,84,ufd,Южный федеральный округ,federal_district,base,,exact,rosreestr_deals
+Ненецкий автономный округ (Архангельская область),76,nenets_ao,Ненецкий автономный округ,region,base,,exact,rosstat_construction
+Ханты-Мансийский автономный округ - Югра (Тюменская область),76,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosstat_construction
+Ямало-Ненецкий автономный округ (Тюменская область),76,yamal,Ямало-Ненецкий автономный округ,region,base,,exact,rosstat_construction
+Республика Алтай4,76,altai_rep,Республика Алтай,region,base,,canonical,"rosreestr_deals,rosstat_construction"
+Ямало-Ненецкий автономный округ4,76,yamal,Ямало-Ненецкий автономный округ,region,base,,exact,"rosreestr_deals,rosstat_construction"
+chukotka,73,chukotka,Чукотский автономный округ,region,base,,exact,fns_tochno_sectors
+Архангельская область (кроме Ненецкого АО),72,arkhangelsk,Архангельская область (без НАО),region,base,,exact,rosstat_construction
+Ханты-Мансийский АО-Югра,72,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosstat_construction
+Магаданская область4,68,magadan,Магаданская область,region,base,,canonical,"rosreestr_deals,rosstat_construction"
+Еврейская автономная область4,64,jewish_ao,Еврейская автономная область,region,base,,canonical,"rosreestr_deals,rosstat_construction"
+Итого,59,ru,Российская Федерация,country,base,,exact,cbr_lending
+zaporizhzhia,58,zaporozhye,Запорожская область,region,base,,exact,fns_tochno_sectors
+Южный федеральный округ1),54,ufd,Южный федеральный округ,federal_district,base,,exact,rosstat_construction
+Республика Тыва4,52,tuva,Республика Тыва,region,base,,canonical,"rosreestr_deals,rosstat_construction"
+Чувашская Республика-Чувашия,48,chuvashia,Чувашская Республика,region,base,,exact,"rosreestr_deals,rosstat_construction"
+Ямало-Ненецкий авт.округ,48,yamal,Ямало-Ненецкий автономный округ,region,base,,exact,rosstat_construction
+Тюменская область(без Ханты-Мансийского -Югры и Ямало-Ненецкого автономных округов),41,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact-norm,"rosreestr_deals,rosstat_construction"
+kherson,37,kherson,Херсонская область,region,base,,exact,fns_tochno_sectors
+Усть-Ордынский Бурятский округ,34,irkutsk,Иркутская область,region,base,,exact,rosstat_construction
+Агинский Бурятский округ (Забайкальский край),32,zabaikalsk,Забайкальский край,region,base,,exact,rosstat_construction
+Город Москва2),32,moscow,Москва,region,base,,canonical,rosstat_construction
+Южный федеральный округ (с 29.07.2016),32,ufd,Южный федеральный округ,federal_district,base,,exact-norm,rosstat_construction
+Дальневосточный федеральный округ2),32,dfd,Дальневосточный федеральный округ,federal_district,base,,exact,rosstat_construction
+Сибирский федеральный округ2),32,sfd,Сибирский федеральный округ,federal_district,base,,exact,rosstat_construction
+Чеченская республика,31,chechnya,Чеченская Республика,region,base,,canonical,"rosreestr_deals,rosstat_construction"
+"Архангельская область 
+без автономного округа",31,arkhangelsk,Архангельская область (без НАО),region,base,,exact-norm,rosreestr_deals
+"Дальневосточный 
+федеральный округ",31,dfd,Дальневосточный федеральный округ,federal_district,base,,exact,rosreestr_deals
+"Приволжский 
+федеральный округ",31,pfd,Приволжский федеральный округ,federal_district,base,,exact,rosreestr_deals
+Республика Северная Осетия – Алания,31,north_ossetia,Республика Северная Осетия — Алания,region,base,,exact,rosreestr_deals
+"Северо-Западный 
+федеральный округ",31,szfd,Северо-Западный федеральный округ,federal_district,base,,exact,rosreestr_deals
+"Северо-Кавказский 
+федеральный округ",31,skfd,Северо-Кавказский федеральный округ,federal_district,base,,exact,rosreestr_deals
+"Сибирский 
+федеральный округ",31,sfd,Сибирский федеральный округ,federal_district,base,,exact,rosreestr_deals
+"Тюменская область без автономных 
+округов",31,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact,rosreestr_deals
+"Уральский 
+федеральный округ",31,urfd,Уральский федеральный округ,federal_district,base,,exact,rosreestr_deals
+"Ханты-Мансийский автономный округ – 
+Югра",31,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosreestr_deals
+"Центральный 
+федеральный округ",31,cfd,Центральный федеральный округ,federal_district,base,,exact,rosreestr_deals
+"Южный 
+федеральный округ",31,ufd,Южный федеральный округ,federal_district,base,,exact,rosreestr_deals
+Ханты-Мансийский авт.округ - Югра,26,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosstat_construction
+"Коми-Пермяцкий округ, входящий в состав Пермского края",25,perm,Пермский край,region,base,,exact-norm,rosstat_construction
+Ханты-Мансийский автономный округ – Югра,25,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosstat_construction
+Краснодарский край 3,25,krasnodar,Краснодарский край,region,base,,canonical,rosreestr_deals
+Сибирский           федеральный округ,25,sfd,Сибирский федеральный округ,federal_district,base,,exact,rosreestr_deals
+Южный                   федеральный округ,25,ufd,Южный федеральный округ,federal_district,base,,exact,rosreestr_deals
+Чукотский автономный округ4,24,chukotka,Чукотский автономный округ,region,base,,exact,"rosreestr_deals,rosstat_construction"
+Аpхангельская область,22,arkhangelsk,Архангельская область (без НАО),region,base,,exact,rosstat_construction
+Архангельская без НАО,22,arkhangelsk,Архангельская область (без НАО),region,base,,exact,rosstat_construction
+Бpянская область,22,bryansk,Брянская область,region,base,,canonical,rosstat_construction
+Владимиpская область,22,vladimir,Владимирская область,region,base,,canonical,rosstat_construction
+Город Санкт-Петербург город федерального значения,22,spb,Санкт-Петербург,region,base,,exact-norm,rosstat_construction
+Дальневосточный федеральный округ 2),22,dfd,Дальневосточный федеральный округ,federal_district,base,,exact,rosstat_construction
+Еврейская авт. округ,22,jewish_ao,Еврейская автономная область,region,base,,exact,rosstat_construction
+Киpовская область,22,kirov,Кировская область,region,base,,canonical,rosstat_construction
+Костpомская область,22,kostroma,Костромская область,region,base,,canonical,rosstat_construction
+Ленингpадская область,22,leningrad,Ленинградская область,region,base,,canonical,rosstat_construction
+Муpманская область,22,murmansk,Мурманская область,region,base,,canonical,rosstat_construction
+Новгоpодская область,22,novgorod,Новгородская область,region,base,,canonical,rosstat_construction
+Оpловская область,22,oryol,Орловская область,region,base,,canonical,rosstat_construction
+Респуб Калмыкия,22,kalmykia,Республика Калмыкия,region,base,,exact,rosstat_construction
+Республика Маpий Эл,22,marij_el,Республика Марий Эл,region,base,,canonical,rosstat_construction
+Республика Моpдовия,22,mordovia,Республика Мордовия,region,base,,canonical,rosstat_construction
+Севеpо-Западный федеральный округ,22,szfd,Северо-Западный федеральный округ,federal_district,base,,exact,rosstat_construction
+Северо-Кавказский федер. округ,22,skfd,Северо-Кавказский федеральный округ,federal_district,base,,exact,rosstat_construction
+Сибирский федеральный округ 2),22,sfd,Сибирский федеральный округ,federal_district,base,,exact,rosstat_construction
+Твеpская область,22,tver,Тверская область,region,base,,canonical,rosstat_construction
+Тюменская область (без авт.округов),22,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact,rosstat_construction
+Ханты-Мансийский автономный округ-Югра,22,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosstat_construction
+Центpальный федеральный округ,22,cfd,Центральный федеральный округ,federal_district,base,,exact,rosstat_construction
+Эвенкийский автономный округ (Красноярский край),22,krasnoyarsk,Красноярский край,region,base,,exact-norm,rosstat_construction
+Яpославская область,22,yaroslavl,Ярославская область,region,base,,canonical,rosstat_construction
+в т.ч. Ханты-Мансийский авт.округ,22,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosstat_construction
+в т.ч.Ненецкий авт.округ,22,nenets_ao,Ненецкий автономный округ,region,base,,exact,rosstat_construction
+в том числе: Ненецкий автономный округ,22,nenets_ao,Ненецкий автономный округ,region,base,,exact,rosstat_construction
+г. Санкт-Петеpбуpг,22,spb,Санкт-Петербург,region,base,,canonical,rosstat_construction
+Город Москва столица Российской Федерации город федерального значения,21,moscow,Москва,region,base,,exact-norm,rosstat_construction
+Тюменская область (без АО),21,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact,rosstat_construction
+Воронежская область7,21,voronezh,Воронежская область,region,base,,canonical,"cbr_lending,rosstat_construction"
+Архангельская область — Ненецкий автономный округ,21,arkhangelsk,Архангельская область (без НАО),region,base,,exact-norm,rosreestr_deals
+Тюменская область — Ханты-Мансийский автономный округ – Югра,21,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact-norm,rosreestr_deals
+Тюменская область — Ямало-Ненецкий автономный округ,21,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact-norm,rosreestr_deals
+Крым,20,crimea,Республика Крым,region,base,,exact,rosreestr_deals
+Ханты-Мансийский АО,20,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosreestr_deals
+Ямало-Ненецкий АO,20,yamal,Ямало-Ненецкий автономный округ,region,base,,exact,rosreestr_deals
+Таймырский (Долгано-Ненецкий) автономный округ (Красноярский край),19,krasnoyarsk,Красноярский край,region,base,,exact-norm,rosstat_construction
+Агинский Бурятский округ,15,zabaikalsk,Забайкальский край,region,base,,exact,rosstat_construction
+Архангельская область без авт. округа,12,arkhangelsk,Архангельская область (без НАО),region,base,,exact,rosstat_construction
+Коми-Пермяцкий округ,12,perm,Пермский край,region,base,,exact,rosstat_construction
+Мурманская область4,12,murmansk,Мурманская область,region,base,,canonical,"rosreestr_deals,rosstat_construction"
+Краснодарский край2,12,krasnodar,Краснодарский край,region,base,,canonical,rosstat_construction
+"Корякский округ, входящий в состав Камчатского края",11,kamchatka,Камчатский край,region,base,,exact-norm,rosstat_construction
+Эвенкийский автономный округ,11,krasnoyarsk,Красноярский край,region,base,,exact-norm,rosstat_construction
+Аpхангельская область без автономного округа,10,arkhangelsk,Архангельская область (без НАО),region,base,,exact-norm,rosstat_construction
+Таймырский (Долгано-Ненецкий) автономный округ,10,krasnoyarsk,Красноярский край,region,base,,exact-norm,rosstat_construction
+Южный федеральный округ (по 2009 год),9,ufd,Южный федеральный округ,federal_district,base,,exact,rosstat_construction
+Архангельская область без авт.округа,9,arkhangelsk,Архангельская область (без НАО),region,base,,exact,rosstat_construction
+Корякский округ,7,kamchatka,Камчатский край,region,base,,exact,rosstat_construction
+Чукотский автономный,6,chukotka,Чукотский автономный округ,region,base,,exact,rosstat_construction
+Южный федеральный округ (с 2010 года),5,ufd,Южный федеральный округ,federal_district,base,,exact,rosstat_construction
+Алтайского края,5,altai_terr,Алтайский край,region,base,,fuzzy:0.93,rosstat_construction
+Амурской области,5,amur,Амурская область,region,base,,canonical,rosstat_construction
+Астраханской области,5,astrakhan,Астраханская область,region,base,,canonical,rosstat_construction
+Волгоградской области,5,volgograd,Волгоградская область,region,base,,canonical,rosstat_construction
+Вологодской области,5,vologda,Вологодская область,region,base,,canonical,rosstat_construction
+Дальневосточного федерального округа,5,dfd,Дальневосточный федеральный округ,federal_district,base,,exact,rosstat_construction
+Еврейской автономной области,5,jewish_ao,Еврейская автономная область,region,base,,fuzzy:0.93,rosstat_construction
+Забайкальского края,5,zabaikalsk,Забайкальский край,region,base,,fuzzy:0.94,rosstat_construction
+Иркутской области,5,irkutsk,Иркутская область,region,base,,canonical,rosstat_construction
+Кабардино-Балкарской Республики,5,kabardino,Кабардино-Балкарская Республика,region,base,,canonical,rosstat_construction
+Калининградской области,5,kaliningrad,Калининградская область,region,base,,canonical,rosstat_construction
+Камчатского края,5,kamchatka,Камчатский край,region,base,,fuzzy:0.93,rosstat_construction
+Карачаево-Черкесской Республики,5,karachaevo,Карачаево-Черкесская Республика,region,base,,canonical,rosstat_construction
+Кемеровской области,5,kemerovo,Кемеровская область — Кузбасс,region,base,,exact,rosstat_construction
+Кировской области,5,kirov,Кировская область,region,base,,canonical,rosstat_construction
+Краснодарского края,5,krasnodar,Краснодарский край,region,base,,fuzzy:0.94,rosstat_construction
+Красноярского края,5,krasnoyarsk,Красноярский край,region,base,,fuzzy:0.94,rosstat_construction
+Курганской области,5,kurgan,Курганская область,region,base,,canonical,rosstat_construction
+Ленинградской области,5,leningrad,Ленинградская область,region,base,,canonical,rosstat_construction
+Магаданской области,5,magadan,Магаданская область,region,base,,canonical,rosstat_construction
+Мурманской области,5,murmansk,Мурманская область,region,base,,canonical,rosstat_construction
+Нижегородской области,5,nizhni,Нижегородская область,region,base,,canonical,rosstat_construction
+Новгородской области,5,novgorod,Новгородская область,region,base,,canonical,rosstat_construction
+Новосибирской области,5,novosibirsk,Новосибирская область,region,base,,canonical,rosstat_construction
+Омской области,5,omsk,Омская область,region,base,,canonical,rosstat_construction
+Оренбургской области,5,orenburg,Оренбургская область,region,base,,canonical,rosstat_construction
+Пензенской области,5,penza,Пензенская область,region,base,,canonical,rosstat_construction
+Пермского края,5,perm,Пермский край,region,base,,fuzzy:0.92,rosstat_construction
+Приволжского федерального округа,5,pfd,Приволжский федеральный округ,federal_district,base,,exact-norm,rosstat_construction
+Приморского края,5,primorsky,Приморский край,region,base,,fuzzy:0.93,rosstat_construction
+Псковской области,5,pskov,Псковская область,region,base,,canonical,rosstat_construction
+Республики Адыгея,5,adygea,Республика Адыгея,region,base,,fuzzy:0.94,rosstat_construction
+Республики Алтай,5,altai_rep,Республика Алтай,region,base,,fuzzy:0.94,rosstat_construction
+Республики Башкортостан,5,bashkortostan,Республика Башкортостан,region,base,,fuzzy:0.96,rosstat_construction
+Республики Бурятия,5,buryatia,Республика Бурятия,region,base,,fuzzy:0.94,rosstat_construction
+Республики Дагестан,5,dagestan,Республика Дагестан,region,base,,fuzzy:0.95,rosstat_construction
+Республики Ингушетия,5,ingushetia,Республика Ингушетия,region,base,,fuzzy:0.95,rosstat_construction
+Республики Калмыкия,5,kalmykia,Республика Калмыкия,region,base,,fuzzy:0.95,rosstat_construction
+Республики Крым,5,crimea,Республика Крым,region,base,,fuzzy:0.93,rosstat_construction
+Республики Марий Эл,5,marij_el,Республика Марий Эл,region,base,,fuzzy:0.95,rosstat_construction
+Республики Мордовия,5,mordovia,Республика Мордовия,region,base,,fuzzy:0.95,rosstat_construction
+Республики Саха (Якутия),5,sakha,Республика Саха (Якутия),region,base,,fuzzy:0.93,rosstat_construction
+Республики Северная Осетия - Алания,5,north_ossetia,Республика Северная Осетия — Алания,region,base,,fuzzy:0.97,rosstat_construction
+Республики Татарстан,5,tatarstan,Республика Татарстан,region,base,,fuzzy:0.95,rosstat_construction
+Республики Тыва,5,tuva,Республика Тыва,region,base,,fuzzy:0.93,rosstat_construction
+Республики Хакасия,5,khakasia,Республика Хакасия,region,base,,fuzzy:0.94,rosstat_construction
+Ростовской области,5,rostov,Ростовская область,region,base,,canonical,rosstat_construction
+Самарской области,5,samara,Самарская область,region,base,,canonical,rosstat_construction
+Саратовской области,5,saratov,Саратовская область,region,base,,canonical,rosstat_construction
+Сахалинской области,5,sakhalin,Сахалинская область,region,base,,canonical,rosstat_construction
+Свердловской области,5,sverdlovsk,Свердловская область,region,base,,canonical,rosstat_construction
+Северо-Каваказского федерального округа,5,skfd,Северо-Кавказский федеральный округ,federal_district,base,,exact-norm,rosstat_construction
+Сибирского федерального округа,5,sfd,Сибирский федеральный округ,federal_district,base,,exact-norm,rosstat_construction
+Ставропольского края,5,stavropol,Ставропольский край,region,base,,fuzzy:0.95,rosstat_construction
+Томской области,5,tomsk,Томская область,region,base,,canonical,rosstat_construction
+Тюменской области,5,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,base,rosstat_construction
+Тюменской области без Ханты-Мансийского и Ямало-Ненецкого автономных округов,5,tyumen,Тюменская область (без ХМАО и ЯНАО),region,base,,exact,rosstat_construction
+Удмуртской Республики,5,udmurtia,Удмуртская Республика,region,base,,canonical,rosstat_construction
+Ульяновской области,5,ulyanovsk,Ульяновская область,region,base,,canonical,rosstat_construction
+Уральского федерального округа,5,urfd,Уральский федеральный округ,federal_district,base,,exact-norm,rosstat_construction
+Хабаровского края,5,khabarovsk,Хабаровский край,region,base,,fuzzy:0.94,rosstat_construction
+Ханты-Мансийского автономного округа - Югра,5,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosstat_construction
+Челябинской области,5,chelyabinsk,Челябинская область,region,base,,canonical,rosstat_construction
+Чеченской Республики,5,chechnya,Чеченская Республика,region,base,,canonical,rosstat_construction
+Чувашской Республики,5,chuvashia,Чувашская Республика,region,base,,canonical,rosstat_construction
+Чукотского автономного округа,5,chukotka,Чукотский автономный округ,region,base,,exact-norm,rosstat_construction
+Южного федерального округа,5,ufd,Южный федеральный округ,federal_district,base,,exact,rosstat_construction
+Ямало-Ненецкого автономного округа,5,yamal,Ямало-Ненецкий автономный округ,region,base,,exact-norm,rosstat_construction
+г. Санкт-Петербурга,5,spb,Санкт-Петербург,region,base,,fuzzy:0.97,rosstat_construction
+Еврейская авт. область,4,jewish_ao,Еврейская автономная область,region,base,,exact,rosstat_construction
+Чукотский авт. округ,4,chukotka,Чукотский автономный округ,region,base,,exact,rosstat_construction
+в том числе: Ненецкий авт. округ,4,nenets_ao,Ненецкий автономный округ,region,base,,exact,rosstat_construction
+в том числе: Ханты-Мансийский авт. округ,4,khanty,Ханты-Мансийский автономный округ — Югра,region,base,,exact,rosstat_construction
+Архангельская область (без АО),1,arkhangelsk,Архангельская область (без НАО),region,base,,exact,rosstat_construction
+Сочи,1,sochi,Сочи,city,base,,exact,rosstat_construction

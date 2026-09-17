@@ -169,15 +169,24 @@ class Cursor:
         """
         Подставить схему для коротких имён таблиц.
         `FROM observations` → `FROM staging.rosstat_construction__observations`
+
+        Системные схемы (information_schema, pg_catalog, staging, pg_*)
+        не подменяются — иначе information_schema.tables превратится в
+        staging.<db>__information_schema (ошибка cross-database).
         """
         if not self._db_tag:
             return sql
         prefix = f'staging."{self._db_tag}__'
+        SYSTEM = ('information_schema', 'pg_catalog', 'pg_tables', 'pg_class',
+                  'pg_indexes', 'pg_stat_user_tables', 'pg_database',
+                  'pg_extension', 'pg_namespace', 'sqlite_master')
 
         def repl(m):
             kw, name = m.group(1), m.group(2)
-            # если схема уже указана — не трогаем
+            # уже со схемой, служебное имя или скобка — не трогаем
             if '.' in name or name.startswith('"') or name.startswith('('):
+                return m.group(0)
+            if name.lower() in SYSTEM or name.lower().startswith('pg_'):
                 return m.group(0)
             return f'{kw} {prefix}{name}"'
 

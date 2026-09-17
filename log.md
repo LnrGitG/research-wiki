@@ -289,3 +289,10 @@
 - Дополнительно: в build_housing_index.py определение DATA стояло после использования (строка 59 vs 6) — блок перенесён наверх.
 - Инструмент: scripts/repair_scripts.py (идемпотентный, сухой прогон по умолчанию).
 - Проверка: 74/74 скрипта синтаксически валидны; export_operational, export_dashboard, wordstat_core_index, build_housing_index запущены успешно.
+
+## 2026-09-17 — Слой совместимости db_compat.py (Ф4)
+- SSH к YC-ВМ теперь работает (гео-фильтр снят); подключение к PostgreSQL через туннель ssh -L 15432.
+- scripts/db_compat.py: прокси sqlite3 → psycopg (плейсхолдеры ?, квалификация имён таблиц в staging.<db>__<t>, PRAGMA, Decimal→float, классы исключений).
+- Сверка: export_operational и export_dashboard через PostgreSQL дали ИДЕНТИЧНЫЙ результат SQLite.
+- Обкатка 8 читающих скриптов: 7 успешно. midas_ddu_wordstat падает и на SQLite — предсуществующий дефект, не регрессия.
+- Ротация пароля роли wiki (был случайно выведен в терминал при настройке).

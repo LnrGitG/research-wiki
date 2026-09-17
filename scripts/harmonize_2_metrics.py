@@ -105,15 +105,22 @@ def collect(cur):
     for dt, nm, code, unit in cur.fetchall():
         out.append(('domrf_' + str(dt), nm, unit, code))
 
-    # 3. ЦБ — из cbr_lending (он полнее по числу строк)
+    # 3. ЦБ — из ОБОИХ источников: cbr_lending и копии в rosstat_construction.
+    #    Данные ЦБ лежат в двух базах; по решению владельца это ДВА РЕЛИЗА
+    #    одного показателя, поэтому метрика должна быть общей — читаем оба
+    #    источника с одинаковым тегом группы.
     for tbl, pref in (('mortgage_monthly', 'cbr_mortgage'),
                       ('escrow_monthly', 'cbr_escrow'),
                       ('corporate_monthly', 'cbr_corporate')):
-        cur.execute(f"""SELECT DISTINCT indicator, unit
-                        FROM staging.cbr_lending__{tbl}
-                        WHERE indicator IS NOT NULL ORDER BY 1""")
-        for nm, unit in cur.fetchall():
-            out.append((pref, nm, unit, None))
+        for src_tbl in (f'cbr_lending__{tbl}', f'rosstat_construction__cbr_{tbl}'):
+            try:
+                cur.execute(f'SELECT DISTINCT indicator, unit FROM staging."{src_tbl}" '
+                            f'WHERE indicator IS NOT NULL')
+            except Exception as e:
+                print(f'    пропуск {src_tbl}: {str(e)[:50]}')
+                continue
+            for nm, unit in cur.fetchall():
+                out.append((pref, nm, unit, None))
 
     # 4. panel — коды уже есть
     cur.execute("""SELECT DISTINCT indicator_name, indicator_code, unit
@@ -163,8 +170,26 @@ def main():
     cur = conn.cursor()
 
     print("Сбор показателей из staging…", flush=True)
+
+    def _norm(x):
+        x = str(x or '').strip().replace('\u00a0', ' ')
+        x = re.sub(r'\s+', ' ', x)
+        x = re.sub(r'\d\)\s*$', '', x)
+        return x.strip().lower()
+
     items = collect(cur)
     print(f"  собрано: {len(items)}")
+    # дедупликация: один и тот же показатель из двух источников — одна метрика
+    seen_pairs, deduped = set(), []
+    for grp, name, unit, given in items:
+        k = (grp, _norm(given) if given else _norm(name))
+        if k in seen_pairs:
+            continue
+        seen_pairs.add(k)
+        deduped.append((grp, name, unit, given))
+    if len(deduped) != len(items):
+        print(f"  после дедупликации: {len(deduped)} (убрано {len(items)-len(deduped)})")
+    items = deduped
 
     # единицы и частоты → id
     cur.execute("SELECT unit_code, unit_id FROM core.unit")

@@ -22,6 +22,11 @@ import psycopg
 DSN = os.environ.get("PGDSN", "host=127.0.0.1 port=15432 dbname=research_wiki user=wiki")
 CUR_YEAR = 2026
 
+# Целевая таблица. По умолчанию — рабочая; TARGET_TABLE позволяет собрать
+# результат в отдельную таблицу, проверить и подменить её отдельным шагом,
+# не удаляя текущие данные.
+TARGET = os.environ.get("TARGET_TABLE", "core.observation")
+
 # ── единица: сырой текст → код core.unit ────────────────────────────
 import csv
 def _load_unit_map():
@@ -124,12 +129,12 @@ def assessment_of(period_start):
 
 
 
-INSERT_SQL = """
-    INSERT INTO core.observation
+INSERT_SQL = f"""
+    INSERT INTO {TARGET}
       (metric_id, region_id, frequency_id, period_start, period_end,
        value, assessment_type, observation_status, source_id, release_id,
        quality_flags, sub_dimension)
-    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'{}',%s)
+    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,'{{}}',%s)
     ON CONFLICT (metric_id, region_id, frequency_id, period_start,
                  source_id, release_id, assessment_type, sub_dimension)
     DO NOTHING
@@ -140,6 +145,79 @@ def _flush(cur, conn, batch):
     """Записать порцию строк в core.observation."""
     cur.executemany(INSERT_SQL, batch)
     conn.commit()
+
+
+
+
+
+
+def ensure_release(cur, source_id, label):
+    """Найти или создать релиз источника по его метке."""
+    cur.execute("""SELECT release_id FROM core.release
+                   WHERE source_id=%s AND release_label=%s""", (source_id, label))
+    r = cur.fetchone()
+    if r:
+        return r[0]
+    cur.execute("""INSERT INTO core.release
+                     (source_id, release_label, published_at, status, notes)
+                   VALUES (%s, %s, now(), 'loaded', %s)
+                   RETURNING release_id""",
+                (source_id, label, 'создан при гармонизации (издание справочника)'))
+    rid = cur.fetchone()[0]
+    cur.connection.commit()
+    return rid
+
+
+def subdim_extra(group, row):
+    """
+    Дополнительная часть подразреза — то, что различает строки одного ключа.
+
+    Без этого ON CONFLICT схлопывает их, и данные теряются молча:
+      * corporate (копия ЦБ): один показатель в трёх валютах (RUB/FX/TOTAL);
+      * panel: под одним кодом показателя разные единицы и книги-источники.
+    """
+    if group == 'cbr_corporate':
+        cur_ = (row.get('currency') or '').strip()
+        return f'валюта: {cur_}' if cur_ else ''
+    if group == 'rosstat_panel':
+        u = (row.get('unit') or '').strip()
+        src = (row.get('source') or '').strip()
+        parts = []
+        if u and u != 'ND':
+            parts.append(f'ед.: {u[:28]}')
+        if src:
+            parts.append(f'источник: {src[:34]}')
+        return ' | '.join(parts)
+    return ''
+
+
+def pick_release(cur, source_id, variant='main'):
+    """Выбрать релиз источника: первый (main) или второй (alt)."""
+    cur.execute("""SELECT release_id FROM core.release
+                   WHERE source_id = %s ORDER BY release_id""", (source_id,))
+    ids = [r[0] for r in cur.fetchall()]
+    if not ids:
+        return None
+    return ids[0] if variant == 'main' else (ids[1] if len(ids) > 1 else None)
+
+
+def resolve_metric(key, group, by_name, by_code, tags_by_id):
+    """
+    Найти metric_id по нормализованному названию или коду.
+
+    При коллизии имён (одно название у нескольких показателей) выбираем
+    того кандидата, чьи теги содержат имя группы-источника. Без этого
+    строки 'debt' из escrow уходили в показатель таблицы ипотеки.
+    """
+    cands = by_name.get(key)
+    if cands:
+        if len(cands) == 1:
+            return cands[0]
+        for c in cands:
+            if group in tags_by_id.get(c, []):
+                return c
+        return cands[0]
+    return by_code.get(key)
 
 
 def main():
@@ -167,8 +245,6 @@ def main():
     metric_by_name = {}
     cur.execute("SELECT source_code, source_id FROM core.source")
     source_ids = dict(cur.fetchall())
-    cur.execute("SELECT source_id, release_id FROM core.release")
-    release_by_source = dict(cur.fetchall())
     cur.execute("SELECT frequency_code, frequency_id FROM core.frequency")
     freq_ids = dict(cur.fetchall())
 
@@ -180,19 +256,32 @@ def main():
         s = re.sub(r'\d\)\s*$', '', s)
         return s.strip().lower()
 
-    # словарь названий метрик — по нормализованному ключу
+    # словарь названий метрик: имя -> список (metric_id, tags).
+    # Одно название встречается у разных показателей ('debt' — в трёх
+    # таблицах ЦБ, 'Уровень строительной готовности' — четырежды),
+    # поэтому храним всех кандидатов и выбираем по группе.
     for c, i, n in metric_rows:
         k = norm(n)
-        if k and k not in metric_by_name:
-            metric_by_name[k] = i
+        if k:
+            metric_by_name.setdefault(k, []).append(i)
+    cur.execute("SELECT metric_id, tags FROM core.metric")
+    metric_tags = {i: (t or []) for i, t in cur.fetchall()}
     print(f"справочники: регионов={len(region_by_code)}, алиасов={len(alias_map)}, "
           f"метрик по названию={len(metric_by_name)}")
 
     def resolve_region(raw):
         """-> (region_id, sub_dimension)"""
+        # в части строк региона нет вовсе: записана строка 'None'
+        if str(raw).strip().lower() in ('none', 'null', '', 'nan'):
+            return RU, 'регион не указан'
         k = norm(raw)
         rid = alias_map.get(k) or name_map.get(k)
         if rid:
+            # различаем оговорку о составе: «без НАО», «с ХМАО и ЯНАО» и т.п.
+            m = re.search(r'(без\s+(данных\s+по\s+)?[^,;]{0,60}?(автономн|АО|округа))'
+                          r'|(\(с\s+автономным\s+округом\))', str(raw), re.I)
+            if m:
+                return rid, f'состав: {m.group(0)[:46].strip()}'
             return rid, ''
         # повторная попытка после снятия гомоглифов («Федеpация» → «Федерация»)
         dh = dehomoglyph(raw)
@@ -213,44 +302,71 @@ def main():
     # ── группы к переносу ──
     groups = [
         dict(name='rosstat_observations', tbl='rosstat_construction__observations',
-             src='rosstat', metric_col=None,
+             src='rosstat', release='main', metric_col=None,
              sql="""SELECT o.indicator_id, o.region_name, o.period, o.value, o.source_file,
                            i.indicator_name
                     FROM staging.rosstat_construction__observations o
                     LEFT JOIN staging.rosstat_construction__indicators i ON i.id=o.indicator_id""",
              key=lambda r: r['indicator_name']),
+        # Данные ЦБ лежат в двух базах; по решению владельца это ДВА РЕЛИЗА
+        # одного показателя. Обе версии сохраняются: у них разные release_id,
+        # поэтому ключ наблюдения не конфликтует и обе оценки видны рядом.
         dict(name='cbr_mortgage', tbl='cbr_lending__mortgage_monthly',
-             src='cbr', sql="""SELECT region_name, report_date, indicator, value, unit
+             src='cbr', release='main',
+             sql="""SELECT region_name, report_date, indicator, value, unit
                                FROM staging.cbr_lending__mortgage_monthly""",
              key=lambda r: r['indicator']),
+        dict(name='cbr_mortgage', tbl='rosstat_construction__cbr_mortgage_monthly',
+             src='cbr', release='alt',
+             sql="""SELECT region_name, report_date, indicator, value, unit
+                               FROM staging.rosstat_construction__cbr_mortgage_monthly""",
+             key=lambda r: r['indicator']),
         dict(name='cbr_escrow', tbl='cbr_lending__escrow_monthly',
-             src='cbr', sql="""SELECT region_name, report_date, indicator, value, unit
+             src='cbr', release='main',
+             sql="""SELECT region_name, report_date, indicator, value, unit
                                FROM staging.cbr_lending__escrow_monthly""",
              key=lambda r: r['indicator']),
-        dict(name='cbr_corp', tbl='cbr_lending__corporate_monthly',
-             src='cbr', sql="""SELECT region_name, report_date, indicator, value, unit
+        dict(name='cbr_escrow', tbl='rosstat_construction__cbr_escrow_monthly',
+             src='cbr', release='alt',
+             sql="""SELECT region_name, report_date, indicator, value, unit
+                               FROM staging.rosstat_construction__cbr_escrow_monthly""",
+             key=lambda r: r['indicator']),
+        dict(name='cbr_corporate', tbl='cbr_lending__corporate_monthly',
+             src='cbr', release='main',
+             # в cbr_lending колонки currency нет — только общий набор
+             sql="""SELECT region_name, report_date, indicator, value, unit
                                FROM staging.cbr_lending__corporate_monthly""",
              key=lambda r: r['indicator']),
-        dict(name='panel', tbl='regions_panel__panel',
-             src='rosstat', sql="""SELECT region_name, year, value, unit,
+        dict(name='cbr_corporate', tbl='rosstat_construction__cbr_corporate_monthly',
+             src='cbr', release='alt',
+             # currency различает строки одного показателя (RUB/FX/TOTAL) —
+             # берём колонку и выносим её в sub_dimension
+             sql="""SELECT region_name, report_date, indicator, currency, value, unit
+                               FROM staging.rosstat_construction__cbr_corporate_monthly""",
+             key=lambda r: r['indicator']),
+        dict(name='rosstat_panel', tbl='regions_panel__panel',
+             src='rosstat',
+             # unit и source различают строки одного кода показателя —
+             # те же коды встречаются с разными единицами из разных книг
+             sql="""SELECT region_name, year, value, unit, source,
                                           indicator_code, indicator_name
                                    FROM staging.regions_panel__panel""",
              key=lambda r: r['indicator_code']),
-        dict(name='housing_input', tbl='rosstat_construction__housing_input_operational_monthly',
+        dict(name='rosstat_housing_input', tbl='rosstat_construction__housing_input_operational_monthly',
              src='rosstat', sql="""SELECT region_name, report_year, report_month, indicator,
                                           value, unit
                                    FROM staging.rosstat_construction__housing_input_operational_monthly""",
              key=lambda r: r['indicator']),
-        dict(name='deals', tbl='rosreestr_deals__deals_by_region_quarter',
+        dict(name='rosstat_deals', tbl='rosreestr_deals__deals_by_region_quarter',
              src='rosreestr',
              sql="""SELECT region, year, quarter, n_deals, median_price_per_sqm
                     FROM staging.rosreestr_deals__deals_by_region_quarter""",
              key=lambda r: 'Количество сделок (ДКП и ДДУ), регион, квартал'),
-        dict(name='ikv', tbl='rosreestr_deals__ikv_region_quarter',
+        dict(name='rosstat_ikv', tbl='rosreestr_deals__ikv_region_quarter',
              src='rosstat',
              sql="""SELECT region, year, q, value_mln FROM staging.rosreestr_deals__ikv_region_quarter""",
              key=lambda r: 'Инвестиции в основной капитал, млн руб., регион, квартал'),
-        dict(name='price_idx', tbl='rosreestr_deals__domrf_price_index',
+        dict(name='domrf_price_index', tbl='rosreestr_deals__domrf_price_index',
              src='domrf',
              sql="""SELECT region, month, index_value FROM staging.rosreestr_deals__domrf_price_index""",
              key=lambda r: 'Индекс цен на жильё ДОМ.РФ, регион, месяц'),
@@ -268,7 +384,9 @@ def main():
         print(f"  строк: {total_rows:,}")
 
         sid = source_ids.get(g['src'])
-        rel_id = release_by_source.get(sid)
+        rel_id = pick_release(cur, sid, g.get('release', 'main'))
+        # для panel релиз определяется изданием справочника (см. цикл ниже)
+        edition_releases = {}
         if not sid or not rel_id:
             print(f"  ПРОПУСК: нет источника/релиза для {g['src']}")
             continue
@@ -287,12 +405,24 @@ def main():
         for raw_row in rcur:
             r = dict(zip(colnames, raw_row))
             mkey = norm(g['key'](r))
-            mid = metric_by_name.get(mkey) or metric_by_code.get(mkey)
+            mid = resolve_metric(mkey, g['name'],
+                                 metric_by_name, metric_by_code, metric_tags)
             if not mid:
                 skipped_no_metric += 1
                 continue
             raw_region = r.get('region_name') or r.get('region')
+            # panel: издание справочника = версия публикации
+            row_rel = rel_id
+            if g['name'] == 'rosstat_panel':
+                ed = str(r.get('source') or '').strip()
+                if ed:
+                    if ed not in edition_releases:
+                        edition_releases[ed] = ensure_release(cur, sid, ed)
+                    row_rel = edition_releases[ed]
             rid_, subdim = resolve_region(raw_region)
+            extra = subdim_extra(g['name'], r)
+            if extra:
+                subdim = f'{subdim} | {extra}' if subdim else extra
             ps, pe, fcode = parse_period(r)
             if not ps:
                 skipped_no_period += 1
@@ -305,7 +435,7 @@ def main():
                         val = r[k]
                         break
             batch.append((mid, rid_, fid, ps, pe, val, 'final' if ps.year < CUR_YEAR
-                          else 'preliminary', 'validated', sid, rel_id, subdim))
+                          else 'preliminary', 'validated', sid, row_rel, subdim))
             ins += 1
             # коммитим порциями: одна транзакция на 300 тыс. строк держит
             # блокировки и копит память на серверной стороне
@@ -332,8 +462,8 @@ def main():
 
     print("\n=== ИТОГ ===")
     print(json.dumps(report, ensure_ascii=False, indent=1))
-    cur.execute("SELECT count(*) FROM core.observation")
-    print(f"\ncore.observation: {cur.fetchone()[0]:,}")
+    cur.execute(f"SELECT count(*) FROM {TARGET}")
+    print(f"\n{TARGET}: {cur.fetchone()[0]:,}")
     conn.close()
 
 

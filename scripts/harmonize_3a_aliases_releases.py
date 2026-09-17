@@ -17,7 +17,12 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DSN = os.environ.get("PGDSN", "host=127.0.0.1 port=15432 dbname=research_wiki user=wiki")
 
 # релизы: код источника → метка версии
+# По решению владельца данные ЦБ хранятся как ДВА РЕЛИЗА одного показателя:
+# основной (cbr_lending) и копия из rosstat_construction. Оба сохраняются,
+# а не сливаются — версионность покажет, откуда какая оценка.
 RELEASES = {
+    'cbr::rosstat_construction': (
+        'Срез ЦБ на 17.09.2026 (копия в rosstat_construction.db)', 'loaded'),
     'rosstat':   ('Срез Росстата на 17.09.2026 (перенос из SQLite)', 'loaded'),
     'cbr':       ('Срез Банка России на 17.09.2026 (перенос из SQLite)', 'loaded'),
     'domrf':     ('Срез ДОМ.РФ на 17.09.2026 (перенос из SQLite)', 'loaded'),
@@ -88,7 +93,8 @@ def register_releases(cur, source_ids, dry):
     """Создать по одному релизу на источник."""
     ins = 0
     for code, (label, status) in RELEASES.items():
-        sid = source_ids.get(code)
+        src_code = code.split('::')[0]
+        sid = source_ids.get(src_code)
         if not sid:
             continue
         if dry:

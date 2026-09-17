@@ -52,3 +52,4 @@
 - [[queries/database-deployment-plan]] — постановка на развёртывание БД в YC (6 фаз)
 - [[queries/retrieve-for-train-google]] — разбор Retrieve-for-Train (Google/ICML 2026): RL-компиляция поиска
 - [[queries/yandex-cloud-services]] — сервисы YC для вики: pgvector, DataLens, Search API
+- [[queries/search-user-flow]] — пользовательский путь: полнотекстовый поиск + переход в документ

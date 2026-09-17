@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
-Nightly backup: VACUUM + sync SQLite DBs to GCS.
+Nightly backup: VACUUM + sync SQLite DBs to YC Object Storage.
 
 - VACUUMs each DB to reclaim space and reduce upload size
-- Syncs all DB files to GCS bucket via gcs_sync.py
+- Syncs all DB files to YC bucket wiki-research via yc_sync.py
 - Logs results to data/backup_log.jsonl
 - Designed for cron: hermes cronjob with no_agent=True
 
 Exit codes:
   0 — success (all DBs vacuumed and synced)
   1 — partial failure (some DBs failed, logged)
-  2 — fatal (gsutil not available or GCS auth issue)
+  2 — fatal (rclone unavailable or YC auth issue)
 """
 
 import json
@@ -167,19 +167,16 @@ def main():
     free_after_vacuum = check_free_disk(DATA_DIR)
     print(f"[nightly_backup] VACUUM freed {total_freed:.1f} MB total, disk now: {free_after_vacuum:.1f} GB")
 
-    # Step 2: Sync to GCS via gcs_sync.py
-    print("[nightly_backup] Syncing to GCS...")
+    # Step 2: Синхронизация в YC Object Storage через yc_sync.py
+    print("[nightly_backup] Syncing to YC Object Storage...")
     sync_start = time.time()
-    gsutil_path = str(Path.home() / "opt" / "google-cloud-sdk" / "bin" / "gsutil")
-    env = {**os.environ, "GSUTIL_PATH": gsutil_path}
     try:
         result = subprocess.run(
-            [sys.executable, str(REPO_ROOT / "scripts" / "gcs_sync.py"), "sync"],
+            [sys.executable, str(REPO_ROOT / "scripts" / "yc_sync.py"), "sync"],
             capture_output=True,
             text=True,
             timeout=600,
             cwd=str(REPO_ROOT),
-            env=env,
         )
         sync_elapsed = time.time() - sync_start
         sync_status = "ok" if result.returncode == 0 else "error"
@@ -187,33 +184,32 @@ def main():
         sync_error = result.stderr[-500:] if result.stderr else ""
 
         if result.returncode != 0:
-            print(f"[nightly_backup] GCS sync FAILED: {sync_error}")
+            print(f"[nightly_backup] YC sync FAILED: {sync_error}")
         else:
-            print(f"[nightly_backup] GCS sync OK ({sync_elapsed:.1f}s)")
+            print(f"[nightly_backup] YC sync OK ({sync_elapsed:.1f}s)")
 
     except subprocess.TimeoutExpired:
         sync_status = "timeout"
         sync_output = ""
         sync_error = "sync timed out after 600s"
         sync_elapsed = 600
-        print("[nightly_backup] GCS sync TIMED OUT")
+        print("[nightly_backup] YC sync TIMED OUT")
     except Exception as e:
         sync_status = "error"
         sync_output = ""
         sync_error = str(e)
         sync_elapsed = time.time() - sync_start
-        print(f"[nightly_backup] GCS sync ERROR: {e}")
+        print(f"[nightly_backup] YC sync ERROR: {e}")
 
     # Step 3: Verify
-    print("[nightly_backup] Verifying GCS consistency...")
+    print("[nightly_backup] Verifying YC Object Storage consistency...")
     try:
         result = subprocess.run(
-            [sys.executable, str(REPO_ROOT / "scripts" / "gcs_sync.py"), "verify"],
+            [sys.executable, str(REPO_ROOT / "scripts" / "yc_sync.py"), "verify"],
             capture_output=True,
             text=True,
             timeout=120,
             cwd=str(REPO_ROOT),
-            env=env,
         )
         verify_output = result.stdout
     except Exception as e:

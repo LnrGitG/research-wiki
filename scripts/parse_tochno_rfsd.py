@@ -5,7 +5,7 @@
 """
 import openpyxl, sqlite3, os, sys
 from pathlib import Path
-from gcs_sync import ensure_db
+from yc_sync import ensure_db
 
 DB = str(ensure_db('fns_tochno_sectors.db'))
 RAW = str(Path(__file__).resolve().parent.parent / 'raw' / 'fns' / 'tochno-st' / 'by_section')

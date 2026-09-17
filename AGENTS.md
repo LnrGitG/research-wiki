@@ -40,14 +40,18 @@ index.md, log.md   # оглавление и журнал действий
 - `gcs_sync.py` — синхронизация с GCS: `ensure_db()`, `raw_path()`, CLI sync/pull/status/verify
 - Python: `~/.hermes/hermes-agent/venv/bin/python3` (PEP 668 на системном 3.12)
 
-## GCS-хранилище (тяжёлые данные)
-- **Бакет:** `wiki-research-508405` (GCS, gcsfuse `~/gcs-wiki/`)
-- **raw/** → symlink на `~/gcs-wiki/raw/` (PDF, XLSX, JSON, RAR — 2.1 ГБ)
-- **data/db/** → GCS-источник для SQLite DB (1.35 ГБ); `ensure_db()` скачивает по требованию
-- **data/archive/** → JSONL-архивы на GCS (106 МБ)
-- **Скрипты** используют `from gcs_sync import ensure_db` для DB и symlink `raw/` для исходников
-- CLI: `python3 scripts/gcs_sync.py sync|pull|status|verify`
+## Хранилище тяжёлых данных (YC Object Storage)
+- **Бакет:** `wiki-research` (Yandex Object Storage, rclone-remote `yc-s3`)
+- **raw/** → symlink на `~/yc-wiki/raw/` (монтирование rclone, PDF/XLSX/JSON — 2.1 ГБ)
+- **data/db/** → источник для SQLite DB (1.45 ГБ); `ensure_db()` скачивает по требованию
+- **data/archive/** → JSONL-архивы (110 МБ)
+- **Скрипты** используют `from yc_sync import ensure_db` для DB и симлинк `raw/` для исходников
+- CLI: `python3 scripts/yc_sync.py sync|pull|status|verify`
+- **Монтирование:** systemd-юнит `yc-wiki-mount.service` (user), автозапуск включён
 - **НЕ удалять локальные DB** (rosstat_construction.db и др.) — это горячий кэш
+
+Google Cloud выведен из эксплуатации 17.09.2026: 3.5 ГБ перенесены в YC, `gcs_sync.py`
+удалён, `gcsfuse` отключён. Исторические детали — `queries/database-deployment-plan.md`.
 
 ## Что не трогать
 - `raw/` — symlink на GCS; исходники только добавлять (через `gcs_sync.py sync`)

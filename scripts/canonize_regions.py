@@ -8,7 +8,7 @@ P7: Канонизация регионов и единиц измерения.
 import sqlite3
 import re
 from pathlib import Path
-from gcs_sync import ensure_db
+from yc_sync import ensure_db
 
 DB = str(ensure_db('rosstat_construction.db'))
 

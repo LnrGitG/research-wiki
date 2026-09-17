@@ -10,7 +10,7 @@ import sys
 import json
 from datetime import datetime
 from pathlib import Path
-from gcs_sync import ensure_db
+from yc_sync import ensure_db
 
 from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent

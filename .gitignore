@@ -16,12 +16,12 @@ _archive/
 raw/rosstat/socioeconomic_regions/*.rar
 raw/rosstat/socioeconomic_regions/fed_okr_*.rar
 
-# ── GCS-backed heavy data (local = symlink to gcs-wiki or cached copy) ──
-# raw/ is a symlink to ~/gcs-wiki/raw/ (GCS bucket via gcsfuse)
-# All heavy raw data lives on GCS, not in git
+# ── YC Object Storage heavy data (local = symlink to yc-wiki or cached copy) ──
+# raw/ is a symlink to ~/yc-wiki/raw/ (YC bucket wiki-research via rclone mount)
+# All heavy raw data lives in YC Object Storage, not in git
 raw/
 
-# Large SQLite databases (downloaded on-demand via gcs_sync.ensure_db)
+# Large SQLite databases (downloaded on-demand via yc_sync.ensure_db)
 data/rosstat_construction.db
 data/regions_panel.db
 data/cbr_lending.db

@@ -4,7 +4,7 @@
 Мы берём строку РФ ('Российская Федерация без учета') в первой единице измерения (обычно тыс.тонн/тыс.м3/млн м3)"""
 import re, sqlite3, datetime
 from pathlib import Path
-from gcs_sync import ensure_db
+from yc_sync import ensure_db
 
 T = open('/home/lnr/.hermes/cache/web/rosstat.gov.ru-8fbd06702e.md').read()
 con = sqlite3.connect(str(ensure_db('rosstat_construction.db')))

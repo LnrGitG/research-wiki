@@ -3,7 +3,7 @@
 import re, sqlite3, glob, os
 from pathlib import Path
 from openpyxl import load_workbook
-from gcs_sync import ensure_db
+from yc_sync import ensure_db
 
 RAW = str(Path(__file__).resolve().parent.parent / 'raw' / 'cbr')
 DB = str(ensure_db('cbr_lending.db'))

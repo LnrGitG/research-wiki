@@ -53,3 +53,4 @@
 - [[queries/retrieve-for-train-google]] — разбор Retrieve-for-Train (Google/ICML 2026): RL-компиляция поиска
 - [[queries/yandex-cloud-services]] — сервисы YC для вики: pgvector, DataLens, Search API
 - [[queries/search-user-flow]] — пользовательский путь: полнотекстовый поиск + переход в документ
+- [[queries/acceptance-criteria-check]] — проверка пяти критериев приёмки единой БД

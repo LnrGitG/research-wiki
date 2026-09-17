@@ -1,0 +1,99 @@
+region_code,name,level,okato,parent_code
+ru,Российская Федерация,country,,
+cfd,Центральный федеральный округ,federal_district,,ru
+szfd,Северо-Западный федеральный округ,federal_district,,ru
+ufd,Южный федеральный округ,federal_district,,ru
+skfd,Северо-Кавказский федеральный округ,federal_district,,ru
+pfd,Приволжский федеральный округ,federal_district,,ru
+urfd,Уральский федеральный округ,federal_district,,ru
+sfd,Сибирский федеральный округ,federal_district,,ru
+dfd,Дальневосточный федеральный округ,federal_district,,ru
+belgorod,Белгородская область,region,14,cfd
+bryansk,Брянская область,region,15,cfd
+vladimir,Владимирская область,region,17,cfd
+voronezh,Воронежская область,region,20,cfd
+ivanovo,Ивановская область,region,24,cfd
+kaluga,Калужская область,region,29,cfd
+kostroma,Костромская область,region,34,cfd
+kursk,Курская область,region,38,cfd
+lipetsk,Липецкая область,region,42,cfd
+moscow_obl,Московская область,region,46,cfd
+oryol,Орловская область,region,54,cfd
+ryazan,Рязанская область,region,61,cfd
+smolensk,Смоленская область,region,66,cfd
+tambov,Тамбовская область,region,68,cfd
+tver,Тверская область,region,28,cfd
+tula,Тульская область,region,70,cfd
+yaroslavl,Ярославская область,region,78,cfd
+moscow,Москва,region,45,cfd
+karelia,Республика Карелия,region,86,szfd
+komi,Республика Коми,region,87,szfd
+arkhangelsk,Архангельская область (без НАО),region,11,szfd
+nenets_ao,Ненецкий автономный округ,region,11,szfd
+vologda,Вологодская область,region,19,szfd
+kaliningrad,Калининградская область,region,27,szfd
+leningrad,Ленинградская область,region,41,szfd
+murmansk,Мурманская область,region,47,szfd
+novgorod,Новгородская область,region,49,szfd
+pskov,Псковская область,region,58,szfd
+spb,Санкт-Петербург,region,40,szfd
+adygea,Республика Адыгея,region,79,ufd
+kalmykia,Республика Калмыкия,region,85,ufd
+crimea,Республика Крым,region,35,ufd
+krasnodar,Краснодарский край,region,03,ufd
+astrakhan,Астраханская область,region,12,ufd
+volgograd,Волгоградская область,region,18,ufd
+rostov,Ростовская область,region,60,ufd
+sevastopol,Севастополь,region,67,ufd
+dagestan,Республика Дагестан,region,82,skfd
+ingushetia,Республика Ингушетия,region,26,skfd
+kabardino,Кабардино-Балкарская Республика,region,83,skfd
+karachaevo,Карачаево-Черкесская Республика,region,91,skfd
+north_ossetia,Республика Северная Осетия — Алания,region,90,skfd
+chechnya,Чеченская Республика,region,96,skfd
+stavropol,Ставропольский край,region,07,skfd
+bashkortostan,Республика Башкортостан,region,80,pfd
+marij_el,Республика Марий Эл,region,88,pfd
+mordovia,Республика Мордовия,region,89,pfd
+tatarstan,Республика Татарстан,region,92,pfd
+udmurtia,Удмуртская Республика,region,94,pfd
+chuvashia,Чувашская Республика,region,97,pfd
+perm,Пермский край,region,57,pfd
+kirov,Кировская область,region,33,pfd
+nizhni,Нижегородская область,region,22,pfd
+orenburg,Оренбургская область,region,53,pfd
+penza,Пензенская область,region,56,pfd
+samara,Самарская область,region,36,pfd
+saratov,Саратовская область,region,63,pfd
+ulyanovsk,Ульяновская область,region,73,pfd
+kurgan,Курганская область,region,37,urfd
+sverdlovsk,Свердловская область,region,65,urfd
+tyumen,Тюменская область (без ХМАО и ЯНАО),region,71,urfd
+khanty,Ханты-Мансийский автономный округ — Югра,region,71,urfd
+yamal,Ямало-Ненецкий автономный округ,region,71,urfd
+chelyabinsk,Челябинская область,region,75,urfd
+altai_rep,Республика Алтай,region,84,sfd
+khakasia,Республика Хакасия,region,95,sfd
+tuva,Республика Тыва,region,93,sfd
+altai_terr,Алтайский край,region,01,sfd
+krasnoyarsk,Красноярский край,region,04,sfd
+irkutsk,Иркутская область,region,25,sfd
+kemerovo,Кемеровская область — Кузбасс,region,32,sfd
+novosibirsk,Новосибирская область,region,50,sfd
+omsk,Омская область,region,52,sfd
+tomsk,Томская область,region,69,sfd
+buryatia,Республика Бурятия,region,81,dfd
+sakha,Республика Саха (Якутия),region,98,dfd
+zabaikalsk,Забайкальский край,region,76,dfd
+kamchatka,Камчатский край,region,30,dfd
+primorsky,Приморский край,region,05,dfd
+khabarovsk,Хабаровский край,region,08,dfd
+amur,Амурская область,region,10,dfd
+magadan,Магаданская область,region,44,dfd
+sakhalin,Сахалинская область,region,64,dfd
+jewish_ao,Еврейская автономная область,region,99,dfd
+chukotka,Чукотский автономный округ,region,77,dfd
+dnr,Донецкая Народная Республика,region,,ufd
+lnr,Луганская Народная Республика,region,,ufd
+zaporozhye,Запорожская область,region,,ufd
+kherson,Херсонская область,region,,ufd

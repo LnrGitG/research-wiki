@@ -39,7 +39,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </head>
 <body>
 
-<a href="vector-search.html" class="back">← К поиску</a>
+<a href="search-full.html" class="back">← К поиску</a>
 <div class="meta" id="meta" style="display:none"></div>
 <div id="content"><div class="loading">Загрузка…</div></div>
 
@@ -67,6 +67,7 @@ const md=await r.text();
 // Render markdown
 document.getElementById('content').innerHTML=marked.parse(md);
 
+
 // Show meta bar
 const meta=document.getElementById('meta');
 meta.style.display='flex';
@@ -77,11 +78,68 @@ meta.innerHTML=
 // Set page title
 document.title=path.split('/').pop().replace('.md','')+' | Research Wiki';
 
+// Переход к найденному фрагменту (после рендера!)
+jumpToMatch();
+
 }catch(e){
 document.getElementById('content').innerHTML=
 '<div class="error">Не удалось загрузить: '+e.message+'<br><br>'+
 '<a href="'+ghUrl+'" style="color:#4fc3f7">Открыть на GitHub ↗</a></div>';
 }
+}
+
+
+// Безопасная прокрутка: scrollIntoView есть не во всех окружениях
+function scrollToEl(el){
+  if(!el) return;
+  try{
+    if(typeof el.scrollIntoView==='function') el.scrollIntoView({block:'center', behavior:'smooth'});
+  }catch(e){ /* прокрутка не критична */ }
+}
+
+// ── переход к найденному фрагменту ──────────────────────────────────
+// Два механизма:
+//  (а) Text Fragments (#:~:text=...) — поддерживают Chrome/Safari/Edge:
+//      браузер сам находит фразу, прокручивает и подсвечивает;
+//  (б) параметр ?q= — fallback: программно ищем фразу и прокручиваем.
+function jumpToMatch(){
+  const raw = location.hash || '';
+  const tf = raw.match(/#:~:text=([^&]*)/);
+  // (б) fallback через ?q=
+  const qp = params.get('q');
+  const needle = qp || (tf ? decodeURIComponent(tf[1]) : '');
+  if(!needle) return;
+  const term = needle.split(/\s+/).filter(w=>w.length>2)[0];
+  if(!term) return;
+  // Поддержку Text Fragments выдаёт document.fragmentDirective
+  // (Chrome/Edge/Safari). В Firefox его нет — тогда подсвечиваем вручную,
+  // иначе переход к фрагменту молча ничего не сделал бы.
+  const tfSupported = ('fragmentDirective' in document);
+  setTimeout(function(){
+    const root = document.getElementById('content');
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    let node, found = null;
+    const needleLow = term.toLowerCase();
+    while(node = walker.nextNode()){
+      const txt = node.nodeValue.toLowerCase();
+      if(txt.includes(needleLow)){ found = {node, idx: txt.indexOf(needleLow)}; break; }
+    }
+    if(!found) return;
+    // подсвечиваем вручную, только если браузер сам этого не сделает
+    if(!tf || !tfSupported){
+      try{
+        const range = document.createRange();
+        range.setStart(found.node, found.idx);
+        range.setEnd(found.node, found.idx + term.length);
+        const mark = document.createElement('mark');
+        mark.style.cssText='background:#3a3218;color:#ffd54f;padding:0 2px;border-radius:2px';
+        range.surroundContents(mark);
+        scrollToEl(mark);
+      }catch(e){
+        scrollToEl(found.node.parentElement);
+      }
+    }
+  }, 120);
 }
 </script>
 </body>

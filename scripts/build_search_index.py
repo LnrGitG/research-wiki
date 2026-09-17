@@ -23,64 +23,88 @@ REPO = Path(__file__).resolve().parent.parent
 os.chdir(REPO)
 OUT = REPO / "docs"
 
-# ── 1. Стеммер для русского (упрощённый Snowball) ────────────────────
-# Полный Snowball для русского ~500 строк; здесь — практичная версия,
-# покрывающая основные падежные окончания. Даёт recall без потери точности.
-VOWELS = 'аеиоуыэюя'
-PERFECTIVE_GERUND = ('вшись', 'вши', 'в', 'вся')
-ADJECTIVE = ('ее', 'ие', 'ые', 'ое', 'ими', 'ыми', 'ей', 'ий', 'ый', 'ой',
-             'ем', 'им', 'ым', 'ом', 'его', 'ого', 'ему', 'ому', 'их', 'ых',
-             'ую', 'юю', 'ая', 'яя', 'ою', 'ею')
-PARTICIPLE = ('ем', 'нн', 'вш', 'ющ', 'щ')
-VERB = ('ила', 'ыла', 'ена', 'ейте', 'уйте', 'ите', 'или', 'ыли', 'ей',
-        'уй', 'ил', 'ыл', 'им', 'ым', 'ен', 'ило', 'ыло', 'ено', 'ят',
-        'ует', 'уют', 'ит', 'ыт', 'ены', 'ить', 'ыть', 'ишь', 'ую', 'ю')
-NOUN = ('а', 'ев', 'ов', 'ие', 'ье', 'е', 'иями', 'ями', 'ами', 'еи', 'ии',
-        'и', 'ией', 'ей', 'ой', 'ий', 'й', 'иям', 'ям', 'ием', 'ем', 'ам',
-        'ом', 'о', 'у', 'ах', 'иях', 'ях', 'ы', 'ь', 'ию', 'ью', 'ю', 'ия',
-        'ья', 'я')
-SUPERLATIVE = ('ейш', 'ейше')
-DERIVATIONAL = ('ост', 'ость')
+# ── 1. Лемматизация через pymorphy3 ──────────────────────────────────
+# pymorphy3 даёт одинаковую нормальную форму для всех словоформ
+# («предложения» и «предложение» → «предложение»), чего самодельный
+# стеммер не обеспечивал. Словарь форм→лемм выгружается на клиент,
+# чтобы браузер лемматизировал запрос тем же способом.
+import pymorphy3
+_MORPH = pymorphy3.MorphAnalyzer()
+_LEMMA_CACHE = {}
 
-def stem(word: str) -> str:
-    """Упрощённый стеммер для русского + английского."""
-    if not word: return word
+def lemma(word: str) -> str:
+    """Нормальная форма слова. Английский — без изменений (кроме -s)."""
     w = word.lower()
-    # английский: простой суффиксный стеммер
     if re.fullmatch(r'[a-z]+', w):
-        for suf in ('ingly','edly','ing','ed','ies','es','s'):
+        # англ.: лёгкий суффиксный стемминг
+        for suf in ('ingly', 'edly', 'ing', 'ed', 'ies', 'es', 's'):
             if len(w) > len(suf) + 2 and w.endswith(suf):
                 return w[:-len(suf)]
         return w
-    if not re.fullmatch(r'[а-яё]+', w): return w
-    if len(w) <= 3: return w
-    # убираем мягкий знак и й в конце (частично)
-    w = re.sub(r'[йь]$', '', w) if len(w) > 4 else w
-    # прилагательные/причастия
-    for suf in ADJECTIVE:
-        if w.endswith(suf) and len(w) > len(suf) + 3:
-            w = w[:-len(suf)]; break
-    # глаголы
-    for suf in VERB:
-        if w.endswith(suf) and len(w) > len(suf) + 4:
-            w = w[:-len(suf)]; break
-    # существительные
-    for suf in NOUN:
-        if w.endswith(suf) and len(w) > len(suf) + 3:
-            w = w[:-len(suf)]; break
-    # усечение длинных «хвостов» (ость, ост)
-    for suf in DERIVATIONAL:
-        if w.endswith(suf) and len(w) > len(suf) + 4:
-            w = w[:-len(suf)]; break
-    return w
+    if not re.fullmatch(r'[а-яё]+', w):
+        return w
+    l = _LEMMA_CACHE.get(w)
+    if l is None:
+        l = _MORPH.parse(w)[0].normal_form
+        _LEMMA_CACHE[w] = l
+    return l
+
+def stem(word: str) -> str:
+    """Совместимость: синоним lemma()."""
+    return lemma(word)
 
 TOKEN_RE = re.compile(r'[а-яёa-z]{3,}')
 
 def tokenize(text: str):
-    """-> список стеммов"""
-    return [stem(t) for t in TOKEN_RE.findall(text.lower())]
+    """-> список лемм"""
+    return [lemma(t) for t in TOKEN_RE.findall(text.lower())]
 
 # ── 2. Сбор документов ───────────────────────────────────────────────
+
+def _clean_title(t: str) -> str:
+    """Убрать markdown-разметку, HTML, сноски из заголовка."""
+    t = re.sub(r'<[^>]+>', '', t)                  # HTML-теги
+    t = re.sub(r'[*_~`>]+', '', t)                 # markdown-выделение
+    t = re.sub(r'\[([^\]]*)\]\([^)]*\)', r'\1', t) # ссылки
+    t = re.sub(r'^#+\s*', '', t)                   # решётки
+    t = re.sub(r'<sup>.*?</sup>', '', t)
+    t = re.sub(r'\s+', ' ', t).strip(' .,;:—-')
+    return t
+
+# служебные шапки, которые не годятся в заголовок
+_JUNK = re.compile(
+    r'^(УДК|ББК|JEL|DOI|СЕРИЯ|NBER|Working\s+Paper|Рабочий\s+документ|'
+    r'ОРИГИНАЛЬНАЯ\s+СТАТЬЯ|Резюме|Abstract|Аннотация|Препринт|Preprint|'
+    r'Research\s+Paper|Discussion\s+Paper|Staff\s+Report|'
+    r'[А-Я\s\-]{18,}$)'                       # сплошной капс длиннее 18
+, re.I)
+
+def _first_heading(body: str) -> str:
+    """Первый осмысленный заголовок: пропускает служебные шапки."""
+    for line in body.splitlines()[:80]:
+        line = line.strip()
+        if not line.startswith('#'):
+            continue
+        t = _clean_title(line)
+        if not t or len(t) < 8:
+            continue
+        if _JUNK.match(t):
+            continue
+        return t
+    return ''
+
+def _looks_like_filename(t: str) -> bool:
+    return bool(re.search(r'\.(md|pdf|RU|RU\.md)$', t, re.I)) or bool(re.match(r'^[\w\-]{25,}$', t))
+
+def _fallback_title(path: str) -> str:
+    """Человекочитаемое имя из имени файла, если заголовка нет."""
+    n = os.path.basename(path)
+    n = re.sub(r'\.(RU\.)?md$', '', n, flags=re.I)
+    n = n.replace('-', ' ').replace('_', ' ').strip()
+    # убираем ведущие номера и «Копия -»
+    n = re.sub(r'^(копия\s*[-–]\s*|\d+[.\s]+)', '', n, flags=re.I)
+    return n[:120] if n else os.path.basename(path)
+
 def split_frontmatter(s):
     m = re.match(r'^---\s*\n(.*?)\n---\s*\n', s, re.S)
     if m:
@@ -113,9 +137,15 @@ def collect():
               'other')
         # нормализованное тело для сравнения дублей
         norm = re.sub(r'\s+', ' ', re.sub(r'[#*`>\[\]()|_]', ' ', body)).strip().lower()
+        # заголовок: frontmatter → первый осмысленный заголовок → имя файла
+        title = _clean_title(str(fm.get('title') or ''))
+        if not title or len(title) < 8 or _looks_like_filename(title) or _JUNK.match(title):
+            title = _first_heading(body)
+        if not title:
+            title = _fallback_title(f)
         docs.append({
             'path': f,
-            'title': str(fm.get('title') or '').strip() or _first_heading(body) or os.path.basename(f),
+            'title': title,
             'cat': cat,
             'body': body,
             'norm_hash': hashlib.sha256(norm.encode()).hexdigest()[:16],
@@ -125,13 +155,6 @@ def collect():
             'authors': fm.get('authors') or fm.get('author') or '',
         })
     return docs
-
-def _first_heading(body):
-    for line in body.splitlines():
-        line = line.strip()
-        if line.startswith('#'):
-            return re.sub(r'^#+\s*', '', line).strip()
-    return ''
 
 # ── 3. Дедупликация ──────────────────────────────────────────────────
 def canon_score(d):
@@ -244,4 +267,23 @@ if __name__ == "__main__":
     json.dump({'kept': [d['path'] for d in canon],
                'dropped': [d['path'] for d in dropped]},
               open(REPO/'data/search_dedupe.json','w'), ensure_ascii=False, indent=1)
+
+    # ── 6. Словарь форм→лемм для клиента ────────────────────────────
+    # Браузер не имеет pymorphy3, поэтому отдаём ему отображение
+    # «словоформа → лемма», чтобы запрос лемматизировался одинаково
+    # с индексом. Хранится только то, что реально меняется.
+    print("\nСловарь форм→лемм...")
+    forms = set()
+    for d in canon:
+        forms.update(t.lower() for t in TOKEN_RE.findall(d['body']))
+    fmap = {}
+    for w in forms:
+        l = lemma(w)
+        if l != w:
+            fmap[w] = l
+    p3 = OUT / 'search-lemmas.json.gz'
+    with gzip.open(p3, 'wt', encoding='utf-8', compresslevel=9) as f:
+        json.dump(fmap, f, ensure_ascii=False, separators=(',', ':'))
+    print(f"  пар: {len(fmap):,} | {p3.name}: {p3.stat().st_size/1e6:.3f} МБ")
+
     print("\nГотово. Список дедупликации: data/search_dedupe.json")

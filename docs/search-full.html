@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Поиск | Research Wiki</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f1117;color:#c8d0e0;padding:12px;max-width:850px;margin:0 auto;line-height:1.6;font-size:16px}
+.back{display:inline-block;margin-bottom:10px;color:#4fc3f7;font-size:0.85rem;text-decoration:none}
+h1{color:#4fc3f7;font-size:1.15rem;margin:6px 0 12px;font-weight:600}
+#q{width:100%;padding:13px 15px;font-size:16px;background:#1a1d29;border:1px solid #2a3a4a;border-radius:8px;color:#e0e0e0;outline:none}
+#q:focus{border-color:#4fc3f7}
+#q::placeholder{color:#556}
+#hint{font-size:0.75rem;color:#556;margin:6px 0 14px;min-height:16px}
+#hint b{color:#81c784}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.f{font-size:0.78rem;padding:4px 10px;border-radius:14px;background:#1a1d29;border:1px solid #2a2d3a;color:#889;cursor:pointer;user-select:none}
+.f.on{background:#1e3a2a;border-color:#2e5a3a;color:#81c784}
+.card{background:#1a1d29;border:1px solid #2a2d3a;border-radius:8px;padding:13px 15px;margin-bottom:10px}
+.card h3{margin:0 0 5px;font-size:0.98rem;font-weight:600}
+.card h3 a{color:#4fc3f7;text-decoration:none}
+.card h3 a:active{color:#81c784}
+.tag{display:inline-block;font-size:0.68rem;padding:1px 7px;border-radius:9px;background:#222531;color:#788;margin-left:6px;vertical-align:middle;font-weight:400}
+.tag.ru{background:#2a2438;color:#b39ddb}
+.tag.query{background:#1e2a38;color:#64b5f6}
+.snip{font-size:0.84rem;color:#96a0b0;margin-top:4px;line-height:1.55}
+.snip mark{background:#3a3218;color:#ffd54f;padding:0 2px;border-radius:2px}
+.meta{font-size:0.7rem;color:#556;margin-top:6px}
+.meta a{color:#4fc3f7;text-decoration:none}
+#res{margin-top:4px}
+.empty{text-align:center;color:#667;padding:34px 20px;font-size:0.9rem}
+.warn{font-size:0.78rem;color:#ffb74d;margin-bottom:8px}
+.spin{text-align:center;color:#4fc3f7;padding:24px;font-size:0.85rem}
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back">← Research Wiki</a>
+<h1>Поиск по вики</h1>
+<input id="q" type="search" placeholder="эластичность предложения жилья, эскроу, nowcasting…" autocomplete="off" autofocus>
+<div id="hint"></div>
+<div class="filters" id="filters"></div>
+<div id="res"><div class="empty">Начните печатать — поиск идёт по полному тексту всех документов</div></div>
+
+<script>
+// ── состояние ────────────────────────────────────────────────────────
+let IDX=null, CORPUS=null;
+let activeFilter='all';
+const FILTERS=[['all','все'],['paper','статьи'],['paper_ru','переводы'],['query','записки'],['concept','концепты'],['review','обзоры']];
+
+// ── лемматизация запроса через словарь форм→лемм ─────────────────────
+// Точная копия логики pymorphy3 недоступна в браузере, поэтому
+// используем выгруженный словарь LMAP (форма → нормальная форма).
+// Слова, которых нет в словаре, уже являются леммами.
+let LMAP = {};
+
+function lemma(w){
+  w = String(w).toLowerCase();
+  if(/^[a-z]+$/.test(w)){
+    for(const s of ['ingly','edly','ing','ed','ies','es','s']){
+      if(w.length > s.length + 2 && w.endsWith(s)) return w.slice(0, -s.length);
+    }
+    return w;
+  }
+  return LMAP[w] || w;   // русское слово → лемма из словаря
+}
+
+const TOK = /[а-яёa-z]{3,}/g;
+function toks(s){
+  const out = [];
+  const m = String(s).toLowerCase().match(TOK);
+  if(!m) return out;
+  for(const t of m) out.push(lemma(t));
+  return out;
+}
+
+
+// ── фоновая загрузка корпуса абзацев ────────────────────────────────
+let corpusReady=false;
+async function loadCorpusInBackground(){
+  try{
+    CORPUS=await loadJson('search-corpus.json.gz');
+    corpusReady=true;
+    // если пользователь уже что-то искал — обновим сниппеты
+    const q=document.getElementById('q');
+    if(q && q.value.trim().length>=2) run();
+  }catch(e){
+    corpusReady=false;  // сниппеты не критичны
+  }
+}
+
+// ── загрузка данных ──────────────────────────────────────────────────
+// ВАЖНО: GitHub Pages отдаёт .gz с заголовком Content-Encoding: gzip,
+// поэтому fetch() может вернуть УЖЕ распакованные данные. Пробуем оба пути.
+async function loadJson(url){
+  const r=await fetch(url);
+  if(!r.ok) throw new Error('HTTP '+r.status+' '+url);
+  const buf=await r.arrayBuffer();
+  // 1) пробуем распаковать gzip вручную (magic bytes 1f 8b)
+  const b=new Uint8Array(buf);
+  if(b.length>2 && b[0]===0x1f && b[1]===0x8b){
+    try{
+      if('DecompressionStream' in window){
+        const ds=new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'));
+        return await new Response(ds).json();
+      }
+    }catch(e){/* падаём на путь 2 */}
+  }
+  // 2) данные уже распакованы сервером — парсим как JSON
+  const text=new TextDecoder('utf-8').decode(buf);
+  return JSON.parse(text);
+}
+
+const CAT_LABEL={paper:'статья',paper_ru:'перевод',query:'записка',concept:'концепт',review:'обзор',entity:'сущность',other:'—'};
+
+// ── подсветка ────────────────────────────────────────────────────────
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+function highlight(text, qs){
+  // подсветить слова, чьи стеммы совпадают с запросом
+  let out='', re=/([а-яёa-z]+)/gi, last=0, m;
+  while((m=re.exec(text))!==null){
+    const w=m[1];
+    if(qs.includes(lemma(w))){
+      out+=esc(text.slice(last,m.index))+'<mark>'+esc(w)+'</mark>';
+      last=m.index+w.length;
+    }
+  }
+  out+=esc(text.slice(last));
+  return out;
+}
+
+// ── сниппет: абзац с наибольшим покрытием запроса ────────────────────
+function bestSnippet(docIdx, qs){
+  const paras=(CORPUS&&CORPUS[docIdx])||[];
+  let best='', bestScore=0, bestHit='';
+  for(const p of paras){
+    const pt=toks(p);
+    let sc=0;
+    for(const q of qs) sc+=pt.filter(x=>x===q).length;
+    if(sc>bestScore){bestScore=sc;best=p}
+  }
+  if(!best) return '';
+  // обрезаем вокруг первого совпадения
+  const pt=best.split(/(\s+)/);
+  let pos=0, hit=-1;
+  for(let i=0;i<pt.length;i++){
+    if(qs.includes(lemma(pt[i].replace(/[^\wа-яё]/gi,'')))){hit=i;break}
+  }
+  let snip;
+  if(best.length<=340) snip=best;
+  else{
+    const start=Math.max(0,hit*8-60);
+    snip=(start>0?'…':'')+best.slice(start,start+320)+'…';
+  }
+  return highlight(snip,qs);
+}
+
+// ── поиск ────────────────────────────────────────────────────────────
+function search(query){
+  const qs=[...new Set(toks(query))];
+  if(!qs.length) return [];
+  const T=IDX.terms;
+  // документы, где есть ВСЕ термы (AND)
+  let sets=qs.map(q=>new Set((T[q]||[]).map(x=>x[0])));
+  let inter=sets.reduce((a,b)=>new Set([...a].filter(x=>b.has(x))));
+  let mode='AND', docs;
+  if(inter.size===0){
+    mode='OR';
+    const m=new Map();
+    for(const q of qs) for(const [d,tf] of (T[q]||[])) m.set(d,(m.get(d)||0)+tf);
+    docs=[...m.keys()];
+  } else docs=[...inter];
+
+  // фильтр по типу
+  if(activeFilter!=='all') docs=docs.filter(d=>IDX.docs[d].c===activeFilter);
+
+  // ранжирование: сумма tf * редкость терма (IDF)
+  const N=IDX.docs.length;
+  const scored=docs.map(d=>{
+    let s=0;
+    for(const q of qs){
+      const lst=T[q]||[];
+      const idx=lst.findIndex(x=>x[0]===d);
+      const tf=idx>=0?lst[idx][1]:0;
+      const idf=Math.log(1+N/Math.max(1,lst.length));
+      s+=tf*idf;
+    }
+    return [s,d];
+  });
+  scored.sort((a,b)=>b[0]-a[0]);
+  return {mode, total:scored.length, results:scored.slice(0,40), qs};
+}
+
+// ── отрисовка ────────────────────────────────────────────────────────
+function render(out){
+  const res=document.getElementById('res');
+  const hint=document.getElementById('hint');
+  if(!out||!out.results.length){
+    res.innerHTML='<div class="empty">Ничего не найдено. Попробуйте другие слова.</div>';
+    hint.textContent=''; return;
+  }
+  const {mode,results,qs,total}=out;
+  hint.innerHTML=`найдено <b>${total}</b>${total>results.length?' (показаны первые '+results.length+')':''}${mode==='OR'?' · частичное совпадение':''} · фильтр: ${CAT_LABEL[activeFilter]||activeFilter}${corpusReady?'':' · сниппеты загружаются…'}`;
+  let html='';
+  if(mode==='OR') html+='<div class="warn">Точных совпадений по всем словам нет — показаны частичные</div>';
+  for(const [score,d] of results){
+    const doc=IDX.docs[d];
+    const cat=doc.c, lbl=CAT_LABEL[cat]||cat;
+    const snip=corpusReady?bestSnippet(d,qs):'';
+    // ссылка на просмотр + Text Fragment для перехода к первому совпадению
+    const q0=(qs.length?document.getElementById('q').value.trim():'');
+    let url='viewer.html?p='+encodeURIComponent(doc.p);
+    if(q0) url+='#:~:text='+encodeURIComponent(q0.split(/\s+/).slice(0,3).join(' '));
+    html+=`<div class="card">
+      <h3><a href="${url}">${esc(doc.t)}</a><span class="tag ${cat}">${lbl}</span></h3>
+      ${snip?`<div class="snip">${snip}</div>`:''}
+      <div class="meta">${doc.y?esc(doc.y)+' · ':''}${esc(doc.p)}
+        · <a href="https://github.com/LnrGitG/research-wiki/blob/main/${encodeURIComponent(doc.p)}" target="_blank" rel="noopener">GitHub ↗</a></div>
+    </div>`;
+  }
+  res.innerHTML=html;
+}
+
+// ── инициализация ────────────────────────────────────────────────────
+(async function(){
+  const res=document.getElementById('res');
+  res.innerHTML='<div class="spin">Загрузка индекса…</div>';
+  try{
+    LMAP=await loadJson('search-lemmas.json.gz');
+    IDX=await loadJson('search-index.json.gz');
+    res.innerHTML='<div class="empty">Готово: '+IDX.docs.length+' документов. Начните печатать.</div>';
+    // корпус абзацев (5 МБ) грузим в фоне — поиск работает уже без него,
+    // сниппеты появятся, как только корпус подтянется
+    loadCorpusInBackground();
+    // фильтры
+    const fdiv=document.getElementById('filters');
+    fdiv.innerHTML=FILTERS.map(([k,l])=>`<span class="f${k==='all'?' on':''}" data-k="${k}">${l}</span>`).join('');
+    fdiv.addEventListener('click',e=>{
+      const t=e.target.closest('.f'); if(!t)return;
+      activeFilter=t.dataset.k;
+      [...fdiv.children].forEach(c=>c.classList.toggle('on',c===t));
+      run();
+    });
+  }catch(e){
+    res.innerHTML='<div class="empty">Не удалось загрузить индекс: '+esc(e.message)+
+      '<br><br>Убедитесь, что search-index.json.gz опубликован.</div>';
+    return;
+  }
+  // поиск с задержкой
+  let timer=null;
+  const inp=document.getElementById('q');
+  inp.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(run,160)});
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter'){clearTimeout(timer);run()}});
+  function run(){
+    const q=inp.value.trim();
+    if(q.length<2){document.getElementById('res').innerHTML='<div class="empty">Введите хотя бы 2 символа</div>';document.getElementById('hint').textContent='';return}
+    render(search(q));
+  }
+  // поддержка ?q= для перехода из других страниц
+  const p=new URLSearchParams(location.search).get('q');
+  if(p){inp.value=p;run()}
+})();
+</script>
+</body>
+</html>

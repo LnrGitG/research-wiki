@@ -78,7 +78,7 @@ with open(str(DATA / 'wordstat_demand_indices_quarterly.csv'), 'w', newline='', 
     w.writeheader(); w.writerows(out_q)
 
 # ---- validation vs Rosreestr deals
-con = sqlite3.connect('str(ensure_db('rosreestr_deals.db'))')
+con = sqlite3.connect(str(ensure_db('rosreestr_deals.db')))
 deals = {f"{y}Q{q}": (n, nd) for y, q, n, nd in
          con.execute("SELECT year,q,n,ndkp FROM deals_rf_quarterly")}
 

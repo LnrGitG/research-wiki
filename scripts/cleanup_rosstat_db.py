@@ -17,7 +17,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA = REPO_ROOT / 'data'
 
 
-DB = 'str(ensure_db('rosstat_construction.db'))'
+DB = str(ensure_db('rosstat_construction.db'))
 ARCHIVE_DIR = str(DATA / 'archive')
 
 def get_count(cur, sql, params=()):

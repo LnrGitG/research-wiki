@@ -10,7 +10,7 @@ import time
 from pathlib import Path
 from gcs_sync import ensure_db
 
-DB = 'str(ensure_db('rosstat_construction.db'))'
+DB = str(ensure_db('rosstat_construction.db'))
 
 def main():
     size_before = os.path.getsize(DB)

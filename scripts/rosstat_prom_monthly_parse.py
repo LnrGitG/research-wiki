@@ -7,7 +7,7 @@ from pathlib import Path
 from gcs_sync import ensure_db
 
 T = open('/home/lnr/.hermes/cache/web/rosstat.gov.ru-8fbd06702e.md').read()
-con = sqlite3.connect('str(ensure_db('rosstat_construction.db'))')
+con = sqlite3.connect(str(ensure_db('rosstat_construction.db')))
 now = datetime.datetime.now().isoformat()
 
 # Интересующие продукты для стройцикла (продукт-подстрока в md): (название в базе, regex якорь)

@@ -88,6 +88,6 @@ for col, s in series.items():
     result[col] = s / k
 
 df_all = pd.DataFrame(result)
-df_all.to_csv('str(DATA / 'search_trends_housing_raw.csv')', float_format='%.2f')
+df_all.to_csv(str(DATA / 'search_trends_housing_raw.csv'), float_format='%.2f')
 print("\ncollected:", df_all.shape)
 print(df_all.describe().round(1).loc[['mean', 'min', 'max']].to_string())

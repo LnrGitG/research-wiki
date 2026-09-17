@@ -280,3 +280,12 @@
 - Канал: S3-бакет agent-vm-exchange (SSH недоступен из-за гео-фильтра). Агент опрашивает _cmd/command.sh.
 - Большие файлы загружались через rclone (yc s3api put-object падает с tcsetattr на файлах >100 МБ).
 - Уточнение: у rosstat_construction 36 таблиц, не 37 — 37-й объект sqlite_sequence (служебный).
+
+## 2026-09-17 — Ремонт 11 скриптов, повреждённых при миграции на GCS
+- Обнаружено при подготовке Ф4: 11 скриптов не парсились (SyntaxError) и не запускались с 12.09.
+- Причина: коммит d44e3d8 («Migrate heavy data to GCS») автоматически заменял абсолютные пути на REPO_ROOT/ensure_db(), но обернул выражения в лишние кавычки — код стал строковым литералом.
+- Пример: `DB = 'str(ensure_db('rosstat_construction.db'))'` вместо `DB = str(ensure_db('rosstat_construction.db'))`.
+- Починено: 14 повреждённых строк в 11 файлах + добавлены отсутствовавшие определения REPO_ROOT/DATA/Path.
+- Дополнительно: в build_housing_index.py определение DATA стояло после использования (строка 59 vs 6) — блок перенесён наверх.
+- Инструмент: scripts/repair_scripts.py (идемпотентный, сухой прогон по умолчанию).
+- Проверка: 74/74 скрипта синтаксически валидны; export_operational, export_dashboard, wordstat_core_index, build_housing_index запущены успешно.

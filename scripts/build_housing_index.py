@@ -3,7 +3,11 @@
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv('DATA / 'search_trends_housing_raw.csv'',
+from pathlib import Path
+REPO_ROOT = Path(__file__).resolve().parent.parent
+DATA = REPO_ROOT / 'data'
+
+df = pd.read_csv(str(DATA / 'search_trends_housing_raw.csv'),
                  index_col=0, parse_dates=True)
 # unify the two spellings of вторичное
 if 'вторичное жилье' in df.columns:
@@ -54,9 +58,6 @@ for c, k in zip(final, np.atleast_1d(kmo_model)):
 print("\n=== 5. PCA (correlation matrix of log-diffs) ===")
 from sklearn.decomposition import PCA
 
-from pathlib import Path
-REPO_ROOT = Path(__file__).resolve().parent.parent
-DATA = REPO_ROOT / 'data'
 
 Z = (X - X.mean()) / X.std()
 pca = PCA(n_components=len(final)).fit(Z)
@@ -73,7 +74,7 @@ print((loadings / abs(loadings).max()).round(3).to_string())
 
 idx = pd.DataFrame({'pc1': pc1})
 idx['std'] = (pc1 - pc1.mean()) / pc1.std()
-idx.to_csv('DATA / 'housing_sentiment_index.csv'', float_format='%.4f')
+idx.to_csv(str(DATA / 'housing_sentiment_index.csv'), float_format='%.4f')
 print("\nsaved data/housing_sentiment_index.csv", idx.shape)
 
 print("\n=== yearly means (std units) ===")

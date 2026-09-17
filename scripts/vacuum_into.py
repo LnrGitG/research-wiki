@@ -12,7 +12,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA = REPO_ROOT / 'data'
 
 
-DB = 'str(ensure_db('rosstat_construction.db'))'
+DB = str(ensure_db('rosstat_construction.db'))
 TMP = str(DATA / 'rosstat_construction_vacuumed.db')
 
 size_before = os.path.getsize(DB)

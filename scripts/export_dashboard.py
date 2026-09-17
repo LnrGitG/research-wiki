@@ -7,7 +7,10 @@ import sqlite3, json, os
 from pathlib import Path
 from gcs_sync import ensure_db
 
-DB = 'str(ensure_db('rosstat_construction.db'))'
+from pathlib import Path
+REPO_ROOT = Path(__file__).resolve().parent.parent
+
+DB = str(ensure_db('rosstat_construction.db'))
 OUT = str(REPO_ROOT / 'docs' / 'data')
 os.makedirs(OUT, exist_ok=True)
 

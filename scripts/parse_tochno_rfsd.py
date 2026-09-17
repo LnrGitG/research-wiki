@@ -7,8 +7,8 @@ import openpyxl, sqlite3, os, sys
 from pathlib import Path
 from gcs_sync import ensure_db
 
-DB = 'str(ensure_db('fns_tochno_sectors.db'))'
-RAW = 'str(Path(__file__).resolve().parent.parent / 'raw' / 'fns' / 'tochno-st' / 'by_section')'
+DB = str(ensure_db('fns_tochno_sectors.db'))
+RAW = str(Path(__file__).resolve().parent.parent / 'raw' / 'fns' / 'tochno-st' / 'by_section')
 # Колонки для long-формата: идентификаторы + ключевые фин. строки
 KEEP = ['year', 'inn', 'okved', 'region', 'filed', 'financial', 'simplified',
         'line_1600', 'line_2110', 'line_2120', 'line_2200', 'line_2400',

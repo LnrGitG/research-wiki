@@ -10,7 +10,7 @@ import re
 from pathlib import Path
 from gcs_sync import ensure_db
 
-DB = 'str(ensure_db('rosstat_construction.db'))'
+DB = str(ensure_db('rosstat_construction.db'))
 
 # Канонические имена 85 регионов + ФО + РФ
 CANON = {

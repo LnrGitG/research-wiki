@@ -305,3 +305,10 @@
 - Монтирование: rclone mount в ~/yc-wiki, systemd user-юнит `yc-wiki-mount.service` (enabled).
 - Симлинк raw/ → ~/yc-wiki/raw (было ~/gcs-wiki/raw); gcsfuse отключён.
 - Обновлены AGENTS.md и .gitignore.
+
+## 2026-09-17 — Бэкапы PostgreSQL с фактической проверкой (Ф6)
+- scripts/pg_backup.py: pg_dump -Fc → загрузка в бакет → восстановление во временную базу research_wiki_verify → сверка счётчиков по 19 таблицам → удаление временной базы.
+- Восстановление проверено фактически: дамп 100.3 МБ, 19 таблиц, расхождений 0, цикл ~121 с.
+- systemd-таймер pg-backup.timer на ВМ: 03:30 UTC ежедневно, Persistent=true; ретенция 30 дампов через ExecStartPost.
+- Роли wiki выдано CREATEDB; .pgpass расширен маской * (покрывает postgres и временную базу).
+- На ВМ установлен rclone 1.75.1, конфиг скопирован с VDS.

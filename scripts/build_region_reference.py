@@ -45,10 +45,14 @@ FD = {  # федеральные округа
 # Агрегаты, публикуемые источниками наравне с округами:
 #   ntd — свод новых территорий (ДОМ.РФ публикует отдельной строкой)
 #   *_nao/_ao — варианты «регион ВКЛЮЧАЯ автономные округа» (агрегат, не база)
+# Формат: код -> (название, уровень, родитель, признак агрегации, состав через ;)
 AGGREGATES = {
-    "ntd":             ("Новые территории (свод)", "aggregate", "ru",   "sum_of_new_territories"),
-    "arkhangelsk_nao": ("Архангельская область (с НАО)", "region", "szfd", "with_ao_included"),
-    "tyumen_ao":       ("Тюменская область (с ХМАО и ЯНАО)", "region", "urfd", "with_ao_included"),
+    "ntd":             ("Новые территории (свод)", "aggregate", "ufd",
+                        "sum_of_new_territories", "dnr;lnr;zaporozhye;kherson"),
+    "arkhangelsk_nao": ("Архангельская область (с НАО)", "region", "szfd",
+                        "with_ao_included", "arkhangelsk;nenets_ao"),
+    "tyumen_ao":       ("Тюменская область (с ХМАО и ЯНАО)", "region", "urfd",
+                        "with_ao_included", "tyumen;khanty;yamal"),
 }
 
 # Города (не субъекты) — выделены отдельным уровнем
@@ -150,10 +154,10 @@ REGIONS = {
  "jewish_ao":     ("Еврейская автономная область", "99", "dfd"),
  "chukotka":      ("Чукотский автономный округ", "77", "dfd"),
  # ── новые территории (2022) ──
- "dnr":           ("Донецкая Народная Республика", "", "ntd"),
- "lnr":           ("Луганская Народная Республика", "", "ntd"),
- "zaporozhye":    ("Запорожская область", "", "ntd"),
- "kherson":       ("Херсонская область", "", "ntd"),
+ "dnr":           ("Донецкая Народная Республика", "", "ufd"),
+ "lnr":           ("Луганская Народная Республика", "", "ufd"),
+ "zaporozhye":    ("Запорожская область", "", "ufd"),
+ "kherson":       ("Херсонская область", "", "ufd"),
 }
 
 # ──────────────────────────────────────────────────────────────────────
@@ -544,7 +548,7 @@ for name, cnt in raw.items():
         elif code == "ru":
             canon, lvl, agg = "Российская Федерация", "country", "base"
         elif code in AGGREGATES:
-            canon, lvl, _, agg = AGGREGATES[code]
+            canon, lvl, _, agg, members = AGGREGATES[code]
         elif code in CITIES:
             canon, lvl, agg = CITIES[code][0], "city", "base"
         else:
@@ -552,6 +556,7 @@ for name, cnt in raw.items():
         alias_rows.append({
             "raw_name": name, "count": cnt, "region_code": code,
             "canonical_name": canon, "level": lvl, "aggregation": agg,
+            "aggregate_of": members if code in AGGREGATES else "",
             "method": how, "sources": ",".join(sorted(raw_src[name])),
         })
     else:
@@ -563,23 +568,24 @@ print(f"Сопоставлено: {len(alias_rows)} | не сопоставле�
 # 6. ЗАПИСЬ
 # ──────────────────────────────────────────────────────────────────────
 with open(DATA/"region_aliases.csv","w",newline="",encoding="utf-8") as f:
-    w = csv.DictWriter(f, fieldnames=["raw_name","count","region_code","canonical_name","level","aggregation","method","sources"])
+    w = csv.DictWriter(f, fieldnames=["raw_name","count","region_code","canonical_name","level","aggregation","aggregate_of","method","sources"])
     w.writeheader(); w.writerows(sorted(alias_rows, key=lambda r:-r["count"]))
 
 canon_rows = [{"region_code":"ru","name":"Российская Федерация","level":"country",
-               "okato":"","parent_code":"","aggregation":"base"}]
+               "okato":"","parent_code":"","aggregation":"base","aggregate_of":""}]
 canon_rows += [{"region_code":c,"name":n,"level":"federal_district","okato":"",
-                "parent_code":"ru","aggregation":"base"} for c,n in FD.items()]
+                "parent_code":"ru","aggregation":"base","aggregate_of":""} for c,n in FD.items()]
 canon_rows += [{"region_code":c,"name":n,"level":"region","okato":o,"parent_code":p,
-                "aggregation":"base"} for c,(n,o,p) in REGIONS.items()]
+                "aggregation":"base","aggregate_of":""} for c,(n,o,p) in REGIONS.items()]
 # агрегаты («с АО», свод новых территорий) — отдельные записи с признаком агрегации
 canon_rows += [{"region_code":c,"name":n,"level":lvl,"okato":"","parent_code":par,
-                "aggregation":agg} for c,(n,lvl,par,agg) in AGGREGATES.items()]
+                "aggregation":agg,"aggregate_of":members}
+               for c,(n,lvl,par,agg,members) in AGGREGATES.items()]
 # города
 canon_rows += [{"region_code":c,"name":n,"level":"city","okato":"","parent_code":par,
                 "aggregation":"base"} for c,(n,par) in CITIES.items()]
 with open(DATA/"regions_canonical.csv","w",newline="",encoding="utf-8") as f:
-    w = csv.DictWriter(f, fieldnames=["region_code","name","level","okato","parent_code","aggregation"])
+    w = csv.DictWriter(f, fieldnames=["region_code","name","level","okato","parent_code","aggregation","aggregate_of"])
     w.writeheader(); w.writerows(canon_rows)
 
 with open(DATA/"region_unmatched.txt","w",encoding="utf-8") as f:

@@ -1,103 +1,103 @@
-region_code,name,level,okato,parent_code,aggregation
-ru,Российская Федерация,country,,,base
-cfd,Центральный федеральный округ,federal_district,,ru,base
-szfd,Северо-Западный федеральный округ,federal_district,,ru,base
-ufd,Южный федеральный округ,federal_district,,ru,base
-skfd,Северо-Кавказский федеральный округ,federal_district,,ru,base
-pfd,Приволжский федеральный округ,federal_district,,ru,base
-urfd,Уральский федеральный округ,federal_district,,ru,base
-sfd,Сибирский федеральный округ,federal_district,,ru,base
-dfd,Дальневосточный федеральный округ,federal_district,,ru,base
-belgorod,Белгородская область,region,14,cfd,base
-bryansk,Брянская область,region,15,cfd,base
-vladimir,Владимирская область,region,17,cfd,base
-voronezh,Воронежская область,region,20,cfd,base
-ivanovo,Ивановская область,region,24,cfd,base
-kaluga,Калужская область,region,29,cfd,base
-kostroma,Костромская область,region,34,cfd,base
-kursk,Курская область,region,38,cfd,base
-lipetsk,Липецкая область,region,42,cfd,base
-moscow_obl,Московская область,region,46,cfd,base
-oryol,Орловская область,region,54,cfd,base
-ryazan,Рязанская область,region,61,cfd,base
-smolensk,Смоленская область,region,66,cfd,base
-tambov,Тамбовская область,region,68,cfd,base
-tver,Тверская область,region,28,cfd,base
-tula,Тульская область,region,70,cfd,base
-yaroslavl,Ярославская область,region,78,cfd,base
-moscow,Москва,region,45,cfd,base
-karelia,Республика Карелия,region,86,szfd,base
-komi,Республика Коми,region,87,szfd,base
-arkhangelsk,Архангельская область (без НАО),region,11,szfd,base
-nenets_ao,Ненецкий автономный округ,region,11,szfd,base
-vologda,Вологодская область,region,19,szfd,base
-kaliningrad,Калининградская область,region,27,szfd,base
-leningrad,Ленинградская область,region,41,szfd,base
-murmansk,Мурманская область,region,47,szfd,base
-novgorod,Новгородская область,region,49,szfd,base
-pskov,Псковская область,region,58,szfd,base
-spb,Санкт-Петербург,region,40,szfd,base
-adygea,Республика Адыгея,region,79,ufd,base
-kalmykia,Республика Калмыкия,region,85,ufd,base
-crimea,Республика Крым,region,35,ufd,base
-krasnodar,Краснодарский край,region,03,ufd,base
-astrakhan,Астраханская область,region,12,ufd,base
-volgograd,Волгоградская область,region,18,ufd,base
-rostov,Ростовская область,region,60,ufd,base
-sevastopol,Севастополь,region,67,ufd,base
-dagestan,Республика Дагестан,region,82,skfd,base
-ingushetia,Республика Ингушетия,region,26,skfd,base
-kabardino,Кабардино-Балкарская Республика,region,83,skfd,base
-karachaevo,Карачаево-Черкесская Республика,region,91,skfd,base
-north_ossetia,Республика Северная Осетия — Алания,region,90,skfd,base
-chechnya,Чеченская Республика,region,96,skfd,base
-stavropol,Ставропольский край,region,07,skfd,base
-bashkortostan,Республика Башкортостан,region,80,pfd,base
-marij_el,Республика Марий Эл,region,88,pfd,base
-mordovia,Республика Мордовия,region,89,pfd,base
-tatarstan,Республика Татарстан,region,92,pfd,base
-udmurtia,Удмуртская Республика,region,94,pfd,base
-chuvashia,Чувашская Республика,region,97,pfd,base
-perm,Пермский край,region,57,pfd,base
-kirov,Кировская область,region,33,pfd,base
-nizhni,Нижегородская область,region,22,pfd,base
-orenburg,Оренбургская область,region,53,pfd,base
-penza,Пензенская область,region,56,pfd,base
-samara,Самарская область,region,36,pfd,base
-saratov,Саратовская область,region,63,pfd,base
-ulyanovsk,Ульяновская область,region,73,pfd,base
-kurgan,Курганская область,region,37,urfd,base
-sverdlovsk,Свердловская область,region,65,urfd,base
-tyumen,Тюменская область (без ХМАО и ЯНАО),region,71,urfd,base
-khanty,Ханты-Мансийский автономный округ — Югра,region,71,urfd,base
-yamal,Ямало-Ненецкий автономный округ,region,71,urfd,base
-chelyabinsk,Челябинская область,region,75,urfd,base
-altai_rep,Республика Алтай,region,84,sfd,base
-khakasia,Республика Хакасия,region,95,sfd,base
-tuva,Республика Тыва,region,93,sfd,base
-altai_terr,Алтайский край,region,01,sfd,base
-krasnoyarsk,Красноярский край,region,04,sfd,base
-irkutsk,Иркутская область,region,25,sfd,base
-kemerovo,Кемеровская область — Кузбасс,region,32,sfd,base
-novosibirsk,Новосибирская область,region,50,sfd,base
-omsk,Омская область,region,52,sfd,base
-tomsk,Томская область,region,69,sfd,base
-buryatia,Республика Бурятия,region,81,dfd,base
-sakha,Республика Саха (Якутия),region,98,dfd,base
-zabaikalsk,Забайкальский край,region,76,dfd,base
-kamchatka,Камчатский край,region,30,dfd,base
-primorsky,Приморский край,region,05,dfd,base
-khabarovsk,Хабаровский край,region,08,dfd,base
-amur,Амурская область,region,10,dfd,base
-magadan,Магаданская область,region,44,dfd,base
-sakhalin,Сахалинская область,region,64,dfd,base
-jewish_ao,Еврейская автономная область,region,99,dfd,base
-chukotka,Чукотский автономный округ,region,77,dfd,base
-dnr,Донецкая Народная Республика,region,,ntd,base
-lnr,Луганская Народная Республика,region,,ntd,base
-zaporozhye,Запорожская область,region,,ntd,base
-kherson,Херсонская область,region,,ntd,base
-ntd,Новые территории (свод),aggregate,,ru,sum_of_new_territories
-arkhangelsk_nao,Архангельская область (с НАО),region,,szfd,with_ao_included
-tyumen_ao,Тюменская область (с ХМАО и ЯНАО),region,,urfd,with_ao_included
-sochi,Сочи,city,,krasnodar,base
+region_code,name,level,okato,parent_code,aggregation,aggregate_of
+ru,Российская Федерация,country,,,base,
+cfd,Центральный федеральный округ,federal_district,,ru,base,
+szfd,Северо-Западный федеральный округ,federal_district,,ru,base,
+ufd,Южный федеральный округ,federal_district,,ru,base,
+skfd,Северо-Кавказский федеральный округ,federal_district,,ru,base,
+pfd,Приволжский федеральный округ,federal_district,,ru,base,
+urfd,Уральский федеральный округ,federal_district,,ru,base,
+sfd,Сибирский федеральный округ,federal_district,,ru,base,
+dfd,Дальневосточный федеральный округ,federal_district,,ru,base,
+belgorod,Белгородская область,region,14,cfd,base,
+bryansk,Брянская область,region,15,cfd,base,
+vladimir,Владимирская область,region,17,cfd,base,
+voronezh,Воронежская область,region,20,cfd,base,
+ivanovo,Ивановская область,region,24,cfd,base,
+kaluga,Калужская область,region,29,cfd,base,
+kostroma,Костромская область,region,34,cfd,base,
+kursk,Курская область,region,38,cfd,base,
+lipetsk,Липецкая область,region,42,cfd,base,
+moscow_obl,Московская область,region,46,cfd,base,
+oryol,Орловская область,region,54,cfd,base,
+ryazan,Рязанская область,region,61,cfd,base,
+smolensk,Смоленская область,region,66,cfd,base,
+tambov,Тамбовская область,region,68,cfd,base,
+tver,Тверская область,region,28,cfd,base,
+tula,Тульская область,region,70,cfd,base,
+yaroslavl,Ярославская область,region,78,cfd,base,
+moscow,Москва,region,45,cfd,base,
+karelia,Республика Карелия,region,86,szfd,base,
+komi,Республика Коми,region,87,szfd,base,
+arkhangelsk,Архангельская область (без НАО),region,11,szfd,base,
+nenets_ao,Ненецкий автономный округ,region,11,szfd,base,
+vologda,Вологодская область,region,19,szfd,base,
+kaliningrad,Калининградская область,region,27,szfd,base,
+leningrad,Ленинградская область,region,41,szfd,base,
+murmansk,Мурманская область,region,47,szfd,base,
+novgorod,Новгородская область,region,49,szfd,base,
+pskov,Псковская область,region,58,szfd,base,
+spb,Санкт-Петербург,region,40,szfd,base,
+adygea,Республика Адыгея,region,79,ufd,base,
+kalmykia,Республика Калмыкия,region,85,ufd,base,
+crimea,Республика Крым,region,35,ufd,base,
+krasnodar,Краснодарский край,region,03,ufd,base,
+astrakhan,Астраханская область,region,12,ufd,base,
+volgograd,Волгоградская область,region,18,ufd,base,
+rostov,Ростовская область,region,60,ufd,base,
+sevastopol,Севастополь,region,67,ufd,base,
+dagestan,Республика Дагестан,region,82,skfd,base,
+ingushetia,Республика Ингушетия,region,26,skfd,base,
+kabardino,Кабардино-Балкарская Республика,region,83,skfd,base,
+karachaevo,Карачаево-Черкесская Республика,region,91,skfd,base,
+north_ossetia,Республика Северная Осетия — Алания,region,90,skfd,base,
+chechnya,Чеченская Республика,region,96,skfd,base,
+stavropol,Ставропольский край,region,07,skfd,base,
+bashkortostan,Республика Башкортостан,region,80,pfd,base,
+marij_el,Республика Марий Эл,region,88,pfd,base,
+mordovia,Республика Мордовия,region,89,pfd,base,
+tatarstan,Республика Татарстан,region,92,pfd,base,
+udmurtia,Удмуртская Республика,region,94,pfd,base,
+chuvashia,Чувашская Республика,region,97,pfd,base,
+perm,Пермский край,region,57,pfd,base,
+kirov,Кировская область,region,33,pfd,base,
+nizhni,Нижегородская область,region,22,pfd,base,
+orenburg,Оренбургская область,region,53,pfd,base,
+penza,Пензенская область,region,56,pfd,base,
+samara,Самарская область,region,36,pfd,base,
+saratov,Саратовская область,region,63,pfd,base,
+ulyanovsk,Ульяновская область,region,73,pfd,base,
+kurgan,Курганская область,region,37,urfd,base,
+sverdlovsk,Свердловская область,region,65,urfd,base,
+tyumen,Тюменская область (без ХМАО и ЯНАО),region,71,urfd,base,
+khanty,Ханты-Мансийский автономный округ — Югра,region,71,urfd,base,
+yamal,Ямало-Ненецкий автономный округ,region,71,urfd,base,
+chelyabinsk,Челябинская область,region,75,urfd,base,
+altai_rep,Республика Алтай,region,84,sfd,base,
+khakasia,Республика Хакасия,region,95,sfd,base,
+tuva,Республика Тыва,region,93,sfd,base,
+altai_terr,Алтайский край,region,01,sfd,base,
+krasnoyarsk,Красноярский край,region,04,sfd,base,
+irkutsk,Иркутская область,region,25,sfd,base,
+kemerovo,Кемеровская область — Кузбасс,region,32,sfd,base,
+novosibirsk,Новосибирская область,region,50,sfd,base,
+omsk,Омская область,region,52,sfd,base,
+tomsk,Томская область,region,69,sfd,base,
+buryatia,Республика Бурятия,region,81,dfd,base,
+sakha,Республика Саха (Якутия),region,98,dfd,base,
+zabaikalsk,Забайкальский край,region,76,dfd,base,
+kamchatka,Камчатский край,region,30,dfd,base,
+primorsky,Приморский край,region,05,dfd,base,
+khabarovsk,Хабаровский край,region,08,dfd,base,
+amur,Амурская область,region,10,dfd,base,
+magadan,Магаданская область,region,44,dfd,base,
+sakhalin,Сахалинская область,region,64,dfd,base,
+jewish_ao,Еврейская автономная область,region,99,dfd,base,
+chukotka,Чукотский автономный округ,region,77,dfd,base,
+dnr,Донецкая Народная Республика,region,,ufd,base,
+lnr,Луганская Народная Республика,region,,ufd,base,
+zaporozhye,Запорожская область,region,,ufd,base,
+kherson,Херсонская область,region,,ufd,base,
+ntd,Новые территории (свод),aggregate,,ufd,sum_of_new_territories,dnr;lnr;zaporozhye;kherson
+arkhangelsk_nao,Архангельская область (с НАО),region,,szfd,with_ao_included,arkhangelsk;nenets_ao
+tyumen_ao,Тюменская область (с ХМАО и ЯНАО),region,,urfd,with_ao_included,tyumen;khanty;yamal
+sochi,Сочи,city,,krasnodar,base,

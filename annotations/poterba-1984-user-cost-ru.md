@@ -77,7 +77,7 @@ User Cost = P × [(i + τ + δ - πᵉ) × (1 - τₘ) + τₚ]
 ## Связанные страницы
 
 - [[concepts/econometric-models-housing-market]] — раздел Asset-market (User cost)
-- [[papers/dipasquale-wheaton-1994-housing-market-dynamics]] — user cost в stock-flow модели
+- [[papers/dipasquale-wheaton-1992-markets-real-estate-assets-space]] — user cost в stock-flow модели
 - [[papers/iacoviello-2005-house-prices]] — user cost в DSGE
 - [[reviews/rossiyskie-issledovaniya-rynka-zhilya]] — российские работы с субсидированными ставками
 - [[papers/glaeser-gyourko-saiz-2008-housing-supply-bubbles]] — user cost и пузыри

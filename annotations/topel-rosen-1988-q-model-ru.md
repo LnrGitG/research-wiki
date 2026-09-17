@@ -60,7 +60,7 @@ citations: "~800 (базовая модель Q для жилья)"
 ## Связанные страницы
 
 - [[concepts/econometric-models-housing-market]] — раздел Tobin's Q
-- [[papers/dipasquale-wheaton-1994-housing-market-dynamics]] — stock-flow дополняет Q
+- [[papers/dipasquale-wheaton-1992-markets-real-estate-assets-space]] — stock-flow дополняет Q
 - [[papers/capozza-hendershott-mack-mayer-2002-house-price-dynamics]] — Q с ожиданиями
 - [[papers/glaeser-gyourko-saiz-2008-housing-supply-bubbles]] — supply elasticity через Q
 - [[reviews/rossiyskie-issledovaniya-rynka-zhilya]] — Стерник 2018, Q-девелопер для РФ

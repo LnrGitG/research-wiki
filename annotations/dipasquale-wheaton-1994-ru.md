@@ -4,7 +4,7 @@ type: annotation
 created: 2026-07-27
 updated: 2026-07-27
 tags: [annotation, stock-flow, housing-market, классика, фундаментальная-модель]
-source: "[[papers/dipasquale-wheaton-1994-housing-market-dynamics]]"
+source: "[[papers/dipasquale-wheaton-1992-markets-real-estate-assets-space]]"
 authors: "Denise DiPasquale, William C. Wheaton"
 journal: "Journal of the American Real Estate and Urban Economics Association, 22(1), 1994"
 citations: "~2000 (фундаментальная модель stock-flow для жилья)"

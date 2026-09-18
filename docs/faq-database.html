@@ -238,9 +238,9 @@
   они смешаются:</p>
   <table>
     <tbody>
-      <tr><td><code>region</code></td><td>91 территория</td><td>1 952 370 строк — собственно регионы</td></tr>
-      <tr><td><code>federal_district</code></td><td>8</td><td>150 331 — федеральные округа</td></tr>
-      <tr><td><code>country</code></td><td>1</td><td>71 272 — Россия целиком</td></tr>
+      <tr><td><code>region</code></td><td>91 территория</td><td>1 925 311 строк — собственно регионы</td></tr>
+      <tr><td><code>federal_district</code></td><td>8</td><td>149 766 — федеральные округа</td></tr>
+      <tr><td><code>country</code></td><td>1</td><td>71 003 — Россия целиком</td></tr>
       <tr><td><code>aggregate</code></td><td>1</td><td>317 — сводная группа</td></tr>
       <tr><td><code>city</code></td><td>1</td><td>1 — Сочи</td></tr>
     </tbody>
@@ -265,7 +265,7 @@
 Фильтры:
   metric_code   = 'tkzk'
   region_level  = 'region'
-  value         &gt; 0</code></pre>
+  value         NOT IN (-99999999, -77777777)</code></pre>
 <p>Проверено: по Тюменской области 178 точек, диапазон 47 378 – 140 296 руб./м².</p>
 
 <h3>Рецепт 2. Кредитование по годам</h3>
@@ -280,8 +280,8 @@
 Фильтры:
   metric_code   = 'kko'
   source_code   = 'cbr'
-  value         &gt; 0</code></pre>
-<p>Проверено: 2023 год — 2 304 наблюдения, сумма 12,3 млн; 2024 — 8,7 млн. Падение видно сразу.</p>
+  value         NOT IN (-99999999, -77777777)</code></pre>
+<p>Проверено: 2023 год — 3 456 наблюдений, сумма 12,3 млн; 2024 — 8,7 млн. Падение видно сразу.</p>
 
 <h3>Рецепт 3. Карта регионов</h3>
 <p class="lead">Полигональная карта. Геоточка — код региона, цвет — значение.</p>
@@ -291,7 +291,7 @@
   metric_code   = 'snz'            (зарплата)
   region_level  = 'region'          ← обязательно!
   year          = 2026
-  value         &gt; 0</code></pre>
+  value         NOT IN (-99999999, -77777777)</code></pre>
 
 <h3>Рецепт 4. Сравнение источников по одному показателю</h3>
 <p class="lead">Когда важно увидеть расхождение публикаций.</p>
@@ -310,13 +310,13 @@
   metric_code             = 'tkzk'
   sub_dimension           LIKE '%market: primary%'
   region_level            = 'region'
-  value                   &gt; 0</code></pre>
+  value                   NOT IN (-99999999, -77777777)</code></pre>
 
 <h3>Рецепт 6. Только твёрдые оценки</h3>
 <p class="lead">Отсечь предварительные данные, если нужна устойчивая база.</p>
 <pre><code>Фильтры:
   assessment_type = 'final'
-  value           &gt; 0</code></pre>
+  value           NOT IN (-99999999, -77777777)</code></pre>
 <p>Предварительных (<code>preliminary</code>) — 207 405 строк, это данные текущего года.
 Для ретроспективы удобно отсекать.</p>
 
@@ -386,7 +386,7 @@ GROUP BY 1 ORDER BY 2 DESC;</code></pre>
   <thead><tr><th>Код</th><th>Название</th><th>Строк</th><th>Поля периода</th></tr></thead>
   <tbody>
     <tr><td><code>M</code></td><td>месячная</td><td>1 740 327</td><td><code>year</code>, <code>month</code></td></tr>
-    <tr><td><code>A</code></td><td>годовая</td><td>354 334</td><td><code>year</code></td></tr>
+    <tr><td><code>A</code></td><td>годовая</td><td>326 441</td><td><code>year</code></td></tr>
     <tr><td><code>Q</code></td><td>квартальная</td><td>79 630</td><td><code>year</code>, <code>quarter</code></td></tr>
   </tbody>
 </table>

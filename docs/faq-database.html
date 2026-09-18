@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ: база данных research-wiki для DataLens</title>
+<style>
+  :root{
+    --bg:#0f1419; --card:#1a2028; --card2:#222a34; --line:#2e3844;
+    --tx:#e6edf3; --tx2:#9aa7b4; --tx3:#6e7d8c;
+    --acc:#4a9eff; --ok:#3fb950; --warn:#d29922; --err:#f85149;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--tx);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:16px 14px 60px}
+  header{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:24px}
+  h1{font-size:22px;line-height:1.3;margin:0 0 8px}
+  .sub{color:var(--tx2);font-size:14px}
+  h2{
+    font-size:17px;margin:34px 0 12px;padding-left:10px;
+    border-left:3px solid var(--acc);line-height:1.35;
+  }
+  h3{font-size:15px;margin:20px 0 8px;color:var(--tx)}
+  p{margin:8px 0}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:16px 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+  .stat b{display:block;font-size:19px;color:var(--acc);line-height:1.2}
+  .stat span{font-size:12px;color:var(--tx2)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:14px 0}
+  .card.warn{border-color:#5a4a1a;background:#211d10}
+  .card.ok{border-color:#1d4428;background:#0f1a13}
+  .card.err{border-color:#5a2020;background:#1f1112}
+  code{font-family:var(--mono);font-size:13px;background:var(--card2);
+       padding:1px 5px;border-radius:4px;color:#a5d6ff;word-break:break-word}
+  pre{background:var(--card2);border:1px solid var(--line);border-radius:8px;
+      padding:12px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;
+      line-height:1.5;margin:10px 0}
+  pre code{background:none;padding:0;color:var(--tx)}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;
+        display:block;overflow-x:auto;white-space:nowrap}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th{color:var(--tx2);font-weight:600;font-size:12.5px;text-transform:uppercase;
+     letter-spacing:.4px;background:var(--card)}
+  tbody tr:hover{background:var(--card)}
+  td code{font-size:12.5px}
+  .tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:20px;
+       font-family:var(--mono);vertical-align:middle}
+  .t-req{background:#3a1d1d;color:#ff9d95}
+  .t-opt{background:#1d2f3a;color:#8ecfff}
+  .t-dim{background:#2a1d3a;color:#c9a5ff}
+  .t-meas{background:#1d3a26;color:#8ee6a5}
+  ul,ol{margin:8px 0;padding-left:22px}
+  li{margin:5px 0}
+  .lead{color:var(--tx2);font-size:13.5px;margin:-4px 0 10px}
+  a{color:var(--acc)}
+  .toc{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+  .toc ol{margin:0;padding-left:20px}
+  .toc li{margin:3px 0;font-size:14px}
+  hr{border:none;border-top:1px solid var(--line);margin:26px 0}
+  .foot{color:var(--tx3);font-size:12.5px;margin-top:36px;padding-top:16px;
+        border-top:1px solid var(--line)}
+  details{background:var(--card2);border:1px solid var(--line);border-radius:8px;
+          padding:10px 14px;margin:10px 0}
+  summary{cursor:pointer;font-weight:600;font-size:14px}
+  details[open] summary{margin-bottom:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>FAQ: база данных research-wiki для DataLens</h1>
+  <p class="sub">Где что лежит, какие поля брать в чарты, что фильтровать обязательно.
+  Собрано 18.09.2026 по фактическому состоянию базы.</p>
+</header>
+
+<div class="stats">
+  <div class="stat"><b>2 174 291</b><span>строк в витрине</span></div>
+  <div class="stat"><b>1 365</b><span>метрик</span></div>
+  <div class="stat"><b>102</b><span>региона</span></div>
+  <div class="stat"><b>6</b><span>источников</span></div>
+  <div class="stat"><b>1990–2026</b><span>период данных</span></div>
+</div>
+
+<div class="toc">
+  <ol>
+    <li><a href="#start">С чего начать: подключение и главная таблица</a></li>
+    <li><a href="#why">Почему витрина, а не исходные таблицы</a></li>
+    <li><a href="#fields">Поля: что где хранится</a></li>
+    <li><a href="#filters">Обязательные фильтры</a></li>
+    <li><a href="#recipes">Готовые рецепты датасетов и чартов</a></li>
+    <li><a href="#subdim">Подразрезы: что это и когда нужны</a></li>
+    <li><a href="#dicts">Справочники: источники, частоты, единицы, территории</a></li>
+    <li><a href="#metrics">Метрики, с которых удобно начинать</a></li>
+    <li><a href="#pitfalls">Подводные камни</a></li>
+    <li><a href="#sql">SQL-шпаргалка</a></li>
+  </ol>
+</div>
+
+<h2 id="start">1. С чего начать</h2>
+
+<p>Подключение уже настроено и работает. В DataLens создаёте датасет на одной
+таблице — витрине <code>core.v_datalens_observations</code>. Это представление,
+оно обновляется автоматически вслед за данными, вручную ничего не пересобирается.</p>
+
+<table>
+  <tbody>
+    <tr><th>Хост</th><td><code>89.169.168.214</code></td></tr>
+    <tr><th>Порт</th><td><code>5432</code></td></tr>
+    <tr><th>База</th><td><code>research_wiki</code> — подчёркивание, не дефис</td></tr>
+    <tr><th>Пользователь</th><td><code>datalens_ro</code> (только чтение)</td></tr>
+    <tr><th>TLS</th><td>свой удостоверяющий центр, <code>verify-full</code>, сертификат <code>pg_ca.crt</code></td></tr>
+    <tr><th>Таблица датасета</th><td><code>core.v_datalens_observations</code></td></tr>
+  </tbody>
+</table>
+
+<p>В интерфейсе: <b>Создать → Датасет →</b> выбрать подключение → перетащить
+<code>core.v_datalens_observations</code> в рабочую область.</p>
+
+<h2 id="why">2. Почему витрина, а не исходные таблицы</h2>
+
+<p>В базе три слоя, и для чартов нужен только верхний:</p>
+
+<table>
+  <thead><tr><th>Таблица</th><th>Строк</th><th>Что это</th></tr></thead>
+  <tbody>
+    <tr>
+      <td><code>core.v_datalens_observations</code></td><td>2 174 291</td>
+      <td><b>Брать эту.</b> Витрина: те же наблюдения, но с подставленными названиями
+      метрик, регионов, источников и единиц вместо числовых идентификаторов</td>
+    </tr>
+    <tr>
+      <td><code>core.observation_v2</code></td><td>2 174 291</td>
+      <td>Целевая таблица наблюдений. Хранит <i>идентификаторы</i>
+      (<code>metric_id</code>, <code>region_id</code>), поэтому для графиков неудобна</td>
+    </tr>
+    <tr>
+      <td><code>staging.*</code></td><td>6,2 млн</td>
+      <td>Сырьё из источников, как пришло. Для чартов не годится: нет общей модели,
+      разные форматы периодов и единиц</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="card ok">
+  <b>Правило:</b> датасет строится на <code>core.v_datalens_observations</code>.
+  В <code>observation_v2</code> лезть незачем — там те же данные, но с числовыми
+  ссылками, и вы будете вручную джойнить пять справочников.
+</div>
+
+<h2 id="fields">3. Поля: что где хранится</h2>
+
+<p class="lead">Витрина отдаёт 30 колонок. Разложены по назначению.</p>
+
+<h3>Измерения — то, что кладём в разрезы и фильтры <span class="tag t-dim">dimension</span></h3>
+
+<table>
+  <thead><tr><th>Поле</th><th>Что содержит</th><th>Уникальных</th></tr></thead>
+  <tbody>
+    <tr><td><code>metric_code</code></td><td>Короткий код метрики, латиницей: <code>tkzk</code>, <code>snz</code>. Стабилен, удобен в фильтрах</td><td>1 365</td></tr>
+    <tr><td><code>metric_name</code></td><td>Полное русское название показателя — для подписей на графиках</td><td>1 365</td></tr>
+    <tr><td><code>metric_short_name</code></td><td>Короткое название, если есть</td><td>—</td></tr>
+    <tr><td><code>region_code</code></td><td>Мнемонический код региона: <code>vologda</code>, <code>moscow-city</code></td><td>102</td></tr>
+    <tr><td><code>region_name</code></td><td>Название региона — для подписей</td><td>102</td></tr>
+    <tr><td><code>region_level</code></td><td>Уровень территории: регион / округ / страна</td><td>5</td></tr>
+    <tr><td><code>source_code</code> / <code>source_name</code></td><td>Источник: <code>cbr</code>, <code>domrf</code>, <code>rosstat</code>…</td><td>6</td></tr>
+    <tr><td><code>release_label</code></td><td>Метка публикации внутри источника — различает выпуски одного показателя</td><td>73</td></tr>
+    <tr><td><code>frequency_code</code> / <code>frequency_name</code></td><td>Периодичность: <code>M</code> месячная, <code>Q</code> квартальная, <code>A</code> годовая</td><td>3</td></tr>
+    <tr><td><code>year</code></td><td>Год периода, целое число</td><td>37</td></tr>
+    <tr><td><code>month</code></td><td>Месяц (только для месячных рядов), 1–12</td><td>12</td></tr>
+    <tr><td><code>quarter</code></td><td>Квартал (только для квартальных), 1–4</td><td>4</td></tr>
+    <tr><td><code>period_start</code></td><td><b>Дата начала периода</b> — брать для оси времени</td><td>—</td></tr>
+    <tr><td><code>period_end</code></td><td>Дата конца периода</td><td>—</td></tr>
+    <tr><td><code>unit_code</code> / <code>unit_name</code></td><td>Единица измерения: <code>mln_rub</code> → «млн руб.»</td><td>16</td></tr>
+    <tr><td><code>sub_dimension</code></td><td>Разрез наблюдения: рынок, валюта, продукт, лист источника</td><td>много</td></tr>
+    <tr><td><code>assessment_type</code></td><td>Версия оценки: <code>final</code> (твёрдая) или <code>preliminary</code> (предварительная)</td><td>2</td></tr>
+    <tr><td><code>metric_tags</code></td><td>Теги метрики — метка рубежа гармонизации (<code>stage5</code>, <code>stage6</code>)</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<h3>Показатель — то, что кладём в значение <span class="tag t-meas">measure</span></h3>
+
+<table>
+  <tbody>
+    <tr><td><code>value</code></td><td><b>Числовое значение наблюдения.</b> Единственный показатель витрины. Требует фильтрации — см. раздел 4</td></tr>
+    <tr><td><code>value_str</code></td><td>Текстовое представление. Сейчас пусто везде — в датасет можно не брать</td></tr>
+  </tbody>
+</table>
+
+<h3>Служебные</h3>
+
+<p><code>obs_id</code> — первичный ключ, <code>oktmo</code> — код ОКТМО,
+<code>observation_status</code> — всегда <code>validated</code>,
+<code>quality_flags</code> — флаги качества (пусто), <code>metric_type</code> —
+всегда <code>primary</code>, <code>is_derived</code> — всегда <code>false</code>,
+<code>published_at</code> — дата публикации. В чартах не нужны, но
+<code>obs_id</code> полезен как ключ при выгрузках.</p>
+
+<h2 id="filters">4. Обязательные фильтры</h2>
+
+<div class="card err">
+  <b>Фильтр <code>value &gt; 0</code> — обязателен всегда.</b>
+  <p style="margin:8px 0 0">Без него графики искажаются. Состав значений в витрине:</p>
+  <table>
+    <tbody>
+      <tr><td>положительные</td><td>1 756 963</td><td>— то, что нужно на графиках</td></tr>
+      <tr><td>нули</td><td>386 909</td><td>настоящие нули и сезонно сглаженные ряды</td></tr>
+      <tr><td><b>заполнители</b></td><td><b>27 217</b></td><td><code>−99 999 999</code> = «нет информации», <code>−77 777 777</code> = «скрыто»</td></tr>
+      <tr><td>прочие отрицательные</td><td>2 526</td><td>убытки, отрицательные индексы</td></tr>
+      <tr><td>NULL</td><td>676</td><td>—</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p>Заполнители — официальные коды Росстата. Если их не отсечь, средние и максимумы
+уезжают в минус на порядки, и график становится нечитаемым.</p>
+
+<p><b>Где ставить фильтр:</b> на вкладке «Фильтры» <i>датасета</i>, а не отдельного
+чарта — тогда он применится ко всем чартам сразу.</p>
+
+<h3>Оговорка про нули</h3>
+
+<p>386 909 нулевых значений — не брак. Это настоящие нули (например, ноль просроченной
+задолженности) и нули сезонно скорректированных рядов. Для графиков уровней фильтр
+<code>value &gt; 0</code> верен; если считаете доли или работаете с SAAR-рядами,
+иногда нужно ослабить до <code>value &gt; -77777776</code>.</p>
+
+<div class="card warn">
+  <b>Фильтр <code>region_level = 'region'</code> — для карт и региональных чартов.</b>
+  <p style="margin:8px 0 0">В витрине лежат территории разного уровня, и без фильтра
+  они смешаются:</p>
+  <table>
+    <tbody>
+      <tr><td><code>region</code></td><td>91 территория</td><td>1 952 370 строк — собственно регионы</td></tr>
+      <tr><td><code>federal_district</code></td><td>8</td><td>150 331 — федеральные округа</td></tr>
+      <tr><td><code>country</code></td><td>1</td><td>71 272 — Россия целиком</td></tr>
+      <tr><td><code>aggregate</code></td><td>1</td><td>317 — сводная группа</td></tr>
+      <tr><td><code>city</code></td><td>1</td><td>1 — Сочи</td></tr>
+    </tbody>
+  </table>
+  <p style="margin:8px 0 0">Если этого не сделать, на карту попадут федеральные округа,
+  и раскраска поедет.</p>
+</div>
+
+<h2 id="recipes">5. Готовые рецепты датасетов и чартов</h2>
+
+<h3>Рецепт 1. Динамика цены жилья по регионам</h3>
+<p class="lead">Линейный график. Метрика <code>tkzk</code> — цена 1 кв. м, квартальная.</p>
+<pre><code>Датасет: core.v_datalens_observations
+
+Измерения:
+  X (ось времени)   period_start
+  Цвет (разбивка)   region_name
+
+Показатель:
+  Y                 value → агрегация «Среднее»
+
+Фильтры:
+  metric_code   = 'tkzk'
+  region_level  = 'region'
+  value         &gt; 0</code></pre>
+<p>Проверено: по Тюменской области 178 точек, диапазон 47 378 – 140 296 руб./м².</p>
+
+<h3>Рецепт 2. Кредитование по годам</h3>
+<p class="lead">Столбчатая диаграмма. Метрика <code>kko</code> — количество кредитов.</p>
+<pre><code>Измерения:
+  X                 year
+  Цвет              source_name
+
+Показатель:
+  Y                 value → агрегация «Сумма»
+
+Фильтры:
+  metric_code   = 'kko'
+  source_code   = 'cbr'
+  value         &gt; 0</code></pre>
+<p>Проверено: 2023 год — 2 304 наблюдения, сумма 12,3 млн; 2024 — 8,7 млн. Падение видно сразу.</p>
+
+<h3>Рецепт 3. Карта регионов</h3>
+<p class="lead">Полигональная карта. Геоточка — код региона, цвет — значение.</p>
+<pre><code>Геоточка            region_code
+Цвет                value → «Среднее»
+Фильтры:
+  metric_code   = 'snz'            (зарплата)
+  region_level  = 'region'          ← обязательно!
+  year          = 2026
+  value         &gt; 0</code></pre>
+
+<h3>Рецепт 4. Сравнение источников по одному показателю</h3>
+<p class="lead">Когда важно увидеть расхождение публикаций.</p>
+<pre><code>Измерения:  period_start, release_label
+Показатель: value → «Среднее»
+Фильтры:    metric_code = 'tkzk',
+            region_name = 'г. Москва',
+            value &gt; 0</code></pre>
+<p>Проверено: за 2026 Q1 Москва даёт 472 898 руб. из сборника Росстата
+(<code>info-stat-06-2026/10-05</code>) и ту же цену из бюллетеня ЦБ
+(<code>cbr_bulletin_74</code>). Разные релизы одного показателя.</p>
+
+<h3>Рецепт 5. Фильтр по разрезу рынка</h3>
+<p class="lead">Первичный или вторичный рынок жилья.</p>
+<pre><code>Фильтры:
+  metric_code             = 'tkzk'
+  sub_dimension           LIKE '%market: primary%'
+  region_level            = 'region'
+  value                   &gt; 0</code></pre>
+
+<h3>Рецепт 6. Только твёрдые оценки</h3>
+<p class="lead">Отсечь предварительные данные, если нужна устойчивая база.</p>
+<pre><code>Фильтры:
+  assessment_type = 'final'
+  value           &gt; 0</code></pre>
+<p>Предварительных (<code>preliminary</code>) — 207 405 строк, это данные текущего года.
+Для ретроспективы удобно отсекать.</p>
+
+<h2 id="subdim">6. Подразрезы: что это и когда нужны</h2>
+
+<p><code>sub_dimension</code> — служебное поле, которое различает наблюдения внутри
+одной метрики, региона и периода. Формат — пары «ключ: значение» через вертикальную
+черту.</p>
+
+<pre><code>валюта: RUB
+market: primary | ед.: руб
+currency: В рублях | indicator_name: Задолженность по кредитам | ед.: млн руб.
+ряд: stock | лист: 01_01_45 | строка 4473
+product: Цемент (все гидравлические) | ед.: тыс.т | строка 1</code></pre>
+
+<div class="card">
+  <b>Что важно знать:</b>
+  <ul style="margin:8px 0 0">
+    <li>У <b>748 102 строк</b> разрез пуст — это наблюдения без дополнительных
+    разрезов, и это нормально.</li>
+    <li>Частые префиксы: <code>валюта:</code>, <code>market:</code>,
+    <code>currency:</code>, <code>product:</code>, <code>ед.:</code>,
+    <code>ряд:</code>, <code>лист:</code>, <code>состав:</code>.</li>
+    <li>В датасет его чаще не выносят, а держат <b>фильтром</b> — иначе поле
+    с тысячами значений забьёт легенду.</li>
+    <li>При фильтрации по конкретному разрезу использовать
+    <code>LIKE '%market: primary%'</code> — с процентом с двух сторон,
+    потому что разрез может быть не первым в строке.</li>
+  </ul>
+</div>
+
+<h3>Когда разрез обязателен</h3>
+
+<p>Если метрика имеет несколько разрезов (например, кредиты по валютам
+RUB / FX / TOTAL), без фильтра по разрезу значения <b>сложатся</b>, и вы получите
+ сумму несовместимых величин. Проверяйте так:</p>
+
+<pre><code>SELECT sub_dimension, count(*)
+FROM core.v_datalens_observations
+WHERE metric_code = 'ваш_код'
+GROUP BY 1 ORDER BY 2 DESC;</code></pre>
+
+<p>Если строк больше одной — разрез нужно либо вынести в измерение, либо
+зафиксировать фильтром.</p>
+
+<h2 id="dicts">7. Справочники</h2>
+
+<h3>Источники — <code>source_code</code></h3>
+<table>
+  <thead><tr><th>Код</th><th>Источник</th><th>Строк</th><th>Период</th></tr></thead>
+  <tbody>
+    <tr><td><code>domrf</code></td><td>ДОМ.РФ</td><td>872 937</td><td>2020–2026</td></tr>
+    <tr><td><code>cbr</code></td><td>Банк России</td><td>858 053</td><td>2019–2026</td></tr>
+    <tr><td><code>rosstat</code></td><td>Росстат</td><td>419 782</td><td>1990–2026</td></tr>
+    <tr><td><code>fns</code></td><td>ФНС России</td><td>16 236</td><td>2017–2026</td></tr>
+    <tr><td><code>rosreestr</code></td><td>Росреестр</td><td>6 771</td><td>2024–2026</td></tr>
+    <tr><td><code>smartlab</code></td><td>Smart-Lab</td><td>512</td><td>2021–2026</td></tr>
+  </tbody>
+</table>
+
+<p>Самый длинный ряд — Росстат (с 1990 года). Самые глубокие по регионам и месяцам —
+Банк России и ДОМ.РФ. ФНС и Smart-Lab в наблюдениях появились недавно: ФНС даёт
+прибыль организаций, Smart-Lab — отчётность девелоперов по МСФО.</p>
+
+<h3>Частоты — <code>frequency_code</code></h3>
+<table>
+  <thead><tr><th>Код</th><th>Название</th><th>Строк</th><th>Поля периода</th></tr></thead>
+  <tbody>
+    <tr><td><code>M</code></td><td>месячная</td><td>1 740 327</td><td><code>year</code>, <code>month</code></td></tr>
+    <tr><td><code>A</code></td><td>годовая</td><td>354 334</td><td><code>year</code></td></tr>
+    <tr><td><code>Q</code></td><td>квартальная</td><td>79 630</td><td><code>year</code>, <code>quarter</code></td></tr>
+  </tbody>
+</table>
+
+<div class="card warn">
+  <b>Важно:</b> не фильтруйте по частоте, если не уверены. У годовых рядов
+  <code>month</code> пуст, у квартальных заполнен <code>quarter</code>.
+  Смешивать частоты в одном графике нельзя — получите пилообразную линию.
+</div>
+
+<h3>Единицы — <code>unit_code</code></h3>
+<table>
+  <thead><tr><th>Код</th><th>Название</th><th>Строк</th></tr></thead>
+  <tbody>
+    <tr><td><code>sqm</code></td><td>м²</td><td>625 688</td></tr>
+    <tr><td><code>mln_rub</code></td><td>млн руб.</td><td>521 851</td></tr>
+    <tr><td><code>unknown</code></td><td>— (не определена)</td><td>307 339</td></tr>
+    <tr><td><code>pct</code></td><td>%</td><td>248 476</td></tr>
+    <tr><td><code>count</code></td><td>шт.</td><td>168 630</td></tr>
+    <tr><td><code>units</code></td><td>ед.</td><td>121 805</td></tr>
+    <tr><td><code>persons</code></td><td>чел.</td><td>72 438</td></tr>
+    <tr><td><code>ths_persons</code></td><td>тыс. чел.</td><td>62 964</td></tr>
+    <tr><td><code>rub</code></td><td>руб.</td><td>22 359</td></tr>
+    <tr><td><code>index</code></td><td>индекс</td><td>9 646</td></tr>
+    <tr><td><code>ths_sqm</code></td><td>тыс. м²</td><td>8 606</td></tr>
+    <tr><td><code>ratio</code></td><td>коэф.</td><td>2 064</td></tr>
+    <tr><td colspan="2">остальные: <code>mln_sqm</code>, <code>bln_rub</code>, <code>ths_rub</code>, <code>rub_per_sqm</code>, <code>pct_pts</code>, <code>months</code>, <code>years</code>, <code>ths_units</code></td><td>~2 400</td></tr>
+  </tbody>
+</table>
+
+<div class="card warn">
+  <b>Осторожно с единицами.</b> В одной метрике единица обычно одна, но при
+  агрегации разных метрик легко сложить рубли с процентами. Всегда смотрите
+  <code>unit_name</code> в подписи графика.
+</div>
+
+<h3>Территории</h3>
+<p><code>region_code</code> — мнемонический код (<code>vologda</code>,
+<code>moscow-city</code>), <code>region_name</code> — русское название,
+<code>region_level</code> — уровень (см. раздел 4), <code>oktmo</code> — код ОКТМО
+для тех рядов, где он есть. Всего 102 территории, из них 91 —
+собственно регионы.</p>
+
+<h2 id="metrics">8. Метрики, с которых удобно начинать</h2>
+
+<p>Отобраны по объёму данных и полноте покрытия:</p>
+
+<table>
+  <thead><tr><th>Код</th><th>Название</th><th>Строк</th><th>Регионов</th><th>Годы</th></tr></thead>
+  <tbody>
+    <tr><td><code>rkop_3</code></td><td>Реализация квартир (объём проданных), м²</td><td>33 343</td><td>99</td><td>2020–2026</td></tr>
+    <tr><td><code>rke_3</code></td><td>Реализация квартир, %</td><td>32 714</td><td>99</td><td>2020–2026</td></tr>
+    <tr><td><code>zka</code></td><td>Задолженность по кредитам</td><td>25 920</td><td>91</td><td>2019–2026</td></tr>
+    <tr><td><code>kko</code></td><td>Количество кредитов</td><td>25 920</td><td>91</td><td>2019–2026</td></tr>
+    <tr><td><code>pzk</code></td><td>Просроченная задолженность по кредитам</td><td>25 920</td><td>91</td><td>2019–2026</td></tr>
+    <tr><td><code>okb</code></td><td>Объём кредитов</td><td>25 920</td><td>91</td><td>2019–2026</td></tr>
+    <tr><td><code>cdo</code></td><td>Корпоративный долг</td><td>24 214</td><td>94</td><td>2019–2026</td></tr>
+    <tr><td><code>cnl</code></td><td>Новые корпоративные кредиты</td><td>21 457</td><td>94</td><td>2019–2026</td></tr>
+    <tr><td><code>cod</code></td><td>Просроченный корпоративный долг</td><td>20 574</td><td>94</td><td>2019–2026</td></tr>
+    <tr><td><code>usg_4</code></td><td>Уровень строительной готовности</td><td>16 909</td><td><b>1</b></td><td>2020–2026</td></tr>
+    <tr><td><code>01_02_09</code></td><td>Количество МКД в составе проектов</td><td>15 642</td><td>98</td><td>2020–2026</td></tr>
+    <tr><td><code>snz</code></td><td>Среднемесячная начисленная зарплата</td><td>15 120</td><td>94</td><td>2013–2026</td></tr>
+    <tr><td><code>tkzk</code></td><td>Цена 1 кв. м жилья, квартальная</td><td>8 815</td><td>94</td><td>2016–2026</td></tr>
+    <tr><td><code>tkzg</code></td><td>Цена 1 кв. м жилья, годовая</td><td>2 919</td><td>—</td><td>2016–2026</td></tr>
+  </tbody>
+</table>
+
+<p><b>Про <code>usg_4</code>:</b> единственный регион — не ошибка витрины, а свойство
+источника. Метрика приходит из ДОМ.РФ по стране в целом.</p>
+
+<p><b>Про метрики 5-П (ФНС):</b> <code>drpotr</code> (доходы прибыльных организаций),
+<code>druotr</code> (доходы убыточных), <code>rusdrpotr</code> (расходы),
+<code>vrpotr</code> и <code>vdpotr</code> (внереализационные) — по 86 регионам,
+2017–2026, единица «тыс. руб.». Полезны как индикатор финансового здоровья
+застройщиков.</p>
+
+<h3>Как найти нужную метрику</h3>
+<pre><code>SELECT DISTINCT metric_code, metric_name, unit_name,
+       count(*) OVER (PARTITION BY metric_code) AS rows
+FROM core.v_datalens_observations
+WHERE metric_name ILIKE '%цена%'
+ORDER BY rows DESC;</code></pre>
+
+<h2 id="pitfalls">9. Подводные камни</h2>
+
+<details>
+  <summary>1. Один показатель есть в нескольких релизах — значения задвоятся</summary>
+  <p>Если у метрики несколько <code>release_label</code> (например, сборник Росстата
+  и бюллетень ЦБ), одно и то же число придёт дважды. Без агрегации вы увидите две
+  одинаковые линии.</p>
+  <p><b>Что делать:</b> либо фильтр по конкретному <code>release_label</code>, либо
+  вынести релиз в цвет, либо агрегировать <code>value</code> через «Среднее» или
+  «Минимум».</p>
+  <p><b>Проверка:</b></p>
+  <pre><code>SELECT release_label, count(*)
+FROM core.v_datalens_observations
+WHERE metric_code = 'tkzk' AND region_name = 'г. Москва'
+  AND period_start = '2026-01-01'
+GROUP BY 1;</code></pre>
+</details>
+
+<details>
+  <summary>2. Заполнители <code>−99 999 999</code> ломают графики</summary>
+  <p>Это официальный код Росстата «нет информации». 27 217 таких строк. Всегда
+  фильтруйте <code>value &gt; 0</code>.</p>
+</details>
+
+<details>
+  <summary>3. Федеральные округа на карте регионов</summary>
+  <p>Без <code>region_level = 'region'</code> на карту попадут 8 округов и Россия
+  целиком — раскраска поедет. Это 221 921 лишняя строка.</p>
+</details>
+
+<details>
+  <summary>4. Несколько разрезов складываются</summary>
+  <p>Если у метрики есть <code>sub_dimension</code> с валютами (RUB / FX / TOTAL)
+  и вы не фильтруете разрез, значения просуммируются. Проверяйте количество
+  разрезов перед построением графика.</p>
+</details>
+
+<details>
+  <summary>5. Месячные и годовые ряды в одном графике</summary>
+  <p>У годовых <code>month</code> пуст, у месячных заполнен. Смешение частот даёт
+  пилообразную линию. Фильтруйте <code>frequency_code</code>.</p>
+</details>
+
+<details>
+  <summary>6. Единица измерения «unknown» — 307 339 строк</summary>
+  <p>Это ряды, где единица не определилась автоматически. Данные в них верные,
+  но в подписи графика единицу придётся указать вручную. Посмотреть, какие метрики
+  затронуты:</p>
+  <pre><code>SELECT metric_code, metric_name, count(*)
+FROM core.v_datalens_observations
+WHERE unit_code = 'unknown'
+GROUP BY 1,2 ORDER BY 3 DESC LIMIT 20;</code></pre>
+</details>
+
+<details>
+  <summary>7. Предварительные и твёрдые оценки вперемешку</summary>
+  <p>207 405 строк помечены <code>preliminary</code> — это текущий год, данные ещё
+  уточнятся. Для ретроспективного анализа фильтруйте
+  <code>assessment_type = 'final'</code>.</p>
+</details>
+
+<h2 id="sql">10. SQL-шпаргалка</h2>
+
+<p class="lead">Витрину можно читать напрямую, если удобнее готовый срез, чем
+датасет в DataLens.</p>
+
+<p><b>Что вообще есть в базе:</b></p>
+<pre><code>SELECT source_code, count(*) AS rows, count(DISTINCT metric_code) AS metrics
+FROM core.v_datalens_observations
+WHERE value &gt; 0
+GROUP BY 1 ORDER BY 2 DESC;</code></pre>
+
+<p><b>Динамика цены по одному региону:</b></p>
+<pre><code>SELECT period_start, value
+FROM core.v_datalens_observations
+WHERE metric_code = 'tkzk'
+  AND region_name = 'г. Москва'
+  AND value &gt; 0
+ORDER BY period_start DESC
+LIMIT 20;</code></pre>
+
+<p><b>Топ регионов по показателю за период:</b></p>
+<pre><code>SELECT region_name, avg(value) AS avg_value, count(*) AS points
+FROM core.v_datalens_observations
+WHERE metric_code = 'snz'
+  AND region_level = 'region'
+  AND year = 2025
+  AND value &gt; 0
+GROUP BY 1 ORDER BY 2 DESC LIMIT 15;</code></pre>
+
+<p><b>Проверка, почему на графике две одинаковые линии:</b></p>
+<pre><code>SELECT region_name, period_start, release_label, value
+FROM core.v_datalens_observations
+WHERE metric_code = 'ваш_код'
+GROUP BY 1,2,3,4
+HAVING count(*) &gt; 1
+LIMIT 10;</code></pre>
+
+<p><b>Какие разрезы есть у метрики:</b></p>
+<pre><code>SELECT sub_dimension, count(*)
+FROM core.v_datalens_observations
+WHERE metric_code = 'ваш_код'
+GROUP BY 1 ORDER BY 2 DESC LIMIT 20;</code></pre>
+
+<p><b>Полный список метрик с покрытием:</b></p>
+<pre><code>SELECT metric_code, metric_name, unit_name,
+       count(*) AS rows,
+       count(DISTINCT region_code) AS regions,
+       min(year) AS y0, max(year) AS y1
+FROM core.v_datalens_observations
+WHERE value &gt; 0
+GROUP BY 1,2,3
+ORDER BY rows DESC;</code></pre>
+
+<hr>
+
+<h2>Куда идти дальше</h2>
+
+<ul>
+  <li><b>Спецификация датасета DataLens</b> — <code>queries/datalens-dataset-spec.md</code>
+  в репозитории (порядок создания датасета, чартов, дашборда).</li>
+  <li><b>Подключение к базе</b> — <code>queries/datalens-connection.md</code>.</li>
+  <li><b>Схема базы целиком</b> — <code>db/schema/schema-live.sql</code>
+  (21 таблица, снято из живой базы).</li>
+  <li><b>Как устроена гармонизация</b> — <code>queries/harmonization-stage6.md</code>
+  и <code>queries/panel-harmonization-v3.md</code>.</li>
+</ul>
+
+<div class="foot">
+  FAQ составлен по фактическому состоянию базы на 18.09.2026:
+  2 174 291 наблюдение, 1 365 метрик, 102 территории, 6 источников.
+  Все числовые значения в документе проверены запросами к
+  <code>core.v_datalens_observations</code>.
+</div>
+
+</div>
+</body>
+</html>

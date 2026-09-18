@@ -268,9 +268,18 @@ def parse_matrix_sheet(ws):
             name = s
         for ci, (yr, per) in cols.items():
             if ci - 1 < len(row) and isinstance(row[ci - 1], (int, float)):
-                obs.append(dict(block="level", col=ci,
-                                block_name=("%s | %s" % (name, per))[:110],
-                                series=("%s | %s" % (name, per))[:110],
+                # col=0: в матричных листах 4.6 номер колонки — это ГОД,
+                # то есть период, а не признак ряда. Если писать сюда ci,
+                # каждая колонка-год становится отдельной метрикой
+                # (в 4.6 выходило 370 метрик вместо ~10).
+                # Период накопления — часть идентичности ряда: за один и тот
+                # же год «год», «I квартал» и «I полугодие» дают разные
+                # значения. Без метки периода они схлопывались (240 строк
+                # в 4.6 (2013-2025)).
+                nm = name if per == "год" else "%s | %s" % (name, per)
+                obs.append(dict(block="level", col=0, row_no=0,
+                                block_name=nm[:110],
+                                series=nm[:110],
                                 frequency="A", year=yr,
                                 month=None, quarter=None,
                                 value=float(row[ci - 1]),
@@ -299,23 +308,29 @@ def parse_sheet(ws, sheet_name):
         # смешались бы с месячными значениями.
         if nm >= 4 or nq >= 3 or ncu >= 3:
             hrow = r
-            mcols = {i + 1: MONTHS_RU.index(v) + 1
-                     for i, v in enumerate(vals) if v in MONTHS_RU}
-            # В части листов (1.14) шапка содержит ДВА прохода месяцев:
-            # «Янв…Дек | Янв…Дек» — второй блок это другой показатель
-            # (например, стоимость в рублях и индекс в %). Одноимённые месяцы
-            # во втором проходе нумеруем как 21..32, чтобы не схлопываться.
+            # ПРОХОД, а не номер колонки: в шапке 1.14 месяцы идут дважды
+            # («Янв…Дек | Янв…Дек») — второй блок это другой показатель
+            # (стоимость в рублях против индекса в %). Раньше в идентичность
+            # ряда попадал номер колонки, а он для месячного ряда уникален
+            # для каждого месяца — ряд размножался ×12 (в 1.5 выходило 900
+            # метрик вместо ~36).
+            mcols = {}
             seen_months = {}
-            for ci, mo in list(mcols.items()):
-                if mo in seen_months:
-                    mcols[ci] = mo + 20
-                else:
-                    seen_months[mo] = ci
+            for i, v in enumerate(vals):
+                if v in MONTHS_RU:
+                    mo = MONTHS_RU.index(v) + 1
+                    pno = seen_months.get(mo, 0)
+                    seen_months[mo] = pno + 1
+                    mcols[i + 1] = (mo, pno)
+            seen_q = {}
             for rr in (r, r + 1):
                 for c in range(1, 41):
                     v = ws.cell(row=rr, column=c).value
                     if v in QUARTERS and c not in mcols:
-                        qcols[c] = QUARTERS[v]
+                        q = QUARTERS[v]
+                        pno = seen_q.get(q, 0)
+                        seen_q[q] = pno + 1
+                        qcols[c] = (q, pno)
             break
     if hrow is None:
         return [], None, ["нет строки с месяцами/кварталами"]
@@ -361,6 +376,19 @@ def parse_sheet(ws, sheet_name):
     sub_idx = 0          # счётчик подтаблиц
     series_row = None    # номер строки подписи — различает одноимённые ряды
     ordinal = 0          # счётчик повторов одной подписи внутри подтаблицы
+    # Номер «блока данных»: увеличивается каждый раз, когда после строк с
+    # годами снова идёт строка-подпись. Различает последовательные подтаблицы
+    # с одинаковыми подписями (3.2.1: средние цены на разные продукты идут
+    # друг за другом с одним и тем же series — без этого счётчика 1074
+    # значения схлопывались).
+    block_seq = 0
+    prev_had_data = False
+    # Карта «имя ряда -> номер строки первого появления» в текущей подтаблице.
+    # Нужна там, где одна и та же подпись повторяется под каждым годом
+    # (4.7: «Все население», «трудоспособное», … чередуются по годам).
+    # Без неё номер строки перезаписывался на каждом годе и один ряд дробился
+    # на 29 метрик (в 4.7 выходило 196 вместо 8).
+    row_by_name = {}
     sec_year = None      # год-заголовок секции (лист 4.7)
     for row_no, row in enumerate(
             ws.iter_rows(min_row=title_row + 1, max_row=min(ws.max_row, 3000),
@@ -385,6 +413,7 @@ def parse_sheet(ws, sheet_name):
                     section = s            # «1.9.1. Внешнеторговый оборот…»
                     sub_idx += 1
                     ordinal = 0
+                    row_by_name = {}
                     series_row = row_no
                     # Номерной заголовок ВСЕГДА становится именем ряда.
                     # Раньше он присваивался только при пустом series_name, и
@@ -404,9 +433,19 @@ def parse_sheet(ws, sheet_name):
                 if kind == "pct":
                     block, block_name = "pct", label
                     continue
-                # kind == 'sub': это имя ряда; новый ряд начинается с уровня
-                series_name = s
-                series_row = row_no
+                # kind == 'sub': это имя ряда; новый ряд начинается с уровня.
+                # Номер строки фиксируем только при смене имени: одинаковые
+                # подписи в разных годовых подтаблицах — это ОДИН ряд.
+                if prev_had_data:
+                    block_seq += 1
+                    row_by_name = {}
+                prev_had_data = False
+                if s not in row_by_name:
+                    row_by_name[s] = row_no
+                if s != series_name:
+                    series_name = s
+                    ordinal = 0
+                series_row = row_by_name[s]
                 ordinal += 1
                 block, block_name = "level", "уровень"
                 continue
@@ -435,15 +474,28 @@ def parse_sheet(ws, sheet_name):
         # «пенсионеры», «дети» повторяются под каждым годом (1999, 2000, …) —
         # это одна серия, растянутая по годам, поэтому имя ряда обязано
         # обновляться на каждой строке, а не запоминаться один раз.
+        # Листы с годом-секцией (4.7): подпись «Все население» повторяется
+        # под КАЖДЫМ годом, но это один ряд. Номер строки обновляем только
+        # при смене имени — иначе каждая годовая секция даёт свою метрику
+        # (в 4.7 выходило 460 метрик при реальных 8).
         if yr is None and sec_year and s and c1 is not None:
             yr = sec_year
-            series_name = s
+            # Нормализуем подпись: «трудоспособное / working-age» и
+            # «трудоспособное  / working-age» должны дать один ряд.
+            cat = re.split(r"\s*/\s*", s)[0].strip()
+            # 2.3: год стоит строкой-разделителем, и под ним снова идут те же
+            # подписи. Сбрасываем карту на каждом годе, иначе ряд «до 1 года»
+            # тянется через все годы и значения разных лет схлопываются.
+            row_by_name = {}
+            row_by_name[cat] = row_no
+            series_name = cat
             series_row = row_no
         # Листы с годами в колонке 1 и месяцами без годовой колонки (2.4):
         # строка всё равно начинается с года — он уже разобран выше.
         if yr is None:
             continue
         seen_year = True
+        prev_had_data = True
 
         unit_code, unit_name = resolve_unit(title, block)
         # Номер подтаблицы обязателен: в листах 4.4, 3.2, 1.9 под одним и тем же
@@ -454,25 +506,29 @@ def parse_sheet(ws, sheet_name):
             cur_series += " [подтаблица %d]" % sub_idx
         if ordinal > 1:
             cur_series += " [повтор %d]" % ordinal
-        # Страховка: если подпись ряда так и не встретилась (например, данные
-        # идут до первого заголовка), берём текущую строку — иначе row_no
-        # окажется None и такие строки схлопнутся между собой.
-        eff_row = series_row if series_row is not None else row_no
-        for ci, mo in mcols.items():
+        if block_seq:
+            cur_series += " [блок %d]" % block_seq
+        # Если подписи ряда нет (на листе один показатель, как в 1.7 — только
+        # заголовок и годы), ряд определяется самим листом, поэтому номер
+        # строки обязан быть КОНСТАНТОЙ. Раньше здесь падало на row_no, и
+        # каждая строка данных становилась отдельной метрикой: в 1.7 выходило
+        # 1373 метрики вместо ~9.
+        eff_row = series_row if series_row is not None else title_row
+        for ci, (mo, pno) in mcols.items():
             if ci - 1 < len(row):
                 v = row[ci - 1]
                 if isinstance(v, (int, float)):
                     obs.append(dict(block=block, block_name=block_name,
-                                    series=cur_series, row_no=eff_row, col=ci,
+                                    series=cur_series, row_no=eff_row, col=pno,
                                     frequency="M", year=yr, month=mo, quarter=None,
                                     value=float(v), unit_code=unit_code,
                                     unit_name=unit_name, footnote=foot))
-        for ci, q in qcols.items():
+        for ci, (q, pno) in qcols.items():
             if ci - 1 < len(row):
                 v = row[ci - 1]
                 if isinstance(v, (int, float)):
                     obs.append(dict(block=block, block_name=block_name,
-                                    series=cur_series, row_no=eff_row, col=ci,
+                                    series=cur_series, row_no=eff_row, col=pno,
                                     frequency="Q", year=yr, month=None, quarter=q,
                                     value=float(v), unit_code=unit_code,
                                     unit_name=unit_name, footnote=foot))

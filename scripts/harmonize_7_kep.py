@@ -130,6 +130,24 @@ def main():
     log("уникальных связок: %d, релизов: %d" % (len(uniq_keys), len(labels)))
 
     # ---------- 2. релизы ----------
+    # ИДЕМПОТЕНТНОСТЬ: если выпуск с такой меткой уже загружен, повторный
+    # прогон создал бы дубли метрик (релиз тот же, а метрики новые).
+    # Поэтому при совпадении метки выходим: cron может вызывать скрипт
+    # сколько угодно раз, лишних данных не появится.
+    if not SIMULATE:
+        for label in sorted(labels):
+            cur.execute("SELECT release_id FROM core.release "
+                        "WHERE source_id=%s AND release_label=%s", (sid, label))
+            r = cur.fetchone()
+            if r:
+                cur.execute("SELECT count(*) FROM core.observation_v2 "
+                            "WHERE release_id=%s", (r[0],))
+                n = cur.fetchone()[0]
+                log("выпуск уже загружен: %r (%s наблюдений) — пропуск"
+                    % (label, format(n, ",")))
+                conn.close()
+                return
+
     rel_cache = {}
     for label in sorted(labels):
         cur.execute("""SELECT release_id FROM core.release
@@ -160,7 +178,14 @@ def main():
             continue
         if not u_id:
             u_id = unit_ids.get("unknown", 18)
-        base = "kep" + re.sub(r"\D", "", sheet) + BLOCK_SUFFIX.get(block, "x")
+        # Код строится из номера листа С СОХРАНЕНИЕМ РАЗДЕЛИТЕЛЯ: «1.12» ->
+        # kep1_12, «1.1» -> kep1_1. Раньше точка просто удалялась, и «1.12»
+        # давало «112» — та же строка, что «1.1» + счётчик 2, поэтому коды
+        # вроде kep1122 не читались и путались между листами.
+        base = "kep" + re.sub(r"[^0-9a-zA-Z]", "_", str(sheet)).strip("_")
+        suf = BLOCK_SUFFIX.get(block, "s")
+        if suf:
+            base += "_" + suf
         code, i = base, 2
         while code in taken:
             code = "%s%d" % (base, i)

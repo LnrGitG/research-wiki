@@ -109,11 +109,14 @@ def main() -> int:
                 else:
                     warnings.append(message)
 
-    log_path = ROOT / "log.md"
-    if log_path.exists():
+    for log_name in ("log.md", "log-tech.md"):
+        log_path = ROOT / log_name
+        if not log_path.exists():
+            problems.append(f"missing {log_name}")
+            continue
         entries = sum(1 for line in read(log_path).splitlines() if line.startswith("## ["))
         if entries > 500:
-            warnings.append(f"log.md has {entries} entries; rotate to log-YYYY.md")
+            warnings.append(f"{log_name} has {entries} entries; rotate to log-YYYY.md")
 
     print(f"wiki_lint root={ROOT} strict={args.strict}")
     print(f"problems={len(problems)} warnings={len(warnings)}")

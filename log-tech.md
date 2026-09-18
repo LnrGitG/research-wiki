@@ -1,0 +1,204 @@
+# Wiki Log — технические работы
+
+> Хронологический журнал **инфраструктурных** изменений: базы данных, скрипты,
+> миграции, CI, настройка сервисов, документация по инструментам.
+> Append-only, по возрастанию даты.
+>
+> Содержательные изменения (новые публикации, источники, обновления данных)
+> ведутся в `log.md` — см. правило разграничения там же.
+
+## [2026-07-16] create | Wiki initialized
+- Domain: AI/ML research → updated to: Экономика жилья / ипотека / недвижимость
+- Path: ~/research-wiki
+- Structure: SCHEMA.md, index.md, log.md + raw/, entities/, concepts/, comparisons/, queries/, _archive/
+- WIKI_PATH set in ~/.hermes/.env
+
+## [2026-07-25] create | Economical wiki maintenance scaffold
+- Added warm-layer catalog: raw/papers/_catalog.md (short card per extracted source; no page per PDF).
+- Added templates: templates/concept.md, templates/query.md, templates/paper-card.md.
+- Added scripts: scripts/convert_pdfs.py (idempotent PDF→MD, skips _archive/Workpapers, flags error-page/image-only) and scripts/lint_wiki.py (non-blocking by default; --strict fails on broken wikilinks).
+- Cleanup: moved two bad extracted sources to _archive/rejected/2026-07-25/ (chodorow-reich-2025-cpi-housing = access denied; dipasquale-wheaton-1992 = image-only/empty extraction).
+- Verified: convert_pdfs.py --no-recursive → converted=0 skipped=33 failed=0; lint_wiki.py → problems=0 warnings=170 (mostly missing catalog cards for existing raw sources).
+
+## [2026-09-08] update | Models, CI, Obsidian, research-radar (элементы плана Qwen)
+- Created: models/nowcasting/midas-wordstat-smr.md (H-006), models/transmission/dev-supply-elasticity-panel.md (H-002/H-003), models/transmission/did-mpl-elasticity-regions.md (H-005/H-004); шаблон templates/model-card.md; SCHEMA.md: тип model + раздел Model Pages
+- Created: scripts/ci/check_wiki_links.py (wikilinks/frontmatter/catalog dup/hypotheses; exit 0: 0 errors, 139 warnings — legacy frontmatter и маркеры сносок) и .github/workflows/wiki-ci.yml (wiki check + markdownlint non-blocking)
+- Исправлено: 5 unquoted YAML title (модели + 2 queries + review), добавлены типы review/news/reference/annotation в схему линтера
+- Obsidian: MOC.md (тематическая карта), docs/obsidian-setup.md (vault-настройки, Dataview/Kanban/Obsidian Git), .gitignore дополнен (workspace, cache, plugin-байнари)
+- Cron research-radar-weekly (job 54ce92865069): понедельник 10:00 UTC — скан arXiv/NBER/SSRN/CBR, сверка с hypotheses.yaml, запись queries/research-radar-*
+
+## [2026-09-08] update | Каталогизация papers/ в papers/catalog.md (фаза 2, delegation)
+- 3 параллельных делегата обработали 423 .md из papers/ → 319 карточек (8-10 строк: title/authors/year/method/data/key_result/relevance/status) + 63 dup-ссылки на файлы-близнецы
+- Дедупликация: пары "_/-" имён схлопнуты; литовский HPI 4 варианта, Корея 3, BIS bull 3 — по одной карточке с dup-пометками
+- Проверка: 0 дубликатов заголовков, 0 битых dup-ссылок, покрытие 423/423; файл 3317 строк
+- Пропуски: NBER-CRIW-2026-Ch4 отсутствует на диске (корректно); пустые/error-экстракции помечены relevance: low
+
+## [2026-09-08] update | Пересборка векторного слоя
+- scripts/rebuild_embeddings.py: 633 файлов → docs/embeddings-f32.json (1523 KB) + docs/search-index.json (633 entries)
+- Смоук-тест косинусного поиска по запросу про эластичность/финансовые ограничения — релевантные статьи найдены, индекс согласован
+
+## [2026-09-09] update | clearspending перепроверка + чеклист YC-ВМ
+- API clearspending (openapi/v3) всё ещё 500 (Starlette/Sphinx-авария) с VPS; legacy v1/v2 — 404; веб под Anubis 200
+- OFDATA 401 без ключа (жив), github зеркала 200 (не активны с 2024-02)
+- Решение: clearspending-тест включён в task.json YC-ВМ (резидентный IP различит гео-блок от аварии сервера)
+
+## [2026-09-10] update | YC VP для скрейпинга и хранения research-wiki
+- Актуализирован план `/home/lnr/.hermes/plans/2026-09-09-yc-vm-bucket-setup.md`.
+- Добавлены raw/staging/curated-слои Object Storage, manifests/checksum, SQLite → Parquet/DuckDB, systemd timers и acceptance-критерии.
+- Зафиксировано: YC VP не является резидентным IP и не должна использоваться для обхода антибота/геоблокировок; API-first для ЦБ, Росстата, ДОМ.РФ/ЕИСЖС, Росреестра.
+- Cloud Functions/API Gateway оставлены только в историческом архиве плана.
+
+## [2026-09-14] create | Гайд по настройке и использованию Hermes Agent
+- Created: docs/hermes-agent-setup-guide.md (~35K, 12 разделов): установкa на VPS, 5 стратегий LLM-провайдеров и роутинг, инструменты и MCP, скиллы и Curator, слоистая память, профили/мультиагентность, автоматизация, безопасность, сводная таблица 28 грабель, чеклист внедрения
+- Источники: Habr (5 статей), дайджест r/hermesagent (The Lurk Report, май 2026), Medium разбор архитектуры, официальные доки llms.txt
+
+## [2026-09-14] create | Справка по сервисным командам Hermes
+- Created: docs/help.md (~16K): все CLI-команды v0.21.2 по 12 разделам — глобальные флаги, сессии, модели/провайдеры, gateway, автоматизация, skills+curator, память, инструменты, безопасность, обслуживание, инфраструктура, типовые операции
+- Заодно зафиксировано: skills.write_approval=true гейт, curator consolidate=true
+
+## [2026-09-16] update | Целевая архитектура БД (техзадание + проект)
+- Создан `queries/database-target-spec.md` — ТЗ: назначение (аналитический + исследовательский режимы), 17 сущностей, пайплайн, критерии приёмки; §15 заполнен замерами.
+- Создан `queries/database-architecture.md` — проект: слои staging/core/derived/marts, DDL PostgreSQL (18 таблиц), as-of витрины, ключ гранулярности с source+release+assessment_type, план миграции 6 SQLite → PG через db_compat, демонтаж GCS, стоимость YC ~2600-3300 ₽/мес.
+- Замер: 80 пользовательских таблиц / 5 903 489 строк / ~1.45 ГБ (уточнено против 81 — включала sqlite_sequence).
+- Открытые вопросы: 8 (бюджет ВМ, судьба 23 фантомных таблиц, канонизация регионов, link-коэффициенты ИФО).
+
+## [2026-09-16] update | Канонический справочник регионов
+- Построен справочник: 98 записей (1 страна + 8 ФО + 89 регионов), иерархия country→fd→region.
+- Карта 435 сырых написаний → канонический код; покрытие 2 375 368 наблюдений.
+- Обработано 646 уникальных значений: омоглифы, аббревиатуры АО, родительный падеж, английские слоги ФНС, исторические АО 2005-2008.
+- 211 значений исключены как не-региональные (подписи строк в колонке региона).
+- 4 спецслучая на ревью: Малороссийский ФО (115), Байконур (37), Сочи (1), составные названия Росреестра.
+- Скрипт scripts/build_region_reference.py — воспроизводимый, идемпотентный.
+
+## [2026-09-17] update | Постановка на развёртывание БД в YC (Ф0 выполнена)
+- Создана queries/database-deployment-plan.md: 6 фаз (канал → ВМ → PG+справочники → миграция → скрипты → демонтаж GCS → бэкапы).
+- Ф0 выполнена: проверен обмен VDS ↔ YC через S3-бакет agent-vm-exchange (PUT/GET/head работают, etag совпал).
+- Зафиксированы ресурсы: зона ru-central1-b, подсеть e2lihlksrvl26ukhrcef, SG ssh-access-sg, образ fd8nj6iro13qffg31not.
+- Целевая ВМ: 4x20% vCPU / 8 ГБ / 60 ГБ SSD ~4300 ₽/мес (постоянная).
+- Объём: 6 баз 1452 МБ, 5 903 507 строк, 80 таблиц; оценка PostgreSQL ~2.4 ГБ.
+
+## [2026-09-17] update | Обзор сервисов Yandex Cloud для пайплайна
+- Создана queries/yandex-cloud-services.md: разбор 38 групп yc CLI + цены.
+- Рекомендовано: pgvector в существующем PostgreSQL вместо OpenSearch; DataLens (1 место бесплатно) вместо GitHub Pages; Search API отложенный режим для библиографии.
+- Векторизация AI Studio: 0,0101 руб/1000 токенов; для вики 15,1 млн токенов = ~153 руб разово.
+- Managed PostgreSQL с PITR рассмотрен как альтернатива (дороже ВМ ~7200 руб/мес).
+
+## [2026-09-17] update | Проектирование пользовательского пути поиска
+- Создана queries/search-user-flow.md.
+- ДИАГНОЗ: текущий поиск идёт по title+abstract, покрытие текста 0.1%; в 515 из 629 записей abstract = первая строка md.
+- Ключевой замер: полный инвертированный индекс по 709 файлам (32.3 МБ, 3.35 млн слов, 90 549 терминов) = 3.1 МБ, со сжатием 0.8 МБ.
+- Три варианта: клиентский индекс (рекомендован), серверный на YC, гибрид.
+
+## [2026-09-17] update | Дедупликация papers/ (112 файлов)
+- Причина дублей: двойная конвертация одних PDF — старый стиль имени («Имя. Заголовок») и новый («Имя-Заголовок»).
+- Удалено 112 файлов, освобождено 9.5 МБ; papers/ 587 -> 475 md.
+- Починено 39 wikilinks в 9 файлах (карта переименований по хешу тела).
+- Скрипт scripts/dedupe_papers.py (сухой прогон по умолчанию, --apply для удаления).
+- Манифест: data/dupes_removed.json. Бэкап-тег: backup/before-dedupe-20260917.
+
+## [2026-09-17] update | Полнотекстовый поиск по вики
+- `scripts/build_search_index.py`: сбор md → дедупликация → лемматизация pymorphy3 → инвертированный индекс + корпус абзацев + словарь форм→лемм.
+- Исправлен дефект стеммера: самодельный Snowball давал несогласованные основы («предложения»→предложен, «предложение»→предпол), запрос «эластичность предложения жилья» возвращал 0 результатов. После замены на pymorphy3 — 52.
+- `docs/search-full.html`: строка поиска, морфология, сниппеты с подсветкой, фильтры, ранжирование tf·idf.
+- `docs/viewer.html`: переход к месту совпадения через Text Fragments с fallback для Firefox.
+- Индекс: 602 документа, 44 697 лемм; файлы 485 КБ + 947 КБ + 5.1 МБ.
+
+## [2026-09-17] update | Миграция SQLite → PostgreSQL (этап staging)
+- Шесть баз (1.4 ГБ, 5 903 489 строк, 80 таблиц) перенесены в схему staging PostgreSQL 16.15 на ВМ research-db.
+- Сверка COUNT(*) по каждой таблице: расхождений нет (80/80).
+- Канал: S3-бакет agent-vm-exchange (SSH недоступен из-за гео-фильтра).
+- Большие файлы загружались через rclone (yc s3api put-object падает с tcsetattr на файлах >100 МБ).
+- Уточнение: у rosstat_construction 36 таблиц, не 37 — 37-й объект sqlite_sequence (служебный).
+
+## [2026-09-17] update | Ремонт 11 скриптов, повреждённых при миграции на GCS
+- Обнаружено при подготовке Ф4: 11 скриптов не парсились (SyntaxError) и не запускались с 12.09.
+- Причина: коммит d44e3d8 («Migrate heavy data to GCS») автоматически заменял абсолютные пути на REPO_ROOT/ensure_db(), но обернул выражения в лишние кавычки — код стал строковым литералом.
+- Починено: 14 повреждённых строк в 11 файлах + добавлены отсутствовавшие определения REPO_ROOT/DATA/Path.
+- Инструмент: scripts/repair_scripts.py (идемпотентный, сухой прогон по умолчанию).
+- Проверка: 74/74 скрипта синтаксически валидны.
+
+## [2026-09-17] update | Слой совместимости db_compat.py (Ф4)
+- scripts/db_compat.py: прокси sqlite3 → psycopg (плейсхолдеры ?, квалификация имён таблиц в staging.<db>__<t>, PRAGMA, Decimal→float, классы исключений).
+- Сверка: export_operational и export_dashboard через PostgreSQL дали ИДЕНТИЧНЫЙ результат SQLite.
+- Обкатка 8 читающих скриптов: 7 успешно. midas_ddu_wordstat падает и на SQLite — предсуществующий дефект, не регрессия.
+- Ротация пароля роли wiki (был случайно выведен в терминал при настройке).
+
+## [2026-09-17] update | Демонтаж GCS, переход на YC Object Storage (Ф5)
+- Перенесено 3.47 ГБ / 1244 объекта из GCS в новый бакет YC `wiki-research` (стримингом через rclone).
+- Сверка: raw/ 1228 файлов (2161 МБ) и data/archive/ 8 файлов (110 МБ) совпали по размеру; выборочная проверка 19 файлов по md5 — расхождений нет.
+- `scripts/yc_sync.py` заменил `gcs_sync.py` (удалён); импорты в 10 скриптах переключены на yc_sync.
+- Монтирование: rclone mount в ~/yc-wiki, systemd user-юнит `yc-wiki-mount.service` (enabled).
+- Симлинк raw/ → ~/yc-wiki/raw; gcsfuse отключён.
+- Обновлены AGENTS.md и .gitignore.
+
+## [2026-09-17] update | Бэкапы PostgreSQL с фактической проверкой (Ф6)
+- scripts/pg_backup.py: pg_dump -Fc → загрузка в бакет → восстановление во временную базу research_wiki_verify → сверка счётчиков по 19 таблицам → удаление временной базы.
+- Восстановление проверено фактически: дамп 100.3 МБ, 19 таблиц, расхождений 0, цикл ~121 с.
+- systemd-таймер pg-backup.timer на ВМ: 03:30 UTC ежедневно, Persistent=true; ретенция 30 дампов.
+- Роли wiki выдано CREATEDB; .pgpass расширен маской *.
+
+## [2026-09-17] update | Проверка критериев приёмки
+- Критерии 1, 2, 3, 5 выполнены: аналитический режим (68 показателей с датами), длинный ряд (42 517 годовых наблюдений 1990-2021), 76/76 скриптов валидны, восстановление из бэкапа сошлось (19 таблиц, 0 расхождений).
+- Критерий 4: из 52 таблиц каталога 29 существуют, 23 отсутствуют. Разбор: ЕИСЖС и ДОМ.РФ представлены типами внутри domrf_indicators, а не отдельными таблицами.
+- Результат: queries/acceptance-criteria-check.md
+
+## [2026-09-17] update | Гармонизация: рубежи 1-2
+- Рубеж 1: справочники core.source (6), core.unit (20), core.frequency (4). Учтены ограничения схемы (period_type, months_per_period 1-12, reliability).
+- Рубеж 2: 483 метрики в core.metric. Коды — из готовых кодов источников (panel: y477030001) либо первые буквы названия после транслитерации.
+- scripts/metric_codes.py, scripts/unit_parser.py, scripts/harmonize_1_references.py, scripts/harmonize_2_metrics.py.
+- Дефекты исходных данных: поле unit в indicators содержит пометки вместо единиц (артефакт парсинга Excel); две записи с числом вместо названия.
+- План: queries/harmonization-plan.md
+
+## [2026-09-17] update | Гармонизация: рубеж 3 (наблюдения)
+- Восстановлен data/region_aliases.csv (444 записи) из тега backup/regions-before-cleanup-20260917 — файл был пуст.
+- Записано 432 алиаса в meta.region_alias и 6 релизов в core.release.
+- Покрытие регионов: ЦБ/panel/ввод/сделки — 100%, ИКВ/индексы/цены — 99%.
+- Исправлен баг сопоставления метрик: ключ нормализовался, а словарь строился по сырому названию — терялись 13 103 строки.
+- Туннель к PostgreSQL переведён в systemd-юнит pg-tunnel.service.
+
+## [2026-09-17] update | Гармонизация: рубеж 3 завершён (551 022 наблюдения)
+- core.observation: 551 022 строки, период 1990-01-01..2026-08-31.
+- ЦБ 303 978 (мес.), Росстат 238 824 (год./мес./кварт.), ДОМ.РФ 5 025, Росреестр 840.
+- Версии оценки: 494 429 final, 56 588 preliminary.
+- Целостность: 0 NULL и 0 битых ссылок по пяти внешним ключам.
+- Устранено: OOM на VDS (перенос на ВМ), конфликт коммита с серверным курсором, баг нормализации ключей, гомоглифы в подписях регионов.
+
+## [2026-09-18] update | Восстановление измерения subsection в панели регионов
+- Панель `regions_panel` собиралась с потерей колонки `subsection`, различающей направления внутри показателя; 104 898 строк схлопывались.
+- Источник найден: официальный сборник «Регионы России 102» (колонка `subsection`).
+- Первоисточник содержит 413 850 строк по тем же ключам против 308 952 в панели → восстановление пересборкой, не соединением.
+- Проверки: значений без пары 0, кодов без пары 0, ключей без раскрытия 0.
+- scripts/load_panel_subsection.py, load_panel_missing.py, expand_panel_subsection.py.
+- Разбор: queries/panel-subsection-recovery.md
+
+## [2026-09-18] update | Пересборка панели регионов из parquet версии 3.0
+- Разбор дублей: 12 419 клонов вносил сборщик, не источник. Ключ прослежен через CSV/parquet/панель: везде одна строка, в панели две.
+- Причина — устаревшее состояние набора: в parquet 3.0 дедупликация выполнена обработчиком («Удалены частичные дубликаты наблюдений»).
+- Удвоение локально: выпуски «Жилищного хозяйства» 2022 и 2025 (4,6% и 5,5%), кратность строго двойная.
+- Проверка на безвозвратность: составы совпали полностью (296 532 ключа, 0 расхождений в обе стороны).
+- Ключ наблюдения: код+регион+год+subsection+unit — единственный с нулём повторов.
+- Результат: 305 130 строк, 0 дублей, subsection заполнен в 100%, схема расширена с 10 до 14 колонок.
+- Старая таблица сохранена как `regions_panel__panel_collapsed` (откат одним RENAME).
+- scripts/rebuild_panel_from_parquet.py; разбор: queries/panel-rebuild-from-parquet.md
+
+## [2026-09-18] update | Гармонизация пересобранной панели (observation_v3)
+- Первый прогон дал недостачу 2 970 строк. Две причины в `subdim_extra()`: `subsection` не использовался вовсе; затем подписи обрезались до 70 и 28 символов, а они достигают 158 и различаются после 70-го.
+- Симуляция подтвердила: полные подписи — потеря 0, с обрезкой — ровно 2 970.
+- Исправление: `subsection` в подразрез и в выборку, обрезка убрана.
+- Результат: 1 091 497 строк (было 990 445), дублей 0, сходимость по изданиям 13/13 точная.
+- Подмена: `observation_v2` → `_old` (бэкап), v3 → рабочая. Откат одним RENAME.
+- Разбор: queries/panel-harmonization-v3.md
+
+## [2026-09-18] update | Подключение Yandex DataLens к research_wiki
+- PostgreSQL слушал только локально → `listen_addresses` изменён на `*`.
+- Создана роль `datalens_ro` только для чтения (SELECT на core/staging/meta/derived + ALTER DEFAULT PRIVILEGES).
+- В `pg_hba.conf` добавлены семь официальных диапазонов DataLens.
+- Заменён самоподписанный snakeoil на собственный УЦ: сертификат с IP SAN `89.169.168.214`; проверка `verify-full` проходит.
+- Проверено: подключение снаружи работает (1 091 497 строк), посторонний IP отклоняется.
+- scripts/setup_datalens.sh, setup_pg_tls.sh; разбор: queries/datalens-connection.md
+
+## [2026-09-18] update | Представление core.v_datalens_observations
+- Создано представление: наблюдения с подставленными названиями метрик, регионов, источников, единиц (6 LEFT JOIN на справочники).
+- Зачем: `core.observation_v2` хранит числовые идентификаторы, а в графиках нужны названия; датасет строится без ручной настройки связей.
+- Проверки: 1 091 497 строк, 0 без названия метрики или региона, 421 метрика, 97 регионов, 4 источника.
+- scripts/make_datalens_view.py (идемпотентен).

@@ -9,7 +9,17 @@
 - Use `[[wikilinks]]` to link between pages (minimum 2 outbound links per page)
 - When updating a page, always bump the `updated` date
 - Every new page must be added to `index.md` under the correct section
-- Every action must be appended to `log.md`
+- **Two logs, split by kind of change:**
+  - `log.md` — **содержательные** изменения: новые публикации (`ingest`),
+    подключённые или разведанные источники (`source`), обновления данных
+    (`data`), аналитические записки (`query`), правки реестра гипотез
+    (`hypothesis`). Правило: запись описывает, *что мы узнали или добавили
+    в знание*.
+  - `log-tech.md` — **технические** работы: инфраструктура, базы данных,
+    миграции, скрипты, CI, настройка сервисов, документация инструментов.
+    Правило: запись описывает, *как устроен инструмент*.
+  - Обе — append-only, по возрастанию даты, формат
+    `## [YYYY-MM-DD] действие | тема`.
 - **Provenance markers:** On pages that synthesize 3+ sources, append `^[raw/papers/source-file.pdf]`
   at the end of paragraphs whose claims come from a specific source.
 - **Язык:** страницы вики — на русском. Названия файлов — на английском или транслите.

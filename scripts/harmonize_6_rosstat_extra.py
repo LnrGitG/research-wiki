@@ -39,7 +39,7 @@ SIMULATE = os.environ.get("SIMULATE") == "1"
 # (таблица, источник, разбор периода, колонка региона, измерение-код,
 #  колонки-разрезы, [(шаблон названия, колонка значения)])
 GROUPS = [
- ("rosreestr_deals__fns_profitorg_key_quarterly", "fns", "snap", "region", None,
+ ("rosreestr_deals__fns_profitorg_key_quarterly", "fns", "snap", "region", "region_id",
   ["field"], [("__field__", "value")]),
  ("rosreestr_deals__rosstat_ind_prod_regions", "rosstat", "ym", "region", None,
   [], [("Индекс промышленного производства, % к соответствующему месяцу", "yoy_pct")]),
@@ -294,7 +294,11 @@ def main():
                 continue
             parts = []
             rid = None
-            if regcol:
+            # Если staging отдаёт готовый region_id (пересобранные таблицы ФНС),
+            # берём его — надёжнее матчинга по названию.
+            if row.get('region_id') is not None:
+                rid = int(row['region_id'])
+            if rid is None and regcol:
                 rn = row.get(regcol)
                 rid = reg.get(norm(rn)) if rn else None
                 if rid and rn and canon.get(rid) and norm(canon[rid]) != norm(rn):
@@ -305,7 +309,7 @@ def main():
                 if not rid and rn:
                     parts.append('категория: %s' % str(rn))
             rid = rid or RU
-            if codecol and row.get(codecol) is not None:
+            if codecol and codecol != 'region_id' and row.get(codecol) is not None:
                 parts.append('%s: %s' % (codecol, row[codecol]))
             for d in dims:
                 v = row.get(d)

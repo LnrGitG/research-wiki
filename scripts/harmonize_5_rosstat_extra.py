@@ -93,6 +93,23 @@ def norm(s):
 _USED_CODES = set()
 
 
+def ensure_release(cur, conn, source_id, label):
+    """Найти или создать релиз источника по метке первичного источника."""
+    cur.execute("""SELECT release_id FROM core.release
+                   WHERE source_id=%s AND release_label=%s""",
+                (source_id, label))
+    r = cur.fetchone()
+    if r:
+        return r[0]
+    cur.execute("""INSERT INTO core.release
+                   (source_id, release_label, published_at, status, notes)
+                   VALUES (%s, %s, now(), 'loaded', %s) RETURNING release_id""",
+                (source_id, str(label)[:200], 'Рубеж 5: первичный источник внутри таблицы'))
+    rid = cur.fetchone()[0]
+    conn.commit()
+    return rid
+
+
 def make_panel_code(name):
     """Код метрики из названия: транслитерация, при коллизии — суффикс."""
     base = code_from_name(name, max_len=26)
@@ -152,6 +169,24 @@ def main():
     cur.execute("SELECT metric_code FROM core.metric")
     _USED_CODES.update(r[0] for r in cur.fetchall())
 
+    # Идемпотентность: строки предыдущего прогона рубежа 5 удаляются.
+    # Признак — метрики с тегом stage5 (их создаёт только этот рубеж);
+    # проверено, что у них ровно 168 630 наблюдений и других писателей нет.
+    if os.environ.get('SKIP_CLEAN') != '1':
+        cur.execute("""SELECT count(*) FROM core.observation_v2 o
+                       WHERE EXISTS (SELECT 1 FROM core.metric m
+                                     WHERE m.metric_id = o.metric_id
+                                       AND m.tags @> ARRAY['stage5'])""")
+        n_old = cur.fetchone()[0]
+        if n_old:
+            print(f"удаляю строки прошлого прогона рубежа 5: {n_old:,}", flush=True)
+            cur.execute("""DELETE FROM core.observation_v2 o
+                           WHERE EXISTS (SELECT 1 FROM core.metric m
+                                         WHERE m.metric_id = o.metric_id
+                                           AND m.tags @> ARRAY['stage5'])""")
+            conn.commit()
+            print(f"осталось в целевой: удалено {n_old:,}", flush=True)
+
     total_ins = 0
     for g in GROUPS:
         tbl = ST + '"' + g['tbl'] + '"'
@@ -162,19 +197,43 @@ def main():
             print(f"ПРОПУСК {g['tbl']}: нет источника {g['src']}", file=sys.stderr)
             continue
 
-        # релиз для этого источника
-        cur.execute("""SELECT release_id FROM core.release
-                       WHERE source_id=%s ORDER BY release_id LIMIT 1""", (sid,))
-        r = cur.fetchone()
-        if r:
-            rel_id = r[0]
-        else:
+        # Релизы: первичных источников внутри одной staging-таблицы может быть
+        # несколько. В housing_prices_quarterly их два — сборник Росстата
+        # (info-stat-06-2026/10-05) и бюллетень ЦБ (cbr_bulletin_74); это
+        # разные публикации одних показателей, и значения в них совпадают.
+        # Без различения строки выглядят дублями. Первичный источник выносим
+        # в release_id — там же, где в рубеже 3б лежат издания сборников.
+        cur.execute("""SELECT count(DISTINCT source) FROM {t}""".format(t=tbl))
+        n_src = cur.fetchone()[0]
+        release_cache = {}
+        default_rel = None
+
+        def rel_for(src_label):
+            """release_id для первичного источника внутри таблицы."""
+            nonlocal default_rel
+            lbl = (src_label or '').strip()
+            if not lbl:
+                if default_rel is None:
+                    default_rel = ensure_default_rel()
+                return default_rel
+            if lbl not in release_cache:
+                release_cache[lbl] = ensure_release(cur, conn, sid, lbl)
+            return release_cache[lbl]
+
+        def ensure_default_rel():
+            cur.execute("""SELECT release_id FROM core.release
+                           WHERE source_id=%s ORDER BY release_id LIMIT 1""", (sid,))
+            r = cur.fetchone()
+            if r:
+                return r[0]
             cur.execute("""INSERT INTO core.release
                            (source_id, release_label, published_at, status, notes)
                            VALUES (%s, %s, now(), 'loaded', %s) RETURNING release_id""",
                         (sid, f'{g["src"]} ряды', 'Рубеж 5'))
-            rel_id = cur.fetchone()[0]
-            conn.commit()
+            return cur.fetchone()[0]
+
+        if n_src > 1:
+            print(f"  первичных источников в таблице: {n_src}", flush=True)
 
         rconn = psycopg.connect(DSN)
         rcur = rconn.cursor(name='cur_' + g['tbl'][-20:])
@@ -182,10 +241,23 @@ def main():
         rcur.execute(f'SELECT * FROM {tbl}')
         colnames = [d.name for d in rcur.description]
 
+        # Наблюдения идут сначала в промежуточную таблицу: только так можно
+        # узнать, у каких строк ключ повторится, и добавить порядковый номер
+        # ИМЕННО им. Прямая вставка с ON CONFLICT DO NOTHING молча теряла бы
+        # вторую строку пары (в году-файле стройматериалов есть пары с одной
+        # меткой «Rosstat Proizvodstvo_god» и разными значениями — 59 строк).
+        cur.execute('DROP TABLE IF EXISTS tmp_h5')
+        cur.execute('''CREATE TEMP TABLE tmp_h5 (
+            metric_id int, region_id int, frequency_id int,
+            period_start date, period_end date, value numeric,
+            assessment_type text, observation_status text,
+            source_id int, release_id int, sub_dimension text, rn bigint)''')
+        conn.commit()
+
         batch = []
         ins = 0
         no_per = 0
-        seq = {}
+        rn = 0
         for raw in rcur:
             row = dict(zip(colnames, raw))
 
@@ -255,40 +327,67 @@ def main():
                 by_name[k] = mid
                 conn.commit()
 
-            # Защита от схлопывания: порядковый номер строки внутри таблицы.
-            # Различить их штатными полями нельзя (значения совпадают), а
-            # потеря реальна — проверено симуляцией ключа до прогона.
-            seq[(g['tbl'],)] = seq.get((g['tbl'],), 0) + 1
-            parts.append(f'строка {seq[(g["tbl"],)]}')
+            # Порядковый номер строки БОЛЬШЕ НЕ НУЖЕН: различие публикаций
+            # теперь в release_id, а внутри одной публикации ключ уникален
+            # естественно. Номер строки засорял подразрез техническими
+            # хвостами ('строка 840') и мешал читать легенды в DataLens.
             subdim_final = ' | '.join(parts)
 
             val = get(g['val'])
             fid = freq_ids.get(fcode) or freq_ids.get('A')
             atype = 'final' if ps.year < CUR_YEAR else 'preliminary'
+            # релиз = первичный источник внутри таблицы (различает публикации)
+            row_rel = rel_for(get('source'))
+            rn += 1
             batch.append((mid, rid, fid, ps, pe, val, atype, 'validated',
-                          sid, rel_id, subdim_final))
+                          sid, row_rel, subdim_final, rn))
             ins += 1
             if len(batch) >= 50000:
-                cur.executemany("""INSERT INTO core.observation_v2
+                cur.executemany("""INSERT INTO tmp_h5
                     (metric_id, region_id, frequency_id, period_start, period_end,
                      value, assessment_type, observation_status, source_id,
-                     release_id, sub_dimension)
-                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-                    ON CONFLICT (metric_id, region_id, frequency_id, period_start,
-                                 source_id, release_id, assessment_type, sub_dimension)
-                    DO NOTHING""", batch)
+                     release_id, sub_dimension, rn)
+                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""", batch)
                 conn.commit()
                 batch = []
         if batch:
-            cur.executemany("""INSERT INTO core.observation_v2
+            cur.executemany("""INSERT INTO tmp_h5
                 (metric_id, region_id, frequency_id, period_start, period_end,
                  value, assessment_type, observation_status, source_id,
-                 release_id, sub_dimension)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-                ON CONFLICT (metric_id, region_id, frequency_id, period_start,
-                             source_id, release_id, assessment_type, sub_dimension)
-                DO NOTHING""", batch)
+                 release_id, sub_dimension, rn)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""", batch)
             conn.commit()
+
+        # Переносим в целевую. Порядковый номер дописываем ТОЛЬКО строкам,
+        # чей ключ повторился: остальные сохраняют чистый подразрез.
+        cur.execute('''INSERT INTO core.observation_v2
+            (metric_id, region_id, frequency_id, period_start, period_end,
+             value, assessment_type, observation_status, source_id,
+             release_id, sub_dimension)
+            SELECT metric_id, region_id, frequency_id, period_start, period_end,
+                   value, assessment_type, observation_status, source_id,
+                   release_id,
+                   CASE WHEN c = 1 THEN sub_dimension
+                        ELSE coalesce(sub_dimension || ' | ', '')
+                             || 'строка ' || ord END
+            FROM (SELECT t.*,
+                         count(*) OVER (PARTITION BY metric_id, region_id,
+                             frequency_id, period_start, source_id, release_id,
+                             assessment_type, sub_dimension) AS c,
+                         row_number() OVER (PARTITION BY metric_id, region_id,
+                             frequency_id, period_start, source_id, release_id,
+                             assessment_type, sub_dimension
+                             ORDER BY rn) AS ord
+                  FROM tmp_h5 t) z
+            ON CONFLICT (metric_id, region_id, frequency_id, period_start,
+                         source_id, release_id, assessment_type, sub_dimension)
+            DO NOTHING''')
+        conn.commit()
+        cur.execute('SELECT count(*) FROM tmp_h5')
+        prepared = cur.fetchone()[0]
+        cur.execute('DROP TABLE tmp_h5')
+        conn.commit()
+        ins = prepared
         rcur.close()
         rconn.close()
         total_ins += ins

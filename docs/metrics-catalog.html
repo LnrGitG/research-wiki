@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Каталог метрик — research-wiki</title>
+<style>
+  :root{
+    --bg:#0f1117; --card:#171a23; --card2:#1e222d; --line:#282c38;
+    --tx:#e6edf3; --tx2:#9aa7b4; --tx3:#6e7d8c;
+    --acc:#4fc3f7; --ok:#81c784; --warn:#ffb74d; --err:#ef5350; --pur:#ba68c8;
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--tx);
+    font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-text-size-adjust:100%}
+  .wrap{max-width:1100px;margin:0 auto;padding:16px 12px 60px}
+  header{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px}
+  h1{font-size:20px;margin:0 0 6px;line-height:1.3}
+  .sub{color:var(--tx2);font-size:13.5px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;margin:14px 0}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:10px}
+  .stat b{display:block;font-size:17px;color:var(--acc);line-height:1.2}
+  .stat span{font-size:11.5px;color:var(--tx2)}
+  .ctrl{background:var(--card);border:1px solid var(--line);border-radius:10px;
+    padding:12px;margin:14px 0;position:sticky;top:0;z-index:10}
+  .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0}
+  input[type=search],select{background:var(--card2);border:1px solid var(--line);
+    color:var(--tx);border-radius:7px;padding:8px 11px;font-size:15px;min-width:0}
+  input[type=search]{flex:1;min-width:180px}
+  select{font-size:14px}
+  .lbl{font-size:12px;color:var(--tx2);margin-right:2px}
+  .btn{background:var(--card2);border:1px solid var(--line);color:var(--tx);
+    border-radius:7px;padding:7px 13px;font-size:14px;cursor:pointer}
+  .btn.on{background:#1c3a52;border-color:var(--acc);color:var(--acc)}
+  h2{font-size:16px;margin:26px 0 10px;padding-left:9px;border-left:3px solid var(--acc)}
+  .lead{color:var(--tx2);font-size:13px;margin:-4px 0 12px}
+  .src{border:1px solid var(--line);border-radius:10px;margin:12px 0;overflow:hidden}
+  .src>summary{background:var(--card);padding:11px 14px;cursor:pointer;font-size:15px;
+    font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .src>summary::-webkit-details-marker{display:none}
+  .src>summary::after{content:"▸";color:var(--tx3);transition:.2s}
+  .src[open]>summary::after{transform:rotate(90deg)}
+  .src .body{padding:0 8px 8px}
+  .meta{font-size:12px;color:var(--tx3);font-weight:400}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--tx2);font-size:11px;text-transform:uppercase;letter-spacing:.3px;
+    position:sticky;top:0;background:var(--card2);z-index:2;white-space:nowrap}
+  tbody tr:hover{background:var(--card)}
+  td.c{font-family:var(--mono);font-size:12px;color:var(--acc);white-space:nowrap}
+  td.n{color:var(--tx)}
+  td.num{font-family:var(--mono);font-size:12px;text-align:right;white-space:nowrap}
+  .bar{display:inline-block;height:6px;border-radius:3px;vertical-align:middle}
+  .bar-op{background:linear-gradient(90deg,#4fc3f7,#81c784)}
+  .bar-res{background:linear-gradient(90deg,#ba68c8,#ffb74d)}
+  .score{font-family:var(--mono);font-size:12px;font-weight:700}
+  .freq{display:inline-block;font-family:var(--mono);font-size:10.5px;padding:1px 5px;
+    border-radius:3px;background:#252a36;color:var(--tx2);margin-right:2px}
+  .f-M{background:#1c3a52;color:#8ecfff}
+  .f-Q{background:#2a1d3a;color:#c9a5ff}
+  .f-A{background:#33301c;color:#ffe082}
+  .tblwrap{overflow-x:auto;max-height:none}
+  .note{background:var(--card2);border-left:3px solid var(--warn);border-radius:7px;
+    padding:10px 13px;margin:12px 0;font-size:13.5px;color:var(--tx2)}
+  .note b{color:var(--tx)}
+  .empty{color:var(--tx3);padding:16px;text-align:center;font-size:14px}
+  #loading{color:var(--tx2);padding:24px;text-align:center}
+  .foot{color:var(--tx3);font-size:12px;margin-top:30px;padding-top:14px;
+    border-top:1px solid var(--line)}
+  a{color:var(--acc)}
+  .lnk{display:inline-block;padding:9px 18px;background:var(--card);border:1px solid var(--line);
+    border-radius:8px;color:var(--acc);font-size:14px;text-decoration:none;margin:3px 5px 3px 0}
+  @media(max-width:700px){
+    table{font-size:12px}
+    th,td{padding:6px 5px}
+    td.num,th.num{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>📚 Каталог метрик</h1>
+  <p class="sub">1 364 метрики по 6 источникам: глубина ряда, пригодность для
+  оперативного анализа и для исследований. Данные из
+  <code>core.v_datalens_observations</code> на 18.09.2026.</p>
+</header>
+
+<div class="stats">
+  <div class="stat"><b>1 364</b><span>метрик</span></div>
+  <div class="stat"><b>6</b><span>источников</span></div>
+  <div class="stat"><b>2 174 291</b><span>наблюдений</span></div>
+  <div class="stat"><b>102</b><span>территории</span></div>
+  <div class="stat"><b>1990–2026</b><span>период</span></div>
+</div>
+
+<div class="note">
+  <b>Как читать оценки.</b> «Оперативный анализ» — балл от 0 до 10: учитывает
+  частоту (месячные весят больше), свежесть данных, широту географии и долю
+  свежих наблюдений. «Исследования» — балл от 0 до 10: длина ряда в годах,
+  панельная структура (число регионов), объём наблюдений. Метрика может быть
+  сильна в одном и слаба в другом: например, короткий месячный ряд свежий, но
+  для ретроспективы бесполезен.
+</div>
+
+<div class="ctrl">
+  <div class="row">
+    <input type="search" id="q" placeholder="Поиск по названию или коду метрики…">
+  </div>
+  <div class="row">
+    <span class="lbl">Сортировка:</span>
+    <button class="btn on" data-sort="res">по исследованиям</button>
+    <button class="btn" data-sort="op">по оперативному</button>
+    <button class="btn" data-sort="r">по объёму</button>
+    <button class="btn" data-sort="sp">по глубине</button>
+  </div>
+  <div class="row">
+    <span class="lbl">Частота:</span>
+    <button class="btn on" data-freq="all">все</button>
+    <button class="btn" data-freq="M">месячные</button>
+    <button class="btn" data-freq="Q">квартальные</button>
+    <button class="btn" data-freq="A">годовые</button>
+  </div>
+  <div class="row">
+    <span class="lbl">Глубина:</span>
+    <button class="btn on" data-span="all">любая</button>
+    <button class="btn" data-span="10">10+ лет</button>
+    <button class="btn" data-span="20">20+ лет</button>
+  </div>
+</div>
+
+<div id="loading">Загрузка каталога…</div>
+<div id="out"></div>
+
+<h2>Как пользоваться</h2>
+<p class="lead">Каталог помогает выбрать метрику до того, как строить датасет.</p>
+<p>Нашли нужную метрику — берите её код и подставляйте фильтром в датасет:
+<code>metric_code = 'tkzk'</code>. Если у метрики несколько разрезов
+(показатель «разрезов» больше 1), проверьте <code>sub_dimension</code> перед
+построением графика — иначе значения сложатся. Подробности — в
+<a href="faq-database.html">FAQ по базе</a>.</p>
+
+<h2>Ссылки</h2>
+<a class="lnk" href="faq-database.html">📖 FAQ по базе данных</a>
+<a class="lnk" href="data.html">📊 Статистика</a>
+<a class="lnk" href="dashboard.html">🏗️ Дашборд жилья</a>
+<a class="lnk" href="operational.html">⚡ Оперативные ряды</a>
+<a class="lnk" href="index.html">🏠 На главную</a>
+
+<div class="foot">
+  Источник: <code>core.v_datalens_observations</code>, 2 174 291 наблюдение,
+  1 364 метрики со положительными значениями. Каталог сгенерирован скриптом
+  <code>scripts/build_metrics_catalog.py</code>; данные — в
+  <code>docs/metrics-catalog.json</code>.
+</div>
+
+</div>
+
+<script>
+const FREQ_NAME = {M:'месячная', Q:'квартальная', A:'годовая'};
+let DATA = [], sortKey = 'res', freqFilter = 'all', spanFilter = 0;
+
+function num(v){ return v.toLocaleString('ru-RU'); }
+function esc(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+function bucket(span){
+  if (span >= 25) return '25+ лет — глубокие';
+  if (span >= 15) return '15–24 года';
+  if (span >= 10) return '10–14 лет';
+  if (span >= 5)  return '5–9 лет';
+  if (span >= 2)  return '2–4 года';
+  return '1 год';
+}
+
+function passes(m){
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  if (q && !(m.n.toLowerCase().includes(q) || m.c.toLowerCase().includes(q))) return false;
+  if (freqFilter !== 'all' && !m.f.includes(freqFilter)) return false;
+  if (spanFilter && m.sp < spanFilter) return false;
+  return true;
+}
+
+function render(){
+  const out = document.getElementById('out');
+  const list = DATA.filter(passes);
+  if (!list.length){
+    out.innerHTML = '<div class="empty">Ничего не найдено — ослабьте фильтры.</div>';
+    return;
+  }
+  // сортировка
+  list.sort((a,b)=>{
+    if (sortKey === 'r' || sortKey === 'sp') return b[sortKey] - a[sortKey];
+    if (b[sortKey] !== a[sortKey]) return b[sortKey] - a[sortKey];
+    return b.r - a.r;
+  });
+  // группировка по источнику
+  const groups = {};
+  list.forEach(m => { (groups[m.s] = groups[m.s] || []).push(m); });
+
+  let html = '', total = 0;
+  Object.keys(groups).sort((a,b)=>groups[b].length-groups[a].length).forEach(src=>{
+    const arr = groups[src];
+    total += arr.length;
+    const rows = arr.map(m=>{
+      const opw = Math.round(m.op*10), resw = Math.round(m.res*10);
+      const freqs = m.f.map(f=>`<span class="freq f-${f}">${f}</span>`).join('');
+      const spanTxt = m.y0 ? `${m.y0}–${m.y1}` : '—';
+      const sdFlag = m.sd > 1
+        ? `<span style="color:var(--warn)" title="есть разрезы — проверьте sub_dimension">⚠ ${m.sd}</span>`
+        : '<span style="color:var(--tx3)">1</span>';
+      return `<tr>
+        <td class="c">${esc(m.c)}</td>
+        <td class="n">${esc(m.n)}</td>
+        <td class="num" title="год от–до">${spanTxt}</td>
+        <td class="num" title="лет в ряду">${m.ny}</td>
+        <td class="num" title="регионов">${m.nr}</td>
+        <td class="num" title="наблюдений">${num(m.r)}</td>
+        <td class="num" title="единица">${esc(m.u)}</td>
+        <td>${freqs}</td>
+        <td class="num" title="пригодность для оперативного анализа">${m.op}</td>
+        <td class="num" title="пригодность для исследований">${m.res}</td>
+        <td class="num" title="число разрезов sub_dimension">${sdFlag}</td>
+      </tr>`;
+    }).join('');
+    html += `<details class="src"${arr.length>=15?' open':''}>
+      <summary>${esc(src)}
+        <span class="meta">${arr.length} метрик · ${num(arr.reduce((s,m)=>s+m.r,0))} наблюдений</span>
+      </summary>
+      <div class="body"><div class="tblwrap"><table>
+        <thead><tr>
+          <th>Код</th><th>Название</th><th class="num">Годы</th><th class="num">Лет</th>
+          <th class="num">Рег.</th><th class="num">Строк</th><th class="num">Ед.</th>
+          <th>Част.</th><th class="num">Оп.</th><th class="num">Исс.</th><th class="num">Разр.</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div></div>
+    </details>`;
+  });
+  out.innerHTML = html;
+}
+
+function activate(group, btn){
+  document.querySelectorAll(`[data-${group}]`).forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+
+document.getElementById('q').addEventListener('input', render);
+
+document.querySelectorAll('[data-sort]').forEach(b=>{
+  b.addEventListener('click', ()=>{ sortKey = b.dataset.sort; activate('sort', b); render(); });
+});
+document.querySelectorAll('[data-freq]').forEach(b=>{
+  b.addEventListener('click', ()=>{ freqFilter = b.dataset.freq; activate('freq', b); render(); });
+});
+document.querySelectorAll('[data-span]').forEach(b=>{
+  b.addEventListener('click', ()=>{ spanFilter = parseInt(b.dataset.span,10)||0; activate('span', b); render(); });
+});
+
+fetch('metrics-catalog.json')
+  .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  .then(d=>{
+    DATA = d;
+    document.getElementById('loading').style.display = 'none';
+    render();
+  })
+  .catch(e=>{
+    document.getElementById('loading').innerHTML =
+      'Не удалось загрузить каталог: '+esc(e.message)+'. Обновите страницу.';
+  });
+</script>
+</body>
+</html>

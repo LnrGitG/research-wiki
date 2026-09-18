@@ -11,7 +11,7 @@
 ```
 papers/            # научные статьи (EN, .md после конверсии из PDF)
 papers/ru_papers/  # переводы: topic_author1_author2_year.RU.md
-raw/               # → symlink на ~/gcs-wiki/raw/ (GCS бакет, gcsfuse)
+raw/               # → symlink на ~/yc-wiki/raw/ (YC Object Storage, rclone)
 concepts/          # концепты-синтезы
 entities/          # сущности (девелоперы, регионы, банки)
 comparisons/       # сравнительные таблицы
@@ -40,7 +40,7 @@ index.md, log.md   # оглавление и журнал действий
 - `collect_panel.py` (1429 зап, 14 комп), `collect_smartlab.py`, `collect_rsbu.py`
 - `wordstat_api.py` (100 зап/час), `wordstat_construction_collect.py`
 - `translate_papers.py` — EN→RU переводы
-- `gcs_sync.py` — синхронизация с GCS: `ensure_db()`, `raw_path()`, CLI sync/pull/status/verify
+- `yc_sync.py` — синхронизация с YC Object Storage: `ensure_db()`, `raw_path()`, CLI sync/pull/status/verify
 - Python: `~/.hermes/hermes-agent/venv/bin/python3` (PEP 668 на системном 3.12)
 
 ## Хранилище тяжёлых данных (YC Object Storage)
@@ -53,11 +53,12 @@ index.md, log.md   # оглавление и журнал действий
 - **Монтирование:** systemd-юнит `yc-wiki-mount.service` (user), автозапуск включён
 - **НЕ удалять локальные DB** (rosstat_construction.db и др.) — это горячий кэш
 
-Google Cloud выведен из эксплуатации 17.09.2026: 3.5 ГБ перенесены в YC, `gcs_sync.py`
-удалён, `gcsfuse` отключён. Исторические детали — `queries/database-deployment-plan.md`.
+Google Cloud выведен из эксплуатации 17.09.2026: 3.5 ГБ перенесены в YC Object Storage
+(бакет `wiki-research`), `gcs_sync.py` удалён, `gcsfuse` отключён, `scripts/yc_sync.py` —
+замена. Исторические детали — `queries/database-deployment-plan.md`.
 
 ## Что не трогать
-- `raw/` — symlink на GCS; исходники только добавлять (через `gcs_sync.py sync`)
+- `raw/` — symlink на YC Object Storage; исходники только добавлять (через `yc_sync.py sync`)
 - `.env` — секреты; никогда не коммитить
 - `latest.zip`, `_archive/` — архивы
 - Локальные `data/*.db` — кэш; не коммитить (в .gitignore)

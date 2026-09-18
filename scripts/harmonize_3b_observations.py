@@ -181,12 +181,21 @@ def subdim_extra(group, row):
         return f'валюта: {cur_}' if cur_ else ''
     if group == 'rosstat_panel':
         u = (row.get('unit') or '').strip()
-        src = (row.get('source') or '').strip()
+        sub = (row.get('subsection') or '').strip()
         parts = []
+        # subsection — измерение, различающее направления внутри показателя
+        # (направление инвестиций, распределение по полу). Без него строки
+        # одного кода схлопываются на ON CONFLICT: в наборе версии 3.0 под
+        # одним кодом лежат «Строительство», «Модернизация и реконструкция»,
+        # «Приобретение новых основных средств» и т.п.
+        # ВАЖНО: подписи НЕ обрезать. Они достигают 158 символов и различаются
+        # лишь после 70-го (например «Общая площадь жилых помещений,
+        # купленная» у граждан / у юридических лиц). Обрезка схлопывает такие
+        # строки и молча теряет данные (проверено: 2 970 строк).
+        if sub and sub != 'CD':
+            parts.append(f'подраздел: {sub}')
         if u and u != 'ND':
-            parts.append(f'ед.: {u[:28]}')
-        if src:
-            parts.append(f'источник: {src[:34]}')
+            parts.append(f'ед.: {u}')
         return ' | '.join(parts)
     return ''
 
@@ -346,9 +355,10 @@ def main():
              key=lambda r: r['indicator']),
         dict(name='rosstat_panel', tbl='regions_panel__panel',
              src='rosstat',
-             # unit и source различают строки одного кода показателя —
-             # те же коды встречаются с разными единицами из разных книг
-             sql="""SELECT region_name, year, value, unit, source,
+             # subsection различает направления внутри показателя; unit —
+             # разные единицы одного кода; издание (source) уже учтено
+             # в release_id (см. edition_releases ниже)
+             sql="""SELECT region_name, year, value, unit, subsection, source,
                                           indicator_code, indicator_name
                                    FROM staging.regions_panel__panel""",
              key=lambda r: r['indicator_code']),

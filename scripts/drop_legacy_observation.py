@@ -77,14 +77,24 @@ if not APPLY:
     sys.exit(0)
 
 print("\n=== 4. Выполняю ===")
-for mid, code, nm, tg, lr, vr in lonely:
-    cur.execute("DELETE FROM core.metric WHERE metric_id=%s", (mid,))
-    print("  удалена метрика %s (id=%s)" % (code, mid))
+# Порядок важен. От core.observation зависят:
+#   - observation_metric_id_fkey (на core.metric) — не даёт удалить метрики
+#   - note_obs_id_fkey (из core.note) — не даёт удалить таблицу
+# Таблица core.note часть схемы (аннотации к наблюдениям), поэтому снимаем
+# только внешний ключ, а не удаляем её через CASCADE.
+cur.execute("""ALTER TABLE core.note
+               DROP CONSTRAINT IF EXISTS note_obs_id_fkey""")
 conn.commit()
+print("  снят внешний ключ core.note.note_obs_id_fkey")
 
 cur.execute("DROP TABLE core.observation")
 conn.commit()
 print("  DROP TABLE core.observation — выполнено")
+
+for mid, code, nm, tg, lr, vr in lonely:
+    cur.execute("DELETE FROM core.metric WHERE metric_id=%s", (mid,))
+    print("  удалена метрика %s (id=%s)" % (code, mid))
+conn.commit()
 
 print("\n=== 5. После ===")
 print("  core.observation_v2 : %s строк" % format(n('SELECT count(*) FROM core.observation_v2'), ','))

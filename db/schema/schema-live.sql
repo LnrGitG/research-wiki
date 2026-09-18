@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict z0CKI3Df0NIkShzC5DoggmzE90sFeNSyapbgyPpF9HZ0YMEtUbR1AL1bIoffnHn
+\restrict x4etc7kN8FPrY9ZzbV6eEKv1IM0I6GR2kVIez6MkK0webcnG96hZPdp6hb0Tw8r
 
 -- Dumped from database version 16.15 (Ubuntu 16.15-0ubuntu0.24.04.1)
 -- Dumped by pg_dump version 16.15 (Ubuntu 16.15-0ubuntu0.24.04.1)
@@ -250,47 +250,6 @@ CREATE TABLE core.note (
 
 ALTER TABLE core.note ALTER COLUMN note_id ADD GENERATED ALWAYS AS IDENTITY (
     SEQUENCE NAME core.note_note_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1
-);
-
-
---
--- Name: observation; Type: TABLE; Schema: core; Owner: -
---
-
-CREATE TABLE core.observation (
-    obs_id bigint NOT NULL,
-    metric_id bigint NOT NULL,
-    region_id bigint NOT NULL,
-    frequency_id bigint NOT NULL,
-    period_start date NOT NULL,
-    period_end date NOT NULL,
-    value numeric,
-    value_str text,
-    assessment_type text DEFAULT 'final'::text NOT NULL,
-    observation_status text DEFAULT 'loaded'::text NOT NULL,
-    source_id bigint NOT NULL,
-    release_id bigint NOT NULL,
-    quality_flags text[] DEFAULT '{}'::text[] NOT NULL,
-    sub_dimension text DEFAULT ''::text NOT NULL,
-    notes text,
-    created_at timestamp with time zone DEFAULT now() NOT NULL,
-    CONSTRAINT observation_assessment_type_check CHECK ((assessment_type = ANY (ARRAY['flash'::text, 'preliminary'::text, 'revised'::text, 'final'::text, 'nowcast'::text, 'forecast'::text, 'estimated'::text]))),
-    CONSTRAINT observation_check CHECK ((period_end >= period_start)),
-    CONSTRAINT observation_observation_status_check CHECK ((observation_status = ANY (ARRAY['raw'::text, 'validated'::text, 'rejected'::text, 'superseded'::text])))
-);
-
-
---
--- Name: observation_obs_id_seq; Type: SEQUENCE; Schema: core; Owner: -
---
-
-ALTER TABLE core.observation ALTER COLUMN obs_id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME core.observation_obs_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -880,14 +839,6 @@ ALTER TABLE ONLY core.note
 
 
 --
--- Name: observation observation_pkey; Type: CONSTRAINT; Schema: core; Owner: -
---
-
-ALTER TABLE ONLY core.observation
-    ADD CONSTRAINT observation_pkey PRIMARY KEY (obs_id);
-
-
---
 -- Name: observation_v2_old observation_v2_metric_id_region_id_frequency_id_period_star_key; Type: CONSTRAINT; Schema: core; Owner: -
 --
 
@@ -1000,14 +951,6 @@ ALTER TABLE ONLY core.unit
 
 
 --
--- Name: observation uq_observation; Type: CONSTRAINT; Schema: core; Owner: -
---
-
-ALTER TABLE ONLY core.observation
-    ADD CONSTRAINT uq_observation UNIQUE (metric_id, region_id, frequency_id, period_start, source_id, release_id, assessment_type, sub_dimension);
-
-
---
 -- Name: derived_metric derived_metric_pkey; Type: CONSTRAINT; Schema: derived; Owner: -
 --
 
@@ -1100,27 +1043,6 @@ ALTER TABLE ONLY pipeline.pipeline_log
 --
 
 CREATE INDEX idx_file_release ON core.file_registry USING btree (release_id);
-
-
---
--- Name: idx_obs_flags; Type: INDEX; Schema: core; Owner: -
---
-
-CREATE INDEX idx_obs_flags ON core.observation USING gin (quality_flags);
-
-
---
--- Name: idx_obs_lookup; Type: INDEX; Schema: core; Owner: -
---
-
-CREATE INDEX idx_obs_lookup ON core.observation USING btree (metric_id, region_id, period_start DESC, assessment_type, release_id DESC);
-
-
---
--- Name: idx_obs_release; Type: INDEX; Schema: core; Owner: -
---
-
-CREATE INDEX idx_obs_release ON core.observation USING btree (release_id);
 
 
 --
@@ -1273,14 +1195,6 @@ ALTER TABLE ONLY core.note
 
 
 --
--- Name: note note_obs_id_fkey; Type: FK CONSTRAINT; Schema: core; Owner: -
---
-
-ALTER TABLE ONLY core.note
-    ADD CONSTRAINT note_obs_id_fkey FOREIGN KEY (obs_id) REFERENCES core.observation(obs_id);
-
-
---
 -- Name: note note_region_id_fkey; Type: FK CONSTRAINT; Schema: core; Owner: -
 --
 
@@ -1294,46 +1208,6 @@ ALTER TABLE ONLY core.note
 
 ALTER TABLE ONLY core.note
     ADD CONSTRAINT note_source_id_fkey FOREIGN KEY (source_id) REFERENCES core.source(source_id);
-
-
---
--- Name: observation observation_frequency_id_fkey; Type: FK CONSTRAINT; Schema: core; Owner: -
---
-
-ALTER TABLE ONLY core.observation
-    ADD CONSTRAINT observation_frequency_id_fkey FOREIGN KEY (frequency_id) REFERENCES core.frequency(frequency_id);
-
-
---
--- Name: observation observation_metric_id_fkey; Type: FK CONSTRAINT; Schema: core; Owner: -
---
-
-ALTER TABLE ONLY core.observation
-    ADD CONSTRAINT observation_metric_id_fkey FOREIGN KEY (metric_id) REFERENCES core.metric(metric_id);
-
-
---
--- Name: observation observation_region_id_fkey; Type: FK CONSTRAINT; Schema: core; Owner: -
---
-
-ALTER TABLE ONLY core.observation
-    ADD CONSTRAINT observation_region_id_fkey FOREIGN KEY (region_id) REFERENCES core.region(region_id);
-
-
---
--- Name: observation observation_release_id_fkey; Type: FK CONSTRAINT; Schema: core; Owner: -
---
-
-ALTER TABLE ONLY core.observation
-    ADD CONSTRAINT observation_release_id_fkey FOREIGN KEY (release_id) REFERENCES core.release(release_id);
-
-
---
--- Name: observation observation_source_id_fkey; Type: FK CONSTRAINT; Schema: core; Owner: -
---
-
-ALTER TABLE ONLY core.observation
-    ADD CONSTRAINT observation_source_id_fkey FOREIGN KEY (source_id) REFERENCES core.source(source_id);
 
 
 --
@@ -1452,5 +1326,5 @@ ALTER TABLE ONLY meta.source_metric_mapping
 -- PostgreSQL database dump complete
 --
 
-\unrestrict z0CKI3Df0NIkShzC5DoggmzE90sFeNSyapbgyPpF9HZ0YMEtUbR1AL1bIoffnHn
+\unrestrict x4etc7kN8FPrY9ZzbV6eEKv1IM0I6GR2kVIez6MkK0webcnG96hZPdp6hb0Tw8r
 

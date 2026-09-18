@@ -7,8 +7,9 @@
 ## schema/schema-live.sql
 
 **Актуальная схема** целевой базы `research_wiki`, снятая `pg_dump --schema-only`
-из живого PostgreSQL на ВМ 18.09.2026. 1 456 строк, 21 таблица, 1 представление,
-схемы `core`, `meta`, `derived`, `pipeline`, `marts`.
+из живого PostgreSQL на ВМ 18.09.2026 (обновлено после удаления legacy-таблицы).
+1 330 строк, 20 таблиц, 1 представление, схемы `core`, `meta`, `derived`,
+`pipeline`, `marts`.
 
 **Это источник правды по структуре.** Здесь есть `core.observation_v2` (целевая
 таблица наблюдений, 16 колонок) и представление `core.v_datalens_observations`
@@ -29,8 +30,9 @@ psql -h localhost -U wiki -d research_wiki -f db/schema/schema-live.sql
 Оговорка: в нём описана таблица `core.observation`, а не `observation_v2`.
 Хронология такова: сначала строили `observation` (рубеж 3, 551 022 строки),
 затем при гармонизации появилась `observation_v2`, в которую перенесли всё
-содержимое (2 174 291 строка). Сейчас **актуальна `observation_v2`**, а
-`observation` — наследие, требующее вывода из эксплуатации.
+содержимое (2 174 291 строка). **18.09.2026 legacy-таблица `observation`
+удалена** — проверено, что ни одно значение не потеряно (разбор:
+`queries/legacy-observation-removal.md`). Актуальна только `observation_v2`.
 
 Для восстановления структуры использовать `schema-live.sql`, не этот файл.
 

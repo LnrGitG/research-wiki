@@ -75,3 +75,54 @@ sudo -u postgres psql -c "DROP ROLE datalens_ro;"
 - Пароль хранится только на ВМ в файле с правами 600; в репозиторий и в
   переписку не попадает. При необходимости легко ротируется:
   `ALTER ROLE datalens_ro PASSWORD '<новый>'`.
+
+---
+
+## Представление для датасета
+
+Помимо сырых таблиц создано представление `core.v_datalens_observations` —
+наблюдения с подставленными человекочитаемыми названиями. Оно избавляет от
+ручной настройки связей в датасете: `core.observation_v2` хранит числовые
+идентификаторы (`metric_id`, `region_id`), а в графиках нужны названия.
+
+Скрипт: `scripts/make_datalens_view.py` (идемпотентен, `CREATE OR REPLACE VIEW`).
+
+Состав (29 колонок, сгруппированы по смыслу):
+
+| группа | колонки |
+|---|---|
+| когда | `period_start`, `period_end`, `year`, `month`, `quarter`, `frequency_code`, `frequency_name` |
+| что | `metric_code`, `metric_name`, `metric_short_name`, `metric_type`, `is_derived`, `metric_tags`, `unit_code`, `unit_name` |
+| где | `region_code`, `region_name`, `region_level`, `oktmo` |
+| значение | `value`, `value_str`, `sub_dimension`, `assessment_type`, `observation_status`, `quality_flags` |
+| откуда | `source_code`, `source_name`, `release_label`, `published_at` |
+
+Соединения: `metric`, `region`, `frequency`, `unit`, `source`, `release` — все
+через `LEFT JOIN`, чтобы наблюдение не терялось при отсутствии справочной записи.
+
+Проверки:
+
+```
+строк:                              1 091 497
+без названия метрики или региона:           0
+метрик:                                   421
+регионов:                                  97
+источников:                                 4
+```
+
+Контрольный пример (`y477050017` / Вологодская область / 2024) через
+представление возвращает те же 6 направлений инвестиций с подписями.
+
+Права: `GRANT SELECT ON core.v_datalens_observations TO datalens_ro`.
+
+### Как строить датасет
+
+1. Подключение — `research_wiki` (уже настроено).
+2. В датасете выбрать таблицу `core.v_datalens_observations`.
+3. Связи настраивать не нужно — названия уже подставлены.
+4. Измерения: `region_name`, `metric_name`, `year`, `sub_dimension`, `source_name`.
+5. Показатель: `value`.
+
+Оговорка: для исследовательских срезов бывает нужно соединять с другими
+таблицами (`staging.regions_panel__panel`, `core.metric` целиком) — они тоже
+доступны роли, `SELECT` выдан на все четыре схемы.

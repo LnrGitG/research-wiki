@@ -37,3 +37,4 @@ raw/fns/tochno-st/by_section/
 # Rosstat regions collection (GCS only)
 raw/rosstat/regions_collection_102/*.parquet
 raw/rosstat/regions_collection_102/*.zip
+scripts/__pycache__/

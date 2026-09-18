@@ -69,6 +69,27 @@
   #loading{color:var(--tx2);padding:24px;text-align:center}
   .foot{color:var(--tx3);font-size:12px;margin-top:30px;padding-top:14px;
     border-top:1px solid var(--line)}
+  /* --- детали источника --- */
+  tr.mrow{cursor:pointer}
+  tr.mrow.open{background:#1c2733}
+  tr.detrow>td{background:var(--card2);padding:0;border-bottom:1px solid var(--line)}
+  .det{padding:11px 14px}
+  .det-src{margin-bottom:9px}
+  .det-src b{color:var(--acc);font-size:13.5px}
+  .det-rel{display:flex;gap:8px;align-items:baseline;margin:3px 0 0 6px;font-size:12.5px}
+  .det-rel .l{font-family:var(--mono);color:var(--tx2);word-break:break-word}
+  .k{font-size:10.5px;padding:1px 6px;border-radius:3px;white-space:nowrap;
+     font-family:var(--mono);flex-shrink:0}
+  .k-catalog{background:#2a1d3a;color:#c9a5ff}
+  .k-file{background:#1c3a52;color:#8ecfff}
+  .k-section{background:#33301c;color:#ffe082}
+  .k-tech{background:#252a36;color:#8b96a3}
+  .det-line{margin:7px 0 0;font-size:12.5px;color:var(--tx2)}
+  .det-k{color:var(--tx3)}
+  .det-sub{font-family:var(--mono);font-size:11.5px;color:var(--tx2);
+    padding:3px 0 3px 10px;border-left:2px solid var(--line);margin:3px 0}
+  .det-load,.det-empty{color:var(--tx3);font-size:13px;padding:11px 14px}
+  .hint{color:var(--tx3);font-size:12px;margin-top:6px}
   a{color:var(--acc)}
   .lnk{display:inline-block;padding:9px 18px;background:var(--card);border:1px solid var(--line);
     border-radius:8px;color:var(--acc);font-size:14px;text-decoration:none;margin:3px 5px 3px 0}
@@ -104,6 +125,8 @@
   панельная структура (число регионов), объём наблюдений. Метрика может быть
   сильна в одном и слаба в другом: например, короткий месячный ряд свежий, но
   для ретроспективы бесполезен.
+  <div class="hint">Нажмите на строку метрики, чтобы раскрыть детали источника:
+  сборник, файл, раздел публикации, теги гармонизации и примеры разрезов.</div>
 </div>
 
 <div class="ctrl">
@@ -211,7 +234,7 @@ function render(){
       const sdFlag = m.sd > 1
         ? `<span style="color:var(--warn)" title="есть разрезы — проверьте sub_dimension">⚠ ${m.sd}</span>`
         : '<span style="color:var(--tx3)">1</span>';
-      return `<tr>
+      return `<tr class="mrow" data-code="${esc(m.c)}" onclick="toggleDetail(this)">
         <td class="c">${esc(m.c)}</td>
         <td class="n">${esc(m.n)}</td>
         <td class="num" title="год от–до">${spanTxt}</td>
@@ -246,6 +269,70 @@ function activate(group, btn){
   document.querySelectorAll(`[data-${group}]`).forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
 }
+
+// --- детали источника: грузятся отдельным файлом по первому клику ---
+const KIND = {catalog:'сборник', file:'файл', section:'раздел', tech:'техническая'};
+let DET = null, DET_BUSY = false;
+
+function loadDetails(){
+  if (DET || DET_BUSY) return Promise.resolve(DET);
+  DET_BUSY = true;
+  return fetch('metrics-details.json')
+    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(j=>{ DET = j; DET_BUSY = false; return DET; })
+    .catch(e=>{ DET_BUSY = false; throw e; });
+}
+
+function detailHtml(code){
+  const d = DET && DET[code];
+  if (!d) return '<div class="det-empty">Детали источника не найдены.</div>';
+  let h = '<div class="det">';
+  (d.srcs||[]).forEach(s=>{
+    h += `<div class="det-src"><b>${esc(s.s)}</b>`;
+    (s.rel||[]).forEach(r=>{
+      h += `<div class="det-rel"><span class="k k-${r.k}">${KIND[r.k]||r.k}</span>`
+         + `<span class="l">${esc(r.l)}</span></div>`;
+    });
+    h += '</div>';
+  });
+  if (d.tags && d.tags.length)
+    h += `<div class="det-line"><span class="det-k">теги гармонизации:</span> `
+       + d.tags.map(t=>`<code>${esc(t)}</code>`).join(' ') + '</div>';
+  if (d.uu)
+    h += `<div class="det-line"><span class="det-k">единица в источнике:</span> ${esc(d.uu)}</div>`;
+  if (d.sub && d.sub.length){
+    h += '<div class="det-line"><span class="det-k">примеры разрезов:</span></div>';
+    d.sub.forEach(sd=>{ h += `<div class="det-sub">${esc(sd)}</div>`; });
+  }
+  h += '</div>';
+  return h;
+}
+
+function toggleDetail(tr){
+  const code = tr.dataset.code;
+  const next = tr.nextElementSibling;
+  if (next && next.classList.contains('detrow')){
+    next.remove();
+    tr.classList.remove('open');
+    return;
+  }
+  const cols = tr.children.length;
+  const r = document.createElement('tr');
+  r.className = 'detrow';
+  r.innerHTML = `<td colspan="${cols}"><div class="det-load">Загрузка деталей…</div></td>`;
+  tr.after(r);
+  tr.classList.add('open');
+  loadDetails().then(()=>{
+    const cell = r.querySelector('td');
+    if (cell) cell.innerHTML = detailHtml(code);
+  }).catch(e=>{
+    const cell = r.querySelector('td');
+    if (cell) cell.innerHTML = '<div class="det-empty">Не удалось загрузить детали: '
+      + esc(e.message) + '</div>';
+  });
+}
+
+window.toggleDetail = toggleDetail;
 
 document.getElementById('q').addEventListener('input', render);
 

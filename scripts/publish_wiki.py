@@ -48,13 +48,18 @@ KEEP_FILES = [
     "index.md", "MOC.md", "README.md",
     "bibliography_references.md", "bibliography_ru.md",
     "hypotheses.yaml", ".gitignore",
+    # Документация вики и журнал содержательных правок — читаются человеком,
+    # на них ссылаются README.md, MOC.md и страницы концептов. Служебных
+    # деталей не содержат (в отличие от log-tech.md, который остаётся
+    # приватным: там IP и идентификаторы ВМ).
+    "SCHEMA.md", "log.md",
 ]
 
 # --- Служебное: остаётся только в приватном ---
 DROP_DIRS = ["scripts", "db", "queries", "templates", "db_docs", "raw"]
 DROP_FILES = [
-    "AGENTS.md", "SCHEMA.md", "MEMORY.md", "USER.md",
-    "log.md", "log-tech.md",
+    "AGENTS.md", "MEMORY.md", "USER.md",
+    "log-tech.md",
     "latest.zip", "nowcast_investments_housing_sep2026.pdf",
     "gdelt_fetch_final.py", "gdelt_fetch_fixed.py", "gdelt_fetch_hourly.py",
     "gdelt_fetch_latest.py", "gdelt_fetch_robust.py", "gdelt_fetch_yesterday.py",
@@ -62,6 +67,10 @@ DROP_FILES = [
 DROP_DATA_FILES = [
     "data/backup_log.jsonl", "data/archive/cleanup_report.json",
     "data/dupes_removed.json", "data/developers_ifrs.db",
+    # Внутренние файлы дедупликации: содержат ссылки на служебные файлы
+    # (AGENTS.md, MEMORY.md, USER.md, SCHEMA.md, log.md), которых в публичном
+    # нет — в витрине это выглядело бы как битые ссылки.
+    "data/search_dedupe.json",
 ]
 
 # --- Фильтр чувствительного: ни одного совпадения ---

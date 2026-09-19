@@ -84,6 +84,48 @@ This paper uses a structural vector autoregressive (SVAR) approach ...
 витрине, достаточно правила: **пара с общим sha256, где один код заканчивается
 на `.abstract_ru`, — норма; все прочие совпадения — кандидаты на разбор.**
 
+
+## Выполнено 19.09.2026
+
+Первый файл Iacoviello удалён. Перед удалением снят тег
+`rollback-iacoviello-dup-20260919` (коммит `c648367`), восстановление:
+
+```
+git checkout rollback-iacoviello-dup-20260919 -- \
+  "papers/Iacoviello.-HOUSE-PRICES-AND-THE-MACROECONOMY-IN-EUROPE.md"
+```
+
+Что сделано вместе с удалением:
+
+1. **catalog.md** — убран блок удалённой записи (в нём была пометка
+   `- dup:`, указывавшая сама на себя: файл значился и как основной, и как
+   дубль).
+2. **annotations/iacoviello-2005-house-prices-ru.md** — битая wikilink
+   заменена на ссылку к оставшемуся файлу.
+3. **Производные пересобраны** — `docs/paper-details.json`,
+   `docs/search-index.json.gz`, `docs/search-corpus.json.gz`,
+   `docs/search-lemmas.json.gz`, `data/search_dedupe.json`. Ссылок на
+   удалённый файл не осталось ни в одном.
+4. **core.paper_card** — карточка удалена, стало 313 записей; витрина 313.
+
+**Проверка линтером:** до и после удаления `problems=187 warnings=283` —
+число не изменилось. Предупреждение «PDF without extracted markdown» для
+`raw/papers/Iacoviello. HOUSE PRICES AND THE MACROECONOMY IN EUROPE.pdf`
+существовало и раньше, поскольку PDF в бакете не был связан со страницей по
+имени.
+
+## Важное уточнение: третий файл трогать нельзя
+
+При разборе обнаружился третий файл с той же фамилией —
+`papers/iacoviello-2005-house-prices.md`. Это **другая работа**:
+«House Prices, Borrowing Constraints, and Monetary Policy in the Business
+Cycle», American Economic Review, июнь 2005. Удаление затронуло только файл
+2000 года (ECB WP No. 18). Файл 2005 года и его перевод
+`papers/ru_papers/house_prices_macroconomy_europe_svar_iacoviello_2000.RU.md`
+остались на месте.
+
+Также сохранён PDF-первоисточник в бакете — удалена страница вики, не файл.
+
 ## Что осталось не проверенным
 
 Имена PDF в хранилище могут не совпадать с именами страниц вики, поэтому

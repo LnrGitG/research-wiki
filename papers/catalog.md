@@ -44,17 +44,6 @@ migrated: 2026-07-26
 - status: new
 - dup: Hirata-Global-House-Price-Fluctuations-Synchronization-and-Determinants-2013.md
 
-## Iacoviello. HOUSE PRICES AND THE MACROECONOMY IN EUROPE.md
-- title: House Prices and the Macroeconomy in Europe: Results from a Structural VAR Analysis
-- authors: Iacoviello
-- year: 2000
-- method: structural VAR
-- data: ECB WP No.18, European macro data
-- key_result: house prices respond to monetary policy; housing wealth channel in Europe
-- relevance: high
-- status: new
-- dup: Iacoviello.-HOUSE-PRICES-AND-THE-MACROECONOMY-IN-EUROPE.md
-
 ## Japaridze-Sayour-2024-housing-fertility-delayed.md
 - title: Housing Affordability Crisis and Delayed Fertility: Evidence from the USA
 - authors: Japaridze, Sayour

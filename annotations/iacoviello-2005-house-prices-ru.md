@@ -52,7 +52,7 @@ citations: "~4000 (одна из ключевых работ направлен�
 
 ## Что читать дальше
 
-- [[papers/Iacoviello.-HOUSE-PRICES-AND-THE-MACROECONOMY-IN-EUROPE]] — приложение подхода к Европе
+- [[papers/house_prices_macroconomy_europe_svar_iacoviello_2000]] — приложение подхода к Европе
 - [[papers/mishkin-2007-housing-monetary-transmission]] — обзор каналов трансмиссии через жильё
 - [[reviews/dkp-transmissiya-na-rynok-zhilya]] — кластер ДКП→жильё целиком
 

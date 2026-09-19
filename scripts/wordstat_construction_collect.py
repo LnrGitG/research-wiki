@@ -4,10 +4,11 @@ Weekly 2018-01..now. Mirrors wordstat_core_collect.py pattern (MIDAS housing dem
 Output: data/wordstat_weekly_construction.csv (date, phrase, group, count, share)
 """
 import sys, os, csv, time
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-os.chdir('/home/lnr/research-wiki')
-from wordstat_api import dynamics
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from repo_paths import require_repo
+os.chdir(require_repo())
+from wordstat_api import dynamics
 
 
 PHRASES = [

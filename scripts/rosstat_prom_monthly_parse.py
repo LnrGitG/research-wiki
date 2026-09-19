@@ -2,11 +2,19 @@
 """Парсер кэша Prom_07_2026 (Firecrawl markdown ~2 млн знаков) в rosstat_construction.db.
 Схема файла: '| Продукт | код |' затем '| Единица | код |', затем '| Федеральный округ | код | v_июль | v_июнь | ytd |'
 Мы берём строку РФ ('Российская Федерация без учета') в первой единице измерения (обычно тыс.тонн/тыс.м3/млн м3)"""
-import re, sqlite3, datetime
+import re, sqlite3, datetime, sys, os
 from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 from yc_sync import ensure_db
+from repo_paths import CACHE_DIR
 
-T = open('/home/lnr/.hermes/cache/web/rosstat.gov.ru-8fbd06702e.md').read()
+# Кэш веб-загрузок Hermes: путь зависит от домашнего каталога пользователя
+# (~/.hermes/cache/web), поэтому берём его из repo_paths, а не жёстко.
+_cache = Path(CACHE_DIR)
+_candidates = sorted(_cache.glob("rosstat.gov.ru-*.md"), key=lambda p: p.stat().st_mtime, reverse=True)
+if not _candidates:
+    sys.exit("Не найден кэш страницы Росстата в %s — сначала загрузите страницу." % _cache)
+T = _candidates[0].read_text()
 con = sqlite3.connect(str(ensure_db('rosstat_construction.db')))
 now = datetime.datetime.now().isoformat()
 

@@ -135,8 +135,21 @@ def build(args):
                     srcs = dict(m.get("sources") or {})
                     srcs[k] = "перевод"
                     m["sources"] = srcs
+
         rf = refs.get(p) or refs.get(stem) or {}
         d = details.get(p) or {}
+
+        # Сведение извлекателей. Проверка 19.09 показала, что это НЕ дубли, а
+        # дополняющие источники: build_paper_details даёт venue у 104 статей
+        # против 60 у нашего пайплайна (опирается на словарь catalog.yaml),
+        # зато DOI не извлекает вовсе (у нас 133). Берём лучшее из двух,
+        # сохраняя происхождение значения.
+        if not m.get("venue") and d.get("venue"):
+            m = dict(m)
+            m["venue"] = d["venue"]
+            srcs = dict(m.get("sources") or {})
+            srcs["venue"] = "catalog"
+            m["sources"] = srcs
 
         title_orig = m.get("title_orig") or d.get("t") or title_from_body(p)
         doc_type = "перевод" if "ru_papers" in p else ("статья" if st else "публикация")

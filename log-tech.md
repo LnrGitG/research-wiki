@@ -474,3 +474,17 @@ A — 5 095 (413).
 **Артефакты:** `scripts/kep_collect.py`, `scripts/harmonize_7_kep.py`,
 `queries/kep-source.md`, сырьё в `raw/rosstat/kep/` (выпуск + график публикаций).
 Точка возврата прошлого прогона — `kep_rollback_backup.sql` в бакете.
+
+## [2026-09-19] docs+docs | FAQ по полезным командам Hermes
+
+- Добавлена страница `docs/faq-hermes.html` — практический справочник команд для
+  нашего сетапа (диагностика, сессии, cron, скиллы, память, модели, бэкап,
+  отправка, данные research-wiki). Составлена по установленной версии
+  Hermes Agent v0.21.2 (2026.9.11), upstream 205645ee.
+- Источник — наш `docs/help.md` (справка по CLI/slash), привязан к реальным
+  пайплайнам: `--no-agent`-джоб KEP, гейт `skills.write_approval`, fallback-цепочка.
+- `docs/index.html`: добавлена кнопка «🛠️ FAQ по командам» в навигацию сайта
+  (GitHub Pages).
+- Зеркало в `queries/faq-hermes-commands.md` (markdown-версия для вики).
+- Отмечено известное «узкое место»: kanban-toolset ~23.5 KB схемы (≈5,9К токенов)
+  при 0 строк в kanban.db.

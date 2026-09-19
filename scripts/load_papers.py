@@ -223,10 +223,14 @@ def status():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--meta", default="/tmp/meta.json")
-    ap.add_argument("--methods", default="/tmp/methods.json")
-    ap.add_argument("--refs", default="/tmp/refs.json")
-    ap.add_argument("--storage", default="/tmp/storage-signed.json")
+    # Артефакты по умолчанию берутся из data/etl/ — их кладёт оркестратор
+    # etl_papers.py. Раньше пути указывали на /tmp, и результаты умирали при
+    # перезагрузке, а пересборку приходилось гонять целиком.
+    etl = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "etl")
+    ap.add_argument("--meta", default=os.path.join(etl, "meta.json"))
+    ap.add_argument("--methods", default=os.path.join(etl, "methods.json"))
+    ap.add_argument("--refs", default=os.path.join(etl, "refs.json"))
+    ap.add_argument("--storage", default=os.path.join(etl, "storage.json"))
     ap.add_argument("--sql")
     ap.add_argument("--cards")
     ap.add_argument("--build", action="store_true")

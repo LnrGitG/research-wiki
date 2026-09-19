@@ -27,6 +27,12 @@ import json
 import os
 import re
 import sys
+import time
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import etl_common
+
+SCRIPT = "extract_metadata.py"
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(REPO)
@@ -245,33 +251,51 @@ def extract(path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json")
+    etl_common.add_args(ap)
     args = ap.parse_args()
 
-    files = sorted(glob.glob("papers/*.md")) + sorted(glob.glob("papers/ru_papers/*.md"))
-    recs = [extract(p) for p in files]
-
     import collections
-    print("Файлов: %d\n" % len(recs))
+    t_start = time.time()
+    all_files = sorted(glob.glob("papers/*.md")) + sorted(glob.glob("papers/ru_papers/*.md"))
+
+    todo, skipped = etl_common.changed_files(
+        SCRIPT, all_files, only=args.only, since=args.since, force=args.force)
+    print("Файлов всего: %d | к обработке: %d | без изменений: %d"
+          % (len(all_files), len(todo), skipped))
+
+    prev = {} if args.force else etl_common.load_artifact("meta")
+    for p in todo:
+        prev[p] = extract(p)
+
+    recs = list(prev.values())
+    print("\nФайлов: %d" % len(recs))
     print("Заполненность и источник значения:")
     for f in ("authors", "year", "venue", "doi", "source_url", "title_orig"):
         cnt = collections.Counter(r["sources"].get(f, "") for r in recs if r.get(f))
         tot = sum(1 for r in recs if r.get(f))
         by = ", ".join("%s=%d" % (k, v) for k, v in cnt.most_common())
-        print("  %-12s %3d (%.0f%%)  %s" % (f, tot, 100 * tot / len(recs), by))
+        print("  %-12s %3d (%.0f%%)  %s" % (f, tot, 100 * tot / max(1, len(recs)), by))
 
-    nr = [r for r in recs if len(r["needs_review"]) == 3]
+    nr = [r for r in recs if len(r.get("needs_review", [])) == 3]
     print("\nБез авторов, года и DOI (нужен ручной разбор): %d" % len(nr))
     for r in nr[:8]:
         print("    %s" % r["stem"][:66])
 
-    print("\nПримеры извлечённого:")
-    for r in recs[:6]:
-        print("  %-42s | %s | %s | doi=%s" %
-              (r["stem"][:40], r["authors"][:22] or "—", r["year"] or "—", r["doi"][:26] or "—"))
+    saved = []
+    if not args.no_save:
+        p, sz = etl_common.save_artifact("meta", recs)
+        etl_common.mark_done(SCRIPT, todo)
+        saved.append(p)
+        print("\nАртефакт: %s (%.0f КБ)" % (p, sz / 1024))
+
+    print("Время: %.1f с (обработано %d файлов)" % (time.time() - t_start, len(todo)))
+    etl_common.record_run(SCRIPT, "metadata", t_start, time.time(),
+                          rows=len(todo), status="ok", artifacts=saved,
+                          extra={"total_files": len(recs), "skipped": skipped})
 
     if args.json:
         json.dump(recs, open(args.json, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-        print("\nJSON: %s (%.0f КБ)" % (args.json, os.path.getsize(args.json) / 1024))
+        print("JSON: %s (%.0f КБ)" % (args.json, os.path.getsize(args.json) / 1024))
     return 0
 
 

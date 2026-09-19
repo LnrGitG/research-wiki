@@ -562,6 +562,7 @@
   "queries/housing-market-transactions-prices.md",
   "queries/housing-sentiment-index.md",
   "queries/ikv-nowcasting-pilot.md",
+  "queries/ingest-pipeline-audit.md",
   "queries/ingest-skills-rebuild-assessment.md",
   "queries/investments-construction-relationship.md",
   "queries/karta-chteniya.md",

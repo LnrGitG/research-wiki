@@ -36,6 +36,12 @@ import os
 import re
 import subprocess
 import sys
+import time
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import etl_common
+
+SCRIPT = "link_storage.py"
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(REPO)
@@ -118,12 +124,66 @@ def presign(path):
     return ""
 
 
+def process_one(p, by_norm, cache, sign=False):
+    """Связать одну статью с PDF в хранилище."""
+    stem = os.path.basename(p)[:-3]
+    fm = frontmatter(p)
+    found = ""
+    how = ""
+
+    # 1. поле source_pdf
+    sp = fm.get("source_pdf", "")
+    if sp:
+        cand = os.path.join(PAPERS_DIR, os.path.basename(sp))
+        if not cand.lower().endswith(".pdf"):
+            cand += ".pdf"
+        if os.path.exists(cand):
+            found, how = cand, "source_pdf"
+
+    # 2. точное совпадение нормализованного имени
+    if not found:
+        hits = by_norm.get(norm(stem))
+        if hits and len(hits) == 1:
+            found, how = hits[0], "exact"
+
+    # 3-4. префиксное совпадение
+    if not found:
+        key = norm(stem)[:30]
+        if len(key) > 15:
+            cands = [v[0] for k, v in by_norm.items() if k.startswith(key)]
+            if len(cands) == 1:
+                found, how = cands[0], "prefix"
+            elif len(cands) > 1:
+                how = "ambiguous"
+
+    if not found:
+        how = how or "none"
+
+    rec = {"wiki_page": p, "stem": stem, "storage_path": "", "bucket": BUCKET,
+           "file_name": "", "size_bytes": 0, "sha256": "", "presigned_url": "",
+           "match": how}
+    if found:
+        st = os.stat(found)
+        rec.update({
+            "storage_path": found,
+            "storage_key": found[len("raw/"):] if found.startswith("raw/") else found,
+            "file_name": os.path.basename(found),
+            "size_bytes": st.st_size,
+            "sha256": sha256_of(found, cache),
+        })
+        if sign:
+            rec["presigned_url"] = presign(found)
+    return rec
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json")
     ap.add_argument("--sign", action="store_true", help="считать presigned-ссылки")
+    etl_common.add_args(ap)
     args = ap.parse_args()
 
+    t_start = time.time()
     cache = {}
     if os.path.exists(HASH_CACHE):
         try:
@@ -137,69 +197,40 @@ def main():
         by_norm.setdefault(norm(os.path.basename(p)[:-4]), []).append(p)
 
     papers = sorted(glob.glob("papers/*.md"))
-    out = []
+    todo, skipped = etl_common.changed_files(
+        SCRIPT, papers, only=args.only, since=args.since, force=args.force)
+    print("Статей всего: %d | к обработке: %d | без изменений: %d"
+          % (len(papers), len(todo), skipped))
+
+    prev = {} if args.force else etl_common.load_artifact("storage")
+    # Инкремент здесь вынужденно широкий: связка зависит не только от текста
+    # статьи, но и от состава бакета (появился новый PDF — меняется результат
+    # для старой статьи). Поэтому при --sign пересчитываются все, у кого есть
+    # файл: подписанная ссылка истекает через 7 дней.
+    if args.sign:
+        need_sign = [r["wiki_page"] for r in prev.values()
+                     if r.get("storage_path")] if prev else []
+        if need_sign:
+            print("presigned: пересчитываются ссылки для %d статей (истекают за 7 дней)"
+                  % len(need_sign))
+            todo = sorted(set(todo) | set(need_sign))
+
     stats = {"source_pdf": 0, "exact": 0, "prefix": 0, "ambiguous": 0, "none": 0}
-
-    for p in papers:
-        stem = os.path.basename(p)[:-3]
-        fm = frontmatter(p)
-        found = ""
-        how = ""
-
-        # 1. поле source_pdf
-        sp = fm.get("source_pdf", "")
-        if sp:
-            cand = os.path.join(PAPERS_DIR, os.path.basename(sp))
-            if not cand.lower().endswith(".pdf"):
-                cand += ".pdf"
-            if os.path.exists(cand):
-                found, how = cand, "source_pdf"
-
-        # 2. точное совпадение нормализованного имени
-        if not found:
-            hits = by_norm.get(norm(stem))
-            if hits and len(hits) == 1:
-                found, how = hits[0], "exact"
-
-        # 3-4. префиксное совпадение
-        if not found:
-            key = norm(stem)[:30]
-            if len(key) > 15:
-                cands = [v[0] for k, v in by_norm.items() if k.startswith(key)]
-                if len(cands) == 1:
-                    found, how = cands[0], "prefix"
-                elif len(cands) > 1:
-                    how = "ambiguous"
-
-        if not found:
-            how = how or "none"
-
-        rec = {"wiki_page": p, "stem": stem, "storage_path": "", "bucket": BUCKET,
-               "file_name": "", "size_bytes": 0, "sha256": "", "presigned_url": "",
-               "match": how}
-        if found:
-            st = os.stat(found)
-            rec.update({
-                "storage_path": found,
-                "storage_key": found[len("raw/"):] if found.startswith("raw/") else found,
-                "file_name": os.path.basename(found),
-                "size_bytes": st.st_size,
-                "sha256": sha256_of(found, cache),
-            })
-            if args.sign:
-                rec["presigned_url"] = presign(found)
-        stats[how] = stats.get(how, 0) + 1
-        out.append(rec)
+    for p in todo:
+        prev[p] = process_one(p, by_norm, cache, sign=args.sign)
+    out = list(prev.values())
+    for r in out:
+        stats[r.get("match", "none")] = stats.get(r.get("match", "none"), 0) + 1
 
     json.dump(cache, open(HASH_CACHE, "w", encoding="utf-8"), ensure_ascii=False, indent=0)
 
-    print("Статей: %d\n" % len(out))
+    print("\nСтатей в артефакте: %d" % len(out))
     print("Связка с PDF в бакете %s (%s):" % (BUCKET, PAPERS_DIR))
     for k in ("source_pdf", "exact", "prefix", "ambiguous", "none"):
         v = stats.get(k, 0)
-        print("  %-14s %3d (%.0f%%)" % (k, v, 100 * v / len(out)))
+        print("  %-14s %3d (%.0f%%)" % (k, v, 100 * v / max(1, len(out))))
     linked = sum(v for k, v in stats.items() if k in ("source_pdf", "exact", "prefix"))
-    print("  %-14s %3d (%.0f%%)" % ("ВСЕГО найдено", linked, 100 * linked / len(out)))
+    print("  %-14s %3d (%.0f%%)" % ("ВСЕГО найдено", linked, 100 * linked / max(1, len(out))))
 
     sizes = [r["size_bytes"] for r in out if r["size_bytes"]]
     if sizes:
@@ -214,19 +245,26 @@ def main():
         for r in amb[:8]:
             print("  %s" % r["stem"][:66])
 
-    print("\nПримеры связок:")
-    for r in [x for x in out if x["match"] in ("source_pdf", "exact", "prefix")][:6]:
-        print("  %-38s -> %s (%.1f МБ, %s)" % (
-            r["stem"][:36], r["file_name"][:40], r["size_bytes"] / 1e6, r["match"]))
     if args.sign:
         signed = [r for r in out if r["presigned_url"]]
         print("\npresigned-ссылок получено: %d" % len(signed))
-        for r in signed[:2]:
-            print("  %s..." % r["presigned_url"][:110])
+
+    saved = []
+    if not args.no_save:
+        p, sz = etl_common.save_artifact("storage", out)
+        etl_common.mark_done(SCRIPT, todo)
+        saved.append(p)
+        print("\nАртефакт: %s (%.0f КБ)" % (p, sz / 1024))
+
+    print("Время: %.1f с (обработано %d статей)" % (time.time() - t_start, len(todo)))
+    etl_common.record_run(SCRIPT, "storage", t_start, time.time(),
+                          rows=len(todo), status="ok", artifacts=saved,
+                          extra={"total_articles": len(out), "linked": linked,
+                                 "skipped": skipped, "signed": args.sign})
 
     if args.json:
         json.dump(out, open(args.json, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-        print("\nJSON: %s (%.0f КБ)" % (args.json, os.path.getsize(args.json) / 1024))
+        print("JSON: %s (%.0f КБ)" % (args.json, os.path.getsize(args.json) / 1024))
     return 0
 
 

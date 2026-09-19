@@ -29,6 +29,12 @@ import json
 import os
 import re
 import sys
+import time
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import etl_common
+
+SCRIPT = "extract_references.py"
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(REPO)
@@ -178,32 +184,54 @@ def parse_entry(raw):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json")
+    etl_common.add_args(ap)
     args = ap.parse_args()
 
-    papers = sorted(glob.glob("papers/*.md"))
-    out = []
+    t_start = time.time()
+    all_papers = sorted(glob.glob("papers/*.md"))
+
+    # Инкремент: считаем только новые и изменённые файлы, результат
+    # дописываем к прежнему артефакту. Полный пересчёт корпуса занимал 116 с
+    # ради одной новой статьи — теперь это доли секунды.
+    todo, skipped = etl_common.changed_files(
+        SCRIPT, all_papers, only=args.only, since=args.since, force=args.force)
+    print("Файлов всего: %d | к обработке: %d | без изменений: %d"
+          % (len(all_papers), len(todo), skipped))
+
+    prev = {} if args.force else etl_common.load_artifact("refs")
     stats = collections.Counter()
 
-    for p in papers:
+    # пересчитать статистику по сохранённой части. Секция считается найденной
+    # по флагу has_ref_section, а не по n_refs: у 4 статей секция есть, но
+    # записей ноль — иначе показатели полного и инкрементального прогона
+    # расходятся (164 против 160 секций).
+    for r in prev.values():
+        if r.get("has_ref_section"):
+            stats["секции"] += 1
+        stats["записей"] += r.get("n_refs", 0)
+        stats["с DOI"] += sum(1 for e in r.get("refs", []) if e.get("doi"))
+        stats["с URL"] += sum(1 for e in r.get("refs", []) if e.get("url"))
+
+    for p in todo:
         sec = ref_section(body_of(p))
         if not sec:
-            out.append({"wiki_page": p, "stem": os.path.basename(p)[:-3],
-                        "n_refs": 0, "refs": [], "has_ref_section": False})
+            prev[p] = {"wiki_page": p, "stem": os.path.basename(p)[:-3],
+                       "n_refs": 0, "refs": [], "has_ref_section": False}
             continue
         raw_entries = split_entries(sec)
         refs = [parse_entry(r) for r in raw_entries]
-        with_doi = sum(1 for r in refs if r["doi"])
-        with_url = sum(1 for r in refs if r["url"])
         stats["секции"] += 1
         stats["записей"] += len(refs)
-        stats["с DOI"] += with_doi
-        stats["с URL"] += with_url
-        out.append({"wiki_page": p, "stem": os.path.basename(p)[:-3],
-                    "n_refs": len(refs), "refs": refs, "has_ref_section": True})
+        stats["с DOI"] += sum(1 for r in refs if r["doi"])
+        stats["с URL"] += sum(1 for r in refs if r["url"])
+        prev[p] = {"wiki_page": p, "stem": os.path.basename(p)[:-3],
+                   "n_refs": len(refs), "refs": refs, "has_ref_section": True}
 
+    out = list(prev.values())
     total = sum(r["n_refs"] for r in out)
-    print("Обработано статей: %d\n" % len(out))
-    print("Секции литературы найдены: %d (%.0f%%)" % (stats["секции"], 100 * stats["секции"] / len(out)))
+    print("\nВ артефакте статей: %d" % len(out))
+    print("Секции литературы найдены: %d (%.0f%%)"
+          % (stats["секции"], 100 * stats["секции"] / max(1, len(out))))
     print("Разобрано записей: %d" % total)
     if total:
         print("  с DOI: %d (%.0f%%)" % (stats["с DOI"], 100 * stats["с DOI"] / total))
@@ -218,28 +246,29 @@ def main():
     for k in ("0", "1-19", "20-49", "50-99", "100+"):
         print("  %-6s %d" % (k, dist[k]))
 
-    print("\nПримеры разобранных записей:")
-    shown = 0
-    for r in out:
-        if r["n_refs"] >= 8:
-            print("\n--- %s (%d записей) ---" % (r["stem"][:52], r["n_refs"]))
-            for e in r["refs"][:2]:
-                print("  авторы: %s" % e["авторы"][:56])
-                print("  год: %s | doi: %s" % (e["год"] or "—", e["doi"][:40] or "—"))
-                print("  издание: %s" % e["издание"][:60] or "—")
-            shown += 1
-            if shown >= 3:
-                break
-
     bad = [r for r in out if r["n_refs"] > 400]
     if bad:
         print("\nПодозрительно много записей (проверить разбиение):")
         for r in bad[:6]:
             print("  %-52s %d" % (r["stem"][:52], r["n_refs"]))
 
+    saved = []
+    if not args.no_save:
+        p, sz = etl_common.save_artifact("refs", out)
+        etl_common.mark_done(SCRIPT, todo)
+        saved.append(p)
+        print("\nАртефакт: %s (%.0f КБ)" % (p, sz / 1024))
+        print("Инкремент отмечен для %d файлов" % len(todo))
+
+    print("Время: %.1f с (обработано %d файлов)" % (time.time() - t_start, len(todo)))
+
+    etl_common.record_run(SCRIPT, "references", t_start, time.time(),
+                          rows=len(todo), status="ok", artifacts=saved,
+                          extra={"total_records": total, "skipped": skipped})
+
     if args.json:
         json.dump(out, open(args.json, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-        print("\nJSON: %s (%.0f КБ)" % (args.json, os.path.getsize(args.json) / 1024))
+        print("JSON: %s (%.0f КБ)" % (args.json, os.path.getsize(args.json) / 1024))
     return 0
 
 

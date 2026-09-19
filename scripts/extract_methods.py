@@ -29,6 +29,12 @@ import json
 import os
 import re
 import sys
+import time
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import etl_common
+
+SCRIPT = "extract_methods.py"
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(REPO)
@@ -183,11 +189,63 @@ def find_terms(text, dictionary):
     return found
 
 
+def process_one(p, trans, details):
+    """Обработать одну статью. Возвращает запись артефакта."""
+    stem = os.path.basename(p)[:-3]
+    b_en = body_of(p)
+    method_src = b_en
+    source = "en_article"
+
+    # ищем русский полный перевод: по имени или по совпадению заголовка
+    for t in trans:
+        ts = open(t, encoding="utf-8", errors="ignore").read(4000)
+        if stem[:35] in ts or os.path.basename(t)[:-3][:35] == stem[:35]:
+            if os.path.getsize(t) > 50000:
+                method_src = body_of(t)
+                source = "ru_translation"
+            break
+
+    mtext = sections(method_src, SECTION_RE)
+    ctext = sections(method_src, CONCLUSION_RE, limit=4, maxlen=4500)
+    methods = find_terms(mtext + " " + ctext + " " + b_en[:3000], METHODS_DICT)
+    data = find_terms(mtext + " " + b_en[:3000], DATA_DICT)
+
+    # дополнить из paper-details.json
+    d = details.get(p) or {}
+    for x in (d.get("models") or []):
+        if x and x not in methods:
+            methods.append(x)
+    for x in (d.get("data") or []):
+        if x and x not in data:
+            data.append(x)
+
+    # Резерв для выводов, когда секции нет: аннотация из paper-details.json
+    # (это осмысленный текст о результате) — помечаем источник.
+    findings_src = "section" if ctext else ""
+    if not ctext:
+        ab = re.sub(r"\s+", " ", (d.get("abstract") or "")).strip()
+        if len(ab) > 120:
+            ctext, findings_src = ab[:2000], "abstract"
+
+    return {
+        "wiki_page": p, "stem": stem,
+        "method_source": source,
+        "methods": methods, "data_sources": data,
+        "methods_text": mtext[:1200],
+        "findings": ctext[:2000],
+        "findings_source": findings_src,
+        "has_method_section": bool(mtext),
+        "has_conclusion_section": bool(ctext),
+    }
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json")
+    etl_common.add_args(ap)
     args = ap.parse_args()
 
+    t_start = time.time()
     papers = sorted(glob.glob("papers/*.md"))
     trans = sorted(glob.glob("papers/ru_papers/*.md"))
     try:
@@ -195,61 +253,21 @@ def main():
     except (OSError, json.JSONDecodeError):
         details = {}
 
-    out = []
+    todo, skipped = etl_common.changed_files(
+        SCRIPT, papers, only=args.only, since=args.since, force=args.force)
+    print("Статей всего: %d | к обработке: %d | без изменений: %d"
+          % (len(papers), len(todo), skipped))
+
+    prev = {} if args.force else etl_common.load_artifact("methods")
+    for p in todo:
+        prev[p] = process_one(p, trans, details)
+
+    out = list(prev.values())
     term_counter = collections.Counter()
     new_terms = collections.Counter()
-
-    for p in papers:
-        stem = os.path.basename(p)[:-3]
-        b_en = body_of(p)
-        method_src = b_en
-        source = "en_article"
-
-        # ищем русский полный перевод: по имени или по совпадению заголовка
-        for t in trans:
-            ts = open(t, encoding="utf-8", errors="ignore").read(4000)
-            if stem[:35] in ts or os.path.basename(t)[:-3][:35] == stem[:35]:
-                if os.path.getsize(t) > 50000:
-                    method_src = body_of(t)
-                    source = "ru_translation"
-                break
-
-        mtext = sections(method_src, SECTION_RE)
-        ctext = sections(method_src, CONCLUSION_RE, limit=4, maxlen=4500)
-        methods = find_terms(mtext + " " + ctext + " " + b_en[:3000], METHODS_DICT)
-        data = find_terms(mtext + " " + b_en[:3000], DATA_DICT)
-
-        # дополнить из paper-details.json
-        d = details.get(p) or {}
-        for x in (d.get("models") or []):
-            if x and x not in methods:
-                methods.append(x)
-        for x in (d.get("data") or []):
-            if x and x not in data:
-                data.append(x)
-
-        # Резерв для выводов, когда секции нет: аннотация из paper-details.json
-        # (это осмысленный текст о результате) — помечаем источник.
-        findings_src = "section" if ctext else ""
-        if not ctext:
-            d0 = details.get(p) or {}
-            ab = re.sub(r"\s+", " ", (d0.get("abstract") or "")).strip()
-            if len(ab) > 120:
-                ctext, findings_src = ab[:2000], "abstract"
-
-        for m in methods:
+    for r in out:
+        for m in r.get("methods", []):
             term_counter[m] += 1
-
-        out.append({
-            "wiki_page": p, "stem": stem,
-            "method_source": source,
-            "methods": methods, "data_sources": data,
-            "methods_text": mtext[:1200],
-            "findings": ctext[:2000],
-            "findings_source": findings_src,
-            "has_method_section": bool(mtext),
-            "has_conclusion_section": bool(ctext),
-        })
 
     # --- обогащение словаря: кандидаты из заголовков секций методов ---
     for r in out:
@@ -260,11 +278,11 @@ def main():
                 new_terms[h] += 1
 
     total = len(out)
-    print("Обработано статей: %d\n" % total)
+    print("\nВ артефакте статей: %d" % total)
     print("Наличие секций:")
     for f in ("method", "conclusion"):
         n = sum(1 for r in out if r["has_%s_section" % f])
-        print("  %-12s %d (%.0f%%)" % (f, n, 100 * n / total))
+        print("  %-12s %d (%.0f%%)" % (f, n, 100 * n / max(1, total)))
 
     print("\nИсточник текста методов:")
     for k, v in collections.Counter(r["method_source"] for r in out).most_common():
@@ -285,19 +303,33 @@ def main():
     print("\nЗаполненность методов/выводов:")
     for f in ("methods", "data_sources", "findings"):
         n = sum(1 for r in out if r.get(f))
-        print("  %-14s %d (%.0f%%)" % (f, n, 100 * n / total))
+        print("  %-14s %d (%.0f%%)" % (f, n, 100 * n / max(1, total)))
 
     if new_terms:
         print("\nКандидаты в словарь методов (встречены в заголовках, нет в словаре):")
         for t, n in new_terms.most_common(15):
             print("  %-40s %d" % (t[:38], n))
 
+    saved = []
+    if not args.no_save:
+        p, sz = etl_common.save_artifact("methods", out)
+        etl_common.mark_done(SCRIPT, todo)
+        saved.append(p)
+        print("\nАртефакт: %s (%.0f КБ)" % (p, sz / 1024))
+        # кандидаты в словарь — отдельным файлом для ручного просмотра
+        nt = etl_common.artifact_path("methods-new-terms")
+        json.dump(dict(new_terms.most_common(60)), open(nt, "w", encoding="utf-8"),
+                  ensure_ascii=False, indent=1)
+        saved.append(nt)
+
+    print("Время: %.1f с (обработано %d статей)" % (time.time() - t_start, len(todo)))
+    etl_common.record_run(SCRIPT, "methods", t_start, time.time(),
+                          rows=len(todo), status="ok", artifacts=saved,
+                          extra={"total_articles": total, "skipped": skipped})
+
     if args.json:
         json.dump(out, open(args.json, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-        json.dump(dict(new_terms.most_common(60)),
-                  open(args.json.replace(".json", "-new-terms.json"), "w", encoding="utf-8"),
-                  ensure_ascii=False, indent=1)
-        print("\nJSON: %s (%.0f КБ)" % (args.json, os.path.getsize(args.json) / 1024))
+        print("JSON: %s (%.0f КБ)" % (args.json, os.path.getsize(args.json) / 1024))
     return 0
 
 

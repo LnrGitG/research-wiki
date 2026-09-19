@@ -38,3 +38,7 @@ raw/fns/tochno-st/by_section/
 raw/rosstat/regions_collection_102/*.parquet
 raw/rosstat/regions_collection_102/*.zip
 scripts/__pycache__/
+
+# Артефакты ETL-пайплайна (производные, пересоздаются прогоном
+# etl_papers.py --force). Метрики прогонов — тоже локальные.
+data/etl/

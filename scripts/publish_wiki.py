@@ -44,6 +44,36 @@ KEEP_DIRS = [
     "annotations", "models", "news", "visualizations",
     "data", "docs", ".github",
 ]
+
+# Записки публикуются ВЫБОРОЧНО: это рабочий каталог, но часть записок —
+# научный результат (дизайн исследования, карты пробелов, обзоры литературы),
+# а не журнал работ. Полный список — явный, здесь.
+KEEP_QUERY_FILES = [
+    # Карты и обзоры (знание о предмете)
+    "karta-chteniya.md",
+    "literature-gap-map.md",
+    "mirovoi-obzor-investitsii-vypusk-modeli.md",
+    "monetarnaya-politika-i-rynok-zhilya-kompleksnaya-bibliografiya.md",
+    "sintez-monetarnaya-politika-i-rynok-zhilya.md",
+    "ekonometricheskie-issledovaniya-rynka-nedvizhimosti-2020-2026.md",
+    "microdata-macroeconomic-research-review.md",
+    "zhilishchnye-cikly-i-monetarnaya-politika.md",
+    # Дизайн исследований
+    "vnok-nowcasting-design.md",
+    "vnok-nowcasting-international-review.md",
+    "supply-elasticity-estimation-design.md",
+    "ikv-nowcasting-pilot.md",
+    "ml-zombie-firm-classification.md",
+    "petrova-trunin-epu-rf.md",
+    # Методология и данные по предмету
+    "hfd-preprocessing-methodology.md",
+    "housing-sentiment-index.md",
+    "search-nowcasting-construction.md",
+    "retrieve-for-train-google.md",
+    "wordstat-demand-core-mvp.md",
+    # Дайджесты
+    "research-radar-2026-09-14.md",
+]
 KEEP_FILES = [
     "index.md", "MOC.md", "README.md",
     "bibliography_references.md", "bibliography_ru.md",
@@ -56,7 +86,9 @@ KEEP_FILES = [
 ]
 
 # --- Служебное: остаётся только в приватном ---
-DROP_DIRS = ["scripts", "db", "queries", "templates", "db_docs", "raw"]
+# queries в DROP_DIRS нет: он обрабатывается отдельной ветвью —
+# публикуется выборочно по KEEP_QUERY_FILES.
+DROP_DIRS = ["scripts", "db", "templates", "db_docs", "raw"]
 DROP_FILES = [
     "AGENTS.md", "MEMORY.md", "USER.md",
     "log-tech.md",
@@ -137,6 +169,12 @@ def classify(tracked):
         top = line.split("/")[0]
         if top in DROP_DIRS or line in DROP_FILES or line in DROP_DATA_FILES:
             drop.append(line)
+        elif line.startswith("queries/"):
+            # рабочий каталог: публикуется только явно перечисленное
+            if line[len("queries/"):] in KEEP_QUERY_FILES:
+                keep.add(line)
+            else:
+                drop.append(line)
         elif top in KEEP_DIRS or line in KEEP_FILES:
             keep.add(line)
     unexpected = sorted(tracked - keep - set(drop))

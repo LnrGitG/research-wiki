@@ -57,4 +57,4 @@ related: ["queries/vnok-nowcasting-design", "queries/ikv-nowcasting-pilot", "hyp
 
 ## Источники
 
-[[Baker-Bloom-Davis-2016]] [[Charemza-2022]] [[Jurado-Ludvigson-Ng-2015]] — см. papers/catalog.md. PDF: /tmp/epu_appendix.pdf (приложения), полный текст: ~/.hermes/cache/web/rjmf.econs.online-dc481f1568.md
+[[Baker-Bloom-Davis-2016]] [[Charemza-2022]] [[Jurado-Ludvigson-Ng-2015]] — см. papers/catalog.md. PDF: приложения к статье; полный текст — на сайте издания (rjmf.econs.online)

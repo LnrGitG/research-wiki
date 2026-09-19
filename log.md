@@ -18,6 +18,22 @@
 >
 > При превышении 500 записей — ротация: переименовать в `log-YYYY.md`, начать заново.
 
+## [2026-09-19] ingest | Kawasoe 2026 — Housing Requirements, Hazard Exposure and Resilience Costs (World Bank WPS11451)
+- Source: documents.worldbank.org (свободный доступ), PDF 3.2 МБ, 52 с.
+- Extraction: pymupdf4llm → markdown, 98 141 символов, без OCR
+- DOI: 10.1596/1813-9450-11451; пакет воспроизводимости reproducibility.worldbank.org/catalog/636
+- Суть: первая глобальная странового уровня оценка спроса на строительство жилья
+  до 2100 с одновременным учётом демографии, климатических опасностей и
+  бюджетной способности. Фонд растёт с 2,46–2,48 млрд единиц (2025) до
+  4,10–4,55 млрд к 2100; спрос смещается от приростного к восстановительному
+  к середине века; фонд в жароопасных зонах +267…412%; 46 стран с тройным
+  бременем
+- Файлы: papers/kawasoe-2026-housing-requirements-hazard-resilience-2100.md,
+  reviews/..., raw/papers/...pdf
+- Гипотеза для реестра: доля восстановительного спроса в России достигнет
+  приростного не позднее 2050 (с учётом высокого износа фонда — раньше
+  мирового тренда)
+
 ## [2026-07-16] ingest | Batch: Workpapers (20 PDFs)
 - Source: ~/research-wiki/raw/papers/Workpapers/ (20 PDFs uploaded via scp)
 - Extraction: pymupdf4llm → markdown (20/20 success)

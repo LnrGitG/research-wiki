@@ -80,3 +80,12 @@ Albuquerque, Iseringhausen & Opitz (2024) связывают микроэлас�
 - [[concepts/monetary-policy-transmission-housing]]
 - [[entities/us-housing-market]]
 - [[entities/uk-planning-system]]
+
+## Смежные работы вне кластера
+
+- [[papers/kawasoe-2026-housing-requirements-hazard-resilience-2100]] — глобальная
+  оценка спроса на жилищное строительство до 2100 (World Bank WPS11451).
+  Даёт **демографическую сторону** вопроса, которой в кластере нет: спрос
+  моделируется без отклика предложения, тогда как работы кластера объясняют
+  как раз предложение. Вместе они образуют пару «спрос — предложение».
+  Разбор: [[reviews/kawasoe-2026-housing-requirements-hazard-resilience-2100]]

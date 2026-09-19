@@ -3304,3 +3304,13 @@ migrated: 2026-07-26
 - relevance: low
 - status: new
 - notes: translation of spatial_indirect_inference_rossi_2023.md
+
+## kawasoe-2026-housing-requirements-hazard-resilience-2100.md
+- title: Housing Requirements, Hazard Exposure, and Resilience Costs - A Global Outlook to 2100
+- authors: Kawasoe, Yasuhiro
+- year: 2026
+- method: pooled OLS AHS projection, 1km gridded cohort survival (Fragile/Median/Robust), multi-hazard exposure mapping, SSP scenarios
+- data: GHSL, WorldPop, CORESIDENCE v2 (136 countries), SSP Database (IIASA), GEM Global Exposure Model, World Bank boundaries
+- key_result: global housing stock nearly doubles by 2100 to 4.1-4.5bn units; construction demand shifts from expansion to replacement by mid-century; heat-exposed stock grows 267-412%; 46 countries face triple burden (demand, hazard, fiscal capacity); resilient path costs less long-term except South Asia and Sub-Saharan Africa
+- relevance: high
+- status: new

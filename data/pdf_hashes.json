@@ -1,0 +1,942 @@
+{
+"raw/papers/1_ea1613-02.pdf": {
+"size": 1185207,
+"mtime": 1789233545,
+"sha256": "a82d8cdcdc4ec3e5cfee7d53a418375840b8648a075ad69e4f9782cd7686e219"
+},
+"raw/papers/1-s2.0-S0038012124001629-main.pdf": {
+"size": 2876766,
+"mtime": 1789233519,
+"sha256": "5917df6bf1f8388b6951027915145571b0abd26afcf72f7e77d437541db9b4af"
+},
+"raw/papers/1-s2.0-S0040162517316049-main.pdf": {
+"size": 674059,
+"mtime": 1789233548,
+"sha256": "95e88fd5fee68710f0b964269e59ec00b18e0fc94441aad1b043c48e404e8963"
+},
+"raw/papers/1-s2.0-S0161893821001101-main.pdf": {
+"size": 817700,
+"mtime": 1789233270,
+"sha256": "ec2ffbcc62c766aad64ee6999b7405c204eb3dd9dbfe02fa583df9ddef5de256"
+},
+"raw/papers/1-s2.0-S0165176518302040-main.pdf": {
+"size": 357634,
+"mtime": 1789233570,
+"sha256": "36b5f3b3655733c37707c18ed08ebd4870416fa7dfbf97a6a98a9c86e6223e05"
+},
+"raw/papers/1-s2.0-S0169207021000649-main.pdf": {
+"size": 786267,
+"mtime": 1789233534,
+"sha256": "f45a2beefffbe608256827fa62e95973960b4339b8ea06555889d190bcd599c0"
+},
+"raw/papers/1-s2.0-S0304407621002499-main.pdf": {
+"size": 1329507,
+"mtime": 1789233560,
+"sha256": "cb3c2a8e4c0983341a1ce6b474be16099f8c10050ac94ef251da819a719fab29"
+},
+"raw/papers/1-s2.0-S1544612319301072-main.pdf": {
+"size": 870117,
+"mtime": 1789233538,
+"sha256": "7d1daee66bcb5ee44a75eec36e78483477fe005e5745733496a8f2e32d2128e6"
+},
+"raw/papers/10.18657-yonveek.878337-1998238.pdf": {
+"size": 655942,
+"mtime": 1789233544,
+"sha256": "12c651ea8906131aa4e9f8e3bb1858646ef4e06812d1a2dc645b577fce01d949"
+},
+"raw/papers/10.51727-tbj.1347523-3351692.pdf": {
+"size": 580882,
+"mtime": 1789233564,
+"sha256": "296a7946f4f3b49b3a534179448995b17d32879d7e0b11feff01c4bc992ffcbb"
+},
+"raw/papers/2015-030.pdf": {
+"size": 465705,
+"mtime": 1789233538,
+"sha256": "63aed946108e38b813a5c0f3d60415b1d2665f90d8f1cbe6e98a06ad8df68989"
+},
+"raw/papers/2022061r1pap.pdf": {
+"size": 1188353,
+"mtime": 1789233556,
+"sha256": "567e86dd8f0f12889157e4384aa93dc058586abcf76cfb5d06b51c9840f4d244"
+},
+"raw/papers/42990.pdf": {
+"size": 903881,
+"mtime": 1789233553,
+"sha256": "90ce65239fe056ca328846ff78f2cd2f66f144d7b4343cef1b1570de7776994b"
+},
+"raw/papers/8.+Muhhamad.pdf": {
+"size": 1559664,
+"mtime": 1789233516,
+"sha256": "779a45467a94e879c1b7fba6c2037494ab067c55cce3ab87bedf715c2675824b"
+},
+"raw/papers/Action10654-115113.pdf": {
+"size": 226763,
+"mtime": 1789233538,
+"sha256": "b2fa3d15e16ab6f26c1c9db72589962a24135b520c719f247890009724818184"
+},
+"raw/papers/Adrian_Predicting Downside Risks to House Prices and Macro-Financial Stability_2020.pdf": {
+"size": 2665089,
+"mtime": 1789233537,
+"sha256": "78fadb389f222fd4bd2bc8b24e77bc2591f0aa23b47ea1194c8cfa900dd2d660"
+},
+"raw/papers/Akhmedova_Alekseeva.pdf": {
+"size": 296758,
+"mtime": 1789233555,
+"sha256": "528a3f28c4554fbeeac029e755f39ebbe973914ab729265a2b336de189a9565e"
+},
+"raw/papers/Albuquerque_The house supply channel of the monetary policy_2024.pdf": {
+"size": 5930187,
+"mtime": 1789233525,
+"sha256": "e2a3cb1bee4cb2c63cdf108e67b40d1b5a507a86eacb1a767e99380022d72f3f"
+},
+"raw/papers/Angelini_The ESCB forecasting models what are they and what are they good for_2025.pdf": {
+"size": 4940408,
+"mtime": 1789233569,
+"sha256": "4e7aef9b5087992c46ba23b2b9c6e017ea076ae20f6db91177064bf037be0939"
+},
+"raw/papers/Bae_Factor-augmented forecasting in big data_2024.pdf": {
+"size": 1569847,
+"mtime": 1789233570,
+"sha256": "99e35334336e32304c692fe67bcd93f822b28e997021a389d56bbbb4de8def3c"
+},
+"raw/papers/Bailey_A Two Stage Approach to Spatio Temporal Analysis with Strong and Weak Cross-Sectional Dependence_2014.pdf": {
+"size": 1288320,
+"mtime": 1789233559,
+"sha256": "9843fe1eb809aa08c7c8cf4bb273a9a8bcf0ea76a380fdb1fdd7b9f6b967efa1"
+},
+"raw/papers/Balcilar_The Out-of-Sample Forecasting Performance of Non-Linear Models of Regonal Housing Prices in the US_2012.pdf": {
+"size": 3410585,
+"mtime": 1789233527,
+"sha256": "9d77edac56d1c28cc59672decdc6a8be241e70481082259b2ff4e55414c1c3f4"
+},
+"raw/papers/Bandt_Is there evidence of shift-contagion in internation housing markets_2010.pdf": {
+"size": 390759,
+"mtime": 1789233565,
+"sha256": "84460c91404c5b70d97a85f80cda516c2fe9d2223d331698d88e218a0a90f6ab"
+},
+"raw/papers/Bandt. The_international_transmission_of_house.pdf": {
+"size": 375442,
+"mtime": 1789233539,
+"sha256": "d835fafc668471693ad0813659ffcdcdd345770697906a3f71c999fb9ebed153"
+},
+"raw/papers/Bańbura_Conditional Forecasts and Scenario analysis with VAR for Large Cross-Sections_2014.pdf": {
+"size": 917818,
+"mtime": 1789233559,
+"sha256": "ce610cb9169ea5705f888bb688cd12db27ff7a39ec0b413f6dbc6f727307b400"
+},
+"raw/papers/Bernanke_Measuring the Effects of Monetary Policy FAVAR approach_2003.pdf": {
+"size": 375633,
+"mtime": 1789233542,
+"sha256": "c5f92f8f89c7893ff4b2d432c9b2f4e1b260fb8f6e26acd317dbaa8535d5dce8"
+},
+"raw/papers/Beyeler_Factor augmented VAR revisited A sparse dynamic factor model approach_2017.pdf": {
+"size": 1717731,
+"mtime": 1789233268,
+"sha256": "b11831ee2b46bff33d74123f654e933a3d922b4aa4bd2dd130664009e7952c9a"
+},
+"raw/papers/Boivin. Sticky prices and monetary policy.pdf": {
+"size": 1160070,
+"mtime": 1789233526,
+"sha256": "946d818a59f622bffb1eed4a7992813f6a92ebcfd42ead181e74f0650c746d89"
+},
+"raw/papers/Bork_Housing price forecastability A factor analysis_2012.pdf": {
+"size": 425528,
+"mtime": 1789233568,
+"sha256": "6395d6cd99ea1639d23983e15e3137d099e0f567805b2a8be8dac2652b49717b"
+},
+"raw/papers/Boymirzaev_Development of the Near-Term Forecast of Inflation for Uzbekistan Application of FAVAR and BVAR models_2025.pdf": {
+"size": 2249019,
+"mtime": 1789233555,
+"sha256": "acba726f6bc1f91d923d21eb1f38329bd0534bae726f7fb31b21528d6df53dd9"
+},
+"raw/papers/Broxterman-Larson-Yezer-2026-sufficient-statistic-city-housing-prices.pdf": {
+"size": 4837568,
+"mtime": 1789233544,
+"sha256": "0598b648803903d28d5cc1f6fec71b38d816784ee83b20c9a3deb3beabd3a780"
+},
+"raw/papers/Broxterman-Larson-Yezer-2026-w35144.pdf": {
+"size": 1376248,
+"mtime": 1789233566,
+"sha256": "7dd2d9e24d1a9fa64d0daa318a882f301cd29aa1248290b6f46aaa57501e1259"
+},
+"raw/papers/Budnik_Capital and liquidity buffers and the resilience of the banking system in the euro area_2017.pdf": {
+"size": 1639558,
+"mtime": 1789233541,
+"sha256": "0c2213f90cda04e96541d5baeedef4ae6f9113374b38ec5c44c691043921fcf4"
+},
+"raw/papers/CFMDP2018-08-Paper.pdf": {
+"size": 524501,
+"mtime": 1789233559,
+"sha256": "4660113fcb3454bfb6b5da34ec3b3b1231dc176867ba804c4c9fb14cdf8deee7"
+},
+"raw/papers/Cepni_The time varying impact of uncertainty shocks on the comovement of regional housing prices of the United Kingdom_2025.pdf": {
+"size": 3659851,
+"mtime": 1789233533,
+"sha256": "b8ec6ccdc8a3afcac18242b264f39f768f098da548d168cea8ed26396e476376"
+},
+"raw/papers/Chen_Forecasting House Prices The Role of Market Interconnectedness_2026.pdf": {
+"size": 2902385,
+"mtime": 1789233552,
+"sha256": "098556e09089e7b3f54e998aa21498d4ce2d01a16147a62094e52ae76c21668e"
+},
+"raw/papers/Chen. TheImpactofMonentaryPolicyonHousingPricesinChina.pdf": {
+"size": 1038722,
+"mtime": 1789233516,
+"sha256": "aa9f2543213d7f3f569ac84931f30cee49a421688d5d20f9c7da5c16739ccffb"
+},
+"raw/papers/Claessens. What drives housing prices.pdf": {
+"size": 779583,
+"mtime": 1789233272,
+"sha256": "03b529e60da3d87cedb776a2fd15e49636272b3e4eed4477b322ee4a5c50acc4"
+},
+"raw/papers/Conventional_and_unconventional_monetary_policies_effects_on_the.pdf": {
+"size": 2621790,
+"mtime": 1789233571,
+"sha256": "99aa77abf5d181abc75c78f9b96892539e3cc971196ceb61286fd68f30d64d03"
+},
+"raw/papers/Corsetti_One Money, Many Markets Monetary Transmission and Housing Financing in the Euro Area_2020.pdf": {
+"size": 1456328,
+"mtime": 1789233556,
+"sha256": "2336a8e1445bccb8a661120b895f5c02e2bab766d541e03f92a09dc1bd2c99fc"
+},
+"raw/papers/Daoui_Monetary policy shocks and economic growth in Morocco FAVAR approach_2021.pdf": {
+"size": 894680,
+"mtime": 1789233543,
+"sha256": "7c8ea94bac3e0ad89e09835d7a9dadd014f87b80b7ab30ee804a79094d408208"
+},
+"raw/papers/Das_Could we have predicted the recent downturn in the African Housing Market_2009.pdf": {
+"size": 796548,
+"mtime": 1789233536,
+"sha256": "093fa1b8056a40ba5aac02c49a1617442c21c448a74f49a7ea5dd4d8213cf297"
+},
+"raw/papers/Das_Forecasting regional house price inflation A Comparison between DFM and VAM_2010.pdf": {
+"size": 183962,
+"mtime": 1789233521,
+"sha256": "11a905047ec68cebce02ab77a407f5ac14b80626222e25c844562c682546554a"
+},
+"raw/papers/Das_The Blessing Of Dimensionality in Forecasting Real House Price Growth in the 9 Census Divisions of the US_2009.pdf": {
+"size": 397826,
+"mtime": 1789233549,
+"sha256": "84f645beb9bab21c3d99d6da0737c7959c9bfe01dac18dfeb9649b7f48b4e7da"
+},
+"raw/papers/Dees_Analysing and forecasting price dynamics across euro area countries and sectors_2014.pdf": {
+"size": 630517,
+"mtime": 1789233560,
+"sha256": "f20b7987ceaa193aa0b67b91c63fa5821609f42c4acf70f9cdc21f6501997c6e"
+},
+"raw/papers/Drechsler-Savov-Schnabl-2024-monetary-policy-mortgage-market.pdf": {
+"size": 1710798,
+"mtime": 1789233545,
+"sha256": "64a6ad49ba123ae841805327734188b9bc56ade3252bbcc60b936ce010eecbfa"
+},
+"raw/papers/Drift_Forecasting House Prices through Credit Conditions A Bayesian Approach_2024.pdf": {
+"size": 1331627,
+"mtime": 1789233268,
+"sha256": "d684a6d4ec68c5b346028f52de2b7cd4e876f597eedf636f3d5e192afa85f6bc"
+},
+"raw/papers/Eickmeier_Classical time-varying FAVAR models - estimation, forecasting and structural analysis_2011.pdf": {
+"size": 3408028,
+"mtime": 1789233271,
+"sha256": "89d78be8bd88a5df55ce8a12a8d70226cfbc89c3aa33a9d3931de4c1d68f0051"
+},
+"raw/papers/Eickmeier_Monetary policy, housing booms and financial (im)balances_2010.pdf": {
+"size": 611211,
+"mtime": 1789233542,
+"sha256": "ae3112700853c52b3afaed440fe9b69c1f6a5ebdd7773388fb802f923ab901d3"
+},
+"raw/papers/Elbourne. The-UK-housing-market-and-the-monetary-policy-transm.pdf": {
+"size": 553336,
+"mtime": 1789233548,
+"sha256": "4c281340a29d984fe932e9731d75dac359db083a2d560988f9e985d77bc1c051"
+},
+"raw/papers/Fang. Analysis of the Factors Influencing House Prices.pdf": {
+"size": 348296,
+"mtime": 1789233526,
+"sha256": "57ae9a5a7a256d7853c23781732863a6f26934f4236cfe755269f30e4b605e84"
+},
+"raw/papers/Fischer_The Dynamic Impact of Monetary Policy on Regional Housing Prices in the US_2019.pdf": {
+"size": 4369169,
+"mtime": 1789233524,
+"sha256": "d9d4a37ee5dd2ff46e3d350d460f1a50b392b862178e2c66454d885717d0bd1b"
+},
+"raw/papers/Forecasting_Investment_and_House_Prices_in_NZ_using_Dynamic_Factor_Models.pdf": {
+"size": 1993482,
+"mtime": 1789233538,
+"sha256": "1291498f32e878b3854585ace3b18cc466257ab73ca9df3da7c235c25d3eec08"
+},
+"raw/papers/Gao_The Effects of National Fundamental Factors on Regional House Prices FAVAR analysis_2022.pdf": {
+"size": 4402312,
+"mtime": 1789233516,
+"sha256": "7f0896fcb3ab7f058122af55b2093c2650e99bdb370fe3e39efd2f01eac92019"
+},
+"raw/papers/Garmider. Ispolzovanie-modeli-favar-dlya-prognozirovaniya-rossiyskih-makroekonomicheskih-ryadov.pdf": {
+"size": 248898,
+"mtime": 1789233556,
+"sha256": "e16eb7474aa3267f5cf0b3039521ebecb44d631c314e141f3e3c9a50aad8af13"
+},
+"raw/papers/Gattini_Forecasting and assessing euro area house prices through the lens of key fundamentals_2010.pdf": {
+"size": 1278366,
+"mtime": 1789233567,
+"sha256": "dafb360a6c70b125aae39e6793d95ddc30b406b544a96da0f0f8948fd8afc36a"
+},
+"raw/papers/Glindro_Determinants of house prices in nine Asia-Pacific economies_2008.pdf": {
+"size": 426155,
+"mtime": 1789233562,
+"sha256": "a7f9ae7dfa82293b0437ad5078c4ce17b728a1766a1276e4b0b951e1c0cc53db"
+},
+"raw/papers/Gupta_Forecasting the US Real House Price Index_2009.pdf": {
+"size": 266470,
+"mtime": 1789233545,
+"sha256": "04ef4bac65010188649a962bad3314fd24f5e799974c8ec072a6bc767ff9b9a3"
+},
+"raw/papers/Gupta_The Effect of Monetary Policy on House Price Inflation FAVAR approach_2009.pdf": {
+"size": 195889,
+"mtime": 1789233268,
+"sha256": "4fbdcff96c71d56071fa62b66804284e79ef52fa36cbe8494e34f6162d332c80"
+},
+"raw/papers/Gupta_Using Large Data Sets to Forecast Housing Prices.pdf": {
+"size": 441666,
+"mtime": 1789233556,
+"sha256": "cebbfba4b796eba334efd7b5b001ffbd3aad63ac6498980c9a8120bcad56f489"
+},
+"raw/papers/Hao. Housing_Price_Prediction_Model_and_Impact_Factors_Analysis.pdf": {
+"size": 468594,
+"mtime": 1789233558,
+"sha256": "2dcc85b669e4fefd1283abde465ca536c9fd9bfbff9966bbcd6dd0c4029b3f41"
+},
+"raw/papers/Harvard_JCHS_Americas_Rental_Housing_2024.pdf": {
+"size": 5220797,
+"mtime": 1789233567,
+"sha256": "6bbb139f9864e69fc6224273d119789753309b1d76dfcdd74751aa8583230187"
+},
+"raw/papers/Hirata_Global House Price Fluctuations Synchronization and Determinants_2013.pdf": {
+"size": 1354017,
+"mtime": 1789233536,
+"sha256": "bf306cfaf951e4a8a954842e2406124f17f3cb6ff72e51a7a3ae78d18148df98"
+},
+"raw/papers/Iacoviello. HOUSE PRICES AND THE MACROECONOMY IN EUROPE.pdf": {
+"size": 1490464,
+"mtime": 1789233271,
+"sha256": "3a17d47932a2a40988fbcb3563710d779d5f911ea30317cf7654bccbf5ceff7e"
+},
+"raw/papers/Jarocinski. House Prices and the stance of Monetary Policy.pdf": {
+"size": 955540,
+"mtime": 1789233522,
+"sha256": "c5ae3665db2c8f95a501ee7ef0d162d225edb5de5360b71241d0bff9cf0c4cfd"
+},
+"raw/papers/Kaas_Understanding Spatial House Price Dynamics in a Housing Boom_2024.pdf": {
+"size": 4918709,
+"mtime": 1789233541,
+"sha256": "d8a0fe7344bbd30d516cbe251cb7aefcec3151340fa2214a2e83334f06c42965"
+},
+"raw/papers/Kolennikova-2024-RU-housing-inequality.pdf": {
+"size": 635328,
+"mtime": 1789233549,
+"sha256": "f7e0e8dacb7d50b03acfe2230dfd0d73ac2eb2338b12bdf26057dec86dc48a43"
+},
+"raw/papers/Koop_etal_JRSSA2019_UK_regional_nowcasting_using_a_mixed_frequency_Vector_Autoregressive.pdf": {
+"size": 493875,
+"mtime": 1789233537,
+"sha256": "c1b28b299eef31f4b8edd26e45705ee8c84e63c4a00715ef170374baca25989f"
+},
+"raw/papers/Lekhuleni_The dynamic effect of macroeconomic factors on housing prices Evidence from South Africa_2023.pdf": {
+"size": 966213,
+"mtime": 1789233571,
+"sha256": "24a3649778519c1abf42aafd4cfe39bfdb1f441416e55789bc225a503ebf0a30"
+},
+"raw/papers/Lin. Regularized Estimation of High-dimensional Factor-Augmented Vector Autoregressive (FAVAR) Models.pdf": {
+"size": 747963,
+"mtime": 1789233532,
+"sha256": "ad6c81cd64cd546dd9985781df3059dd633558044b949dce09a1e8b8ff39874d"
+},
+"raw/papers/Louie-Mondragon-2026-housing-affordability-demand-FRBSF.pdf": {
+"size": 207357,
+"mtime": 1789233523,
+"sha256": "b10a1d04a6e7d461b82b0e5424554acf57fb9e91d5f80fbfafed6de2e68ba4fe"
+},
+"raw/papers/Louie-Mondragon-Wieland-2025-supply-constraints-NBER-w33576.pdf": {
+"size": 854596,
+"mtime": 1789233569,
+"sha256": "3f863806dbd95c59bc9ee46703ef5688f00350a44adfd3810e3e06176b306dce"
+},
+"raw/papers/Margaritella_New tests of equal forecast accuracy for factor-augmented_2025.pdf": {
+"size": 1688910,
+"mtime": 1789233541,
+"sha256": "85281347a9d2c8ee68096df369e983e8ba04bb7463efb00ba8d3d7bb2f37e599"
+},
+"raw/papers/Martinez_Forecasting housing investment_2023.pdf": {
+"size": 3568904,
+"mtime": 1789233518,
+"sha256": "d896d759dc8ad60442c0e13e0e0fb91736eeaae404307d2d680a91110ab0306a"
+},
+"raw/papers/Mattera_Forecasting house price growth rates with factor models and spatio-temporal clustering_2025.pdf": {
+"size": 1903492,
+"mtime": 1789233544,
+"sha256": "8294a9260a7f526b2bb8716094ab2ad9509ce462e177cf9355bb1da7d6223a20"
+},
+"raw/papers/Mumtaz_A time-varying FAVAR model for the UK transmission mechanism_2011.pdf": {
+"size": 1916281,
+"mtime": 1789233532,
+"sha256": "9f86d26cd11559d015d9447602a47674241e566efd006324d20a6a76ac56a836"
+},
+"raw/papers/NBER-CRIW-2026-Ch10-Binder-Lands-of-Opportunity-w35219.pdf": {
+"size": 15798252,
+"mtime": 1789233552,
+"sha256": "d7672521d856f0e56f7bfb23406ca6e4db74886237a09a4b6ba7f66101651b3a"
+},
+"raw/papers/NBER-CRIW-2026-Ch10-Binder-Lands-of-Opportunity.pdf": {
+"size": 17137961,
+"mtime": 1789233519,
+"sha256": "1d82fba03e319e1e58d947ac58e1a3bc5deab3faba6d936b8f005d4be4601412"
+},
+"raw/papers/NBER-CRIW-2026-Ch10-Comment.pdf": {
+"size": 504406,
+"mtime": 1789233538,
+"sha256": "31155118dc93a45bacec7df78df4bfdedba749b3d29e095a0dfe83b0c40ce885"
+},
+"raw/papers/NBER-CRIW-2026-Ch11-Comment.pdf": {
+"size": 512478,
+"mtime": 1789233526,
+"sha256": "5f6fd91fd158498f2a0c42a780b434a2af7d459aaafbc61e928015aa5a9f3bc5"
+},
+"raw/papers/NBER-CRIW-2026-Ch11-Kestelman-Rental-Ownership.pdf": {
+"size": 561994,
+"mtime": 1789233568,
+"sha256": "8abae4e79a48ce873dfb0c0a8d8be4a63e4cf7f09e04ab80faafba1492f8cf76"
+},
+"raw/papers/NBER-CRIW-2026-Ch2-Comment.pdf": {
+"size": 1217035,
+"mtime": 1789233519,
+"sha256": "50d6528b4341dfd81f2b861906775637443b977b401fe96313f9bb5cb2299cab"
+},
+"raw/papers/NBER-CRIW-2026-Ch2-Czaplicki-Blended-Data-Housing-Starts-w35113.pdf": {
+"size": 1553718,
+"mtime": 1789233272,
+"sha256": "0c8a961a3cb4a74388e661335f8132f7c3071862b56473c7ae0b2be7b2ced1e6"
+},
+"raw/papers/NBER-CRIW-2026-Ch2-Czaplicki-Blended-Data-Housing-Starts.pdf": {
+"size": 984353,
+"mtime": 1789233269,
+"sha256": "2ed7aa0420c23659dcfeca9843ff8df542e97533762f2353b892ab6ff1d4bdfe"
+},
+"raw/papers/NBER-CRIW-2026-Ch3-Bell-Geographic-PageRank.pdf": {
+"size": 1370724,
+"mtime": 1789233531,
+"sha256": "d3de2b7b37693b87621244fdaa28f779337f1477694786f59683b8033ab5ca89"
+},
+"raw/papers/NBER-CRIW-2026-Ch3-Comment.pdf": {
+"size": 237048,
+"mtime": 1789233567,
+"sha256": "23cff63c2ca67bdc3dc3b6ade56c690a340bc8c826f593523209b9fe8ee2f212"
+},
+"raw/papers/NBER-CRIW-2026-Ch4-Chen-Positive-Spillovers.pdf": {
+"size": 22146437,
+"mtime": 1789233557,
+"sha256": "4ec77638089ca21ce07e5718303525440ecd03f3da29b668e047d493e17bd647"
+},
+"raw/papers/NBER-CRIW-2026-Ch5-Comment.pdf": {
+"size": 76092,
+"mtime": 1789233541,
+"sha256": "712e362e2df6e74e7f3253eed787db08d1108d7a3f51490e2ecbb7eec73f3b9b"
+},
+"raw/papers/NBER-CRIW-2026-Ch5-Lyons-Rental-Prices-1914-2006.pdf": {
+"size": 1591394,
+"mtime": 1789233268,
+"sha256": "56b054137f23862c4fd757d71a5b01bcf3fe4672dd26b1dc81627af4cca85a72"
+},
+"raw/papers/NBER-CRIW-2026-Ch6-Comment.pdf": {
+"size": 2035008,
+"mtime": 1789233516,
+"sha256": "03e1098427269980366641c71625c7a41ffcef9760bd287165ae8bfa4dd087b8"
+},
+"raw/papers/NBER-CRIW-2026-Ch6-Katz-Willen-Land-Supply.pdf": {
+"size": 637458,
+"mtime": 1789233563,
+"sha256": "7ebb2253c0a70721b25a6388d586a18679baba73b3dade8d9214fd5fb57311dd"
+},
+"raw/papers/NBER-CRIW-2026-Ch7-Comment.pdf": {
+"size": 766251,
+"mtime": 1789233527,
+"sha256": "2fbb9ed78b68e213666e6e76c5e04016562e1cc019101a52bfb7c3d91dca0621"
+},
+"raw/papers/NBER-CRIW-2026-Ch7-Loewenstein-CPI-Shelter-Nonresponse-w35250.pdf": {
+"size": 836622,
+"mtime": 1789233558,
+"sha256": "8552597fc0c54893f68f6040ff94624b43a58a1e8cef42686e37f41aa6f811a1"
+},
+"raw/papers/NBER-CRIW-2026-Ch7-Loewenstein-CPI-Shelter-Nonresponse.pdf": {
+"size": 1140373,
+"mtime": 1789233523,
+"sha256": "068870d2c617289398d33850818867c842f66bc23e0b0cc6be1fb979a472e88e"
+},
+"raw/papers/NBER-CRIW-2026-Ch8-Comment.pdf": {
+"size": 84888,
+"mtime": 1789233529,
+"sha256": "9d8006ff56527d91ebfb4dcf99078f78e67e0244657d5efd8d480f210230b1bd"
+},
+"raw/papers/NBER-CRIW-2026-Ch8-Qin-Flood-Risk-Insurance-w35204.pdf": {
+"size": 1286797,
+"mtime": 1789233521,
+"sha256": "cff5e9769a16e64ae1dfaa86d05b26ddd276571d422c64913adb7e56ec688332"
+},
+"raw/papers/NBER-CRIW-2026-Ch8-Qin-Flood-Risk-Insurance.pdf": {
+"size": 1350293,
+"mtime": 1789233547,
+"sha256": "5113a00071f0a735e6719d19b865f2ff292b2a51ee7d65b650e07ec335ea0cbd"
+},
+"raw/papers/NBER-CRIW-2026-Ch9-Comment.pdf": {
+"size": 224676,
+"mtime": 1789233515,
+"sha256": "c737ee532528d5353494993eb88aa6925346ccdb820c60cb40dad4a8a5c30122"
+},
+"raw/papers/NBER-CRIW-2026-Ch9-Steurer-MICE-Missing-Data-w35139.pdf": {
+"size": 1792667,
+"mtime": 1789233527,
+"sha256": "2f485c3db629b9049a64758d1e0f0ca1745f133b8f61d77409fc6db6ac146d6c"
+},
+"raw/papers/NBER-CRIW-2026-Ch9-Steurer-MICE-Missing-Data.pdf": {
+"size": 2094441,
+"mtime": 1789233515,
+"sha256": "e7297a1aed110b03cb4f673ac9bcc389ef7c5a78594334ba476ba7e68d7f5ece"
+},
+"raw/papers/Naruševičius. Lithuanian house price index modelling and forecasting.pdf": {
+"size": 500740,
+"mtime": 1789233550,
+"sha256": "703656646c6d49e97594cfc5103d725cfd8131981888c52e9c22ec75dfe9bd34"
+},
+"raw/papers/Negro_Monetary Policy and the House Price Boom Across U.S. States_2006.pdf": {
+"size": 328596,
+"mtime": 1789233520,
+"sha256": "7bf548a5e52c422f5c0ac722b05b0ce74f2bc0563bf58b1a4d568012c5490fbe"
+},
+"raw/papers/Ng. A Hierarchical Factor Analysis of US Housing Market Dynamics.pdf": {
+"size": 304262,
+"mtime": 1789233551,
+"sha256": "0b9bed563dc0dff29ca1c69e90a02c010997c345464ec5a7a07d92ecd899ddfc"
+},
+"raw/papers/Nguyen. House Price Forecast Model Case of Vietnam Housing Market.pdf": {
+"size": 564908,
+"mtime": 1789233521,
+"sha256": "59e0aac792093095ca049b4ffc57421008b29c1016dfe38aac315ce874d4efbc"
+},
+"raw/papers/Nocera. House prices and monetary policy in euro area.pdf": {
+"size": 1841658,
+"mtime": 1789233559,
+"sha256": "8560cdd4f3f17db14dccb4cf4d5cdc2ec361ba50c242f17728b020723fd2a2a8"
+},
+"raw/papers/Nowcasting_the_Unemployment_Rate_in_the.pdf": {
+"size": 571561,
+"mtime": 1789233550,
+"sha256": "982ca1eecc6699ed1ac3bdd2861347384a1e8b0e15c7e694823303f3a4f0f6cc"
+},
+"raw/papers/Nsafoah_Effect of conventional and unconventional monetary policy shocks on housingprices in Canada_2024.pdf": {
+"size": 942407,
+"mtime": 1789233548,
+"sha256": "31d66a3ccf6f1cc240673c555228ce7dfa15602862e6336c91687327ea44e795"
+},
+"raw/papers/PEK_2015_02_01_BVAR.pdf": {
+"size": 15551711,
+"mtime": 1789233567,
+"sha256": "dc86de556a378d7e666a03b6e0d58983ea34415f7bce230fcf5cd0d7ef28437c"
+},
+"raw/papers/Paccagnini_Forecasting with FAVAR macroeconomic versus financial factors_2017.pdf": {
+"size": 975353,
+"mtime": 1789233525,
+"sha256": "6f2cccc9b2602847a66ff1148e5750876524c72207ee89226ff4add124cecc15"
+},
+"raw/papers/Panova-Kuimov-2025-RU-MBS-pricing.pdf": {
+"size": 31185882,
+"mtime": 1789233551,
+"sha256": "fdfbcaf8cdac92715db5b6e23e5e1f6ca32bcdc907e3a2b62d743de948d1fda5"
+},
+"raw/papers/Paper_CGLMS_Mixed_Frequency_BVAR_Nowcasting.pdf": {
+"size": 1004641,
+"mtime": 1789233524,
+"sha256": "8f73ebd31774417e6cc00efb621d5e9b9d31ffd6b6ec722cf16ac47fbc5ec23a"
+},
+"raw/papers/Paries_Monetary Policy and housing Prices in an estimated DSGE model for the US and the euro area_2008.pdf": {
+"size": 1764942,
+"mtime": 1789233270,
+"sha256": "85252da13dba72db43e3de2e459e618b524783f0f92e014200b3c09319de78bc"
+},
+"raw/papers/Plakandaras_Forecasting the U.S. Real House Price Index.pdf": {
+"size": 921041,
+"mtime": 1789233555,
+"sha256": "4ef267707b09dc3438c144f575fe1e1640f77c6cf91222f7671271d6c41e5098"
+},
+"raw/papers/Popova-2026-COVID-preferential-mortgage-Russia.pdf": {
+"size": 4267867,
+"mtime": 1789233562,
+"sha256": "bcc804b7991b937789e2f68bad4885a39c417bed1f4c6f9c9150d6256fd14535"
+},
+"raw/papers/Qiongwei Ye_House price prediction using machine learning for Ames, Iowa_2024.pdf": {
+"size": 1875857,
+"mtime": 1789233553,
+"sha256": "fe9f573c0d347a8f1322bf1cfa55ce8160f25ba438da16e582a16de48b34d950"
+},
+"raw/papers/RSSA-178-837.pdf": {
+"size": 1030127,
+"mtime": 1789233519,
+"sha256": "3ce51bb2b6b95a47961dcfb9cbcdbc20e7516f745519fae571b87990a70c82f9"
+},
+"raw/papers/Rapach_Differences in housing price forecastability across US states_2009.pdf": {
+"size": 1520570,
+"mtime": 1789233519,
+"sha256": "62ae76f94bacda488015388767709d728c703748d1a50efee5ad7bc3e2284a26"
+},
+"raw/papers/Rapach_Forecasting Real Housing Price Growth in the 8th District States_2007.pdf": {
+"size": 183295,
+"mtime": 1789233517,
+"sha256": "5eb6958c568c471a5505f9359a2d8d2c5d74d4a64e00cc059fc79367ddd5d697"
+},
+"raw/papers/Shu-hen Chiang_Navigating shifting tides Time-varying monetary policy spillovers in core-peripheral housing markets in the Euro area_2025.pdf": {
+"size": 2526188,
+"mtime": 1789233549,
+"sha256": "0e9fc00cc230e676dd6d5bef3b44c9fa841c3b5ff0a7601ec8f4b184c2415ffa"
+},
+"raw/papers/Sipea. Housing Affordability in the Czech Republic.pdf": {
+"size": 2018989,
+"mtime": 1789233270,
+"sha256": "a21eacfe8f3bf2c1750ba784296214c71547ae98fdedf3b150856e73bb6e051f"
+},
+"raw/papers/Soares_Assessing monetary policy in the euro area a factor-augmented var approach_2011.pdf": {
+"size": 1115569,
+"mtime": 1789233557,
+"sha256": "4c5427e52745f79f7aebadaf4c893c091092e54584e6bf19b821191f1037d8f5"
+},
+"raw/papers/Strategy_Partners_Исследование_рынка_жилищного_строительства_в_Р.pdf": {
+"size": 2871905,
+"mtime": 1789233548,
+"sha256": "57f5b60830675a83a25d80571dbde51df3d0c9f357571b178ec20ae923c6d039"
+},
+"raw/papers/Tabaghi_The Effect of Monetary Policy on Business Cycles in Iran Economy_2013.pdf": {
+"size": 270607,
+"mtime": 1789233566,
+"sha256": "e93a9ff345f48cd81f3cb1105de3bf3073a951f4bfdfb357013056fe12110aca"
+},
+"raw/papers/Tallman_Zaman_IJF_2020_Combining_survey_long_run_forecasts_and_nowcasts_with_BVAR.pdf": {
+"size": 1117477,
+"mtime": 1789233536,
+"sha256": "4cabaa5d38a495d6ccdbd6566af1a9dba3bffe3f0e66427c2f6ccf33429e61f3"
+},
+"raw/papers/Using Entropic Tilting to Combine BVAR Forecasts With External Nowcasts.pdf": {
+"size": 1267534,
+"mtime": 1789233552,
+"sha256": "00989f9e40deacc67e0668a114dd779ded164a2a1f1e4ac5d0182fd137f51ece"
+},
+"raw/papers/VEK_2025_01_03.pdf": {
+"size": 1012536,
+"mtime": 1789233566,
+"sha256": "567fc9860a6c995eb1443f83ff1746a549f5067f367edb1fb9ccc78ed126317c"
+},
+"raw/papers/Velasco_Asymmetries in the transmission of monetary policy shocks over the business cycle a Bayesian quantile factor augmented VAR_2026.pdf": {
+"size": 2406728,
+"mtime": 1789233516,
+"sha256": "c8d54141c3cb662ffc7099ba305cd2dac9ccf3debe7568e6e9fbbefc0ed5f5d2"
+},
+"raw/papers/Vigfusson_Discussion of Impact of International monetary policy in a FAVAR approach_2017.pdf": {
+"size": 836167,
+"mtime": 1789233544,
+"sha256": "de49487ec2b8f4ef2dcd7dda38466ed957854dec42bef774d2ea938b0f0f1a0d"
+},
+"raw/papers/Vitner. Forecasting_the_U_S_House_Prices_Bottom.pdf": {
+"size": 286475,
+"mtime": 1789233553,
+"sha256": "8543ed1dcf83379a4bca40c9407000fc4e953554a138fa66e546a1feb5c3b33c"
+},
+"raw/papers/Walde_Forecasting Residential Real Estate Prices in 8 OECD Housing Markets_2019.pdf": {
+"size": 5628431,
+"mtime": 1789233547,
+"sha256": "7c1f130e02fa0f36c366dd807d31dd8f6db0cb70055cef86d6a46d14b732f686"
+},
+"raw/papers/Yarui_Forecasting Housing Prices Dynamic Factor Model VS LBVAR Model_2011.pdf": {
+"size": 2467287,
+"mtime": 1789233526,
+"sha256": "3c9151b31090998fc32e7a00f3b330d426620749752292803f540fd9d8e92c58"
+},
+"raw/papers/Yildirim. HOUSE PRICES AND THE MACROECONOMIC ENVIRONMENT IN TURKEY.pdf": {
+"size": 1541119,
+"mtime": 1789233532,
+"sha256": "22a5665023fc2348cccdf155106d4ca5b9661d7d0132a8972eb33d0f97b49ae2"
+},
+"raw/papers/Zubarev_Otsenka vliyaniya globalqnykh shokov na rossiyskuyu ekonomiku i naukasting VVP v ramkakh faktornoy modeli_2022.pdf": {
+"size": 2710144,
+"mtime": 1789233539,
+"sha256": "9c5722698b9bb9a61ffad142d57d0a399ee4d03db9c2247ff5352e8366ee6710"
+},
+"raw/papers/banai_vago_2018_house_prices_bank_risk.pdf": {
+"size": 6621697,
+"mtime": 1789233548,
+"sha256": "4255144ba3e2f8bd3d225617b8f49c08a12aadf664653f2833dfd386d28e4e71"
+},
+"raw/papers/bisbull89 (1).pdf": {
+"size": 618760,
+"mtime": 1789233570,
+"sha256": "bf48467c515e28dbbe1d509347fb0a91b1c97059950c03a7bad318ef6bab3410"
+},
+"raw/papers/cbr_2024_interest_expenses_companies.pdf": {
+"size": 1066185,
+"mtime": 1789233518,
+"sha256": "8bbd498f48b90ce0dde8cd4d239bdd5728ff0c43c5d618ec296eac3b5b9ae1de"
+},
+"raw/papers/cbr_2026_economic_growth_factors.pdf": {
+"size": 1327176,
+"mtime": 1789233539,
+"sha256": "22da23c1abef17cb5da6c141c2957f7c24e720615611392086f1c5e3d53b4091"
+},
+"raw/papers/cbr_2026_potential_output_estimates.pdf": {
+"size": 711535,
+"mtime": 1789233554,
+"sha256": "7dde4584c595f8fdb0d052633574a017b7d61e8af59c7243b014789f8708a1bb"
+},
+"raw/papers/chodorow-reich-mehrotra-2026-housing-policy-inflation.pdf": {
+"size": 895003,
+"mtime": 1789233557,
+"sha256": "55706519a53a296e76140966eaf6c42a51ace3510ff051887d6adee704fca1cf"
+},
+"raw/papers/combining-survey-long-run-forecasts-and-nowcasts.pdf": {
+"size": 1412657,
+"mtime": 1789233522,
+"sha256": "a4ad8d9f7d11076be9f7dc7275e02a2a03f57364527877a19a56cb97ff65290e"
+},
+"raw/papers/doc_440465e0959a_What_drives_house_prices_in_Turkey_Evidence_from_B.pdf": {
+"size": 1164160,
+"mtime": 1789233520,
+"sha256": "e4d9740047126caea241a2a626408eda97f71d1cfcca8675b140131dfe661e42"
+},
+"raw/papers/doc_99d7319054cf_Regionally_heterogeneous_housing_cycles_and_housing_market_stabilization.pdf": {
+"size": 873576,
+"mtime": 1789233543,
+"sha256": "9c100cee6b6752e42cbeef2a7bf8c34c3558b80271e20ddf23c1542fc2fde681"
+},
+"raw/papers/dt2502e.pdf": {
+"size": 2003474,
+"mtime": 1789233562,
+"sha256": "33439ac2acb5858f0eb86e5223a32cb5ca29e8fefe543f000af0ed119612366a"
+},
+"raw/papers/ecb.wp2453~465cb8b18a.en.pdf": {
+"size": 773387,
+"mtime": 1789233535,
+"sha256": "6a60100694adb212f336bb11979f9ea39602f03070182a4d54c1cce05c02d49f"
+},
+"raw/papers/ecb.wp3018~45cecb56bb.en (2).pdf": {
+"size": 2157748,
+"mtime": 1789233557,
+"sha256": "5f335b11f6dffa52a3f91e47e2307233cf3d3f61d743599e77dc93d66a0f4db8"
+},
+"raw/papers/Economics_R_packages_econometrics_2026.pdf": {
+"size": 480095,
+"mtime": 1789233272,
+"sha256": "fd597cc8779ac09ec7fd14de034dcc6889246c08e457c407d19763b2710a001f"
+},
+"raw/papers/elibrary_79719858_50970437.pdf": {
+"size": 387729,
+"mtime": 1789233569,
+"sha256": "75c5a0cb335d6949a3b7d7f4d874e042f94f22c5eea6340ba95487d8ed81e12d"
+},
+"raw/papers/ewp-362.pdf": {
+"size": 1048240,
+"mtime": 1789233551,
+"sha256": "6830f16e7ded3cf59fc734191711549687cebfb413ec493931144de5f8037c0a"
+},
+"raw/papers/expert_ra_2026_housing_developers.pdf": {
+"size": 405670,
+"mtime": 1789233561,
+"sha256": "90cd9181a3b07865b57281662a24aed8f03cdf9e66127fb6e969fbc4a13ec421"
+},
+"raw/papers/fernandez_villaverde_rubio_ramirez_schorfheide_2016_solution_estimation_dsge.pdf": {
+"size": 3252539,
+"mtime": 1789233553,
+"sha256": "1d705b0104c2a78bc0e89e955a801654d1d8322cb0c97ddc61157637b1f8bc8d"
+},
+"raw/papers/geterogennost_kanala_refinansirovaniya_ipoteki_v_rossiyskih_regionah.pdf": {
+"size": 3200320,
+"mtime": 1789233520,
+"sha256": "3f6322e72543a2037b85c4084e81ebfe5c8de2009bda4480b3a5922f5ba6c0ff"
+},
+"raw/papers/giannone_2024_drivers.pdf": {
+"size": 576769,
+"mtime": 1789233269,
+"sha256": "3851e3a20a899238391f9ce638bf776c03b9ab9328c66cd46a884a308da6f423"
+},
+"raw/papers/glaeser-gyourko-2018-housing-supply-jep.pdf": {
+"size": 1099675,
+"mtime": 1789233552,
+"sha256": "838d6e0506d5b0914e60ebaa2508497d0f9ccdeeb15ab999536b575d9e5ba69a"
+},
+"raw/papers/glazova_nevalennyi_sinyakov_2025_cbr_wp154.pdf": {
+"size": 5550410,
+"mtime": 1789233562,
+"sha256": "109303cdc8cf2f7f879b0cd61229ac260eb30eadadcb512cc20ae628d5c5dbf9"
+},
+"raw/papers/hajdini_2025_pandemic.pdf": {
+"size": 1974717,
+"mtime": 1789233555,
+"sha256": "579bbebec749be38c664ae813c1ddd868745c9debda29581c3ea3ebfc16aad17"
+},
+"raw/papers/hee_2018_aging_housing_prices.pdf": {
+"size": 6669012,
+"mtime": 1789233529,
+"sha256": "29ddccf0ec5903da48c3e3556c3d873c37b989d84c105b67848f937ba62278e7"
+},
+"raw/papers/housing_financial_system_sufi_wachter_2017.pdf": {
+"size": 22927,
+"mtime": 1789233544,
+"sha256": "1e8330099be71e8add3ea1b4fb06edf98b45f0c817f7a2c6dfe5786f5db8538b"
+},
+"raw/papers/housing_markets_ageing_karim_2026.pdf": {
+"size": 281296,
+"mtime": 1789233530,
+"sha256": "84dd031ec6bfebb85a1ac37ec579fb21df448bc75a58a28734a7012fd68fcfa6"
+},
+"raw/papers/housing_provision_eu_aidukaite_2026.pdf": {
+"size": 3937991,
+"mtime": 1789233545,
+"sha256": "aaa4dd6a900e045e9cd73b081b5469b5b674aca2ca4f600d9822a42098367c1c"
+},
+"raw/papers/iacoviello-2005-house-prices.pdf": {
+"size": 1657695,
+"mtime": 1789233565,
+"sha256": "f1618028f76a21832c410780728b1aad79ba9202c0ceaeb5c604f2380d6bbec6"
+},
+"raw/papers/kiley_2022_anchored.pdf": {
+"size": 1676528,
+"mtime": 1789233567,
+"sha256": "d1a4b98cca1d5e69d3a86cff3b98d93d80cf858fa22dfb4f3ca02d0d05690565"
+},
+"raw/papers/kocenda-0523930.pdf": {
+"size": 1611840,
+"mtime": 1789233566,
+"sha256": "d976777cda561c5ecea968e4245247a458541f02fa16154d3647f0ad15894346"
+},
+"raw/papers/lyziak_pedersen_stanislawska_2022.pdf": {
+"size": 970812,
+"mtime": 1789233531,
+"sha256": "aeddfb786b1cae608de7e563cb9603e7a7437b60e441ae9958d044bfcd0158be"
+},
+"raw/papers/michelis_2024_persistent.pdf": {
+"size": 897399,
+"mtime": 1789233550,
+"sha256": "3e2614f996ae6eaad1719ccc4388007095a89fa5632f20288fcea5a772dc5e57"
+},
+"raw/papers/micro_macro_nowcasting_hong_huang_zhu_2026.pdf": {
+"size": 2071792,
+"mtime": 1789233535,
+"sha256": "2def53a0130ad695d886d37b520cba8ebf4245f9f4d43effe5151b802435a8aa"
+},
+"raw/papers/mishkin-2007-housing-monetary-transmission.pdf": {
+"size": 839096,
+"mtime": 1789233540,
+"sha256": "ebec55dd35fba019faa30eda2c576cad73c0847cbbf233fbbb49bffd8cfcd824"
+},
+"raw/papers/mnb-wp-2026-3.pdf": {
+"size": 8975470,
+"mtime": 1789233571,
+"sha256": "d39a5aed918d7fa8ed4212a595f5ad2f96bf7e9f3768cad72b8b0e569b015cee"
+},
+"raw/papers/monetary-transmission-through-the-housing-sector (1).pdf": {
+"size": 3018881,
+"mtime": 1789233558,
+"sha256": "e512daf2401496e4c1ae3c65fbb4191a890b56aadef4cdef9fb6edc293720061"
+},
+"raw/papers/monetary_policy_housing_cycles_wang_2024.pdf": {
+"size": 4554413,
+"mtime": 1789233560,
+"sha256": "0b550997cc0b57300a45fb55fc9ee24031c9ea5712d08bc0ba290cec87936008"
+},
+"raw/papers/naukasting-i-prognozirovanie-osnovnyh-rossiyskih-makroekonomicheskih-pokazateley-s-pomoschyu-mfbvar-modeli.pdf": {
+"size": 3598308,
+"mtime": 1789233537,
+"sha256": "ae22421d448e1abaa3060c17307a0b4e7f59eb67521d8e020281271434aedaf8"
+},
+"raw/papers/nber_w35588_galiani_2026_ai_econometric_coding.pdf": {
+"size": 368366,
+"mtime": 1789233561,
+"sha256": "a2e45eda35bc93a6c8c9fe4d67e35b46c88a10ce506112c34845dadd33c44a07"
+},
+"raw/papers/nber_w35604_yang_zha_2026_svar_bigdata.pdf": {
+"size": 5030980,
+"mtime": 1789233564,
+"sha256": "4b66f826dc26644aedc758be1b405af406f37cb8e2b6220185b08b777e9bea86"
+},
+"raw/papers/near_unit_roots_phillips_2023.pdf": {
+"size": 1337805,
+"mtime": 1789233546,
+"sha256": "26f515f36709dd170596ad9775aefe095834d26030c4538105d82da2bb8e48b0"
+},
+"raw/papers/nra_obzor_zhilishhnoe_stroitelstvo_ijul_2024-2.pdf": {
+"size": 1097717,
+"mtime": 1789233535,
+"sha256": "026e16f12e69511925263b4eda5e0b961716fc20650f21936d7d26a44bf5503b"
+},
+"raw/papers/sherpa_e6hkwd5.pdf": {
+"size": 212080,
+"mtime": 1789233535,
+"sha256": "c0f008e599d8ac34c0f31cd0d9bc148af84a2e670aec142b5bef6cd98eb03168"
+},
+"raw/papers/sinelnikov-murylev_perevyshin_trunin_2020.pdf": {
+"size": 577270,
+"mtime": 1789233537,
+"sha256": "0723a7e1f0010f8849c218349fd1221fc8ba469d695a97de5aac6601f310bd4e"
+},
+"raw/papers/slides_discussion_cglms2020.pdf": {
+"size": 153607,
+"mtime": 1789233555,
+"sha256": "75d089034a9816775b52c9d3e41fa28e76646a1c967aca3e0b6baecb45b3a27a"
+},
+"raw/papers/spatial_indirect_inference_rossi_2023.pdf": {
+"size": 591902,
+"mtime": 1789233525,
+"sha256": "83f0792ea22d37621be3a339f258fe19380b8bced00585428c440134e803a8a1"
+},
+"raw/papers/ssrn-2580196 (1).pdf": {
+"size": 2035828,
+"mtime": 1789233535,
+"sha256": "2d40e70af6b2eec252c517ebf9ca178d51d577c4b01a623c4ed0bd05d2b21e1d"
+},
+"raw/papers/ssrn-4679195.pdf": {
+"size": 1271664,
+"mtime": 1789233530,
+"sha256": "9f55236107c0d96e91ee088bd83d10c9c95fcb4bca9e11ab7ef70dd95c397d5f"
+},
+"raw/papers/taylor-2007-housing-monetary-policy.pdf": {
+"size": 272950,
+"mtime": 1789233557,
+"sha256": "4ab26cb105d463f5de686fc4c5c905aa292db8a70b0b9e5a6cc6dd4f67cfcde4"
+},
+"raw/papers/w33436.pdf": {
+"size": 4326584,
+"mtime": 1789233529,
+"sha256": "db7c2ab6390df3b4e309887160a01e59ba321e41ff1003127d3f3cff6437393f"
+},
+"raw/papers/wp 1439 using entropic tilting to combine BVAR Forecats with external nowcasts pdf.pdf": {
+"size": 524902,
+"mtime": 1789233526,
+"sha256": "d27c4230c1c3e7851a572da7d7f0b2e37019118cf9e458f7492b2b58356dee79"
+},
+"raw/papers/wp_145.pdf": {
+"size": 2225320,
+"mtime": 1789233530,
+"sha256": "143dfe1e4142aa3170c549731ddd85c6f7273dd352e76f20f9a4c8b2c90245f8"
+},
+"raw/papers/wpiea2026108-source-pdf.pdf": {
+"size": 1655449,
+"mtime": 1789233565,
+"sha256": "cd0316228b92e3a9898d44ae4bacd654536a53cb418f87eda6372089122a6d76"
+},
+"raw/papers/АКРА - Российские девелоперы.pdf": {
+"size": 838817,
+"mtime": 1789233523,
+"sha256": "dfb2b88a123c64101401ab4c0b09ba46188be8e5c98419a6294dafc3be88c063"
+},
+"raw/papers/Стерник_С_Г_,_Стерник_Г_М_2018_Методика_прогнозирован_иод_локальном.pdf": {
+"size": 548774,
+"mtime": 1789233564,
+"sha256": "5a281f5aa7cd46d5bf7f7ee620ce138a129ba274bd80a3481a30aeff2fa56f07"
+},
+"raw/papers/УУ-2-2023-199-207.pdf": {
+"size": 679063,
+"mtime": 1789233552,
+"sha256": "f6fb91b497051fd9b01bca6ab61a8942f2d352fa4ac8e3f1d4995c666e4d9af7"
+}
+}

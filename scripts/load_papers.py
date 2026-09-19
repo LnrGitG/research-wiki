@@ -97,14 +97,45 @@ def build(args):
     except (OSError, json.JSONDecodeError):
         pass
 
+    # Переводы несут более полные метаданные (авторы 84% против 49% у статей),
+    # и связываются со статьёй через source_pdf либо имя файла. Индексируем их,
+    # чтобы подставлять недостающие поля статьи.
+    tr_by_pdf, tr_by_name = {}, {}
+    for t in sorted(glob.glob("papers/ru_papers/*.md")):
+        tm = meta.get(t) or {}
+        # ключ — ИМЯ файла без каталога: у перевода путь с префиксом
+        # 'raw/papers/', у статьи в storage — только имя
+        sp = os.path.basename(re.sub(r"\s+", "", (tm.get("pdf_source_pdf") or ""))).lower()
+        if sp:
+            tr_by_pdf.setdefault(sp[:40], tm)
+        tr_by_name.setdefault(os.path.basename(t)[:-3].lower()[:30], tm)
+
+    def translation_for(stem, st):
+        """Перевод, соответствующий статье: по source_pdf, затем по имени."""
+        fname = re.sub(r"\s+", "", (st.get("file_name") or "").lower())
+        if fname and fname[:40] in tr_by_pdf:
+            return tr_by_pdf[fname[:40]]
+        key = stem.lower()[:30]
+        return tr_by_name.get(key) or {}
+
     pages = sorted(glob.glob("papers/*.md"))
     rows = []
     for p in pages:
         stem = os.path.basename(p)[:-3]
         m = meta.get(p) or meta.get(stem) or {}
         me = meth.get(p) or meth.get(stem) or {}
-        rf = refs.get(p) or refs.get(stem) or {}
         st = stor.get(p) or stor.get(stem) or {}
+        tr = translation_for(stem, st) if "ru_papers" not in p else {}
+        if tr:
+            # дополняем статью полями перевода, не перезаписывая заполненные
+            for k in ("authors", "year", "venue", "doi", "source_url"):
+                if not m.get(k) and tr.get(k):
+                    m = dict(m)
+                    m[k] = tr[k]
+                    srcs = dict(m.get("sources") or {})
+                    srcs[k] = "перевод"
+                    m["sources"] = srcs
+        rf = refs.get(p) or refs.get(stem) or {}
         d = details.get(p) or {}
 
         title_orig = m.get("title_orig") or d.get("t") or title_from_body(p)

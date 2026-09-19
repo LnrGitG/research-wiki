@@ -36,22 +36,22 @@
 - [[zhilishchnye-cikly-i-monetarnaya-politika|Жилищные циклы и монетарная политика (Taylor, 2007)]] — counterfactual analysis: Fed Funds rate deviation 2002-2005 → housing boom-bust, semi-elasticity -8.3
 - [[monetarnaya-politika-i-rynok-zhilya-kompleksnaya-bibliografiya|Монетарная политика и рынок жилья: комплексная библиография]] — 13 исследований (2007-2025): международные теории (Iacoviello, Taylor, Mishkin, Chodorow-Reich), российские эмпирики (Sinyakov, Demidova, Zvereva, Smirnova), макропруденциальная политика (Kuttner & Shim, ЦБ РФ, Лаптева)
 - [[sintez-monetarnaya-politika-i-rynok-zhilya|Синтез: Монетарная политика и рынок жилья — комплексный анализ]] — финальная синтез всех 8 концепций, key results, connections, policy implications для ЦБ РФ
-- [[ai-mindset-literature-review-case|AI-кейс: ускоренный обзор научной литературы (AI Mindset)]] — конвейер из 4 этапов (поиск → структурный анализ → сеть цитирований → обзор), сравнение с нашим пайплайном, разрывы
-- [[ai-mindset-research-planning-case|AI-кейсы: автоматизация научных исследований и планирование исследований (AI Mindset)]] — полный цикл «публикации → отчёт», планирование методологии + разметка контента с confidence scores; вывод: недостающие у нас шаги ложатся на llm_pipeline.py
 - [[internet-activity-indices-nowcasting-housing|Индексы интернет-активности для nowcasting жилья]] — FAVAR-MIDAS: поиск (Wordstat), YouTube-внимание, новостной сентимент → квартальные цены/сделки; RII-нормировка, семантическое ядро по интентам; адаптация Google-стека под РФ
 - [[literature-gap-map|Literature Gap Map: карта пробелов литературы]] — матрица «вопрос × рынок × данные»: 9 направлений, 5 приоритизированных пробелов (firm-level эластичность, escrow-канал, mixed-frequency nowcasting, dual system ставок, асимметрия ДКП); источник гипотез H-002–H-006 и противоречий X-002–X-003
 - [[queries/vnok-nowcasting-international-review|Международный опыт nowcasting GFCF]] — 9 классов методов с точными результатами (Kuzin: MIDAS 0–4 мес > MF-VAR; MFBVAR > MIDAS по РФ-литературе; Gareev 2020 — ML уже для GFCF РФ); позиционирование новизны: эскроу-канал никем не описан
 - [[queries/vnok-nowcasting-design|Дизайн: Nowcasting инвестиций в основной капитал (ВНОК/ИКВ)]] — целевые ряды (ВНОК IFO 56 кв. SA, ИКВ 25 кв. + 96 регионов), 6 блоков HF-предикторов с скорингом, методологический стек (bridge/MIDAS/MF-VAR/DFM/ML/firm-level), план эмпирики 5 этапов, гипотезы H-007/H-008; целевые журналы JHRES/RED
-- [Разбор Петрова–Трунин 2023 (EPU-РФ)](queries/petrova-trunin-epu-rf.md) — H-009/H-010
+- [[petrova-trunin-epu-rf|Разбор Петрова–Трунин 2023 (EPU-РФ)]] — H-009/H-010
 - [[hfd-preprocessing-methodology|Методология обработки HFD в nowcasting]] — частотная синхронизация, MIDAS/MF-VAR/DFM/combination, пайплайн предобработки, ragged-edge, фирменный блок; связи с H-006–H-010
 - [[queries/research-radar-2026-09-14|Research Radar 2026-09-14]] — недельный скан: 4 работы (Graybill–Mangum lock-in/tightness, D'Amico–Soltas–Wang дюрации строительства, Berry Toronto, BIS 1375 зомби-фирмы); X-003 пополнен evidence_for, пробелы №1–3 gap-map подтверждены открытыми
 - [[queries/ml-zombie-firm-classification|ML-классификация зомби-фирм (arXiv 2306.08165)]] — XGBoost с неслучайными пропусками отчётности как признаками (Италия, 305К фирм); кандидат в робастность H-002 (контроль зомби-статуса) и фильтр слабых фирм для H-008; релевантно панели ФНС (87% УСН, пропуски информативны)
-- [[queries/database-architecture]] — целевая архитектура БД на YC (DDL, as-of, миграция, демонтаж GCS)
-- [[queries/database-target-spec]] — техзадание: структура БД, пайплайн, план трансформации
-- [[queries/regions-reference]] — канонический справочник регионов (98 записей, 435 алиасов)
-- [[queries/database-deployment-plan]] — постановка на развёртывание БД в YC (6 фаз)
 - [[queries/retrieve-for-train-google]] — разбор Retrieve-for-Train (Google/ICML 2026): RL-компиляция поиска
-- [[queries/yandex-cloud-services]] — сервисы YC для вики: pgvector, DataLens, Search API
-- [[queries/search-user-flow]] — пользовательский путь: полнотекстовый поиск + переход в документ
-- [[queries/acceptance-criteria-check]] — проверка пяти критериев приёмки единой БД
-- [[queries/harmonization-plan]] — гармонизация staging → core: план и рубежи
+
+- *Инфраструктурные записки (спецификации БД, планы миграции, разборы
+  инцидентов) ведутся в приватном репозитории и в витрину не входят.*
+- [[housing-sentiment-index|Индекс настроений жилищного рынка]] — методика построения FSI: Wordstat + GDELT, недельные и месячные ряды, региональный разрез
+- [[ikv-nowcasting-pilot|Пилот nowcasting ИКВ]] — первые результаты bridge-модели: RMSE против AR-бенчмарка, отбор HF-предикторов
+- [[karta-chteniya|Карта чтения: экономика жилья и ипотеки]] — навигация по литературе: что читать первым и зачем
+- [[microdata-macroeconomic-research-review|Микроданные в макроэкономических исследованиях]] — обзор подходов: firm-level панели, неслучайные пропуски, агрегация
+- [[search-nowcasting-construction|Поисковые данные для nowcasting строительства]] — обзор литературы по search-based nowcasting, методология композита
+- [[supply-elasticity-estimation-design|Дизайн исследования: эластичность предложения жилья]] — Saiz-style оценка по регионам РФ, идентификация, результаты lead-1
+- [[wordstat-demand-core-mvp|Wordstat-ядро спроса на жильё: MVP]] — семантическое ядро, композит, верификация против СМР

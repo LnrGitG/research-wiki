@@ -35,10 +35,78 @@ import os
 import subprocess
 import sys
 
-HOST = "127.0.0.1"      # тоннель держит pg-tunnel.service
-PORT = 15432            # НЕ 5432: локального PostgreSQL на VDS нет
+def _resolve_pg_target():
+    """Хост и порт PostgreSQL — из `~/.pgpass`, с оглядкой на площадку.
+
+    Тонкость `libpq`, которую легко не заметить: строка хоста в записи
+    `~/.pgpass` сопоставляется **буквально**. Запись `127.0.0.1:15432:...`
+    не сработает при `host=localhost`, а `localhost:5432:...` — при
+    `host=127.0.0.1`; в обоих случаях драйвер скажет «no password supplied»,
+    хотя пароль в файле есть.
+
+    На двух площадках записи разные:
+      * VPS (Франкфурт)  — `127.0.0.1:15432:research_wiki:wiki:<пароль>`
+        (база за SSH-тоннелем `pg-tunnel.service`);
+      * ВМ YC            — `localhost:5432:*:wiki:<пароль>`
+        (PostgreSQL на той же машине).
+
+    Поэтому источник истины — сам файл: берём первую запись, чей порт
+    отвечает на TCP, и возвращаем её хост и порт. Явные PGHOST/PGPORT
+    перекрывают файл.
+
+    Возврат: (host, port).
+    """
+    env_host = os.environ.get("PGHOST")
+    env_port = os.environ.get("PGPORT")
+    if env_host and env_port:
+        return env_host, int(env_port)
+
+    entries = []
+    for path in (os.environ.get("PGPASSFILE"), os.path.expanduser("~/.pgpass")):
+        if not path or not os.path.exists(path):
+            continue
+        try:
+            with open(path, encoding="utf-8") as fh:
+                for line in fh:
+                    line = line.strip()
+                    if not line or line.startswith("#"):
+                        continue
+                    parts = line.split(":")
+                    if len(parts) >= 5 and parts[1].isdigit():
+                        entries.append((parts[0], int(parts[1])))
+        except OSError:
+            pass
+
+    import socket
+    for host, port in entries:
+        probe = host if host not in ("*", "") else "127.0.0.1"
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(1.5)
+        try:
+            if s.connect_ex((probe, port)) == 0:
+                return (env_host or host), (int(env_port) if env_port else port)
+        except OSError:
+            pass
+        finally:
+            s.close()
+
+    # Запасной путь: ничего не ответило — отдаём исторический дефолт VPS.
+    return env_host or "127.0.0.1", int(env_port) if env_port else 15432
+
+
+HOST, PORT = _resolve_pg_target()
 DB = "research_wiki"
 USER = "wiki"           # пароль берётся из ~/.pgpass
+
+
+
+
+DB = "research_wiki"
+USER = "wiki"           # пароль берётся из ~/.pgpass
+
+
+
+
 
 try:
     import psycopg

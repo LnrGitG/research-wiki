@@ -1,1102 +1,507 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hermes Agent — FAQ по командам и эксплуатации</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --bg: #f6f7fb;
-      --panel: #ffffff;
-      --text: #1f2430;
-      --muted: #616a7a;
-      --line: #dde1ec;
-      --accent: #2457d6;
-      --accent-2: #12307a;
-      --warning: #fff7e0;
-      --warning-line: #f0b429;
-      --ok: #e9f8ee;
-      --ok-line: #2f9e5f;
-      --code-bg: #0f172a;
-      --code-text: #e8eefb;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height: 1.55;
-      background: var(--bg);
-      color: var(--text);
-    }
-    header {
-      padding: 28px 20px;
-      color: #fff;
-      background: linear-gradient(135deg, #101a33 0%, #1d3f96 55%, #2457d6 100%);
-    }
-    header h1 { margin: 0 0 8px; font-size: 30px; }
-    header p { margin: 6px 0; max-width: 1100px; }
-    .badge {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 5px 10px;
-      border: 1px solid rgba(255,255,255,.35);
-      border-radius: 999px;
-      font-size: 12px;
-      background: rgba(255,255,255,.12);
-    }
-    main { max-width: 1150px; margin: 0 auto; padding: 18px; }
-    .notice {
-      background: var(--warning);
-      border-left: 5px solid var(--warning-line);
-      border-radius: 10px;
-      padding: 12px 14px;
-      margin: 14px 0;
-    }
-    .notice.ok {
-      background: var(--ok);
-      border-left-color: var(--ok-line);
-    }
-    .search {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      font-size: 16px;
-      background: #fff;
-      margin: 10px 0 14px;
-    }
-    .toc {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 12px 0 20px;
-    }
-    .toc a {
-      display: inline-block;
-      text-decoration: none;
-      color: var(--accent-2);
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 14px;
-    }
-    section.faq-block {
-      margin: 22px 0;
-      scroll-margin-top: 12px;
-    }
-    h2 {
-      margin: 0 0 10px;
-      font-size: 24px;
-      color: var(--accent-2);
-    }
-    h3 { margin: 16px 0 8px; }
-    .qa {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      margin: 10px 0;
-      overflow: hidden;
-    }
-    .qa details { padding: 12px 14px; }
-    summary {
-      cursor: pointer;
-      font-weight: 700;
-      list-style: none;
-    }
-    summary::-webkit-details-marker { display: none; }
-    summary::before {
-      content: "▸ ";
-      color: var(--accent);
-    }
-    details[open] summary::before { content: "▾ "; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #fff;
-      margin: 10px 0;
-      font-size: 14px;
-    }
-    th, td {
-      border: 1px solid var(--line);
-      padding: 8px 9px;
-      text-align: left;
-      vertical-align: top;
-    }
-    th { background: #eef2fb; }
-    code {
-      background: #edf1f9;
-      border-radius: 6px;
-      padding: 1px 5px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: .95em;
-    }
-    pre {
-      background: var(--code-bg);
-      color: var(--code-text);
-      padding: 12px;
-      border-radius: 10px;
-      overflow: auto;
-      font-size: 13px;
-      line-height: 1.45;
-    }
-    pre code { background: transparent; color: inherit; padding: 0; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 10px;
-      margin: 10px 0;
-    }
-    .card {
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 12px;
-    }
-    .card h4 { margin: 0 0 8px; }
-    .small { font-size: 13px; color: var(--muted); }
-    footer {
-      max-width: 1150px;
-      margin: 0 auto;
-      padding: 18px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-    @media print {
-      .search, .toc { display: none; }
-      .qa details { padding: 4px 0; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hermes Agent — справочник по командам и эксплуатации</title>
+<style>
+  :root{
+    --bg:#0f1419; --card:#1a2028; --card2:#222a34; --line:#2e3844;
+    --tx:#e6edf3; --tx2:#9aa7b4; --tx3:#6e7d8c;
+    --acc:#4a9eff; --ok:#3fb950; --warn:#d29922; --err:#f85149;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--bg);color:var(--tx);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:16px 14px 60px}
+  header{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:20px}
+  h1{font-size:22px;line-height:1.3;margin:0 0 8px}
+  .sub{color:var(--tx2);font-size:14px}
+  h2{
+    font-size:17px;margin:34px 0 12px;padding-left:10px;
+    border-left:3px solid var(--acc);line-height:1.35;scroll-margin-top:12px;
+  }
+  h3{font-size:15px;margin:20px 0 8px;color:var(--tx)}
+  p{margin:8px 0}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:14px 0}
+  .card.warn{border-color:#5a4a1a;background:#211d10}
+  .card.ok{border-color:#1d4428;background:#0f1a13}
+  code{font-family:var(--mono);font-size:13px;background:var(--card2);
+       padding:1px 5px;border-radius:4px;color:#a5d6ff;word-break:break-word}
+  pre{background:var(--card2);border:1px solid var(--line);border-radius:8px;
+      padding:12px;overflow-x:auto;font-family:var(--mono);font-size:12.5px;
+      line-height:1.5;margin:10px 0}
+  pre code{background:none;padding:0;color:var(--tx)}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13.5px;
+        display:block;overflow-x:auto;white-space:nowrap}
+  th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+  th{color:var(--tx2);font-weight:600;font-size:12.5px;text-transform:uppercase;
+     letter-spacing:.4px;background:var(--card)}
+  tbody tr:hover{background:var(--card)}
+  ul,ol{margin:8px 0;padding-left:22px}
+  li{margin:5px 0}
+  a{color:var(--acc)}
+  .nav{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .nav a{display:inline-block;font-size:13px;padding:6px 14px;border:1px solid var(--line);
+         border-radius:8px;background:var(--card);text-decoration:none;color:var(--acc)}
+  .search{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;
+          font-size:15px;background:var(--card);color:var(--tx);margin:14px 0 10px}
+  .search::placeholder{color:var(--tx3)}
+  .toc{display:flex;flex-wrap:wrap;gap:7px;margin:0 0 8px}
+  .toc a{font-size:12.5px;padding:5px 11px;border:1px solid var(--line);border-radius:999px;
+         background:var(--card);text-decoration:none;color:var(--tx2)}
+  .toc a:hover{color:var(--acc);border-color:var(--acc)}
+  .qa{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:10px 0;overflow:hidden}
+  .qa details{padding:11px 13px}
+  summary{cursor:pointer;font-weight:600;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸ ";color:var(--acc)}
+  details[open] summary::before{content:"▾ "}
+  .small{font-size:13px;color:var(--tx3)}
+  footer{text-align:center;color:var(--tx3);font-size:12.5px;margin-top:30px;
+         padding-top:16px;border-top:1px solid var(--line)}
+  @media print{.search,.toc{display:none} table{white-space:normal}}
+</style>
 </head>
 <body>
+<div class="wrap">
+
 <header>
-  <h1>Hermes Agent — FAQ по командам и эксплуатации</h1>
-  <p>
-    Практический справочник по управлению агентом, субагентами, навыками, бандлами, инструментами,
-    памятью, curator и провайдерами LLM. Особый акцент — на исследованиях экономики, финансов,
-    эконометрике на R/Python и работе на слабом VPS: 1 ГБ ОЗУ, 20 ГБ диска.
-  </p>
-  <span class="badge">Формат: справочник + лучшие практики + шаблоны конфигурации</span>
+  <h1>🧭 Hermes Agent — справочник по командам и эксплуатации</h1>
+  <p class="sub">Сводный практический справочник для research-wiki: диагностика, сессии, cron,
+  навыки, память, модели, инструменты, curator, данные. Составлен по установленной версии
+  <b>Hermes Agent v0.21.2 (2026.9.11), upstream 205645ee</b>. Авторитетный источник —
+  <code>hermes --help</code>, <code>/help</code> в сессии.</p>
+  <div class="nav">
+    <a href="index.html">← На главную</a>
+    <a href="faq-database.html">📖 FAQ по базе</a>
+    <a href="metrics-catalog.html">📚 Каталог метрик</a>
+  </div>
 </header>
 
-<main>
-  <div class="notice">
-    <strong>Важно:</strong> ниже приведён практичный, рекомендуемый синтаксис команд Hermes Agent.
-    В конкретной сборке префиксы или имена команд могут немного отличаться
-    (<code>/</code>, <code>!</code>, <code>hermes</code>, CLI/GUI).
-    Первый шаг в любой новой установке: <code>/help</code>, <code>/doctor</code>, <code>/status</code>.
-  </div>
-
-  <input id="search" class="search" type="search" onkeyup="filterFaq()" placeholder="Поиск по FAQ: память, субагент, Ollama, curator, skills, bundle...">
-
-  <nav class="toc">
-    <a href="#quick">Быстрая шпаргалка</a>
-    <a href="#basics">Базовые команды</a>
-    <a href="#config">Конфигурация</a>
-    <a href="#agents">Агенты</a>
-    <a href="#subagents">Субагенты</a>
-    <a href="#skills">Навыки</a>
-    <a href="#bundles">Бандлы</a>
-    <a href="#tools">Инструменты</a>
-    <a href="#memory">Память</a>
-    <a href="#curator">Curator</a>
-    <a href="#llm">LLM-провайдеры</a>
-    <a href="#research">Экономика/финансы</a>
-    <a href="#vps">Слабый VPS</a>
-    <a href="#files">soul.md / agent.md / memory.md</a>
-    <a href="#backup">Резервные копии</a>
-    <a href="#security">Безопасность</a>
-    <a href="#troubleshooting">Диагностика</a>
-  </nav>
-
-  <section id="quick" class="faq-block">
-    <h2>Быстрая шпаргалка</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Задача</th>
-          <th>Команда</th>
-          <th>Комментарий</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Проверить состояние агента</td>
-          <td><code>/status</code></td>
-          <td>Модель, провайдер, память, активные задачи, ошибки.</td>
-        </tr>
-        <tr>
-          <td>Полная диагностика</td>
-          <td><code>/doctor</code></td>
-          <td>Проверка API-ключей, инструментов, прав, сети, диска.</td>
-        </tr>
-        <tr>
-          <td>Справка</td>
-          <td><code>/help</code></td>
-          <td>Список доступных команд и разделов.</td>
-        </tr>
-        <tr>
-          <td>Посмотреть конфигурацию</td>
-          <td><code>/config show</code></td>
-          <td>Текущие настройки агента.</td>
-        </tr>
-        <tr>
-          <td>Создать агента</td>
-          <td><code>/agent new econ-analyst</code></td>
-          <td>Создание профильного агента для экономики/финансов.</td>
-        </tr>
-        <tr>
-          <td>Создать субагента</td>
-          <td><code>/subagent create data-fetcher</code></td>
-          <td>Узкий помощник для одной роли.</td>
-        </tr>
-        <tr>
-          <td>Список навыков</td>
-          <td><code>/skills list</code></td>
-          <td>Показать установленные и доступные навыки.</td>
-        </tr>
-        <tr>
-          <td>Список бандлов</td>
-          <td><code>/bundles list</code></td>
-          <td>Бандл — комплект навыков под задачу.</td>
-        </tr>
-        <tr>
-          <td>Управление инструментами</td>
-          <td><code>/tools list</code></td>
-          <td>Просмотр и контроль доступных инструментов.</td>
-        </tr>
-        <tr>
-          <td>Посмотреть память</td>
-          <td><code>/memory show</code></td>
-          <td>Содержимое активной памяти агента.</td>
-        </tr>
-        <tr>
-          <td>Статус Curator</td>
-          <td><code>/curator status</code></td>
-          <td>Включен ли контроль качества и какие правила активны.</td>
-        </tr>
-        <tr>
-          <td>Запустить задачу</td>
-          <td><code>/task run</code></td>
-          <td>Выполнить исследовательскую или аналитическую задачу.</td>
-        </tr>
-        <tr>
-          <td>Экспорт агента</td>
-          <td><code>/agent export</code></td>
-          <td>Резервная конфигурация агента, навыков, памяти.</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section id="basics" class="faq-block">
-    <h2>Базовые команды</h2>
-
-    <div class="qa"><details open>
-      <summary>Как быстро проверить, что агент работает?</summary>
-      <pre><code>/status
-/doctor
-/logs tail --level=error</code></pre>
-      <p>
-        <code>/status</code> показывает текущую модель, провайдера, память и активные задачи.
-        <code>/doctor</code> проверяет окружение: ключи, инструменты, доступ к диску, сеть.
-      </p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как посмотреть все команды?</summary>
-      <pre><code>/help
-/help agents
-/help memory
-/help tools
-/help curator</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как включить подробный режим отладки?</summary>
-      <pre><code>/logs level debug
-/logs tail
-/status --verbose</code></pre>
-      <p>Для слабого VPS не держите <code>debug</code> постоянно: логи могут занять диск.</p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как остановить текущую задачу?</summary>
-      <pre><code>/task stop
-/subagent stop all
-/tools kill hung-process</code></pre>
-    </details></div>
-  </section>
-
-  <section id="config" class="faq-block">
-    <h2>Конфигурация агента</h2>
-
-    <div class="qa"><details open>
-      <summary>Как посмотреть и изменить настройки?</summary>
-      <pre><code>/config show
-/config set key value
-/config unset key
-/config save</code></pre>
-      <p>Пример:</p>
-      <pre><code>/config set llm.provider yandex
-/config set llm.model yandex-gpt-pro
-/config set limits.max_context_tokens 2048
-/config set limits.max_output_tokens 512
-/config set logs.level warn
-/config save</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Какие ключи конфигурации важнее всего?</summary>
-      <table>
-        <thead><tr><th>Ключ</th><th>Зачем нужен</th><th>Рекомендация для VPS 1 ГБ</th></tr></thead>
-        <tbody>
-          <tr><td><code>llm.provider</code></td><td>Выбор провайдера LLM</td><td>Внешний API или удалённый Ollama/LM Studio</td></tr>
-          <tr><td><code>llm.model</code></td><td>Модель по умолчанию</td><td>Лёгкая/дешёвая модель для планирования, сильная — только для финального анализа</td></tr>
-          <tr><td><code>limits.max_context_tokens</code></td><td>Ограничение контекста</td><td>1024–2048</td></tr>
-          <tr><td><code>limits.max_output_tokens</code></td><td>Длина ответа</td><td>256–768</td></tr>
-          <tr><td><code>tools.parallelism</code></td><td>Параллельные инструменты</td><td>1</td></tr>
-          <tr><td><code>memory.backend</code></td><td>Хранилище памяти</td><td>sqlite/file, не тяжёлая векторная БД</td></tr>
-          <tr><td><code>curator.enabled</code></td><td>Контроль качества</td><td>true, но компактные правила</td></tr>
-        </tbody>
-      </table>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как создать профиль конфигурации для слабого VPS?</summary>
-      <pre><code>/config profile create vps-low
-/config use vps-low
-/config set llm.provider remote-api
-/config set limits.max_context_tokens 2048
-/config set limits.max_output_tokens 512
-/config set tools.parallelism 1
-/config set memory.backend sqlite
-/config set logs.level warn
-/config save</code></pre>
-    </details></div>
-  </section>
-
-  <section id="agents" class="faq-block">
-    <h2>Агенты: создание, выбор, шаблоны</h2>
-
-    <div class="qa"><details open>
-      <summary>Как создать агента для экономики, финансов и эконометрики?</summary>
-      <pre><code>/agent new econ-analyst --template researcher
-/agent use econ-analyst
-/agent edit soul.md
-/agent edit agent.md
-/agent edit memory.md</code></pre>
-      <p>
-        Рекомендуется принцип: один агент — одна роль. Не делайте одного универсального агента
-        для всего: лучше отдельные профили для кода, сбора данных, анализа и отчётов.
-      </p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Полезные команды управления агентами</summary>
-      <pre><code>/agent list
-/agent show econ-analyst
-/agent switch econ-analyst
-/agent clone econ-analyst econ-analyst-v2
-/agent export econ-analyst --path ./backups
-/agent import ./backups/econ-analyst
-/agent delete old-agent</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Какие шаблоны агентов полезны для исследований?</summary>
-      <div class="grid">
-        <div class="card"><h4>researcher</h4><p>План исследования, источники, гипотезы, обзор литературы.</p></div>
-        <div class="card"><h4>data-engineer</h4><p>Загрузка, очистка, нормализация данных, CSV/SQLite/DuckDB.</p></div>
-        <div class="card"><h4>econometrician</h4><p>R/Python: регрессии, панельные данные, временные ряды, диагностика.</p></div>
-        <div class="card"><h4>report-writer</h4><p>Итоговые записки, таблицы, графики, выводы для пользователя.</p></div>
-        <div class="card"><h4>curator-agent</h4><p>Проверка качества, источников, логики и воспроизводимости.</p></div>
-      </div>
-    </details></div>
-  </section>
-
-  <section id="subagents" class="faq-block">
-    <h2>Субагенты: делегирование и изоляция задач</h2>
-
-    <div class="qa"><details open>
-      <summary>Как создать субагента?</summary>
-      <pre><code>/subagent create macro-fetcher \
-  --role "Сбор макроданных" \
-  --tools web_search,file_write \
-  --memory none \
-  --max-turns 8 \
-  --model cheap</code></pre>
-      <p>
-        Субагент хорош для узкой задачи: собрать данные, проверить код, подготовить черновик отчёта,
-        рассчитать один показатель. На 1 ГБ ОЗУ лучше запускать строго одного субагента за раз.
-      </p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как запустить задачу субагента?</summary>
-      <pre><code>/subagent run macro-fetcher "Собери годовые данные по инфляции и ключевой ставке за 2010–2025 годы"
-/subagent logs macro-fetcher
-/subagent stop macro-fetcher</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как ограничить субагента?</summary>
-      <pre><code>/subagent create safe-reader \
-  --tools file_read,web_search \
-  --no-shell \
-  --read-only \
-  --max-cost low \
-  --max-turns 5</code></pre>
-      <p>
-        Лучшие практики: не давать субагенту shell без необходимости; ограничивать число шагов;
-        запрещать запись вне рабочей папки; использовать дешёвую модель для рутины.
-      </p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Типичная схема делегирования</summary>
-      <pre><code>Основной агент: аналитик-координатор
-├── Субагент 1: сбор данных
-├── Субагент 2: очистка данных
-├── Субагент 3: эконометрическое моделирование
-└── Субагент 4: curator / проверка качества</code></pre>
-      <p class="small">На слабом VPS не используйте параллельный запуск; используйте последовательный конвейер.</p>
-    </details></div>
-  </section>
-
-  <section id="skills" class="faq-block">
-    <h2>Навыки (skills)</h2>
-
-    <div class="qa"><details open>
-      <summary>Что такое навык в Hermes Agent?</summary>
-      <p>
-        Навык — это переиспользуемая способность: метод анализа, шаблон отчёта, сценарий работы с данными,
-        инструкция по R/Python, работа с конкретным источником, способ проверки модели.
-      </p>
-      <pre><code>/skills list
-/skills info econometrics-basics
-/skills enable econometrics-basics
-/skills disable web-browsing
-/skills remove deprecated-skill</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как добавить навык из папки, архива или репозитория?</summary>
-      <pre><code>/skills add ./skills/econometrics
-/skills add ./skills/macro-data.zip
-/skills add https://example.com/hermes-skill-finance.git</code></pre>
-      <p>После установки проверьте:</p>
-      <pre><code>/skills list
-/skills validate econometrics
-/skills enable econometrics</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Какие навыки полезны для экономики и финансов?</summary>
-      <table>
-        <thead><tr><th>Навык</th><th>Назначение</th></tr></thead>
-        <tbody>
-          <tr><td><code>macro-data</code></td><td>Росстат, ЦБ, FRED, IMF, World Bank, OECD</td></tr>
-          <tr><td><code>econometrics</code></td><td>Регрессии, панельные данные, временные ряды, диагностика</td></tr>
-          <tr><td><code>financial-statistics</code></td><td>Доходности, волатильность, риск-метрики, портфели</td></tr>
-          <tr><td><code>r-modeling</code></td><td>tidyverse, fixest, plm, forecast, urca, modelsummary</td></tr>
-          <tr><td><code>python-data</code></td><td>pandas, numpy, statsmodels, scikit-learn, matplotlib</td></tr>
-          <tr><td><code>reporting</code></td><td>Краткие выводы, таблицы, графики, деловые записки</td></tr>
-        </tbody>
-      </table>
-    </details></div>
-  </section>
-
-  <section id="bundles" class="faq-block">
-    <h2>Бандлы навыков</h2>
-
-    <div class="qa"><details open>
-      <summary>Что такое бандл?</summary>
-      <p>
-        Бандл — это комплект навыков под конкретную роль или проект.
-        Например: <code>finance-research</code>, <code>econometrics-r</code>, <code>macro-analysis</code>.
-      </p>
-      <pre><code>/bundles list
-/bundles show finance-research
-/bundles enable finance-research
-/bundles disable finance-research</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как создать собственный бандл?</summary>
-      <pre><code>/bundle create finance-research
-/bundle add finance-research --skill macro-data
-/bundle add finance-research --skill econometrics
-/bundle add finance-research --skill python-data
-/bundle add finance-research --skill r-modeling
-/bundle add finance-research --skill reporting
-/bundle save finance-research</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как установить бандл из файла или репозитория?</summary>
-      <pre><code>/bundle install ./bundles/finance-research.bundle
-/bundle install https://example.com/bundles/econ-research.bundle
-/bundle export finance-research --path ./backups</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Рекомендуемые бандлы для ваших задач</summary>
-      <div class="grid">
-        <div class="card"><h4>macro-research</h4><p>Инфляция, ставки, ВВП, денежные агрегаты, макропрогнозы.</p></div>
-        <div class="card"><h4>econometrics-r-python</h4><p>Моделирование, проверка гипотез, диагностика, воспроизводимость.</p></div>
-        <div class="card"><h4>finance-analytics</h4><p>Рынки, доходности, риск, портфельные метрики.</p></div>
-        <div class="card"><h4>reporting</h4><p>Короткие executive summaries, таблицы, графики, выводы.</p></div>
-      </div>
-    </details></div>
-  </section>
-
-  <section id="tools" class="faq-block">
-    <h2>Инструменты: file, shell, Python, R, web</h2>
-
-    <div class="qa"><details open>
-      <summary>Как посмотреть и включить инструменты?</summary>
-      <pre><code>/tools list
-/tools enable file_read file_write python r web_search
-/tools disable browser shell
-/tools status</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как безопасно настроить shell?</summary>
-      <pre><code>/tools config shell.mode allowlist
-/tools config shell.workdir /workspace
-/tools config shell.timeout 120
-/tools config shell.allowed_commands "ls,cat,head,tail,grep,python3,Rscript,pip list,git status"</code></pre>
-      <p>
-        Для VPS с экономическими исследованиями лучше разрешать только нужные команды:
-        <code>python3</code>, <code>Rscript</code>, файловые утилиты, архиваторы.
-        Не давайте полный shell без жёсткой необходимости.
-      </p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как настроить Python и R?</summary>
-      <pre><code>/tools enable python r
-/tools config python.binary python3
-/tools config python.venv /workspace/.venv
-/tools config python.timeout 180
-/tools config r.binary Rscript
-/tools config r.timeout 180
-/tools config output.max_lines 400</code></pre>
-      <p>
-        Для тяжёлых расчётов ставьте лимит времени и максимальный объём вывода.
-        Иначе одна регрессия или большой вывод может подвесить слабого агента.
-      </p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как ограничить веб-доступ?</summary>
-      <pre><code>/tools enable web_search http_request
-/tools config web.allow_domains "cbr.ru,rosstat.gov.ru,fred.stlouisfed.org,imf.org,worldbank.org,oecd.org"
-/tools config web.max_pages 3
-/tools config web.timeout 20</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Политика минимальных привилегий</summary>
-      <pre><code>/tools policy show
-/tools deny shell.rm_rf
-/tools deny shell.sudo
-/tools deny file_write:/etc
-/tools deny file_write:/root
-/tools deny net.public_server</code></pre>
-    </details></div>
-  </section>
-
-  <section id="memory" class="faq-block">
-    <h2>Память: session, project, global, memory.md</h2>
-
-    <div class="qa"><details open>
-      <summary>Основные команды памяти</summary>
-      <pre><code>/memory show
-/memory add "Проект: анализ инфляции и ключевой ставки РФ"
-/memory search "инфляция"
-/memory pin "Предпочтение: выводы сначала, таблицы потом"
-/memory unpin id=12
-/memory compact
-/memory export --path ./backups/memory.json
-/memory import ./backups/memory.json</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Что хранить в памяти?</summary>
-      <table>
-        <thead><tr><th>Хранить</th><th>Не хранить</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>Цели проекта, гипотезы, предпочтения пользователя, источники данных, принятые допущения</td>
-            <td>API-ключи, пароли, токены, персональные данные без необходимости, сырые большие датасеты</td>
-          </tr>
-        </tbody>
-      </table>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как избежать раздувания памяти?</summary>
-      <pre><code>/memory compact --keep-pinned
-/memory clear --scope session
-/memory clear --scope old-agent
-/memory policy set max_entries 500
-/memory policy set ttl_days 90</code></pre>
-      <p>
-        Для 1 ГБ ОЗУ лучше всего работает компактная файловая/SQLite-память и текстовый
-        <code>memory.md</code> с важными долговременными фактами.
-      </p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Рекомендуемая структура памяти</summary>
-      <pre><code>session: текущая задача и промежуточные решения
-project: проект, датасеты, гипотезы, метрики
-global: предпочтения пользователя, стиль отчётов, ограничения
-curator: правила проверки качества
-sources: источники данных и даты обращения</code></pre>
-    </details></div>
-  </section>
-
-  <section id="curator" class="faq-block">
-    <h2>Curator: контроль качества и проверка результатов</h2>
-
-    <div class="qa"><details open>
-      <summary>Что такое curator?</summary>
-      <p>
-        Curator — это надзорный контур: он проверяет ответы агента, качество кода, наличие источников,
-        корректность интерпретации моделей и соблюдение ограничений. Для экономических задач крайне полезен.
-      </p>
-      <pre><code>/curator status
-/curator enable
-/curator disable
-/curator review last
-/curator report</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как настроить правила Curator?</summary>
-      <pre><code>/curator add_rule "Все количественные выводы должны указывать источник и дату данных"
-/curator add_rule "Не давать инвестиционных рекомендаций без явного дисклеймера"
-/curator add_rule "Код R/Python должен быть воспроизводимым и сохранять артефакты в /workspace"
-/curator add_rule "Перед выводом показывать: метод, данные, ограничения, риски"
-/curator list_rules</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Минимальный набор правил для экономики и финансов</summary>
-      <pre><code>1. Указывай источник данных и период.
-2. Различай факт, оценку и прогноз.
-3. Для моделей указывай спецификацию, выборку и диагностические тесты.
-4. Не подменяй корреляцию причинностью без оговорок.
-5. Проверяй единицы измерения: проценты, индексы, миллиарды, сезонность.
-6. Не давай индивидуальных инвестиционных рекомендаций.
-7. Сохраняй код, данные и лог расчёта в рабочей папке.</code></pre>
-    </details></div>
-  </section>
-
-  <section id="llm" class="faq-block">
-    <h2>LLM-провайдеры: Ollama, LM Studio, AI Studio, Yandex и другие</h2>
-
-    <div class="qa"><details open>
-      <summary>Базовые команды провайдеров</summary>
-      <pre><code>/provider list
-/provider add ollama --url http://127.0.0.1:11434
-/provider add lmstudio --base-url http://127.0.0.1:1234/v1
-/provider add yandex --auth env:YANDEX_API_KEY
-/provider use yandex
-/provider test</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как подключить Ollama?</summary>
-      <pre><code>/provider add ollama --url http://127.0.0.1:11434
-/provider use ollama
-/config set llm.model qwen2.5:0.5b
-/provider test</code></pre>
-      <p>
-        Если Ollama работает не на VPS, а на другом сервере/ПК, укажите его адрес, например:
-        <code>http://192.168.1.10:11434</code> или через защищённый туннель.
-      </p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как подключить LM Studio?</summary>
-      <pre><code>/provider add lmstudio \
-  --base-url http://127.0.0.1:1234/v1 \
-  --api-key lmstudio
-/provider use lmstudio
-/provider test</code></pre>
-      <p>
-        LM Studio обычно удобен как локальный сервер на более мощной машине.
-        Для VPS с 1 ГБ ОЗУ запускать тяжёлую локальную модель внутри того же сервера нежелательно.
-      </p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как подключить Yandex / AI Studio / другие API?</summary>
-      <pre><code>/provider add yandex --auth env:YANDEX_API_KEY
-/provider use yandex
-/config set llm.model yandex-gpt-pro
-/provider test</code></pre>
-      <p>
-        Ключи лучше хранить в переменных окружения или секретах системы, а не в <code>memory.md</code>
-        и не в открытых конфигах.
-      </p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Как экономить токены и ресурсы?</summary>
-      <pre><code>/config set llm.fallback cheap-model
-/config set limits.max_context_tokens 2048
-/config set limits.max_output_tokens 512
-/config set memory.compact_before_task true
-/config set tools.output_truncate true
-/usage show
-/cost report</code></pre>
-      <p>
-        Практика: дешёвая модель делает сбор и первичную сортировку, сильная модель — только финальный анализ,
-        интерпретацию и отчёт.
-      </p>
-    </details></div>
-  </section>
-
-  <section id="research" class="faq-block">
-    <h2>Исследования экономики, финансов и эконометрики</h2>
-
-    <div class="qa"><details open>
-      <summary>Рекомендуемый рабочий процесс</summary>
-      <pre><code>1. /task plan "Исследовать связь инфляции и ключевой ставки"
-2. /tools enable web_search file_read python r
-3. /memory add "Источник: ЦБ РФ, Росстат; период: 2015–2025"
-4. /task run "Собери данные, построй базовую модель и проверь устойчивость"
-5. /curator review last
-6. /report create --format md html</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Полезные исследовательские команды</summary>
-      <pre><code>/task plan "Оценить кривую Филлипса для РФ"
-/task run "Скачай инфляцию и безработицу, проверь стационарность"
-/code run python ./scripts/inflation.py
-/code run r ./scripts/phillips.R
-/report create --format html
-/artifacts list</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Какие пакеты стоит держать на VPS?</summary>
-      <table>
-        <thead><tr><th>Язык</th><th>Минимальный набор</th><th>Комментарий</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>Python</td>
-            <td><code>pandas</code>, <code>numpy</code>, <code>statsmodels</code>, <code>matplotlib</code>, <code>requests</code></td>
-            <td>Достаточно для большинства эконометрических задач; можно добавить <code>scikit-learn</code> при необходимости.</td>
-          </tr>
-          <tr>
-            <td>R</td>
-            <td><code>tidyverse</code>, <code>fixest</code>, <code>plm</code>, <code>forecast</code>, <code>broom</code></td>
-            <td>Хорошо для регрессий, панелей и временных рядов.</td>
-          </tr>
-          <tr>
-            <td>Данные</td>
-            <td><code>sqlite3</code>, <code>duckdb</code></td>
-            <td>Лучше, чем хранить большие CSV в памяти на 1 ГБ ОЗУ.</td>
-          </tr>
-        </tbody>
-      </table>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Шаблон эконометрического задания для агента</summary>
-      <pre><code>Ты — эконометрист.
-Задача: оценить модель на данных {источник}.
-Требования:
-1. Опиши данные, период, пропуски.
-2. Проверь стационарность/мультиколлинеарность.
-3. Оцени базовую модель и альтернативные спецификации.
-4. Проведи диагностические тесты.
-5. Выводы формулируй с осторожностью, указывай ограничения.
-6. Сохрани код, таблицы и график в /workspace/output.</code></pre>
-    </details></div>
-  </section>
-
-  <section id="vps" class="faq-block">
-    <h2>Работа на слабом VPS: 1 ГБ ОЗУ, 20 ГБ HDD</h2>
-
-    <div class="qa"><details open>
-      <summary>Главная рекомендация</summary>
-      <p>
-        Не запускайте тяжёлую локальную LLM на этом же VPS. Оптимально:
-        агент и инструменты живут на VPS, а LLM — внешний API или удалённый Ollama/LM Studio
-        на более мощной машине.
-      </p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Профиль конфигурации для 1 ГБ ОЗУ</summary>
-      <pre><code>/config profile create vps-low
-/config use vps-low
-/config set llm.provider remote-api
-/config set limits.max_context_tokens 2048
-/config set limits.max_output_tokens 512
-/config set tools.parallelism 1
-/config set memory.backend sqlite
-/config set logs.level warn
-/config set tools.output_max_lines 300
-/config save</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Системные советы для VPS</summary>
-      <table>
-        <thead><tr><th>Действие</th><th>Зачем</th></tr></thead>
-        <tbody>
-          <tr><td>Добавить swap 2–4 ГБ</td><td>Снижает риск OOM, но на HDD будет медленно.</td></tr>
-          <tr><td>Один активный агент/субагент</td><td>Экономия ОЗУ и CPU.</td></tr>
-          <tr><td>Лёгкие Python/R-зависимости</td><td>Меньше памяти и диска.</td></tr>
-          <tr><td>SQLite/DuckDB вместо больших CSV в памяти</td><td>Экономия ОЗУ.</td></tr>
-          <tr><td>Ограничить логи</td><td>20 ГБ HDD быстро заполняются.</td></tr>
-          <tr><td>Короткие сессии и компактная память</td><td>Меньше деградации контекста.</td></tr>
-        </tbody>
-      </table>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Если всё же хочется локальную модель</summary>
-      <pre><code># Только если нет другого варианта.
-# Модель должна быть очень маленькой и квантованной.
-/config set llm.provider ollama
-/config set llm.model qwen2.5:0.5b
-/config set limits.max_context_tokens 1024
-/config set limits.max_output_tokens 256</code></pre>
-      <p class="small">
-        На 1 ГБ ОЗУ даже 0.5B–1.5B может работать нестабильно. Лучше использовать внешний API.
-      </p>
-    </details></div>
-  </section>
-
-  <section id="files" class="faq-block">
-    <h2>soul.md, agent.md, memory.md</h2>
-
-    <div class="qa"><details open>
-      <summary>Где редактировать файлы агента?</summary>
-      <pre><code>/agent edit soul.md
-/agent edit agent.md
-/agent edit memory.md
-/agent reload</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Что писать в soul.md?</summary>
-      <pre><code># Soul
-Ты — осторожный исследователь экономики и финансов.
-Твоя цель — точность, воспроизводимость и полезность выводов.
-
-Ценности:
-- факты важнее впечатлений;
-- источники обязательны;
-- неопределённость указывается явно;
-- нельзя выдавать корреляцию за причинность.
-
-Стиль:
-- сначала вывод, затем обоснование;
-- таблицы и код — компактно;
-- без инвестиционных рекомендаций без дисклеймера.</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Что писать в agent.md?</summary>
-      <pre><code># Agent
-Имя: econ-analyst
-Роль: эконометрика, макроанализ, финансовые данные.
-
-Алгоритм работы:
-1. Уточни вопрос и критерий успеха.
-2. Составь план.
-3. Собери данные и проверь источник.
-4. Подготовь код на R/Python.
-5. Выполни расчёт и сохрани артефакты.
-6. Проверь устойчивость и ограничения.
-7. Сформируй краткий отчёт.
-
-Ограничения:
-- рабочая папка: /workspace
-- не выполнять опасные системные команды
-- не хранить секреты в памяти
-- при ошибке — остановить задачу и сообщить причину</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Что писать в memory.md?</summary>
-      <pre><code># Memory
-## Пользователь
-- Предпочитает краткие выводы и таблицы.
-- Нуждается в ссылках на источники.
-
-## Проект
-- Тема: анализ инфляции и денежно-кредитных условий.
-- Источники: ЦБ РФ, Росстат, FRED.
-- Период: 2015–2025.
-
-## Ограничения
-- VPS 1 ГБ ОЗУ: тяжёлые модели не запускать.
-- Данные хранить в SQLite/CSV, не держать большие фреймы в памяти.</code></pre>
-    </details></div>
-  </section>
-
-  <section id="backup" class="faq-block">
-    <h2>Резервные копии и перенос</h2>
-
-    <div class="qa"><details open>
-      <summary>Что резервировать?</summary>
-      <pre><code>/agent export --all --path ./backups
-/memory export --path ./backups/memory.json
-/bundles export --all --path ./backups
-/config export --path ./backups/config.json</code></pre>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Автоматический бэкап</summary>
-      <pre><code># Пример cron-задания, если поддерживается CLI:
-0 3 * * * hermes backup run --path /opt/hermes/backups --profile vps-low</code></pre>
-      <p>Храните минимум 3 копии: локальная, вне сервера, архив перед крупными изменениями.</p>
-    </details></div>
-  </section>
-
-  <section id="security" class="faq-block">
-    <h2>Безопасность</h2>
-
-    <div class="qa"><details open>
-      <summary>Базовые правила</summary>
-      <pre><code>/tools policy show
-/tools deny shell.sudo
-/tools deny shell.rm_rf
-/tools deny file_write:/etc
-/tools deny file_write:/root
-/config set secrets.storage env</code></pre>
-      <p>
-        Не храните ключи в <code>memory.md</code>, <code>agent.md</code>, логах или открытых файлах проекта.
-      </p>
-    </details></div>
-
-    <div class="qa"><details>
-      <summary>Что запрещать инструментам?</summary>
-      <pre><code>rm -rf /
-shutdown
-reboot
-chmod 777
-curl | sh
-wget | bash
-dd if=/dev/zero
-любые операции вне /workspace без явной необходимости</code></pre>
-    </details></div>
-  </section>
-
-  <section id="troubleshooting" class="faq-block">
-    <h2>Диагностика и типовые проблемы</h2>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Проблема</th>
-          <th>Проверка</th>
-          <th>Решение</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Агент не отвечает</td>
-          <td><code>/status</code>, <code>/doctor</code>, <code>/logs tail</code></td>
-          <td>Проверить провайдера, API-ключ, сеть, лимиты.</td>
-        </tr>
-        <tr>
-          <td>Не хватает памяти</td>
-          <td><code>htop</code>, <code>free -m</code>, <code>/status</code></td>
-          <td>Уменьшить контекст, отключить параллелизм, использовать внешний LLM.</td>
-        </tr>
-        <tr>
-          <td>Инструмент не запускается</td>
-          <td><code>/tools status</code>, <code>/doctor</code></td>
-          <td>Проверить разрешения, пути, allowlist, зависимости.</td>
-        </tr>
-        <tr>
-          <td>Память раздута</td>
-          <td><code>/memory show</code>, <code>/memory stats</code></td>
-          <td><code>/memory compact</code>, удалить лишнее, ограничить TTL.</td>
-        </tr>
-        <tr>
-          <td>Модель галлюцинирует</td>
-          <td><code>/curator review last</code></td>
-          <td>Добавить правила об источниках, снизить temperature, требовать данные.</td>
-        </tr>
-        <tr>
-          <td>Диск быстро заполняется</td>
-          <td><code>df -h</code>, <code>du -sh *</code></td>
-          <td>Очистить логи, кэш, артефакты, ограничить вывод.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="qa"><details>
-      <summary>Минимальный диагностический сценарий</summary>
-      <pre><code>/status
-/doctor
-/provider test
-/tools list
-/memory show
-/curator status
-/logs tail --level=error</code></pre>
-    </details></div>
-  </section>
-
-  <section id="final" class="faq-block">
-    <h2>Итоговые лучшие практики</h2>
-    <div class="grid">
-      <div class="card"><h4>1. Один агент — одна роль</h4><p>Разделяйте координатора, сборщика данных, эконометриста и curator.</p></div>
-      <div class="card"><h4>2. Минимальные инструменты</h4><p>Включайте только то, что нужно задаче: файл, Python, R, web_search.</p></div>
-      <div class="card"><h4>3. Компактная память</h4><p>Храните только устойчивые факты, решения, источники и ограничения.</p></div>
-      <div class="card"><h4>4. Curator обязателен</h4><p>Для экономики и финансов он снижает галлюцинации и ошибки интерпретации.</p></div>
-      <div class="card"><h4>5. Внешняя LLM для слабого VPS</h4><p>1 ГБ ОЗУ — не место для тяжёлой локальной модели.</p></div>
-      <div class="card"><h4>6. Всё сохраняйте в артефакты</h4><p>Код, данные, таблицы, графики и логи должны быть воспроизводимы.</p></div>
-    </div>
-  </section>
-</main>
+<div class="card warn">
+<p><b>Все команды на этой странице проверены на нашем сетапе.</b> Если встретите справочник
+с командами вида <code>/agent new</code>, <code>/subagent create</code>, <code>/memory add</code> —
+это <b>не наш синтаксис</b>: такого набора в Hermes нет. Реальные команды — ниже, они
+сверены с <code>hermes --help</code> по каждой подкоманде.</p>
+</div>
+
+<input id="search" class="search" type="search" onkeyup="filterFaq()"
+       placeholder="Поиск: cron, память, навыки, curator, модель, бэкап, диск...">
+
+<nav class="toc">
+  <a href="#quick">Шпаргалка</a>
+  <a href="#diag">Диагностика</a>
+  <a href="#sessions">Сессии</a>
+  <a href="#cron">Cron</a>
+  <a href="#skills">Навыки</a>
+  <a href="#bundles">Бандлы</a>
+  <a href="#memory">Память</a>
+  <a href="#models">Модели</a>
+  <a href="#tools">Инструменты</a>
+  <a href="#curator">Curator</a>
+  <a href="#delegation">Делегирование</a>
+  <a href="#backup">Бэкап</a>
+  <a href="#platforms">Платформы</a>
+  <a href="#invariants">Инварианты</a>
+  <a href="#data">Данные</a>
+  <a href="#vps">Слабый VPS</a>
+  <a href="#trouble">Проблемы</a>
+</nav>
+
+<section id="quick" class="faq-block">
+<h2>Быстрая шпаргалка</h2>
+<table>
+<thead><tr><th>Задача</th><th>Команда</th><th>Комментарий</th></tr></thead>
+<tbody>
+<tr><td>Проверить сетап</td><td><code>hermes doctor</code></td><td>Ключи, инструменты, права, сеть, диск.</td></tr>
+<tr><td>Состояние агента</td><td><code>hermes status</code></td><td>Модель, провайдер, память, активные задачи.</td></tr>
+<tr><td>Живой лог</td><td><code>hermes logs -f agent</code></td><td>Компоненты: <code>agent</code>, <code>errors</code>, <code>gateway</code>, <code>gui</code>.</td></tr>
+<tr><td>Бюджет промпта</td><td><code>hermes prompt-size --json</code></td><td>Сколько занимают skills + memory + tools.</td></tr>
+<tr><td>Расход токенов</td><td><code>hermes insights --days 7</code></td><td>Токены, стоимость, паттерны инструментов.</td></tr>
+<tr><td>Список джобов</td><td><code>hermes cron list</code></td><td>Состав, статус, расписание.</td></tr>
+<tr><td>Навыки в очереди</td><td><code>/skills pending</code></td><td>В сессии; staged-одобрение мутаций.</td></tr>
+<tr><td>Инструменты</td><td><code>hermes tools</code></td><td>Без подкоманды — интерактивный UI.</td></tr>
+<tr><td>Сменить модель</td><td><code>hermes model</code></td><td>Постоянный дефолт (сессионно — <code>/model</code>).</td></tr>
+<tr><td>Бэкап</td><td><code>hermes backup -q -l label</code></td><td>Быстрый снапшот критических файлов.</td></tr>
+<tr><td>Отправка без LLM</td><td><code>hermes send -t telegram "…"</code></td><td>Прямая доставка, токены не тратятся.</td></tr>
+<tr><td>Конфиг</td><td><code>hermes config show</code></td><td>Правки — только через <code>config set</code>.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="diag" class="faq-block">
+<h2>1. Диагностика: «что-то сломалось»</h2>
+<p>Перед любой крупной операцией — сначала проверка, потом действия.</p>
+<pre><code>hermes doctor &amp;&amp; hermes status          # здоровье сетапа и компонентов
+hermes logs -f agent                    # живой хвост (errors/gateway/gui тоже)
+hermes logs --session &lt;id&gt; --since 1h   # по конкретной сессии
+hermes logs --level WARNING -n 100      # только предупреждения и выше
+hermes insights --days 7                # токены, стоимость, паттерны инструментов
+hermes prompt-size --json               # бюджет системного промпта: skills+memory+tools</code></pre>
+<div class="qa"><details open>
+<summary>Минимальный диагностический сценарий</summary>
+<pre><code>hermes doctor
+hermes status
+hermes logs --level WARNING -n 50
+hermes tools list
+hermes prompt-size
+hermes cron doctor</code></pre>
+</details></div>
+<div class="card warn">
+<p><b>Известная тяжесть нашего сетапа:</b> kanban-toolset занимает ~23.5 KB схемы
+(≈5 900 токенов) при <b>0 строк</b> в <code>kanban.db</code> — крупнейший единичный
+потребитель статического контекста после системного промпта.
+<code>hermes tools</code> → снять галочку kanban, либо <code>hermes config set</code>.</p>
+</div>
+</section>
+
+<section id="sessions" class="faq-block">
+<h2>2. Сессии и история</h2>
+<pre><code>hermes sessions list                    # последние, с моделью и источником
+hermes sessions export &lt;id&gt; --format md # выгрузка в JSONL/Markdown/QMD
+hermes sessions optimize                # слить FTS5-сегменты + VACUUM (диск, без потери)
+hermes sessions repair                  # починить state.db / роутинг</code></pre>
+<p>В сессии: <code>/resume</code>, <code>/sessions</code>, <code>/undo [N]</code>,
+<code>/rollback [N]</code> (чекпоинты ФС), <code>/compress</code> и
+<code>/compress here [N]</code> (сжать историю), <code>/status</code>.</p>
+<div class="card">
+<p><b>Повтор прошлой задачи.</b> Через <code>session_search</code> по query +
+<code>sort=newest</code>, затем <b>сверка артефактов с файлами на диске</b>:
+сводки ассистента — это самоотчёты, а не факты. Это правило уже спасало: отчёт
+«сделано» расходился с содержимым каталога.</p>
+</div>
+</section>
+
+<section id="cron" class="faq-block">
+<h2>3. Cron — наши джобы</h2>
+<p>У нас <b>8 джобов</b>. Семь запинены на <code>glm-5.3-flash / ollama-cloud</code>,
+чтобы дрейф модели не приводил к «молчаливому пропуску».</p>
+<pre><code>hermes cron list                        # состав и статус
+hermes cron doctor                      # health-check джобов
+hermes cron runs &lt;job_id&gt;               # история попыток
+hermes cron incidents                   # сбои с ack: --ack &lt;id&gt;
+hermes cron run &lt;job_id&gt;                # запустить на следующем тике
+hermes cron status                      # жив ли планировщик</code></pre>
+<div class="card ok">
+<p><b>Режим <code>--no-agent</code></b> — важный приём: если вся работа делается скриптом
+(загрузка данных), LLM не нужен, и джоб переводится в режим «скрипт сам себе джоб».
+Так устроен <code>KEP short-term indicators monthly refresh</code>: пустой stdout =
+ничего не отправляется, тишина при отсутствии нового выпуска. Это снимает риск дрейфа
+модели и не тратит токены.</p>
+<pre><code>hermes cron create "0 9 5,7 * *" --name "KEP refresh" \
+  --script kep_refresh.sh --no-agent --deliver origin</code></pre>
+<p class="small">Скрипт cron ищет в <code>~/.hermes/scripts/</code>; рабочая версия —
+<code>research-wiki/scripts/</code>. Обёртка в <code>~/.hermes/scripts/</code> вызывает
+репозиторный скрипт одной строкой, чтобы логика жила в git.</p>
+</div>
+<div class="card warn">
+<p><b>Правило идемпотентности.</b> Джоб, который пишет в БД, обязан уметь
+запускаться дважды без последствий. Ошибка, уже стоившая данных: метка релиза
+формировалась по-разному при разных путях запуска, поэтому проверка «уже загружено»
+не срабатывала и данные задвоились. Метка должна зависеть только от имени файла-источника.</p>
+</div>
+</section>
+
+<section id="skills" class="faq-block">
+<h2>4. Навыки и гейт записи</h2>
+<p>У нас включён <code>skills.write_approval=true</code>: <b>любая</b> мутация
+<code>skill_manage</code> (staged) ждёт подтверждения — и от агента, и от куратора.</p>
+<pre><code>hermes skills list                      # установленные
+hermes skills search &lt;запрос&gt;           # поиск по реестрам
+hermes skills inspect &lt;имя&gt;             # карточка навыка
+hermes skills install &lt;откуда&gt;          # установка (действие пользователя, не гейтится)
+hermes skills diff &lt;id&gt;                 # что изменено в staged
+hermes skills audit                     # проверка безопасности
+hermes skills update                    # обновить установленные</code></pre>
+<p>В сессии: <code>/skills pending</code> — очередь staged-мутаций,
+<code>/skills approve &lt;id&gt;</code>, <code>/skills reject &lt;id&gt;</code>.
+Файлы очереди: <code>~/.hermes/pending/skills/*.json</code>.</p>
+<div class="card">
+<p><b>Важно:</b> в CLI подкоманды <code>skills pending</code> <b>нет</b> — очередь
+смотрится из сессии через <code>/skills pending</code>. Это разные вещи, и их легко
+перепутать.</p>
+<p>Правило: bundled/hub-скиллы куратор не трогает никогда. Отключить гейт —
+<code>hermes config set skills.write_approval false</code>.</p>
+</div>
+</section>
+
+<section id="bundles" class="faq-block">
+<h2>5. Бандлы — навыки под одну команду</h2>
+<p>Бандл загружает несколько навыков одним слэш-вызовом. Полезно, когда для задачи
+нужен устойчивый набор: сбор данных + эконометрика + отчётность.</p>
+<pre><code>hermes bundles list                     # установленные бандлы
+hermes bundles show &lt;имя&gt;               # состав бандла
+hermes bundles create &lt;имя&gt;             # создать
+hermes bundles delete &lt;имя&gt;             # удалить
+hermes bundles reload                   # пересканировать каталог бандлов</code></pre>
+<p>В сессии <code>/&lt;имя-бандла&gt;</code> подгружает все его навыки сразу.</p>
+</section>
+
+<section id="memory" class="faq-block">
+<h2>6. Память</h2>
+<p>Встроенная <code>MEMORY.md</code> / <code>USER.md</code> активна всегда; внешние
+провайдеры — опция (honcho, mem0, hindsight, openviking и др.).</p>
+<pre><code>hermes memory status                    # конфигурация провайдера
+hermes memory setup                     # интерактивный выбор провайдера
+hermes memory off                       # только встроенная память
+hermes memory reset                     # стереть встроенную память (осторожно!)</code></pre>
+<p>В сессии: <code>/memory pending|approve|reject</code> — ревью отложенных записей;
+<code>/journey</code> — таймлайн навыков и памятей.</p>
+<div class="card warn">
+<p><b>Бюджет памяти жёсткий:</b> встроенная память ограничена по символам (у нас
+<code>MEMORY.md</code> и <code>USER.md</code> по 5 000 символов, заполнены почти под
+потолок). Когда места не хватает, правильный ход — <b>не добавлять, а консолидировать</b>:
+заменить устаревшую запись новой в одном вызове.</p>
+</div>
+<table>
+<thead><tr><th>Хранить в памяти</th><th>Не хранить</th></tr></thead>
+<tbody><tr>
+<td>Кто пользователь, устойчивые факты среды, постоянные конвенции, предпочтения стиля</td>
+<td>API-ключи, пароли, токены, разовые данные, прогресс задач, большие датасеты</td>
+</tr></tbody>
+</table>
+<p class="small">Процедуры и приёмы — не в память, а в <b>навыки</b>: они подгружаются
+по релевантности, а не в каждый вызов.</p>
+</section>
+
+<section id="models" class="faq-block">
+<h2>7. Модели, провайдеры, fallback</h2>
+<pre><code>hermes model                            # пикер модель+провайдер (постоянный дефолт)
+hermes fallback list | add | remove     # цепочка при rate-limit/overload
+hermes auth status                      # пул кредов, приоритеты
+hermes auth login | logout              # вход/выход провайдера</code></pre>
+<p>В сессии <code>/model [name] [--global]</code> меняет модель <b>только текущей</b>
+сессии; постоянный дефолт — через <code>hermes model</code>.</p>
+<div class="card">
+<p><b>Наш расклад:</b> fallback — <code>claude-sonnet-4 / openrouter</code>;
+делегаты — <code>glm-5.3-flash</code>; Astra Pro годится только для коротких синтезов,
+но не для tool-call. Ключи — в <code>.env</code> или в секретах Hermes, никогда в
+конфигах проекта и не в чате.</p>
+</div>
+</section>
+
+<section id="tools" class="faq-block">
+<h2>8. Инструменты и политика привилегий</h2>
+<pre><code>hermes tools                            # интерактивный UI включения/выключения
+hermes tools list                       # статус всех инструментов и toolsets
+hermes tools enable &lt;имя&gt;               # включить toolset или MCP-инструмент
+hermes tools disable &lt;имя&gt;              # выключить
+hermes tools --summary                  # краткая сводка</code></pre>
+<p>MCP-инструменты адресуются как <code>server:tool</code> (например,
+<code>github:create_issue</code>).</p>
+<div class="card warn">
+<p><b>Каждый toolset — это статический контекст в каждом вызове.</b> Поэтому
+выключение ненужных наборов (вроде kanban при пустой БД) даёт прямую экономию токенов
+и снижает риск, что модель «зацепится» за лишний инструмент.</p>
+</div>
+<div class="card">
+<p><b>Ограничение прав.</b> Опасные операции проходят через подтверждение
+(<code>hermes approvals</code>, режим <code>--yolo</code> обходит его — использовать
+осознанно). Правило нашей работы: перед разрушительной операцией создавать точку
+возврата (git-тег, дамп в бакет) и сообщать путь восстановления.</p>
+</div>
+</section>
+
+<section id="curator" class="faq-block">
+<h2>9. Curator — контроль качества навыков</h2>
+<p>Curator — фоновая задача на вспомогательной модели: периодически просматривает
+созданные агентом навыки, чистит устаревшие, объединяет дубли, архивирует
+неактуальные. Bundled- и hub-навыки не трогает никогда; удаления безвозвратного
+не бывает — только архив.</p>
+<pre><code>hermes curator status                   # статус и статистика навыков
+hermes curator usage                    # телеметрия использования всех навыков
+hermes curator run --dry-run            # предпросмотр прогона, без изменений
+hermes curator run --consolidate        # прогон с LLM-слиянием
+hermes curator pause | resume           # приостановить/возобновить
+hermes curator list-archived            # что в архиве
+hermes curator restore &lt;имя&gt;            # вернуть из архива
+hermes curator rollback                 # откат последнего прогона
+hermes curator ledger                   # журнал операций</code></pre>
+<div class="card ok">
+<p><b>Наш конфиг:</b> <code>curator.consolidate=true</code> (LLM-слияние),
+<code>skills.write_approval=true</code> — все мутации навыков идут через staged-очередь
+и одобрение. Это значит, что куратор не может изменить навык молча.</p>
+</div>
+</section>
+
+<section id="delegation" class="faq-block">
+<h2>10. Делегирование: субагенты и профили</h2>
+<p>Отдельных «субагент-команд» в Hermes нет — делегирование устроено иначе.</p>
+<div class="qa"><details open>
+<summary>Два разных механизма — не путать</summary>
+<table>
+<thead><tr><th>Механизм</th><th>Что это</th><th>Команда</th></tr></thead>
+<tbody>
+<tr><td><b>Делегирование (subagent)</b></td><td>Изолированный контекст на одну задачу: возвращает только итог, промежуточный шум не попадает в родителя</td><td>инструмент <code>delegate_task</code> в сессии</td></tr>
+<tr><td><b>Профили</b></td><td>Отдельные «личности» агента со своими навыками, памятью и cron</td><td><code>hermes profile create &lt;имя&gt;</code></td></tr>
+</tbody>
+</table>
+</details></div>
+<pre><code>hermes profile list                     # все профили
+hermes profile create &lt;имя&gt;             # новый профиль
+hermes profile use &lt;имя&gt;                # сделать дефолтным
+hermes profile show &lt;имя&gt;               # детали
+hermes profile export | import          # перенос профиля
+hermes profile describe &lt;имя&gt;           # описание для kanban-оркестратора</code></pre>
+<div class="card warn">
+<p><b>Профили — независимые острова.</b> У каждого свои <code>skills/</code>,
+<code>plugins/</code>, <code>cron/</code>, <code>memories/</code>. Не переносите
+навыки между профилями без явного указания — это отдельная сессия пользователя.</p>
+<p><b>Когда делегировать.</b> Детей стоит запускать для reasoning-ёмких подзадач,
+работы, которая зальёт контекст промежуточными данными, и независимых параллельных
+веток. Не стоит — для механических шагов без рассуждения (там хватит скрипта).</p>
+</div>
+<div class="card">
+<p><b>Наш опыт.</b> Делегаты не могут задавать вопросы и не видят историю чата —
+контекст надо передавать целиком. Их итог — <b>самоотчёт, а не факт</b>: заявленное
+«файл записан» или «опубликовано» проверяется отдельно (существование файла, HTTP-код,
+хеш). У нас так уже ловилось расхождение отчёта с реальностью.</p>
+</div>
+</section>
+
+<section id="backup" class="faq-block">
+<h2>11. Бэкап, обновление, откат</h2>
+<pre><code>hermes backup -q -l pre-update          # быстрый снапшот критических файлов
+hermes backup -k 5                      # zip ~/.hermes с ретеншном 5 копий
+hermes backup -o /path/backups          # в конкретный каталог
+hermes update --check &amp;&amp; hermes update  # проверка, затем обновление (--plan для плана)
+hermes checkpoints status               # чекпоинты ФС
+hermes checkpoints prune                # чистка старых чекпоинтов</code></pre>
+<p>Откат правок ФС — <code>/rollback [N]</code> в сессии. Для данных — восстановление
+из дампа: у нас точки возврата кладутся и локально, и в бакет
+<code>wiki-research/rollback/</code>.</p>
+<div class="card">
+<p><b>Правило обратимости.</b> Перед удалением или перезаписью — точка возврата
+(git-тег, ветка-бэкап, дамп) и сообщение пути восстановления. Откат должен быть
+точечным: не задевать соседнюю работу.</p>
+</div>
+</section>
+
+<section id="platforms" class="faq-block">
+<h2>12. Отправка и платформы (без LLM)</h2>
+<pre><code>hermes send -t telegram "текст"          # в канал без агента/токенов
+hermes gateway status                    # жив ли gateway
+hermes gateway restart                   # перезапуск (только снаружи сессии!)
+hermes pairing list                      # пары-коды доступа</code></pre>
+<p>Target-форматы: <code>platform</code>, <code>platform:chat_id</code>,
+<code>platform:#channel</code>, <code>platform:chat_id:thread_id</code>.</p>
+<div class="card warn">
+<p><b>Перезапуск gateway изнутри сессии запрещён.</b> Команда убьёт саму сессию:
+SIGTERM распространяется на дочерние процессы. Запускать только из отдельной оболочки
+снаружи. Плюс guard режет символ <code>&amp;</code> в командах терминала — сложные
+цепочки собирать через скрипт-файл.</p>
+</div>
+</section>
+
+<section id="invariants" class="faq-block">
+<h2>13. Инварианты нашего сетапа</h2>
+<ul>
+<li>Секреты — только в <code>.env</code>; настройки — <code>config.yaml</code> через
+<code>hermes config set</code>, руками конфиг не править.</li>
+<li>Telegram-токен = один слушатель: два gateway на один токен конфликтуют.</li>
+<li><code>/model</code> действует на текущую сессию; постоянный дефолт — через
+<code>hermes model</code>.</li>
+<li>Навыки hub/bundled куратором не трогаются; мутации — только через гейт
+<code>write_approval</code>.</li>
+<li>Перед разрушительной операцией — точка возврата и путь восстановления.</li>
+<li>Итог делегата — самоотчёт: проверять результат, а не доверять формулировке.</li>
+<li>Джоб, пишущий в БД, обязан быть идемпотентным.</li>
+<li>Тяжёлые данные — на YC, не в git: GitHub не место для гигабайтов.</li>
+</ul>
+</section>
+
+<section id="data" class="faq-block">
+<h2>14. Данные research-wiki (на каждый день)</h2>
+<pre><code>python3 scripts/yc_sync.py status|verify # синхронизация с YC Object Storage
+python3 scripts/lint_wiki.py             # проверка вики (wikilinks, frontmatter)
+python3 scripts/query.py "..."           # поиск по вики
+python3 scripts/wordstat_construction_collect.py  # поисковые лиды (100 зап/час)
+python3 scripts/kep_refresh.sh           # обновление КЭП (сбор + гармонизация)</code></pre>
+<p>Тяжёлое — на YC: PostgreSQL <code>research_wiki</code>
+(46.243.210.160, ru-central1-b) с pgvector; <code>raw/</code> — симлинк на
+<code>~/yc-wiki/raw/</code>.</p>
+<div class="card">
+<p><b>Доступ к PostgreSQL.</b> Прямое подключение — через SSH-туннель
+<code>127.0.0.1:15432</code> (сервис <code>pg-tunnel.service</code>);
+пароли — в <code>~/.pgpass</code>, в чат их не выводим.</p>
+</div>
+</section>
+
+<section id="vps" class="faq-block">
+<h2>15. Работа на слабом VPS</h2>
+<p>У нас VPS во Франкфурте с ~1 ГБ ОЗУ. Главное правило: <b>не запускать тяжёлую
+локальную модель на том же хосте</b>, где живёт агент.</p>
+<table>
+<thead><tr><th>Действие</th><th>Зачем</th></tr></thead>
+<tbody>
+<tr><td>Swap 2–4 ГБ</td><td>Снижает риск OOM. Без него сбор данных падал по памяти.</td></tr>
+<tr><td>Один активный агент</td><td>Экономия ОЗУ и CPU.</td></tr>
+<tr><td>SQLite/DuckDB вместо больших CSV в памяти</td><td>Экономия ОЗУ.</td></tr>
+<tr><td>Ограничить логи и кэш</td><td>Диск быстро заполняется: <code>df -h</code> перед крупным батчем.</td></tr>
+<tr><td>Тяжёлые расчёты — на мощной ВМ</td><td>Так переносилась гармонизация: OOM на VPS → ВМ в YC.</td></tr>
+<tr><td>Проверять место перед операцией</td><td>VACUUM и <code>git gc</code> на полном диске падают с невнятной ошибкой.</td></tr>
+</tbody>
+</table>
+<div class="card ok">
+<p><b>География тоже ресурс.</b> С этого VPS недоступны российские источники
+(ЕМИСС, Росреестр) — обход через маршрутизацию по доменам. Обратная ситуация на
+датацентр-IP в РФ: там блокируются Telegram и зарубежные LLM-провайдеры. Это не
+сбой, а свойство окружения — учитывать при планировании сбора.</p>
+</div>
+</section>
+
+<section id="trouble" class="faq-block">
+<h2>16. Типовые проблемы</h2>
+<table>
+<thead><tr><th>Проблема</th><th>Проверка</th><th>Решение</th></tr></thead>
+<tbody>
+<tr><td>Агент не отвечает</td><td><code>hermes doctor</code>, <code>hermes status</code>, логи</td><td>Проверить провайдера, ключ, сеть, лимиты.</td></tr>
+<tr><td>Provider authentication failed</td><td><code>hermes auth status</code></td><td>Сообщение теряется — отправить повторно; проверить пул кредов.</td></tr>
+<tr><td>Не хватает памяти</td><td><code>free -m</code>, <code>htop</code></td><td>Уменьшить контекст, отказаться от параллелизма, перенести расчёт.</td></tr>
+<tr><td>Диск заполнен</td><td><code>df -h</code>, <code>du -sh *</code></td><td>Очистить логи, кэш, артефакты; проверить <code>git gc</code>.</td></tr>
+<tr><td>Память раздута</td><td><code>hermes prompt-size</code></td><td>Консолидировать записи, а не добавлять новые.</td></tr>
+<tr><td>Джоб молча пропускается</td><td><code>hermes cron runs &lt;id&gt;</code></td><td>Проверить пиннинг модели; для скриптовых задач — <code>--no-agent</code>.</td></tr>
+<tr><td>Данные задвоились</td><td>счётчики по релизам и ключу</td><td>Проверить идемпотентность: метка релиза не должна зависеть от способа загрузки.</td></tr>
+<tr><td>Модель «галлюцинирует»</td><td><code>hermes curator status</code></td><td>Требовать источники, снижать temperature, проверять числа по базе.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="faq-block">
+<h2>Итоговые лучшие практики</h2>
+<ul>
+<li><b>Сначала проверка, потом действие</b> — <code>doctor</code> перед крупной операцией.</li>
+<li><b>Точка возврата перед разрушительным</b> — и путь восстановления в ответе.</li>
+<li><b>Скрипт вместо LLM там, где работа детерминирована</b> — дешевле и надёжнее.</li>
+<li><b>Идемпотентность для всего, что пишет в БД</b> — повторный запуск не должен ломать.</li>
+<li><b>Итог делегата — самоотчёт</b>, его нужно проверять.</li>
+<li><b>Компактная память</b> — консолидировать, а не накапливать.</li>
+<li><b>Всё воспроизводимо</b> — код, данные, логи и версии рядом с результатом.</li>
+</ul>
+</section>
 
 <footer>
-  Hermes Agent FAQ • справочник по командам, субагентам, навыкам, бандлам, инструментам, памяти и curator.
-  Подходит для исследовательских задач по экономике, финансам, R и Python, включая слабый VPS.
+research-wiki · справочник по Hermes Agent · v0.21.2 (2026.9.11) · 2026-09-19
 </footer>
 
+</div>
+
 <script>
-  function filterFaq() {
-    const query = document.getElementById('search').value.trim().toLowerCase();
-    const blocks = document.querySelectorAll('.faq-block');
-
-    blocks.forEach(block => {
-      const items = block.querySelectorAll('.qa');
-      let anyVisible = false;
-
-      items.forEach(item => {
-        const text = item.textContent.toLowerCase();
-        const show = query === '' || text.includes(query);
-        item.style.display = show ? '' : 'none';
-        if (show) anyVisible = true;
-      });
-
-      if (query === '') {
-        block.style.display = '';
-      } else {
-        const blockTextMatches = block.textContent.toLowerCase().includes(query);
-        const hasTable = Boolean(block.querySelector('table'));
-        block.style.display = (anyVisible || (hasTable && blockTextMatches) || block.id === 'quick') ? '' : 'none';
-      }
-    });
-  }
+function filterFaq(){
+  const q = document.getElementById('search').value.trim().toLowerCase();
+  document.querySelectorAll('.faq-block').forEach(function(block){
+    if(!q){ block.style.display=''; }
+    else {
+      const hit = block.textContent.toLowerCase().indexOf(q) >= 0;
+      block.style.display = hit ? '' : 'none';
+    }
+  });
+}
 </script>
 </body>
 </html>

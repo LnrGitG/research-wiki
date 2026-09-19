@@ -591,7 +591,6 @@ def main():
     os.makedirs(RAW_DIR, exist_ok=True)
     if args.file:
         path = args.file
-        label_period = None
         log("файл: %s" % path)
     else:
         log("ищу свежий выпуск…")
@@ -612,19 +611,21 @@ def main():
             with open(path, "wb") as f:
                 f.write(data)
             log("сохранён: %s" % path)
-        label_period = (m, y)
 
-    # метка релиза
-    if label_period:
-        m, y = label_period
-        prev_m = 12 if m == 1 else m - 1
-        prev_y = y - 1 if m == 1 else y
+    # Метка релиза выводится ИЗ ИМЕНИ ФАЙЛА и не зависит от способа загрузки.
+    # Раньше при --file писалась метка «локальный файл …», а при автопоиске —
+    # «выпуск январь–июль 2026». Один и тот же выпуск получал две разные метки,
+    # идемпотентность гармонизатора не срабатывала, и данные задваивались
+    # (поймано на первом же прогоне cron-обёртки: два релиза, 2146 метрик).
+    mf = re.search(r"ind_(\d{2})-(\d{4})", os.path.basename(path))
+    if mf:
+        m, y = int(mf.group(1)), int(mf.group(2))
         label = "КЭП, выпуск январь–%s %d" % (
             ["", "январь", "февраль", "март", "апрель", "май", "июнь", "июль",
              "август", "сентябрь", "октябрь", "ноябрь", "декабрь"][m], y)
         pub = "20%02d-%02d" % (y % 100, m)
     else:
-        label = "КЭП, локальный файл %s" % os.path.basename(path)
+        label = "КЭП, файл %s" % os.path.basename(path)
         pub = None
 
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)

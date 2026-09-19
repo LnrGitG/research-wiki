@@ -124,14 +124,21 @@ def git_remove_paths(paths, env):
 
 
 def classify(tracked):
-    """Разложить отслеживаемые файлы на публикуемые и служебные."""
+    """Разложить отслеживаемые файлы на публикуемые и служебные.
+
+    Порядок проверок важен: ИСКЛЮЧЕНИЯ проверяются ПЕРВЫМИ. Иначе файл внутри
+    публикуемого каталога (data/) попал бы в keep до проверки исключений —
+    например data/dupes_removed.json при `data` в KEEP_DIRS. Так и случилось:
+    четыре служебных файла данных ушли в витрину и оставили битые ссылки на
+    AGENTS.md, MEMORY.md, USER.md.
+    """
     keep, drop = set(), []
     for line in tracked:
         top = line.split("/")[0]
-        if top in KEEP_DIRS or line in KEEP_FILES:
-            keep.add(line)
-        elif top in DROP_DIRS or line in DROP_FILES or line in DROP_DATA_FILES:
+        if top in DROP_DIRS or line in DROP_FILES or line in DROP_DATA_FILES:
             drop.append(line)
+        elif top in KEEP_DIRS or line in KEEP_FILES:
+            keep.add(line)
     unexpected = sorted(tracked - keep - set(drop))
     return keep, drop, unexpected
 

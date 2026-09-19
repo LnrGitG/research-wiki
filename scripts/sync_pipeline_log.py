@@ -20,10 +20,10 @@ references, storage, index, cards) к тому конвейеру не отно�
 Идемпотентность: UNIQUE(stage, started_at) плюс ON CONFLICT DO NOTHING —
 повторный перенос дублей не создаёт.
 
-Почему пакетом: доступ к PostgreSQL на ВМ с VDS закрыт гео-фильтром, SQL
-уходит через канал `agent-vm-exchange`, и агент исполняет ТОЛЬКО `command.sh`
-(вспомогательные файлы он к себе не копирует, проверено 19.09) — поэтому SQL
-встраивается в скрипт heredoc'ом.
+Доставка: **напрямую через SSH-тоннель** (`db_tunnel.py`, порт 15432) —
+секунды вместо минут. Прежний путь через S3-канал сохранён как резерв на
+случай, если тоннель не поднят: агент на ВМ исполняет только `command.sh`,
+поэтому SQL там встраивался heredoc'ом.
 
 Запуск:  python3 scripts/sync_pipeline_log.py --dry-run   # что перенесётся
          python3 scripts/sync_pipeline_log.py --push      # отправить на ВМ
@@ -112,7 +112,16 @@ def send_and_read(script_body, wait=80):
 
 
 def read_existing():
-    """Пары (stage, started_at), уже лежащие в БД."""
+    """Пары (stage, started_at), уже лежащие в БД — через тоннель."""
+    try:
+        import db_tunnel
+        if db_tunnel.available():
+            rows = db_tunnel.query(
+                "SELECT stage || '|' || to_char(started_at,'YYYY-MM-DD\"T\"HH24:MI:SS') "
+                "FROM pipeline.corpus_etl_log")
+            return "\n".join(r[0] for r in rows) + "\n=== ГОТОВО ==="
+    except Exception as e:
+        print("  тоннель недоступен (%s), иду через канал" % str(e)[:60])
     body = ("#!/bin/bash\n"
             "export PGPASSFILE=/home/ubuntu/.pgpass\n"
             "psql -h localhost -U wiki -d research_wiki -tAc \"SELECT stage||'|'||"
@@ -120,6 +129,33 @@ def read_existing():
             "FROM pipeline.corpus_etl_log\" 2>/dev/null || echo ТАБЛИЦЫ_НЕТ\n"
             "echo '=== ГОТОВО ==='\n")
     return send_and_read(body)
+
+
+def push_via_tunnel(todo):
+    """Прямая загрузка метрик через тоннель: схема + INSERT. Секунды."""
+    import db_tunnel
+    with db_tunnel.connect() as c:
+        with c.cursor() as cur:
+            cur.execute(DDL)
+            before = cur.execute("SELECT count(*) FROM pipeline.corpus_etl_log")
+            n_before = cur.fetchone()[0]
+            cur.executemany(
+                "INSERT INTO pipeline.corpus_etl_log (script, stage, started_at, "
+                "finished_at, duration_ms, rows_affected, status, error_text, artifacts) "
+                "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT (stage, started_at) "
+                "DO NOTHING",
+                [(e.get("script", "?"), e.get("stage", "?"),
+                  e.get("started_at"), e.get("finished_at"),
+                  int(e.get("duration_ms", 0)), int(e.get("rows_affected", 0)),
+                  e.get("status", "ok"), (e.get("error_text") or "")[:500],
+                  json.dumps(e.get("artifacts") or [], ensure_ascii=False))
+                 for e in todo])
+            cur.execute("SELECT count(*) FROM pipeline.corpus_etl_log")
+            n_after = cur.fetchone()[0]
+        c.commit()
+    print("  схема применена")
+    print("  до: %d | после: %d | вставлено: %d" % (n_before, n_after, n_after - n_before))
+    return 0
 
 
 def main():
@@ -172,6 +208,17 @@ def main():
         if not todo:
             print("БД синхронна с локальным логом — переносить нечего.")
             return 0
+
+        # основной путь — тоннель: то же самое за секунды вместо полутора минут
+        try:
+            sys.path.insert(0, os.path.join(REPO, "scripts"))
+            import db_tunnel
+            if db_tunnel.available():
+                print("\nЗагрузка через тоннель...")
+                return push_via_tunnel(todo)
+            print("\nТоннель недоступен — иду через S3-канал (дольше).")
+        except Exception as e:
+            print("\nТоннель не сработал (%s) — иду через S3-канал." % str(e)[:80])
 
         body = ("#!/bin/bash\n"
                 "export PGPASSFILE=/home/ubuntu/.pgpass\n"

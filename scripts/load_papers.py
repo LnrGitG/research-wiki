@@ -9,10 +9,11 @@
     refs.json      (фаза 3) — список литературы
     storage.json   (фаза 4) — путь, размер, sha256, presigned-ссылка
 
-Доставка в БД: прямой доступ к ВМ YC с зарубежного VDS заблокирован
-гео-фильтром (порт 22 открыт только из РФ), поэтому используется канал
-`agent-vm-exchange`: SQL-файл кладётся в `_cmd/`, туда же — `command.sh`,
-systemd-агент на ВМ его исполняет и пишет `_cmd/output.txt`.
+Доставка в БД: **напрямую через SSH-тоннель** (`db_tunnel.py`, порт 15432),
+это доли секунды. Прежнее утверждение о гео-фильтре, блокирующем SSH, не
+подтвердилось при проверке 19.09 — тоннель работает. Резервный путь через
+S3-канал `agent-vm-exchange` (SQL в `_cmd/`, исполнение systemd-агентом)
+оставлен на случай, если тоннель не поднят.
 
 Идемпотентность: UPSERT по `paper_code`, повторный запуск не создаёт дублей.
 
@@ -28,6 +29,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(REPO)
@@ -217,9 +219,40 @@ def build(args):
 
 
 def upload(path):
+    """Загрузить SQL в БД.
+
+    Основной путь — напрямую через SSH-тоннель (db_tunnel), это доли секунды.
+    Прежний путь через S3-канал (agent-vm-exchange) оставлен как резерв
+    флагом --via-channel: он нужен, если тоннель не поднят.
+    """
     if not os.path.exists(path):
         print("Файл не найден: %s" % path)
         return 1
+    sql = open(path, encoding="utf-8").read()
+    size_mb = os.path.getsize(path) / 1e6
+
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import db_tunnel
+        if not db_tunnel.available(verbose=True):
+            raise RuntimeError("тоннель недоступен")
+        print("Загрузка через тоннель: %s (%.1f МБ)" % (path, size_mb))
+        t0 = time.time()
+        db_tunnel.load_sql_file(path)
+        dt = time.time() - t0
+        # контроль: число карточек и заполненность ключевых полей
+        rows = db_tunnel.query(
+            "SELECT count(*), count(authors), count(venue), count(doi), "
+            "count(findings), count(methods), count(presigned_url) FROM core.paper_card")
+        n, au, ve, doi, fi, me, ps = rows[0]
+        print("  выполнено за %.1f с" % dt)
+        print("  карточек: %d | авторы: %d | venue: %d | DOI: %d | выводы: %d | методы: %d | presigned: %d"
+              % (n, au, ve, doi, fi, me, ps))
+        return 0
+    except Exception as e:
+        print("Прямая загрузка не удалась: %s" % str(e)[:200])
+        print("Перехожу на резервный путь через S3-канал (займёт ~2 мин)...")
+
     for cmd in (["rclone", "copyto", path, CHANNEL + "/_cmd/load_paper_card.sql"],
                 ["rclone", "copyto", "scripts/load_papers_cmd.sh", CHANNEL + "/_cmd/command.sh"]):
         r = subprocess.run(cmd, capture_output=True, text=True, timeout=300)

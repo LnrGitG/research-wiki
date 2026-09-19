@@ -282,3 +282,70 @@ python3 scripts/etl_papers.py --since 2026-09-19
 существующую таблицу, прочитать её назначение по DDL и документации
 архитектуры** — наличие подходящих по имени колонок не означает общего
 смысла.
+
+## Находка 9: семь cron-джобов работают в публичном зеркале вместо главного репозитория
+
+Обнаружено при проверке пина KEP-джоба. **Все семь джобов с LLM-промптом**
+содержат жёсткие пути `/home/lnr/research-wiki` либо `~/research-wiki` — это
+**публичное зеркало**, а не главный репозиторий `research-wiki-private`.
+
+Что именно происходит:
+
+| Джоб | Куда пишет |
+|---|---|
+| Rosstat operational publications download | `raw/rosstat/doklad_2026/`, `data/rosstat_construction.db` |
+| CBR banking sector statistics download | `raw/cbr/`, `data/cbr_lending.db` |
+| Rosstat industrial indices monthly refresh | `~/research-wiki/raw/rosstat/data/` |
+| DOM.RF price index monthly update | `~/research-wiki/data/rosreestr_deals.db` |
+| Wordstat construction weekly refresh | `cd /home/lnr/research-wiki`, git commit |
+| rosstat-monthly-parse | `~/research-wiki/scripts/`, `data/rosstat_construction.db` |
+| research-radar-weekly | `~/research-wiki/hypotheses.yaml`, `queries/`, git |
+
+**Три следствия, по возрастанию серьёзности.**
+
+Первое: **пути к скриптам неверны.** Джоб `rosstat-monthly-parse` ссылается на
+`~/research-wiki/scripts/rosstat_prom_monthly_parse.py` — проверено, в зеркале
+этого файла **нет**, он есть только в приватном. Скрипт при запуске не найдётся.
+
+Второе: **базы данных живут в зеркале, а не в главном репозитории.** Проверено:
+`rosstat_construction.db`, `rosreestr_deals.db`, `cbr_lending.db`,
+`regions_panel.db`, `fns_tochno_sectors.db` лежат в `/home/lnr/research-wiki/data/`
+(суммарно около 560 МБ), тогда как в приватном из шести баз есть только
+`developers_ifrs.db` (64 КБ). При этом ни в одном репозитории нет каталога
+`data/db/`, который описывает `AGENTS.md` как источник баз в бакете.
+
+Третье, и самое важное: **кэш баз данных оказывается в git-репозитории, чей
+`origin` — публичный.** Проверено: `git remote -v` зеркала указывает на
+`github.com/LnrGitG/research-wiki`. Сейчас утечки нет — базы перечислены в
+`.gitignore` (строки 25–30), и `git ls-files` не отслеживает ни одного `.db`.
+Но защита держится только на `.gitignore`: команды джобов вида
+`git add raw/cbr/ && git commit` при изменении правил игнора или добавлении
+базы с новым именем отправят данные в публичный репозиторий. Отдельно:
+`git check-ignore` не срабатывает для путей внутри симлинка `raw/` (симлинк на
+бакет), поэтому проверка игнора там не работает в принципе.
+
+**Радар-отчёты уже публикуются.** `queries/research-radar-2026-09-14.md` есть и
+в зеркале, и в публичном репозитории (20 записок публикуются выборочно, и
+радар попал в список). Отчёт ссылается на `hypotheses.yaml` и
+`queries/literature-gap-map.md` — оба публикуются. По содержанию это обзор
+свежей литературы, чувствительных данных в нём нет, но стоит решить осознанно,
+должен ли недельный радар быть публичным.
+
+**Как исправить** (порядок важен):
+
+1. Дописать в промпты джобов `workdir: /home/lnr/research-wiki-private` либо
+   заменить пути на приватный — сейчас они уходят не туда, куда задумано.
+2. Решить, где живут базы: либо перенести в `data/db/` главного репозитория и
+   синхронизировать через `yc_sync.py` (как описывает `AGENTS.md`), либо
+   оставить в зеркале, но явно зафиксировать это как исключение.
+3. Проверить `.gitignore` **обоих** репозиториев на полноту по базам и на
+   поведение внутри симлинков.
+4. Решить судьбу `research-radar-weekly` в публичном срезе.
+
+## Уточнение по KEP-джобу (находка 8)
+
+`model: null` у «KEP short-term indicators monthly refresh» — **не дефект**.
+Проверено: джоб имеет `no_agent: true` и поле `script: kep_refresh.sh`, то есть
+исполняет скрипт без обращения к модели. Пин ему не нужен, риск молчаливого
+пропуска по дрейфу модели отсутствует. В аудите я записал это как ошибку —
+запись неверна, снимаю.

@@ -1,0 +1,29 @@
+{
+ "glm_checks": 12,
+ "mismatches": [
+  {
+   "id": 398,
+   "code": "y477130016",
+   "diff": {
+    "temporal_type": [
+     "ratio",
+     "average"
+    ]
+   },
+   "name": "Общая площадь жилых помещений, приходящаяся в среднем на одн"
+  },
+  {
+   "id": 1136,
+   "code": "drpotr",
+   "diff": {
+    "accumulation": [
+     "year_to_date",
+     "single_period"
+    ]
+   },
+   "name": "Доходы от реализации по прибыльным организациям (тыс. руб.)"
+  }
+ ],
+ "mismatch_rate": 0.167,
+ "cost": 0.0
+}

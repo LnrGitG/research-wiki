@@ -1,0 +1,74 @@
+{
+ "z-ai/glm-5.3 / name_only": {
+  "tuning_temporal": 0.875,
+  "holdout_temporal": null,
+  "tuning_base": 0.974,
+  "holdout_base": null,
+  "tuning_crit_errors_after_fix": [
+   "kvrse",
+   "01_02_02",
+   "01_02_04",
+   "01_02_10",
+   "01_02_12"
+  ],
+  "holdout_crit_errors_after_fix": [],
+  "invalid_batches_t_h": [
+   0,
+   1
+  ],
+  "cost": 0.0001
+ },
+ "z-ai/glm-5.3 / evidence": {
+  "tuning_temporal": 0.95,
+  "holdout_temporal": 1.0,
+  "tuning_base": 1.0,
+  "holdout_base": 1.0,
+  "tuning_crit_errors_after_fix": [
+   "kvrse"
+  ],
+  "holdout_crit_errors_after_fix": [],
+  "invalid_batches_t_h": [
+   1,
+   0
+  ],
+  "cost": 0.0001
+ },
+ "openai/gpt-6-astra / name_only": {
+  "tuning_temporal": 0.875,
+  "holdout_temporal": 0.85,
+  "tuning_base": 0.974,
+  "holdout_base": 1.0,
+  "tuning_crit_errors_after_fix": [
+   "kvrse",
+   "01_02_02",
+   "01_02_04",
+   "01_02_10",
+   "01_02_12"
+  ],
+  "holdout_crit_errors_after_fix": [
+   "01_02_01",
+   "01_02_09",
+   "01_02_13"
+  ],
+  "invalid_batches_t_h": [
+   0,
+   0
+  ],
+  "cost": 0.1491
+ },
+ "openai/gpt-6-astra / evidence": {
+  "tuning_temporal": 0.975,
+  "holdout_temporal": 1.0,
+  "tuning_base": 1.0,
+  "holdout_base": 1.0,
+  "tuning_crit_errors_after_fix": [
+   "kvrse"
+  ],
+  "holdout_crit_errors_after_fix": [],
+  "invalid_batches_t_h": [
+   0,
+   0
+  ],
+  "cost": 0.1977
+ }
+}

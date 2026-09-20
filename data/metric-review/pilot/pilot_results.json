@@ -1,0 +1,321 @@
+[
+ {
+  "model": "z-ai/glm-5.3",
+  "condition": "name_only",
+  "tuning": {
+   "scores": {
+    "temporal_type": {
+     "accuracy_of_answered": 0.875,
+     "answered": 40,
+     "unknown": 0,
+     "n": 40
+    },
+    "accumulation": {
+     "accuracy_of_answered": 0.938,
+     "answered": 16,
+     "unknown": 24,
+     "n": 40
+    },
+    "comparison_base": {
+     "accuracy_of_answered": 0.974,
+     "answered": 39,
+     "unknown": 1,
+     "n": 40
+    }
+   },
+   "critical_errors": [
+    [
+     "kvrse",
+     "flow",
+     "stock",
+     ""
+    ],
+    [
+     "01_02_02",
+     "flow",
+     "stock",
+     ""
+    ],
+    [
+     "01_02_04",
+     "flow",
+     "stock",
+     ""
+    ],
+    [
+     "01_02_10",
+     "flow",
+     "stock",
+     ""
+    ],
+    [
+     "01_02_12",
+     "flow",
+     "stock",
+     ""
+    ]
+   ],
+   "invalid_batches": 0,
+   "cost": 0.0001,
+   "latency_s": 262.4
+  },
+  "holdout": {
+   "scores": {
+    "temporal_type": {
+     "accuracy_of_answered": null,
+     "answered": 0,
+     "unknown": 0,
+     "n": 0
+    },
+    "accumulation": {
+     "accuracy_of_answered": null,
+     "answered": 0,
+     "unknown": 0,
+     "n": 0
+    },
+    "comparison_base": {
+     "accuracy_of_answered": null,
+     "answered": 0,
+     "unknown": 0,
+     "n": 0
+    }
+   },
+   "critical_errors": [],
+   "invalid_batches": 1,
+   "cost": 0.0,
+   "latency_s": 254.1
+  }
+ },
+ {
+  "model": "z-ai/glm-5.3",
+  "condition": "evidence",
+  "tuning": {
+   "scores": {
+    "temporal_type": {
+     "accuracy_of_answered": 0.95,
+     "answered": 20,
+     "unknown": 0,
+     "n": 20
+    },
+    "accumulation": {
+     "accuracy_of_answered": 1.0,
+     "answered": 4,
+     "unknown": 16,
+     "n": 20
+    },
+    "comparison_base": {
+     "accuracy_of_answered": 1.0,
+     "answered": 20,
+     "unknown": 0,
+     "n": 20
+    }
+   },
+   "critical_errors": [
+    [
+     "kvrse",
+     "flow",
+     "stock",
+     ""
+    ]
+   ],
+   "invalid_batches": 1,
+   "cost": 0.0,
+   "latency_s": 200.6
+  },
+  "holdout": {
+   "scores": {
+    "temporal_type": {
+     "accuracy_of_answered": 1.0,
+     "answered": 20,
+     "unknown": 0,
+     "n": 20
+    },
+    "accumulation": {
+     "accuracy_of_answered": 1.0,
+     "answered": 6,
+     "unknown": 14,
+     "n": 20
+    },
+    "comparison_base": {
+     "accuracy_of_answered": 1.0,
+     "answered": 20,
+     "unknown": 0,
+     "n": 20
+    }
+   },
+   "critical_errors": [],
+   "invalid_batches": 0,
+   "cost": 0.0001,
+   "latency_s": 16.2
+  }
+ },
+ {
+  "model": "openai/gpt-6-astra",
+  "condition": "name_only",
+  "tuning": {
+   "scores": {
+    "temporal_type": {
+     "accuracy_of_answered": 0.875,
+     "answered": 40,
+     "unknown": 0,
+     "n": 40
+    },
+    "accumulation": {
+     "accuracy_of_answered": 0.958,
+     "answered": 24,
+     "unknown": 16,
+     "n": 40
+    },
+    "comparison_base": {
+     "accuracy_of_answered": 0.974,
+     "answered": 38,
+     "unknown": 2,
+     "n": 40
+    }
+   },
+   "critical_errors": [
+    [
+     "kvrse",
+     "flow",
+     "stock",
+     ""
+    ],
+    [
+     "01_02_02",
+     "flow",
+     "stock",
+     ""
+    ],
+    [
+     "01_02_04",
+     "flow",
+     "stock",
+     ""
+    ],
+    [
+     "01_02_10",
+     "flow",
+     "stock",
+     ""
+    ],
+    [
+     "01_02_12",
+     "flow",
+     "stock",
+     ""
+    ]
+   ],
+   "invalid_batches": 0,
+   "cost": 0.0989,
+   "latency_s": 27.2
+  },
+  "holdout": {
+   "scores": {
+    "temporal_type": {
+     "accuracy_of_answered": 0.85,
+     "answered": 20,
+     "unknown": 0,
+     "n": 20
+    },
+    "accumulation": {
+     "accuracy_of_answered": 1.0,
+     "answered": 14,
+     "unknown": 6,
+     "n": 20
+    },
+    "comparison_base": {
+     "accuracy_of_answered": 1.0,
+     "answered": 20,
+     "unknown": 0,
+     "n": 20
+    }
+   },
+   "critical_errors": [
+    [
+     "01_02_01",
+     "flow",
+     "stock",
+     ""
+    ],
+    [
+     "01_02_09",
+     "flow",
+     "stock",
+     ""
+    ],
+    [
+     "01_02_13",
+     "flow",
+     "stock",
+     ""
+    ]
+   ],
+   "invalid_batches": 0,
+   "cost": 0.0502,
+   "latency_s": 13.0
+  }
+ },
+ {
+  "model": "openai/gpt-6-astra",
+  "condition": "evidence",
+  "tuning": {
+   "scores": {
+    "temporal_type": {
+     "accuracy_of_answered": 0.975,
+     "answered": 40,
+     "unknown": 0,
+     "n": 40
+    },
+    "accumulation": {
+     "accuracy_of_answered": 1.0,
+     "answered": 22,
+     "unknown": 18,
+     "n": 40
+    },
+    "comparison_base": {
+     "accuracy_of_answered": 1.0,
+     "answered": 39,
+     "unknown": 1,
+     "n": 40
+    }
+   },
+   "critical_errors": [
+    [
+     "kvrse",
+     "flow",
+     "stock",
+     ""
+    ]
+   ],
+   "invalid_batches": 0,
+   "cost": 0.1323,
+   "latency_s": 18.0
+  },
+  "holdout": {
+   "scores": {
+    "temporal_type": {
+     "accuracy_of_answered": 1.0,
+     "answered": 20,
+     "unknown": 0,
+     "n": 20
+    },
+    "accumulation": {
+     "accuracy_of_answered": 1.0,
+     "answered": 10,
+     "unknown": 10,
+     "n": 20
+    },
+    "comparison_base": {
+     "accuracy_of_answered": 1.0,
+     "answered": 20,
+     "unknown": 0,
+     "n": 20
+    }
+   },
+   "critical_errors": [],
+   "invalid_batches": 0,
+   "cost": 0.0654,
+   "latency_s": 9.2
+  }
+ }
+]

@@ -14,17 +14,18 @@
 
 Запуск: python3 scripts/metric_registry.py [--dry-run]
 Вход:  data/etl/metric-review/metric_catalog.csv (2438 строк, аудит 2026-09-20)
-Выход: data/etl/metric-review/registry.yaml (+ registry_summary.csv)
+Выход: data/metric-review/registry.yaml (+ registry_summary.csv) — версионированные.
 """
 import csv
+import os
 import sys
 from collections import Counter
 
 import yaml
 
-CATALOG = "data/etl/metric-review/metric_catalog.csv"
-OUT_YAML = "data/etl/metric-review/registry.yaml"
-OUT_CSV = "data/etl/metric-review/registry_summary.csv"
+CATALOG = "data/etl/metric-review/metric_catalog.csv"  # аудитный вход, вне git
+OUT_YAML = "data/metric-review/registry.yaml"  # версионированный выход
+OUT_CSV = "data/metric-review/registry_summary.csv"
 DEAD_CUTOFF = "2024-01-01"
 # Порог будущего = конец текущего месяца на дату генерации (2026-09-20):
 # периоды позже 2026-09-30 ещё не могли наблюдаться.
@@ -176,6 +177,7 @@ def main():
         print(f"  {r['code']} [{r['flags']}] {r['name_ru'][:50]}")
 
     if not dry:
+        os.makedirs(os.path.dirname(OUT_YAML), exist_ok=True)
         with open(OUT_YAML, "w", encoding="utf-8") as f:
             yaml.safe_dump(registry, f, allow_unicode=True, sort_keys=False)
         with open(OUT_CSV, "w", newline="", encoding="utf-8") as f:

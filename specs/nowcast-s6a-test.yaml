@@ -1,0 +1,24 @@
+# Тестовая спецификация: ИЖК-объёмы на эскроу и ДДУ (bridge, тест инфраструктуры)
+name: nowcast-s6a-test
+version: 3
+kind: model
+model: bridge
+target:
+  metric_code: vhlvr
+  frequency: m
+  region_id: 1
+features:
+  - metric_code: osse
+    frequency: q
+    lags: [1]
+    transform: level
+  - metric_code: "01_03_04"
+    frequency: q
+    lags: [1]
+    transform: level
+sample:
+  start: "2022-01"
+  end: "2026-06"
+oos:
+  start: "2026-01"
+notes: "Каркас bridge: ИЖК руб. на эскроу-остатки и действующие ДДУ (тест spec_cli)"

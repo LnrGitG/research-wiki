@@ -143,12 +143,14 @@ hypotheses:
     evidence_for:
       - "Пилот: corr +0.75 @lag2 на 13 кв. (queries/ikv-nowcasting-pilot.md, 2026-08)"
       - "OLS-пилот R2=0.75 (эскроу l1 + зарплата l1 + wordstat l1)"
+      - "Перекат на 2026Q2 (2026-09-20): corr +0.60 @lag2 на 11 кв. (2023Q4-2026Q2); OOS 2026Q2 bridge(esc_lag2) 91.5 vs факт 93.4, AR 85.9 — эскроу ближе к факту в точке разворота"
     evidence_against:
       - "Короткая выборка: 55 мес эскроу (2022+), режим нестационарен"
+      - "Перекат на 2026Q2 (2026-09-20): corr 0.60 < порога 0.7; RMSE bridge 10.37 vs AR 9.41 на OOS 25Q4-26Q2 (3 кв.) — одиночный эскроу-регрессор уступает AR на резком сломе тренда 2026Q1"
     sources: [cbr, rosstat-inv]
     tags: [nowcasting, escrow, investment, leading-indicators]
     relates_to: ["queries/vnok-nowcasting-design", "queries/ikv-nowcasting-pilot", "H-003"]
-    next_check: "Перекатить на 2026Q2 ВНОК (публикация сентябрь); скоринг на SA-ряде"
+    next_check: "Скоринг на SA-ряде ИКВ; полный стек (esc+cem+wag+ws) на 2026Q2; H-010 взаимодействие esc_lag2 x epu как путь реабилитации информативности"
     created: 2026-09-08
     methodology_ref: "queries/hfd-preprocessing-methodology"
 

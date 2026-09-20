@@ -229,3 +229,4 @@ GLM на Nous исчерпала кредиты (402 на любом max_tokens,
 ## [2026-09-20] data | этап 5 — семантический слой применён в БД
 
 Создана derived.metric_semantic (1821 строку из 1829; 8 needs_review исключены: 7 ввод-мощностей + y477110132) + вьюха derived.v_metric_semantic (JOIN с core.metric, частота по-русски). Идемпотентная запись (ON CONFLICT, jsonb-чанки по 200). Распределение: glm 1482 / astra_fallback 339; control_status: verified 1482, partial 339 (фолбэк без полного кросс-контроля); temporal_type: flow 926, index 380, stock 256, ratio 172, average 51, price 36. Before-image: data/metric-review/mass/before-image-semantic.json (1829 предложений). Откат: DROP TABLE derived.metric_semantic (таблица отдельная, stat_profile шага-1 не тронут). Шаг-1 разметка в derived.metric_enrichment остаётся как есть.
+- 2026-09-20: H-007 перекат на 2026Q2 (corr +0.60, эскроу ближе к факту в точке разворота; протокол queries/h007-escrow-roll-2026q2.md); ikv_rf_quarter + 2026Q2

@@ -1,5 +1,5 @@
 {
- "glm_checks": 12,
+ "glm_checks": 20,
  "mismatches": [
   {
    "id": 398,
@@ -22,8 +22,100 @@
     ]
    },
    "name": "Доходы от реализации по прибыльным организациям (тыс. руб.)"
+  },
+  {
+   "id": 1419,
+   "code": "vzed",
+   "diff": {
+    "accumulation": [
+     "year_to_date",
+     "single_period"
+    ]
+   },
+   "name": "Введено зданий, единиц (Другие)"
+  },
+  {
+   "id": 1597,
+   "code": "vmpgmikmo",
+   "diff": {
+    "accumulation": [
+     "single_period",
+     "year_to_date"
+    ]
+   },
+   "name": "Ввод мощностей: Производство готовых металлических изделий, "
+  },
+  {
+   "id": 1606,
+   "code": "vmnspmovdg",
+   "diff": {
+    "accumulation": [
+     "single_period",
+     "year_to_date"
+    ]
+   },
+   "name": "Ввод мощностей, новое строительство: Производство машин и об"
+  },
+  {
+   "id": 55892,
+   "code": "kep1_14_s2",
+   "diff": {
+    "accumulation": [
+     "year_to_date",
+     null
+    ],
+    "comparison_base": [
+     "previous_period",
+     "same_period_last_year"
+    ]
+   },
+   "name": "1.14.1. Стоимость и изменение стоимости условного (минимальн"
   }
  ],
- "mismatch_rate": 0.167,
- "cost": 0.0
+ "mismatch_rate": 0.3,
+ "cost": 0.0,
+ "verdicts": [
+  {
+   "id": 398,
+   "code": "y477130016",
+   "field": "temporal_type",
+   "final": "average",
+   "reason": "«приходящаяся в среднем на одного» — среднегодовой показатель; note подтверждает годовое значение; прав GLM"
+  },
+  {
+   "id": 1136,
+   "code": "drpotr",
+   "field": "accumulation",
+   "final": "year_to_date",
+   "reason": "2025: 97.7М→201М→310М→431М монотонный рост внутри года, сброс в 2026-01 — накопительный итог; прав Astra"
+  },
+  {
+   "id": 1419,
+   "code": "vzed",
+   "field": "accumulation",
+   "final": "insufficient_data",
+   "reason": "одна точка (2026-01) — определить невозможно; оставить null"
+  },
+  {
+   "id": 1597,
+   "code": "vmpgmikmo",
+   "field": "accumulation",
+   "final": "year_to_date",
+   "reason": "7.47→17.37 за квартал: рост 2.3×; ввод мощностей за квартал не даёт таких скачков; прав GLM"
+  },
+  {
+   "id": 1606,
+   "code": "vmnspmovdg",
+   "field": "accumulation",
+   "final": "single_period",
+   "reason": "5→5 плоско — не похоже на накопительный; обе сошлись на single_period? нет — GLM ytd; по данным невозможно; прав Astra (константа чаще у single за период с одинаковой мощностью)"
+  },
+  {
+   "id": 55892,
+   "code": "kep1_14_s2",
+   "field": "accumulation+comparison_base",
+   "final": "year_to_date+same_period_last_year",
+   "reason": "2026 монотонный рост от 102 (ytd), 2025 немонотонный с майским пиком (yoy-профиль); обе модели частично правы"
+  }
+ ]
 }

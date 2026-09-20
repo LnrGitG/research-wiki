@@ -890,3 +890,7 @@ curator их не помечает устаревшими и не архивир
 `hermes curator restore <имя>`.
 
 Резервные копии: `~/backups/config-20260919/config.yaml.bak`.
+
+## [2026-09-20] tech | внедрение плана economist-copilot
+
+Реализован план queries/economist-copilot-agent-profiles.md: общий слой hermes-shared дополнен research/CONTEXT.md, profiles/default.md, profiles/monitor.md, infra/registry.yaml, transfer-map-20260920.md (коммит b57c085, синхронизирован на ВМ по SSH, md5 совпадают; git pull с ВМ отложен — github с ВМ временно недоступен). SOUL.md default (VPS) дополнен разделом координации; SOUL.md monitor (ВМ) заменён на роль исполнителя; навык midas-nowcasting скопирован на ВМ. Бэкапы: /home/lnr/agent-config-backup-20260920 (VPS), /home/ubuntu/agent-config-backup-20260920 (ВМ), git-тег backup-pre-ecopilot-20260920. Тест VPS-ВМ-артефакт через peer заблокирован исчерпанием недельного лимита ollama-cloud (429 на glm-5.3-flash); канал peer и аутентификация подтверждены. Память default почищена по карте переноса (ложное утверждение о бесплатной Astra удалено).

@@ -18,6 +18,9 @@ import sys
 import time
 from datetime import datetime, timezone
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from diag import run_diagnostics, write_diagnostics
+
 import psycopg2
 import psycopg2.extras
 import psycopg2.sql
@@ -158,7 +161,7 @@ def run_variant(spec: dict, conn) -> dict:
             est_is = sm.OLS(y[~oos_mask], sm.add_constant(X[~oos_mask])).fit()
             pred = est_is.predict(sm.add_constant(X[oos_mask]))
             metrics["rmse_oos"] = float(np.sqrt(((y[oos_mask] - pred) ** 2).mean()))
-    return {"status": "ok", "metrics": metrics}
+    return {"status": "ok", "metrics": metrics, "_df": df, "_est": est}
 
 
 def lag_cols_fn(df):
@@ -209,7 +212,16 @@ def main():
     start = datetime.now(timezone.utc)
     result = run_variant(spec, conn)
     run_id = record_run(conn, spec, result, start)
-    print(f"run_id={run_id} status={result['status']} metrics={json.dumps(result.get('metrics', {}), ensure_ascii=False)}")
+    df_d, est_d = result.pop("_df", None), result.pop("_est", None)
+    n_diag = 0
+    if df_d is not None and est_d is not None:
+        try:
+            diag_rows = run_diagnostics(spec, df_d, est_d, "target")
+            write_diagnostics(conn, run_id, diag_rows)
+            n_diag = len(diag_rows)
+        except Exception as e:
+            print(f"diag failed: {e}", file=sys.stderr)
+    print(f"run_id={run_id} status={result['status']} metrics={json.dumps(result.get('metrics', {}), ensure_ascii=False)} diag={n_diag}")
 
 
 if __name__ == "__main__":

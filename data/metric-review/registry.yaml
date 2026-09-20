@@ -37,6 +37,16 @@ known_defects:
     evidence: 'SQL 2026-09-20: значения == kep1_7_y2 (2026-07=100.8, 2026-06=103.5,
       2026-05=95.6), периоды месячные при declared Q'
     action: канонический ряд — kep1_7_y2; см. passports/smr-ikv.yaml
+  ebs:
+    defect: scale_mixture_in_one_series
+    evidence: 'SQL 2026-09-20, РФ: 2022-2024 ~0.31-1.65 млн; 2025-01—2026-01 ~9.4-10.7
+      (другая величина); 2026-02+ ~7.25 млн — три эпохи с разрывами 10^5; см. passports/mortgage-escrow.yaml'
+    action: карантин до перезагрузки раздельными рядами; бенчмарки H-007 строились
+      из SQLite escrow_monthly — не затронуты
+  spsipflrrtmrsrf:
+    defect: duplicate
+    evidence: 'SQL 2026-09-20: значения идентичны sit (2026-01..03: 7.64/9.99/10.04)'
+    action: канонический ряд — sit
 metrics:
 - metric_id: 1
   code: kzsnns
@@ -1531,9 +1541,9 @@ metrics:
   themes: []
 - metric_id: 221
   code: spsipflrrtmrsrf
-  status: preliminary
+  status: quarantine_data_error
   flags:
-  - regional_panel
+  - known_defect
   themes: []
 - metric_id: 222
   code: spsidpflrrtmrsrf
@@ -1632,9 +1642,9 @@ metrics:
   - housing_mortgage
 - metric_id: 237
   code: ebs
-  status: preliminary
+  status: quarantine_data_error
   flags:
-  - regional_panel
+  - known_defect
   themes:
   - housing_mortgage
 - metric_id: 238

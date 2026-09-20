@@ -1,0 +1,148 @@
+# Evidence-паспорта семейства ипотека/эскроу/ДДУ (партия 2 этапа 2)
+# Источники: ЦБ РФ (cbr_vfs, эскроу-таблицы), ДОМ.РФ (01_*), Росреестр (ksdrk);
+# методология ЦБ: https://www.cbr.ru/statistics/pdko/Mortgage/sum_meth_hl/
+# Живая БД research_wiki, SQL 2026-09-20.
+family: mortgage_escrow
+generated: 2026-09-20
+
+metrics:
+
+  nikfi_2:
+    definition: "Выдача ипотечных жилищных кредитов физлицам-резидентам, итого, млн руб., месяц"
+    unit: mln_rub
+    freq_declared: M
+    period: 2019-01 — 2026-07 (8008 obs, 86 регионов, РФ присутствует)
+    accumulation: single_period
+    comparison_base: level
+    methodology: "ЦБ, форма 0409316; «сумма средств, предоставленных в течение отчетного месяца»"
+    db_check: "2026-07: инвалюта 30 + рубли 2278547 = итого 2278577 — раскладка сходится (3 месяца подряд)"
+    status: core_candidate
+    notes: "ключевой ряд выдачи ИЖК; единственный разрез '' (итого)"
+
+  nikfr:
+    definition: "Выдача ИЖК в рублях, млн руб., месяц"
+    unit: mln_rub
+    freq: M
+    duplicates_partial: nikfi_2   # итого = рубли + инвалюта; инвалюта ~0.001%
+    status: core_candidate
+    notes: "хранить как разрез или связь «часть агрегата» с nikfi_2; для работы достаточно итого"
+
+  nikfi:
+    definition: "Выдача ИЖК в инвалюте, млн руб., месяц"
+    unit: mln_rub
+    freq: M
+    db_check: "2026-07 = 30 млн руб. против 2 278 547 в рублях — доля ничтожна"
+    status: archive_low_value
+    notes: "после 2022 практически нулевой объём; держать как разрез nikfi_2, не отдельный ряд"
+
+  y477030019: {definition: "Задолженность по жилищным кредитам в инвалюте, год, регионы", unit: mln_rub, freq: A, period: "2015—2025-01", status: extended_candidate}
+  y477030020: {definition: "Задолженность по жилищным кредитам в рублях, год, регионы", unit: mln_rub, freq: A, period: "2015—2025-01", status: extended_candidate}
+  y477030021: {definition: "Задолженность по ипотечным жилищным кредитам в инвалюте, год", unit: mln_rub, freq: A, status: extended_candidate}
+  y477030022:
+    definition: "Задолженность по ипотечным жилищным кредитам в рублях, год, регионы"
+    unit: mln_rub
+    freq: A
+    period: 2015 — 2025-01 (960 obs, 96 рег, 2 релиза)
+    status: core_candidate
+    notes: "запас (на дату) по методологии ЦБ: «остаток задолженности по состоянию на отчетную дату»; региональный разрез — по месту нахождения заемщика"
+
+  sit:
+    definition: "Средневзвешенная ставка по ИЖК (все цели), %, месяц, регионы"
+    unit: pct
+    freq: M
+    period: 2025-06 — 2026-06 (1118 obs, 86 рег)
+    methodology: "ЦБ: взвешивание по объёму и сроку кредитов за месяц — НЕ темп роста; value_kind=period_average"
+    status: core_candidate
+    notes: "короткий ряд (лимитированная история ставок по целям); для трансмиссии ДКП соединять с длинными историческими ставками"
+
+  sibud: {definition: "Ставка по ИЖК без учёта ДДУ (готовое жильё), %, мес., регионы", unit: pct, freq: M, duplicates_partial: sit, status: extended_candidate, notes: "разрез sit по залогу"}
+  sid: {definition: "Ставка по ИЖК по ДДУ (строящееся жильё), %, мес., регионы", unit: pct, freq: M, status: extended_candidate, notes: "разрез sit по залогу; спред sid−sibud — индикатор рисков ДДУ"}
+  spsipflrrtmrsrf:
+    definition: "Т_26: средневзвешенная ставка по ИЖК (детализация отчёта ЦБ), %"
+    unit: pct
+    freq: M
+    duplicates: sit
+    db_check: "SQL 2026-09-20: значения идентичны sit на 2026-01..03 (7.64/9.99/10.04)"
+    status: quarantine_data_error
+    action: "канонический ряд — sit"
+
+  ebs:
+    definition: "Остатки на счетах эскроу (escrow_balance), млн руб., месяц, 94 региона"
+    unit: unknown → фактически mln_rub
+    freq: M
+    period: 2022-01 — 2026-07 (7135 obs)
+    temporal_type: stock
+    defect: "СМЕШЕНИЕ МАСШТАБОВ В ОДНОМ РЯДУ (SQL 2026-09-20, РФ): 2022-2024 значения ~307320—1655364; 2025-01—2026-01 ~9.4—10.7 (другая величина!); 2026-02+ ~7.25 млн. Три эпохи с разрывами в 10^5 раз."
+    db_check: "регион 2, 2026-07 = 3 961 770 млн руб.; КОНФЛИКТОВ МЕЖДУ РЕЛИЗАМИ НЕТ (0 строк)"
+    release_note: "2 релиза (2 и 7) — перенос-копия SQLite, не ревизия; значения идентичны"
+    status: quarantine_data_error
+    action: "до разбора смешения масштабов использовать escrow_monthly из SQLite (на ней построены бенчмарки H-007) или перезагрузить ebs тремя раздельными рядами; выяснить, что за величина ~10 в 2025—2026-01 (возможно, доля в %)"
+    notes: "ключевой предиктор ИКВ (H-007); бенчмарки bridge RMSE 2.80 считались из SQLite escrow_monthly — результаты НЕ затронуты дефектом observation_v2"
+
+  eawb:
+    definition: "Число счетов эскроу с ненулевым балансом (escrow_accounts_with_balance), месяц"
+    unit: unknown → фактически count
+    freq: M
+    period: 2022-01 — 2026-07 (3965 obs, 94 рег)
+    temporal_type: stock
+    status: extended_candidate
+    notes: "дополняет ebs (интенсивность vs объём); 2 релиза-копии как у ebs"
+
+  osse:
+    definition: "Остатки средств на счетах эскроу, млн руб., месяц, 85 регионов"
+    unit: mln_rub
+    freq: M
+    period: 2022-01 — 2026-07 (3400 obs)
+    status: needs_link
+    notes: "кандидат в дубли ebs с ДРУГИМ покрытием (85 рег против 94) — сверить на пересечении регионов; разные источники выгрузки"
+
+  kvse: {definition: "Количество счетов эскроу (всего), мес., 85 рег", unit: unknown → count, freq: M, status: extended_candidate}
+  kvseo: {definition: "Количество счетов эскроу с остатком, мес., 85 рег, с 2024", unit: unknown → count, freq: M, status: extended_candidate, notes: "пересечение kvse × eawb — связать"}
+  kvrse: {definition: "Количество раскрытых счетов эскроу, мес., 85 рег, с 2024", unit: unknown → count, freq: M, status: extended_candidate, notes: "приток раскрытий — прокси передачи ключей"}
+  ssrse:
+    definition: "Сумма средств с раскрытых счетов эскроу, млн руб., мес., 85 рег"
+    unit: mln_rub
+    freq: M
+    period: 2026-01 — 2026-07 (510 obs)
+    status: core_candidate
+    notes: "release-поток эскроу (для H-003: синхронные раскрытия → старты); ряд только с 2026-01 — короткий, следить за накоплением истории"
+
+  01_03_04:
+    definition: "Количество действующих ДДУ, месяц, регионы (ДОМ.РФ)"
+    unit: units
+    freq: M
+    period: 2021-01 — 2026-08 (6732 obs, 98 рег)
+    temporal_type: stock
+    db_check: "РФ: 2021-01=254061 → 2022-06 пик ~607167 → 2026 снижение; значения корректны"
+    defect: "sub_dimension замусорен номером строки парсинга («строка N | ряд: ddu | лист: 01_03_04») — НЕ разрез; при выборке фильтровать как '' или агрегировать"
+    status: core_candidate
+    notes: "данные валидны, служебный субдим — дефект загрузки ДОМ.РФ-парсера; чинить на этапе применения (перенести в нулевой разрез)"
+
+  01_03_06:
+    definition: "Суммарная цена действующих ДДУ, руб., месяц, регионы (ДОМ.РФ)"
+    unit: mln_rub
+    freq: M
+    period: 2021-01 — 2026-08
+    defect: "тот же замусоренный subdim, что 01_03_04"
+    status: core_candidate
+
+  01_01_05: {definition: "Кол-во строящихся МКД с ДДУ-финансированием, мес., 98 рег", unit: units, freq: M, status: extended_candidate, notes: "subdim замусорен (7920 уникальных = номер строки)"}
+  01_01_06: {definition: "Общая площадь строящихся МКД, кв.м, мес., 98 рег", unit: sqm, freq: M, status: extended_candidate, notes: "subdim замусорен"}
+  01_01_07: {definition: "Жилая площадь строящихся МКД, кв.м, мес., 98 рег", unit: sqm, freq: M, status: extended_candidate, notes: "subdim замусорен"}
+  01_01_08: {definition: "Кол-во квартир в строящихся МКД, мес., 98 рег", unit: units, freq: M, status: extended_candidate, notes: "subdim замусорен"}
+
+  ksdrk:
+    definition: "Количество сделок ДКП, регион, квартал (Росреестр)"
+    unit: unknown → фактически count
+    freq: Q
+    period: 2024 — 2026-04 (854 obs, 84 рег)
+    defect: "sub_dimension содержит region_code (дублирует region_id) — косметический дефект загрузки"
+    status: extended_candidate
+    notes: "короткий ряд (с 2024); региональные сделки ДКП для H-005 (МПЛ × транзакции)"
+
+open_questions:
+  - "osse vs ebs: сверить значения на пересечении 85 регионов — дубль или другой показатель"
+  - "spsipflrrtmrsrf vs sit: сверить значения — вероятен дубль ставки"
+  - "субдим-мусор ДОМ.РФ (01_*): перенести в пустой разрез на этапе применения — дисциплина sub_dimension"
+  - "ksdrk: subdim=region_code удалить при применении (оставить только region_id)"
+  - "ставки sit/sibud/sid только с 2025-06 — поиск более длинной истории (архив ЦБ) для трансмиссии"

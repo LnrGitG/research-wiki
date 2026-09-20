@@ -208,7 +208,7 @@ metric_id,code,status,flags,themes,name_ru,freq,n_obs,period_max,source
 218,oipflrrivrsrf,preliminary,['regional_panel'],[],"Т_19: Объем ИЖК, предоставленных физическим лицам-резидентам в рублях и в иностранной валюте, в разрезе субъектов Российской Федерации",M,1118,2026-07-01,cbr
 219,oidpflrrivrsrf,preliminary,['regional_panel'],['housing_mortgage'],"Т_20: Объем ИЖК по ДДУ, предоставленных физическим лицам-резидентам в рублях и в иностранной валюте, в разрезе субъектов Российской Федерации",M,1118,2026-07-01,cbr
 220,oitipflrrivrsrf,preliminary,['regional_panel'],[],"Т_21: Объем ИЖК на цели ИЖС, предоставленных физическим лицам-резидентам в рублях и в иностранной валюте, в разрезе субъектов Российской Федерации",M,1118,2026-07-01,cbr
-221,spsipflrrtmrsrf,preliminary,['regional_panel'],[],"Т_26: Средневзвешенная процентная ставка по ИЖК, предоставленным физическим лицам-резидентам  в рублях в течение месяца, в разрезе субъектов Российской Федерации",M,1118,2026-07-01,cbr
+221,spsipflrrtmrsrf,quarantine_data_error,['known_defect'],[],"Т_26: Средневзвешенная процентная ставка по ИЖК, предоставленным физическим лицам-резидентам  в рублях в течение месяца, в разрезе субъектов Российской Федерации",M,1118,2026-07-01,cbr
 222,spsidpflrrtmrsrf,preliminary,['regional_panel'],['housing_mortgage'],"Т_27: Средневзвешенная процентная ставка по ИЖК по ДДУ, предоставленным физическим лицам-резидентам  в рублях в течение месяца, в разрезе субъектов Российской Федерации",M,1118,2026-07-01,cbr
 223,spsipflrbuidrtmr,preliminary,['regional_panel'],['housing_mortgage'],"Т_28: Средневзвешенная процентная ставка по ИЖК, предоставленным физическим лицам-резидентам, без учета ИЖК по ДДУ в рублях в течение месяца, в разрезе субъектов Российской Федерации",M,1118,2026-07-01,cbr
 224,spsitipflrrtmrsr,preliminary,['regional_panel'],[],"Т_29: Средневзвешенная процентная ставка по ИЖК на цели ИЖС, предоставленным физическим лицам-резидентам  в рублях в течение месяца, в разрезе субъектов Российской Федерации",M,1112,2026-07-01,cbr
@@ -224,7 +224,7 @@ metric_id,code,status,flags,themes,name_ru,freq,n_obs,period_max,source
 234,dfi,preliminary,['regional_panel'],[],disclosed_funds,M,540,2026-07-01,cbr
 235,eas,preliminary,['regional_panel'],[],escrow_accounts,M,4950,2026-07-01,cbr
 236,eawb,preliminary,['regional_panel'],['housing_mortgage'],escrow_accounts_with_balance,M,3965,2026-07-01,cbr
-237,ebs,preliminary,['regional_panel'],['housing_mortgage'],escrow_balance,M,7135,2026-07-01,cbr
+237,ebs,quarantine_data_error,['known_defect'],['housing_mortgage'],escrow_balance,M,7135,2026-07-01,cbr
 238,zad,preliminary,['regional_panel'],[],Задолженность,M,4493,2026-07-01,cbr
 239,kvdkd,preliminary,['regional_panel'],[],Кол-во действующих кредитных договоров,M,4658,2026-07-01,cbr
 240,kvrse,preliminary,['regional_panel'],['housing_mortgage'],Кол-во раскрытых счетов эскроу,M,1783,2026-07-01,cbr

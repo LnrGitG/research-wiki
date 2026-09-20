@@ -54,6 +54,16 @@ KNOWN_DEFECTS = {
         "evidence": "1 наблюдение 2026-10 при дате генерации 2026-09-20 — вероятен сдвиг годового блока листа 4.6 при парсинге",
         "action": "quarantine до сверки листа с исходником",
     },
+    "orsmr": {
+        "defect": "duplicate_plus_fictitious_freq",
+        "evidence": "SQL 2026-09-20: значения == kep1_72 (2026-07=1790.5, 2026-06=1770.5, 2026-05=1437.6), периоды месячные при declared Q; источник socio_economic_report",
+        "action": "канонический ряд — kep1_72; см. passports/smr-ikv.yaml",
+    },
+    "orssp": {
+        "defect": "duplicate_plus_fictitious_freq",
+        "evidence": "SQL 2026-09-20: значения == kep1_7_y2 (2026-07=100.8, 2026-06=103.5, 2026-05=95.6), периоды месячные при declared Q",
+        "action": "канонический ряд — kep1_7_y2; см. passports/smr-ikv.yaml",
+    },
 }
 
 # Тематические метки единого набора (ключевые слова по name_ru, lowercase).

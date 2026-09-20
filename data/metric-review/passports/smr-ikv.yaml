@@ -1,0 +1,174 @@
+# Evidence-паспорта семейства СМР/ИКВ (партия 1 этапа 2)
+# Источник доказательств: raw/rosstat/kep/ind_07-2026.xlsx (выпуск янв–июль 2026),
+# живая БД research_wiki (SQL 2026-09-20), методологические сноски листов.
+family: smr_ikv
+generated: 2026-09-20
+generator: ручная сверка (этап 2); обновлять при новых релизах КЭП
+
+metrics:
+
+  kep1_72:
+    definition: "Объём работ по виду деятельности «Строительство», млрд руб., уровень, месяц (РФ)"
+    unit: bln_rub
+    freq_declared: M
+    freq_actual: M
+    period: 1999-01 — 2026-07 (331 obs, РФ)
+    accumulation: single_period
+    comparison_base: level
+    source_evidence: "ind_07-2026.xlsx, лист «1.7 », строка 32 (месячные значения)"
+    db_check: "2026-01=777.5, 2026-07=1790.5 — совпадает с ячейками исходника"
+    release: 84 «КЭП, выпуск январь–июль 2026» (единственный релиз, свежий)
+    footnote: "1) РФ без учёта Республики Крым и г. Севастополя"
+    status: core_candidate
+    notes: "ключевой месячный ряд СМР; история с 1999"
+
+  kep1_7_y2:
+    definition: "Объём работ «Строительство», % к соответствующему периоду прошлого года, месяц (РФ)"
+    unit: pct
+    freq_declared: M
+    freq_actual: M
+    period: 1999-01 — 2026-07 (331 obs)
+    accumulation: single_period
+    comparison_base: same_period_last_year
+    source_evidence: "лист «1.7 », блок «в % к соотв. периоду предыдущего года», стр. 62"
+    db_check: "2026-01=84 (ячейка совпадает); 2026-07=100.8"
+    status: core_candidate
+    notes: "2 subdim: пустой и период-метки; целевой ряд для nowcasting"
+
+  kep1_7_m:
+    definition: "СМР, % к предыдущему месяцу, месяц (РФ)"
+    unit: pct
+    comparison_base: previous_period
+    freq_declared: M
+    source_evidence: "лист «1.7 », блок «в % к предыдущему периоду», стр. 92"
+    db_check: "2026-01=26.8 — совпадает"
+    status: extended_candidate
+    notes: "месячная сезонность сильная; для mom-анализа"
+
+  kep1_7_m2:
+    definition: "СМР, % к предыдущему кварталу, квартал (РФ)"
+    unit: pct
+    comparison_base: previous_period
+    freq_declared: Q
+    freq_actual: Q
+    source_evidence: "лист «1.7 », квартальный блок «в % к предыдущему периоду»"
+    status: extended_candidate
+    notes: "СУФФИКС _m ВВОДИТ В ЗАБЛУЖДЕНИЕ: это QoQ, не mom; суффиксы имён — не источник семантики"
+
+  kep1_7:
+    definition: "СМР, млрд руб., год (РФ)"
+    unit: bln_rub
+    freq: A
+    period: 1999 — 2025 (27 obs)
+    source_evidence: "лист «1.7 », колонка «Год», стр. 5"
+    status: extended_candidate
+
+  vsii:
+    definition: "ИФО ВДС строительства, % к соотв. кварталу прошлого года (РФ)"
+    unit: unknown → фактически pct (ИФО)
+    freq_declared: Q
+    period: 2012Q1 — 2026Q1 (57 obs)
+    db_check: "2026Q1=90.275; 2025Q4=100.786; 2025Q3=101.245"
+    status: core_candidate
+    notes: "целевой ряд nowcasting ВНОК-контура; единица в БД не проставлена — поправить на этапе применения; long-run 57 кв."
+
+  vvdsotrs:
+    definition: "ВДС строительства в основных ценах, уровень, млрд руб., квартал (РФ)"
+    unit: unknown → фактически bln_rub
+    freq_declared: Q
+    period: 2011Q1 — 2026Q1 (61 obs)
+    db_check: "2026Q1=1658.28"
+    status: extended_candidate
+
+  iokmrrk:
+    definition: "Инвестиции в основной капитал, млн руб., регион, квартал — НАРАСТАЮЩИЙ ИТОГ с начала года"
+    unit: mln_rub
+    freq_declared: Q
+    accumulation: year_to_date   # ПОДТВЕРЖДЕНО SQL: 2024: 5.94→14.4→24.1→39.9 трлн монотонно; Q4≈год
+    period: 2020Q1 — 2026Q1, 94 региона, РФ (region_id=1) присутствует
+    subdims: "'' (основной, 2350 obs) и 'состав: без автономн' (50 obs) — ПРИ ВЫБОРКЕ ФИЛЬТРОВАТЬ по пустому subdim"
+    status: core_candidate
+    transform_note: "отдельный квартал = diff() с reset каждый январь; НИКОГДА не yoy от нарастающего без пересчёта"
+    notes: "региональная панель ИКВ; footnote листа 1.6: наблюдение за ИОК квартальное только с 2016"
+
+  y477110107:
+    definition: "Инвестиции в основной капитал, год (региональная таблица Росстата)"
+    unit: mln_rub
+    freq: A
+    coverage: 96 регионов, 2001 — 2024 (2304 obs, 3 релиза, 3 subdim)
+    status: core_candidate
+    notes: "годовая длинная история ИКВ для региональных панелей; 50 плейсхолдеров (пропуски лет)"
+
+  kep1_6:
+    definition: "Инвестиции в основной капитал, млрд руб., год (РФ, КЭП)"
+    unit: bln_rub
+    freq: A
+    period: 1999 — 2025 (27 obs)
+    footnotes: "1) ИОК = капитальные вложения; до 2001 с НДС; 2) наблюдение с квартальной периодичностью с 2016"
+    status: extended_candidate
+
+  kep1_82:
+    definition: "Ввод в действие жилых домов, млн кв.м общей площади, месяц (РФ)"
+    unit: mln_sqm
+    freq_declared: M
+    period: 2005-01 — 2026-07 (254 obs)
+    footnote: "1) с августа 2019 включая дома на садовых участках (разрыв ряда)"
+    status: core_candidate
+
+  vztgr:
+    definition: "Ввод жилья, тыс. кв.м, год (регионы)"
+    unit: unknown (фактически тыс.кв.м)
+    freq: A
+    coverage: 91 регион, 2000 — 2025 (2319 obs, 2 релиза, 33 subdim)
+    status: extended_candidate
+    notes: "много subdim — разобрать разрезы (годы/типы) на этапе 2б"
+
+  y477110016:
+    definition: "Ввод в действие жилых домов, кв.м, год (региональная таблица)"
+    unit: sqm
+    freq: A
+    coverage: 96 регионов, 2001 — 2024
+    status: extended_candidate
+    notes: "дубль-кандидат с vztgr (другая единица/источник) — связать на этапе связей"
+
+  tkzk:
+    definition: "Цена 1 кв.м жилья, квартальная, регионы"
+    unit: unknown (count в БД — сомнительно, вероятно руб.)
+    freq: Q
+    coverage: 94 региона, 2016Q1 — 2026Q2 (8815 obs, 49 subdim)
+    status: extended_candidate
+    notes: "49 subdim — категории жилья (первичка/вторичка и т.п.): разрезы существенны, фильтровать осознанно; unit в БД подозрителен"
+
+  ozszv:
+    definition: "Отношение запаса строящегося жилья к вводу, %, квартал, регионы"
+    unit: unknown
+    freq: Q
+    coverage: 94 региона, 2000 — 2025 (2372 obs, 13 subdim)
+    status: extended_candidate
+
+  orsmr:
+    definition: "Объём работ «Строительство», млрд руб. (из socio_economic_report)"
+    freq_declared: Q
+    freq_actual: M          # периоды 2025-01..2026-07 месячные!
+    duplicates: kep1_72     # значения совпадают: 2026-07=1790.5, 2026-06=1770.5, 2026-05=1437.6
+    unit_db: unknown        # фактически bln_rub
+    subdims: 12 period_label + 2 релиза
+    status: quarantine_data_error
+    evidence: "SQL 2026-09-20: orsmr 2026-07=1790.5 == kep1_72; периоды месячные при declared Q"
+    action: "дубль + фиктивная частота; канонический ряд — kep1_72"
+
+  orssp:
+    definition: "Объём работ «Строительство», % к соотв. периоду (из socio_economic_report)"
+    freq_declared: Q
+    freq_actual: M
+    duplicates: kep1_7_y2    # 2026-07=100.8 == kep1_7_y2
+    unit_db: unknown        # фактически pct
+    status: quarantine_data_error
+    action: "канонический ряд — kep1_7_y2"
+    notes: "память («orssp месячный с 2025») объяснилась: это действительно месячные точки, но НЕ с 2025-01 — с 2025-01 по 2026-07, дубль КЭП"
+
+open_questions:
+  - "iokmrrk: проверить накопительность (нарастающий итог с начала года?) — сравнить Q4 с годовым значением"
+  - "tkzk: разобрать 49 subdim и уточнить единицу (count в БД против руб./кв.м по смыслу)"
+  - "vztgr/y477110016: связать как альтернативные источники одной величины"
+  - "vsii/vvdsotrs: проставить единицы на этапе применения (в БД unknown)"

@@ -749,8 +749,8 @@ metric_id,code,status,flags,themes,name_ru,freq,n_obs,period_max,source
 1312,trn,preliminary,['short'],[],tnpayers (РФ),Q,7,2026-01-01,fns
 1313,uer,preliminary,['short'],[],usn_expense (РФ),Q,11,2026-01-01,fns
 1314,uir,preliminary,['short'],[],usn_income (РФ),Q,11,2026-01-01,fns
-1315,orsmr,preliminary,['short'],"['dkp_macro', 'construction']","Объём работ «Строительство», млрд руб.",Q,19,2026-07-01,rosstat
-1316,orssp,preliminary,['short'],"['dkp_macro', 'construction']","Объём работ «Строительство», % к соотв. периоду",Q,19,2026-07-01,rosstat
+1315,orsmr,quarantine_data_error,['known_defect'],"['dkp_macro', 'construction']","Объём работ «Строительство», млрд руб.",Q,19,2026-07-01,rosstat
+1316,orssp,quarantine_data_error,['known_defect'],"['dkp_macro', 'construction']","Объём работ «Строительство», % к соотв. периоду",Q,19,2026-07-01,rosstat
 1317,orspp,preliminary,['short'],"['dkp_macro', 'construction']","Объём работ «Строительство», % к пред. периоду",Q,19,2026-07-01,rosstat
 1318,zdspmr,preliminary,['short'],[],"Заключено договоров строительного подряда, млрд руб.",Q,19,2026-07-01,rosstat
 1319,odpm,preliminary,['short'],[],"Обеспеченность договорами подряда, месяцев",Q,19,2026-07-01,rosstat

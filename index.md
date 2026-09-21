@@ -43,6 +43,7 @@
 - [[petrova-trunin-epu-rf|Разбор Петрова–Трунин 2023 (EPU-РФ)]] — H-009/H-010
 - [[hfd-preprocessing-methodology|Методология обработки HFD в nowcasting]] — частотная синхронизация, MIDAS/MF-VAR/DFM/combination, пайплайн предобработки, ragged-edge, фирменный блок; связи с H-006–H-010
 - [[queries/research-radar-2026-09-14|Research Radar 2026-09-14]] — недельный скан: 4 работы (Graybill–Mangum lock-in/tightness, D'Amico–Soltas–Wang дюрации строительства, Berry Toronto, BIS 1375 зомби-фирмы); X-003 пополнен evidence_for, пробелы №1–3 gap-map подтверждены открытыми
+- [[queries/research-radar-2026-09-21|Research Radar 2026-09-21]] — недельный скан: 7 работ (CBI LTI×регионы → H-005, CAGE housing searches → H-001/H-006, EREI листинг-vs-транзакция → X-002, Greece housing-EPU → H-009/H-010, FRBSF quality×inequality → дизайн H-002, Ahlfeldt–Baum-Snow–Jedwab высотность, IMF WP 2026/177 supply-side); статусы гипотез без изменений, пробелы №1–2 открыты
 - [[queries/ml-zombie-firm-classification|ML-классификация зомби-фирм (arXiv 2306.08165)]] — XGBoost с неслучайными пропусками отчётности как признаками (Италия, 305К фирм); кандидат в робастность H-002 (контроль зомби-статуса) и фильтр слабых фирм для H-008; релевантно панели ФНС (87% УСН, пропуски информативны)
 - [[queries/retrieve-for-train-google]] — разбор Retrieve-for-Train (Google/ICML 2026): RL-компиляция поиска
 

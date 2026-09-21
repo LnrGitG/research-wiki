@@ -92,6 +92,13 @@ datasets:
       реализация в строящихся домах, действующие ДДУ), не потоки; помесячный поток =
       diff в аналитике. Спот-чеки: Белгородская ДДУ авг-2026 = 2138, sales м2 = 356214.36.
       Остаток: stock/flow/permits/readiness (ядро-кандидаты для Г-цикл).
+      Конвейер №7 (pipeline7_domrf_stockflow.py, 21.09.2026, run 49): 14 метрик —
+      domrf_stock_bld_cnt/m2, domrf_stock_flats_cnt (214-ФЗ сток), domrf_flow_bld_cnt/m2/flats_cnt
+      (проектные декларации за период), domrf_permits_stock_cnt/m2/liv_m2 и
+      domrf_permits_flow_cnt/m2/liv_m2 (разрешения: действующие/выданные),
+      domrf_uf_volume_mln_m2 + domrf_readiness_rf (агрегаты РФ). 71 386 obs.
+      Питфоллы: один indicator_code на два data_type (permits stock/flow);
+      названия readiness-рядов лежат в region_name; %% в литералах psycopg.
 
   # ===== МИНФИН =====
   - dataset_code: minfin-budget-q

@@ -51,18 +51,18 @@ datasets:
       - 02_44_Share_mortgage_ihc
       - 02_45_Rates_mortgage_ihc
     notes: 02_16/17/18 исключены владельцем 21.09. Валютные срезы после 2022 (91% нулей) отбрасываются правилом карточки.
-  source_links:
-    file_ref: 'ВМ ~/Lab/tree/CBR_ИпотекаРФ.txt'
-    rf_series:
-      02_01_Housing: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_01_Housing.xlsx
-      02_02_Mortgage: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_02_Mortgage.xlsx
-      02_41_Mortgage_ihc: https://www.cbr.ru/vfs/statistics/banksector/mortgage/02_41_Mortgage_ihc.xlsx
-      02_46_Mortgage_SA: https://www.cbr.ru/vfs/statistics/banksector/mortgage/02_46_Mortgage_SA.xlsx
-    regional_series:
-      02_06_Quantity_housing: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_06_Quantity_housing.xlsx
-      02_07_New_loans_housing: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_07_New_loans_housing.xlsx
-      02_42_Quantity_mortgage_ihc: https://www.cbr.ru/vfs/statistics/banksector/mortgage/02_42_Quantity_mortgage_ihc.xlsx
-      02_43_New_loans_mortgage_ihc: https://www.cbr.ru/vfs/statistics/banksector/mortgage/02_43_New_loans_mortgage_ihc.xlsx
+    source_links:
+      file_ref: 'ВМ ~/Lab/tree/CBR_ИпотекаРФ.txt'
+      rf_series:
+        02_01_Housing: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_01_Housing.xlsx
+        02_02_Mortgage: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_02_Mortgage.xlsx
+        02_41_Mortgage_ihc: https://www.cbr.ru/vfs/statistics/banksector/mortgage/02_41_Mortgage_ihc.xlsx
+        02_46_Mortgage_SA: https://www.cbr.ru/vfs/statistics/banksector/mortgage/02_46_Mortgage_SA.xlsx
+      regional_series:
+        02_06_Quantity_housing: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_06_Quantity_housing.xlsx
+        02_07_New_loans_housing: https://www.cbr.ru/vfs/statistics/BankSector/Mortgage/02_07_New_loans_housing.xlsx
+        02_42_Quantity_mortgage_ihc: https://www.cbr.ru/vfs/statistics/banksector/mortgage/02_42_Quantity_mortgage_ihc.xlsx
+        02_43_New_loans_mortgage_ihc: https://www.cbr.ru/vfs/statistics/banksector/mortgage/02_43_New_loans_mortgage_ihc.xlsx
 
 
   # ===== ДОМ.РФ =====

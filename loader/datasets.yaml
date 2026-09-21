@@ -81,8 +81,17 @@ datasets:
     release_url: https://наш.дом.рф/аналитика/статистические_ряды
     schedule: monthly
     file_glob: 'raw/domrf/**'
-    status: selective
-    notes: Ядро 8 data_type (stock/flow/sales/ddu/permits/readiness); нежилые/паркинги/КРТ-прогнозы не загружать.
+    status: active
+    notes: >
+      Ядро 8 data_type (stock/flow/sales/ddu/permits/readiness); нежилые/паркинги/КРТ-прогнозы не загружать.
+      Конвейер №6 (pipeline6_domrf_statseries.py, 21.09.2026, run 45): региональные
+      sales+ddu из staging.rosstat_construction__domrf_indicators → 8 метрик
+      (domrf_sales_m2_level, domrf_sales_pct_level, domrf_ddu_active_cnt/m2/rub,
+      domrf_ddu_escrow_cnt/m2/rub), 42 294 obs, 2020-01…2026-08 (DDU с 2021-01),
+      ~99 регионов + РФ (region_id 1). Показатели — уровни «на дату» (накопленная
+      реализация в строящихся домах, действующие ДДУ), не потоки; помесячный поток =
+      diff в аналитике. Спот-чеки: Белгородская ДДУ авг-2026 = 2138, sales м2 = 356214.36.
+      Остаток: stock/flow/permits/readiness (ядро-кандидаты для Г-цикл).
 
   # ===== МИНФИН =====
   - dataset_code: minfin-budget-q

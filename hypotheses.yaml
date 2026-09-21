@@ -251,3 +251,15 @@ hypotheses:
     tags: [search-leads, credit, nowcasting, spatial]
     relates_to: ["queries/spatial-search-demand-semantics"]
     created: 2026-09-21
+  - id: H-015
+    kind: hypothesis
+    title: "Инвестиции 2026 — «отскок, а не новый цикл»; порог оживления при ставке ~12% не раньше конца 2027 (прогноз Исакова)"
+    status: active
+    statement: "Рост ИКВ II кв 2026 (+1,3% кв/кв; yoy-спад замедлился с −14,3% до −6,6%) — статистический отскок от провального I кв, а не разворот цикла: III кв 2026 −1,8% yoy, а устойчивое оживление наступает не раньше конца 2027 г., когда ключевая ставка снизится до ~12%."
+    evidence:
+      - "Прогноз Исакова (Сбер/ВЭБ.РФ), сентябрь 2026 — телеграм-канал Сбера (MF-001 в data/market-forecasts.yaml)"
+    next_check: "Квартальные данные Росстата по капвложениям: (Г1) III кв 2026 yoy в [−3%, −0,5%]; (Г2) ни один квартал до IV кв 2027 не выше +2% yoy; (Г3) устойчивые +5% yoy в квартал снижения средней ставки до ~12%. Проверять по мере выхода Росреестра/КЭП; verdict в MF-001"
+    sources: [sber-research]
+    tags: [investment, ikv, forecast-benchmark, monetary-policy, nowcasting]
+    relates_to: ["data/market-forecasts.yaml#MF-001", "queries/prognozy-uchastnikov-rynka-plan", "queries/mirovoi-obzor-investitsii-vypusk-modeli"]
+    created: 2026-09-21

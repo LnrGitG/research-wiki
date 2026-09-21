@@ -212,3 +212,42 @@ hypotheses:
     tags: [demography, housing-stock, replacement-demand]
     relates_to: ["papers/kawasoe-2026-housing-requirements-hazard-resilience-2100", "reviews/kawasoe-2026-housing-requirements-hazard-resilience-2100", "reviews/predlozhenie-i-regulirovanie-zhilya"]
     created: 2026-09-19
+  - id: H-012
+    kind: hypothesis
+    title: "Индекс насыщения (поиск/предложение) ведёт цены сделок на 2-4 месяца"
+    status: proposed
+    statement: "Отношение регионального поискового спроса на покупку жилья к количеству объявлений (spatial-спрос / sber_offers_cnt) опережает медианную цену сделки (sber_deal_px_median) того же региона на 2-4 месяца."
+    evidence:
+      - "Федеральный поисковый композит валидирован: r=0.644 lead-1m с СМР (n=18)"
+      - "Обе стороны теперь в v2 по region_id: sber_offers_cnt_* (84 рег, 2022+), sber_deal_px_median_* (85 рег, 2017+)"
+    next_check: "Собрать spatial-панель Wordstat L1 (8 фраз, 94 субъекта); построить индекс насыщения по регионам; тест lead-корреляций 2-4 мес с FE."
+    sources: [yandex, sberindex]
+    tags: [search-leads, prices, spatial]
+    relates_to: ["queries/spatial-search-demand-semantics"]
+    created: 2026-09-21
+  - id: H-013
+    kind: hypothesis
+    title: "Скорость движения готовности по когортам разрешений предсказывает ввод за 2-3 квартала"
+    status: proposed
+    statement: "Динамика строительной готовности (readiness) по когортам объектов с разрешения на строительство опережает ввод жилья по регионам на 2-3 квартала; вычислимая длительность цикла permits→ввод (фед. ≈18-30 мес) — модулятор опережения."
+    evidence:
+      - "Прямого показателя длительности цикла в открытых источниках нет; когортная величина восстанавливается из permits (ДОМ.РФ) → ввод (ЕМИСС 34118) по регионам"
+      - "Готовность readiness есть в domrf_indicators v1 (data_type readiness)"
+    next_check: "Построить когортные кривые готовности по регионам; тест: отклонение скорости готовности от когортного тренда → ввод t+2..3 кв."
+    sources: [domrf, rosstat]
+    tags: [supply, construction-cycle, nowcasting, spatial]
+    relates_to: ["queries/spatial-search-demand-semantics", "H-007"]
+    created: 2026-09-21
+  - id: H-014
+    kind: hypothesis
+    title: "Поиск опережает выдачи ИЖК на 0-1 мес; цепочка поиск→сделки→ввод тестируется ступенями"
+    status: proposed
+    statement: "Региональный композит жилищных поисковых фраз (L1: 8 фраз, 94 субъекта) опережает количество выданных ИЖК того же региона на 0-1 месяц; ввод сопоставляется только через ступень сделок (поиск t → сделки t+1 → ввод t+24-30), не напрямую."
+    evidence:
+      - "Прямая связь поиска с вводом отвергнута владельцем: ввод — результат спроса 1,5-3-летней давности (r поиска с ИКВ ≈0.17 против 0.644 с СМР)"
+      - "Лучший сопоставитель факта спроса — cbr_izhk_count_m (Т_16, 90 рег, 2019+)"
+    next_check: "Сбор spatial-панели (13 фраз, 3 уровня, count+share); тест Г-поиск: corr(comp, izhk) по регионам ≥ федерального бенчмарка на 5-6 крупных регионах; Г-рефинансирование: частичная корреляция рефинансирования с СМР ≈0 при контроле ипотеки."
+    sources: [yandex, cbr]
+    tags: [search-leads, credit, nowcasting, spatial]
+    relates_to: ["queries/spatial-search-demand-semantics"]
+    created: 2026-09-21

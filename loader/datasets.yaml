@@ -1,0 +1,106 @@
+# Реестр датасетов v2 — карточки источников
+# Каждый датасет = один продукт источника. Парсер пишется под карточку,
+# не под справочники БД. Добавление источника = карточка + парсер.
+
+datasets:
+  # ===== РОССТАТ =====
+  - dataset_code: rosstat-kep-1
+    source: rosstat
+    name_ru: Краткосрочные экономические показатели (раздел 1, промышленность)
+    release_url: https://rosstat.gov.ru/statistics/kratkosrochnye-pokazateli
+    schedule: monthly, 5-7 числа
+    file_glob: 'raw/rosstat/kep/**'
+    status: active
+    notes: ИПП, ИФО секций B-E. Пишет в prom_products_monthly (v1) - переносится в v2.
+
+  - dataset_code: rosstat-doklad
+    source: rosstat
+    name_ru: Доклад «Социально-экономическое положение России» (Приложения)
+    release_url: https://rosstat.gov.ru/storage/mediabank/DOKLAD_2026.htm
+    schedule: monthly, ~2 число
+    file_glob: 'raw/rosstat/doklad_2026/**'
+    status: active
+    notes: Парсинг .doc catdoc. Ввод/СМР/инвестиции по регионам.
+
+  - dataset_code: rosstat-emiss-34118
+    source: rosstat
+    name_ru: ЕМИСС 34118 - ввод жилья по субъектам (мес)
+    release_url: 'https://rosstat.gov.ru/folder/11109 (dataGrid.do id=34118)'
+    schedule: monthly, регламент <=14 числа
+    status: active
+    notes: 'РФ-агрегат = сумма субъектов (ФО исключать). Метрики 57984/57985 в core.'
+
+  # ===== ЦБ =====
+  - dataset_code: cbr-vfs-0420218
+    source: cbr
+    name_ru: Форма 0420218 «Сведения об ипотечном жилищном кредитовании» (VFS)
+    release_url: https://cbr.ru/vfs/
+    schedule: monthly, ~12 число
+    file_glob: 'raw/cbr/vfs/*.xlsx'
+    status: active
+    allowlist_sheets:
+      - 02_04_New_loans_ind
+      - 02_05_Debt_ind
+      - 02_06_Quantity_housing
+      - 02_07_New_loans_housing
+      - 02_08_Rates_housing
+      - 02_09_Debt_housing
+      - 02_15_Quantity_scpa_mortgage
+      - 02_42_Quantity_mortgage_ihc
+      - 02_43_New_loans_mortgage_ihc
+      - 02_44_Share_mortgage_ihc
+      - 02_45_Rates_mortgage_ihc
+    notes: 02_16/17/18 исключены владельцем 21.09. Валютные срезы после 2022 (91% нулей) отбрасываются правилом карточки.
+
+  # ===== ДОМ.РФ =====
+  - dataset_code: domrf-price-index
+    source: domrf
+    name_ru: Индекс цен на жилье (первичка), база 100
+    release_url: https://наш.дом.рф/аналитика/статистические_ряды
+    schedule: monthly
+    file_glob: 'raw/domrf/price_index/*'
+    status: active
+    notes: 'CSV 5025 строк, 75 регионов. itzdr (index), itzdrpm (pct м/м), csdr (сделки).'
+
+  - dataset_code: domrf-statseries
+    source: domrf
+    name_ru: Статистические ряды ДОМ.РФ (ввод, ДДУ, продажи, разрешения, готовность)
+    release_url: https://наш.дом.рф/аналитика/статистические_ряды
+    schedule: monthly
+    file_glob: 'raw/domrf/**'
+    status: selective
+    notes: Ядро 8 data_type (stock/flow/sales/ddu/permits/readiness); нежилые/паркинги/КРТ-прогнозы не загружать.
+
+  # ===== МИНФИН =====
+  - dataset_code: minfin-budget-q
+    source: minfin
+    name_ru: Кассовое исполнение федбюджета по разделам (кв)
+    file_glob: 'raw/minfin/**'
+    status: active
+    notes: Раздел 04 (нацэкономика), субсидии СП. Касса 2022+ не собрана.
+
+  # ===== ФНС =====
+  - dataset_code: fnso-quarterly
+    source: fnso
+    name_ru: ФНС открытые данные, квартальные (1-НОМ, прибыльные орг., НДФЛ)
+    release_url: https://pb.nalog.ru/
+    schedule: quarterly, +4 мес
+    file_glob: 'raw/fns/**'
+    status: active
+    notes: Фильтр filed=1 AND line_2110>0 (~25К фирм).
+
+  # ===== ЯНДЕКС =====
+  - dataset_code: yandex-wordstat
+    source: yandex
+    name_ru: Wordstat, 20 фраз СМР x 5 групп
+    schedule: weekly
+    status: active
+    notes: Композит S2-S5. Клиент scripts/wordstat_api.py.
+
+  - dataset_code: rosstat-kep-operational
+    source: rosstat
+    name_ru: КЭП + Информация для мониторинга (оперативные доклады)
+    release_url: https://rosstat.gov.ru/folder/11109
+    schedule: weekly/monthly
+    status: active
+    notes: Питал observations 50К в v1 sqlite. Перенос ядро-только.

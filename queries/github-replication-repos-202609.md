@@ -83,3 +83,19 @@ hedonic).
 - Сессия-источник: @session:default/bg_221318_651d31 (2026-09-20).
 - Правила для авторов журнала: https://rjmf.econs.online/information/
 - О журнале (лицензия CC BY, RePEc): https://rjmf.econs.online/about/
+## Перенос в песочницу JupyterLab (ВМ research-db, 2026-09-21)
+
+Репозитории склонированы на ВМ в `~/sandbox_repos/` (Economica 161 МБ,
+massResearch_houses 719 МБ, uncertainty_index 202 МБ, Sberbank 8 МБ,
+seasonal_bankofrussia 0.4 МБ). В `~/sandbox_datasets/` перенесены данные:
+
+- `ulyankin_data_macro_v2.csv` — РФ-макро 1992– (tab-separated; CPI, WAG, IP, ипотека).
+- `massresearch_cian_v1.csv` — CIAN 62 МБ, русские колонки (tab-separated).
+- `cbr_cpi.xlsx` + `x13.py` — SA по методике ЦБ.
+- `notebooks/`: `ulyankin_uncertainty_models.ipynb` (82 ячейки), `sberbank_hedonic.ipynb`
+  (242 ячейки), `massresearch_hedonic.ipynb` + 4 реф-ноутбука `ref_*.ipynb` с картой
+  связи на наши данные (Wordstat S2–S5, SAR-разметка, hedonic-валидация).
+
+Economica (Исаков) — MATLAB/AMPL, в песочницу не переносился (не Python-стек);
+GDPQQSWDA отмечен как референс календарной корректировки для nowcasting СМР.
+Тег векторного слоя: `replication-russia`.

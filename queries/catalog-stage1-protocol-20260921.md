@@ -51,6 +51,18 @@ Crosswalk: 72 пары помечены subordinate_quarantined, остальн�
 Наблюдения не тронуты (n_obs=2 283 609). Правило на будущее: в каждой
 паре подчинённый — ряд с более длинным именем (уточнение агрегата).
 
+## Этап 2 — эталонная схема (выполнена 21.09, run_id catalog-stage2-20260921)
+DDL proposal-слоя применён в derived (core не тронут):
+- derived.catalog_facets (2440 строк): measure (level 2143 / growth_rate
+  234 / index 63), freshness (fresh 1261 / stale 601 / lagging 578),
+  depth_obs, is_aggregate (158 агрегатов);
+- derived.catalog_relations: 169 связей is_part_of из карантина
+  (confidence='owner');
+- derived.v_catalog_active: витрина чистого каталога = 2271 метрика
+  (2440 − 169 карантинных).
+Проверка выборки «по явлению»: ИПЦ канон kep1_14 с provenance [55889,
+56514] виден одним запросом ✓. Пример «свежие квартальные агрегаты» ✓.
+
 ## Следующий шаг
 Этап 2: эталонная схема (фацеты freshness/measure/unit_canonical, связи,
 DDL proposal-слоя) — на утверждение владельца.

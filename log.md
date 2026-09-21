@@ -238,3 +238,4 @@ GLM на Nous исчерпала кредиты (402 на любом max_tokens,
 
 ## 2026-09-21
 - queries/github-replication-repos-202609.md: итоги поиска GitHub-репозиториев с репликационным кодом (журнал «Деньги и Кредит» пакетов не публикует; найдены uncertainty_index, seasonal_bankofrussia, REBORN/Economica, massResearch_houses, Sberbank housing benchmark); 2 гипотезы.
+- 2026-09-21: недельный прогон rosstat monthly: Prom_08_2026 ещё не опубликован (404, выйдет ~26.09) — физобъёмы августа переносим; обновлён sezon_2023_07-2026.xlsx → rosstat_ind_prod_saar: исправлена июльская запись IPP (переставлены mom_saar/base_fact: 102.9↔100.1), восстановлены SAAR-колонки секций B–E за июль; СС-обработка июль 99.8 м/м. Новый скрипт scripts/rosstat_sezon_parse.py (идемпотентный upsert). Приложение в queries/ikv-nowcasting-pilot.md.

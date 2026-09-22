@@ -274,7 +274,7 @@ hypotheses:
       - "ВНИИ труда «Мониторинг рынка труда»: 4,8 млн объявлений (июнь–август 2026), 78 регионов, медианные зарплаты с 2018"
       - "stats.hh.ru: медианы по 78+ регионам × 27 профобластей, помесячно с 2024"
     next_check: "Скрейпинг stats.hh.ru (регионы × месяцы); сопоставление с cbr_izhk_count_m по регионам (corr, lead-lag); триангуляция вакансии vs RFSD-выручка vs Росстат"
-    sources: [hh-api, vcot, rosstat, rfsd]
-    tags: [labor-market, regional-inequality, wages, leading-indicators, mortgage-demand]
+    sources: [hh-api, vcot, rosstat, rfsd, fns-ndfl]
+    tags: [labor-market, regional-inequality, wages, leading-indicators, mortgage-demand, ndfl]
     relates_to: ["H-005", "H-014", "X-002", "labor-market-task-brief-1"]
     created: 2026-09-22

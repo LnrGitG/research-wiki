@@ -918,3 +918,11 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 ## [2026-09-23] tech | инжест мониторинга ЦБ и ПБ в БД v2 (релиз 91)
 
 Скрипт scripts/cbr_api_v2_monitoring.py (на ВМ ~/sandbox_datasets, идемпотентен): мониторинг ЦБ pub25/28/29/30 из SQLite (305 268 строк; 22 сектора × RAW/SA × размерные группы; период=date−2) + платёжный баланс pub8-12 из API (4 644 строки, квартал из dt, сдвиг 0) = 307 332 строки, 739 метрик, release 91. Коды cbrmon_<slug>_q<N>[_<group>], RAW/SA и группа в sub_dimension; ПБ pb_ds<N>. КТ из БД: ИБК строительство SA 2026-08 −3,1102; ИБК экономика всего SA −2,2607; ПБ ТО 2026Q1 12 654,4 mln_usd — все OK. Исправления по ходу: путь SQLite на ВМ, params у INSERT release (psycopg2 % без params = SyntaxError), транслит maketrans (33 буквы), идемпотентность релиза. Отчёт queries/cbr-v2-monitoring-ingest.md.
+
+## [2026-09-23] tech | схема dkp в БД v2: решения ЦБ по ключевой ставке (профиль macroeconomist)
+
+В PG research_wike создана схема `dkp` (8 таблиц + 4 вьюхи) — хранение решений Банка России по ключевой ставке: meeting (календарь, is_pillar), decision (rate_prev/rate_new, delta_bp generated, action, UNIQUE meeting_id), rate_level (ступени с effective_from/to, связь с решением), argument (атомарные аргументы: block/direction/embedding vector(256) HNSW, classifier_version), statement, minutes, forecast (длинный формат: series_code × horizon_year × low/high/point, run_id), forecast_realized (факт со срезами as_of). Вьюхи: v_decisions, v_forecast_error, v_argument_blocks, v_decision_context. DDL scripts/cbr_decision_ddl.sql (+ микромиграция meeting.notes), дизайн queries/dkp-decision-schema-design.md.
+
+Загружено: 103 решения 2013-11-13..2026-09-11 (2013–2024 в notes помечены needs_source_check; 2025–2026 сверены по ленте cbr.ru/dkp/mp_dec/), решётка key_rate 103 уровня без разрывов (текущий 14,00% с 2026-09-12), прогноз 24.07.2026 — 113 строк, 23 серии × 2025–2029 (run 57, dataset dkp-forecast id 10 в v2.dataset), факт-2025 — 21 серия (as_of 2026-07-24). Пусто: argument, statement, minutes. Скрипты dkp_backfill_*.py идемпотентны. Коммит 7c59751.
+
+Для default: серии dkp.forecast НЕ в v2.metric (отдельный контур решения ДКП); дневная ключевая ставка — производная от dkp.rate_level, слот v2.metric key_rate (id 37) остаётся свободным.

@@ -21,6 +21,8 @@ SOURCE = 'fedstat_emiss'
 
 MONTHS = {'январь':1,'февраль':2,'март':3,'апрель':4,'май':5,'июнь':6,'июль':7,
           'август':8,'сентябрь':9,'октябрь':10,'ноябрь':11,'декабрь':12}
+MONTHS_GEN = {'января':1,'февраля':2,'марта':3,'апреля':4,'мая':5,'июня':6,'июля':7,
+              'августа':8,'сентября':9,'октября':10,'ноября':11,'декабря':12}
 UNIT_MAP = [('миллиард руб','bln_rub'),('миллион руб','mln_rub'),('млн руб','mln_rub'),
             ('тысяча руб','ths_rub'),('процентный пункт','pct_pts'),('процент','pct'),
             ('рубл','rub'),('тысяча человек','ths_persons'),('человек','persons'),
@@ -39,6 +41,12 @@ def parse_period(period, year):
         if m1 == 1 and m2 == 12:
             return 3, f"{year}-01-01", f"{year}-12-31", []
         return 5, f"{year}-{m2:02d}-01", f"{year}-{m2:02d}-28", [f"cumulative_jan_{m2:02d}"]
+    if 'год' in p:  # 'значение показателя за год'
+        return 3, f"{year}-01-01", f"{year}-12-31", []
+    m = re.match(r'^на 1 ([а-я]+)$', p)
+    if m and m.group(1) in MONTHS_GEN:  # запасы на дату (родительный падеж)
+        mth = MONTHS_GEN[m.group(1)]
+        return 5, f"{year}-{mth:02d}-01", f"{year}-{mth:02d}-28", [f"stock_on_{mth:02d}"]
     return None, None, None, []
 
 def unit_id_for(cur, ei):

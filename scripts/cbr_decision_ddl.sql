@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS dkp.meeting (
     is_pillar         boolean NOT NULL DEFAULT false,   -- опорное: со среднесрочным прогнозом
     press_release_url text,
     published_at      timestamptz,
+    notes             text,                    -- источник, needs_source_check и пр.
     created_at        timestamptz NOT NULL DEFAULT now(),
     UNIQUE (meeting_date, decision_kind)
 );

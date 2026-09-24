@@ -109,3 +109,30 @@ H1-2026 14,7 млн) — значимая доля ИКВ-строительст
 - Каталог: data/catalog.yaml (id карточек выше)
 - Срез v0: queries/region-slice-housing-v0.md
 - Перечень ДДКП: queries/ddkp-monitored-variables.md
+
+## Инжест в БД v2 (25.09, релиз rosstat_housing_types_2026-09)
+
+Скрипт: `scripts/ingest_housing_types_batch.py` (батч-версия; первый вариант
+`scripts/ingest_housing_types.py` рабочий, но медленный — построчные вставки через SSH-тоннель).
+
+Загружено 2 941 наблюдение (release_id 95, source_id 11, статус loaded):
+- `rosstat_c1_{b0..bc,bp}_{area,count}` — 12 категорий × 2 ряда × 2 периода
+  (2026-03, 2026-06, накопительно с начала года, РФ): 48 наблюдений;
+- `rosstat_nonres_annual_{area,count}` — годовые нежилые 2000–2024: 10 наблюдений
+  (проверить пропуски по годам при использовании);
+- `rosstat_housing_{total,pop}_m` — по 1 359 наблюдений (регион × месяц,
+  январь 2025 — июль 2026, из 20 листов jil_dom-oper_07-2026.xls), включая РФ и ФО.
+
+Контрольные точки: РФ июль 2026 total = 7 867,766 тыс. кв. м (лист «июль 2026»);
+C-1 жилые накопительно 2026-06 = 52 539,2 тыс. кв. м. Индекс уникальности
+observation_v2: (metric_id, region_id, frequency_id, period_start, source_id,
+release_id, assessment_type, sub_dimension) — повторный прогон безопасен
+(ON CONFLICT DO NOTHING).
+
+Уроки инжеста: (1) core.metric без source_id — FK не существует, source
+фиксируется на уровне наблюдения; (2) metric_type ∈ {primary, derived,
+nowcast_model}; (3) release.status ∈ {registered, parsed, validated, loaded,
+failed, superseded}; (4) release_id NOT NULL в observation_v2; (5) колонки
+листа jil_dom: 0=регион, 3=месяц всего, 7=месяц населением; широкие листы
+<8 колонок пропускаются; (6) батч по 500 строк через тоннель — секунды
+против минут на построчных вставках.

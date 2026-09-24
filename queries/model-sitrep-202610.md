@@ -149,7 +149,7 @@ gamma2=1,5 нужен DEV=(14−RN)/1,5, т.е. MP ≈ 5,7–8,0% (по сетк
 спека порта — queries/cbr-model-layer-spec.md.
 [[2]] Резюме обсуждения ключевой ставки на «неделе тишины» и заседании СД 11.09.2026,
 опубликовано 23.09.2026 — cbr.ru/dkp/mp_dec/decision_key_rate/summary_key_rate_23092026/
-(raw/cbr/summary_key_rate_23092026 — текст; PDF /Content/Document/File/198184).
+(текст — data/cbr_summary_key_rate_23092026.txt; PDF /Content/Document/File/198184).
 [[3]] «Инфляция в России» № 8 (128), август 2026, опубликован 16.09.2026 —
 raw/cbr/CPD_2026-8.pdf (sha256 c2d08f4c…).
 [[4]] «Мониторинг предприятий», сентябрь 2026, опубликован 15.09.2026 — raw/cbr/mp_0926.pdf

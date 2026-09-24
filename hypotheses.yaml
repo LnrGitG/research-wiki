@@ -278,3 +278,45 @@ hypotheses:
     tags: [labor-market, regional-inequality, wages, leading-indicators, mortgage-demand, ndfl]
     relates_to: ["H-005", "H-014", "X-002", "labor-market-task-brief-1"]
     created: 2026-09-22
+
+  - id: H-017
+    kind: hypothesis
+    title: "Нежилые здания (промышленные + коммерческие) опережают общий ИКВ строительства с лагом −1 квартал"
+    status: proposed
+    statement: "Капзатраты организаций проходят через ввод нежилых зданий: промышленные и коммерческие (С-1, vv-zd-oper) должны опережать общий ИКВ строительства на 1–3 месяца. Тренд значимый: нежилые 38,4 млн м² в 2024 (рекорд), H1-2026 14,72 млн м² (+11% к H1-2025) при спаде ИКВ."
+    evidence:
+      - "С-1 vv-zd-oper 2026: нежилые H1 = 14 717,0 тыс. кв. м (8 901 зд.), жилые 52 539,2; rosstat_nonres_buildings годовые 2000–2024"
+      - "Структура 2024: коммерческие 9,5, промышленные 6,6, учебные 6,4, другие 8,8 млн м²"
+    next_check: "Granger-causality нежилые (пром+комм) → ИКВ строительства на 2022–2026; оптимальный лаг на AIC/BIC; верификация на квартальных КЭП-данных"
+    sources: [rosstat, vv-zd-oper]
+    tags: [nowcasting, ikv, nonresidential, construction, granger]
+    relates_to: ["queries/housing-types-rows-inventory", "queries/region-slice-housing-v0"]
+    created: 2026-09-25
+
+  - id: H-018
+    kind: hypothesis
+    title: "Доля ИЖС в вводе жилья — предиктор замедления ИКВ жилищного сегмента на 2–3 мес"
+    status: proposed
+    statement: "Падение доли ИЖС (населением) в вводе жилья сигнализирует об охлаждении частного строительства и предсказывает замедление ИКВ жилищного сегмента на 2–3 месяца; июль 2026: доля населения 74,4% накопительно г/г (снижение), месяц 97,0%."
+    evidence:
+      - "jil_dom-oper 07-2026: cum 31 361,2 (74,4% г/г), июль месяц 4 740,2 (97,0% г/г)"
+      - "Ряд помесячный с января 2025 по 96–98 регионам"
+    next_check: "Регрессия ИКВ жилищного сегмента (КЭП) на долю ИЖС t−2, t−3; контроль — ключевая ставка, ИЖК-выдачи ЦБ; выборка 2025–2026"
+    sources: [rosstat, cbr]
+    tags: [nowcasting, ikv, housing, izhs, leading-indicator]
+    relates_to: ["queries/housing-types-rows-inventory", "H-015"]
+    created: 2026-09-25
+
+  - id: H-019
+    kind: hypothesis
+    title: "ЕМИСС 34118 против jil_dom-oper: стабильный коэффициент ~0,79 отражает разрез номенклатуры (не ошибка)"
+    status: proposed
+    statement: "Отношение ЕМИСС 34118 (июль 2026: 6 192,1) к jil_dom-oper месячный total (7 867,8) = 0,787; если коэффициент стабилен на 12-месячной выборке, это не ошибка инжеста, а устойчивый разрез (МКД-компонента или сглаженная публикация)."
+    evidence:
+      - "ЕМИСС: июнь 6 076,6, июль 6 192,1, август 6 144,9; jil_dom июль 7 867,8 (месяц), накопительно H1 42 764,1"
+      - "С-1 rosstat_buildings_vvod жилые H1 52 539,2 ≠ jil_dom H1 42 764,1 (разница 4 775,1 — состав зданий в C-1 шире)"
+    next_check: "Сопоставить 12+ месяцев: коэффициент стабильности, дисперсия; при нестабильности — ревизия инжеста 34118 по номенклатуре (dim-коды ЕМИСС)"
+    sources: [emiss, rosstat]
+    tags: [methodology, ingest, housing, data-quality]
+    relates_to: ["queries/housing-types-rows-inventory", "queries/region-slice-housing-v0", "queries/emiss-registry-batch1-ingest"]
+    created: 2026-09-25

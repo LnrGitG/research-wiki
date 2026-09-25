@@ -310,3 +310,12 @@ GLM на Nous исчерпала кредиты (402 на любом max_tokens,
 - Инжест видов строительства в PG v2: релиз 95 rosstat_housing_types_2026-09 (source 11), 2 941 наблюдение / 28 метрик: rosstat_c1_{slug}_{area,count} (12 категорий С-1, 2026-03/06, накопительно, РФ), rosstat_nonres_annual_{area,count} (2000-2024), rosstat_housing_{total,pop}_m (по 1 359 регион-месяц из 20 листов jil_dom-oper_07-2026.xls, янв 2025 — июль 2026). КТ: РФ июль 7 867,766; C-1 жилые H1 52 539,2. Скрипты: scripts/ingest_housing_types.py (построчный), scripts/ingest_housing_types_batch.py (батч, ON CONFLICT DO NOTHING). Коммит ee3cb8a, push private.
 - Уроки: metric_type ∈ {primary,derived,nowcast_model}; release.status ∈ {registered,parsed,validated,loaded,failed,superseded}; release_id NOT NULL в observation_v2; уникальный ключ включает source_id/release_id/assessment_type/sub_dimension; батч 500 строк через тоннель — секунды; широкие листы jil_dom <8 колонок пропускать.
 - Следующий шаг запущен: hermes peer run yc run_4d984ff5d54c453eae3f9cdf2f760934 (idempotency regional-emiss-batch1-20260925) — региональные ряды Росстата через ЕМИСС/fedstatAPIr на ВМ (розница, ЗП, безработица, ИПЦ) в БД v2; приёмка: queries/emiss-regional-batch1.md + КТ по РФ/региону.
+
+### 2026-09-25 — Региональный инжест ЕМИСС v2 завершён (релиз 96)
+- Исправленный прогон peer yc (idempotency regional-emiss-batch1-v2-20260925) выполнен полностью, ~55 мин.
+- Шаг 0: маппинг ЕМИСС→core.region через dim ОКАТО (57831), 0% неразрешённых, Автономные округа → современные родители; /home/ubuntu/raw/emiss/region_map.tsv.
+- Шаг 1: snz (metric 1126) разъехался по регионам — UPDATE 14 804 строк, sub_dimension очищен, 316 дублей удалено; КТ: РФ 2026-05=110216.2 неизменна, Башкортостан 83402.5, Московская 131115.0, Москва 183650.6.
+- Шаги 2–4: инжест 4 показателей (release 96, source 25, loaded, 43 867 obs, 85 субъектов): emiss_31260_retail_m (розница мес, свежесть субъектов 2025-01, _rfnn до 2026-07); emiss_57824_wage_m (ЗП до 2026-06); emiss_31074_cpi_prevm_m (ИПЦ % к пред. мес., до 2026-08); emiss_43062_unemp_q (безработица МОТ 15+ кв., до 2026-04). РФ/РФ-без-новых — отдельные метрики _rfnn.
+- ДНР/ЛНР/Запорожская/Херсонская — не публикуются в этих разделах ЕМИСС (4 субъекта не покрыты).
+- КТ проверены из VPS через db_tunnel: РФ snz, Башкортостан snz, ИПЦ Москва 2026-08 = 99.96 — совпали с отчётом.
+- Отчёт queries/emiss-regional-batch1.md, коммит 80502ce. Ограничения: розница субъектная отстаёт (2025-01); безработица 43062 — обе возрастные размерности в одной метрике (ревью); ИПЦ = % к пред. месяцу.

@@ -1,4 +1,29 @@
 
+## 2026-09-25 — Графовый слой (схема graph) + PDF-прогнозы в kb + dkp_context
+
+**Граф:** scripts/graph_ddl.sql → схема graph (node/edge/ingest_log; типы узлов
+cbr_* и metric; рёбра has_decision/follows/has_statement/has_minutes/
+has_forecast/has_argument/with_signal/uses_metric; UNIQUE(src,dst,type);
+индексы src/dst/dst+type). Сборка scripts/kg_build_dkp.py: 371 узел / 370 рёбер
+— 104 заседания, 103 решения, 41 заявление, 22 Резюме, 23 прогнозные серии,
+52 аргумента, 23 метрики; follows 102 (цепочка прецедентов), with_signal 4
+(только v2-заполненные). Idempotent (ON CONFLICT), provenance-JSON у каждой
+грани. Грабли: jsonb-литералы собирать через json.dumps (одинарные кавычки
+внутри '%s'::jsonb рвут SQL).
+
+**PDF-прогнозы:** scripts/kb_load_forecast_pdfs.py — 20 документов ленты
+(11 forecast + 9 forecast_comment) → kb.document (doc_type='cbr_raw',
+meta.genre) + 585 чанков, 100% эмбеддинг-покрытие; pymupdf прямо из URL,
+в raw/ PDF не пишутся. Комментарий comment_20210422.pdf (методологический,
+старый формат) — отдельно, не с ленты.
+
+**Сборщик контекста:** scripts/kg_dkp_context.py — dkp_context(meeting_id)
+возвращает пять компонентов МВФ-рамки одним вызовом (решение, пресс-релиз,
+заявление, Резюме, прогнозные серии + аргументы + графовые связи 1-хоп).
+Проверено: --last (mid 104), --meeting=103 (опорное, 5 серий прогноза),
+RCTE 1-хоп от decision:100 → decision+signal+8 аргументов, цепочка follows
+корректна.
+
 ## 2026-09-25 — Коммуникационный стек ДКП в dkp.statement/minutes (шаги 1–2)
 
 Источник — лента `https://www.cbr.ru/dkp/mp_dec/decision_key_rate/` (88 записей,

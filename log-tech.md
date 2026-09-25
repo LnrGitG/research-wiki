@@ -1,4 +1,20 @@
 
+## 2026-09-25 — Вариант A: шоки ДКП в семантике запросов граф-слоя
+
+scripts/dkp_shock_queries.py (новый): три метода идентификации шоков
+поверх существующих рёбер, без DDL — path_deviation (факт против
+key_rate_avg траектории последнего прогноза; пока 1 наблюдение:
+11.09.2026 hold 14,00 против 14,55 → −55 б.п.), jk_mix (информационная
+vs чистая компонента по block×direction аргументов, доля инфо ≥0,40 →
+informational; 13.09.2024 = 0,46 informational), sentiment_residual
+(OLS delta_bp = −204,2 + 337,8 × hawk_share, R²=0,40, n=21; топ
+остатков: 25.10.2024 +134, 20.12.2024 +134 — пауза-сюрприз — и
+13.09.2024 −107). scripts/kg_dkp_context.py: секция shocks в
+dkp_context(meeting_id) — jk_mix + sentiment_residual на каждое
+решение, path_deviation при наличии предшествующего прогнозного
+раунда; багфикс остатка (delta_bp отдельным запросом вместо счётчика
+факт-аргументов). Коммит 7e75dcc (remote private).
+
 ## 2026-09-25 — Шаг 2 dkp: LLM-разметка аргументов (505 новых) + arg-подграф
 
 scripts/dkp_llm_arguments.py: gpt-oss:120b (ollama-cloud), prompt_v1 —

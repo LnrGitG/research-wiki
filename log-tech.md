@@ -939,3 +939,6 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 - спец-периоды: «значение показателя за год» → freq 3; «на 1 июля» → флаг stock_on_07 (только 2022)
 - релиз emiss_registry_batch1_2026-09 итог: 1 894 271 строка, 24 метрики emiss_*
 - trudvsem API открыт (cron-сбор с текущего месяца); api.hh.ru — нужна регистрация приложения (решение владельца)
+
+[2026-09-24] tech | Полный векторный KB-слой в research_wiki (схема kb)
+Схема kb применена (kb_ddl.sql: kb.document, kb.chunk, kb.ingest_log, вьюха v_document_stats; индексы GIN tsv+trgm, HNSW cosine). Полная индексация kb_loader.py (kb_loader_v1): 694 файла + 653 БД-документа; итог в БД 1377 документов, 32 741 чанк, эмбеддинги 100% (Yandex text-search-doc 256-dim), 0 ошибок, 6 610 с. Дедуп по sha256+url; дублей нет. Корпуса: research-wiki 557 md (845 wiki_paper включая paper_card findings/methods из БД), macroeconomist 18, research-wiki-private queries 149, dkp_text 155 (headline+аргументы), metric_card 127. Коммиты: kb_ddl.sql, kb_loader.py, kb_search.py.

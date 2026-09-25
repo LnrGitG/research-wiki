@@ -320,3 +320,33 @@ hypotheses:
     tags: [methodology, ingest, housing, data-quality]
     relates_to: ["queries/housing-types-rows-inventory", "queries/region-slice-housing-v0", "queries/emiss-registry-batch1-ingest"]
     created: 2026-09-25
+
+  - id: H-020
+    kind: hypothesis
+    title: "Разброс региональных ставок ИЖК — опережающий индикатор фазы цикла жилья"
+    statement: "При ужесточении ДКП межрегиональный разброс ставок ИЖК (std по субъектам) растёт раньше, чем замедляется ввод жилья."
+    test: "std(virtr по 85 субъектам) месяц t vs национальный ввод t+2..t+4; порог corr>0.4"
+    data: "virtr (release ЦБ), rosstat_housing_total_m"
+    status: open
+    priority: 2
+    created: '2026-09-25'
+
+  - id: H-021
+    kind: hypothesis
+    title: "Доля ИЖС модулирует региональную трансмиссию ДКП в жильё"
+    statement: "Регионы с высокой долей ИЖС в вводе жилья показывают меньшую чувствительность ввода к ставкам (ипотека не главный канал финансирования ИЖС)."
+    test: "panel-регрессия: d(log housing_total) ~ rate + rate:IZHS_share, коэффициент взаимодействия < 0"
+    data: "rosstat_housing_{total,pop}_m, virtr"
+    status: open
+    priority: 2
+    created: '2026-09-25'
+
+  - id: H-022
+    kind: hypothesis
+    title: "Кредитование юрлиц по регионам опережает ввод нежилых зданий"
+    statement: "Рост задолженности юрлиц по субъектам опережает ввод нежилых зданий на 2-3 квартала (региональный аналог H-017)."
+    test: "Granger от zyli (регион) к нежилым вводам региона, лаг 2-3 кв"
+    data: "zyli, rosstat_c1_b2_nonresidential_area (нужна регионализация С-1)"
+    status: open
+    priority: 3
+    created: '2026-09-25'

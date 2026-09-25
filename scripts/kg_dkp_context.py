@@ -2,9 +2,23 @@
 """
 kg_dkp_context.py — сборщик полного коммуникационного стека заседания
 dkp_context(meeting_id): решение + пресс-релиз + заявление + Резюме +
-прогнозные серии одним вызовом (МВФ-рамка, нативное обогащение контекста).
+прогнозные серии + шок-аннотации одним вызовом (МВФ-рамка, нативное
+обогащение контекста).
+
+Шок-раздел (вариант A, семантика запросов без DDL):
+- jk_mix: информационная vs чистая компонента по block×direction
+  аргументов (Jarociński–Karadi 2020);
+- sentiment_residual: остаток OLS delta_bp ~ hawk_share
+  (Aruoba–Drechsel 2024), параметры регрессии — по всей выборке;
+- path_deviation: факт против траектории последнего прогноза
+  (Bu et al. 2021) — заполняется, когда есть прогнозный раунд,
+  предшествующий решению.
 
 CLI: --meeting=104 | --date=2026-09-11 | --last
+
+См. также: scripts/dkp_shock_queries.py (полный отчёт трёх методов
+по всем заседаниям; OLS-параметры и остатки), queries/
+dkp-shock-identification-graph-design.md (дизайн варианта A).
 """
 import sys
 import json
@@ -25,6 +39,85 @@ def resolve_meeting(argv):
         r = query("SELECT max(meeting_id) FROM dkp.meeting WHERE meeting_date <= now()")
         return r[0][0]
     return None
+
+
+def _shock_annotations(decision_id):
+    """Шок-аннотации одного решения (вариант A)."""
+    ann = {}
+
+    # jk_mix: распределение аргументов факт/инфо + тональность
+    r = query("""
+        SELECT
+            COUNT(*) FILTER (WHERE a.block IN ('demand','credit','labour','output','inflation_now')),
+            COUNT(*) FILTER (WHERE a.block IN ('risk_infl','inflation_expect','signal','transmission')),
+            COUNT(*) FILTER (WHERE a.direction='hawkish'),
+            COUNT(*) FILTER (WHERE a.direction='dovish'),
+            COUNT(*)
+        FROM dkp.argument a WHERE a.decision_id=%s""" % decision_id)
+    if r and (r[0][4] or 0) > 0:
+        fact, info, hawk, dov, total = r[0]
+        info_share = info / (info + fact) if (info + fact) else 0.0
+        if info_share >= 0.40:
+            jk = "informational"
+        elif hawk >= 2 * dov and dov < total / 4 and total > 0:
+            jk = "pure_tightening_bias"
+        elif dov > hawk:
+            jk = "pure_easing_bias"
+        else:
+            jk = "mixed"
+        ann["jk_mix"] = {
+            "kind": jk, "info_share": round(info_share, 2),
+            "fact": fact, "info": info, "hawkish": hawk, "dovish": dov}
+
+    # sentiment_residual: регрессия по всей выборке, остаток для решения
+    rows = query("""
+        SELECT d.delta_bp,
+            COUNT(*) FILTER (WHERE a.direction='hawkish')::float
+              / NULLIF(COUNT(*), 0) AS hawk_share
+        FROM dkp.argument a JOIN dkp.decision d USING (decision_id)
+        GROUP BY d.decision_id, d.delta_bp
+        HAVING COUNT(*) > 0""")
+    pts = [(float(x[1]), float(x[0] or 0)) for x in rows]
+    n = len(pts)
+    if n >= 3:
+        mx = sum(p[0] for p in pts) / n
+        my = sum(p[1] for p in pts) / n
+        sxx = sum((p[0] - mx) ** 2 for p in pts)
+        sxy = sum((p[0] - mx) * (p[1] - my) for p in pts)
+        beta = sxy / sxx if sxx else 0.0
+        alpha = my - beta * mx
+        rh = query("""SELECT d.delta_bp,
+                      COUNT(*) FILTER (WHERE a.direction='hawkish')::float
+                      / NULLIF(COUNT(*), 0)
+                  FROM dkp.argument a JOIN dkp.decision d USING (decision_id)
+                  WHERE d.decision_id=%s GROUP BY d.delta_bp""" % decision_id)
+        if rh and rh[0][0] is not None and rh[0][1] is not None:
+            bp, hs = float(rh[0][0] or 0), float(rh[0][1])
+            ann["sentiment_residual"] = {
+                "residual_bp": round(bp - (alpha + beta * hs), 1),
+                "ols": {"alpha": round(alpha, 1), "beta": round(beta, 1), "n": n}}
+
+    # path_deviation: решение против траектории последнего прогноза
+    rp = query("""
+        WITH last_fc AS (
+            SELECT f.horizon_year,
+                   COALESCE(f.value_point, (f.value_low + f.value_high)/2) AS rate_mid,
+                   m2.meeting_date AS fc_date,
+                   ROW_NUMBER() OVER (PARTITION BY f.horizon_year
+                                      ORDER BY m2.meeting_date DESC) AS rn
+            FROM dkp.forecast f JOIN dkp.meeting m2 ON m2.meeting_id = f.meeting_id
+            WHERE f.series_code='key_rate_avg' AND f.scenario='base')
+        SELECT ROUND((d.rate_new - fc.rate_mid)*100, 1), fc.horizon_year, fc.fc_date::text
+        FROM dkp.decision d
+        JOIN dkp.meeting m ON m.meeting_id = d.meeting_id
+        JOIN last_fc fc ON fc.horizon_year = EXTRACT(YEAR FROM m.meeting_date) AND fc.rn=1
+        WHERE d.decision_id=%s AND fc.fc_date < m.meeting_date""" % decision_id)
+    if rp:
+        ann["path_deviation"] = {
+            "deviation_bp": float(rp[0][0]) if rp[0][0] is not None else None,
+            "horizon_year": int(rp[0][1]), "forecast_date": rp[0][2]}
+
+    return ann
 
 
 def dkp_context(meeting_id):
@@ -93,6 +186,11 @@ def dkp_context(meeting_id):
         {"argument_id": x[0], "block": x[1], "direction": x[2], "text_short": x[3]}
         for x in r]
 
+    # шок-аннотации (вариант A: семантика запросов)
+    rd = query("SELECT decision_id FROM dkp.decision WHERE meeting_id=%s" % meeting_id)
+    if rd:
+        ctx["shocks"] = _shock_annotations(rd[0][0])
+
     return ctx
 
 
@@ -110,6 +208,8 @@ def main():
     out["chair_statement_len"] = len(ctx["chair_statement"]["body"]) if ctx.get("chair_statement") else 0
     out["minutes_len"] = len(ctx["minutes"]["body"]) if ctx.get("minutes") else 0
     out["n_graph_links"] = len(ctx.get("graph_links", []))
+    if "shocks" in ctx:
+        out["shocks"] = ctx["shocks"]
     print(json.dumps(out, ensure_ascii=False, indent=1))
     # полный контекст доступен как python-объект: dkp_context(mid)
     return 0

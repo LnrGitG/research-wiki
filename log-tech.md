@@ -1,4 +1,30 @@
 
+## 2026-09-25 — Слой неопределённости (вариант B): dkp.uncertainty_item + граф
+
+scripts/dkp_uncertainty_ddl.sql (новый): таблица dkp.uncertainty_item
+(kind risk_balance/open_question/conditionality/calibration, variable,
+direction, horizon, premise/conquence раздельно, status open/updated/
+resolved, resolved_by, embedding vector(256) HNSW, dedup
+(meeting_id, md5(text_raw))). scripts/dkp_uncertainty.py: LLM-конвейер
+(gpt-oss:120b, prompt uncertainty_v1, вход релиз+заявление+Резюме по
+14 тыс. знаков) — **281 item на 21 заседание, 100% эмбеддингов**;
+пилот на mid 104 (топливный кризис) до полного прогона: 19 items,
+развилка «по мере исчерпания эффектов… → снижение устойчивой инфляции
+возобновится» с premise/consequence раздельно. Ошибка по ходу: FK
+violation (statement_id=7 при пересеве тоннеля — connection reset
+порвал частичную вставку; перезапуск идемпотентен по dedup-индексу).
+scripts/kg_uncertainty.py: узлы cbr_uncertainty_item (281) + рёбра
+универсального словаря: has_uncertainty 281 (meeting → item), 
+uses_metric 132 (fuel→oil_price_tax, demand→cons_total,
+credit→claims_total, inflation_now→inflation_dec), wikilinks 149
+(item → concept:<переменная>; 6 concept-узлов budget/labour/fx/
+inflation_expect/external/other). Граф итого 1 164 узла / 1 437 рёбер.
+scripts/dkp_uncertainty_briefing.py: паспорт открытых неопределённостей
+для ОПР (risk_balance + open_questions + conditionality + carried_open
+с возрастом вопросов); bugfix сдвига колонок open_questions.
+kg_dkp_context.py: секция uncertainty в dkp_context(meeting_id) —
+19 items на mid 104 вместе с решением, шок-аннотациями, аргументами.
+
 ## 2026-09-25 — Верификация калибровки правила по Резюме 23.09
 
 scripts/rule_sensitivity.py (новый, коммит 8f78d4b): воспроизводит декомпозицию

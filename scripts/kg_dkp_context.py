@@ -191,6 +191,15 @@ def dkp_context(meeting_id):
     if rd:
         ctx["shocks"] = _shock_annotations(rd[0][0])
 
+    # неопределённости заседания (вариант B: слой uncertainty)
+    ru = query("""SELECT kind, variable, direction, COALESCE(text_short, text_raw)
+                  FROM dkp.uncertainty_item
+                  WHERE meeting_id=%s ORDER BY item_id""" % meeting_id)
+    if ru:
+        ctx["uncertainty"] = [
+            {"kind": x[0], "variable": x[1], "direction": x[2], "text": x[3]}
+            for x in ru]
+
     return ctx
 
 

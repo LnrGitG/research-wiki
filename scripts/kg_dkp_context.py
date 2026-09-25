@@ -36,8 +36,9 @@ def resolve_meeting(argv):
                       % a.split("=")[1])
             return r[0][0] if r else None
     if "--last" in argv:
-        r = query("SELECT max(meeting_id) FROM dkp.meeting WHERE meeting_date <= now()")
-        return r[0][0]
+        r = query("SELECT meeting_id FROM dkp.meeting WHERE meeting_date <= now() "
+                  "ORDER BY meeting_date DESC LIMIT 1")
+        return r[0][0] if r else None
     return None
 
 

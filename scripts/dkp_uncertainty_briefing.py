@@ -75,11 +75,12 @@ def main():
         if a.startswith("--meeting="):
             mid = int(a.split("=")[1])
         elif a.startswith("--as-of="):
-            r = query("SELECT max(meeting_id) FROM dkp.meeting WHERE meeting_date <= '%s'"
-                      % a.split("=", 1)[1])
+            r = query("SELECT meeting_id FROM dkp.meeting WHERE meeting_date <= '%s' "
+                      "ORDER BY meeting_date DESC LIMIT 1" % a.split("=", 1)[1])
             mid = r[0][0] if r else None
     if mid is None and "--last" in argv:
-        r = query("SELECT max(meeting_id) FROM dkp.meeting WHERE meeting_date <= now()")
+        r = query("SELECT meeting_id FROM dkp.meeting WHERE meeting_date <= now() "
+                  "ORDER BY meeting_date DESC LIMIT 1")
         mid = r[0][0] if r else None
     if not mid:
         print("Использование: --meeting=<id> | --as-of=ГГГГ-ММ-ДД | --last")

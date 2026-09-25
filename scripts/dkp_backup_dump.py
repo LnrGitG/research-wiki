@@ -4,7 +4,7 @@ import os
 import subprocess
 import sys
 
-OUT = "/home/lnr/research-wiki-private/backups/dkp_pre_ladder_fix_20260925.sql"
+OUT = "/home/lnr/research-wiki-private/backups/dkp_pre_phase1_20260925b.sql"
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 
 # pg_dump через тоннель (~/.pgpass содержит запись для 15432)

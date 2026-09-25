@@ -13,7 +13,7 @@ sess = requests.Session()
 r = sess.post("https://www.cbr.ru/hd_base/KeyRate/",
               headers=UA, timeout=60, verify=False,
               data={"UniDbQuery.Posted": "True",
-                    "UniDbQuery.From": "01.12.2025",
+                    "UniDbQuery.From": "01.09.2013",
                     "UniDbQuery.To": "25.09.2026"})
 r.raise_for_status()
 html = r.text

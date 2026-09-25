@@ -1,0 +1,24 @@
+                        left_columns: [
+                            57940, 57937
+                        ],
+                        top_columns: [
+                            3, 33560
+                        ],
+                        groups: [
+                            57831
+                        ],
+                        filterObjectIds: [
+                             30611
+                        ]
+                    });
+                    grid.init();
+                } else {
+                    //$('#table_tabs_content .tabsdata').hide();
+                   $('.tabsdata_bad_browser').show();
+                   $('.show768:not(.tabsdata_bad_browser)').hide();
+                }
+				
+				mapValues = [
+        ];
+            });
+    

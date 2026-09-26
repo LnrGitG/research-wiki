@@ -1123,3 +1123,10 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 - Вывод: nous deepseek/deepseek-v4.1-flash дешевле ollama в 8,6 раза по входу и в 6 раз по кэш-чтению; тот же объём на ollama по прайсу = 273,9 usd/мес против 34,5 usd на nous.
 - Предложено: sitrep и macroeconomist — nous deepseek/deepseek-v4.1-flash; monitor ВМ — остаётся ollama-cloud (nous с ВМ 403); делегаты — nous openai/gpt-oss-120b; vision aux — gemini-3.1-flash-lite вместо kimi-k3; бэкфилы — gpt-oss-20b:batch / gpt-oss-120b:batch; deepseek-v4.1-flash:batch не брать (дороже в 3,2 раза).
 - Артефакт: queries/model-config-20260926.md.
+## 2026-09-26 — плейбук делегирования (по рекомендациям Qwen-сессии, проверенным против стенда)
+- Проверено в рекомендациях: 4 предложенных модели отсутствуют в каталоге nous (qwen3-235b-a22b-thinking без суффикса -2507, qwen3-coder-480b, deepseek-v3); ключа fallback_chain нет (цепочка задаётся списком в fallback_model); читаются SOUL.md и AGENTS.md, а не soul.md/agent.md; вспомогательных слотов шесть, а не 11; batch-API (/v1/batches) у nous нет — суффикс :batch = другой тариф, синхронный вызов.
+- Правило каналов: delegate_task — VPS-контур (тоннель 15432, скрипты, корпус); hermes peer yc — ВМ (локальная PG, fedstat, JupyterLab, R); cron + hermes -z -m — массовая механика другим тарифом.
+- Тиры делегатов: D1 openai/gpt-oss-120b (зафиксирован), D2 gpt-oss-20b:batch, D3 qwen/qwen3.7-flash (1M контекст), D4 deepseek-v4-pro вручную. Модель ребёнка задаётся только конфигом (creds.get model), не аргументом вызова.
+- Средний расход одного делегата — ~83 тыс. входных токенов; на 2,0 млн/мес делегаты стоят 0,01-0,06 usd, узкое место — бриф и верификация, не цена.
+- Предложена роль аудиторского делегата (проверка артефакта другого делегата без истории создания).
+- Артефакт: queries/delegation-playbook-20260926.md.

@@ -1165,3 +1165,11 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 - Остаток (фаза 3): 21 заседание вне пятницы (записана дата вступления ступени вместо даты объявления), календарь неполон (2017 — 7 заседаний против 8, 2020 — 7 против 8), заседание id 35 (27.07.2018) без решения
 - Скрипты фазы: scripts/_phase2_cleanup*.py, _phase2_values*.py, _phase2_verify3.py, _phase2_qa.py, _phase2_gaps.py, _st_refs.py
 - Питфолл: db_tunnel.execute со вторым аргументом-пустым кортежем ломается на литеральном знаке процента в SQL (psycopg2 трактует его как плейсхолдер) — вызывать cur.execute(sql) без параметров
+[2026-09-26] tech | Подготовка подключения профилей personal и legal к Telegram (шаг токена — за владельцем)
+- Инвентаризация: у профилей personal и legal нет channel_directory.json и нет юнитов gateway; блок telegram с чатами в config.yaml отсутствует, есть только platforms.telegram.show_reasoning
+- Действующие шлюзы не тронуты: hermes-gateway.service (sitrep, PID 274749) и hermes-gateway-macroeconomist.service (PID 367957)
+- Подготовлено: строки-заполнители TELEGRAM_BOT_TOKEN= (пустое значение, проверено) в .env обоих профилей; справочные черновики пользовательских юнитов в <профиль>/gateway-draft/
+- Ранбук: queries/telegram-profile-connect-runbook.md — порядок работ, точка возврата, разделение шагов владельца и агента
+- Ключевые уточнения против отчёта-гайда db_docs/hermes-agent-setup-guide.md: глобальный флаг профиля идёт ДО подкоманды (hermes --profile X gateway status), установка без --system ставит пользовательский юнит, ExecStart у юнита — gateway run, а не gateway start
+- Домашний канал назначается из чата командой /sethome, править telegram.home_channel руками не нужно
+- Контроль: живые шлюзы не запускались, токены не создавались и не вписывались; три пункта помечены needs_source_check в разделе 9 ранбука

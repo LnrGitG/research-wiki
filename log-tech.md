@@ -1226,3 +1226,10 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 - Замечание по гигиене: токен передан в переписке и попал в историю сессии — после проверки работы бота его следует перевыпустить через @BotFather (/revoke) и вписать новое значение
 - Попутно: MCP-сервер keenable в профиле personal не подключается (Server returned an error response, parked) — нужна отдельная проверка ключа MCP_KEENABLE_API_KEY
 - Обновлён ранбук queries/telegram-profile-connect-runbook.md (раздел 9: состояние исполнения и оставшиеся шаги)
+
+[2026-09-26] tech | Профиль personal: бот заменён на @Lnr_AICopilot_bot
+- Владелец отозвал первый токен (@Statrb_bot, 6505283771) и создал нового бота: @Lnr_AICopilot_bot (8871589140, имя Personal), privacy mode включён
+- Новый токен вписан в ~/.hermes/profiles/personal/.env (права 0600), значение в переписку и логи не выводилось; проверено, что токен уникален и не совпадает с токенами других профилей
+- Перед заменой зафиксирован симптом отозванного токена: getMe возвращает HTTPError, в журнале шлюза telegram.error.InvalidToken и Unauthorized при отключении
+- Шлюз перезапущен (PID 554369), подключение подтверждено: журнал «[Telegram] Connected to Telegram (polling mode)», gateway_state.json — telegram connected без ошибок; одновременно работают три шлюза (default, macroeconomist, personal)
+- Обновлены реестр infra/registry.yaml (bot @Lnr_AICopilot_bot) и ранбук queries/telegram-profile-connect-runbook.md

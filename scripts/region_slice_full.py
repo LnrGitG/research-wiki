@@ -28,10 +28,16 @@ METRICS = {
     'B_wage': 'emiss_57824_wage_m',
     'B_unemp': 'emiss_43062_unemp_q',
     'C_kf': 'zkf',
-    'C_kyl': 'zyli',
-    'C_mdebt': 'vmd',
-    'C_mnew': 'vmnl',
-    'C_irate': 'virtr',
+    'C_kyl': 'zyi',
+    # Жилищный блок: два определения рядом — длинный ряд VFS (сопоставления и исследования)
+    # и свежий ряд ЦБ по ИЖК (актуализация). Коды vmd/vmnl/vmod/virtr отозваны 26.09.2026:
+    # они несли ряды потребительского кредита из-за коллизии меток в parse_cbr_lending.py.
+    'C_hdebt_long': 'vhdt',
+    'C_mdebt_ihk': 'zia',
+    'C_hnew_long': 'vhlvt',
+    'C_mnew_ihk': 'oipflrrivrsrf',
+    'C_hrate_long': 'vhrr',
+    'C_irate_ihk': 'spsipflrrtmrsrf',
     'E_housing': 'rosstat_housing_total_m',
     'E_izhs': 'rosstat_housing_pop_m',
     'F_snz': 'snz',

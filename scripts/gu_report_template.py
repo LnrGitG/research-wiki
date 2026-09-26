@@ -27,11 +27,14 @@ NOMEN = {
     'A_cpi': ('ИПЦ, % к пред. месяцу', 'A', 'мес'),
     'B_wage': ('Номинальная ЗП, руб.', 'B', 'мес'),
     'B_unemp': ('Безработица МОТ 15+, %', 'B', 'кв'),
-    'C_kf': ('Кредиты физлицам, задолженность', 'C', 'мес'),
-    'C_kyl': ('Кредиты юрлиц, задолженность', 'C', 'мес'),
-    'C_mdebt': ('ИЖК задолженность', 'C', 'мес'),
-    'C_mnew': ('Новые ИЖК', 'C', 'мес'),
-    'C_irate': ('Ставка ИЖК, %', 'C', 'мес'),
+    'C_kf': ('Кредиты физлицам (потр. и ипотека), задолженность', 'C', 'мес'),
+    'C_kyl': ('Кредиты юрлицам и ИП, задолженность', 'C', 'мес'),
+    'C_hdebt_long': ('Жилищные кредиты, задолженность (VFS, с 2019)', 'C', 'мес'),
+    'C_mdebt_ihk': ('ИЖК, задолженность (ЦБ, с 07.2025)', 'C', 'мес'),
+    'C_hnew_long': ('Выдачи жилищных кредитов (VFS, с 2019)', 'C', 'мес'),
+    'C_mnew_ihk': ('Объём ИЖК (ЦБ, Т_19)', 'C', 'мес'),
+    'C_hrate_long': ('Ставка по жилищным кредитам (VFS)', 'C', 'мес'),
+    'C_irate_ihk': ('Ставка по ИЖК (ЦБ, Т_26)', 'C', 'мес'),
     'E_housing': ('Ввод жилья, тыс. кв. м', 'E', 'мес'),
     'E_izhs': ('Ввод ИЖС, тыс. кв. м', 'E', 'мес'),
     'F_snz': ('Средняя ЗП, руб.', 'F', 'мес'),
@@ -70,8 +73,10 @@ def fmt(v, nd=1):
 
 KEY_TO_METRIC = {
     'A_cpi': 'emiss_31074_cpi_prevm_m', 'B_wage': 'emiss_57824_wage_m',
-    'B_unemp': 'emiss_43062_unemp_q', 'C_kf': 'zkf', 'C_kyl': 'zyli',
-    'C_mdebt': 'vmd', 'C_mnew': 'vmnl', 'C_irate': 'virtr',
+    'B_unemp': 'emiss_43062_unemp_q', 'C_kf': 'zkf', 'C_kyl': 'zyi',
+    'C_hdebt_long': 'vhdt', 'C_mdebt_ihk': 'zia',
+    'C_hnew_long': 'vhlvt', 'C_mnew_ihk': 'oipflrrivrsrf',
+    'C_hrate_long': 'vhrr', 'C_irate_ihk': 'spsipflrrtmrsrf',
     'E_housing': 'rosstat_housing_total_m', 'E_izhs': 'rosstat_housing_pop_m',
     'F_snz': 'snz'}
 

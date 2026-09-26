@@ -1112,3 +1112,9 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 
 [2026-09-24] tech | Полный векторный KB-слой в research_wiki (схема kb)
 Схема kb применена (kb_ddl.sql: kb.document, kb.chunk, kb.ingest_log, вьюха v_document_stats; индексы GIN tsv+trgm, HNSW cosine). Полная индексация kb_loader.py (kb_loader_v1): 694 файла + 653 БД-документа; итог в БД 1377 документов, 32 741 чанк, эмбеддинги 100% (Yandex text-search-doc 256-dim), 0 ошибок, 6 610 с. Дедуп по sha256+url; дублей нет. Корпуса: research-wiki 557 md (845 wiki_paper включая paper_card findings/methods из БД), macroeconomist 18, research-wiki-private queries 149, dkp_text 155 (headline+аргументы), metric_card 127. Коммиты: kb_ddl.sql, kb_loader.py, kb_search.py.
+## 2026-09-26 — аудит делегирования (логи сессий)
+- Проверено: 25 вызовов delegate_task, 24 субагентские сессии, 21 возврат батчей, 2 схемные ошибки (окно 01.09–26.09).
+- Модели субагентов: deepseek-v4-pro:0813 x12 (01–08.09), glm-5.3-flash x5 (12–20.09), gpt-oss:120b x7 (21–24.09). Пин delegation.model=gpt-oss:120b действует с 21.09 03:03 — после него 7/7 прогонов соответствуют правилу.
+- Соответствие AGENTS.md: верификация артефактов в 20 из 21 батча (исключение deleg_cddbb76c — turn прерван /steer); задач федстат/JupyterLab среди делегатов нет; батч максимум 3.
+- Рекомендации: задекларировать max_spawn_depth: 1; правило «один вызов = массив tasks»; чек повторять ежемесячно.
+- Артефакт: queries/delegation-audit-20260926.md.

@@ -74,7 +74,7 @@ def fmt(v, nd=1):
 KEY_TO_METRIC = {
     'A_cpi': 'emiss_31074_cpi_prevm_m', 'B_wage': 'emiss_57824_wage_m',
     'B_unemp': 'emiss_43062_unemp_q', 'C_kf': 'zkf', 'C_kyl': 'zyi',
-    'C_hdebt_long': 'vhdt', 'C_mdebt_ihk': 'zia',
+    'C_hdebt_long': 'vhdt', 'C_mdebt_ihk': 'vmd',
     'C_hnew_long': 'vhlvt', 'C_mnew_ihk': 'oipflrrivrsrf',
     'C_hrate_long': 'vhrr', 'C_irate_ihk': 'spsipflrrtmrsrf',
     'E_housing': 'rosstat_housing_total_m', 'E_izhs': 'rosstat_housing_pop_m',

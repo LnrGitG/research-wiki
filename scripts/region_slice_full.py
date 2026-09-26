@@ -30,10 +30,11 @@ METRICS = {
     'C_kf': 'zkf',
     'C_kyl': 'zyi',
     # Жилищный блок: два определения рядом — длинный ряд VFS (сопоставления и исследования)
-    # и свежий ряд ЦБ по ИЖК (актуализация). Коды vmd/vmnl/vmod/virtr отозваны 26.09.2026:
-    # они несли ряды потребительского кредита из-за коллизии меток в parse_cbr_lending.py.
+    # и свежий ряд ЦБ по ИЖК в каноническом коде vmd (актуализация; ряд zia — алиас,
+    # перенесён в vmd 26.09.2026). Прежние vmd/vmnl/vmod/virtr несли ряды потребительского
+    # кредита из-за коллизии меток в parse_cbr_lending.py — дефектные строки в карантине.
     'C_hdebt_long': 'vhdt',
-    'C_mdebt_ihk': 'zia',
+    'C_mdebt_ihk': 'vmd',
     'C_hnew_long': 'vhlvt',
     'C_mnew_ihk': 'oipflrrivrsrf',
     'C_hrate_long': 'vhrr',
@@ -50,13 +51,14 @@ def main():
     rows = db_tunnel.query(f"""
         WITH last_periods AS (
             SELECT metric_id, MAX(period_start) AS max_p
-            FROM core.observation_v2 WHERE region_id > 9 GROUP BY metric_id)
+            FROM core.observation_v2 WHERE region_id > 9 AND observation_status <> 'rejected' GROUP BY metric_id)
         SELECT m.metric_code, r.name_ru, o.frequency_id, o.period_start, o.value
         FROM core.observation_v2 o
         JOIN core.metric m ON m.metric_id = o.metric_id
         JOIN core.region r ON r.region_id = o.region_id
         JOIN last_periods lp ON lp.metric_id = m.metric_id
         WHERE o.region_id > 9 AND o.sub_dimension = ''
+          AND o.observation_status <> 'rejected'
           AND m.metric_code = ANY(%(codes)s)
           AND o.period_start >= lp.max_p - interval '{MONTHS_BACK} months'
         ORDER BY m.metric_code, r.name_ru, o.period_start;""",

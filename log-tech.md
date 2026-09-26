@@ -1118,3 +1118,8 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 - Соответствие AGENTS.md: верификация артефактов в 20 из 21 батча (исключение deleg_cddbb76c — turn прерван /steer); задач федстат/JupyterLab среди делегатов нет; батч максимум 3.
 - Рекомендации: задекларировать max_spawn_depth: 1; правило «один вызов = массив tasks»; чек повторять ежемесячно.
 - Артефакт: queries/delegation-audit-20260926.md.
+## 2026-09-26 — цены Nous Portal и оптимальная конфигурация моделей
+- Снят живой каталог nous (417 моделей, поле pricing) + прайс ollama.com; объёмы из логов за 30 дней (sitrep 3061,8M входа/74% кэш; macro 230,8M/91%; monitor 88M/93%; делегаты 2M).
+- Вывод: nous deepseek/deepseek-v4.1-flash дешевле ollama в 8,6 раза по входу и в 6 раз по кэш-чтению; тот же объём на ollama по прайсу = 273,9 usd/мес против 34,5 usd на nous.
+- Предложено: sitrep и macroeconomist — nous deepseek/deepseek-v4.1-flash; monitor ВМ — остаётся ollama-cloud (nous с ВМ 403); делегаты — nous openai/gpt-oss-120b; vision aux — gemini-3.1-flash-lite вместо kimi-k3; бэкфилы — gpt-oss-20b:batch / gpt-oss-120b:batch; deepseek-v4.1-flash:batch не брать (дороже в 3,2 раза).
+- Артефакт: queries/model-config-20260926.md.

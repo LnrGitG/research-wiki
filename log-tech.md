@@ -1191,3 +1191,12 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 - region_slice_full.py: фильтр observation_status <> rejected в основном запросе и в CTE last_periods; C_mdebt_ihk -> vmd. gu_report_template.py: тот же ключ.
 - Контракт: индикатор ЦБ «Задолженность по ИЖК» пишется в vmd; проверка перед срезом — scripts/check_metric_duplicates.py.
 - Срез перегенерирован: 7 652 строки, 14 метрик; vmd 23,0 трлн против vhdt 22,2 трлн на июль 2026 (разные определения).
+
+[2026-09-26] tech | Профиль personal: новая роль и репозиторий
+- Роль профиля переписана: разведчик возможностей и инженер эффективности стека плюс личный контур владельца (был устаревший клон роли исследователя жилищного рынка)
+- Живой SOUL ~/.hermes/profiles/personal/SOUL.md, зеркало ~/personal/SOUL/SOUL.md (diff: идентичны); карточка профиля — ~/personal/profiles/personal.md и ~/shared-context/profiles/personal.md
+- Создан приватный репозиторий github.com/LnrGitG/personal (коммит 5456294): SOUL, карточка, обёртка bin/tgcli-ro, каталоги findings/ и experiments/, .gitignore для секретов и сессий
+- Общий слой обновлён: карточка personal в ~/shared-context/profiles/, регистр infra/registry.yaml (hermes_personal, hermes_legal, personal_repo; снято устаревшее «единственный с Telegram» про default); коммит 085b549, зеркало в ~/macroeconomist/shared-context (ecf394d)
+- Навыки профиля: stack-scout (порядок разведки, оценка находки, питфоллы) и tgcli (чтение личного Telegram); из профиля macroeconomist навык stack-scout удалён — он принадлежит personal
+- Модель профиля приведена к флоту: model.provider nous, model.default deepseek/deepseek-v4.1-flash, context 1048576; NOUS_API_KEY перенесён в .env профиля скриптом без вывода значения; smoke-тест hermes --profile personal -z вернул PONG
+- Профиль личный: личные данные не попадают в репозитории, журналы и векторный слой; доступ к Telegram ограничен чтением исполняемой обёрткой

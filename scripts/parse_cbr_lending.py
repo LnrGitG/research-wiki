@@ -156,15 +156,37 @@ def parse_escrow(path, conn):
     return n
 
 def parse_vfs(path, conn):
-    """VFS cumulative: 3 sheets (рубли/валюта/итого), row 3 = month headers, row 4+ regions."""
+    """VFS: несколько листов (рубли/валюта/итого), строка заголовков в первых 6 строках.
+
+    Метка показателя ОБЯЗАНА включать семейство файла: без этого разные файлы дают
+    одинаковую подпись (02_05 «кредиты физлицам» и 02_09 «жилищные кредиты» — обе
+    «... — задолженность (итого)»), и downstream-маппинг склеивает разные ряды в
+    один код. Инцидент 26.09.2026: vmd (vfs_mortgage_debt) == zkf (кредиты физлицам).
+    """
     fname = os.path.basename(path)
-    is_corp = fname.startswith('01_')
-    kind = 'new_loans' if 'New_loans' in fname else 'debt'
-    if is_corp:
-        base = 'Корпоративные кредиты — ' + ('новые выдачи' if kind=='new_loans' else 'задолженность')
-    else:
-        base = 'Ипотека физлицам — ' + ('новые выдачи' if kind=='new_loans' else 'задолженность')
-    sheet_labels = {'рубли':'рубли','валюта':'валюта','итого':'итого'}
+    prefix = fname[:5]
+    FAMILIES = {
+        '01_04': ('corporate_monthly', 'Корпоративные кредиты — новые выдачи'),
+        '01_05': ('corporate_monthly', 'Корпоративные кредиты — задолженность'),
+        '02_04': ('mortgage_monthly', 'Кредиты физлицам — новые выдачи'),
+        '02_05': ('mortgage_monthly', 'Кредиты физлицам — задолженность'),
+        '02_06': ('mortgage_monthly', 'Жилищные кредиты — количество'),
+        '02_07': ('mortgage_monthly', 'Жилищные кредиты — объём'),
+        '02_08': ('mortgage_monthly', 'Жилищные кредиты — ставка и срок'),
+        '02_09': ('mortgage_monthly', 'Жилищные кредиты — задолженность'),
+        '02_15': ('mortgage_monthly', 'СКПА-ипотека — количество'),
+        '02_16': ('mortgage_monthly', 'СКПА-ипотека — объём'),
+        '02_17': ('mortgage_monthly', 'СКПА-ипотека — ставка и срок'),
+        '02_18': ('mortgage_monthly', 'СКПА-ипотека — задолженность'),
+        '02_42': ('mortgage_monthly', 'ИЖК ИЖС — количество'),
+        '02_43': ('mortgage_monthly', 'ИЖК ИЖС — объём'),
+        '02_44': ('mortgage_monthly', 'ИЖК ИЖС — доля'),
+        '02_45': ('mortgage_monthly', 'ИЖК ИЖС — ставка'),
+    }
+    if prefix not in FAMILIES:
+        return 0
+    table, base = FAMILIES[prefix]
+    sheet_labels = {'рубли': 'рубли', 'валюта': 'валюта', 'итого': 'итого'}
     n = 0
     wb = load_workbook(path, data_only=True, read_only=True)
     for sh in wb.sheetnames:
@@ -190,8 +212,9 @@ def parse_vfs(path, conn):
                 if ci >= len(row): continue
                 val = clean(row[ci])
                 if val is None: continue
-                conn.execute('INSERT OR REPLACE INTO corporate_monthly VALUES (?,?,?,?,?)',
-                             (rname, d, ind, val, 'млн руб'))
+                unit = '%' if 'ставка' in base else ('мес' if 'срок' in base else ('шт' if 'количество' in base else 'млн руб'))
+                conn.execute(f'INSERT OR REPLACE INTO {table} VALUES (?,?,?,?,?)',
+                             (rname, d, ind, val, unit))
                 n += 1
     wb.close()
     return n

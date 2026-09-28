@@ -31,7 +31,8 @@ from repo_paths import require_repo  # noqa: E402
 os.chdir(require_repo())
 from wordstat_api import dynamics  # noqa: E402
 
-PHRASES = [
+PHRASE_FILE = os.path.join('data', 'wordstat_phrases.csv')
+PHRASES_BUILTIN = [
     # S1. Индивидуальное жилищное строительство
     ("строительство домов под ключ", "S1_ihb"),
     ("проектирование дома", "S1_ihb"),

@@ -150,6 +150,7 @@ sources:
     cron: "0 8 10 * *"
     cadence: monthly
     script: —
+    last_ok: 2026-09-01
     url: https://наш.дом.рф/аналитика/
     target: raw/domrf/еисжс_ГГГГ-ММ.xlsx
     notes: напоминание 10 числа; инжест после ручной загрузки
@@ -159,6 +160,7 @@ sources:
     kind: manual
     cadence: monthly
     script: scripts/iminfin_scrape.js
+    last_ok: 2026-09-25
     url: https://iminfin.ru/
     target: raw/iminfin/, core.observation_v2
     notes: скрапер запускается с виртуальной машины; не разобрана семантика столбцов трансфертов
@@ -177,6 +179,59 @@ sources:
     kind: manual
     cadence: monthly
     script: scripts/ingest_emiss_batch.py
+    last_ok: 2026-09-25
     url: https://fedstat.ru/
     target: core.observation_v2 (emiss_*)
     notes: показатель 39233 не собирается (три неудачных попытки); размерности безработицы требуют ревизии
+
+# Позиции реестра источников владельца, у которых нет собственного механизма обновления.
+# Разбор от 28.09.2026: часть закрывается уже собираемыми рядами, часть заблокирована внешне,
+# часть ждёт решения. Ничего не удаляем — пробел должен быть видимым.
+gaps:
+  - indicator: Инфляция в регионах
+    source: Сайт Банка России
+    disposition: закрыто
+    covered_by: региональный срез (emiss_31074_cpi_prevm_m)
+    note: месячный ИПЦ по субъектам уже в срезе v2
+
+  - indicator: Данные опросов мониторинга предприятий
+    source: Сайт Банка России
+    disposition: закрыто
+    covered_by: cbr_api (cbrmon_*)
+    note: мониторинг предприятий входит в месячное обновление API ЦБ
+
+  - indicator: Инфляционные ожидания и потребительские настроения
+    source: Сайт Банка России
+    disposition: закрыто
+    covered_by: релизы 101/102 (infom_expected_*)
+    note: собирается по мере публикации inFOM
+
+  - indicator: Показатели рынка жилищного (ипотечного кредитования)
+    source: Сайт Банка России
+    disposition: закрыто
+    covered_by: cbr_banking, vmd/vhdt
+    note: бюллетень ипотечного рынка и VFS-файлы разбираются скриптом parse_cbr_lending.py
+
+  - indicator: Число вакансий и резюме, hh-индекс
+    source: Сайт hh.ru
+    disposition: заблокировано
+    covered_by: —
+    note: API требует регистрации приложения; ближайшая замена — trudvsem (10 регионов)
+
+  - indicator: Исполнение бюджетов бюджетной системы РФ
+    source: Электронный бюджет
+    disposition: заблокировано
+    covered_by: —
+    note: сайт недоступен с VPS; вариант — сбор через виртуальную машину (peer yc)
+
+  - indicator: Исполнение федерального бюджета РФ
+    source: Сайт Минфина
+    disposition: частично
+    covered_by: iminfin (регионы), ФНС 1-НОМ (налоги)
+    note: федеральный разрез требует отдельного сбора с Минфина
+
+  - indicator: Процентные ставки по кредитам и депозитам
+    source: Сайт Банка России
+    disposition: к решению
+    covered_by: —
+    note: ряды есть на ВМ (cbr_monitoring_api 312 612 строк), в основную базу не промоутированы

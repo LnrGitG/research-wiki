@@ -178,6 +178,8 @@ def main():
     ap.add_argument("--rebuild", action="store_true", help="игнорировать слой и кэш")
     ap.add_argument("--only", nargs="*", default=None, help="только эти стемы")
     ap.add_argument("--limit", type=int, default=0, help="обработать N документов (проба)")
+    ap.add_argument("--force", action="store_true",
+                    help="пересобрать выбранные документы, даже если число чанков совпало (текст мог измениться)")
     ap.add_argument("--status", action="store_true")
     args = ap.parse_args()
 
@@ -199,7 +201,7 @@ def main():
     for stem, path, kind in papers:
         ch = chunks_of(path)
         prev = docs.get(stem)
-        if prev and len(prev.get("vectors", [])) == len(ch) and not args.rebuild:
+        if prev and len(prev.get("vectors", [])) == len(ch) and not args.rebuild and not args.force:
             continue
         todo.append((stem, path, kind, ch))
     if args.limit:

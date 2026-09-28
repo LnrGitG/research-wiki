@@ -172,7 +172,7 @@ RULES:
         translated_parts.append(result)
         
         if i < len(chunks) - 1:
-            time.sleep(2)  # rate limit缓冲
+            time.sleep(2)  # rate limit: буфер
     
     # Write output
     output = '\n\n'.join(translated_parts)

@@ -47,7 +47,7 @@ related_data:
 | **Microgeography (tract-level)** | Baum-Snow & Han (2024), Büchler et al. (2021) | Требует трактовые данные (ЕИСЖС + Росстат) |
 | **Structural / Model-based** | Glaeser & Gyourko (2018), Caldera & Johansson (2013) | P/MPPC, user cost model |
 | **IV: Bartik + commuting** | Baum-Snow & Han (2024) | Есть матрица перемещений (Росстат) |
-| **IV: Geography/Topography** | Saiz (2010), Gorback & Keys (2023) | DEM,坡度, вода — доступны |
+| **IV: Geography/Topography** | Saiz (2010), Gorback & Keys (2023) | DEM, уклон, вода — доступны |
 | **IV: Regulation indices** | Hilber & Vermeulen (2016), Gyourko & Molloy (2014) | Нужен российский аналог WRLURI |
 
 ---
@@ -186,7 +186,7 @@ User_Cost = r_rf + τ × (r_m + τ_prop) + δ + γ - g^e + ρ
 | Вклад | Новизна для России |
 |-------|-------------------|
 | **Первые тракт-уровневые эластичности** | Нет работ с микрогеографией для РФ |
-| **Динамика 2015–2026** | Покрывает цикл: рост → пандемия → ипотечный бум →紧缩 |
+| **Динамика 2015–2026** | Покрывает цикл: рост → пандемия → ипотечный бум → ужесточение |
 | **Роль ИЖС и малых девелоперов** | Уникальные данные Urban + ЕИСЖС |
 | **Связь с монетарной политикой** | Andaloussi et al. (2024) контекст для РФ |
 | **Открытые данные и код** | Reproducible pipeline в research-wiki |

@@ -18,6 +18,12 @@ PAPERS = ROOT / "raw" / "papers"
 SKIP_DIRS = {".git", ".obsidian", "_archive", "Workpapers"}
 PAGE_DIRS = ["entities", "concepts", "comparisons", "queries"]
 WIKILINK_RE = re.compile(r"\[\[([^\]|#]+)(?:#[^\]|]*)?(?:\|[^\]]*)?\]\]")
+# CJK внутри русской или английской страницы — не язык оригинала, а сбой генерации:
+# в середине русской фразы модель подставляет китайский токен вместо слова (прошлый
+# прогон дал полтора десятка таких мест — «эффект» плюс китайское «длительный»).
+# Проверка ловит такое до того, как текст уйдёт в векторный слой.
+CJK_RE = re.compile(r"[\u3000-\u303f\u4e00-\u9fff\uff00-\uffef]")
+CJK_SCAN_DIRS = ["entities", "concepts", "comparisons", "queries", "annotations", "reviews", "templates"]
 
 problems: list[str] = []
 warnings: list[str] = []
@@ -109,6 +115,28 @@ def main() -> int:
                 else:
                     warnings.append(message)
 
+    cjk_targets = []
+    for scan_dir in CJK_SCAN_DIRS:
+        cjk_targets.extend(md_files(ROOT / scan_dir))
+    for extra in ("index.md", "README.md", "catalog.yaml", "hypotheses.yaml", "SCHEMA.md"):
+        if (ROOT / extra).exists():
+            cjk_targets.append(ROOT / extra)
+    scripts_dir = ROOT / "scripts"
+    if scripts_dir.exists():
+        cjk_targets.extend(sorted(scripts_dir.glob("*.py")))
+        cjk_targets.extend(sorted((scripts_dir / "ci").glob("*.py")))
+    cjk_findings: list[str] = []
+    for target in cjk_targets:
+        for lineno, line in enumerate(read(target).splitlines(), 1):
+            if CJK_RE.search(line):
+                cjk_findings.append(f"{rel(target)}:{lineno}")
+    if cjk_findings:
+        # Отдельный список нужен потому, что общий вывод режется сотней строк:
+        # без него находка утонула бы в массе предупреждений и не попалась на глаза.
+        bucket = problems if args.strict else warnings
+        bucket.extend(f"CJK внутри не китайского текста (сбой генерации, "
+                      f"перевести на язык страницы): {item}" for item in cjk_findings)
+
     for log_name in ("log.md", "log-tech.md"):
         log_path = ROOT / log_name
         if not log_path.exists():
@@ -128,6 +156,10 @@ def main() -> int:
         print(f"... {len(problems) - 100} more problems")
     if len(warnings) > 100:
         print(f"... {len(warnings) - 100} more warnings")
+    if cjk_findings:
+        print(f"CJK-находок: {len(cjk_findings)}")
+        for item in cjk_findings[:50]:
+            print(f"CJK {item}")
     return 1 if problems else 0
 
 

@@ -1453,3 +1453,8 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 - Питфоллы схемы, найденные на живых прогонах: у core.release CHECK по status не знает 'active' — допустимы registered/parsed/validated/loaded/failed/superseded; observation_v2 требует quality_flags (не NULL) и sub_dimension, но НЕ содержит unit_id — единица живёт на метрике; у метрики unit_id и frequency_id NOT NULL; код годовой частоты — 'A', не 'annual'
 - Контроль: МВФ 39 точек 1993-2031 (2024 = 4,9; 2025 = 1,0; 2031 = 1,0), ВБ 36 точек 1990-2025 (2024 = 4,92167966203073; 2020 = -2,65365449695453), Росстат 2026Q2 = 101,3; повторный прогон инжеста не удваивает строк (39 и 36 остаются)
 - Артефакт: queries/gdp-actors-forecasts-cycle-20260928.md, раздел 8
+## 2026-09-28 — research-radar-weekly переведён в профиль macro
+- Задача (понедельник 10:00 UTC, workdir ~/research-wiki-private, nous/deepseek-v4.1-flash) перенесена из профиля default в профиль macro (macroeconomist): новый id 0ff55953f924, доставка telegram (макро-бот @Lnr1_bot, тот же чат 430232790, активный DM подтверждён в логе профиля).
+- Старый джоб 54ce92865069 удалён из default; в default осталось 12 задач, в macro — 1. cron doctor по macro: замечаний нет; гейтвей профиля работает, пульс тикера 36 с, следующий запуск 05.10.2026 10:00 UTC.
+- Особенность переноса: флаг enabled_toolsets (был web, terminal, file) через CLI не задаётся — новая задача берёт набор инструментов профиля по умолчанию. Проверить на первом прогоне 05.10; при нехватке веб-инструментов добавить их в конфиг профиля.
+- Запись research_radar в data/source_updates.yaml обновлена: новый cron_job_id и пометка про профиль.

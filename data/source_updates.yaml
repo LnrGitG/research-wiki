@@ -84,13 +84,14 @@ sources:
     target: data/rosstat_construction.db, data/rosreestr_deals.db
 
   - code: research_radar
-    title: Исследовательский радар (новые публикации и релизы)
+    title: Исследовательский радар (новые публикации и релизы) — профиль macro
     kind: auto
-    cron_job_id: 54ce92865069
+    cron_job_id: 0ff55953f924
     cron: "0 10 * * 1"
     cadence: weekly
     script: scripts/research_radar.py
     target: queries/, log.md
+    notes: переведён 28.09.2026 из профиля default в профиль macro (macroeconomist); доставка — Telegram макро-бота (@Lnr1_bot), тот же чат 430232790
 
   - code: kep_short_term
     title: КЭП Росстата — краткосрочные показатели

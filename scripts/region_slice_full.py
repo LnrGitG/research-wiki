@@ -60,7 +60,8 @@ def main():
         WITH last_periods AS (
             SELECT metric_id, MAX(period_start) AS max_p
             FROM core.observation_v2 WHERE region_id > 9 AND observation_status <> 'rejected' GROUP BY metric_id)
-        SELECT m.metric_code, r.name_ru, o.frequency_id, o.period_start, o.value
+        SELECT m.metric_code, r.name_ru, o.frequency_id, o.period_start, o.value,
+               coalesce(array_to_string(o.quality_flags, ';'), '') AS quality_flag
         FROM core.observation_v2 o
         JOIN core.metric m ON m.metric_id = o.metric_id
         JOIN core.region r ON r.region_id = o.region_id
@@ -75,9 +76,12 @@ def main():
     n = 0
     with open(OUT, 'w', newline='') as f:
         w = csv.writer(f)
-        w.writerow(['block_metric', 'region', 'freq', 'period', 'value'])
-        for mc, reg, fq, ps, v in rows:
-            w.writerow([mc, reg, fq, ps, v])
+        # quality_flag несёт пометки определения ряда (например,
+        # old_definition_15_72 у безработицы до 2017 года): точка, помеченная
+        # здесь, публикуется только с этой пометкой.
+        w.writerow(['block_metric', 'region', 'freq', 'period', 'value', 'quality_flag'])
+        for mc, reg, fq, ps, v, qf in rows:
+            w.writerow([mc, reg, fq, ps, v, qf])
             n += 1
     print('written', n, '->', OUT)
     # сводка

@@ -63,10 +63,15 @@ def load_aliases():
     return alias, skip
 
 
-def source_rows(indicator_id, wanted, save_raw=None, view=None):
+def source_rows(indicator_id, wanted, save_raw=None, view=None, concept=None):
     e = Emiss()
     d = e.load(indicator_id, wanted=wanted or None, retries=3, pause=20, save_raw=save_raw)
     rows = d["rows"]
+    if concept:
+        key, val = concept
+        before = len(rows)
+        rows = [r for r in rows if str(r.get(key)) == str(val)]
+        print("отбор по %s=%s: %d из %d точек" % (key, val, len(rows), before))
     if view:
         # вид показателя (например «К предыдущему месяцу») лежит в колонках
         # раскладки, а такие поля источник сужать не даёт: в ответе приходят все
@@ -117,6 +122,10 @@ def main():
     ap.add_argument("--monthly", action="store_true", help="ряд месячный (иначе вид берётся из периода базы)")
     ap.add_argument("--view", default=None,
                     help='вид показателя для отбора после загрузки: "Поле=значение" (для полей из колонок)')
+    ap.add_argument("--concept", default=None,
+                    help='отбор по концепту ряда после загрузки: "s_POK=44" (коды значений '
+                         'в структуре фильтров и в рядах не совпадают, код подбирается '
+                         'по совпадению с базой по одному региону)')
     ap.add_argument("--save-raw", default=None, help="сохранить сырой ответ ЕМИСС")
     ap.add_argument("--limit", type=int, default=10, help="сколько примеров расхождений печатать")
     args = ap.parse_args()
@@ -131,9 +140,14 @@ def main():
         k, v = args.view.split("=", 1)
         view = (k.strip(), v.strip())
 
+    concept = None
+    if args.concept:
+        k, v = args.concept.split("=", 1)
+        concept = (k.strip(), v.strip())
+
     alias, skip = load_aliases()
     src = {}
-    for r in source_rows(args.indicator_id, wanted, args.save_raw, view):
+    for r in source_rows(args.indicator_id, wanted, args.save_raw, view, concept):
         nm = (r.get("s_OKATO_name") or "").strip()
         y = (r.get("time") or "").strip()
         if not nm or not y.isdigit() or nm in skip:

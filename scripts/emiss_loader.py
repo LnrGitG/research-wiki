@@ -222,6 +222,15 @@ class Emiss:
         уже после загрузки, на стороне разбора.
         """
         f = meta["filters"]
+        if wanted:
+            known = {t.strip().lower() for t in
+                     (field.get("title", "") for field in f.values())}
+            unknown = [k for k in wanted
+                       if k.strip().lower() not in known]
+            if unknown:
+                raise ValueError(
+                    "поля не найдены в показателе: %s; доступные поля: %s"
+                    % (unknown, sorted(field.get("title", "") for field in f.values())))
         out = []
         for fid, field in f.items():
             title = field.get("title", "")

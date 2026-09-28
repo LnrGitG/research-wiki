@@ -205,6 +205,15 @@ sources:
     target: raw/rosstat/accounts/VRP_s1998.xlsx, core.observation_v2 (grp_level, grp_pc, grp_ifo)
     notes: публикуется с лагом около двух лет; последний год 2024; обновление раз в год в конце года
 
+  - code: rosstat_grp_operational
+    title: "ВРП субъектов РФ: оперативная (предварительная) оценка Росстата"
+    kind: remind
+    cadence: annual
+    script: scripts/ingest_grp.py
+    url: https://rosstat.gov.ru/compendium/document/50798
+    target: "core.observation_v2 (grp_ifo), релиз rosstat_grp_operational_ГОД"
+    notes: "канал — раздел оперативных публикаций rosstat.gov.ru/compendium/document/50798 («Срочные информации и справки по актуальным вопросам»: 219 позиций за сентябрь 2025 — сентябрь 2026, каждая парой PDF+HTML вида /storage/mediabank/<номер>_<ДД-ММ-ГГГГ>.html, выпусков о ВРП пока нет); первый выпуск оперативной оценки — ноябрь 2026 за 2025 год (десять месяцев вместо прежних четырнадцати), только индексы физического объёма, без отраслевой разбивки; основная оценка — 1-я декада марта (за 2025 год — I декада марта 2027); дублирующие каналы: витрина showdata.rosstat.gov.ru/report/<id> и «Статкалендарь» rosstat.gov.ru/statlender"
+
   - code: imf_weo_gdp
     title: "МВФ WEO: рост реального ВВП России, прогноз и факт"
     kind: remind

@@ -70,6 +70,27 @@ RETRY_WAIT = 75            # при HTTP 429 ждём окно лимита
 WEEKLY_FROM = '2018-01-01'  # понедельник: у недельной гранулярности начало диапазона тоже выравнивается
 
 
+def load_phrases():
+    """Фразы берём из реестра data/wordstat_phrases.csv; без файла — встроенный список.
+
+    Расширение набора не должно требовать правки кода: новая группа — это строки в реестре,
+    а поле checked фиксирует результат проверки фразы через topRequests.
+    """
+    if os.path.exists(PHRASE_FILE):
+        with open(PHRASE_FILE, encoding='utf-8') as f:
+            rows = [r for r in csv.DictReader(f) if (r.get('phrase') or '').strip()]
+        out = [(r['phrase'].strip(), (r.get('group') or '').strip()) for r in rows
+               if (r.get('checked') or '').strip() != 'excluded']
+        print(f'фраз из реестра: {len(out)}', flush=True)
+        return out
+    print(f'реестр фраз не найден, использую встроенный список из {len(PHRASES_BUILTIN)} фраз', flush=True)
+    return list(PHRASES_BUILTIN)
+
+
+PHRASES = load_phrases()
+GROUPS = dict(PHRASES)
+
+
 def call(phrase, granularity, date_from, date_to, retries=3):
     """Вызов с ожиданием при исчерпании лимита: 429 означает «повтори позже», а не ошибку данных."""
     for attempt in range(retries):

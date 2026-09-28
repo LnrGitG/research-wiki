@@ -204,6 +204,51 @@ sources:
     target: raw/rosstat/accounts/VRP_s1998.xlsx, core.observation_v2 (grp_level, grp_pc, grp_ifo)
     notes: публикуется с лагом около двух лет; последний год 2024; обновление раз в год в конце года
 
+  - code: imf_weo_gdp
+    title: "МВФ WEO: рост реального ВВП России, прогноз и факт"
+    kind: remind
+    cadence: quarterly
+    script: scripts/fetch_gdp_forecasts.py
+    url: https://www.imf.org/external/datamapper/api/v1/NGDP_RPCH/RUS
+    target: "core.observation_v2 (gdp_growth_fc_imf), raw/gdp/imf/"
+    notes: "API отдаёт только текущую винтажность, годы 1993-2031; новизна — по смене значений, не по дате; публикации WEO — апрель и октябрь; винтажность хранится релизом imf_weo_ГОД-МЕСЯЦ_gdp"
+
+  - code: wb_gdp
+    title: "Всемирный банк: рост ВВП России — WDI (факт и оценка) и GEP (прогноз)"
+    kind: remind
+    cadence: quarterly
+    script: scripts/fetch_gdp_forecasts.py
+    url: https://api.worldbank.org/v2/country/RUS/indicator/NY.GDP.MKTP.KD.ZG
+    target: "core.observation_v2 (gdp_growth_fc_wb_wdi, gdp_growth_fc_wb_gep), raw/gdp/worldbank/"
+    notes: "WDI прогнозов не содержит, lastupdated 2026-07-13; прогнозы только в GEP, январь и июнь, берутся файлом; API подтормаживает, нужен retry"
+
+  - code: cbr_forecast_gdp
+    title: "Банк России: среднесрочный прогноз по ВВП, инфляции и ставке"
+    kind: remind
+    cadence: quarterly
+    script: scripts/parse_cbr_forecast.py
+    url: https://www.cbr.ru/dkp/cal_mp/
+    target: "core.observation_v2 (gdp_growth_fc_cbr, интервалы _lo и _hi), raw/gdp/cbr/"
+    notes: "четыре публикации в год вместе с февральским, апрельским, июльским и октябрьским заседаниями; на странице календаря машиночитаемый список PDF вида forecast_ГГММДД.pdf; прогноз даётся интервалом; ближайшая публикация около 24.10.2026"
+
+  - code: minek_forecast_gdp
+    title: "Минэкономразвития: прогноз СЭР в трёх сценариях и оперативные оценки"
+    kind: remind
+    cadence: quarterly
+    script: scripts/parse_minek_forecast.py
+    url: https://www.economy.gov.ru/material/directions/makroec/prognozy_socialno_ekonomicheskogo_razvitiya/
+    target: "core.observation_v2 (gdp_growth_fc_minek), raw/gdp/minek/"
+    notes: "апрельский уточнённый и сентябрьский прогноз; PDF лежат по адресам /material/file/download/HASH/ИМЯ.pdf, машиночитаемые таблицы — в архивах Attachments.7z и .zip; сценарий (базовый, консервативный, целевой) — в notes"
+
+  - code: cbr_macro_survey_gdp
+    title: "Макроопрос аналитиков Банка России: медиана прогнозов по ВВП"
+    kind: remind
+    cadence: monthly
+    script: scripts/parse_cbr_survey.py
+    url: https://www.cbr.ru/analytics/dkp/macro_survey/
+    target: "core.observation_v2 (gdp_growth_fc_consensus), raw/gdp/cbr/survey/"
+    notes: "медиана независимых аналитиков, а не прогноз регулятора, поэтому отдельная метрика; опрос от 01.09.2026 дал 2026 год 0,54 %, 2027 — 1,2 %, 2028 — 1,7 %, 2029 — 1,8 %"
+
 # Позиции реестра источников владельца, у которых нет собственного механизма обновления.
 # Разбор от 28.09.2026: часть закрывается уже собираемыми рядами, часть заблокирована внешне,
 # часть ждёт решения. Ничего не удаляем — пробел должен быть видимым.

@@ -50,6 +50,8 @@ def main():
     # Регистрация источников
     srcs = dict(query("SELECT source_code, source_id FROM core.source WHERE source_code IN ('imf','worldbank')"))
     check(set(srcs) == {'imf', 'worldbank'}, f'источники зарегистрированы: {sorted(srcs)}')
+    rel_src = query("SELECT source_code, reliability FROM core.source WHERE source_code IN ('imf','worldbank')")
+    check(all(r[1] == 'official' for r in rel_src), f'надёжность источников проставлена: {rel_src}')
 
     # Метрики: единица измерения «процент», годовая частота, тип primary
     for code in (IMF, WB):

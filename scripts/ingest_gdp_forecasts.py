@@ -34,8 +34,11 @@ UNIT_PCT = 12          # core.unit: 'pct'
 
 
 def ensure_source(code, name_ru, url, publisher=None):
-    rows = query("SELECT source_id FROM core.source WHERE source_code = %s", (code,))
+    rows = query("SELECT source_id, reliability FROM core.source WHERE source_code = %s", (code,))
     if rows:
+        # Источник мог быть заведён раньше без оценки надёжности — доводим её.
+        if not rows[0][1]:
+            execute("UPDATE core.source SET reliability = 'official' WHERE source_id = %s", (rows[0][0],))
         return rows[0][0]
     execute(
         "INSERT INTO core.source (source_code, name_ru, publisher, url, reliability) "

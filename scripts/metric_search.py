@@ -53,6 +53,10 @@ def main():
     ap.add_argument('--source', default=None)
     ap.add_argument('--with-values', action='store_true', help='показать последние значения')
     ap.add_argument('--sql-only', action='store_true', help='без вектора: только триграммный поиск')
+    ap.add_argument('--max-age-days', type=int, default=None,
+                    help='не показывать ряды, у которых последняя точка старше N дней')
+    ap.add_argument('--prefer-fresh', action='store_true',
+                    help='штрафовать устаревшие ряды в ранжировании (свежесть как часть сходства)')
     args = ap.parse_args()
 
     db_tunnel.connect()
@@ -66,6 +70,9 @@ def main():
     if args.source:
         where.append('%s = ANY(c.sources)')
         params.append(args.source)
+    if args.max_age_days is not None:
+        where.append('c.freshness_days IS NOT NULL AND c.freshness_days <= %s')
+        params.append(args.max_age_days)
 
     sql = f"""
         SELECT c.metric_code, c.name_ru, c.unit_ru, c.frequency_ru, c.level, c.sources, c.themes,
@@ -79,7 +86,13 @@ def main():
         rows = db_tunnel.query(sql, tuple(params))
     else:
         qv = '[' + ','.join(str(x) for x in embed_query(args.query)) + ']'
-        sql += " AND c.embedding IS NOT NULL ORDER BY c.embedding <=> %s::vector LIMIT %s"
+        sql += " AND c.embedding IS NOT NULL"
+        if args.prefer_fresh:
+            # штраф до 0,06 к косинусному расстоянию за устаревание: свежий ряд важнее похожего старого
+            sql += (" ORDER BY (c.embedding <=> %s::vector)"
+                    " + 0.06 * LEAST(COALESCE(c.freshness_days, 3650), 3650) / 3650.0 LIMIT %s")
+        else:
+            sql += " ORDER BY c.embedding <=> %s::vector LIMIT %s"
         params += [qv, args.limit]
         rows = db_tunnel.query(sql, tuple(params))
 

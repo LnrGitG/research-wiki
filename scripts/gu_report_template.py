@@ -121,9 +121,10 @@ def definition_notes():
     """Пометки определения ряда: точка с пометкой публикуется только с нею."""
     if not DEFN_FLAGS:
         return []
+    name_by_code = {v: NOMEN[k][0] for k, v in KEY_TO_METRIC.items()}
     out = ['## Пометки определения ряда', '']
     for mc, regs in DEFN_FLAGS.items():
-        name = NOMEN.get(mc, (mc, '', '', ''))[0]
+        name = name_by_code.get(mc, mc)
         n = sum(len(v) for v in regs.values())
         flags = sorted({f for v in regs.values() for f in v.values()})
         periods = sorted({p for v in regs.values() for p in v})

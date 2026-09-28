@@ -113,6 +113,14 @@ def embed(text, retries=3):
     return None
 
 
+def save_cache(cache):
+    """Атомарная запись кэша: обрыв процесса не должен разрушать файл."""
+    tmp = CACHE + '.tmp'
+    with open(tmp, 'w', encoding='utf-8') as f:
+        json.dump(cache, f)
+    os.replace(tmp, CACHE)
+
+
 def themes_of(text, extra_tags):
     low = text.lower()
     out = []
@@ -206,7 +214,7 @@ def main():
                         n_fail += 1
                 if (i + 1) % 200 == 0:
                     print(f'  вложение {i+1}/{len(payload)} (в кэше {n_emb}, сбоев {n_fail})', flush=True)
-                    json.dump(cache, open(CACHE, 'w', encoding='utf-8'))
+                    save_cache(cache)
                 time.sleep(0.05)
             cur.executemany("""
                 INSERT INTO derived.metric_card (metric_id, metric_code, name_ru, description, unit_code, unit_ru,
@@ -222,7 +230,7 @@ def main():
                     embedding=EXCLUDED.embedding, embedded_at=now(), built_at=now()
             """, [r[:17] + ('[' + ','.join(repr(float(x)) for x in r[17][1]) + ']',) for r in payload])
         conn.commit()
-        json.dump(cache, open(CACHE, 'w', encoding='utf-8'))
+        save_cache(cache)
 
     in_db = db_tunnel.query('SELECT count(*), count(embedding) FROM derived.metric_card')
     print(f'карточек в базе: {in_db[0][0]}, с вектором: {in_db[0][1]}, сбоев вложения: {n_fail}')

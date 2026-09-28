@@ -184,6 +184,26 @@ sources:
     target: core.observation_v2 (emiss_*)
     notes: показатель 39233 не собирается (три неудачных попытки); размерности безработицы требуют ревизии
 
+  - code: rosstat_gdp_quarterly
+    title: ВВП России — элементы использования и ИФО, квартальные
+    kind: manual
+    cadence: quarterly
+    last_ok: 2026-09-28
+    script: scripts/check_gdp_units.py
+    url: https://rosstat.gov.ru/storage/mediabank/GDP-quarters-of-use-1995_1kv-2026.xls
+    target: raw/rosstat/accounts/, core.observation_v2 (vvp, vvpi, компоненты)
+    notes: свежая оценка — I квартал 2026 (номинал 49 869,5 млрд руб.); единицы у наших метрик не проставлены, ряд vvp — в постоянных ценах
+
+  - code: rosstat_grp_annual
+    title: ВРП по субъектам РФ — уровни, на душу населения, ИФО
+    kind: manual
+    cadence: annual
+    last_ok: 2026-09-28
+    script: scripts/ingest_grp.py
+    url: https://rosstat.gov.ru/storage/mediabank/VRP_s1998.xlsx
+    target: raw/rosstat/accounts/VRP_s1998.xlsx, core.observation_v2 (grp_level, grp_pc, grp_ifo)
+    notes: публикуется с лагом около двух лет; последний год 2024; обновление раз в год в конце года
+
 # Позиции реестра источников владельца, у которых нет собственного механизма обновления.
 # Разбор от 28.09.2026: часть закрывается уже собираемыми рядами, часть заблокирована внешне,
 # часть ждёт решения. Ничего не удаляем — пробел должен быть видимым.

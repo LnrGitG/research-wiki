@@ -1,0 +1,182 @@
+# Реестр обновления источников (единая точка правды о том, что и когда обновляется).
+#
+# Зачем: cron-джобов мало, а позиций в реестре источников владельца много; расхождение
+# закрывается не новым джобом, а строкой в этом файле. Планировщик (scripts/source_updates.py)
+# читает реестр, берёт состояние авто-джобов из ~/.hermes/cron/jobs.json и показывает, что
+# просрочено.
+#
+# Поля:
+#   code        — короткий код источника (латиница)
+#   title       — что обновляется
+#   kind        — auto (джоб Hermes) | remind (напоминание владельцу) | manual (руками, без даты)
+#   cron_job_id — идентификатор авто-джоба, если есть
+#   cron        — расписание (дублирует джоб для наглядности и для kind без джоба)
+#   cadence     — ожидаемая периодичность: daily | weekly | monthly | quarterly | annual
+#   script      — чем обновляется (для auto/remind)
+#   last_ok     — дата последнего подтверждённого обновления (заполняется вручную или джобом)
+#   url         — страница источника
+#   target      — куда ложатся данные в базе/репозитории
+
+version: 1
+updated: 2026-09-28
+
+sources:
+  - code: rosstat_operational
+    title: Оперативные публикации Росстата (доклад социально-экономического положения)
+    kind: auto
+    cron_job_id: f3b1eae9b042
+    cron: "0 6 * * 1"
+    cadence: weekly
+    script: scripts/update_rosstat.py
+    url: https://rosstat.gov.ru/statistics/accounts
+    target: raw/rosstat/, core.observation_v2
+
+  - code: cbr_banking
+    title: Статистика банковского сектора ЦБ (ипотека, эскроу, корпоративный портфель)
+    kind: auto
+    cron_job_id: 5f753e3c83e6
+    cron: "0 7 * * 2"
+    cadence: weekly
+    script: scripts/parse_cbr_lending.py
+    url: https://www.cbr.ru/statistics/bank_sector/
+    target: data/cbr_lending.db, core.observation_v2
+
+  - code: rosstat_prom_indices
+    title: Промышленные индексы Росстата (ind_baza, ind_sub, sezon)
+    kind: auto
+    cron_job_id: 4499ed3c70ee
+    cron: "0 10 13 * *"
+    cadence: monthly
+    script: scripts/rosstat_prom_monthly_parse.py
+    url: https://rosstat.gov.ru/enterprise_industrial
+    target: raw/prom/, prom_products_monthly
+    notes: последний прогон 13.09.2026 завершился ошибкой; августовские файлы добирались вручную 27.09
+
+  - code: domrf_price_index
+    title: Индекс цен на новостройки ДОМ.РФ
+    kind: auto
+    cron_job_id: 13e78bff5702
+    cron: "0 11 25 * *"
+    cadence: monthly
+    script: scripts/collect_domrf_price.py
+    url: https://xn--d1aqf.xn--p1ai/analytics/price-index/
+    target: core.observation_v2
+
+  - code: wordstat_construction
+    title: Wordstat — строительная активность (недельный ряд и дневной слой)
+    kind: auto
+    cron_job_id: 68d7b13e4d45
+    cron: "0 5 7 * *"
+    cadence: monthly
+    script: scripts/wordstat_construction_collect.py
+    url: https://wordstat.yandex.ru/
+    target: data/wordstat_weekly_construction.csv, data/wordstat_daily_construction.csv
+    notes: лаг источника ~2 недели (недельная гранулярность) и ~4 дня (дневная); сбор раз в месяц
+
+  - code: rosstat_monthly_parse
+    title: Росстат — оперативные ряды (физобъёмы, СС-индексы)
+    kind: auto
+    cron_job_id: 099649da6095
+    cron: "0 8 * * 1"
+    cadence: weekly
+    script: scripts/rosstat_prom_monthly_parse.py
+    url: https://rosstat.gov.ru/
+    target: data/rosstat_construction.db, data/rosreestr_deals.db
+
+  - code: research_radar
+    title: Исследовательский радар (новые публикации и релизы)
+    kind: auto
+    cron_job_id: 54ce92865069
+    cron: "0 10 * * 1"
+    cadence: weekly
+    script: scripts/research_radar.py
+    target: queries/, log.md
+
+  - code: kep_short_term
+    title: КЭП Росстата — краткосрочные показатели
+    kind: auto
+    cron_job_id: 0956183774c6
+    cron: "0 9 5,7 * *"
+    cadence: monthly
+    script: kep_refresh.sh
+    url: https://rosstat.gov.ru/statistics/accounts
+    target: core.observation_v2 (kep*)
+
+  - code: cbr_api
+    title: API Банка России — мониторинг и денежные агрегаты
+    kind: auto
+    cron_job_id: 025095b73ff5
+    cron: "17 7 12 * *"
+    cadence: monthly
+    script: scripts/cbr_api_v2_monitoring.py
+    url: https://www.cbr.ru/dataservice/
+    target: core.observation_v2 (cbrmon*)
+
+  - code: trudvsem
+    title: Вакансии «Работа России» (trudvsem), 10 регионов
+    kind: auto
+    cron_job_id: f210dbe02e8c
+    cron: "0 7 * * 3"
+    cadence: weekly
+    script: scripts/trudvsem_weekly.py
+    url: https://trudvsem.ru/
+    target: data/trudvsem_counts.csv
+    notes: собирается только 10 регионов; расширение до всех субъектов — отдельная задача
+
+  - code: fns_kkt
+    title: ФНС — выручка по контрольно-кассовой технике (опережающий индикатор спроса)
+    kind: auto
+    cron_job_id: 356c0298e19e
+    cron: "0 6 8 * *"
+    cadence: monthly
+    script: scripts/kkt_monthly_job.sh
+    url: https://www.nalog.gov.ru/opendata/
+    target: data/kkt_summary.csv, core.observation_v2
+
+  - code: fns_1nom
+    title: ФНС 1-НОМ — налоговые формы и отраслевой срез по ОКВЭД
+    kind: auto
+    cron_job_id: 8260f18fcfe2
+    cron: "20 6 12 * *"
+    cadence: monthly
+    script: scripts/update_fns_1nom.py
+    url: https://www.nalog.gov.ru/opendata/7707329152-1nom/
+    target: raw/fns/, core.observation_v2 (fns_1nom_key_*)
+
+  - code: eisjhs_manual
+    title: ЕИСЖС — выгрузки наш.дом.рф (качает владелец вручную)
+    kind: remind
+    cron_job_id: cfb79a948639
+    cron: "0 8 10 * *"
+    cadence: monthly
+    script: —
+    url: https://наш.дом.рф/аналитика/
+    target: raw/domrf/еисжс_ГГГГ-ММ.xlsx
+    notes: напоминание 10 числа; инжест после ручной загрузки
+
+  - code: iminfin
+    title: iМониторинг КРИСТА (Минфин) — исполнение бюджетов субъектов
+    kind: manual
+    cadence: monthly
+    script: scripts/iminfin_scrape.js
+    url: https://iminfin.ru/
+    target: raw/iminfin/, core.observation_v2
+    notes: скрапер запускается с виртуальной машины; не разобрана семантика столбцов трансфертов
+
+  - code: fns_rfsd
+    title: ФНС — финансовая отчётность организаций (RFSD, parquet на ВМ)
+    kind: manual
+    cadence: quarterly
+    script: —
+    url: https://www.nalog.gov.ru/opendata/
+    target: ~/raw/rfsd/ на ВМ
+    notes: 15 parquet; слайс в БД не создан из-за OOM
+
+  - code: emiss_regional_batch
+    title: ЕМИСС — региональный батч показателей (розница, услуги, отгружено, ЗП)
+    kind: manual
+    cadence: monthly
+    script: scripts/ingest_emiss_batch.py
+    url: https://fedstat.ru/
+    target: core.observation_v2 (emiss_*)
+    notes: показатель 39233 не собирается (три неудачных попытки); размерности безработицы требуют ревизии

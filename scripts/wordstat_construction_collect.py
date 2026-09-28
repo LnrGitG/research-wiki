@@ -66,7 +66,7 @@ PROV = 'data/wordstat_weekly_provenance.json'
 DAILY_WINDOW = 58          # дней назад: предел дневной гранулярности у Wordstat около 60 дней
 SLEEP = 8                  # пауза между вызовами: у API есть и часовой, и минутный лимит
 RETRY_WAIT = 75            # при HTTP 429 ждём окно лимита
-WEEKLY_FROM = '2018-01-03'  # понедельник: у недельной гранулярности начало диапазона тоже выравнивается
+WEEKLY_FROM = '2018-01-01'  # понедельник: у недельной гранулярности начало диапазона тоже выравнивается
 
 
 def call(phrase, granularity, date_from, date_to, retries=3):
@@ -127,12 +127,21 @@ def main():
         time.sleep(SLEEP)
     print(f'дневных точек получено: {len(daily)} (фраз без ошибок: {len(ok_d)}/{len(PHRASES)})', flush=True)
 
+    # Дневной файл пишем сразу: он не зависит от недельного слияния и не должен теряться при сбое ниже.
+    if daily:
+        with open(DAILY, 'w', newline='', encoding='utf-8') as f:
+            w = csv.DictWriter(f, fieldnames=["date", "phrase", "group", "count", "share"])
+            w.writeheader()
+            w.writerows(sorted(daily, key=lambda r: (r['date'], r['phrase'])))
+        print(f'сохранён {DAILY}', flush=True)
+
     # Слияние с прежним файлом: строки фраз, которые в этом прогоне не собрались, сохраняем как были.
     old_rows = []
     if os.path.exists(WEEKLY):
         with open(WEEKLY, encoding='utf-8') as f:
             old_rows = [r for r in csv.DictReader(f)]
-    kept = [r for r in old_rows if r['phrase'] not in ok_w]
+    kept = [dict(r, count=int(r['count']), share=float(r['share']))
+            for r in old_rows if r['phrase'] not in ok_w]
     merged = kept + [{k: (int(v) if k == 'count' else float(v) if k == 'share' else v)
                       for k, v in r.items()} for r in weekly]
     print(f'слияние: сохранено прежних строк {len(kept)}, обновлено {len(weekly)}', flush=True)
@@ -151,6 +160,27 @@ def main():
     have = {(r['date'], r['phrase']) for r in merged}
     prov = {f"{r['date']}|{r['phrase']}": {'source': 'api', 'days': 7} for r in merged}
 
+    # Калибровка сшивки: дневные суммы систематически выше недельных значений, причём тем сильнее,
+    # чем меньше объём фразы (проверено на перекрытии: 24.08-14.09). Считаем медианный множитель
+    # недельное/дневное по полным неделям перекрытия и применяем его к неделям из дневного слоя,
+    # чтобы уровень ряда не дёргался на стыке.
+    import statistics
+    ratios = {}
+    for ph in {p for _, p in agg}:
+        rr = []
+        for (wk, ph2), a in agg.items():
+            if ph2 != ph or a['days'] != 7:
+                continue
+            api = next((r['count'] for r in merged if r['date'] == wk and r['phrase'] == ph), None)
+            if api and a['count']:
+                rr.append(api / a['count'])
+        if rr:
+            ratios[ph] = statistics.median(rr)
+    if ratios:
+        small = sorted(ratios.items(), key=lambda kv: kv[1])[:3]
+        print('калибровка сшивки (медиана недельное/дневное): '
+              + ', '.join(f'{p} {v:.4f}' for p, v in small), flush=True)
+
     diffs = []
     for (wk, ph), a in agg.items():
         if a['days'] == 7 and (wk, ph) in have:
@@ -165,9 +195,12 @@ def main():
     for (wk, ph), a in sorted(agg.items()):
         if (wk, ph) in have:
             continue
-        merged.append({'date': wk, 'phrase': ph, 'group': a['group'], 'count': a['count'],
+        k = ratios.get(ph, 1.0)
+        merged.append({'date': wk, 'phrase': ph, 'group': a['group'],
+                       'count': int(round(a['count'] * k)),
                        'share': round(a['share_sum'] / max(a['days'], 1), 12)})
-        prov[f'{wk}|{ph}'] = {'source': 'daily_sum', 'days': a['days']}
+        prov[f'{wk}|{ph}'] = {'source': 'daily_sum', 'days': a['days'],
+                              'calibration': round(k, 4), 'partial': a['days'] < 7}
         added += 1
     print(f'добавлено недель из дневных: {added}', flush=True)
 

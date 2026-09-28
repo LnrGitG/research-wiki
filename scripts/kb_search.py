@@ -80,7 +80,7 @@ def _vec_literal(v):
 
 def search(query, limit=8, doc_type=None):
     """Гибридный поиск. Возвращает список dict с полями результата."""
-    from db_tunnel import query
+    from db_tunnel import query as db_query
 
     q = query.strip()
     if not q:
@@ -100,7 +100,7 @@ def search(query, limit=8, doc_type=None):
         ORDER BY c.embedding <=> %(emb)s::vector
         LIMIT %(top)s
     """.format(tf=type_filter)
-    vec_rows = query(vec_sql, {"emb": "[" + ",".join(repr(float(x)) for x in emb) + "]",
+    vec_rows = db_query(vec_sql, {"emb": "[" + ",".join(repr(float(x)) for x in emb) + "]",
                                "doc_type": doc_type, "top": TOP_PER_CHANNEL,
                                "maxtext": 700})
 
@@ -115,7 +115,7 @@ def search(query, limit=8, doc_type=None):
         ORDER BY rank DESC
         LIMIT %(top)s
     """.format(tf=type_filter)
-    lex_rows = query(lex_sql, {"q": q, "doc_type": doc_type,
+    lex_rows = db_query(lex_sql, {"q": q, "doc_type": doc_type,
                                "top": TOP_PER_CHANNEL, "maxtext": 700})
 
     # RRF-слияние

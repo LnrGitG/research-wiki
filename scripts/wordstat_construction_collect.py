@@ -42,10 +42,19 @@ PHRASES = [
 
 GROUPS = dict(PHRASES)
 
+# Конец диапазона считаем сами: у недельной гранулярности toDate обязан быть воскресеньем,
+# иначе API отвечает HTTP 400. Захардкоженная дата здесь уже один раз стоила трёх недель данных.
+import datetime as _dt
+
+_today = _dt.date.today()
+_last_sunday = _today - _dt.timedelta(days=(_today.weekday() + 1) % 7)
+TO_DATE = _last_sunday.isoformat()
+print(f'диапазон: 2018-01-01 .. {TO_DATE} (последнее воскресенье)', flush=True)
+
 rows = []
 for i, (ph, grp) in enumerate(PHRASES, 1):
     try:
-        res = dynamics(ph, 'PERIOD_WEEKLY', '2018-01-01', '2026-08-30')
+        res = dynamics(ph, 'PERIOD_WEEKLY', '2018-01-01', TO_DATE)
         print(f"[{i}/{len(PHRASES)}] {ph!r}: {len(res)} pts", flush=True)
         for r in res:
             rows.append({"date": r["date"], "phrase": ph, "group": grp,

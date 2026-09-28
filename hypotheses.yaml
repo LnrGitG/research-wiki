@@ -37,6 +37,7 @@ hypotheses:
     evidence_for:
       - "Теоретический канал Bernanke-Gertler-Gilchrist (balance sheet channel) — research-ideas-russia-housing §1B"
       - "Долг/EBITDA сектора 481% (cmwp_debt_burden_2026)"
+      - "Coven, Golder, Gupta, Ndiaye 2026 (HCEO WP 2026-010, Sep; NBER w35587): OG-модель — финансовое ограничение связывает именно через маржу первоначального взноса (капитализация налога в цены снижает требуемый down-payment, 'embedded leverage'); low property taxes усиливают lock-in пожилых и ограничивают доступ молодых (проверено 2026-09-28, research-radar-2026-09-28)"
     evidence_against: []
     sources: [spark, eiszhc, fnn-opendata]
     tags: [supply-elasticity, developer-finance, financial-constraints]
@@ -128,6 +129,7 @@ hypotheses:
       - "Wang 2024 (США): асимметрия значима, сдерживание сильнее"
       - "Sinyakov & Shelovanova 2025 (РФ): слабая эластичность спроса по ставке"
       - "Graybill & Mangum 2026 (Philly Fed WP 26-33, rev. 2026-09): покупатели чувствительнее к ипотечной ставке, чем продавцы к lock-in — снижение ставки растит объёмы сделок, но не снимает тайтнесс (асимметрия спрос/предложение внутри трансмиссии; косвенная поддержка, проверено 2026-09-14, research-radar-2026-09-14)"
+      - "Bracke, Cocco, Markoska, Tak 2026 (BoE SWP 1203, Aug): вокруг шока 23.09.2022 заёмщики сместились к двухлетним фиксациям несмотря на их цену, ища близкую гибкость ради equity extraction при снижении ставки; рост ставки на 200 б.п. → LTV −2–3 п.п. — поведенческая асимметрия заёмщика к ожидаемой траектории ставки (проверено 2026-09-28, research-radar-2026-09-28)"
     evidence_against: []
     sources: [us-literature, cbr, sinyakov-2025]
     tags: [monetary-policy, asymmetry, transmission-mechanism]

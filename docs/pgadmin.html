@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>pgAdmin: сценарии разведки</title>
+<link rel="stylesheet" href="style.css">
+<style>
+body { background:#111; color:#eee; font-family:-apple-system,'Segoe UI',Roboto,sans-serif; max-width:800px; margin:0 auto; padding:16px; }
+code, pre { background:#1e1e1e; color:#aed581; border-radius:4px; overflow-x:auto; font-size:.85em; }
+pre { padding:12px; }
+h1,h2,h3 { color:#4fc3f7; }
+a { color:#ba68c8; }
+table { border-collapse:collapse; width:100%; font-size:.85em; }
+th,td { border:1px solid #333; padding:6px; text-align:left; }
+th { background:#222; color:#4fc3f7; }
+blockquote { border-left:3px solid #444; margin:0; padding-left:12px; color:#aaa; }
+</style>
+</head>
+<body>
+<div style="font-size:0.78rem;margin-bottom:8px"><a href="index.html" style="color:#4fc3f7;text-decoration:none">Главная</a> · <a href="passport.html" style="color:#4fc3f7;text-decoration:none">Паспорт региона</a> · <a href="data.html" style="color:#4fc3f7;text-decoration:none">Статистика</a> · <a href="metrics-catalog.html" style="color:#ba68c8;text-decoration:none">Каталог метрик</a></div>
+<h1>pgAdmin: сценарии разведки БД v2</h1>
+<div class="subtitle">Для коллег: подключение, запросы, выгрузки — независимый расчёт</div>
+<h1>Сценарии работы с БД v2 через корпоративный pgAdmin (database.mlcluster.ru)</h1>
+<p><strong>Роль для коллег: <code>viewer</code></strong> — только чтение (SELECT) на 11 схем.
+Подключение: host <code>89.169.168.214</code>, port 5432, database <strong><code>research_wiki</code></strong>
+(подчёркивание!), user <code>viewer</code>, SSL mode <code>require</code>, пароль — у держателя
+секрета (не публикуется, <code>DB_VIEWER_PASSWORD</code> в ~/.hermes/.env на VPS).</p>
+<p>Метка: <strong>«Независимый расчёт, не связанный с Банком России».</strong></p>
+<hr />
+<h2>Сценарий 1. Инвентаризация: что есть в базе</h2>
+<p>Карта таблиц по объёму:</p>
+<pre><code class="language-sql">SELECT schemaname, table_name, n_live_tup
+FROM pg_stat_user_tables WHERE schemaname IN ('core','derived','v2','staging')
+ORDER BY n_live_tup DESC LIMIT 20;
+</code></pre>
+<p>Ожидаемо: core.observation_v2 ≈ 5,48 млн; core.metric ≈ 16 313.</p>
+<p>Каталог источников:</p>
+<pre><code class="language-sql">SELECT s.source_code, count(*) AS n_obs, max(o.period_start)::date AS last_period
+FROM core.observation_v2 o JOIN core.source s ON s.source_id = o.source_id
+GROUP BY 1 ORDER BY n_obs DESC;
+</code></pre>
+<h2>Сценарий 2. Свежесть данных (перед совещанием)</h2>
+<pre><code class="language-sql">SELECT s.source_code,
+       max(o.period_start)::date AS last_period,
+       CURRENT_DATE - max(o.period_start)::date AS age_days
+FROM core.observation_v2 o JOIN core.source s ON s.source_id = o.source_id
+WHERE o.period_start &lt; CURRENT_DATE
+GROUP BY 1 ORDER BY age_days DESC;
+</code></pre>
+<p>Пороги тревоги (из datalens-db-health-dashboard-20260928.md): 45 / 120 / 400 дней.
+Плановые значения на 29.09: cbr ~29, iminfin ~5, fns ~59; фейлы: rosreestr 181,
+smartlab 181, worldbank 636.</p>
+<h2>Сценарий 3. Региональная разведка (Отделения)</h2>
+<p>Все показатели по своему региону с начала года:</p>
+<pre><code class="language-sql">SELECT m.name_ru, m.metric_code, o.period_start::date, o.value
+FROM core.observation_v2 o
+JOIN core.metric m ON m.metric_id = o.metric_id
+JOIN core.region r ON r.region_id = o.region_id
+WHERE r.name_ru ILIKE '%Башкортостан%'
+  AND o.period_start &gt;= DATE '2026-01-01'
+  AND o.sub_dimension = ''
+  AND o.observation_status &lt;&gt; 'rejected'
+ORDER BY o.period_start, m.name_ru;
+</code></pre>
+<p>Совет: <code>SET search_path TO core, public;</code> — можно писать таблицы без префикса.</p>
+<p>Рейтинг региона внутри своего федерального округа (ввод жилья):</p>
+<pre><code class="language-sql">SELECT r.name_ru, o.value,
+       RANK() OVER (PARTITION BY fd.region_id ORDER BY o.value DESC) AS rank_fo
+FROM core.observation_v2 o
+JOIN core.metric m ON m.metric_id = o.metric_id
+JOIN core.region r ON r.region_id = o.region_id
+JOIN core.region fd ON fd.region_id = r.parent_id
+WHERE m.metric_code = 'rosstat_housing_total_m' AND r.level = 'region'
+  AND o.period_start = (SELECT max(period_start)
+                        FROM core.observation_v2 o2
+                        WHERE o2.metric_id = m.metric_id AND o2.region_id = o.region_id)
+ORDER BY rank_fo;
+</code></pre>
+<h2>Сценарий 4. Ипотека/кредитование (ДКП, факт-чек)</h2>
+<p>Ключевые коды: <code>irz</code>/<code>vmd</code> — ставки ИЖК; <code>zkf</code>/<code>zyi</code> — задолженность
+физлиц/итого; <code>vhdt</code> — выдачи. Динамика к прошлому году:</p>
+<pre><code class="language-sql">SELECT m.metric_code, fd.name_ru AS district, o.period_start::date, o.value,
+       o.value / lag(o.value, 12) OVER (PARTITION BY m.metric_id, fd.region_id
+                                        ORDER BY o.period_start) - 1 AS yoy
+FROM core.observation_v2 o
+JOIN core.metric m ON m.metric_id = o.metric_id
+JOIN core.region r ON r.region_id = o.region_id
+JOIN core.region fd ON fd.region_id = r.parent_id
+WHERE m.metric_code IN ('zkf','vhdt') AND fd.level = 'federal_district'
+  AND o.period_start &gt;= DATE '2025-01-01'
+ORDER BY m.metric_code, fd.name_ru, o.period_start;
+</code></pre>
+<p>Внимание: нули в <code>vmd</code>/<code>izhk_rate_fx</code> — это отсутствие валютных выдач
+(с ~2025-03), не ставка; <code>virtr</code> нулевые — тоже отсутствие выдач.</p>
+<h2>Сценарий 5. Выгрузка результата</h2>
+<p>Query Tool → кнопка Download (CSV) → файл тянется в Excel/презентацию.
+Для регулярных (еженедельных) выгрузок просить default-агента настроить
+сценарий скриптом, а не руками.</p>
+<h2>Сценарий 6. Что НЕ нужно делать</h2>
+<ul>
+<li>Писать без префикса схему при пустом search_path — запрос упадёт
+  («relation does not exist»); сначала <code>SET search_path TO core, public;</code></li>
+<li>Искать схемы <code>public</code> — её нет; 11 рабочих схем перечислены выше.</li>
+<li>Пытаться писать/создавать: вернётся «permission denied» — это задумано.</li>
+<li>Делиться подключением под одним паролем — лучше запросить отдельную роль
+  через default-агента (роль + личный пароль).</li>
+</ul>
+<hr />
+<h2>Связанные материалы</h2>
+<ul>
+<li>Паспорт региона (веб-витрина): https://lnrgitg.github.io/research-wiki/passport.html</li>
+<li>Спецификация датасетов DataLens: data/datalens_datasets.yaml</li>
+<li>Отчёт о сборке DataLens: queries/datalens-api-build-20260929.md</li>
+<li>Каталог метрик (векторный поиск): docs/data.html / scripts/metric_search.py</li>
+</ul>
+</body>
+</html>

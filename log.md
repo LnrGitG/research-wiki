@@ -465,3 +465,8 @@ GLM на Nous исчерпала кредиты (402 на любом max_tokens,
 - Финальная версия для отправки: query/cbr-supervision-note-nolinks-20260929.docx (45 КБ, валидация ok) и markdown-исходник — убраны список источников и внутритекстовые отсылки (WP-номера, Journal, имена авторов в тексте).
 — Способ: источники переписаны в разговорной форме («Группа международных экономистов, работавшая под эгидой МВФ», «по сообщениям деловых СМИ за 2025 год», «известная работа исследователей 2025 года»), названия инструментов (Net Policy Sentiment, SupTech, J-VEILLE), институты и названия работ оставлены — это фактический материал, а не библиография.
 — Markdown-версия без ссылок: queries/cbr-supervision-note-nolinks-20260929.md (с пояснением, где лежат точные выходные данные работ)
+## 2026-09-29 — DataLens через Public API
+- 4 датасета PG_SUBSELECT по datalens_datasets.yaml (mq9joqmxxxnu5, 48r16b0n8djqn, swfpu2izqtsab, im5fktvy1uqm1); цикл: validateDataset refresh_source -> updateDataset mode=publish
+- 8 editor-чартов (d3_node): ИПЦ/ЗП/ИЖК/ввод по ФО, топ-10 регионов, рейтинг в ФО, свежесть
+- Дашборд dh0blcujorc4w «Паспорт региона (Д1-Д3)», 8 виджетов — datalens.yandex.ru/dh0blcujorc4w
+- Заметка: queries/datalens-api-build-20260929.md

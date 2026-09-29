@@ -21,9 +21,9 @@ blockquote { border-left:3px solid #444; margin:0; padding-left:12px; color:#aaa
 <div style="font-size:0.78rem;margin-bottom:8px"><a href="index.html" style="color:#4fc3f7;text-decoration:none">Главная</a> · <a href="passport.html" style="color:#4fc3f7;text-decoration:none">Паспорт региона</a> · <a href="data.html" style="color:#4fc3f7;text-decoration:none">Статистика</a> · <a href="metrics-catalog.html" style="color:#ba68c8;text-decoration:none">Каталог метрик</a></div>
 <h1>Сценарии работы с БД v2 через корпоративный pgAdmin (database.mlcluster.ru)</h1>
 <p><strong>Роль для коллег: <code>viewer</code></strong> — только чтение (SELECT) на 11 схем.
-Подключение: host <code>89.169.168.214</code>, port 5432, database <strong><code>research_wiki</code></strong>
+Подключение: host: corporate pgAdmin (database.mlcluster.ru) — 5432, database <strong><code>research_wiki</code></strong>
 (подчёркивание!), user <code>viewer</code>, SSL mode <code>require</code>, пароль — у держателя
-секрета (не публикуется, <code>DB_VIEWER_PASSWORD в локальном секретном файле профиля (VPS)).</p>
+секрета (не публикуется, <code>DB_VIEWER_PASSWORD</code> в ~/.hermes/.env на VPS).</p>
 <p>Метка: <strong>«Независимый расчёт, не связанный с Банком России».</strong></p>
 <hr />
 <h2>Сценарий 1. Инвентаризация: что есть в базе</h2>
@@ -111,6 +111,6 @@ ORDER BY m.metric_code, fd.name_ru, o.period_start;
 <li>Спецификация датасетов DataLens: data/datalens_datasets.yaml</li>
 <li>Отчёт о сборке DataLens: queries/datalens-api-build-20260929.md</li>
 <li>Каталог метрик (векторный поиск): docs/data.html / scripts/metric_search.py</li>
-</ul>
-</body>
+</ul></body>
+</html>
 </html>

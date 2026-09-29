@@ -1,7 +1,7 @@
 # Сценарии работы с БД v2 через корпоративный pgAdmin (database.mlcluster.ru)
 
 **Роль для коллег: `viewer`** — только чтение (SELECT) на 11 схем.
-Подключение: host `89.169.168.214`, port 5432, database **`research_wiki`**
+Подключение: host: corporate pgAdmin (database.mlcluster.ru) — 5432, database **`research_wiki`**
 (подчёркивание!), user `viewer`, SSL mode `require`, пароль — у держателя
 секрета (не публикуется, `DB_VIEWER_PASSWORD` в ~/.hermes/.env на VPS).
 

@@ -128,6 +128,9 @@ def main():
         w = csv.writer(fh)
         w.writerow(['month', 'event', 'repu_index'])
         w.writerows(ctrl_rows)
+    if not months:
+        print('Нет месяцев с попаданиями')
+        return 0
     print('== месячная доля попавших статей (пилот GDELT-корпуса):')
     for k in sorted(months):
         v = re_index[k]
@@ -137,6 +140,29 @@ def main():
     for ym, label, val in ctrl_rows:
         flag = '<<< сигнал' if val > 0 else ''
         print(f'   {ym} | индекс {val:>6} | {label[:60]} {flag}')
+    # График: месячная доля попавших статей + контрольные точки
+    try:
+        fig, ax = plt.subplots(figsize=(13, 4.8))
+        ks = sorted(months)
+        vs = [re_index[k] for k in ks]
+        ax.bar(range(len(ks)), vs, color='#3b6ea5', width=0.8, label='доля попавших статей REPU, %')
+        ax.set_xticks(range(len(ks)))
+        ax.set_xticklabels(ks, rotation=45, ha='right')
+        for ym, label, _v in ctrl_rows:
+            if ym in ks:
+                i = ks.index(ym)
+                ax.plot([i], [re_index[ym]], 'ro', ms=8, label='контрольное событие' if ym == ctrl_rows[0][0] else None)
+        ax.set_title('Пилот REPU-жильё: доля статей с совпадением трёх фильтров (GDELT THEMES)')
+        ax.set_ylabel('% статей месяца')
+        ax.grid(axis='y', alpha=0.25)
+        ax.legend(fontsize=9)
+        fig.tight_layout()
+        PNG.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(PNG, dpi=140)
+        print(f'   график: {PNG}')
+    except Exception as exc:
+        print(f'   график не построен: {exc}')
+
     print('\n== ограничение пилота:')
     print('   GDELT-gkg корпус в наличии только 25.08-10.09.2026 (6 файлов),')
     print('   месячные значения нерекомендуемы для вывода; механика проверена,')

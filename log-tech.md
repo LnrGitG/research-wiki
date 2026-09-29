@@ -1506,3 +1506,7 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 - Смысл: сжатие раньше (на 40% контекста вместо 50%) — каждый вызов тянет меньше. При контексте 1M токенов это 400k вместо 500k на вызов.
 - Holographic на всех профилях позволяет безопасно завершать длинные сессии вручную: знания в memory_store.db.
 - Ограничение: 85% gateway session hygiene — hardcoded, через конфиг не меняется; но compression threshold 0.40 обгоняет его и срабатывает раньше.
+## 2026-09-29 — cron свежести поставлен сразу (не ждать 12-го)
+- Владелец: 'Поставь cron сейчас'. Джоб 0210941406c7 'DB freshness daily check', 0 4 * * * (ежедневно 04:00 UTC, первый прогон сегодня), deliver=telegram, model=ollama-cloud/glm-5.1 (не жечь nous), workdir=repo.
+- Скрипт scripts/db_freshness_check.py: MAX(period_start) по observation_v2 x source, 9 источников с порогами из queries/datalens-db-health-dashboard-20260928.md; прогнозные точки исключены (WHERE period_start < CURRENT_DATE).
+- Первый прогон: cbr ok (28д/40), domrf ok (59/60), fedstat_emiss ok (59/60), fns ok (59/130), iminfin ok (4д/20), rosstat ok (28д/40), rosreestr FAIL (181/170), smartlab FAIL (181/180), worldbank FAIL (636/560) — итог issues 3. Три фейла известны: rosreestr сделки лагают кварталами, smartlab/worldbank — редкие годовые обновления; крон теперь будет это показывать ежедневно.

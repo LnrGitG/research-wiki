@@ -88,7 +88,7 @@ KEEP_FILES = [
 # --- Служебное: остаётся только в приватном ---
 # queries в DROP_DIRS нет: он обрабатывается отдельной ветвью —
 # публикуется выборочно по KEEP_QUERY_FILES.
-DROP_DIRS = ["scripts", "db", "templates", "db_docs", "raw"]
+DROP_DIRS = ["scripts", "db", "templates", "db_docs", "raw", "backups", "loader"]
 DROP_FILES = [
     "AGENTS.md", "MEMORY.md", "USER.md",
     "log-tech.md",
@@ -99,6 +99,8 @@ DROP_FILES = [
 DROP_DATA_FILES = [
     "data/backup_log.jsonl", "data/archive/cleanup_report.json",
     "data/dupes_removed.json", "data/developers_ifrs.db",
+    # Бэкапы памяти профиля: приватные (имена хостов, IP) — не для публичной витрины
+    "data/mem-backup-20260928/MEMORY.md", "data/mem-backup-20260928/USER.md",
     # Внутренние файлы дедупликации: содержат ссылки на служебные файлы
     # (AGENTS.md, MEMORY.md, USER.md, SCHEMA.md, log.md), которых в публичном
     # нет — в витрине это выглядело бы как битые ссылки.

@@ -484,3 +484,7 @@ GLM на Nous исчерпала кредиты (402 на любом max_tokens,
 - LLM-провайдер найден и проверен: Hermes API monitor 127.0.0.1:8642/v1 (OpenAI-совместим, ключ 43 симв.)
 - NL→SQL сквозной тест: Татарстан ввод 230.328 тыс кв м 2026-08 — верно
 - queries/pgadmin-ai-setup-20260929.md
+## 2026-09-29 — прогноз ВТБ в БД
+- banki.ru id=11027698: Пьянов (ВТБ): hold 23.10 (p 40%)/cut -25bc 18.12 (60%), СМА базовой 4% к декабрю
+- БД: core.document 2, kb 1916/33904, dkp.statement 45, meetings 120/121, forecast 115-117 (vtb_external, run 59)
+- queries/vtb-forecast-20260929.md

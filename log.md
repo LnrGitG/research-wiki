@@ -473,5 +473,5 @@ GLM на Nous исчерпала кредиты (402 на любом max_tokens,
 ## 2026-09-29 — удалённый доступ к БД v2 (роль viewer)
 - CREATE ROLE viewer LOGIN (NOSUPERUSER), GRANT USAGE+SELECT на 11 схем (core, derived, meta, marts, pipeline, staging, v2, v2_stage, dkp, kb, graph) + ALTER DEFAULT PRIVILEGES
 - pg_hba.conf: две строки host research_wiki viewer 0.0.0.0/0 и ::/0 scram-sha-256 (комментарий 'remote viewer'); бэкап pg_hba.conf.bak-viewer-20260929; reload выполнен
-- Пароль: в ~/.hermes/.env как DB_VIEWER_PASSWORD (24 симв.); временный /root/viewer_pw.txt на ВМ удалён
+- Пароль: записан в локальный секретный файл профиля (не публикуется); временный файл пароля на ВМ удалён
 - E2E с VDS: SELECT core.metric 16 313 / observation_v2 5 482 136 OK; INSERT/CREATE заблокированы (permission denied) — write-block подтверждён

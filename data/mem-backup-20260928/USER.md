@@ -1,0 +1,13 @@
+User (RU housing econ researcher; research-wiki repo: papers/+catalog.yaml/queries/). Focus: supply elasticity, demographics, mortgages, developer financial health, construction nowcasting. Grants: JUE/RED/HSE. GitHub Pages: data.html Chart.js via data-summary.json, mobile-first, modals; user checks from phone, cache → incognito.
+Hardware: corporate laptop (Ufanet ISP, Ufa) for EMISS reverse tunnel — on-demand only (once/month), not 24/7. Corporate policies may restrict SSH/software installs.
+Tool integration preference: chooses deeper integration over simpler CLI-only (picked Composio MCP over CLI).
+§
+Pipelines: PDF/reports → papers/ + raw/ → catalog.yaml → commits → cross-refs. Sources: SPARK, ЕИСЖС, Rosstat, CBR, NOSTROY, ФНС опендата, roschart.ru. Batch sources → full auto pipeline + tagging.
+§
+Reply style: повествовательный стиль — полные связные абзацы вместо рубленых тезисов; термины при первом употреблении расшифровывать (англицизмы — с русским переводом); вердикты как таблицы; concise-communication skill действует для длины (компактность в Telegram), но не отменяет повествовательность. Footer-счётчики отменены пользователем (ollama-usage-counter удалён 2026-09-14, не эммитить). 'Да'/'Все пункты' = execute whole plan without re-confirmation. GitHub links → quick repo analysis + relevance to his stack.
+§
+Summary style: user requires expanded thesis format (+20% vs brief bullets). Each thesis = heading + fact with [[N]] citation + mechanism explanation (2-3 sentences: decode jargon, causal chain) + conclusion for research-wiki models. Reference: research-report-ingestion skill → references/summary-style-example.md.
+§
+Работа с ТЗ/промтами: пользователь сам пишет спеку и присылает на критику — ожидает разбор пробелов + переформулировку с сохранением ЕГО структуры и нумерации (не переписывание с нуля), затем итеративно добавляет ограничениями («исключи X», «учти Y»). Итоговый артефакт — в queries/*.md + git commit.
+§
+Управление ходом работы: короткие команды «Стоп», «Да», «Делай», «Отмени последнюю операцию» — ожидает немедленного исполнения без переспроса; при «Стоп» — сразу свернуть работу и прибрать за собой (удалить временные ресурсы, погасить фоновые процессы), затем коротко доложить о состоянии. Ожидает обратимости разрушительных операций: перед удалением/перезаписью создавать точки возврата (git-тег/ветка-бэкап) и сообщать путь восстановления. Иногда просит откатить только что сделанное — откат должен быть точечным, без потери соседней работы.

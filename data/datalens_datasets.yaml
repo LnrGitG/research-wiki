@@ -1,0 +1,86 @@
+datasets:
+  ds_region_monthly:
+    description: 'Региональный срез: субъект × метрика × период (блоки A/B/C/E/F)'
+    sql: "SELECT m.metric_code,\n       left(m.name_ru, 60) AS metric_name,\n    \
+      \   r.parent_id         AS fo_id,\n       r.region_id,\n       r.name_ru   \
+      \        AS region,\n       o.frequency_id,\n       o.period_start::date AS\
+      \ period,\n       o.value\nFROM core.observation_v2 o\nJOIN core.metric m ON\
+      \ m.metric_id = o.metric_id\nJOIN core.region r ON r.region_id = o.region_id\n\
+      WHERE o.region_id > 9 AND o.sub_dimension = ''\n  AND o.observation_status <>\
+      \ 'rejected'\n  AND m.metric_code = ANY(ARRAY[\n      'emiss_31074_cpi_prevm_m',\
+      \ 'emiss_57824_wage_m', 'emiss_43062_unemp_q',\n      'zkf', 'zyi', 'vhdt',\
+      \ 'vmd', 'vhlvt', 'oipflrrivrsrf',\n      'rosstat_housing_total_m', 'rosstat_housing_pop_m',\
+      \ 'snz'])"
+  ds_region_rating:
+    description: Рейтинги региона внутри ФО + медианы ФО и РФ (оконные функции)
+    sql: "SELECT fd.name_ru AS federal_district,\n       r.name_ru  AS region,\n \
+      \      m.metric_code,\n       m.name_ru  AS metric_name,\n       o.period_start::date\
+      \ AS period,\n       o.value,\n       RANK() OVER (PARTITION BY fd.region_id,\
+      \ m.metric_id, o.period_start\n                    ORDER BY o.value DESC) AS\
+      \ rank_in_fo,\n       (SELECT percentile_cont(0.5) WITHIN GROUP (ORDER BY o2.value)\n\
+      \        FROM core.observation_v2 o2\n        JOIN core.region r2 ON r2.region_id\
+      \ = o2.region_id\n        WHERE r2.parent_id = fd.region_id AND o2.metric_id\
+      \ = m.metric_id\n          AND o2.period_start = o.period_start) AS fo_median\n\
+      FROM core.observation_v2 o\nJOIN core.metric m ON m.metric_id = o.metric_id\n\
+      JOIN core.region r ON r.region_id = o.region_id\nJOIN core.region fd ON fd.region_id\
+      \ = r.parent_id\nWHERE fd.level = 'federal_district' AND o.region_id > 9\n \
+      \ AND o.observation_status <> 'rejected'\n  AND m.metric_code = ANY(ARRAY[\n\
+      \      'rosstat_housing_total_m', 'zkf', 'zyi', 'vmd',\n      'emiss_31074_cpi_prevm_m',\
+      \ 'snz'])"
+  ds_rf_trend:
+    description: 'Федеральные агрегаты: КЭП (ВВП, ИКВ), ВРП годовой, ИПЦ РФ'
+    sql: "SELECT m.metric_code, m.name_ru, o.period_start::date AS period, o.value,\n\
+      \       s.source_code\nFROM core.observation_v2 o\nJOIN core.metric m ON m.metric_id\
+      \ = o.metric_id\nJOIN core.source s ON s.source_id = o.source_id\nWHERE o.region_id\
+      \ = 1\n  AND m.metric_code IN ('kep1_1', 'kep1_6', 'grp_level', 'grp_pys',\n\
+      \                        'vvp', 'emiss_31074_cpi_prevm_m')\n  AND o.observation_status\
+      \ <> 'rejected'"
+  db_health:
+    description: Свежесть источников (пороги из queries/datalens-db-health-dashboard-20260928.md)
+    sql: "SELECT s.source_code,\n       max(o.period_start)::date AS last_period,\n\
+      \       extract(epoch from now() - max(o.period_start)) / 86400 AS age_days,\n\
+      \       count(*) AS n_obs\nFROM core.observation_v2 o\nJOIN core.source s ON\
+      \ s.source_id = o.source_id\nWHERE o.period_start < CURRENT_DATE\nGROUP BY 1\
+      \ ORDER BY 1"
+check_results:
+  ds_region_monthly:
+    rows_sample: 20
+    status: ok
+    example:
+    - emiss_31074_cpi_prevm_m
+    - ИПЦ все товары и услуги, % к пред. месяц
+    - '2'
+    - '10'
+    - Белгородская область
+    - '5'
+    - '2002-01-01'
+    - '106.98'
+  ds_region_rating:
+    rows_sample: 20
+    status: ok
+    example:
+    - Центральный федеральный округ
+    - Москва
+    - zkf
+    - Задолженность по кредитам физлицам
+    - '2019-02-01'
+    - '1708574'
+    - '1'
+    - '102148.5'
+  ds_rf_trend:
+    rows_sample: 20
+    status: ok
+    example:
+    - emiss_31074_cpi_prevm_m
+    - ИПЦ все товары и услуги, % к пред. месяц
+    - '2022-12-01'
+    - '100.78'
+    - fedstat_emiss
+  db_health:
+    rows_sample: 10
+    status: ok
+    example:
+    - cbr
+    - '2026-09-01'
+    - '28.6510046081712963'
+    - '1177008'

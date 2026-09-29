@@ -1515,3 +1515,6 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 - Диагноз 2 (обнаружен после починки 1): ollama ретировал glm-5.1 25.09 (HTTP 410 'retired at 2026-09-25'). Доступны glm-5.2, glm-5.3-flash, glm-5.3.
 - Исправление: звено fallback glm-5.1 -> glm-5.2 в config.yaml default/macroeconomist/personal (legal уже на glm-5.3-flash — замен 0). Бэкапы *.bak-glm52-20260929.
 - E2E подтверждение: hermes -p personal chat -q --oneshot — Turn ended model=glm-5.2 (после 402 nous и unhealthy-openrouter) — fallback сработал полностью.
+## 2026-09-29 — personal: primary переставлен на ollama-cloud/glm-5.2 (временно, до пополнения nous)
+- Владелец спросил и подтвердил: primary = основная модель (первая в цепочке), в отличие от fallback (вспомогательные звенья на случай её отказа). Смена одной строки model.provider/default + base_url -> https://ollama.com/v1 (иначе ollama-модель шла бы на nous-эндпоинт).
+- E2E: model=glm-5.2 provider=ollama-cloud base_url=ollama.com/v1 — 8 с, без 402-петель. Вернуть на nous/deepseek при пополнении баланса (config.yaml.bak-glm52-20260929).

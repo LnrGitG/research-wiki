@@ -385,3 +385,50 @@ hypotheses:
     priority: 2
     created: '2026-09-25'
     relates_to: ["queries/summary-2309-layer-crosswalk"]
+
+  - id: H-015
+    kind: hypothesis
+    title: "REPU РФ опережает ввод жилья минимум на один квартал"
+    status: proposed
+    statement: "Индекс неопределённости регулирующей политики для жилищного рынка РФ (REPU, по аналогии с Chen-Mo-Tang-Li 2023 для Китая) предшествует квартальному вводу жилья и СМР минимум на один квартал; работает лучше общего EPU Петровой-Трунина."
+    evidence_for:
+      - "Китай: REPU в VAR предшествует снижению роста инвестиций в жилище, продаж и ВДС недвижимости (Chen et al. 2023, 2001-2018)"
+      - "Логика: покупка жилья — обратимая по времени крупная покупка, неопределённость сдвигает решение"
+    evidence_against: []
+    sources: [rosstat-smr, cbr-ltv, news-rss, repu-cis]
+    tags: [uncertainty, housing-market, text-mining, leading-indicators, china-benchmark]
+    relates_to: ["concept:repu-china-housing-uncertainty", "queries/dkp-uncertainty-layer-design"]
+    next_check: "Собрать корпус деловых СМИ 4-6 источников с архивом от 2015; контрольные точки — решения по льготной ипотеке и эскроу"
+    created: 2026-09-29
+    methodology_ref: "concept/repu-china-housing-uncertainty"
+
+  - id: H-016
+    kind: hypothesis
+    title: "REPU-жильё лучше общего EPU для объяснения ввода"
+    status: proposed
+    statement: "Специальный индекс неопределённости жилищной политики снижает RMSE модели ввода жилья минимум на 10% против общего EPU, потому что фильтр «жильё + неопределённость + регулирование» убирает шум нефтяных и геополитических шоков."
+    evidence_for:
+      - "Китай: REPU-специфика показала информативность против общего EPU (Chen et al. 2023)"
+    evidence_against: []
+    sources: [repu-cis, epu-petrova-trunin]
+    tags: [uncertainty, housing-market, nowcasting]
+    relates_to: ["hypothesis:H-015", "concept:repu-china-housing-uncertainty"]
+    next_check: "Сопоставление обоих индексов в одной VAR-спецификации, RMSE-сравнение"
+    created: 2026-09-29
+    methodology_ref: "concept/repu-china-housing-uncertainty"
+
+  - id: H-017
+    kind: hypothesis
+    title: "Двусторонняя связь цен жилья и неопределённости в РФ"
+    status: proposed
+    statement: "Между неопределённостью и ценами жилья в РФ есть двусторонняя связь (EPU → цены и цены → EPU), как в Китае по Guan-Wang-Su 2025; значит индекс нельзя читать как чистую причину."
+    evidence_for:
+      - "Китай: двусторонняя причинность по скользящим окнам (Guan-Wang-Su 2025, Buildings 15)"
+      - "Механика: неопределённость тормозит спрос, но и взлёт цен сам по себе питает неопределённость для решения о покупке"
+    evidence_against: []
+    sources: [repu-cis, rosstat-hpi]
+    tags: [uncertainty, housing-prices, causality]
+    relates_to: ["hypothesis:H-015", "concept:repu-china-housing-uncertainty"]
+    next_check: "Проверить скользящие окна причинности после первой загрузки индекса"
+    created: 2026-09-29
+    methodology_ref: "concept/repu-china-housing-uncertainty"

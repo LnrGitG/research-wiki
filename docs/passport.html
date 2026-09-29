@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0">
+<title>🏠 Паспорт региона | Research Wiki</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f1117;color:#e0e0e0;padding:12px;max-width:900px;margin:0 auto}
+h1{font-size:1.3rem;margin-bottom:4px;background:linear-gradient(90deg,#4fc3f7,#81c784);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#888;font-size:0.78rem;margin-bottom:12px}
+.back{font-size:0.8rem;margin-bottom:10px;display:inline-block;color:#4fc3f7;text-decoration:none}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;position:sticky;top:0;background:#0f1117;padding:8px 0;z-index:10}
+select{width:100%;padding:10px;background:#1a1d29;color:#e0e0e0;border:1px solid #2a2d3a;border-radius:10px;font-size:0.9rem;appearance:none}
+select:focus{outline:none;border-color:#4fc3f7}
+label{display:block;font-size:0.68rem;color:#888;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px}
+.datebadge{font-size:0.7rem;color:#888;text-align:center;margin-bottom:10px;padding:6px;background:#1a1d29;border-radius:8px}
+.datebadge b{color:#81c784}
+.block{margin-bottom:16px}
+.block>h2{font-size:0.85rem;color:#81c784;margin:14px 0 8px;padding-bottom:4px;border-bottom:1px solid #2a2d3a}
+.card{background:#1a1d29;border:1px solid #2a2d3a;border-radius:12px;padding:14px;margin-bottom:10px}
+.card .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+.card .name{font-size:0.9rem;font-weight:600}
+.card .val{font-size:1.25rem;font-weight:700;color:#4fc3f7}
+.card .val small{font-size:0.65rem;color:#888;font-weight:400;margin-left:3px}
+.trend{font-size:0.72rem;margin-left:6px}
+.trend.up{color:#ef5350}
+.trend.down{color:#81c784}
+.card canvas{max-height:70px!important;width:100%}
+.card.nodata{opacity:0.45}
+.card.nodata .name::after{content:' нет данных';font-size:0.65rem;color:#ef5350;font-weight:400}
+footer{color:#666;font-size:0.65rem;margin:16px 0;text-align:center}
+@media(max-width:600px){.controls{grid-template-columns:1fr}.card .val{font-size:1.1rem}}
+</style>
+</head>
+<body>
+<a class="back" href="data.html">← К данным</a>
+<h1>🏠 Паспорт региона</h1>
+<div class="subtitle">Основные показатели по блокам макро · БД v2</div>
+
+<div class="controls">
+  <div><label for="region">Регион</label><select id="region"></select></div>
+  <div><label for="month">Данные на месяц</label><select id="month"></select></div>
+</div>
+<div class="datebadge" id="generated"></div>
+<div id="content"></div>
+
+<footer>Источник: research-wiki БД v2 · <span id="stamp"></span> · независимый расчет, не связанный с Банком России</footer>
+
+<script>
+const BLOCKS={A:'Цены',B:'Рынок труда',C:'Кредитование и ДКУ',E:'Жильё и стройка',F:'Доходы населения'};
+const BLOCKORDER=['A','B','C','E','F'];
+let D=null;   // паспорт
+let sel={region:null,month:null};
+
+fetch('data/passport_regions.json').then(r=>r.json()).then(p=>{
+  D=p;
+  document.getElementById('generated').innerHTML='Данные по: <b>'+latestMonth()+'</b> · срез от '+p._meta.generated;
+  document.getElementById('stamp').textContent=p._meta.generated;
+  const rsel=document.getElementById('region');
+  rsel.innerHTML=p.regions.map(r=>'<option'+(r==='Республика Башкортостан'?' selected':'')+'>'+r+'</option>').join('');
+  rsel.value='Республика Башкортостан';
+  sel.region=rsel.value;
+  const msel=document.getElementById('month');
+  msel.innerHTML=months().map(m=>'<option>'+m+'</option>').join('');
+  msel.value=latestMonth();
+  sel.month=msel.value;
+  rsel.onchange=()=>{sel.region=rsel.value;render()};
+  msel.onchange=()=>{sel.month=msel.value;render()};
+  render();
+});
+
+function months(){const s=new Set();for(const c in D.data)for(const r in D.data[c])D.data[c][r].forEach(p=>s.add(p[0]));return [...s].sort().reverse()}
+function latestMonth(){return months()[0]}
+function series(code,region){return (D.data[code]&&D.data[code][region]||[])}
+function valueAt(code,region,month){
+  const s=series(code,region);if(!s.length)return null;
+  // точное совпадение или последняя точка <= месяца (кв для квартальных)
+  let v=null;for(const[p,val]of s){if(p<=month)v={p,val};else break}
+  return v;
+}
+function fmt(v,unit){
+  if(v==null)return'—';
+  if(unit==='млн руб.')return v>=1e6?(v/1e6).toFixed(2)+' трлн':v>=1000?(v/1000).toFixed(1)+' млрд':Math.round(v)+' млн';
+  if(unit==='руб.')return v>=1000?(v/1000).toFixed(1)+' тыс.':Math.round(v);
+  return v.toFixed(v<10?2:1);
+}
+function trend(code,region,month){
+  const s=series(code,region);if(s.length<2)return'';
+  let prev=null;for(const[p,val]of s){if(p<=month)prev=val!=null?{p,val}:prev;else break}
+  const cur=valueAt(code,region,month);if(!cur||!prev||cur.p===prev.p)return'';
+  const d=cur.val-prev.val;const pct=prev.val?Math.abs(d/prev.val*100):null;
+  const up=d>0;
+  return '<span class="trend '+(up?'up':'down')+'">'+(up?'▲':'▼')+' '+pct.toFixed(1)+'% к '+prev.p.slice(0,7)+'</span>';
+}
+function render(){
+  const c=document.getElementById('content');c.innerHTML='';
+  for(const b of BLOCKORDER){
+    const codes=Object.keys(D._meta.metrics).filter(k=>D._meta.metrics[k].block===b);
+    if(!codes.length)continue;
+    const sec=document.createElement('div');sec.className='block';
+    sec.innerHTML='<h2>'+BLOCKS[b]+'</h2>';
+    for(const code of codes){
+      const m=D._meta.metrics[code];
+      const cur=valueAt(code,sel.region,sel.month);
+      const card=document.createElement('div');card.className='card'+(cur?'':' nodata');
+      card.innerHTML='<div class="head"><span class="name">'+m.name+'</span>'+
+        '<span class="val">'+fmt(cur&&cur.val,m.unit)+'<small> '+m.unit+'</small>'+trend(code,sel.region,sel.month)+
+        (cur&&cur.p!==sel.month?'<span class="trend" style="color:#888">· на '+cur.p.slice(0,7)+'</span>':'')+'</span></div>';
+      // мини-график последних 13 точек
+      const cv=document.createElement('canvas');card.appendChild(cv);
+      const s=series(code,sel.region).slice(-13);
+      new Chart(cv,{type:'line',data:{labels:s.map(p=>p[0].slice(2,7)),datasets:[{data:s.map(p=>p[1]),borderColor:'#4fc3f7',borderWidth:2,pointRadius:1.5,tension:0.3}]},
+        options:{plugins:{legend:{display:false},tooltip:{callbacks:{title:i=>s[i[0].dataIndex][0].slice(0,7)}}},scales:{x:{ticks:{display:false}},y:{ticks:{font:{size:9},color:'#666'},grid:{color:'#222'}}},maintainAspectRatio:false}});
+      sec.appendChild(card);
+    }
+    c.appendChild(sec);
+  }
+}
+</script>
+</body>
+</html>

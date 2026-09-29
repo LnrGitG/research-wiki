@@ -1510,3 +1510,8 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 - Владелец: 'Поставь cron сейчас'. Джоб 0210941406c7 'DB freshness daily check', 0 4 * * * (ежедневно 04:00 UTC, первый прогон сегодня), deliver=telegram, model=ollama-cloud/glm-5.1 (не жечь nous), workdir=repo.
 - Скрипт scripts/db_freshness_check.py: MAX(period_start) по observation_v2 x source, 9 источников с порогами из queries/datalens-db-health-dashboard-20260928.md; прогнозные точки исключены (WHERE period_start < CURRENT_DATE).
 - Первый прогон: cbr ok (28д/40), domrf ok (59/60), fedstat_emiss ok (59/60), fns ok (59/130), iminfin ok (4д/20), rosstat ok (28д/40), rosreestr FAIL (181/170), smartlab FAIL (181/180), worldbank FAIL (636/560) — итог issues 3. Три фейла известны: rosreestr сделки лагают кварталами, smartlab/worldbank — редкие годовые обновления; крон теперь будет это показывать ежедневно.
+## 2026-09-29 — починка fallback personal: ключ OLLAMA + ретир glm-5.1
+- Диагноз 1: у personal не было OLLAMA_API_KEY в .env — ollama-cloud не резолвился ('Fallback to ollama-cloud failed: provider not configured', log 29.09 01:42). Ключ перенесён из ~/.hermes/.env в profiles/personal/.env (без печати).
+- Диагноз 2 (обнаружен после починки 1): ollama ретировал glm-5.1 25.09 (HTTP 410 'retired at 2026-09-25'). Доступны glm-5.2, glm-5.3-flash, glm-5.3.
+- Исправление: звено fallback glm-5.1 -> glm-5.2 в config.yaml default/macroeconomist/personal (legal уже на glm-5.3-flash — замен 0). Бэкапы *.bak-glm52-20260929.
+- E2E подтверждение: hermes -p personal chat -q --oneshot — Turn ended model=glm-5.2 (после 402 nous и unhealthy-openrouter) — fallback сработал полностью.

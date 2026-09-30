@@ -488,3 +488,8 @@ GLM на Nous исчерпала кредиты (402 на любом max_tokens,
 - banki.ru id=11027698: Пьянов (ВТБ): hold 23.10 (p 40%)/cut -25bc 18.12 (60%), СМА базовой 4% к декабрю
 - БД: core.document 2, kb 1916/33904, dkp.statement 45, meetings 120/121, forecast 115-117 (vtb_external, run 59)
 - queries/vtb-forecast-20260929.md
+## 2026-09-30 — геочки ФНС: недельный конвейер + переориентация
+- geochecki bounds: 182 ячейки (merc-лимит 500k учтён), W37 14 795 гексагонов, 0 ошибок
+- БД: freq W(15), метрики gchk_revenue/receipts/bill/hex _rf_w, release 127, инжест идемпотентен
+- cron 6d3be6c896c8 вторник 07:00; corr с розницей — после 8-12 недель (MIDAS)
+- queries/geochecki-week-consumer-predictor-20260930.md

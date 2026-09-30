@@ -1518,3 +1518,8 @@ Ollama-cloud исчерпал недельный лимит (429 на glm-5.3-fl
 ## 2026-09-29 — personal: primary переставлен на ollama-cloud/glm-5.2 (временно, до пополнения nous)
 - Владелец спросил и подтвердил: primary = основная модель (первая в цепочке), в отличие от fallback (вспомогательные звенья на случай её отказа). Смена одной строки model.provider/default + base_url -> https://ollama.com/v1 (иначе ollama-модель шла бы на nous-эндпоинт).
 - E2E: model=glm-5.2 provider=ollama-cloud base_url=ollama.com/v1 — 8 с, без 402-петель. Вернуть на nous/deepseek при пополнении баланса (config.yaml.bak-glm52-20260929).
+## [2026-09-30] tech | обогащение каталога v2: слои personal (ДОМ.РФ weeklyreport, ЦБ 02_06/013, панель lshare)
+- Зарегистрированы 4 карточки датасетов в loader/datasets.yaml (строки 176-268) и v2.dataset (id 11-14): domrf-lgot-weeklyreport, cbr-vfs-regional, ufo-panel-lshare, rosstat-housing-prices-q. Источник: сбор профиля personal 30.09.2026.
+- Миграция scripts/migrate_personal_layers_v2.sql (идемпотентная): INSERT v2.dataset 11-14, v2.source 10 (derived), v2.load_run 60-63, v2.metric 128-133 (6 новых: lgot_count/volume_w, cbr_housing_loans_count/volume_reg_m, cbr_mortgage_rate_reg_m, lshare_m), v2.metric_dataset_map (8 связей, включая расширение метрик 17/18 через dataset 14). GRANT SELECT viewer на 5 public-таблиц.
+- Решение по вопросу задачи: таблицы остаются в public (внешние слои), v2 каталог получает указатели через metric_dataset_map. Это даёт searchable catalog (v2.dataset/v2.metric), versioning (v2.load_run), freshness (v2.freshness), векторный поиск (derived.metric_card после пересборки).
+- Численные согласования: personal/queries/privat_mortgage_transmission_design.md (без личных данных).

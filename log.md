@@ -493,3 +493,7 @@ GLM на Nous исчерпала кредиты (402 на любом max_tokens,
 - БД: freq W(15), метрики gchk_revenue/receipts/bill/hex _rf_w, release 127, инжест идемпотентен
 - cron 6d3be6c896c8 вторник 07:00; corr с розницей — после 8-12 недель (MIDAS)
 - queries/geochecki-week-consumer-predictor-20260930.md
+## 2026-09-30 — osn август 2026: загрузка и сверка с КЭП
+- скачан osn-08-2026.pdf (10,3 МБ, 278 стр.) → raw/rosstat/reports/ + yc-s3
+- сверка июль-точек с КЭП-БД: СМР/розница м/м и г/г — 4/4 OK, ревизий нет
+- август-точки зафиксированы в queries/rosstat-osn-aug2026-vs-kep-20260930.md; КЭП январь-август ждём 2-4 окт (kep_refresh догрузит)

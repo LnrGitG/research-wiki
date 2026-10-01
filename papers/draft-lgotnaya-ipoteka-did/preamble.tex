@@ -1,0 +1,23 @@
+% Преамбула для сборки статьи (xelatex): кириллица, booktabs, математика.
+% babel здесь НЕ подключается: его добавляет шаблон pandoc по метаданным lang.
+\usepackage{fontspec}
+\setmainfont{Liberation Serif}
+\setsansfont{Liberation Sans}
+\setmonofont{Liberation Mono}[Scale=0.86]
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{amsmath,amssymb}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{graphicx}
+
+\usepackage[unicode,colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+
+\captionsetup{font=small,labelfont=bf,justification=justified,singlelinecheck=false}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+
+% Русские подписи («Таблица», «Рисунок», «Литература») даёт babel-russian
+% автоматически, поскольку в метаданных указано lang: ru-RU.

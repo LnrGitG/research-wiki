@@ -1,0 +1,60 @@
+# Льготная ипотека как автономный источник спроса и трансмиссия ДКП
+
+Черновик академической статьи (статус: **draft, не для публикации**).
+
+## Файлы
+
+| Файл | Назначение |
+|---|---|
+| `paper.Rmd` | основной источник статьи (R Markdown, YAML, BibTeX-библиография, R-чанки) |
+| `preamble.tex` | преамбула LaTeX (кириллица через fontspec, booktabs, подписи на русском) |
+| `refs.bib` | библиография в BibTeX |
+| `tables/` | таблицы: `.tex` (booktabs) и `.csv` (машинночитаемо), генерируются скриптом |
+| `figures/` | рисунки: `fig_event_study.pdf`, `fig_exposure.pdf` |
+| `Makefile` | цели `tables`, `pdf`, `html`, `tex` |
+| `paper.pdf` | собранная версия (после `make pdf`) |
+| `paper.tex` | сгенерированный LaTeX (после `make tex`) |
+
+## Сборка
+
+```bash
+make tables   # пересобрать таблицы и рисунки из данных (Python + psycopg)
+make pdf      # собрать PDF (R Markdown → xelatex)
+make html     # HTML-версия
+```
+
+Требуется: R с `rmarkdown` и `knitr` в `~/R/library`, дистрибутив LaTeX
+(TinyTeX в `~/.TinyTeX`), Python-окружение Hermes с `psycopg`, `pandas`,
+`numpy`, `matplotlib`.
+
+## Источники данных
+
+- Банк России, формы 02\_06 / 02\_07 / 02\_13 — помесячные жилищные кредиты по
+  субъектам РФ (таблица `cbr_housing_loans`, `cbr_mortgage_rates`).
+- ДОМ.РФ, отчёты по программам с господдержкой в региональном разрезе
+  (таблица `domrf_lgot_mortgage`).
+- Росстат — квартальные цены на жильё (`rosstat_housing_prices`), демография
+  ВПН-2020 (`vpn_households_children`, `rosstat_children_06`).
+
+## Скрипты расчётов (вне репозитория статьи)
+
+- `~/personal/scripts/did_all_regions.py` — оценки по всем субъектам РФ.
+- `~/personal/scripts/ufo_did_controls.py` — уральская панель с контролями.
+- `~/personal/scripts/export_for_paper.py` — таблицы и рисунки для статьи.
+
+## Записки с результатами
+
+- `~/personal/queries/did_all_regions.md`
+- `~/personal/queries/ufo_did_controls.md`
+- `~/research-wiki-private/queries/spravka-lgotnaya-ipoteka-transmissiya-2026.md`
+
+## Известные ограничения черновика
+
+1. Экспозиция Тюменской области (без автономных округов) получена вычитанием и
+   наследует дефект отчётности ДОМ.РФ по автономиям; проверка устойчивости без
+   этого региона не выполнена.
+2. Объёмный канал не разложен на число сделок и средний размер кредита.
+3. Эффект реформы «Семейной ипотеки» от 01.10.2026 не оценивается: данных после
+   события нет.
+4. Английская версия аннотации и текста не подготовлена (репозиторий требует
+   двуязычной структуры RU/EN перед публикацией).

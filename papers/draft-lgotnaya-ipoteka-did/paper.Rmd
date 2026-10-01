@@ -51,7 +51,7 @@ TAB <- 'tables'
 tex_tab <- function(file, caption, label, note = NULL, col.names = NULL) {
   df <- read.csv(file.path(TAB, file), check.names = FALSE, stringsAsFactors = FALSE)
   if (!is.null(col.names)) names(df) <- col.names
-  cat('\\begin{table}[htbp]\n\\centering\n')
+  cat('\\begin{table}[htbp]\n\\centering\n\\small\n')
   cat(sprintf('\\caption{%s}\n\\label{%s}\n', caption, label))
   cat('\\begin{tabular}{', paste(c('l', rep('r', ncol(df) - 1)), collapse = ''), '}\n', sep = '')
   cat('\\toprule\n')

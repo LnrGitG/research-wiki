@@ -46,6 +46,10 @@ output:
 
 
 
+**Ключевые слова:** льготная ипотека; трансмиссия денежно-кредитной политики; рынок жилья; разностные разности; рандомизационный вывод; региональная гетерогенность.
+
+**Классификация JEL:** E52, G21, R31, R38.
+
 # Abstract (English)
 
 This paper asks whether subsidised mortgage programmes in Russia generated an

@@ -50,9 +50,19 @@ def fetch(name, dest_dir, check_only=False):
         return r.stdout.strip()
     os.makedirs(dest_dir, exist_ok=True)
     dest = os.path.join(dest_dir, name)
-    r = subprocess.run(['curl', '-k', '-s', '-L', '--max-time', '180', '-o', dest, url],
+    r = subprocess.run(['curl', '-k', '-s', '-L', '--max-time', '180',
+                        '-w', '%{http_code}', '-o', dest, url],
                        capture_output=True, text=True)
-    ok = os.path.exists(dest) and os.path.getsize(dest) > 10_000
+    code = (r.stdout or '').strip()[-3:]
+    ok = code == '200' and os.path.exists(dest) and os.path.getsize(dest) > 10_000
+    if ok:
+        # xlsx — это zip-контейнер; 404-страница Росстата отдаёт HTML с HTTP 404,
+        # но её тело >10 КБ, поэтому одной проверки размера недостаточно.
+        try:
+            with open(dest, 'rb') as fh:
+                ok = fh.read(2) == b'PK'
+        except OSError:
+            ok = False
     if not ok:
         if os.path.exists(dest):
             os.remove(dest)

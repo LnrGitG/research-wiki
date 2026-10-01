@@ -2,6 +2,16 @@
 -- into v2 catalog. Tables remain in public; v2.dataset gets pointer cards.
 -- Run as owner (not viewer) — viewer has no INSERT on v2.dataset.
 -- Idempotent: ON CONFLICT DO NOTHING.
+--
+-- ИСПРАВЛЕНО 01.10.2026 (при применении профилем personal): два дефекта порядка
+-- и ограничений. (1) v2.source (id=10 'derived') вставляется ПЕРВЫМ — иначе
+-- v2.dataset.source_id NOT NULL отвергает карточку 13. (2) Карточка 13 идёт с
+-- source_id=10, а не NULL (NOT NULL constraint). Применённая версия — эта.
+
+-- 0) источник 'derived' — ДО карточек датасетов
+INSERT INTO v2.source (source_id, source_code, name_ru, access_method)
+VALUES (10, 'derived', 'Производные датасеты (расчётные)', 'sql')
+ON CONFLICT (source_id) DO NOTHING;
 
 -- 1) domrf-lgot-weeklyreport (dataset_id=11)
 INSERT INTO v2.dataset (dataset_id, source_id, dataset_code, name_ru, release_url, schedule, is_active)
@@ -18,9 +28,9 @@ VALUES (12, 2, 'cbr-vfs-regional',
 ON CONFLICT (dataset_id) DO NOTHING;
 
 -- 3) ufo-panel-lshare (dataset_id=13)
--- source: derived (no source_id in v2.source for 'derived' — use null or add one)
+-- source: derived (source_id=10 — вставлен первым, см. шаг 0)
 INSERT INTO v2.dataset (dataset_id, source_id, dataset_code, name_ru, release_url, schedule, is_active)
-VALUES (13, NULL, 'ufo-panel-lshare',
+VALUES (13, 10, 'ufo-panel-lshare',
         'Панель доли льготных выдач (Уральский макрорегион, 9 субъектов)',
         NULL, 'monthly', true)
 ON CONFLICT (dataset_id) DO NOTHING;
@@ -33,12 +43,8 @@ VALUES (14, 1, 'rosstat-housing-prices-q',
 ON CONFLICT (dataset_id) DO NOTHING;
 
 -- Add 'derived' source if not present (for ufo-panel-lshare)
-INSERT INTO v2.source (source_id, source_code, name_ru, access_method)
-VALUES (10, 'derived', 'Производные датасеты (расчётные)', 'sql')
-ON CONFLICT (source_id) DO NOTHING;
-
--- Update ufo-panel-lshare source_id to 10 (derived)
-UPDATE v2.dataset SET source_id = 10 WHERE dataset_id = 13 AND source_id IS NULL;
+-- (перенесено в шаг 0 — источник вставляется ДО карточек датасетов)
+-- UPDATE ufo-panel-lshare source_id to 10 (derived) — уже задано в карточке 13
 
 -- Register load_run entries (run_id 60-63) to create versioning pointers
 INSERT INTO v2.load_run (run_id, dataset_id, loaded_at, source_file, parser_version, status, rows_parsed, rows_inserted, rows_rejected, notes)

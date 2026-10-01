@@ -502,3 +502,8 @@ GLM на Nous исчерпала кредиты (402 на любом max_tokens,
 - v2.dataset id 11-14, v2.metric id 128-133 (6 новых), v2.load_run 60-63. Миграция: scripts/migrate_personal_layers_v2.sql.
 - Сверки: семейная июнь 2026 — 2,4% (недельные vs официальные); ЦБ Тюменская ветка — 3 строки сходятся (1300+1616+721=3637); цены Росстата — дубль метрик 17/18, слой personal даёт последний квартал раньше.
 - Дизайн исследования трансмиссии ДКП: personal/queries/privat_mortgage_transmission_design.md. Гипотеза: β<0 — льготная доля ослабляет кредитный канал трансмиссии; реформа 01.10.2026 частично восстанавливает трансмиссию.
+## 2026-10-01 — PDF к справке по международной практике
+- Скачаны открытые версии 11 из 12 цитируемых работ → raw/papers/ (YC Object Storage); скрипт scripts/fetch_reference_pdfs.py (идемпотентный, проверка %PDF- и %%EOF)
+- Обход блокировок: IMF за Akamai (403 датацентрам) взят из Wayback двумя кусками через Range; BIS перешёл на схему /publications/<slug>.pdf (старые /publ/ и /fsi/publ/ отдают HTML)
+- Недоступен 1: Chen et al. (2023) REPU China — gold OA, но PDF только на ScienceDirect под Cloudflare-капчей, зеркал нет
+- queries/cbr-reference-pdf-manifest-20261001.md

@@ -4,14 +4,19 @@ hypotheses:
     kind: hypothesis
     title: "Wordstat-композит S2–S5 лидирует над yoy СМР на 1 месяц"
     status: testing
-    statement: "Композит поисковых фраз S2+S3+S4+S5 коррелирует 0.63 с yoy СМР при лаге -1 месяц; S1 (ИЖС) сигнал слабый."
+    statement: "Композит поисковых фраз S2+S3+S4+S5 коррелирует ~0.62 с yoy СМР при лаге -1 месяц; S1 (ИЖС) сигнал слабый."
     evidence_for:
+      - "Перекат 2026-10-01 (август 2026 добавлен): corr=+0.618 lead-1m (n=19; окно comp 2025-01..2026-07 -> yoy СМР 2025-02..2026-08). Профиль лагов: k=+1 0.618, k=+2 0.612, k=0 0.413, k=-1 0.320 — максимум на опережении 1-2 мес (queries/h001-wordstat-smr-recheck-20261001.md, scripts/wordstat_smr_lead1.py)"
+      - "Репродукция prior на старом окне: corr=+0.6443 (n=18, comp 2025-01..2026-06 -> СМР 2025-02..2026-07) — методика стабильна: monthly mean weekly share по S2-S5, без нормировки на D_broad"
+      - "Подпериоды свежего окна: 2025 r=+0.548 (n=12), 2026H1 r=+0.858 (n=6), 2026 r=+0.806 (n=7)"
       - "data/wordstat_weekly_construction.csv, corr=0.63 lead-1m (2026-08)"
-    evidence_against: []
+    evidence_against:
+      - "Ослабление при добавлении одного месяца: 0.644 (n=18) -> 0.618 (n=19); август 2026 предварительный (КЭП янв-авг на 01.10.2026 не вышел, значение из доклада osn-08-2026), изменение в пределах шума"
+      - "Короткая выборка (19 мес) и режимный слом 2026-01 (yoy СМР 84.0 при растущем композите): уровневая OLS непригодна, связь реализуется только через MIDAS/алмон по недельным лагам"
     sources: [wordstat, rosstat-smr]
     tags: [nowcasting, leading-indicators, search-data]
-    relates_to: ["catalog:wordstat-cmr-composite"]
-    next_check: "Перекатить на свежий месяц ИФО СМР"
+    relates_to: ["catalog:wordstat-cmr-composite", "queries/h001-wordstat-smr-recheck-20261001"]
+    next_check: "Перекат после выхода КЭП январь-август 2026 (1-4 октября) — заменить предварительный август; далее MIDAS/алмон на недельных лагах, OOS-бенчмарк AR"
     created: 2026-08-15
     methodology_ref: "queries/hfd-preprocessing-methodology"
 

@@ -17,11 +17,28 @@
 
 ## Сборка
 
+**Основной путь — на ВМ YC** (там есть `rmarkdown`, `pandoc` и полный TeX Live,
+а база доступна локально):
+
+```bash
+bash scripts/build_on_vm.sh   # синхронизация, экспорт, сборка, возврат PDF
+```
+
+Результат: `paper_vm.pdf` (собран `rmarkdown::render` на ВМ, 10 страниц).
+
+**Резервный путь — на VPS** (без `rmarkdown`: он не собирается из-за отсутствия
+`libuv`; сборка идёт `knitr` → `pandoc` → `xelatex`):
+
 ```bash
 make tables   # пересобрать таблицы и рисунки из данных (Python + psycopg)
-make pdf      # собрать PDF (R Markdown → xelatex)
+make pdf      # собрать PDF
 make html     # HTML-версия
 ```
+
+Результат: `paper.pdf` (12 страниц).
+
+**Проверка приёмки.** Числа на двух хостах сверяются побайтово по CSV в
+`tables/`; при расхождении сборку считать неуспешной.
 
 Требуется: R с `rmarkdown` и `knitr` в `~/R/library`, дистрибутив LaTeX
 (TinyTeX в `~/.TinyTeX`), Python-окружение Hermes с `psycopg`, `pandas`,

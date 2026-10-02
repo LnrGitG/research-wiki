@@ -1,0 +1,26 @@
+{
+  "count_base": {
+    "observed": -0.6605283583975475,
+    "p_perm": 0.002,
+    "sd_draws": 0.23294507016185315,
+    "n_perm": 500
+  },
+  "count_trends": {
+    "observed": -1.044807238202076,
+    "p_perm": 0.002,
+    "sd_draws": 0.30327954411013425,
+    "n_perm": 500
+  },
+  "volume_base": {
+    "observed": -0.6223080271398395,
+    "p_perm": 0.006,
+    "sd_draws": 0.21539617270006642,
+    "n_perm": 500
+  },
+  "volume_trends": {
+    "observed": -0.9940328155002552,
+    "p_perm": 0.0,
+    "sd_draws": 0.3089364146636056,
+    "n_perm": 500
+  }
+}

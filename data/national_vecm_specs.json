@@ -1,0 +1,158 @@
+[
+  {
+    "spec": "6 перем., rank 2, k3, без дамми",
+    "vars": [
+      "ln_izhk_real",
+      "izhk_rate",
+      "key_rate",
+      "ln_dep_real",
+      "infl_yoy",
+      "ln_wage_real"
+    ],
+    "rank": 2,
+    "k": 3,
+    "dummies": false,
+    "rmse_5": 0.186,
+    "rmse_naive_5": 0.1779,
+    "beat_5": false,
+    "rmse_rate_5": 2.596,
+    "rmse_12": 0.1998,
+    "rmse_naive_12": 0.1062,
+    "beat_12": false,
+    "rmse_rate_12": 1.85
+  },
+  {
+    "spec": "5 перем., rank 1, k2, без дамми",
+    "vars": [
+      "ln_izhk_real",
+      "izhk_rate",
+      "key_rate",
+      "ln_dep_real",
+      "infl_yoy"
+    ],
+    "rank": 1,
+    "k": 2,
+    "dummies": false,
+    "rmse_5": 0.0801,
+    "rmse_naive_5": 0.1779,
+    "beat_5": true,
+    "rmse_rate_5": 2.3815,
+    "rmse_12": 0.128,
+    "rmse_naive_12": 0.1062,
+    "beat_12": false,
+    "rmse_rate_12": 2.2696
+  },
+  {
+    "spec": "5 перем., rank 1, k2, дамми",
+    "vars": [
+      "ln_izhk_real",
+      "izhk_rate",
+      "key_rate",
+      "ln_dep_real",
+      "infl_yoy"
+    ],
+    "rank": 1,
+    "k": 2,
+    "dummies": true,
+    "rmse_5": 0.0681,
+    "rmse_naive_5": 0.1779,
+    "beat_5": true,
+    "rmse_rate_5": 2.2987,
+    "rmse_12": 0.1042,
+    "rmse_naive_12": 0.1062,
+    "beat_12": true,
+    "rmse_rate_12": 1.5276
+  },
+  {
+    "spec": "4 перем. (ставка ИЖК), rank 1, k2, дамми",
+    "vars": [
+      "ln_izhk_real",
+      "izhk_rate",
+      "ln_dep_real",
+      "infl_yoy"
+    ],
+    "rank": 1,
+    "k": 2,
+    "dummies": true,
+    "rmse_5": 0.0719,
+    "rmse_naive_5": 0.1779,
+    "beat_5": true,
+    "rmse_rate_5": 2.409,
+    "rmse_12": 0.1177,
+    "rmse_naive_12": 0.1062,
+    "beat_12": false,
+    "rmse_rate_12": 1.8864
+  },
+  {
+    "spec": "4 перем. (ключевая), rank 1, k2, дамми",
+    "vars": [
+      "ln_izhk_real",
+      "key_rate",
+      "ln_dep_real",
+      "infl_yoy"
+    ],
+    "rank": 1,
+    "k": 2,
+    "dummies": true,
+    "rmse_5": 0.0762,
+    "rmse_naive_5": 0.1779,
+    "beat_5": true,
+    "rmse_12": 0.1482,
+    "rmse_naive_12": 0.1062,
+    "beat_12": false
+  },
+  {
+    "spec": "3 перем., rank 1, k2, дамми",
+    "vars": [
+      "ln_izhk_real",
+      "key_rate",
+      "ln_dep_real"
+    ],
+    "rank": 1,
+    "k": 2,
+    "dummies": true,
+    "rmse_5": 0.085,
+    "rmse_naive_5": 0.1779,
+    "beat_5": true,
+    "rmse_12": 0.1288,
+    "rmse_naive_12": 0.1062,
+    "beat_12": false
+  },
+  {
+    "spec": "4 перем., VAR в разностях, k2, дамми",
+    "vars": [
+      "ln_izhk_real",
+      "izhk_rate",
+      "ln_dep_real",
+      "infl_yoy"
+    ],
+    "rank": 0,
+    "k": 2,
+    "dummies": true,
+    "rmse_5": 0.0977,
+    "rmse_naive_5": 0.1779,
+    "beat_5": true,
+    "rmse_rate_5": 2.5655,
+    "rmse_12": 0.1095,
+    "rmse_naive_12": 0.1062,
+    "beat_12": false,
+    "rmse_rate_12": 2.0925
+  },
+  {
+    "spec": "3 перем., VAR в разностях, k2, дамми",
+    "vars": [
+      "ln_izhk_real",
+      "key_rate",
+      "ln_dep_real"
+    ],
+    "rank": 0,
+    "k": 2,
+    "dummies": true,
+    "rmse_5": 0.1233,
+    "rmse_naive_5": 0.1779,
+    "beat_5": true,
+    "rmse_12": 0.0934,
+    "rmse_naive_12": 0.1062,
+    "beat_12": true
+  }
+]

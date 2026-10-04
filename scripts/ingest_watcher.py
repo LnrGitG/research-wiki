@@ -46,10 +46,19 @@ def log(msg):
 
 
 def connect():
-    """Подключение: на ВМ локально, на VPS через тоннель."""
+    """Подключение: на ВМ локально, на VPS через тоннель.
+
+    Строка PGDSN может оказаться непригодной (например, systemd разбирает
+    значение Environment= по пробелам, и переменной достаётся только первый
+    параметр). Поэтому отказ строки не прекращает попытки: дальше идут
+    обычные адреса.
+    """
     dsn = os.environ.get("PGDSN")
     if dsn:
-        return psycopg.connect(dsn, autocommit=True)
+        try:
+            return psycopg.connect(dsn, autocommit=True)
+        except Exception as e:
+            log(f"PGDSN не сработала ({str(e)[:80]}), пробую адреса")
     for host, port in (("localhost", 5432), ("127.0.0.1", 15432)):
         try:
             return psycopg.connect(host=host, port=port, dbname="research_wiki",

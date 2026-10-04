@@ -1,0 +1,170 @@
+#!/usr/bin/env python3
+"""Планировщик автообновления: обход точек публикации и разбор нового.
+
+Живёт на ВМ (российские источники с рабочего VPS недоступны). Делает две вещи:
+
+  1. ОБХОД. Идёт по активным точкам catalog.source_endpoint, забирает
+     страницу, извлекает список файлов публикации и считает отпечаток по
+     этому списку. Отпечаток по списку, а не по всей странице: разметка
+     сайта меняется от счётчиков и баннеров, а состав публикаций — нет.
+     Новый отпечаток -> ops.enqueue_release ставит задачу в очередь.
+
+  2. РАЗБОР. Забирает задачи из очереди через ops.claim_ingest (FOR UPDATE
+     SKIP LOCKED — два планировщика не возьмут одну задачу), запускает
+     скрипт точки, пишет результат через ops.finish_ingest.
+
+Запуск: python3 ingest_watcher.py [--check-only] [--run-only] [--limit N]
+
+Сеть — через curl с повторами: на urllib чтение ответа отваливается
+посреди тела (питфолл зафиксирован в навыке research-db-v2).
+"""
+import argparse
+import hashlib
+import os
+import re
+import subprocess
+import sys
+from datetime import datetime, timezone
+
+try:
+    import psycopg
+except ImportError:
+    print("нужен psycopg", file=sys.stderr)
+    sys.exit(1)
+
+SCRIPTS_DIR = os.environ.get("INGEST_SCRIPTS_DIR", "/home/ubuntu/scripts")
+CURL_TIMEOUT = 60
+CURL_RETRIES = 3
+PAYLOAD_RE = re.compile(
+    r'href=["\']([^"\']+\.(?:pdf|xlsx?|csv|zip|rar|html?))["\']', re.IGNORECASE)
+
+
+def log(msg):
+    print(f"[watcher] {datetime.now(timezone.utc).strftime('%H:%M:%S')} {msg}",
+          flush=True)
+
+
+def connect():
+    """Подключение: на ВМ локально, на VPS через тоннель."""
+    dsn = os.environ.get("PGDSN")
+    if dsn:
+        return psycopg.connect(dsn, autocommit=True)
+    for host, port in (("localhost", 5432), ("127.0.0.1", 15432)):
+        try:
+            return psycopg.connect(host=host, port=port, dbname="research_wiki",
+                                   user="wiki", autocommit=True)
+        except Exception:
+            continue
+    raise RuntimeError("не удалось подключиться к research_wiki")
+
+
+def fetch(url):
+    """Забрать страницу через curl с повторами. Возврат: (текст | None)."""
+    for attempt in range(1, CURL_RETRIES + 1):
+        r = subprocess.run(
+            ["curl", "-sL", "--max-time", str(CURL_TIMEOUT),
+             "-A", "Mozilla/5.0 (research-wiki ingest watcher)",
+             "-w", "\n%{http_code}", url],
+            capture_output=True, text=True)
+        if r.returncode == 0 and r.stdout:
+            body, _, code = r.stdout.rpartition("\n")
+            if code.strip().startswith("2"):
+                return body
+        if attempt < CURL_RETRIES:
+            log(f"   попытка {attempt} не удалась, повтор")
+    return None
+
+
+def fingerprint(body):
+    """Отпечаток публикации: состав файлов, а не разметка страницы."""
+    links = sorted({m.group(1).split("?")[0] for m in PAYLOAD_RE.finditer(body)})
+    basis = "\n".join(links) if links else body[:200000]
+    return hashlib.sha256(basis.encode("utf-8", "ignore")).hexdigest(), len(links)
+
+
+def sweep(conn, dry=False):
+    """Обход точек: заметить новые публикации."""
+    cur = conn.cursor()
+    cur.execute("""SELECT e.endpoint_id, e.url, s.source_code, e.kind
+                   FROM catalog.source_endpoint e
+                   JOIN catalog.source s ON s.source_id = e.source_id
+                   WHERE e.is_active ORDER BY e.endpoint_id""")
+    endpoints = cur.fetchall()
+    log(f"точек к обходу: {len(endpoints)}")
+    new_count = 0
+    for ep_id, url, source, kind in endpoints:
+        body = fetch(url)
+        if body is None:
+            log(f"   {source:14s} недоступна: {url[:60]}")
+            continue
+        h, n_links = fingerprint(body)
+        if dry:
+            log(f"   {source:14s} отпечаток {h[:12]}, файлов {n_links}")
+            continue
+        cur.execute("SELECT ops.enqueue_release(%s, %s, %s, %s) AS q",
+                    (ep_id, h, None, url))
+        qid = cur.fetchone()[0]
+        if qid:
+            new_count += 1
+            log(f"   {source:14s} НОВОЕ, задача {qid} (файлов {n_links})")
+        else:
+            log(f"   {source:14s} без изменений")
+    return new_count
+
+
+def work(conn, limit=3):
+    """Разбор очереди: запустить скрипты точек."""
+    cur = conn.cursor()
+    cur.execute("SELECT queue_id, endpoint_id, url, parser_script, attempts FROM ops.claim_ingest(%s)",
+                (limit,))
+    tasks = cur.fetchall()
+    if not tasks:
+        log("очередь пуста")
+        return 0
+    done = 0
+    for qid, ep_id, url, parser, attempts in tasks:
+        if not parser:
+            log(f"   задача {qid}: скрипт разбора не указан, пропуск")
+            cur.execute("SELECT ops.finish_ingest(%s,'skipped',NULL,NULL,%s,NULL)",
+                        (qid, "нет parser_script у точки публикации"))
+            continue
+        path = os.path.join(SCRIPTS_DIR, parser)
+        if not os.path.exists(path):
+            log(f"   задача {qid}: скрипт не найден {path}")
+            cur.execute("SELECT ops.finish_ingest(%s,'failed',NULL,NULL,%s,NULL)",
+                        (qid, f"нет файла {path}"))
+            continue
+        log(f"   задача {qid}: запускаю {parser}")
+        r = subprocess.run([sys.executable, path], capture_output=True,
+                           text=True, timeout=1800)
+        ok = r.returncode == 0
+        tail = (r.stdout + r.stderr)[-1500:]
+        cur.execute("SELECT ops.finish_ingest(%s,%s,NULL,%s,%s,%s)",
+                    (qid, "done" if ok else "failed", r.returncode,
+                     None if ok else tail[:400], tail))
+        log(f"   задача {qid}: {'готово' if ok else 'сбой'} (код {r.returncode})")
+        if ok:
+            done += 1
+    return done
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--check-only", action="store_true", help="только обход")
+    ap.add_argument("--run-only", action="store_true", help="только разбор")
+    ap.add_argument("--dry", action="store_true", help="обход без постановки")
+    ap.add_argument("--limit", type=int, default=3)
+    args = ap.parse_args()
+
+    conn = connect()
+    if not args.run_only:
+        n = sweep(conn, dry=args.dry)
+        log(f"новых публикаций: {n}")
+    if not args.check_only:
+        d = work(conn, args.limit)
+        log(f"разобрано: {d}")
+    conn.close()
+
+
+if __name__ == "__main__":
+    main()

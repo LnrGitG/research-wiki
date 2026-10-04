@@ -32,7 +32,8 @@ except ImportError:
     print("нужен psycopg", file=sys.stderr)
     sys.exit(1)
 
-SCRIPTS_DIR = os.environ.get("INGEST_SCRIPTS_DIR", "/home/ubuntu/scripts")
+SCRIPTS_DIR = os.environ.get("INGEST_SCRIPTS_DIR",
+                            "/home/ubuntu/research-wiki-private/scripts")
 CURL_TIMEOUT = 60
 CURL_RETRIES = 3
 PAYLOAD_RE = re.compile(
@@ -149,6 +150,22 @@ def sweep(conn, dry=False):
             continue
         if dry:
             log(f"   {source:14s} отпечаток {h[:12]} по {kind}, файлов {n_links}")
+            continue
+        if kind == "text":
+            # Страницы без ссылок (таблица ставки, витрина) меняются от
+            # динамических вставок, и по тексту они дают «новизну» на каждом
+            # обходе. Такую точку запоминаем, но в очередь не ставим: разбор
+            # нужен по признаку содержимого, а не по вёрстке. Пока признак не
+            # задан, точка видна в ops.v_ingest_board как неподконтрольная.
+            cur.execute("""INSERT INTO ops.release_seen
+                             (endpoint_id, content_hash, published_hint, payload_ref, note)
+                           VALUES (%s, %s, NULL, %s, 'текстовый отпечаток, в очередь не ставится')
+                           ON CONFLICT (endpoint_id, content_hash) DO NOTHING""",
+                        (ep_id, h, url))
+            cur.execute("""UPDATE catalog.source_endpoint
+                              SET last_checked_at = now(), last_hash = %s
+                            WHERE endpoint_id = %s""", (h, ep_id))
+            log(f"   {source:14s} отпечаток по тексту, в очередь не ставлю")
             continue
         cur.execute("SELECT ops.enqueue_release(%s, %s, %s, %s) AS q",
                     (ep_id, h, None, url))

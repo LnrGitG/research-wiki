@@ -59,36 +59,60 @@ def connect():
 
 
 def fetch(url):
-    """Забрать страницу через curl с повторами. Возврат: (текст | None)."""
+    """Забрать страницу через curl с повторами. Возврат: (текст | None).
+
+    Для Росстата проверка сертификата не проходит (код 000 против 200 с
+    отключённой проверкой) — это зафиксированный питфолл источника, поэтому
+    вторая попытка идёт с -k.
+    """
     for attempt in range(1, CURL_RETRIES + 1):
-        r = subprocess.run(
-            ["curl", "-sL", "--max-time", str(CURL_TIMEOUT),
-             "-A", "Mozilla/5.0 (research-wiki ingest watcher)",
-             "-w", "\n%{http_code}", url],
-            capture_output=True, text=True)
+        insecure = attempt >= 2
+        cmd = ["curl", "-sL", "--max-time", str(CURL_TIMEOUT),
+               "-A", "Mozilla/5.0 (research-wiki ingest watcher)",
+               "-w", "\n%{http_code}"]
+        if insecure:
+            cmd.append("-k")
+        cmd.append(url)
+        r = subprocess.run(cmd, capture_output=True, text=True)
         if r.returncode == 0 and r.stdout:
             body, _, code = r.stdout.rpartition("\n")
             if code.strip().startswith("2"):
                 return body
         if attempt < CURL_RETRIES:
-            log(f"   попытка {attempt} не удалась, повтор")
+            log(f"   попытка {attempt} не удалась, повтор"
+                + (" (без проверки сертификата)" if not insecure else ""))
     return None
 
 
-def fingerprint(body):
-    """Отпечаток публикации: состав файлов, а не разметка страницы.
+TAG_RE = re.compile(r"<(script|style)[^>]*>.*?</\1>", re.IGNORECASE | re.DOTALL)
+ANY_TAG_RE = re.compile(r"<[^>]+>")
+WS_RE = re.compile(r"\s+")
 
-    Для страниц, где файлы не опознаются (динамическая разметка, витрина
-    без прямых ссылок), отпечаток НЕ считается: хэш всего тела такой
-    страницы меняется от счётчиков и баннеров и даёт ложные «новые
-    публикации», которые гоняют разбор вхолостую. Возврат None означает
-    «эту точку так не отследить».
+
+def normalized_text(body):
+    """Видимый текст страницы без разметки: устойчивее сырого HTML."""
+    t = TAG_RE.sub(" ", body)
+    t = ANY_TAG_RE.sub(" ", t)
+    return WS_RE.sub(" ", t).strip()
+
+
+def fingerprint(body):
+    """Отпечаток публикации: сначала состав файлов, затем видимый текст.
+
+    Состав файлов — лучший признак, но он есть не у всех страниц (таблица
+    ставки, витрина без прямых ссылок). Тогда берётся нормализованный
+    видимый текст: он не реагирует на счётчики и вёрстку, на которые
+    реагирует хэш всего тела. Ложное срабатывание стоит одного лишнего
+    прогона разбора (разбор идемпотентен), пропуск публикации — дороже.
     """
     links = sorted({m.group(1).split("?")[0] for m in PAYLOAD_RE.finditer(body)})
-    if not links:
-        return None, 0
-    basis = "\n".join(links)
-    return hashlib.sha256(basis.encode("utf-8", "ignore")).hexdigest(), len(links)
+    if links:
+        basis = "\n".join(links)
+        return hashlib.sha256(basis.encode("utf-8", "ignore")).hexdigest(), len(links), "files"
+    text = normalized_text(body)
+    if len(text) < 80:
+        return None, 0, "none"
+    return hashlib.sha256(text.encode("utf-8", "ignore")).hexdigest(), 0, "text"
 
 
 def sweep(conn, dry=False):
@@ -106,19 +130,19 @@ def sweep(conn, dry=False):
         if body is None:
             log(f"   {source:14s} недоступна: {url[:60]}")
             continue
-        h, n_links = fingerprint(body)
+        h, n_links, kind = fingerprint(body)
         if h is None:
-            log(f"   {source:14s} файлов не опознано — точку так не отследить")
+            log(f"   {source:14s} страница пуста — точку так не отследить")
             continue
         if dry:
-            log(f"   {source:14s} отпечаток {h[:12]}, файлов {n_links}")
+            log(f"   {source:14s} отпечаток {h[:12]} по {kind}, файлов {n_links}")
             continue
         cur.execute("SELECT ops.enqueue_release(%s, %s, %s, %s) AS q",
                     (ep_id, h, None, url))
         qid = cur.fetchone()[0]
         if qid:
             new_count += 1
-            log(f"   {source:14s} НОВОЕ, задача {qid} (файлов {n_links})")
+            log(f"   {source:14s} НОВОЕ, задача {qid} (по {kind}, файлов {n_links})")
         else:
             log(f"   {source:14s} без изменений")
     return new_count

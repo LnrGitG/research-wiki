@@ -169,8 +169,59 @@ def main():
     log("релизов подготовлено: %d" % len(rel_cache))
 
     # ---------- 3. метрики пачками ----------
+    # ПЕРЕИСПОЛЬЗОВАНИЕ МЕТРИК МЕЖДУ ВЫПУСКАМИ.
+    # КЭП выходит ежемесячно, а состав связок (лист, раздел+подпоказатель,
+    # блок, частота, строка, колонка) от выпуска к выпуску один и тот же.
+    # Наивная генерация кодов «kep1_7, kep1_72, kep1_73…» заводит на КАЖДЫЙ
+    # выпуск НОВЫЙ набор метрик — одна и та же связка живёт в витрине под
+    # разными кодами, и через год каталог раздувается в 12 раз, а ряды
+    # рассыпаются. Поэтому метрика сначала ищется среди уже загруженных
+    # КЭП-метрик и переиспользуется; новый код создаётся только под реально
+    # новую связку.
+    # Ключ поиска — нормализованное имя: номер сноски в заголовке («2)», «3)»)
+    # Росстат меняет от выпуска к выпуску, а имя метрики и есть связка.
+    # Внутри группы одинаковых имён порядок — по возрастанию metric_id, то есть
+    # по порядку создания; тот же порядок, в котором связки идут в uniq_keys.
+    def _norm_name(s):
+        return re.sub(r"\d\)", "", str(s)).replace("\u00a0", " ").strip()
+
+    reuse = {}
+    if not SIMULATE:
+        cur.execute("SELECT metric_id, metric_code, name_ru FROM core.metric "
+                    "WHERE 'kep' = ANY(tags) ORDER BY metric_id")
+        for mid, mcode, mname in cur.fetchall():
+            reuse.setdefault(_norm_name(mname), []).append((mid, mcode))
+        for pool in reuse.values():
+            pool.reverse()   # pop() с конца = по возрастанию metric_id
+
+    def _match_pool(name):
+        """Группа метрик той же связки: точное имя, иначе — префиксное.
+
+        Имя метрики хранится обрезанным до 300 символов, а подписи КЭП
+        длинные: хвост «… [подтаблица 8] [блок 1] — level» до обрезки не
+        доживает, и сохранённое имя оказывается ПРЕФИКСОМ имени следующего
+        выпуска. Точное сравнение такую связку не находит и заводит дубль
+        (проверено: 9 дублей на выпуске январь–август 2026 — листы 2.3, 4.1.7,
+        4.4.3). Поэтому вторым шагом берём самое длинное префиксное
+        совпадение; порог 100 символов отсекает случайные короткие совпадения.
+        """
+        key = _norm_name(name)
+        pool = reuse.get(key)
+        if pool:
+            return key, pool
+        best = None
+        for k, p in reuse.items():
+            if not p or min(len(k), len(key)) < 100:
+                continue
+            if key.startswith(k) or k.startswith(key):
+                if best is None or len(k) > len(best):
+                    best = k
+        if best:
+            return best, reuse[best]
+        return None, None
+
     metrics = {}
-    batch, created = [], 0
+    batch, created, reused = [], 0, 0
     for sheet, series, block, bname, freq, ucode, uname, rn, col in uniq_keys:
         f_id = freq_ids.get(freq)
         u_id = unit_ids.get(ucode) if ucode else unit_ids.get("unknown")
@@ -178,6 +229,13 @@ def main():
             continue
         if not u_id:
             u_id = unit_ids.get("unknown", 18)
+        name = "%s — %s (КЭП %s)" % (series, block, sheet)
+        gkey, pool = _match_pool(name) if not SIMULATE else (None, None)
+        if pool:
+            mid, mcode = pool.pop()
+            metrics[(sheet, series, block, bname, freq, rn, col)] = mcode
+            reused += 1
+            continue
         # Код строится из номера листа С СОХРАНЕНИЕМ РАЗДЕЛИТЕЛЯ: «1.12» ->
         # kep1_12, «1.1» -> kep1_1. Раньше точка просто удалялась, и «1.12»
         # давало «112» — та же строка, что «1.1» + счётчик 2, поэтому коды
@@ -191,7 +249,6 @@ def main():
             code = "%s%d" % (base, i)
             i += 1
         taken.add(code)
-        name = "%s — %s (КЭП %s)" % (series, block, sheet)
         batch.append((code, name[:300],
                       "Краткосрочные экономические показатели РФ, лист %s" % sheet,
                       u_id, f_id, [TAG, "kep"]))
@@ -209,7 +266,8 @@ def main():
             log("  метрики: %d/%d" % (created, len(batch)))
     else:
         created = len(batch)
-    log("зарегистрировано метрик: %d" % created)
+    log("зарегистрировано метрик: %d (переиспользовано из прошлых выпусков: %d)"
+        % (created, reused))
 
     # ---------- 4. карта код → metric_id ----------
     if not SIMULATE:
@@ -252,13 +310,19 @@ def main():
             seen_k.add(k)
             uniq.append(b)
         if not SIMULATE:
-            with cur.copy("""COPY core.observation_v2 (metric_id, region_id,
-                frequency_id, period_start, period_end, value, assessment_type,
-                observation_status, source_id, release_id, quality_flags,
-                sub_dimension, notes) FROM STDIN""") as cp:
-                for b in uniq:
-                    cp.write_row(b)
-            conn.commit()
+            # ON CONFLICT DO NOTHING — идемпотентность на уровне ключа ряда.
+            # COPY сюда больше не годится: после переезда на схему data
+            # core.observation_v2 — ПРЕДСТАВЛЕНИЕ над data.observation, а COPY
+            # в представление PostgreSQL запрещает («cannot copy to view»).
+            # INSERT через представление проходит (проверено cutover_test_write).
+            for i in range(0, len(uniq), 2000):
+                cur.executemany("""INSERT INTO core.observation_v2
+                    (metric_id, region_id, frequency_id, period_start, period_end,
+                     value, assessment_type, observation_status, source_id, release_id,
+                     quality_flags, sub_dimension, notes)
+                    VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                    ON CONFLICT DO NOTHING""", uniq[i:i + 2000])
+                conn.commit()
         total += len(uniq)
         log("  %-24s +%s (всего %s)" % (t.replace("rosstat_kep__", ""),
                                         format(len(uniq), ","), format(total, ",")))

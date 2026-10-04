@@ -32,6 +32,7 @@ PostgreSQL, тоннель слушает 15432.
         execute("DELETE FROM t WHERE id = %s", (5,))
 """
 import os
+
 import subprocess
 import sys
 

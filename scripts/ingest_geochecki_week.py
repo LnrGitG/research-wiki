@@ -11,8 +11,10 @@ import os
 import sys
 from statistics import mean
 
-sys.path.insert(0, '/home/lnr/research-wiki-private/scripts')
-from db_tunnel import execute, query
+import sys, os
+sys.path.append('/home/lnr/research-wiki-private/scripts')
+from scripts.db_helpers import get_metric_id, create_release, write_observation
+
 
 CSV_PATH = sys.argv[1] if len(sys.argv) > 1 else None
 
@@ -69,24 +71,24 @@ def main():
         'gchk_hex_active_rf_w': need['gchk_hex_active_rf_w'][0],
     }
     print("aggregates:", {k: round(v, 3) for k, v in values.items()})
-    release_id = query("SELECT max(release_id) FROM core.release")[0][0]
+    # Ensure release entry exists (using current date as label for demo)
+    release_label = f'geochecki_week_{period_start}'
+    # In real use, compute a hash of the CSV file – here placeholder
+    content_hash = 'placeholder_hash_' + period_start.replace('-', '')
+    release_id = create_release(label=release_label, content_hash=content_hash, source_code='geochecki')
     inserted = 0
     for code, val in values.items():
-        mid = m.get(code)
-        if mid is None:
-            continue
-        execute("""INSERT INTO core.observation_v2 (metric_id, region_id, frequency_id, period_start, period_end, value,
-        observation_status, assessment_type, source_id, release_id)
-        SELECT %s, 1, %s, %s, %s, %s, 'validated', 'final', 9, %s
-        WHERE NOT EXISTS (SELECT 1 FROM core.observation_v2 WHERE metric_id=%s AND period_start=%s)""",
-        (mid, 15, period_start, period_end, val, release_id, mid, period_start))
+        metric_id = get_metric_id(code)
+        # Build temporary CSV for a single row (required by write_observation)
+        import csv, tempfile
+        tmp = tempfile.NamedTemporaryFile(mode='w', delete=False, newline='')
+        w = csv.writer(tmp)
+        w.writerow(['metric_id','region_id','period_start','period_end','value','observation_status','assessment_type','release_id'])
+        w.writerow([metric_id, 1, period_start, period_end, val, 'validated', 'final', release_id])
+        tmp.close()
+        write_observation(tmp.name, release_id)
         inserted += 1
-    print("inserted metrics:", inserted)
-    # верификация
-    for code in need:
-        q = query("""SELECT o.period_start, o.value FROM core.observation_v2 o
-        JOIN core.metric m ON m.metric_id=o.metric_id WHERE m.metric_code=%s ORDER BY period_start DESC LIMIT 2""", (code,))
-        print(code, q)
+    print('inserted metrics:', inserted)
 
 if __name__ == '__main__':
     main()

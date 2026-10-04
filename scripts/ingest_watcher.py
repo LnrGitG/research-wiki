@@ -61,9 +61,12 @@ def connect():
 def fetch(url):
     """Забрать страницу через curl с повторами. Возврат: (текст | None).
 
-    Для Росстата проверка сертификата не проходит (код 000 против 200 с
-    отключённой проверкой) — это зафиксированный питфолл источника, поэтому
-    вторая попытка идёт с -k.
+    Две тонкости источников:
+      - Росстат не проходит проверку сертификата (код 000 против 200 с -k),
+        поэтому вторая попытка идёт без проверки;
+      - часть страниц отдаётся в Windows-1251, и жёсткое декодирование
+        UTF-8 падает на первом же байте кириллицы. Поэтому байты
+        раскодируются вручную с запасными кодировками.
     """
     for attempt in range(1, CURL_RETRIES + 1):
         insecure = attempt >= 2
@@ -73,15 +76,25 @@ def fetch(url):
         if insecure:
             cmd.append("-k")
         cmd.append(url)
-        r = subprocess.run(cmd, capture_output=True, text=True)
+        r = subprocess.run(cmd, capture_output=True)
         if r.returncode == 0 and r.stdout:
-            body, _, code = r.stdout.rpartition("\n")
+            body, _, code = decode(r.stdout).rpartition("\n")
             if code.strip().startswith("2"):
                 return body
         if attempt < CURL_RETRIES:
             log(f"   попытка {attempt} не удалась, повтор"
                 + (" (без проверки сертификата)" if not insecure else ""))
     return None
+
+
+def decode(raw):
+    """Раскодировать ответ: UTF-8, затем однобайтовые кириллические."""
+    for enc in ("utf-8", "cp1251", "koi8-r", "latin-1"):
+        try:
+            return raw.decode(enc)
+        except UnicodeDecodeError:
+            continue
+    return raw.decode("utf-8", "replace")
 
 
 TAG_RE = re.compile(r"<(script|style)[^>]*>.*?</\1>", re.IGNORECASE | re.DOTALL)
@@ -172,9 +185,9 @@ def work(conn, limit=3):
             continue
         log(f"   задача {qid}: запускаю {parser}")
         r = subprocess.run([sys.executable, path], capture_output=True,
-                           text=True, timeout=1800)
+                           timeout=1800)
         ok = r.returncode == 0
-        tail = (r.stdout + r.stderr)[-1500:]
+        tail = (decode(r.stdout) + decode(r.stderr))[-1500:]
         cur.execute("SELECT ops.finish_ingest(%s,%s,NULL,%s,%s,%s)",
                     (qid, "done" if ok else "failed", r.returncode,
                      None if ok else tail[:400], tail))

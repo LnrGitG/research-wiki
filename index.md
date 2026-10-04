@@ -29,6 +29,22 @@
 
 - [[subsidirovanie-mezhdunarodnyi-opyt|Международный опыт субсидирования ипотеки]] — 8 стран (РФ, Колумбия, Бельгия, UK, Германия, США, Китай), уроки pass-through и капитализации
 
+## Reviews
+
+- [[reviews/feds-2026-068-garcia-alban-gonzalez-astudillo-bells-whistles-nowcasting|García-Albán & González-Astudillo (2026, FEDS 2026-068) — какие фичи DFM улучшают nowcast]] — полный факторный абляционный эксперимент (16 спецификаций, ВВП США): динамическая гетерогенность единственная фича, устойчиво улучшающая точечный/плотностной/хвостовой прогноз; дизайн-ориентир для H-006
+- [[reviews/nowcasting-i-mixed-frequency-modeli|Nowcasting и mixed-frequency модели — обзор кластера]] — 8 работ по BVAR/DFM, entropic tilting, stacked mixed-frequency
+- [[reviews/favar-faktornye-modeli|FAVAR и факторные модели — обзор кластера]]
+- [[reviews/prognozirovanie-cen-faktornye-podhody|Прогнозирование цен на жильё: факторные подходы — обзор кластера]]
+- [[reviews/klassicheskie-modeli-ekonomiki-zhilya|Классические модели экономики жилья — обзор кластера]]
+- [[reviews/mezhdunarodnaya-transmissiya-dkp-i-zhilya|Международная трансмиссия ДКП и рынка жилья — обзор кластера]]
+- [[reviews/rossiyskie-issledovaniya-rynka-zhilya|Российские исследования рынка жилья — обзор кластера]]
+- [[reviews/predlozhenie-i-regulirovanie-zhilya|Предложение жилья и регулирование — обзор кластера]]
+- [[reviews/ml-ne-linearnye-modeli-dlya-prognozirovaniya|ML и нелинейные модели для прогнозирования цен на жильё]]
+- [[reviews/otchety-cb-i-regulyaciya|Отчёты ЦБ, регуляторика и макрофинансовая стабильность — обзор кластера]]
+- [[reviews/glaeser-gyourko-2018-housing-supply-review|Glaeser & Gyourko (2018) — The Economic Implications of Housing Supply]]
+- [[reviews/kawasoe-2026-housing-requirements-hazard-resilience-2100|Kawasoe (2026) — Housing Requirements, Hazard Exposure, and Resilience Costs to 2100]]
+- [[reviews/mnb-wp-2026-3-sentiment-fsi-hungary|MNB WP 2026/3 — Sentiment-based Financial Stress Index for Hungary]]
+
 ## Queries
 
 - [[ekonometricheskie-issledovaniya-rynka-nedvizhimosti-2020-2026|Обзор эконометрических исследований рынка недвижимости (2020–2026)]] — 10 статей: методы (DID, IV/GMM, FE-panel, структурные модели, Random Forest), результаты, методологические проблемы

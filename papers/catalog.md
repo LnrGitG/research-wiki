@@ -3314,3 +3314,24 @@ migrated: 2026-07-26
 - key_result: global housing stock nearly doubles by 2100 to 4.1-4.5bn units; construction demand shifts from expansion to replacement by mid-century; heat-exposed stock grows 267-412%; 46 countries face triple burden (demand, hazard, fiscal capacity); resilient path costs less long-term except South Asia and Sub-Saharan Africa
 - relevance: high
 - status: new
+
+## feds-2026-068-garcia-alban-gonzalez-astudillo-bells-whistles-nowcasting.md
+- title: Bells and Whistles of Nowcasting Models: Which Matter and When?
+- authors: Garcia-Alban, Freddy; Gonzalez-Astudillo, Manuel
+- year: 2026
+- method: Bayesian dynamic factor model, full 2^4 factorial ablation of four features (dynamic heterogeneity, stochastic volatility, time-varying long-run growth, multiplicative outlier adjustment), balanced paired factorial contrasts, log squared-error / CRPS / quantile scores
+- data: 25 U.S. series (subset of NY Fed Staff Nowcast env., Almuzara et al. 2023), 1985-2024, pseudo-real-time (publication lags masked, no data revisions), target quarters 2015Q1-2024Q4
+- key_result: dynamic heterogeneity is the only feature improving point (-16.8q. error), density (-7.6
+## feds-2026-068-garcia-alban-gonzalez-astudillo-bells-whistles-nowcasting.md
+- title: Bells and Whistles of Nowcasting Models: Which Matter and When?
+- authors: Garcia-Alban, Freddy; Gonzalez-Astudillo, Manuel
+- year: 2026
+- method: Bayesian dynamic factor model, full 2^4 factorial ablation of four features (dynamic heterogeneity, stochastic volatility, time-varying long-run growth, multiplicative outlier adjustment), balanced paired factorial contrasts, log squared-error / CRPS / quantile scores
+- data: 25 U.S. series (subset of NY Fed Staff Nowcast env., Almuzara et al. 2023), 1985-2024, pseudo-real-time (publication lags masked, no data revisions), target quarters 2015Q1-2024Q4
+- key_result: dynamic heterogeneity is the only feature improving point (-16.8% sq. error), density (-7.6% CRPS) and tail (-6.2% 90th quantile) forecasts consistently; stochastic volatility helps mainly pre-pandemic and imprecisely; TV long-run growth helps point (-13.3%) but hurts tails/CRPS; outlier adjustment does not help on average and is detrimental post-pandemic
+- relevance: high
+- status: new
+- class: A
+- doi: 10.17016/FEDS.2026.068
+- used_in: [[reviews/feds-2026-068-garcia-alban-gonzalez-astudillo-bells-whistles-nowcasting]], [[annotations/feds-2026-068-bells-whistles-nowcasting-ru]]
+- notes: FEDS 2026-068, Fed Board; design guide for DFM feature selection (H-006); no search/text data, no housing series

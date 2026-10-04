@@ -103,10 +103,11 @@ hypotheses:
     evidence_for:
       - "H-001: wordstat-композит corr 0.63 lead-1m"
       - "Литература: FAVAR/MIDAS для nowcasting (Koop 2019, Bork 2012); для строительства search-data аналог отсутствует"
+      - "García-Albán & González-Astudillo 2026 (FEDS 2026-068, Sep): полный факторный абляционный эксперимент на байесовской DFM (16 спецификаций, ВВП США) — dynamic heterogeneity единственная фича, улучшающая точечный, плотностной и хвостовой прогнозы устойчиво (квадр. ошибка −16,8 %, CRPS −7,6 %, 90-й квантиль −6,2 %); stochastic volatility полезна условно (до пандемии), TV long-run growth вредит хвостам/CRPS, мультипликативная поправка на выбросы после пандемии вредна. Дизайн-ориентир для факторной ветки H-006 и метод оценки (сбалансированные парные контрасты + CRPS/квантили, режимы); оговорка — псевдо-real-time без ревизий данных (проверено 2026-10-04, reviews/feds-2026-068-garcia-alban-gonzalez-astudillo-bells-whistles-nowcasting)"
     evidence_against: []
     sources: [wordstat, gdelt, eiszhc, rosstat-smr]
     tags: [nowcasting, mixed-frequency, search-data, leading-indicators]
-    relates_to: ["queries/search-nowcasting-construction", "H-001"]
+    relates_to: ["queries/search-nowcasting-construction", "H-001", "reviews/feds-2026-068-garcia-alban-gonzalez-astudillo-bells-whistles-nowcasting"]
     next_check: "Собрать блоки, backtest 2022-2026 vs AR"
     created: 2026-09-08
     methodology_ref: "queries/hfd-preprocessing-methodology"

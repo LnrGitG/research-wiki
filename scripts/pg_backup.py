@@ -89,8 +89,12 @@ def main():
     report = {"started": stamp, "database": DB}
 
     # ── 1. дамп ──
+    # Служебная схема cron (метаданные pg_cron) исключена: она не содержит
+    # исследовательских данных, а pg_dump без прав на неё падал целиком
+    # («permission denied for schema cron» на cron.jobid_seq).
     print(f"[backup] pg_dump {DB} → {dump_file}", flush=True)
     rc, out = run(["pg_dump", "-h", "localhost", "-U", "wiki",
+                   "--exclude-schema=cron",
                    "-Fc", "-d", DB, "-f", dump_file])
     if rc != 0:
         print(f"[backup] ДАМП НЕ УДАЛСЯ: {out[:300]}", file=sys.stderr)

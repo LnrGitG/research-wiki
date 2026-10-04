@@ -207,30 +207,41 @@ def sweep(conn, dry=False):
 def work(conn, limit=3):
     """Разбор очереди: запустить скрипты точек."""
     cur = conn.cursor()
-    cur.execute("SELECT queue_id, endpoint_id, url, parser_script, attempts FROM ops.claim_ingest(%s)",
-                (limit,))
+    cur.execute("SELECT queue_id, endpoint_id, url, parser_script, parser_args, parser_pre, attempts "
+                "FROM ops.claim_ingest(%s)", (limit,))
     tasks = cur.fetchall()
     if not tasks:
         log("очередь пуста")
         return 0
     done = 0
-    for qid, ep_id, url, parser, attempts in tasks:
+    for qid, ep_id, url, parser, pargs, ppre, attempts in tasks:
         if not parser:
             log(f"   задача {qid}: скрипт разбора не указан, пропуск")
             cur.execute("SELECT ops.finish_ingest(%s,'skipped',NULL,NULL,%s,NULL)",
                         (qid, "нет parser_script у точки публикации"))
             continue
+        interp = parser_python()
+        # подготовительный шаг: часть разборов читает файл, который готовит
+        # отдельный скрипт (например, разведка структуры перед сбором)
+        if ppre:
+            pre_path = os.path.join(SCRIPTS_DIR, ppre)
+            if os.path.exists(pre_path):
+                log(f"   задача {qid}: подготовка {ppre}")
+                subprocess.run([interp, pre_path], capture_output=True, timeout=900)
+            else:
+                log(f"   задача {qid}: подготовительный скрипт не найден {pre_path}")
         path = os.path.join(SCRIPTS_DIR, parser)
         if not os.path.exists(path):
             log(f"   задача {qid}: скрипт не найден {path}")
             cur.execute("SELECT ops.finish_ingest(%s,'failed',NULL,NULL,%s,NULL)",
                         (qid, f"нет файла {path}"))
             continue
-        log(f"   задача {qid}: запускаю {parser}")
-        interp = parser_python()
+        cmd = [interp, path]
+        if pargs:
+            cmd.extend(pargs.split())
+        log(f"   задача {qid}: запускаю {parser} {pargs or ''}")
         log(f"   задача {qid}: интерпретатор {interp}")
-        r = subprocess.run([interp, path], capture_output=True,
-                           timeout=1800)
+        r = subprocess.run(cmd, capture_output=True, timeout=1800)
         ok = r.returncode == 0
         tail = (decode(r.stdout) + decode(r.stderr))[-1500:]
         cur.execute("SELECT ops.finish_ingest(%s,%s,NULL,%s,%s,%s)",

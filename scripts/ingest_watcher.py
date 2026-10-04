@@ -34,6 +34,23 @@ except ImportError:
 
 SCRIPTS_DIR = os.environ.get("INGEST_SCRIPTS_DIR",
                             "/home/ubuntu/research-wiki-private/scripts")
+
+# Парсерам нужен интерпретатор с pandas и openpyxl, а не системный python3,
+# под которым запускается служба: иначе разбор падает на первом же импорте.
+PYTHON_CANDIDATES = [
+    os.environ.get("INGEST_PYTHON"),
+    "/home/ubuntu/.hermes/hermes-agent/venv/bin/python3",
+    "/home/lnr/.hermes/hermes-agent/venv/bin/python3",
+    sys.executable,
+]
+
+
+def parser_python():
+    """Интерпретатор для парсеров: первый существующий из кандидатов."""
+    for p in PYTHON_CANDIDATES:
+        if p and os.path.exists(p):
+            return p
+    return sys.executable
 CURL_TIMEOUT = 60
 CURL_RETRIES = 3
 PAYLOAD_RE = re.compile(
@@ -210,7 +227,9 @@ def work(conn, limit=3):
                         (qid, f"нет файла {path}"))
             continue
         log(f"   задача {qid}: запускаю {parser}")
-        r = subprocess.run([sys.executable, path], capture_output=True,
+        interp = parser_python()
+        log(f"   задача {qid}: интерпретатор {interp}")
+        r = subprocess.run([interp, path], capture_output=True,
                            timeout=1800)
         ok = r.returncode == 0
         tail = (decode(r.stdout) + decode(r.stderr))[-1500:]

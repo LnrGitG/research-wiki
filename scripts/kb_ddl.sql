@@ -46,9 +46,15 @@ CREATE INDEX IF NOT EXISTS ix_chunk_tsv ON kb.chunk USING gin (tsv);
 -- триграммы: опечатки и подстроки (коды, ИНН, метрики)
 CREATE INDEX IF NOT EXISTS ix_chunk_trgm ON kb.chunk USING gin (text gin_trgm_ops);
 
--- объём корпуса ~10-15 тыс. чанков: HNSW строим, но поиск по умолчанию —
--- точный скан (pgvector 0.6 не умеет iterative scan; точный скан на этом
--- объёме быстрее и даёт идеальный recall). Индекс — задел на рост.
+-- Объём корпуса ~34 тыс. чанков. ВАЖНО (замер 04.10.2026): поиск фактически
+-- идёт ПО ЭТОМУ HNSW-индексу, а не точным сканом, как предполагалось при
+-- создании схемы, — планировщик выбирает Index Scan using ix_chunk_emb.
+-- Следствие: условие по doc_type применяется ПОСЛЕ индекса (hnsw.ef_search=40),
+-- и для мелких типов (metric_card 127 чанков, dkp_text 664, wiki_query 2039)
+-- векторный канал возвращал 0 строк из 40. Поэтому в kb_search.py пул
+-- кандидатов материализуется (WITH pool AS MATERIALIZED) до сортировки по
+-- расстоянию — без этого фильтр по типу глушит поиск. Подъём ef_search до 400
+-- проблему НЕ решает (проверено).
 CREATE INDEX IF NOT EXISTS ix_chunk_emb ON kb.chunk USING hnsw (embedding vector_cosine_ops);
 
 -- -------------------------------------------------------------- ingest_log --

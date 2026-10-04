@@ -24,6 +24,7 @@ FOLDER = "b1gpe14c599s44v5dacm"
 API = "https://llm.api.cloud.yandex.net/foundationModels/v1/textEmbedding"
 CHUNK = 1000
 OVERLAP = 100
+MIN_CHUNK = 40
 
 # ------------------------------------------------------------------- embed --
 def api_key():
@@ -82,7 +83,9 @@ def chunks_of(text):
             buf = (buf + "\n\n" + p) if buf else p
     if buf:
         out.append(buf)
-    return [c for c in out if c.strip()][:400]  # предохранитель на документ
+    # отсев мусора: чанки короче MIN_CHUNK символов не несут смысла, но шумят в
+    # индексе (замер 04.10.2026: 396 таких чанков при медиане 839).
+    return [c for c in out if len(c.strip()) >= MIN_CHUNK][:400]  # предохранитель на документ
 
 def sha(s):
     return hashlib.sha256(s.encode("utf-8")).hexdigest()

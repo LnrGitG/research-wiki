@@ -88,16 +88,26 @@ def search(query, limit=8, doc_type=None):
 
     type_filter = "AND d.doc_type = %(doc_type)s" if doc_type else ""
 
-    # канал 1: векторный
+    # канал 1: векторный.
+    # Пул отбирается ДО сортировки по расстоянию и материализуется. Без этого
+    # планировщик берёт HNSW-индекс (hnsw.ef_search=40), а фильтр по doc_type
+    # применяет ПОСЛЕ него — и для мелких типов (metric_card 127 чанков,
+    # dkp_text 664, wiki_query 2039) канал возвращает 0 из 40. Замер 04.10.2026:
+    # с MATERIALIZED-пулом — 40 из 40 для всех типов.
     emb = embed_query(q)
     vec_sql = """
-        SELECT d.doc_id, d.title, d.doc_type, d.url_or_path, c.chunk_id, c.seq_no,
-               left(c.text, %(maxtext)s) AS snippet, c.kind,
-               1 - (c.embedding <=> %(emb)s::vector) AS cos
-        FROM kb.chunk c
-        JOIN kb.document d ON d.doc_id = c.doc_id
-        WHERE c.embedding IS NOT NULL {tf}
-        ORDER BY c.embedding <=> %(emb)s::vector
+        WITH pool AS MATERIALIZED (
+            SELECT c.chunk_id, c.doc_id, c.seq_no, c.kind, c.text, c.embedding
+            FROM kb.chunk c
+            JOIN kb.document d ON d.doc_id = c.doc_id
+            WHERE c.embedding IS NOT NULL {tf}
+        )
+        SELECT d.doc_id, d.title, d.doc_type, d.url_or_path, p.chunk_id, p.seq_no,
+               left(p.text, %(maxtext)s) AS snippet, p.kind,
+               1 - (p.embedding <=> %(emb)s::vector) AS cos
+        FROM pool p
+        JOIN kb.document d ON d.doc_id = p.doc_id
+        ORDER BY p.embedding <=> %(emb)s::vector
         LIMIT %(top)s
     """.format(tf=type_filter)
     vec_rows = db_query(vec_sql, {"emb": "[" + ",".join(repr(float(x)) for x in emb) + "]",

@@ -76,9 +76,18 @@ def fetch(url):
 
 
 def fingerprint(body):
-    """Отпечаток публикации: состав файлов, а не разметка страницы."""
+    """Отпечаток публикации: состав файлов, а не разметка страницы.
+
+    Для страниц, где файлы не опознаются (динамическая разметка, витрина
+    без прямых ссылок), отпечаток НЕ считается: хэш всего тела такой
+    страницы меняется от счётчиков и баннеров и даёт ложные «новые
+    публикации», которые гоняют разбор вхолостую. Возврат None означает
+    «эту точку так не отследить».
+    """
     links = sorted({m.group(1).split("?")[0] for m in PAYLOAD_RE.finditer(body)})
-    basis = "\n".join(links) if links else body[:200000]
+    if not links:
+        return None, 0
+    basis = "\n".join(links)
     return hashlib.sha256(basis.encode("utf-8", "ignore")).hexdigest(), len(links)
 
 
@@ -98,6 +107,9 @@ def sweep(conn, dry=False):
             log(f"   {source:14s} недоступна: {url[:60]}")
             continue
         h, n_links = fingerprint(body)
+        if h is None:
+            log(f"   {source:14s} файлов не опознано — точку так не отследить")
+            continue
         if dry:
             log(f"   {source:14s} отпечаток {h[:12]}, файлов {n_links}")
             continue

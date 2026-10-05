@@ -1727,3 +1727,27 @@ F (инварианты) → G (изоляция research).
 Следующий шаг: связать cron-джобы с enqueue_release при обнаружении
 нового файла (этап C уже перевёл джобы на no_agent — скрипты пишут
 в канон напрямую, очередь — резервный механизм для ad-hoc запусков).
+## [2026-10-05] tech | Этап E: pg_cron на ВМ — нативное расписание
+
+Права выданы разово от postgres на ВМ (ssh -i ~/.ssh/id_yc):
+  GRANT USAGE ON SCHEMA cron TO wiki;
+  GRANT SELECT, INSERT, UPDATE, DELETE ON cron.job TO wiki;
+  GRANT SELECT ON cron.job_run_details TO wiki;
+  GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA cron TO wiki;
+
+Настроены 3 pg_cron-джоба (role wiki):
+  job=1  */30 * * * *  REFRESH MATERIALIZED VIEW CONCURRENTLY derived.metric_card  (уже стоял)
+  job=2  0 4 * * *     SELECT ops.check_freshness();                                 (новый)
+  job=3  0 6 * * 1     SELECT ops.run_catalog_audit();                               (новый)
+
+Джоб 4 (derived_metric_card_rebuild) создан и удалён: функции
+scripts_build_metric_cards() в БД нет — это Python-скрипт, а не SQL.
+REFRESH matview (job 1) каждые 30 минут уже покрывает потребность.
+
+Мост доставки: pg_cron пишет в ops.alert/ops.quality_result/meta.audit_findings
+на ВМ → VPS читает через тоннель в db_freshness_check.py (no_agent cron) →
+Telegram. Прямая доставка с ВМ невозможна (блок SNI/DPI).
+
+VPS-джоб 0210941406c7 (freshness) теперь читает результаты, записанные
+pg_cron на ВМ, вместо вызова функции — но оставлен как резервный путь
+на случай простоя тоннеля.

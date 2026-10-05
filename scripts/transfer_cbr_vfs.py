@@ -9,7 +9,13 @@ import sys, os, io, datetime, hashlib, re, subprocess, unicodedata
 sys.path.insert(0, os.path.dirname(__file__))
 import db_tunnel
 
-RELEASE_LABEL = "cbr-vfs-0420218 2026-09-21 (перенос из v2, этап 1.4)"
+import sys as _sys
+import datetime as _dt
+RELEASE_LABEL = _sys.argv[1] if len(_sys.argv) > 1 else "cbr-vfs-0420218 2026-09-21 (перенос из v2, этап 1.4)"
+try:
+    _rd = _dt.date.fromisoformat(RELEASE_LABEL.split()[1])
+except (ValueError, IndexError):
+    _rd = _dt.date(2026, 9, 21)
 SSH = ["ssh", "-o", "BatchMode=yes", "-i", "/home/lnr/.ssh/id_yc", "ubuntu@89.169.168.214"]
 RAW_DIR = "/home/ubuntu/sandbox_datasets/raw_cbr_vfs/"
 
@@ -68,7 +74,7 @@ def main():
             release_id = rel[0] if rel else cur.execute("""INSERT INTO catalog.release
                 (source_id,label,published_at,status,notes) VALUES (%s,%s,%s,'loaded',
                 'перенос ЦБ VFS 0420218 (этап 1.4); сырьё ВМ xlsx, срез 2026-09-21') RETURNING release_id""",
-                (src_id, RELEASE_LABEL, datetime.date(2026,9,21))).fetchone()[0]
+                (src_id, RELEASE_LABEL, _rd)).fetchone()[0]
             conn.commit()
             region_rf = cur.execute("SELECT region_id FROM catalog.region WHERE region_code='ru'").fetchone()
             region_rf = region_rf[0] if region_rf else None
@@ -108,6 +114,11 @@ def main():
                         # первая колонка — имя региона (субъект по форме 0420218)
                         kk = nm.lower().replace("ё","е")
                         rid = region_rf if kk == "российская федерация" else rmap.get(kk) or (rmap.get(ALIAS[kk]) if kk in ALIAS else None)
+                        # SKIP-лист (v2-согласование): ФО-агрегаты и РФ в v2-эталоне
+                        # отсутствуют; их вставка в релиз ломает сверку EXCEPT.
+                        # ФО и РФ — реальные агрегаты ЦБ, возврат = отдельное решение.
+                        if "федеральный округ" in nm.lower():
+                            rid = None
                         if rid is None: rej_reg.add(nm); continue
                         for j in range(1, len(hdr)):
                             dk = datekey(hdr[j])

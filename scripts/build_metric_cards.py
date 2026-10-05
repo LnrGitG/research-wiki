@@ -27,7 +27,7 @@ CACHE = os.path.join(REPO, 'data', 'etl', 'metric-card-embed-cache.json')
 
 DDL = """
 CREATE TABLE IF NOT EXISTS derived.metric_card (
-    metric_id       bigint PRIMARY KEY,
+    metric_id       integer PRIMARY KEY REFERENCES catalog.metric(metric_id) ON DELETE CASCADE,
     metric_code     text NOT NULL,
     name_ru         text,
     description     text,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS derived.metric_card (
     sources         text[],
     themes          text[],
     level           text,
-    n_obs           integer,
+    n_obs           bigint,
     n_regions       integer,
     period_min      date,
     period_max      date,
@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS derived.metric_card (
 CREATE INDEX IF NOT EXISTS metric_card_code_idx ON derived.metric_card (metric_code);
 CREATE INDEX IF NOT EXISTS metric_card_themes_idx ON derived.metric_card USING gin (themes);
 CREATE INDEX IF NOT EXISTS metric_card_search_trgm ON derived.metric_card USING gin (search_text gin_trgm_ops);
+CREATE INDEX IF NOT EXISTS metric_card_embedding_idx ON derived.metric_card USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);
 """
 
 # Тематические правила: ключевые фрагменты -> тема. Порядок важен (первое совпадение не мешает остальным).
@@ -146,17 +147,18 @@ def main():
 
     sql = """
     SELECT m.metric_id, m.metric_code, coalesce(m.name_ru,''), coalesce(m.description,''),
-           coalesce(u.unit_code,''), coalesce(u.name_ru,''), coalesce(f.frequency_code,'5'), coalesce(f.name_ru,''),
+           coalesce(u.unit_code,''), coalesce(u.name_ru,''), coalesce(f.freq_code,'5'), coalesce(f.name_ru,''),
            coalesce(array_agg(DISTINCT s.source_code) FILTER (WHERE s.source_code IS NOT NULL), '{}'),
            count(*) FILTER (WHERE o.observation_status <> 'rejected'),
            count(DISTINCT o.region_id) FILTER (WHERE o.observation_status <> 'rejected'),
            min(o.period_start), max(o.period_start),
            coalesce(m.tags, '{}'), coalesce(m.status,'active')
-    FROM core.metric m
-    LEFT JOIN core.unit u ON u.unit_id = m.unit_id
-    LEFT JOIN core.frequency f ON f.frequency_id = m.frequency_id
-    LEFT JOIN core.observation_v2 o ON o.metric_id = m.metric_id
-    LEFT JOIN core.source s ON s.source_id = o.source_id
+    FROM catalog.metric m
+    LEFT JOIN catalog.unit u ON u.unit_id = m.unit_id
+    LEFT JOIN catalog.frequency f ON f.frequency_id = m.frequency_id
+    LEFT JOIN data.observation o ON o.metric_id = m.metric_id
+    LEFT JOIN catalog.source s ON s.source_id = o.source_id
+    WHERE m.status = 'active'
     GROUP BY 1,2,3,4,5,6,7,8,14,15
     HAVING count(*) FILTER (WHERE o.observation_status <> 'rejected') > 0
     ORDER BY 2

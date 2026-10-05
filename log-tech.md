@@ -1657,3 +1657,27 @@ external-review), живое состояние ops/meta/cron.
 Приоритет: A (свести слои контроля) → D (аудит stale + дефект КЭП) →
 C (перевод cron на no_agent) → B (очередь сбора) → E (pg_cron) →
 F (инварианты) → G (изоляция research).
+## [2026-10-05] tech | Этап A+D: единый контур контроля + аудит каталога
+
+**Этап A — сведены слои контроля (ops ← meta).**
+- 7 catalog-level правил (policy_version_drift, missing_dataset_link,
+  future_periods, orphan_metric, core_below_threshold, tail_growth,
+  stale_series) добавлены в ops.quality_rule (rule_id 8–14, kind='catalog').
+- Создана PL/pgSQL-функция ops.run_catalog_audit(): читает параметры из
+  meta.v_catalog_policy_active, выполняет 7 проверок, пишет результаты
+  в ops.quality_result + meta.audit_findings + ops.alert (при warning/critical).
+- catalog_audit.py переписан на вызов ops.run_catalog_audit() вместо
+  Python-логики; cron-джоб 5577159a0814 (personal, no_agent) работает.
+- 14 правил теперь в едином реестре: 7 data-quality + 7 catalog-compliance.
+
+**Этап D — аудит каталога.**
+- 689 stale-метрик (status='active', ≥10 точек, последнее наблюдение
+  старше 400 дней) переведены в status='inactive'. Распределение по
+  источникам: rosstat 674, fns 10, cbr 5. Топ-давность: пенсии до 2001 г.
+  (9805 дней), ввод объектов культуры (9044 дней), демография КЭП 2.3.
+- future_periods: 5 наблюдений в будущем — прогнозы IMF (metric_id=71929),
+  не дефект КЭП. Функция обновлена: исключает прогнозные источники
+  (imf, worldbank) из проверки future_periods. Результат: 0 нарушений.
+- stale_series и orphan_metric обновлены: считают только status='active'.
+- Финальный прогон: все 7 проверок info, 0 warning, 0 critical.
+  active: 16576, inactive: 689, orphan active: 62.

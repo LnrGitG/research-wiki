@@ -1681,3 +1681,24 @@ F (инварианты) → G (изоляция research).
 - stale_series и orphan_metric обновлены: считают только status='active'.
 - Финальный прогон: все 7 проверок info, 0 warning, 0 critical.
   active: 16576, inactive: 689, orphan active: 62.
+## [2026-10-05] tech | Этап C: перевод cron-джобов на no_agent (9 из 11)
+
+Девять LLM-джобов профиля default переведены на no_agent:
+- f3b1eae9b042 (Rosstat doklad) → rosstat_doklad_job.sh
+- 4499ed3c70ee (Rosstat industrial) → rosstat_industrial_job.sh (цепочка 4 скрипта)
+- 13e78bff5702 (DOM.RF price) → domrf_price_job.sh
+- 68d7b13e4d45 (Wordstat) → wordstat_weekly_job.sh
+- 099649da6095 (rosstat-monthly) → rosstat_monthly_job.sh
+- 025095b73ff5 (CBR API) → cbr_api_monthly_job.sh (цепочка 3 скрипта)
+- f210dbe02e8c (trudvsem) → trudvsem_weekly_job.sh
+- 356c0298e19e (KKT monthly) → kkt_monthly_job.sh
+- 8260f18fcfe2 (FNS 1-НОМ) → fns_1nom_job.sh
+
+Остались на LLM (2):
+- 5f753e3c83e6 (CBR banking sector) — нет единого скрипта, curl-команды в промпте
+- cfb79a948639 (ЕИСЖС напоминание) — напоминание о ручной выгрузке, не скрипт
+
+Бэкап: ~/.hermes/cron/jobs.json.bak-cron-20261005_100626
+
+Итог default: no_agent=12, LLM=2 (было no_agent=3, LLM=11).
+Экономия: ~9 джобов × ~30 тыс. токенов/запуск = ~270 тыс. токентов/неделю.

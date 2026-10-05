@@ -80,3 +80,19 @@
 
 - Отраслевые листы fns_rows (758 100 строк) — переносить или ждать 2А.
 - Перенос v2.freshness в ops.
+## Этап 0б (выполнен 05.10.2026): инвентаризация 89 метрик
+
+Расклад живости:
+- мёртвых (нет наблюдений вовсе): 38 — не переносить, не регистрировать
+- живых: 51 метрика / 421 880 наблюдений, все загрузки от 21.09.2026
+  - domrf_*: 24 метрик, 203 934 наблюдений (pipeline6/7)
+  - sber*:  12 метрик, 162 000 (parse_sberindex)
+  - cbr:     9 метрик, 38 880 (cbr_izhk_* — форма ЦБ об ипотеке, vfs;
+             parse_cbr_vfs)
+  - прочие: 46 метрик, 17 066 — на самом деле осмысленные ряды:
+    ddu_count_m, vvod_regional/mkd/izhs_m (ввод), ws_phrases_raw,
+    ws_composite_s25 (Wordstat), cpi, smr_full_q, ifo_smr_q, ikv_rf_q и др.
+
+Источник по каждому бакету: domrf/sber/cbr_vfs/wordstat — ВМ sandbox_datasets;
+domrf xlsx и росстат — raw/ бакета; cpi/smr/ikv — rosstat_KEP/prom.
+

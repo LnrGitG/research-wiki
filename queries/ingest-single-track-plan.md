@@ -211,3 +211,15 @@ round-4 на каждом переносе — ноль расхождений; 
 - 165.0 млн руб для «Тюменская область (без ХМАО и ЯНАО)» в объёме — подозрительно мало (вероятно, ошибка парсинга %) — вставлено с quality_flags={suspect_parse}.
 - приёмка: value-сверка sqlite ↔ канон по бизнес-ключам (метрика, регион, период, round-4): 295/295, расхождений 0; счётчики canon: housing 74, housing_yoy 67, volume 68 (вкл. 165 suspect), volume_yoy 62, dynamics 8+8+8.
 - точка возврата: DELETE FROM data.observation WHERE release_id=140; DELETE catalog.metric doklad_%; DELETE catalog.release 140.
+
+
+## Этап 2.2 (выполнен 06.10.2026, ночь): ЦБ-мониторинг → catalog + data
+
+- вход: cbr_monitoring_api 312 612 (312 372 с value; 240 пустых), cbr_monitoring_construction 6 808, cbr_monitoring_invest_factors 728 из data/rosstat_construction.db (SQLite на VPS).
+- создан scripts/transfer_cbr_monitoring.py: ключ метрики cbrmon__<dataset>__<size>__<adj>__<question_slug>; релиз 142 «cbr_monitoring_v2», source ЦБ (7).
+- итог: 2 118 метрик (1 484 M / 414 Q / 220 годовая) / 312 372 наблюдения (api 271 620, срез строительства 31 400, факторы инвестиций 9 352).
+- периоды смешаны в одном поле: M '2002-01' и Q '2002Q1' — разделены по частоте (M/Q в одном ряду метрики не пересекаются).
+- слаг из русских вопросов — транслит + нормализация; unit: %→12, пунктов→37.
+- дамп до записи (правило >100 тыс): yc-s3:wiki-research/backups/transfers/cbr_monitoring_dump_20261006.db (99,5 МБ).
+- приёмка: полная value-сверка по бизнес-ключам (метрика, частота, период, round-4): 312 372/312 372, расхождений 0, лишних 0.
+- точка возврата: DELETE data.observation WHERE release_id=142; DELETE catalog.metric cbrmon_%; DELETE catalog.release 142.

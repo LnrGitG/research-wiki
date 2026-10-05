@@ -11,7 +11,13 @@ import sys, os, json, hashlib, csv, datetime as dt
 sys.path.insert(0, os.path.dirname(__file__))
 import db_tunnel
 
-RELEASE_LABEL = "domrf-price-index 2026-09-21 (перенос из v2-csv, этап 1)"
+import sys as _sys
+RELEASE_LABEL = _sys.argv[1] if len(_sys.argv) > 1 else "domrf-price-index 2026-09-21 (перенос из v2-csv, этап 1)"
+_release_date = RELEASE_LABEL.split()[1] if " " in RELEASE_LABEL and RELEASE_LABEL.split()[1].count("-") == 2 else "2026-09-21"
+try:
+    _rd = dt.date.fromisoformat(_release_date)
+except ValueError:
+    _rd = dt.date(2026, 9, 21)
 
 UNIT_MAP = {30: 30, 12: 12, 29: 29}  # уже catalog-коды
 
@@ -55,7 +61,7 @@ def main():
             release_id = rel[0] if rel else cur.execute("""INSERT INTO catalog.release
                 (source_id,label,published_at,status,notes) VALUES (%s,%s,%s,'loaded',
                 'перенос domrf-price-index (этап 1; сырьё ВМ csv 2026-09-21)') RETURNING release_id""",
-                (src_id, RELEASE_LABEL, dt.date(2026,9,21))).fetchone()[0]
+                (src_id, RELEASE_LABEL, _rd)).fetchone()[0]
             conn.commit()
 
             def ensure_metric(code):

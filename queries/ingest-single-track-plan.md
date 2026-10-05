@@ -309,3 +309,11 @@ round-4 на каждом переносе — ноль расхождений; 
   (пени) и прочие 88 листов (отраслевые детализации) — вне MVP.
   Сырьё в бакет: raw/fns/1nom_site/ (010426reg.xls, 010726reg.xls,
   010126reg.xlsx). Точки возврата: DELETE по release_id 145/146.
+
+### 06.10, вторая половина: дубль 137 удалён, v2 заморожена
+- Дамп релиза 137 (48 942 obs) → yc-s3:wiki-research/backups/transfers/
+  release137_dump.csv.gz; DELETE rel 137 из data.observation и catalog.release;
+  остался живой rel 143 (этап 3а).
+- Этап 5: REVOKE INSERT/UPDATE/DELETE/TRUNCATE + CREATE на схемах v2, v2_stage
+  от роли wiki; SELECT сохранён. Приёмка: пробная INSERT отклонена
+  (permission denied), SELECT работает. Читательские представления не тронуты.

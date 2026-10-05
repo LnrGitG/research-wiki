@@ -1702,3 +1702,28 @@ F (инварианты) → G (изоляция research).
 
 Итог default: no_agent=12, LLM=2 (было no_agent=3, LLM=11).
 Экономия: ~9 джобов × ~30 тыс. токенов/запуск = ~270 тыс. токентов/неделю.
+## [2026-10-05] tech | Этап B: починка очереди сбора ops.ingest_queue
+
+Создан справочник ops.ingest_endpoint (8 endpoints):
+  1=rosstat_kep, 2=rosstat_doklad, 3=rosstat_prom, 4=cbr_keyrate,
+  5=cbr_lending, 6=fns_1nom, 7=domrf, 8=wordstat.
+Каждый endpoint: source_id, url, parser_script, cron_schedule, enabled.
+
+Исправлены имена parser_script в ingest_queue (8 записей):
+  load_cbr_keyrate.py → load_cbr_key_rate.py (q=3,10)
+  load_cbr_lending.py → parse_cbr_lending.py (q=4,13)
+  fns_opendata_collect.py → update_fns_1nom.py (q=5)
+  step2_ingest_all.py → rosstat_prom_monthly_parse.py (q=9)
+
+3 failed-записи переведены в pending (q=5,11,13):
+  q=5 (fns_1nom) — FileNotFoundError /tmp/fns_scan.json (скрипт заменён)
+  q=11 (domrf) — нет CSV-файлов в data/raw/domrf (ручная выгрузка)
+  q=13 (cbr_lending) — sqlite3.OperationalError (скрипт ищет SQLite, не канон)
+
+Ограничение: ck_queue_status допускает pending/running/done/failed/skipped,
+'retry' не разрешено — использован 'pending' с сбросом attempts.
+
+Очередь готова к использованию: 3 pending, 7 skipped, 1 done.
+Следующий шаг: связать cron-джобы с enqueue_release при обнаружении
+нового файла (этап C уже перевёл джобы на no_agent — скрипты пишут
+в канон напрямую, очередь — резервный механизм для ad-hoc запусков).

@@ -97,16 +97,20 @@ def main():
 
             metrics={mc:ensure_metric(mc) for mc in {r[0] for r in rows}}
             conn.commit()
-            inserted=0
-            for mcode,rid,per,val in rows:
-                cur.execute("""INSERT INTO data.observation
+            # пакетная вставка (медленные построчные round-trip через тоннель — root cause таймаутов)
+            inserted=0; B=2000
+            for i in range(0, len(rows), B):
+                chunk = rows[i:i+B]
+                cur.executemany("""INSERT INTO data.observation
                     (metric_id,region_id,period_start,frequency_id,value,
                      assessment_type,observation_status,source_id,release_id,sub_dimension)
                     VALUES (%s,%s,%s,%s,%s,'final','validated',%s,%s,'')
                     ON CONFLICT (metric_id,region_id,period_start,frequency_id,
-                                 assessment_type,sub_dimension,release_id) DO NOTHING""",
-                    (metrics[mcode],rid,per,freq_m,val,src_id,release_id))
+                                 assessment_type,sub_dimension,release_id) DO NOTHING""", [
+                    (metrics[mcode],rid,per,freq_m,val,src_id,release_id)
+                    for mcode,rid,per,val in chunk])
                 inserted+=cur.rowcount
+                print(f"  пакет {i//B+1}: вставлено нараст.={inserted:,}", flush=True)
             conn.commit()
             print(f"строк parsed={len(rows):,} вставлено={inserted:,} reject={sum(rejects.values()):,}; регионы-отказы: {list(rejects)[:6]}")
 

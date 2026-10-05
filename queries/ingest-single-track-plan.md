@@ -125,3 +125,19 @@ domrf xlsx и росстат — raw/ бакета; cpi/smr/ikv — rosstat_KEP/
   в canon есть — от staging-среза 12.09; в v2, вероятно, от другой даты сырьёвки).
 - скрипт scripts/transfer_domrf_stage1.py (idempotent, точка возврата — release_id 135);
 - скрипт scripts/verify_domrf_transfer.py (сверка, EXCEPT по бизнес-ключам, round 4).
+
+## Этап 1.2 (выполнен 05.10.2026, вечер): ДОМ.РФ price-index
+
+- вход: raw_domrf_price_index/domrf_priceindex_all_regions.csv (ВМ, срез 21.09,
+  sha256 fa91357846dd5088…, 5 025 строк данных × 3 колонки); resolve регионов и
+  алиасы — из loader/parse_domrf_pi.py;
+- 3 метрики: domrf_price_index_m (unit index→30), domrf_price_index_mom (pct→12),
+  ddu_count_m (count→29) — зарегистрированы в catalog.metric (у ddu_count_m
+  имя «ДОМ.РФ: число ДДУ (n_deals), шт, за месяц»);
+- релиз «domrf-price-index 2026-09-21 (перенос из v2-csv, этап 1)», вставлено
+  15 075/15 075, reject 0;
+- приёмка: count по всем трём 5 025 = 5 025 (v2 is_current); EXCEPT round-4 по
+  бизнес-ключам: v2-без-пары = 0, canon-без-пары = 0 (сироты этапа 1.1 закрыты);
+- урок: построчные INSERT через SSH-тоннель — тысячи round-trip, два таймаута
+  550 с; переход на executemany пачками 2000 строк — вставка за секунды.
+- точка возврата: DELETE FROM data.observation WHERE release_id=<новый release>.

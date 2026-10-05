@@ -1,63 +1,107 @@
 #!/usr/bin/env python3
-"""Проверка свежести БД v2: последняя точка по каждому источнику против порога.
+"""Ежедневный сторож свежести на единой схеме (catalog + data + ops).
 
-Пороги (max_days) — нормальный лаг источника + допуск; спецификация порогов
-в queries/datalens-db-health-dashboard-20260928.md. Прогнозные точки
-(ИФО/прогнозы Росстата, имф) исключаются фильтром observation_status='actual'.
-Выход — JSON в stdout. Доступ к БД: scripts/db_tunnel.py (тоннель 15432).
+Два слоя:
+
+1. **Движок** — `ops.check_freshness()` (PL/pgSQL). Снимает снимок свежести
+   по всем активным метрикам `catalog.metric` через `derived.v_metric_context`,
+   где пороги привязаны к частоте ряда (D=10, W=25, M=75, Q=160, A=550 дней).
+   Пишет в `ops.freshness_snapshot`, поднимает алерты в `ops.alert` при
+   переходе из «свежие» в «отстают»/«устарели» (подавление повторов — 3 дня).
+
+2. **Отчёт** — этот скрипт. Читает свежий снимок, сводит по источнику
+   (`catalog.source`) и формирует JSON в stdout: для каждого источника —
+   доля свежих/отстающих/устаревших метрик, худший лаг, статус.
+   Источники вне пороговой логики (imf — прогнозные ряды) пропускаются.
+
+Пороги по частоте заданы в `derived.v_metric_context` (CASE по freq_code).
+Перенастройка порогов — правкой представления, а не этого скрипта.
+
+Доступ к БД: scripts/db_tunnel.py (тоннель 15432).
+
+История: до переезда на схему data скрипт опрашивал `core.observation_v2`
+с порогами по источнику, зашитыми в BLOCKS. После переезда `core.*` стали
+представлениями над `catalog.*` + `data.observation`, а в БД появилась
+готовая инфраструктура `ops.check_freshness()` с покруговой гранулярностью.
+Ревизия 3 (05.10.2026): переход на ops-движок, no_agent-режим cron.
 """
 import json
 import os
 import sys
-from datetime import date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 try:
-    from db_tunnel import query
+    from db_tunnel import query, execute
 except Exception:
-    query = None
+    query = execute = None
 
-# порог = сколько дней от period_start сегодня считается ок
-BLOCKS = {
-    'cbr':            {'max_days': 40},   # еженедельные/ежемесячные ряды, лаг ~3 нед
-    'domrf':          {'max_days': 60},
-    'fedstat_emiss':  {'max_days': 60},
-    'fns':            {'max_days': 130},
-    'iminfin':        {'max_days': 20},
-    'rosreestr':      {'max_days': 170},
-    'rosstat':        {'max_days': 40},   # прогнозы до 2026-12 отфильтрованы ниже
-    'smartlab':       {'max_days': 180},
-    'worldbank':      {'max_days': 560},
-}
-# источники вне пороговой логики (прогнозные/разовые)
-SKIP = {'imf'}
+SKIP_SOURCES = {'imf'}  # прогнозные ряды — вне пороговой логики
 
 
 def main():
     if query is None:
-        print(json.dumps({'status': 'error', 'reason': 'db_tunnel недоступен'}))
+        print(json.dumps({'status': 'error',
+                          'reason': 'db_tunnel недоступен'}))
         return 1
-    sql = ("SELECT s.source_code, MAX(ov.period_start)::text "
-           "FROM core.observation_v2 ov JOIN core.source s ON s.source_id = ov.source_id "
-           "WHERE ov.period_start < CURRENT_DATE "
-           "GROUP BY 1")
-    fresh = {r[0]: r[1] for r in query(sql)}
+
+    # 1. снять свежий снимок через ops-движок
+    try:
+        n = query("SELECT ops.check_freshness()")[0][0]
+    except Exception as e:
+        print(json.dumps({'status': 'error',
+                          'reason': 'ops.check_freshness: %s' % str(e)[:200]}))
+        return 1
+
+    # 2. сводка по источнику из свежего снимка
+    rows = query("""
+        SELECT s.source_code,
+               count(*)                                         AS metrics,
+               count(*) FILTER (WHERE f.freshness = 'свежие')    AS fresh,
+               count(*) FILTER (WHERE f.freshness = 'отстают')   AS lagging,
+               count(*) FILTER (WHERE f.freshness = 'устарели')  AS stale,
+               count(*) FILTER (WHERE f.freshness = 'нет данных') AS nodata,
+               max(f.last_observation)                           AS last_period,
+               max(f.days_stale)                                 AS worst_lag
+        FROM ops.freshness_snapshot f
+        JOIN catalog.metric  m ON m.metric_id = f.metric_id
+        JOIN catalog.source  s ON s.source_id = m.source_id
+        WHERE f.snapshot_at = (SELECT max(snapshot_at) FROM ops.freshness_snapshot)
+        GROUP BY 1
+        ORDER BY 2 DESC
+    """)
+
     out, problems = {}, 0
-    today = date.today()
-    for blk, spec in BLOCKS.items():
-        last = fresh.get(blk)
-        if not last:
-            out[blk] = {'status': 'fail', 'reason': 'нет данных'}
-            problems += 1
+    for (src, total, fresh, lagging, stale, nodata,
+         last_period, worst_lag) in rows:
+        if src in SKIP_SOURCES:
             continue
-        lag = (today - date.fromisoformat(last)).days
-        status = 'ok' if lag <= spec['max_days'] else 'fail'
-        out[blk] = {'last_period': last, 'lag_days': lag,
-                    'threshold_days': spec['max_days'], 'status': status}
+        bad = (lagging or 0) + (stale or 0) + (nodata or 0)
+        status = 'ok' if bad == 0 else 'issues'
+        out[src] = {
+            'metrics': total,
+            'fresh': fresh or 0,
+            'lagging': lagging or 0,
+            'stale': stale or 0,
+            'nodata': nodata or 0,
+            'last_period': str(last_period) if last_period else None,
+            'worst_lag_days': worst_lag,
+            'status': status,
+        }
         if status != 'ok':
             problems += 1
-    out['_summary'] = {'status': 'ok' if problems == 0 else 'issues',
-                       'problem_blocks': problems, 'checked_on': today.isoformat()}
+
+    # 3. недоставленные алерты
+    alerts = query("""
+        SELECT count(*) FROM ops.alert
+        WHERE kind = 'freshness' AND delivered_at IS NULL
+    """)[0][0]
+
+    out['_summary'] = {
+        'status': 'ok' if problems == 0 else 'issues',
+        'problem_sources': problems,
+        'snapshot_rows': n,
+        'pending_alerts': alerts,
+    }
     print(json.dumps(out, ensure_ascii=False, indent=1))
     return 0
 

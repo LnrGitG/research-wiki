@@ -114,11 +114,8 @@ def main():
                         # первая колонка — имя региона (субъект по форме 0420218)
                         kk = nm.lower().replace("ё","е")
                         rid = region_rf if kk == "российская федерация" else rmap.get(kk) or (rmap.get(ALIAS[kk]) if kk in ALIAS else None)
-                        # SKIP-лист (v2-согласование): ФО-агрегаты и РФ в v2-эталоне
-                        # отсутствуют; их вставка в релиз ломает сверку EXCEPT.
-                        # ФО и РФ — реальные агрегаты ЦБ, возврат = отдельное решение.
-                        if "федеральный округ" in nm.lower():
-                            rid = None
+                        # Агрегаты (РФ, ФО) помечены в catalog.region aggregation='source_aggregate'
+                        # (не равны сумме субъектов — самостоятельные ряды источника).
                         if rid is None: rej_reg.add(nm); continue
                         for j in range(1, len(hdr)):
                             dk = datekey(hdr[j])

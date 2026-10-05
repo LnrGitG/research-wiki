@@ -1751,3 +1751,54 @@ Telegram. Прямая доставка с ВМ невозможна (блок S
 VPS-джоб 0210941406c7 (freshness) теперь читает результаты, записанные
 pg_cron на ВМ, вместо вызова функции — но оставлен как резервный путь
 на случай простоя тоннеля.
+## [2026-10-05] tech | Этап F: инварианты (CHECK + триггеры)
+
+Применены нативные инварианты PostgreSQL — правила теперь enforced на уровне
+схемы, а не только проверяются аудитом.
+
+### CHECK-ограничения
+
+1. catalog.metric.ck_metric_status_valid:
+   CHECK (status IN ('active','inactive','deprecated'))
+   Добавлен через NOT VALID → VALIDATE (без блокировки). Одна метрика
+   (cbr_key_rate, id=71964) имела status=NULL — исправлена на 'active'
+   до добавления ограничения.
+
+2. data.observation.ck_observation_value_not_nan:
+   CHECK (value IS NULL OR value = value)
+   Защита от NaN в numeric (value != value — единственный способ поймать
+   NaN в SQL). Добавлен через NOT VALID → VALIDATE на 6+ млн строк.
+
+### Триггеры
+
+3. catalog.trg_metric_require_source (BEFORE INSERT OR UPDATE OF source_id):
+   Функция catalog.tg_metric_require_source() читает параметр
+   require_dataset_link из meta.v_catalog_policy_active. Если true и
+   source_id IS NULL — отклоняет вставку, если нет исключения в
+   meta.catalog_policy_exception. Проверяет:
+   - source_id=NULL → RAISE EXCEPTION (tested ✓)
+   - status='draft' → отклоняется CHECK (tested ✓)
+   - valid метрика → принимается (tested ✓)
+
+### Существующие инварианты (не тронуты)
+
+- FK data.observation.metric_id → catalog.metric (на всех партициях)
+- FK data.observation.release_id → catalog.release (на всех партициях)
+- CHECK catalog.metric.metric_code (regex на код)
+- NOT NULL на unit_id, source_id (после переезда)
+- trg_observation_change (AFTER STATEMENT — NOTIFY, не влияет на batch)
+
+### Влияние на производительность
+
+- catalog.metric: BEFORE ROW, 1 SELECT из meta.v_catalog_policy_active
+  (кэшированная view) — ~0.1 мс на метрику
+- data.observation: AFTER STATEMENT, 1 NOTIFY на batch — влияние ~0
+- 650 мс/шт через тоннель — сетевая задержка round-trip, не триггер
+- На ВМ (локальная БД) влияние пренебрежимо мало
+
+### Порядок применения (по записке pg-native)
+
+1. Письменный эталон (db_docs/catalog-policy.md, версия 1) — было
+2. Таблица политики (meta.catalog_policy, 5 параметров) — было
+3. pg_cron-аудит (ops.run_catalog_audit()) — этап A, было
+4. Инварианты (CHECK + триггеры) — этот этап, сделано

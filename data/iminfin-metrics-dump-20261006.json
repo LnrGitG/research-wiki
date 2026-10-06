@@ -1,0 +1,68 @@
+[
+  {
+    "metric_id": 74622,
+    "metric_code": "iminfin_debt_share_econ",
+    "name_ru": "Госдолг субъекта к доходам, доля",
+    "unit_id": 12,
+    "source_id": 27,
+    "frequency_id": 4,
+    "status": "active",
+    "is_active": true,
+    "metric_type": "ratio"
+  },
+  {
+    "metric_id": 58930,
+    "metric_code": "iminfin_exp_exec_share",
+    "name_ru": "Исполнение расходов субъекта, доля от плана",
+    "unit_id": 12,
+    "source_id": 27,
+    "frequency_id": 4,
+    "status": "active",
+    "is_active": true,
+    "metric_type": "primary"
+  },
+  {
+    "metric_id": 74621,
+    "metric_code": "iminfin_exp_pc_ytd_m",
+    "name_ru": "Расходы субъекта на душу населения, руб./чел",
+    "unit_id": 38,
+    "source_id": 27,
+    "frequency_id": 4,
+    "status": "active",
+    "is_active": true,
+    "metric_type": "level"
+  },
+  {
+    "metric_id": 58929,
+    "metric_code": "iminfin_exp_plan_ytd_m",
+    "name_ru": "План расходов субъекта на год, млн руб",
+    "unit_id": 11,
+    "source_id": 27,
+    "frequency_id": 4,
+    "status": "active",
+    "is_active": true,
+    "metric_type": "primary"
+  },
+  {
+    "metric_id": 58928,
+    "metric_code": "iminfin_exp_total_ytd_m",
+    "name_ru": "Исполнение расходов субъекта с начала года, млн руб",
+    "unit_id": 11,
+    "source_id": 27,
+    "frequency_id": 4,
+    "status": "active",
+    "is_active": true,
+    "metric_type": "primary"
+  },
+  {
+    "metric_id": 58931,
+    "metric_code": "iminfin_trf_fed_ytd_m",
+    "name_ru": "Межбюджетные трансферты из федбюджета субъекту, млн руб",
+    "unit_id": 11,
+    "source_id": 27,
+    "frequency_id": 4,
+    "status": "active",
+    "is_active": true,
+    "metric_type": "primary"
+  }
+]

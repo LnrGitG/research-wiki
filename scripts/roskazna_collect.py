@@ -65,9 +65,24 @@ def main():
         print("\nМетрики созданы в каталоге, но наблюдения не загружены.")
         return
 
-    # TODO: реализовать сбор через datamarts API
-    # Структура API: datamarts.roskazna.ru/api/v1/data?date=YYYY-MM-DD&level=...
-    # Разделы: 0501 (жилищное), 0502 (коммунальное)
+    # ⚠️ БЛОКЕР: datamarts.roskazna.ru — WordPress + Krista BI-дашборд.
+    # Отчёты рендерятся в браузере через JS (bi-dashboard-3.13.2.min.js).
+    # API-эндпоинты (/data/queryRequest, /reporting/request) проксируются через
+    # redirect/localhost/ и требуют JS-контекст (WebReports.Hosts.CmsHost).
+    # Простой HTTP-скрапинг невозможен — нужен headless-браузер (Playwright/Selenium).
+    #
+    # UUID отчёта расходов по разделам: 904ee4e6-a701-44e9-a74b-b9537b6be6cb
+    # Страница: /razdely/rashody/rashody-po-razdelam-podrazdelam/rashody-po-razdelam-i-podrazdelam/
+    # Параметры: paramPeriod (дата), разделы 0501/0502
+    #
+    # Альтернативные пути:
+    # 1. Headless-браузер на ВМ YC (Playwright + Chromium)
+    # 2. Ручная выгрузка XLSX через web-интерфейс datamarts.roskazna.ru
+    # 3. minfin.gov.ru — отчёты об исполнении ФБ (HTML/PDF)
+    # 4. ЕИС «Бюджет» — API через fedstat.ru (если доступен)
+    print("\n⚠️  datamarts.roskazna.ru требует JS-рендеринга (Krista BI).")
+    print("Метрики созданы в каталоге, но наблюдения не загружены.")
+    print("Альтернативы: headless-браузер (Playwright) или ручная выгрузка XLSX.")
 
 
 if __name__ == "__main__":

@@ -1999,3 +1999,36 @@ sub_dimension, release_id).
 
 **Не инжестируется** (требует клик-интерфейса или легенды колонок):
 помесячная история, нацпроекты, кредиты, доходы (динамика).
+
+## 2026-10-06 04:35 — pg_cron: сбор по свежести на PostgreSQL
+
+**Контекст:** внешний cron (Hermes) заменён на нативное pg_cron-планирование
+в PostgreSQL. Алгоритм свежести инициирует обновление, а не внешний таймер.
+
+**Создано:**
+- `ops.enqueue_stale()` — SQL-функция: находит endpoint'ы с метриками
+  'отстают'/'устарели' (derived.v_metric_context) → ставит в ops.ingest_queue
+  (pending, priority 3). Дедуп: 24-часовой окна по pending/running.
+- pg_cron job id=7 `ops_enqueue_stale_daily` — '30 4 * * *'
+
+**Цепочка обновления (daily, UTC):**
+1. 04:00 `check_freshness()` — снимок + алерты (job id=2)
+2. 04:20 `REFRESH MATERIALIZED VIEW derived.v_metric_card` (job id=6)
+3. 04:30 `enqueue_stale()` — постановка устаревших endpoint'ов в очередь (job id=7)
+
+**Регистрация endpoint'ов в catalog.source_endpoint:**
+- id=10: iminfin (src=27, cron '0 6 * * 1', iminfin_scrape.js)
+- id=11: trudvsem (src=31, cron '0 5 * * 2', trudvsem_collect.py)
+- Удалены дубликаты из ops.ingest_endpoint
+
+**Тест enqueue_stale():** 6 endpoint'ов в очереди (cbr×3, rosstat_kep,
+emiss_ipcts, iminfin). trudvsem — 'свежие' (last obs 2026-10-05, W-freq tol 25d).
+
+**Все pg_cron jobs (5):**
+| id | name | schedule | command |
+|----|------|----------|---------|
+| 2 | ops_check_freshness_daily | 0 4 * * * | SELECT ops.check_freshness() |
+| 3 | ops_run_catalog_audit_weekly | 0 6 * * 1 | SELECT ops.run_catalog_audit() |
+| 5 | cbr-vfs-monthly-enqueue | 5 5 * * * | SELECT ops.enqueue_cbr_vfs() |
+| 6 | refresh-metric-card | 20 4 * * * | REFRESH MATERIALIZED VIEW derived.v_metric_card |
+| 7 | ops_enqueue_stale_daily | 30 4 * * * | SELECT ops.enqueue_stale() |

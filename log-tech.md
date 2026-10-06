@@ -1921,3 +1921,23 @@ pg_cron на ВМ, вместо вызова функции — но остав�
 корпсектор 247, демография 203, налоги/бюджет 176, труд 131,
 ипотека 99, потребспрос 86, цены/инфляция 86, внешний сектор 67,
 регионы 53, emiss 32, operational 11, housing 2.
+
+## 2026-10-06 03:20 — Этап 3: инжест trudvsem + hh.ru + roskazna
+
+### trudvsem (source_id=31)
+- Источник: opendata.trudvsem.ru (Роструд, портал «Работа в России»)
+- Метрики: trudvsem_resumes_count_w (74611), trudvsem_avg_wage_w (74612), trudvsem_companies_count_w (74613)
+- Наблюдения: ~934 (2 метрики × ~90 регионов × 5 еженедельных срезов, 2026-09-07…2026-10-05)
+- КТ: trudvsem средняя ЗП РФ = 13 194.72 руб. (предлагаемая по резюме) vs Росстат 88 468.3 руб. (фактическая начисленная, emiss_57824). Расхождение ожидаемое — разные методологии.
+- Скрипт: scripts/trudvsem_collect.py (маппинг регионов по нормализованному названию)
+- Блокер: отраслевой разрез (строительство) недоступен в stat-citizens — только общие резюме/ЗП по регионам
+
+### hh.ru (source_id=32)
+- Метрики: hh_vacancies_count_m (74614), hh_resumes_count_m (74615), hh_avg_salary_m (74616), hh_hhi_index_m (74617)
+- Наблюдения: 0 — API отдаёт 403 (требует авторизации)
+- Скрипт: scripts/hh_index_collect.py (подготовлен, требует HH_API_KEY в .env)
+
+### roskazna (source_id=33)
+- Метрики: roskazna_fb_execution_0501_m (74618), roskazna_fb_execution_0502_m (74619), roskazna_fb_execution_total_m (74620)
+- Наблюдения: 0 — datamarts.roskazna.ru недоступен с VPS (SSL handshake failure)
+- Скрипт: scripts/roskazna_collect.py (подготовлен для запуска через ВМ YC)

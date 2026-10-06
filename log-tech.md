@@ -2032,3 +2032,21 @@ emiss_ipcts, iminfin). trudvsem — 'свежие' (last obs 2026-10-05, W-freq 
 | 5 | cbr-vfs-monthly-enqueue | 5 5 * * * | SELECT ops.enqueue_cbr_vfs() |
 | 6 | refresh-metric-card | 20 4 * * * | REFRESH MATERIALIZED VIEW derived.v_metric_card |
 | 7 | ops_enqueue_stale_daily | 30 4 * * * | SELECT ops.enqueue_stale() |
+
+## 2026-10-06 05:10 — Восстановление трасс источников
+
+Восстановлены endpoint'ы и активированы источники:
+- yandex (id=30): is_active=true, endpoint eid=12 (wordstat API), release active
+- smartlab (id=12): endpoint eid=13 (collect_smartlab.py, cron 10-го числа)
+- hh (id=32): endpoint eid=14 (hh_index_collect.py, ждёт API-ключ)
+- domrf (id=8): parser_script=ingest_domrf.py (ручная выгрузка)
+- fns (id=9): parser_script=fns_opendata_collect.py
+- imf (id=28): is_active=true, release created
+- worldbank (id=29): is_active=true, release created
+- rosreestr (id=10): note обновлён (ручная выгрузка, нет автосбора)
+
+Итог аудит:
+- 14 endpoint'ов в catalog.source_endpoint (13 со скриптом)
+- rosreestr — единственный без скрипта (ручная выгрузка)
+- imf, worldbank — без endpoint (справочные прогнозы, разовый ввод)
+- unknown (id=6), roskazna (id=33) — inactive (корректно)

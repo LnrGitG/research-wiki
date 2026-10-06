@@ -42,6 +42,16 @@
 - Ожидания: релизы 101 (inFOM 224 точки) + 102 (макроопрос 455 точек), scripts/ingest_expectations.py; канал Infl_exp_YY-MM.xlsx.
 - irz = канонический ряд ставок ИЖК (VFS); izhk_rate_rub/fx (58082/83) derived; в izhk_rate_fx 66/91 точек = 0 (нет валютных выдач с ~2025-03) — нули не трактовать как ставку.
 
+## Казначейство (roskazna, source_id=33) — ИСКЛЮЧЕН из наблюдения
+- **Решение (06.10.2026):** источник исключён из наблюдения — отчёты datamarts.roskazna.ru
+  содержат данные только за 2023 год, оперативность недостаточна для nowcasting.
+- БД: catalog.source source_id=33 (roskazna) → is_active=False; 0 наблюдений, 0 релизов.
+- Метрики в каталоге (зомби, без наблюдений): 74618 (0501 ЖКХ), 74619 (0502 ЖКХ), 74620 (итого).
+- Скрипт scripts/roskazna_collect.py — заготовка, не использовался (datamarts.roskazna.ru
+  требует JS-рендеринг Krista BI, недоступен с VPS по SSL).
+- Альтернатива: iminfin (iМониторинг КРИСТА) — региональные бюджеты в реальном времени,
+  релиз 110, 294 точки; см. секцию iminfin выше.
+
 ## Инфраструктура / правила v2
 - freq_id v2: 2=мес, 3=кв (4=день); unit 12=pct, 13=pct_pts; ИКВ = kep1_63 (metric 56187).
 - observation_v2 INSERT: period_end NOT NULL (для дневных = period_start); CHECK (assessment_type, observation_status) → ('final','validated').

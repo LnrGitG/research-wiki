@@ -2050,3 +2050,31 @@ emiss_ipcts, iminfin). trudvsem — 'свежие' (last obs 2026-10-05, W-freq 
 - rosreestr — единственный без скрипта (ручная выгрузка)
 - imf, worldbank — без endpoint (справочные прогнозы, разовый ввод)
 - unknown (id=6), roskazna (id=33) — inactive (корректно)
+
+
+## 2026-10-06 — hh.ru: скрипт переписан на каноническую схему, справочники сохранены
+
+**Анализ API:** изучен OpenAPI spec (https://api.hh.ru/openapi/specification/public, YAML, 109 путей).
+Все эндпоинты защищены OAuth2 (глобальная security-схема OauthToken). Два flow:
+- authorizationCode — пользовательский (через браузер)
+- clientCredentials — app-level (без браузера, нужен client_id + client_secret)
+
+Без авторизации работают только справочники: /areas (16 836 регионов), /industries (30),
+/professional_roles (27 категорий), /dictionaries, /salary_statistics/dictionaries/*.
+Поиск вакансий (/vacancies), резюме (/resumes) и ЗП-оценка требуют OAuth2 token.
+
+stats.hh.ru (открытая аналитика) защищён DDoS-Guard + кастомная авторизация (hhuId/cryptedId) —
+не подходит для автоматического сбора.
+
+**Скрипт scripts/hh_index_collect.py:**
+- Переписан на каноническую схему (catalog.source/metric/release + data.observation)
+- Поддержка client_credentials flow (POST /token → access_token)
+- Сбор вакансий: text=строительство, area=РФ+регионы, period=30, only_with_salary=true
+- Метрики: hh_vacancies_count_m, hh_avg_salary_m, hh_median_salary_m, hh_vacancies_with_salary_m
+- Сопоставление регионов hh.ru → catalog.region через norm_name + ALIAS
+- Без OAuth-ключа сохраняет справочники в ~/yc-wiki/raw/hh/
+
+**Справочники сохранены:** areas (16 836), industries (30), professional_roles (27) —
+~/yc-wiki/raw/hh/{areas,industries,professional_roles}_2026-10-06.json
+
+**Статус: ожидает регистрации приложения на dev.hh.ru/admin для получения client_id/secret.**

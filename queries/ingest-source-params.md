@@ -32,6 +32,18 @@
 - Госдолг: доля к доходам, только по ФО (8 округов), raw в долях → as-is (unit=pct).
 - Не инжесты: помесячная история (клик-интерфейс), нацпроекты, кредиты, доходы (динамика).
 
+## hh.ru (HeadHunter API)
+- OpenAPI spec: `https://api.hh.ru/openapi/specification/public` (YAML, 109 путей, OAuth2 OauthToken).
+- Авторизация: OAuth2, два flow — `authorizationCode` (пользовательский) и `clientCredentials` (app-level, без браузера); token: `POST https://api.hh.ru/token` с `grant_type=client_credentials`, `client_id`, `client_secret`.
+- Регистрация приложения: https://dev.hh.ru/admin → client_id + client_secret → `.env` (HH_CLIENT_ID, HH_CLIENT_SECRET).
+- Без авторизации доступны только справочники: `/areas` (16 836 регионов), `/industries` (30 отраслей), `/professional_roles` (27 категорий), `/dictionaries`, `/salary_statistics/dictionaries/*`.
+- С авторизацией: `/vacancies` (поиск, пагинация `page&per_page` max 100, ответ `{found, pages, page, items}`), `/resumes` (поиск), `/salary_statistics/paid/salary_evaluation/{area_id}` (оценка ЗП, платный).
+- Скрипт: `scripts/hh_index_collect.py` — каноническая схема (`catalog.source/metric/release` + `data.observation`), сбор вакансий по тексту «строительство» + региональный разрез, avg/median ЗП из `only_with_salary=true`.
+- Метрики: `hh_vacancies_count_m` (29/count), `hh_avg_salary_m` (38/rub), `hh_median_salary_m` (38/rub), `hh_vacancies_with_salary_m` (29/count); freq=5 (месячная), source_id=32.
+- Справочники сохранены: `~/yc-wiki/raw/hh/areas_2026-10-06.json`, `industries_*.json`, `professional_roles_*.json`.
+- stats.hh.ru (открытая аналитика) защищён DDoS-Guard + кастомная авторизация (hhuId/cryptedId) — не подходит для автоматического сбора.
+- **Статус: ожидает регистрации приложения на dev.hh.ru/admin.**
+
 ## ККТ ФНС (geochecki)
 - API только с ВМ YC; `/api/api/v1/kkt/{summary,count-by-regions}/ГГГГ-М` (месяц без нуля), `count-dynamics/ГГГГ`; карта `/api/Metrics/bounds` — web-mercator метры, только последняя полная неделя.
 - **Периодичность уточнена 29.09.2026**: платформа отдаёт только МЕСЯЧНЫЕ агрегаты ККТ (summary по ГГГГ-М; count-dynamics — помесячные серии, август = последняя заполненная точка). Ежедневного месячного обновления API не существует: «ежедневное обновление» относится к карте геочек (`/geochecks`, последняя полная неделя), а не к ККТ-статистике. Проверено: `summary/2026-9` → 404 (текущий месяц не публикуется), weekly-эндпоинты не существуют (HTML SPA вместо API).

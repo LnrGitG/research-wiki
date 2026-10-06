@@ -558,3 +558,18 @@ GLM на Nous исчерпала кредиты (402 на любом max_tokens,
   - Помесячная динамика СМР (2026): I кв. — 2 911,5 млрд (90,0 % YoY), II кв. — 4 582,3 млрд (98,4 % YoY), июль — 1 790,5 млрд (100,8 % YoY), август — 1 802,0 млрд (102,7 % YoY).
 - Импортировано в SQLite (data/rosstat_construction.db): 74 региона → doklad_housing_input, 69 регионов → doklad_construction_volume, 32 наблюдения → doklad_construction_dynamics (помесячный ряд 2025–2026).
 - Kratkoshrochnye (Краткосрочные показатели) и Monitoring (folder/11109) — SPA-страницы, прямые ссылки на PDF недоступны через /storage/mediabank/; пропуск.
+
+## 2026-10-06 02:47 — Этапы 0–1: ремаппинг unknown + активация Росреестра
+
+**Этап 0.** Ремаппинг 60 активных метрик с `source_id=unknown` (6) по группам:
+- 20 → cbr (7): ипотечные/ИЖК-метрики, 70 572 наблюдений
+- 37 → rosstat (11): промпроизводство стройматериалов (pm/pni/ppm), 0 наблюдений
+- 2 → rosstat (11): демография ВПН-2024 (hh_share, kids)
+- 1 → iminfin (27): межбюджетные трансферты
+- Верификация: 0 активных метрик с source_id=6
+- Точка возврата: тег `pre-unknown-remap-20261006-0247`, дамп `data/unknown-remap-dump-20261006.json`
+
+**Этап 1.** Активация 11 inactive-метрик Росреестра → `status=active`:
+- Сделки ДКП/ДДУ (ksddrk, ksdrk, kdark), медианные цены (mtdrk, mtdrk_2, mtsrk), аренда (msark, mpazrk)
+- 7 625 наблюдений (validated), assessment_type: 6 078 final + 1 547 preliminary
+- Точка возврата: тег `pre-rosreestr-activation-20261006-0247`, дамп `data/rosreestr-activation-dump-20261006.json`

@@ -83,12 +83,12 @@ def create_release(cur, label, note):
 
 
 def insert_obs(cur, rows):
-    cur.executemany("""INSERT INTO core.observation_v2
+    cur.executemany("""INSERT INTO data.observation
         (metric_id, region_id, frequency_id, period_start, period_end, value,
          assessment_type, observation_status, source_id, release_id, quality_flags, sub_dimension)
         VALUES (%s,%s,5,%s,%s,%s,'final','raw',%s,%s,'{}',%s)
-        ON CONFLICT (metric_id, region_id, frequency_id, period_start, source_id,
-                     release_id, assessment_type, sub_dimension) DO NOTHING""",
+        ON CONFLICT (metric_id, region_id, period_start, frequency_id,
+                     assessment_type, sub_dimension, release_id) DO NOTHING""",
         rows)
 
 

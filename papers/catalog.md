@@ -3335,3 +3335,17 @@ migrated: 2026-07-26
 - doi: 10.17016/FEDS.2026.068
 - used_in: [[reviews/feds-2026-068-garcia-alban-gonzalez-astudillo-bells-whistles-nowcasting]], [[annotations/feds-2026-068-bells-whistles-nowcasting-ru]]
 - notes: FEDS 2026-068, Fed Board; design guide for DFM feature selection (H-006); no search/text data, no housing series
+
+## burakov-2026-stochastic-dkp.md
+- title: Stochastic Modelling of Monetary Policy: A Modular Architecture for Analysing Extreme Scenarios (ВАК-подача)
+- authors: Burakov, Nikita S. (IRQ, Moscow)
+- year: 2026
+- method: modular pipeline: copula (Sklar) + truncated SVD latent factors (rank by BIC + residual energy); heavy tails (Hill estimator, Pareto/Student/alpha-stable by AIC) + discretized Heston volatility; 7-state HMM with EM; extended Taylor rule as policy operator; Monte Carlo fan charts with VaR/CTE; Taleb R-sq as robust metric
+- data: monthly panel RF, Jan 2010 - Jul 2025: RUONIA, key rate, inflation, inflation expectations, GDP, credit impulse, market volatility (MOEX)
+- key_result: extended vs basic Taylor: R2 0.957 vs 0.902, Taleb R2 0.942 vs 0.781; out-of-sample MAE 0.42 pp vs 0.61 pp (-30%); coverage 56%/89% for 50%/90% bands; VaR-CTE spread widens 0.7 to 1.7 pp by horizon; soft regime lasts ~11 periods, stress regimes ~1
+- relevance: medium
+- status: new
+- class: B
+- doi: null
+- used_in: [[reviews/burakov-2026-stochastic-dkp]], [[annotations/burakov-2026-stochastic-dkp-ru]]
+- notes: авторская PDF-подача для ВАК (rubric 1.2.2). Привязка к геп-карте отложена по решению владельца. Внутренняя неувязка в валидации: заявлено 2k*theta = 0.015 > sigma_v^2 = 0.09 (неравенство в неверную сторону, условие Феллера при таких числах не выполняется); 7 режимов HMM на ~185 точках - риск артефактов (режимы 5-7 живут ~1 период); out-of-sample 18 наблюдений. Полный текст в репозиторий не кладётся.

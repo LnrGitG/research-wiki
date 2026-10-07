@@ -30,6 +30,7 @@
 - [[subsidirovanie-mezhdunarodnyi-opyt|Международный опыт субсидирования ипотеки]] — 8 стран (РФ, Колумбия, Бельгия, UK, Германия, США, Китай), уроки pass-through и капитализации
 
 ## Reviews
+- [[reviews/burakov-2026-stochastic-dkp|Бураков (2026) — модульная стохастическая архитектура ДКП]] — копула+SVD → хвосты (Хилл/Хестон) → 7-режимный HMM → расширенный Тейлор; веера Монте-Карло с VaR/CTE, Taleb R² как критерий калибровки; MAE 0,42 против 0,61 п.п. у базового Тейлора; класс B — ВАК-подача
 
 - [[reviews/feds-2026-068-garcia-alban-gonzalez-astudillo-bells-whistles-nowcasting|García-Albán & González-Astudillo (2026, FEDS 2026-068) — какие фичи DFM улучшают nowcast]] — полный факторный абляционный эксперимент (16 спецификаций, ВВП США): динамическая гетерогенность единственная фича, устойчиво улучшающая точечный/плотностной/хвостовой прогноз; дизайн-ориентир для H-006
 - [[reviews/nowcasting-i-mixed-frequency-modeli|Nowcasting и mixed-frequency модели — обзор кластера]] — 8 работ по BVAR/DFM, entropic tilting, stacked mixed-frequency

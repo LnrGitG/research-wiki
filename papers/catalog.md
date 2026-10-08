@@ -3391,3 +3391,17 @@ migrated: 2026-07-26
 - doi: "10.59576/lse.20261006"
 - used_in: [[reviews/amiti-heise-weinstein-2026-tariff-passthrough]]
 - notes: пост Liberty Street Economics; базовый пейпер отдельно не принят
+
+### Drechsel, Lewis, Melcangi, Pilossoph 2026 — отклик инвестиций на ДКП (RIMP)
+- title: Firm Heterogeneity and the Response of Investment to Monetary Policy
+- authors: Drechsel T., Lewis D., Melcangi D., Pilossoph L.
+- year: 2026
+- method: clustering regression для безусловного распределения откликов инвестиций на монетарные шоки (фирма x период); декомпозиция дисперсии; проекции на характеристики
+- data: Compustat публичные фирмы США, сюрпризы ДКП по фьючерсам fed funds
+- key_result: ~5% фирм-кварталов: 1 п.п. ставки -> -4 п.п. роста капитала; основная вариация внутри firms во времени (транзиторна); малые и молодые чувствительнее; значимая доля дисперсии необъяснена
+- relevance: методологический сдвиг «распределение вместо среднего» для H-002 (девелоперская эластичность) и H-003 (escrow-старты)
+- status: indexed
+- class: A
+- doi: "10.59576/lse.20261007"
+- used_in: [[reviews/drechisel-lewis-melcangi-pilossoph-2026-rimp]]
+- notes: пост по Staff Report; Compustat-ограничение: прямая реплика на непубличных девелоперах РФ невозможна

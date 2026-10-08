@@ -43,10 +43,11 @@ hypotheses:
       - "Теоретический канал Bernanke-Gertler-Gilchrist (balance sheet channel) — research-ideas-russia-housing §1B"
       - "Долг/EBITDA сектора 481% (cmwp_debt_burden_2026)"
       - "Coven, Golder, Gupta, Ndiaye 2026 (HCEO WP 2026-010, Sep; NBER w35587): OG-модель — финансовое ограничение связывает именно через маржу первоначального взноса (капитализация налога в цены снижает требуемый down-payment, 'embedded leverage'); low property taxes усиливают lock-in пожилых и ограничивают доступ молодых (проверено 2026-09-28, research-radar-2026-09-28)"
+      - "Drechsel, Lewis, Melcangi, Pilossoph 2026 (NY Fed LSE, DOI 10.59576/lse.20261007): отклик инвестиций на ДКП распределён, а не средний — ~5% фирм-кварталов дают 4 п.п. падения роста капитала на 1 п.п. ставки, чувствительность транзиторна (вариация внутри фирм доминирует над межфирменной); малые и молодые чувствительнее. Методологический ориентир: тестировать транзиторность чувствительности девелоперов, не только межгрупповую интераксию (проверено 2026-10-08)"
     evidence_against: []
     sources: [spark, eiszhc, fnn-opendata]
     tags: [supply-elasticity, developer-finance, financial-constraints]
-    relates_to: ["queries/literature-gap-map", "queries/supply-elasticity-estimation-design", "Baum-Snow & Han 2024", "Saiz 2010"]
+    relates_to: ["queries/literature-gap-map", "queries/supply-elasticity-estimation-design", "Baum-Snow & Han 2024", "Saiz 2010", "reviews/drechisel-lewis-melcangi-pilossoph-2026-rimp"]
     next_check: "Собрать SPARK-панель 2015-2025, IV-FE панель с интеракцией финансового ограничения"
     created: 2026-09-08
 
@@ -60,7 +61,7 @@ hypotheses:
     evidence_against: []
     sources: [domrf, eiszhc, spark]
     tags: [escrow, financial-constraints, developer-finance, identification]
-    relates_to: ["queries/literature-gap-map"]
+    relates_to: ["queries/literature-gap-map", "reviews/drechisel-lewis-melcangi-pilossoph-2026-rimp"]
     next_check: "Нужны данные ЕИСЖС о датах завершения + SPARK о стартах; международных аналогов нет"
     created: 2026-09-08
 

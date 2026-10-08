@@ -3377,3 +3377,17 @@ migrated: 2026-07-26
 - doi: "10.3386/w35800; 10.3386/w35801"
 - used_in: [[reviews/cameron-miller-2026-cluster-spatial]]
 - notes: PDF NBER блокирован (403), выписки по официальным абстрактам; дополнить при добыче полного текста
+
+### Amiti, Heise, Weinstein 2026 — тарифы и pass-through в потребительские цены
+- title: How Fast Do Tariffs Pass Through into Consumer Prices?
+- authors: Amiti M., Heise S., Weinstein D.E.
+- year: 2026
+- method: трёхзвенная декомпозиция pass-through (импорт -> производители США -> розница); сравнение товаров с разной тарифной экспозицией; контрфактическая инфляция
+- data: тарифы и цены США 2025-2026 (через 02.2026), товары без услуг
+- key_result: ~90% тарифа в импортные цены мгновенно; ~0,25% в потребительские цены на 1 п.п. тарифа за год (2/3 прямой канал, 1/3 опосредованный, из них главный - предельные издержки); полный эффект ~год; вклад в инфляцию товаров пик 2,9 п.п. (02.2026)
+- relevance: эталон декомпозиции pass-through по цепочке с временной структурой; родствен строке геп-карты «Cost pass-through стройматериалы - цены»
+- status: indexed
+- class: A
+- doi: "10.59576/lse.20261006"
+- used_in: [[reviews/amiti-heise-weinstein-2026-tariff-passthrough]]
+- notes: пост Liberty Street Economics; базовый пейпер отдельно не принят

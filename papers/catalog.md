@@ -3349,3 +3349,17 @@ migrated: 2026-07-26
 - doi: null
 - used_in: [[reviews/burakov-2026-stochastic-dkp]], [[annotations/burakov-2026-stochastic-dkp-ru]]
 - notes: авторская PDF-подача для ВАК (rubric 1.2.2). Привязка к геп-карте отложена по решению владельца. Внутренняя неувязка в валидации: заявлено 2k*theta = 0.015 > sigma_v^2 = 0.09 (неравенство в неверную сторону, условие Феллера при таких числах не выполняется); 7 режимов HMM на ~185 точках - риск артефактов (режимы 5-7 живут ~1 период); out-of-sample 18 наблюдений. Полный текст в репозиторий не кладётся.
+
+### Garcia, Gimeno, Hinds, Su, Tretyakov 2026 — term structure of inflation risks
+- title: Understanding inflation: insights from the term structure of inflation risks
+- authors: Garcia J.A., Gimeno R., Hinds P., Su H., Tretyakov M.V.
+- year: 2026
+- method: непараметрические RND из zero-coupon inflation caps/floors + Student t-copula (форвард-структура до 5y5y); Bayesian variable selection (36 факторов)
+- data: опционы и свопы еврозоны, 2009-2026, daily
+- key_result: короткий/средний горизонты реагируют на текущую инфляцию, PMI, нефть; длинный — на монетарно-финансовые факторы; структура сроков рисков выявляет устойчивость шоков, невидимую в точечных мерах (COVID: 70%/36%/7% дефляция на 2y/5y/5y5y)
+- relevance: методологический ориентир «структура горизонтов рисков» для РФ-трека ожиданий; прямой рынок опционов в РФ отсутствует
+- status: indexed
+- class: A
+- doi: ""
+- used_in: [[reviews/ecb-wp3294-inflation-risks]]
+- notes: источник — официальный PDF ECB; полный текст не хранится

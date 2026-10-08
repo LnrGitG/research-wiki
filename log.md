@@ -659,3 +659,14 @@ metric_card пересобирается (build_metric_cards.py).
 Обновление впредь: КЭП-загрузчик с release-наследованием (новый выпуск
 перекрывает предыдущий по ключу, superseded-статус), региональный 482 —
 preliminary/actual (assessment_type), пороги freshness 105/500 дней.
+
+## 2026-10-08 — Приёмка ECB WP 3294 (класс A)
+
+Garcia, Gimeno, Hinds, Su, Tretyakov (2026), ECB WP 3294: term structure
+of inflation risks. Непараметрические RND (caps/floors, 2009-2026, daily)
++ Student t-copula до неторгуемого 5y5y; Bayesian variable selection
+(36 факторов). Ключевые: COVID-дефляция 70%/36%/7% (2y/5y/5y5y, стр. 7);
+драйверы разнятся по горизонтам (стр. 3). Артефакты:
+annotations/ecb-wp3294-inflation-risks-ru.md, reviews/ecb-wp3294-inflation-risks.md,
+карточка в papers/catalog.md, строка в index.md. Привязка к геп-карте
+отложена по решению владельца (07.10.2026).

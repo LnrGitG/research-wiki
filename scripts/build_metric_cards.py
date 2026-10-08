@@ -158,7 +158,7 @@ def main():
     LEFT JOIN catalog.frequency f ON f.frequency_id = m.frequency_id
     LEFT JOIN data.observation o ON o.metric_id = m.metric_id
     LEFT JOIN catalog.source s ON s.source_id = o.source_id
-    WHERE m.status = 'active'
+    WHERE m.status = 'active' AND m.is_active
     GROUP BY 1,2,3,4,5,6,7,8,14,15
     HAVING count(*) FILTER (WHERE o.observation_status <> 'rejected') > 0
     ORDER BY 2

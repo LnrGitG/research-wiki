@@ -670,3 +670,14 @@ of inflation risks. Непараметрические RND (caps/floors, 2009-20
 annotations/ecb-wp3294-inflation-risks-ru.md, reviews/ecb-wp3294-inflation-risks.md,
 карточка в papers/catalog.md, строка в index.md. Привязка к геп-карте
 отложена по решению владельца (07.10.2026).
+
+## 2026-10-08 — Приёмка Cameron & Miller 2026 (NBER 35800 + 35801, класс A)
+
+Пара companion-трудов: I — Framework and Clustering, II — Spatial
+Correlation. Обновление практического гайда по кластерной/пространственной
+инференции. Артефакты: annotations/cameron-miller-2026-cluster-spatial-ru.md,
+reviews/cameron-miller-2026-cluster-spatial.md, карточка в papers/catalog.md,
+строка в index.md. PDF NBER прямой загрузкой отдаёт 403: выписки по
+официальным абстрактам, числовые детали методов не извлечены (помечено).
+Промежуточный w35859 (Gross et al., ИИ в PhD-диссертациях) принят как
+проходной, без артефактов — вне трека вики.

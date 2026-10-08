@@ -3363,3 +3363,17 @@ migrated: 2026-07-26
 - doi: ""
 - used_in: [[reviews/ecb-wp3294-inflation-risks]]
 - notes: источник — официальный PDF ECB; полный текст не хранится
+
+### Cameron, Miller 2026 — clustered and spatially correlated inference (I+II)
+- title: Inference for Regression with Clustered or Spatially Correlated Data I: Framework and Clustering; II: Spatial Correlation
+- authors: Cameron A.C., Miller D.L.
+- year: 2026
+- method: обзор-гайд; cluster-robust при малом числе кластеров; spatial HAC Conley (1999) и альтернативы при высокой персистентности
+- data: методологический труд (без эмпирического датасета)
+- key_result: без поправок SE занижены, CI узкие, тесты over-reject; Conley ненадёжен при высокой пространственной персистентности; контроль пространственных трендов обязателен
+- relevance: ориентир для SE в региональных панелях РФ и в дизайне эластичности предложения; DiD-кластеризация
+- status: indexed
+- class: A
+- doi: "10.3386/w35800; 10.3386/w35801"
+- used_in: [[reviews/cameron-miller-2026-cluster-spatial]]
+- notes: PDF NBER блокирован (403), выписки по официальным абстрактам; дополнить при добыче полного текста

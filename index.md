@@ -2,7 +2,7 @@
 
 > Content catalog. Every wiki page listed under its type with a one-line summary.
 > Read this first to find relevant pages for any query.
-> Last updated: 2026-07-16 | Total pages: 21 | Papers: ~60 (34 PDF+MD pairs + workpapers)
+> Last updated: 2026-10-11 | Total pages: 21 | Papers: ~60 (34 PDF+MD pairs + workpapers)
 
 ## Entities
 
@@ -67,6 +67,7 @@
 - [[queries/research-radar-2026-09-21|Research Radar 2026-09-21]] — недельный скан: 7 работ (CBI LTI×регионы → H-005, CAGE housing searches → H-001/H-006, EREI листинг-vs-транзакция → X-002, Greece housing-EPU → H-009/H-010, FRBSF quality×inequality → дизайн H-002, Ahlfeldt–Baum-Snow–Jedwab высотность, IMF WP 2026/177 supply-side); статусы гипотез без изменений, пробелы №1–2 открыты
 - [[queries/research-radar-2026-09-28|Research Radar 2026-09-28]] — недельный скан (NEP-HRE-2026-09-21, NBER/arXiv без жилья): 5 работ (Coven et al. налог на недвижимость × финансовые ограничения → H-002 evidence_for, BoE 1203 рефинансирование вокруг шока 2022 → X-003 evidence_for, Zhao–Takahashi эластичность предложения → инциденция субсидии H-004/H-005, Carrillo–Li пространственный разрыв собственности, ESRI Cost Rental); 2 патча реестра, пробелы №1–2 открыты
 - [[queries/research-radar-2026-10-04|Research Radar 2026-10-04]] — недельный скан (NEP-HRE-2026-09-28, NBER сентябрьский батч, arXiv econ.EM/econ.GN): 7 работ + 3 в дайджесте (Fang–Wu–Yao неопределённость прав собственности Китай → H-015/H-016/H-017, Pfarrhofer–Stelzer знаковая асимметрия трансмиссии еврозона → X-003 evidence_for, French–Vreugdenhil разрешения как реальные опционы → H-013 evidence_for, D'Acunto et al. субъективные модели → X-003/H-031, Jansen rent lock-in контрапункт, Agarwal et al. спилловеры модернизации → H-011, Khosravi–Yoganarasimhan сохранение вариации в поисковых прокси); 2 патча реестра; все testing-гипотезы без активной задачи канбана; пробелы №1–2 открыты
+- [[queries/research-radar-2026-10-11|Research Radar 2026-10-11]] — недельный скан (NEP-HRE-2026-10-05, NBER октябрьский батч w35833–w35875, arXiv/ЦБ/FEDS без нового): 7 работ (Chapelle–Trannoy квази-эксперимент НДС Франция → эластичность предложения 0,35 → H-002 evidence_for, Kholodilin–Voigtländer контроль аренды → строительство ↓ Германия → концепт REPU, Polat et al. сетевой TVP-VAR → неэластичные рынки и регуляторные шоки → H-005 evidence_for, Fan et al. эффект объявления Гонконг → H-028 evidence_for, Drechsel et al. NBER w35867 версия уже разобранной, Giannone et al. депопуляция/старение, Casolaro et al. население × цены Италия); 3 патча реестра; дубли ID H-015/H-016/H-017 зафиксированы как дефект; H-001/H-007/H-026 без активной задачи канбана; пробелы №1–2 открыты
 - [[queries/ml-zombie-firm-classification|ML-классификация зомби-фирм (arXiv 2306.08165)]] — XGBoost с неслучайными пропусками отчётности как признаками (Италия, 305К фирм); кандидат в робастность H-002 (контроль зомби-статуса) и фильтр слабых фирм для H-008; релевантно панели ФНС (87% УСН, пропуски информативны)
 - [[queries/retrieve-for-train-google]] — разбор Retrieve-for-Train (Google/ICML 2026): RL-компиляция поиска
 

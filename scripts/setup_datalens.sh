@@ -1,93 +1,81 @@
 #!/bin/bash
-# Подготовка PostgreSQL на ВМ research-db к подключению из Yandex DataLens.
+# Настройка внешних подключений PostgreSQL к ВМ research-wiki (DataLens + внешний viewer).
 # Выполняется НА ВМ. Идемпотентно, с бэкапом конфигов.
+#
+# Использование:  sudo bash setup_datalens.sh [<публичный-IP-ВМ>]
+# Пароли ролей скрипт НЕ задаёт: их прогоняет отдельно из секретов Hermes,
+# чтобы секрет не попал ни в аргументы, ни в журнал шелла.
+#
+# Шаги, каждый обязателен (пропуск даёт свою ошибку):
+#   1. listen_addresses = '*'      — иначе снаружи порт не открывается;
+#   2. свой УЦ + сертификат с IP SAN — snakeoil DataLens не принимает;
+#   3. pg_hba: 7 диапазонов DataLens для datalens_ro + 0.0.0.0/0 для viewer;
+#   4. права ролям — отдельным SQL из секретов.
 set -e
 
 PGVER=16
+PUBIP="${1:-$(curl -s --max-time 5 ifconfig.me || true)}"
 CONF=/etc/postgresql/$PGVER/main/postgresql.conf
 HBA=/etc/postgresql/$PGVER/main/pg_hba.conf
+CERTDIR=/etc/postgresql/$PGVER/main/certs
 STAMP=$(date +%Y%m%d-%H%M%S)
 
+if [ -z "$PUBIP" ]; then echo "не задан публичный IP (аргументом или через ifconfig.me)"; exit 1; fi
+echo "Публичный IP ВМ: $PUBIP"
+
 echo "=== 1. Бэкап конфигов ==="
-sudo cp -n "$CONF" "$CONF.bak-$STAMP"
-sudo cp -n "$HBA" "$HBA.bak-$STAMP"
-echo "  $CONF.bak-$STAMP"
-echo "  $HBA.bak-$STAMP"
+cp -n "$CONF" "$CONF.bak-$STAMP"
+cp -n "$HBA" "$HBA.bak-$STAMP"
+ls -1 "$CONF.bak-$STAMP" "$HBA.bak-$STAMP"
 
-echo ""
-echo "=== 2. listen_addresses: localhost -> * ==="
-sudo sed -i "s|^#\?listen_addresses\s*=.*|listen_addresses = '*'|" "$CONF"
-sudo -u postgres grep -E "^listen_addresses" "$CONF"
+echo "=== 2. listen_addresses = '*' ==="
+sed -i "s|^#\?listen_addresses\s*=.*|listen_addresses = '*'|" "$CONF"
+grep -E "^listen_addresses" "$CONF"
 
-echo ""
-echo "=== 3. Роль datalens_ro (только чтение) ==="
-PW=$(head -c 32 /dev/urandom | base64 | tr -d '/+=' | head -c 24)
-sudo -u postgres psql -v ON_ERROR_STOP=1 <<SQL
-DO \$\$
-BEGIN
-  IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname='datalens_ro') THEN
-    CREATE ROLE datalens_ro LOGIN PASSWORD '$PW';
-  ELSE
-    ALTER ROLE datalens_ro LOGIN PASSWORD '$PW';
-  END IF;
-END
-\$\$;
-SQL
-echo "  роль datalens_ro готова"
+echo "=== 3. Сертификаты (свой УЦ, SAN с текущим IP) ==="
+mkdir -p "$CERTDIR"; cd "$CERTDIR"
+# Сертификат перевыпускается, если IP не совпадает с текущим: старый SAN после
+# смены адреса ВМ ломает verify-full у DataLens.
+if [ ! -f server.crt ] || ! openssl x509 -in server.crt -noout -ext subjectAltName | grep -q "$PUBIP"; then
+  openssl req -new -x509 -days 3650 -nodes -newkey rsa:2048 \
+    -keyout ca.key -out ca.crt -subj "/CN=research-wiki-local-ca" 2>/dev/null
+  openssl req -new -nodes -newkey rsa:2048 \
+    -keyout server.key -out server.csr -subj "/CN=$PUBIP" 2>/dev/null
+  printf 'subjectAltName = IP:%s, IP:127.0.0.1, DNS:localhost\nextendedKeyUsage = serverAuth\n' "$PUBIP" > san.cnf
+  openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial \
+    -out server.crt -days 3650 -extfile san.cnf 2>/dev/null
+  rm -f server.csr ca.srl
+fi
+chown postgres:postgres ca.key ca.crt server.key server.crt
+chmod 600 ca.key server.key; chmod 644 ca.crt server.crt
+openssl x509 -in server.crt -noout -subject -ext subjectAltName
+echo "открытая часть УЦ для DataLens: $CERTDIR/ca.crt"
 
-echo ""
-echo "=== 4. Права: только SELECT на core/staging/meta/derived ==="
-sudo -u postgres psql -v ON_ERROR_STOP=1 -d research_wiki <<'SQL'
-GRANT CONNECT ON DATABASE research_wiki TO datalens_ro;
-GRANT USAGE ON SCHEMA core, staging, meta, derived TO datalens_ro;
-GRANT SELECT ON ALL TABLES IN SCHEMA core, staging, meta, derived TO datalens_ro;
-ALTER DEFAULT PRIVILEGES IN SCHEMA core, staging, meta, derived
-  GRANT SELECT ON TABLES TO datalens_ro;
-SQL
-echo "  права выданы"
+echo "=== 4. SSL в postgresql.conf ==="
+sed -i "s|^#\?ssl\s*=.*|ssl = on|" "$CONF"
+sed -i "s|^#\?ssl_cert_file\s*=.*|ssl_cert_file = '$CERTDIR/server.crt'|" "$CONF"
+sed -i "s|^#\?ssl_key_file\s*=.*|ssl_key_file = '$CERTDIR/server.key'|" "$CONF"
+sed -i "s|^#\?ssl_ca_file\s*=.*|ssl_ca_file = '$CERTDIR/ca.crt'|" "$CONF"
+grep -E "^ssl(_cert_file|_key_file|_ca_file)? " "$CONF"
 
-echo ""
-echo "=== 5. pg_hba: доступ с диапазонов DataLens ==="
-# Диапазоны из официальной документации Yandex DataLens
-RANGES="178.154.242.176/28 178.154.242.192/28 178.154.242.208/28 178.154.242.128/28 178.154.242.144/28 178.154.242.160/28 130.193.60.0/28"
-# удаляем прежние наши строки, если были
-sudo sed -i '/# DataLens$/d' "$HBA"
-for r in $RANGES; do
-  echo "host    all    all    $r    scram-sha-256    # DataLens" | sudo tee -a "$HBA" > /dev/null
+echo "=== 5. pg_hba: диапазоны DataLens + внешний viewer ==="
+# Диапазоны из официальной документации DataLens; сверять при каждом прогоне.
+sed -i '/# DataLens$/d'   "$HBA"
+sed -i '/# ext-viewer$/d' "$HBA"
+for r in 178.154.242.128/28 178.154.242.144/28 178.154.242.160/28 \
+         178.154.242.176/28 178.154.242.192/28 178.154.242.208/28 130.193.60.0/28; do
+  echo "host    research_wiki    datalens_ro    $r    scram-sha-256    # DataLens" >> "$HBA"
 done
-sudo grep -c "DataLens" "$HBA" | xargs echo "  добавлено строк:"
+echo "host    research_wiki    viewer    0.0.0.0/0    scram-sha-256    # ext-viewer" >> "$HBA"
+echo "host    research_wiki    viewer    ::/0         scram-sha-256    # ext-viewer" >> "$HBA"
+tail -12 "$HBA"
+echo "в security group должен быть открыт ingress TCP 5432 (правило «data lens»)"
 
-echo ""
-echo "=== 6. Пароль для DataLens -> файл ==="
-CRED=/home/ubuntu/datalens_credentials.txt
-umask 077
-{
-  echo "Yandex DataLens — параметры подключения"
-  echo "Создано: $(date)"
-  echo ""
-  echo "Тип:            PostgreSQL"
-  echo "Имя хоста:      89.169.168.214"
-  echo "Порт:           5432"
-  echo "База данных:    research_wiki"
-  echo "Пользователь:   datalens_ro"
-  echo "Пароль:         $PW"
-  echo "SSL/TLS:        выключить (сертификат самоподписанный)"
-  echo ""
-  echo "Уровень SQL-запросов: 'SQL на чтение' (если нужны QL-чарты)"
-} > "$CRED"
-chmod 600 "$CRED"
-echo "  $CRED"
-
-echo ""
-echo "=== 7. Перезапуск PostgreSQL ==="
-sudo systemctl restart postgresql
-sleep 4
-sudo -u postgres psql -tAc "SHOW listen_addresses;" | xargs echo "  listen_addresses:"
-sudo systemctl is-active postgresql | xargs echo "  статус:"
-
-echo ""
-echo "=== 8. Проверка: слушает ли порт наружу ==="
-ss -tlnp 2>/dev/null | grep 5432 || sudo ss -tlnp | grep 5432
-
-echo ""
-echo "ГОТОВО"
+echo "=== 6. Перезапуск и самотест ==="
+systemctl restart postgresql
+sleep 5
+systemctl is-active postgresql
+ss -tlnp | grep 5432 || true
+echo | openssl s_client -connect 127.0.0.1:5432 -starttls postgres -CAfile "$CERTDIR/ca.crt" 2>/dev/null \
+  | grep -E "Verify return code|subject="
+echo "ГОТОВО (пароли ролей и права — отдельным SQL из секретов Hermes)"

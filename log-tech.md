@@ -2214,3 +2214,28 @@ MIG-инстансом 1g.10gb; домашний том `/home/jovyan` — Longh
 
 Не проверено: сохранность данных при перезапуске — нужен scope `delete:servers`
 либо ручной restart через Hub Control Panel (тогда тест повторяется скриптом).
+
+---
+
+## 14.10.2026 — внешние подключения к research_wiki после замены ВМ
+
+Записка: `queries/datalens-external-access-20261014.md`.
+
+Внешний доступ к базе восстановлен на новой ВМ (`research-db-2`, зона
+`ru-central1-e`, адрес 153.51.117.18): `listen_addresses = '*'`, собственный УЦ и
+серверный сертификат `CN=153.51.117.18` (SAN с публичным IP — snakeoil DataLens не
+принимает), семь подсетей DataLens в `pg_hba` для `datalens_ro`, `0.0.0.0/0` и
+`::/0` для `viewer`. Пароли ролей заданы из секретов Hermes; права — `SELECT` с
+`ALTER DEFAULT PRIVILEGES` по рабочим схемам.
+
+Подключение DataLens `rte58ecof5t4a` (`research-wiki-pg`) переведено на новый адрес
+через `POST /rpc/updateConnection`; успешный вызов возвращает пустое тело, поэтому
+применение проверялось через `getConnection` и обновление схемы датасетов.
+Приёмка: все четыре датасета (`ds_rf_trend`, `ds_region_monthly`, `ds_region_rating`,
+`db_health`) обновили схему по новому адресу с TLS — 5, 8, 8 и 4 поля; с постороннего
+адреса роль `datalens_ro` получает `no pg_hba.conf entry`, а `viewer` подключается с
+`sslmode=verify-full` и читает `catalog.metric` (17 805 строк).
+
+Скрипт `scripts/setup_datalens.sh` переписан как идемпотентный: принимает публичный
+IP аргументом, сам настраивает TLS и перевыпускает сертификат при смене адреса;
+пароли ролей намеренно вынесены из скрипта в секреты.

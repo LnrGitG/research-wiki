@@ -2,7 +2,7 @@
 
 > Content catalog. Every wiki page listed under its type with a one-line summary.
 > Read this first to find relevant pages for any query.
-> Last updated: 2026-10-11 | Total pages: 21 | Papers: ~60 (34 PDF+MD pairs + workpapers)
+> Last updated: 2026-10-14 | Total pages: 23 | Papers: ~60 (34 PDF+MD pairs + workpapers)
 
 ## Entities
 
@@ -49,6 +49,7 @@
 - [[reviews/glaeser-gyourko-2018-housing-supply-review|Glaeser & Gyourko (2018) — The Economic Implications of Housing Supply]]
 - [[reviews/kawasoe-2026-housing-requirements-hazard-resilience-2100|Kawasoe (2026) — Housing Requirements, Hazard Exposure, and Resilience Costs to 2100]]
 - [[reviews/mnb-wp-2026-3-sentiment-fsi-hungary|MNB WP 2026/3 — Sentiment-based Financial Stress Index for Hungary]]
+- [[reviews/klachkova-litvinova-roshchina-2026-rjmf|Клачкова, Литвинова, Рощина (2026, «Деньги и кредит» 85(2)) — что определяет разрыв цен первичка/вторичка]] — панель 78 регионов, I кв. 2022 — I кв. 2025 (780 наблюдений): концентрация застройщиков разрыв расширяет (+519…551 тыс. руб. на п.п. доли крупнейшего застройщика, значимо на 10%), банковская конкуренция сокращает (−254…270 тыс. руб. на банк на 1 млн человек, 5%), «Семейная ипотека» расширяет (1%), отмена массовой льготной ипотеки незначима; пространственный ρ 0,33–0,7 (1%); числа для H-034/H-036; класс A
 
 ## Queries
 

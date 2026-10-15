@@ -13,8 +13,8 @@
 # Запуск: bash scripts/build_on_vm.sh
 set -euo pipefail
 
-HOST=ubuntu@89.169.168.214
-KEY=~/.ssh/id_yc
+HOST="${PAPER_VM_HOST:?задайте PAPER_VM_HOST=пользователь@адрес-ВМ}"
+KEY="${PAPER_VM_KEY:-$HOME/.ssh/paper_vm_key}"
 SSH="ssh -i $KEY -o StrictHostKeyChecking=no $HOST"
 SCP="scp -i $KEY -o StrictHostKeyChecking=no"
 LOCAL="$(cd "$(dirname "$0")/.." && pwd)"

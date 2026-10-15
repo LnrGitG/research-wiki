@@ -111,6 +111,7 @@ DROP_DATA_FILES = [
 SENSITIVE_PATTERNS = [
     (r"89\.169\.168\.214", "IP рабочей ВМ"),
     (r"46\.243\.210\.160", "IP ВМ research-db"),
+    (r"153\.51\.117\.18", "IP ВМ research-db-2"),
     (r"\bid_yc\b", "ssh-ключ YC"),
     (r"epd1a9b94", "идентификатор ВМ"),
     (r"ubuntu@", "учётка на ВМ"),

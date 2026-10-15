@@ -2315,3 +2315,54 @@ IP аргументом, сам настраивает TLS и перевыпус
 868 файлов, дерево `9941f7bf`, коммит `15116005`, force-push в `public/main`.
 Проверка: `git show public/main:docs/data/passport_regions.json` даёт sha256
 `90a976a4…`, тот же файл отдаёт живой сайт (`last-modified` 00:24:06 GMT).
+
+
+## 15.10.2026 — восстановление сторожевых и ингест-джобов после переезда ВМ
+
+Инвентаризация базы выявила две связанные поломки. Первая: свежесть не снималась с
+06.10 — последний снимок `ops.freshness_snapshot` датирован 06.10 02:02 (17 266 строк),
+то есть десять суток; статусы в `derived.v_metric_context` считаются на лету и потому
+актуальны, а алертная логика на снимке стояла. Вторая: пять ингест-джобов падали с
+«Script not found».
+
+Причина обеих — переезд ВМ 07.10 и незавершённый «Этап C: 9 cron-джобов на no_agent»
+(коммит `a466d16`): .sh-обёртки заведены в `scripts/` репозитория, но в
+`~/.hermes/scripts/` была слинкована только `kkt_geo_week_job.sh`, а джоб сторожа
+свежести из `jobs.json` вовсе пропал. Как следствие с 08.10 не выполнялись
+`f3b1eae9b042` (доклады Росстата), `4499ed3c70ee` (промышленные индексы),
+`099649da6095` (оперативные ряды), `025095b73ff5` (API ЦБ), `8260f18fcfe2`
+(ФНС 1-НОМ) и `13e78bff5702` (цены ДОМ.РФ; последний прогон 25.09, следующий упал бы).
+
+Что сделано:
+
+- восстановлен джоб «DB freshness daily check» (`35080b1df9c6`, расписание `0 4 * * *`).
+  Обёртка `~/.hermes/scripts/db_freshness_daily.py` вызывает `scripts/db_freshness_check.py`;
+  режим watchdog — при `_summary.status == ok` молчит, при `issues` печатает по строке на
+  проблемный источник. Прогнан вручную: снимок обновлён до 17 278 строк;
+- слинкованы в `~/.hermes/scripts/` шесть обёрток: `rosstat_doklad_job.sh`,
+  `rosstat_industrial_job.sh`, `rosstat_monthly_job.sh`, `cbr_api_monthly_job.sh`,
+  `fns_1nom_job.sh`, `domrf_price_job.sh`. Проверены `bash -n` и наличие всех целевых
+  скриптов цепочек;
+- чтобы поломка не повторялась, добавлен идемпотентный хелпер
+  `scripts/install_cron_wrappers.sh` — линкует все `scripts/*_job.sh` в
+  `~/.hermes/scripts/` одной командой (прогнан: слинковано 10 обёрток);
+- починен джоб `a8b3c4d5e6f7` «metric_card rebuild (stats only)»: у него пустое
+  расписание (`schedule={}`) и не слинкованная `metric_card_rebuild.sh`. Расписание
+  `0 3 * * *`, обёртка слинкована, прогон дал 3 602 метрики с наблюдениями, 3 237 карточек
+  с вектором, 0 сбоев вложения.
+
+Инвентаризация записи в неканонические схемы: `v2`, `v2_stage`, `staging`, `marts` —
+пустые схемы (таблиц нет). Живых джобов, пишущих туда, не осталось. Ссылки на
+`v2`/`public`/`staging` сохранились только в девяти разовых/исторических скриптах
+(`_apply_vpn_rebuild_v2.py`, `_dkp_dataset_card.py`, `dkp_backfill_fact_2025.py`,
+`dkp_backfill_forecast_20260724.py`, `load_cbr_ihk_total_terms.py`,
+`load_cbr_primary_market.py`, `load_rosstat_prices_all.py`,
+`rebuild_fns_annual_regional.py`, `repair_fns_profitorg.py`). Живой `cbr_api_v2_ingest.py`
+вопреки имени пишет в канон (`core.metric` — представление над `catalog.metric`,
+`data.observation`).
+
+Осталось (отдельные задачи): локальные SQLite-базы `data/cbr_lending.db` и
+`data/rosstat_construction.db` продолжают наполняться двумя cron-путями и связкой
+`transfer_doklad_08.py` — двухтактная схема «SQLite-лендинг → канон»; экспортёры витрины
+`export_dashboard.py` и `export_operational.py` читают исчезнувшую схему SQLite —
+переписать под канон.

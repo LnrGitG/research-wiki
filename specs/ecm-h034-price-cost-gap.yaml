@@ -1,0 +1,70 @@
+# H-034: разрыв «цена новостройки минус стоимость строительства» и банковский клин.
+# Дизайн: ECM (двухшаговая форма) на месячных данных РФ; идентификация — через
+# изменения ключевой ставки и баланса ответов КЭП об условиях кредитования в
+# строительстве. Текст постановки: queries/h034-price-cost-gap-spec-20261015.md.
+name: ecm-h034-price-cost-gap
+version: 1
+kind: model
+model: ardl
+target:
+  metric_code: h034_gap_log
+  frequency: m
+  region_id: 1
+  construction: "g_t = ln(domrf_price_index_m / domrf_price_index_m[2021-01]) - ln(kep3_34_chained / kep3_34_chained[2021-01])"
+features:
+  - metric_code: cbr_key_rate
+    frequency: m
+    lags: [0, 1]
+    transform: diff
+    frequency_aggregation: mean
+    role: financing_cost_proxy
+  - metric_code: cbrmon__stroitelstvo__vse__ishodnye_dannye__kak_izmenilis_usloviya_kreditovaniya_balans_otvetov
+    frequency: m
+    lags: [0, 1]
+    transform: diff
+    role: lending_conditions_proxy
+  - metric_code: h034_gap_log
+    frequency: m
+    lags: [1, 2, 3]
+    transform: diff
+    role: autoregressive
+sample:
+  start: "2021-01"
+  end: "2026-07"
+exclusions:
+  - "нет: выборка непрерывная, пропусков в пересечении ряды не имеют"
+structural_breaks:
+  - "2022-03 — шок и всплеск ставки"
+  - "2023-08 — начало цикла повышения"
+  - "2024-07 — завершение массовой льготной ипотеки"
+  - "2024-10 — ключевая ставка 21%"
+standard_errors:
+  type: hac
+  kernel: bartlett
+  bandwidth:
+    rule: "фиксированный набор 3/6/9/12 месяцев (в отчёте — проверка устойчивости)"
+lag_selection:
+  method: fixed
+  maxlag: 3
+scenarios:
+  - M1_rate: "банковский клин через Δ ключевой ставки"
+  - M2_balance: "банковский клин через Δ баланса ответов об условиях кредитования"
+  - M3_both: "оба прокси одновременно"
+  - M4_levels: "уровни с линейным трендом (проверка не-спуриозности)"
+  - sub_2021_2023: "подпериод до завершения льготной ипотеки"
+  - sub_2024_2026: "подпериод действующего режима"
+acceptance:
+  - "n = 64 в базовых спецификациях (67 месяцев минус потери на лаги и разности)"
+  - "ADF: g не отвергает единичный корень, Δg отвергает (p<0.05)"
+  - "коэффициент при Δr > 0 при значимости по HAC-ошибкам (ожидание H-034)"
+  - "результат воспроизводится на ВМ без правок кода (только DSN)"
+runner: scripts/h034_price_cost_gap.py
+outputs:
+  - models/transmission/h034-price-cost-gap-local-20261015.json
+notes: >
+  Ключевое ограничение дизайна: и ставка, и условия кредитования коррелированы со
+  спросом на жильё, поэтому коэффициент при Δr частично ловит не банковский клин, а
+  спросовый канал (снижение ставки → рост спроса → ускорение цены). Для чистой
+  идентификации нужен ряд эффективной стоимости проектного финансирования
+  (средневзвешенная ставка по кредитам застройщикам из банковской статистики ЦБ),
+  которого в базе нет — это следующий шаг, а не свойство текущей модели.

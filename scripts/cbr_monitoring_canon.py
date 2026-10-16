@@ -22,6 +22,7 @@ import os
 import re
 import ssl
 import sys
+import time
 import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -95,19 +96,37 @@ def period_str(r):
     return '%04d-%02d-01' % (y2, m2)
 
 
+def dataset_names(pub_id):
+    """Список датасетов публикации: {id: имя}. С повторами; при неудаче — исключение.
+
+    Имя обязательно: слаг имени входит в код метрики. Молчаливый откат к номеру
+    датасета порождает мусорные коды (инцидент 16.10.2026: ds82 → cbrmon__82__…),
+    поэтому здесь лучше упасть, чем записать кривые метрики.
+    """
+    last = None
+    for attempt in range(4):
+        try:
+            dsn = get_json('%s/datasets?publicationId=%d' % (BASE, pub_id))
+            items = dsn if isinstance(dsn, list) else dsn.get('dataset', [])
+            m = {it.get('id'): (it.get('dataset_name') or it.get('name'))
+                 for it in items if it.get('id') is not None}
+            if m:
+                return m
+        except Exception as e:
+            last = e
+        time.sleep(2 * (attempt + 1))
+    raise RuntimeError('не получен список датасетов публикации %d (%s)' % (pub_id, last))
+
+
 def collect_api():
     """→ список (code, name, unit_text, period_str, value)."""
     out = []
     for pub_id, ds_ids in SCOPE:
+        names = dataset_names(pub_id)
         for ds_id in ds_ids:
-            try:
-                dsn = get_json('%s/datasets?publicationId=%d' % (BASE, pub_id))
-                items = dsn if isinstance(dsn, list) else dsn.get('dataset', [])
-                ds_name = next((d.get('dataset_name') or d.get('name')
-                                for d in items if d.get('id') == ds_id), str(ds_id))
-            except Exception as e:
-                print('  датасет %s: имя не получено (%s)' % (ds_id, e))
-                ds_name = str(ds_id)
+            ds_name = names.get(ds_id)
+            if not ds_name:
+                raise RuntimeError('датасет %d отсутствует в публикации %d' % (ds_id, pub_id))
             sg = 'Экономика всего' if pub_id == 25 else GROUP_NAME[pub_id]
             for mid, adj in MEASURES:
                 try:

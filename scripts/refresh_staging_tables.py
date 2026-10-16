@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Скрипт выведен из эксплуатации 16.10.2026 (пункт 2 аудита): гармонайзеры
+читают лендинги напрямую через staging_direct.py, схема staging не нужна.
 """Точечное зеркалирование таблиц SQLite → PostgreSQL staging.<db>__<table>.
 
 Полное зеркало делает scripts/mirror_to_staging.py (читает SQLite из бакета

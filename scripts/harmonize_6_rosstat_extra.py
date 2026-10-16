@@ -27,9 +27,11 @@ import psycopg
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from metric_codes import code_from_name, uniquify
+import staging_direct   # пункт 2: чтение лендингов напрямую, без схемы staging
 
 os.environ.setdefault("PGPASSFILE", os.path.expanduser("~/.pgpass"))
-DSN = os.environ.get("PGDSN", "host=localhost port=5432 dbname=research_wiki user=wiki")
+# порт тоннеля 15432, не 5432: локального PostgreSQL на VDS нет (см. db_tunnel)
+DSN = os.environ.get("PGDSN", "host=127.0.0.1 port=15432 dbname=research_wiki user=wiki")
 TARGET = "core.observation_v2"
 CUR_YEAR = 2026
 ST = "staging."
@@ -259,8 +261,12 @@ def main():
         conn.commit()
         return rid
 
-    # идемпотентность
-    if not SIMULATE:
+    # Идемпотентность обеспечивает ON CONFLICT DO NOTHING на самой вставке, поэтому
+    # предварительное удаление всего прошлого прогона — ОПЦИЯ (CLEAR_PREV=1).
+    # По умолчанию не удаляем: если часть лендинг-таблиц недоступна (деградировавший
+    # rosstat_construction.db), глобальный DELETE снёс бы данные групп, которые
+    # сейчас нечем перезалить.
+    if not SIMULATE and os.environ.get('CLEAR_PREV') == '1':
         cur.execute("""SELECT count(*) FROM core.observation_v2 o
                        WHERE EXISTS (SELECT 1 FROM core.metric m
                          WHERE m.metric_id=o.metric_id AND m.tags @> ARRAY[%s])""", (TAG,))
@@ -282,9 +288,12 @@ def main():
         if not sid:
             print("ПРОПУСК %s: нет источника %s" % (tbl, src))
             continue
-        cur.execute('SELECT * FROM staging."%s"' % tbl)
-        cols = [d.name for d in cur.description]
-        rows = cur.fetchall()
+        # источник — файл лендинга data/<база>.db, а не схема staging
+        try:
+            cols, rows = staging_direct.read_table(tbl)
+        except Exception as e:
+            print("%-50s ПРОПУСК: лендинг без таблицы (%s)" % (tbl[:50], str(e)[:60]))
+            continue
         cnt = collections.Counter()
         prepared = []
         for raw in rows:
@@ -334,6 +343,11 @@ def main():
                                   'product_name', 'breakout', 'machine_type', 'subtype',
                                   'federal_district', 'period_label', 'company', 'form', 'ticker']):
                     nm = nm.replace('__%s__' % d, str(row.get(d)))
+                # длина сверяется ЗДЕСЬ, до поиска метрики: имя хранится обрезанным
+                # до 200 знаков (см. INSERT INTO core.metric), а поиск шёл по полному
+                # имени — длинные названия не находились и плодили дубль каждый прогон
+                # (16.10.2026: 238 метрик-заглушек за один прогон).
+                nm = str(nm)[:200]
                 cnt[(norm(nm), rid, rel, ps, sub)] += 1
                 prepared.append((nm, rid, rel, ps, sub, row[vcol]))
 
@@ -399,8 +413,8 @@ def main():
                          period_start, source_id, release_id, assessment_type, sub_dimension
                          ORDER BY rn) AS ord
                   FROM tmp_h6 t) z
-            ON CONFLICT (metric_id, region_id, frequency_id, period_start, source_id,
-                         release_id, assessment_type, sub_dimension) DO NOTHING""")
+            ON CONFLICT (metric_id, region_id, period_start, frequency_id,
+                         assessment_type, sub_dimension, release_id) DO NOTHING""")
         conn.commit()
         cur.execute("SELECT count(*) FROM tmp_h6")
         wrote = cur.fetchone()[0]

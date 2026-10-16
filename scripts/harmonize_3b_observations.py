@@ -18,6 +18,7 @@ from datetime import date
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 os.environ.setdefault("PGPASSFILE", os.path.expanduser("~/.pgpass"))
 import psycopg
+import staging_direct   # пункт 2: чтение лендингов напрямую, без схемы staging
 
 DSN = os.environ.get("PGDSN", "host=127.0.0.1 port=15432 dbname=research_wiki user=wiki")
 CUR_YEAR = 2026
@@ -25,7 +26,8 @@ CUR_YEAR = 2026
 # Целевая таблица. По умолчанию — рабочая; TARGET_TABLE позволяет собрать
 # результат в отдельную таблицу, проверить и подменить её отдельным шагом,
 # не удаляя текущие данные.
-TARGET = os.environ.get("TARGET_TABLE", "core.observation")
+# core.observation не существует: обновляемое представление канона — observation_v2
+TARGET = os.environ.get("TARGET_TABLE", "core.observation_v2")
 
 # ── единица: сырой текст → код core.unit ────────────────────────────
 import csv
@@ -358,7 +360,8 @@ def main():
              # subsection различает направления внутри показателя; unit —
              # разные единицы одного кода; издание (source) уже учтено
              # в release_id (см. edition_releases ниже)
-             sql="""SELECT region_name, year, value, unit, subsection, source,
+             # в лендинге колонка называется section; код ниже ждёт ключ subsection
+             sql="""SELECT region_name, year, value, unit, section AS subsection, source,
                                           indicator_code, indicator_name
                                    FROM staging.regions_panel__panel""",
              key=lambda r: r['indicator_code']),
@@ -387,11 +390,7 @@ def main():
         if only and only != g['name']:
             continue
         print(f"\n=== {g['name']} ===", flush=True)
-        # Читаем потоково: на VDS ~960 МБ памяти, загрузка таблицы целиком
-        # (panel — 309 тыс. строк) убивала процесс по OOM (код 137).
-        cur.execute(f"SELECT count(*) FROM ({g['sql']}) _cnt")
-        total_rows = cur.fetchone()[0]
-        print(f"  строк: {total_rows:,}")
+        # Пункт 2: читаем лендинг напрямую (data/<база>.db), схема staging не нужна.
 
         sid = source_ids.get(g['src'])
         rel_id = pick_release(cur, sid, g.get('release', 'main'))
@@ -407,12 +406,14 @@ def main():
         # Чтение — отдельным соединением: коммит писателя завершает
         # транзакцию и уничтожает серверный курсор (InvalidCursorName),
         # поэтому чтение и запись обязаны быть разведены.
-        rconn = psycopg.connect(DSN)
-        rcur = rconn.cursor(name='cur_' + g['name'])
-        rcur.itersize = 20000
-        rcur.execute(g['sql'])
-        colnames = [d.name for d in rcur.description]
-        for raw_row in rcur:
+        try:
+            colnames, all_rows = staging_direct.run_sql(g['sql'])
+        except Exception as e:
+            print(f"  ПРОПУСК: {str(e)[:110]}")
+            continue
+        total_rows = len(all_rows)
+        print(f"  строк: {total_rows:,}", flush=True)
+        for raw_row in all_rows:
             r = dict(zip(colnames, raw_row))
             mkey = norm(g['key'](r))
             mid = resolve_metric(mkey, g['name'],
@@ -464,8 +465,6 @@ def main():
             batch = []
         if not dry:
             print(f"  отправлено в базу: {ins_committed:,}")
-        rcur.close()
-        rconn.close()
 
         report[g['name']] = dict(rows=total_rows, prepared=ins,
                                  no_metric=skipped_no_metric, no_period=skipped_no_period)

@@ -1,3 +1,8 @@
+"""[УСТАРЕЛ 16.10.2026] Промежуточный SQLite-лендинг cbr_lending.db выведен из
+эксплуатации. Банковская статистика ЦБ грузится прямо в канон скриптом
+cbr_banking_canon.py (бюллетень Т_34 + эскроу) и transfer_cbr_vfs.py (VFS-файлы).
+Файл сохранён как справка по разбору xlsx; в cron больше не вызывается.
+"""
 #!/usr/bin/env python3
 """
 Update CBR banking sector statistics: mortgage lending, project financing

@@ -36,11 +36,20 @@ def month_names(today, back=4):
 
 
 def quarter_names(today, back=3):
+    """Квартальные файлы: ввод зданий по типам и ввод мощностей (РФ и субъекты).
+
+    `vv-mosh-oper` — ввод производственных мощностей по видам, накопленным
+    итогом с начала года (разбирает `direct_mosh.py`); `vv-mosh-sub` — тот же
+    показатель по субъектам, он пока только скачивается: разбор регионального
+    разреза ждёт решения владельца.
+    """
     q = (today.month - 1) // 3 + 1
     out = []
     y = today.year
     for _ in range(back):
         out.append('vv-zd-oper_%dkv-%d.xlsx' % (q, y))
+        out.append('vv-mosh-oper_%dkv-%d.xlsx' % (q, y))
+        out.append('vv-mosh-sub_%dkv-%d.xlsx' % (q, y))
         q -= 1
         if q == 0:
             q, y = 4, y - 1

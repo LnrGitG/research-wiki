@@ -53,7 +53,7 @@
 | группа | сырьё | состояние |
 |---|---|---|
 | промпродукция (3 метрики на продукт) | `raw/prom/Prom_MM_YYYY.xlsx` | ✅ `scripts/direct_rosstat_prom.py`, частота M; приёмка — ниже |
-| СС-индексы промпроизводства (SAAR) | `raw/prom/sezon_2023_08-2026.xlsx` | 🟡 разбор готов (`rosstat_sezon_parse.py`) |
+| СС-индексы промпроизводства (SAAR) | `raw/rosstat/data/sezon_2023_MM-YYYY.xlsx` | ✅ прямой `direct_sezon.py` + докачка в `rosstat_prom_files_update.py`; частота исправлена на M; `rosstat_sezon_parse.py` выведен |
 | индексы промпроизводства по регионам | `raw/prom/ind_sub_2023_08-2026.xlsx` | 🟠 16 листов, писателя нет |
 | годовые показатели зданий | `raw/rosstat/yearbooks/Pril_Stroit_2022.rar`, `Stroit_Pril_2024` | ⛔ |
 | ввод нежилых зданий, ввод зданий | `raw/rosstat/operational/vv-zd-oper_*.xlsx` | 🟠 `ingest_housing_types.py` |

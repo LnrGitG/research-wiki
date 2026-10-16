@@ -49,7 +49,7 @@ hypotheses:
     evidence_against: []
     sources: [spark, eiszhc, fnn-opendata]
     tags: [supply-elasticity, developer-finance, financial-constraints]
-    relates_to: ["queries/literature-gap-map", "queries/supply-elasticity-estimation-design", "queries/bankruptcy-construction-2026-10", "Baum-Snow & Han 2024", "Saiz 2010", "reviews/drechisel-lewis-melcangi-pilossoph-2026-rimp"]
+    relates_to: ["queries/literature-gap-map", "queries/supply-elasticity-estimation-design", "queries/bankruptcy-construction-2026-10", "queries/bankruptcy-data-sources-2026-10", "Baum-Snow & Han 2024", "Saiz 2010", "reviews/drechisel-lewis-melcangi-pilossoph-2026-rimp"]
     next_check: "Собрать SPARK-панель 2015-2025, IV-FE панель с интеракцией финансового ограничения"
     created: 2026-09-08
 

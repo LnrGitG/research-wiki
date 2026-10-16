@@ -144,7 +144,7 @@ if __name__ == "__main__":
     dbs = [
         ("developers_ifrs.db",      "_cmd/db/developers_ifrs.db"),
         ("rosreestr_deals.db",      "_cmd/db/rosreestr_deals.db"),
-        ("cbr_lending.db",          "_cmd/db/cbr_lending.db"),
+        # cbr_lending.db — снят 16.10.2026 (ЦБ пишется в канон напрямую)
         ("regions_panel.db",        "_cmd/db/regions_panel.db"),
         ("fns_tochno_sectors.db",   "_cmd/db/fns_tochno_sectors.db"),
         ("rosstat_construction.db", "_cmd/db/rosstat_construction.db"),

@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""[ОТКЛЮЧЁН 16.10.2026] Лендинг cbr_lending.db снят из контура (пункт 1 аудита):
+данные ЦБ пишутся в канон напрямую — cbr_banking_canon.py / cbr_monitoring_canon.py.
+Скрипт оставлен как справочная реализация парсера сырья raw/cbr/ (восстановление
+лендинга из сырья при необходимости: raw/cbr/{bulletin,escrow,deposits,api})."""
 """Parse CBR mortgage bulletin (Tag 211), escrow (Tag 167), VFS corporate/mortgage
 files into data/cbr_lending.db (mortgage_monthly, escrow_monthly, corporate_monthly)."""
 import os, re, glob, sqlite3, datetime

@@ -38,7 +38,7 @@ except ImportError:  # pragma: no cover
 
 # ── какие базы известны (для разрешения имён таблиц) ─────────────────
 DB_FILES = [
-    'developers_ifrs.db', 'rosreestr_deals.db', 'cbr_lending.db',
+    'developers_ifrs.db', 'rosreestr_deals.db',
     'regions_panel.db', 'fns_tochno_sectors.db', 'rosstat_construction.db',
 ]
 

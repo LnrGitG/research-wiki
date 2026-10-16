@@ -45,7 +45,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from normalize_units import normalize_unit
 
 os.environ.setdefault("PGPASSFILE", os.path.expanduser("~/.pgpass"))
-DSN = os.environ.get("PGDSN", "host=localhost port=5432 dbname=research_wiki user=wiki")
+# Порт тоннеля 15432, хост строго 127.0.0.1: локального PostgreSQL на VDS нет
+# (5432 — connection refused), а ~/.pgpass сопоставляется буквально, и при
+# host=localhost драйвер скажет «no password supplied».
+DSN = os.environ.get("PGDSN",
+                     "host=127.0.0.1 port=15432 dbname=research_wiki user=wiki")
 DOCS = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "docs"))
 OUT_CAT = os.path.join(DOCS, "metrics-catalog.json")
 OUT_DET = os.path.join(DOCS, "metrics-details.json")

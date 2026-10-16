@@ -77,7 +77,7 @@
 | ФНС годовые (формы, РФ и регионы) | `raw/fns/*.csv` | ✅ РФ-итоги прямым `direct_fns.py rf_annual`; региональные годовые (группа `fns_annual_regional`, 967 строк) — ждут спеки сборки |
 | ФНС ключ прибыльных организаций | `raw/fns/` | ✅ прямой `direct_fns.py profitorg` (5-П, 5 рядов) |
 | НДФЛ по регионам | `raw/ndfl/` | ⛔ сырья в бакете нет (только свод `ndfl_explore_result.json`); группа остаётся на старых 340 строках |
-| ДОМ.РФ индекс цен | API ДОМ.РФ, `raw/domrf_v2/` | 🟠 `transfer_domrf_price.py`, `domrf_fetch_monthly.py` |
+| ДОМ.РФ индекс цен | API ДОМ.РФ → `raw/domrf/price_index/*.csv` | ✅ `domrf_fetch_monthly.py` (только скачать) + `direct_domrf.py` (в канон); наборы-дубли сняты |
 | МСФО девелоперов | `raw/smartlab/*.json` | 🟠 `developers_ifrs_collect.py` |
 | сделки и аренда по регионам/РФ (квартал) | Росреестр | ⛔ сырья в бакете нет |
 

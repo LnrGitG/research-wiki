@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Этап 1 (продолжение): ДОМ.РФ price-index → catalog + data.observation.
+"""ВЫВЕДЕН ИЗ ЭКСПЛУАТАЦИИ 16.10.2026 — заменён scripts/direct_domrf.py
+(прямой загрузчик «сырьё → канон» на общем ядре direct_core: та же частота M,
+снятие прежних строк пары «метрика — релиз», алиасы регионов в meta.region_alias).
+Оставлен как справка о переносе из схемы v2 и как источник карты алиасов.
+
+Этап 1 (продолжение): ДОМ.РФ price-index → catalog + data.observation.
 
 Вход: /home/ubuntu/sandbox_datasets/raw_domrf_price_index/domrf_priceindex_all_regions.csv
 (ВМ; 5 025 строк данных, 2021-01 … 2026-07, 75 регионов: index_value, mom_pct, n_deals).

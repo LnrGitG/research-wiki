@@ -1,8 +1,14 @@
 #!/bin/bash
 # domrf_price_job.sh — cron-обёртка: индекс цен ДОМ.РФ.
+# 1) domrf_fetch_monthly.py — скачивание API priceindex/living в raw CSV (без записи в БД);
+# 2) direct_domrf.py — прямой загрузчик «сырьё → канон» (domrf_price_index_m,
+#    domrf_price_index_mom, ddu_count_m). Заменил разовый перенос
+#    transfer_domrf_price.py и инжест рубежа 6 из SQLite-лендинга (снят 16.10.2026).
 set -u
 PY=/home/lnr/.hermes/hermes-agent/venv/bin/python3
-cd /home/lnr/research-wiki-private
+REPO=/home/lnr/research-wiki-private
+cd "$REPO" || exit 1
+
 "$PY" scripts/domrf_fetch_monthly.py || exit 1
-"$PY" scripts/transfer_domrf_price.py || exit 2
-echo "domrf_price: обновление + перенос в канон завершены"
+APPLY=1 "$PY" scripts/direct_domrf.py || exit 2
+echo "domrf_price: скачивание и прямая загрузка в канон завершены"

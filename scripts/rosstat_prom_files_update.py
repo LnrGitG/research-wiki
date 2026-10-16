@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""Обновление файлов промышленных индексов Росстата (ind_baza, ind_sub, sezon).
+"""Обновление файлов промышленной статистики Росстата (Prom, ind_baza, ind_sub, sezon).
 
 Заменяет ручной разбор страницы: имена файлов предсказуемы, поэтому скрипт вычисляет период
 сам (предыдущий месяц от даты запуска, с откатом на месяц назад, если файла ещё нет), проверяет
-наличие, скачивает новые в raw/rosstat/data/ и валидирует структуру через openpyxl.
+наличие, скачивает новые в raw/rosstat/data/ и raw/prom и валидирует структуру через openpyxl.
+
+`Prom_MM_YYYY.xlsx` (месячный бюллетень «Производство важнейших видов продукции») добавлен
+16.10.2026: раньше его скачивали руками, из-за чего прямой загрузчик `direct_rosstat_prom.py`
+мог месяцами не видеть нового выпуска. Лежит он в raw/prom рядом с индексами.
 
 Запуск (в том числе из cron):
   python3 scripts/rosstat_prom_files_update.py            # обновить
@@ -18,7 +22,8 @@ import sys
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TARGET_DIRS = [os.path.join(REPO, 'raw', 'rosstat', 'data'), os.path.join(REPO, 'raw', 'prom')]
 BASE = 'https://rosstat.gov.ru/storage/mediabank/'
-PATTERNS = ['ind_baza_2023_{mm}-{yyyy}.xlsx', 'ind_sub_2023_{mm}-{yyyy}.xlsx',
+PATTERNS = ['Prom_{mm}_{yyyy}.xlsx',
+            'ind_baza_2023_{mm}-{yyyy}.xlsx', 'ind_sub_2023_{mm}-{yyyy}.xlsx',
             'sezon_2023_{mm}-{yyyy}.xlsx']
 
 

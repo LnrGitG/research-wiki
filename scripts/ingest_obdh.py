@@ -578,6 +578,8 @@ def refresh_metric_cards(cur, metric_ids):
             'built_at=now()',
             (mid, code, nm[0], u[0], u[1], src_arr, themes.get(code, []), level, n_obs, n_reg, pmin, pmax,
              fresh, text))
+    # свежесть читается из materialized view — обновляем снимок
+    cur.execute('REFRESH MATERIALIZED VIEW derived.v_metric_card')
 
 
 # --- главный поток ----------------------------------------------------------
@@ -713,7 +715,7 @@ def main():
                 'WHERE o.metric_id = ANY(%s) AND o.release_id <> %s AND o.observation_status = \'validated\' '
                 'AND EXISTS (SELECT 1 FROM data.observation n WHERE n.metric_id=o.metric_id '
                 'AND n.region_id=o.region_id AND n.period_start=o.period_start '
-                'AND n.sub_dimension=o.sub_dimension AND n.assessment_type=o.assessment_type '
+                'AND n.sub_dimension=o.sub_dimension '
                 'AND n.release_id=%s AND n.release_id > o.release_id)',
                 (list(metric_ids.values()), release_id, release_id))
             conn.commit()

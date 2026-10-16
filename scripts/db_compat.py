@@ -38,7 +38,9 @@ except ImportError:  # pragma: no cover
 
 # ── какие базы известны (для разрешения имён таблиц) ─────────────────
 DB_FILES = [
-    'developers_ifrs.db', 'rosreestr_deals.db',
+    # developers_ifrs.db снят 16.10.2026: панель МСФО девелоперов пишется в канон
+    # прямым загрузчиком direct_smartlab.py, лендинг больше не нужен.
+    'rosreestr_deals.db',
     'regions_panel.db', 'fns_tochno_sectors.db',
 ]
 

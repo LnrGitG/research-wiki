@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
-"""Collect IFRS financial history for public developers from smart-lab.ru /q/<ticker>/f/{y,q}/.
+"""[ВЫВЕДЕН ИЗ ЭКСПЛУАТАЦИИ 16.10.2026] Заменён прямым загрузчиком
+scripts/direct_smartlab.py (сырьё → канон).
+
+Причина вывода: разбор страниц отбрасывал пустые ячейки и склеивал периоды с
+значениями по порядку, а таблица smart-lab широкая — у части строк значения идут
+через пустую ячейку, плюс есть столбцы-иконки и столбец LTM. Из-за сдвига
+значение писалось в соседний квартал, а LTM попадал в последний квартал окна
+(ЛСР: выручка 96.4 оказывалась и в 2025Q2, и в 2025Q3, 252.8 — в 2026Q2 вместо
+LTM). Плюс годовые ряды попадали в канон с квартальной частотой.
+
+Оставлен как справка по прежнему контуру: HTML → SQLite-лендинг
+data/developers_ifrs.db (в контуре снят) → инжест рубежа 6.
+
+Исходное назначение: Collect IFRS financial history for public developers from smart-lab.ru /q/<ticker>/f/{y,q}/.
 
 Creates data/developers_ifrs.db, table dev_ifrs:
 (ticker, company, freq Y/Q, period '2025'/'2025Q2', metric_en, value, source, loaded)

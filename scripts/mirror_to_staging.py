@@ -146,7 +146,7 @@ def migrate(db_name: str, s3_key: str, report: dict) -> None:
 if __name__ == "__main__":
     report = {}
     dbs = [
-        ("developers_ifrs.db",      "_cmd/db/developers_ifrs.db"),
+        # developers_ifrs.db — снят 16.10.2026 (прямой загрузчик direct_smartlab.py)
         ("rosreestr_deals.db",      "_cmd/db/rosreestr_deals.db"),
         # cbr_lending.db — снят 16.10.2026 (ЦБ пишется в канон напрямую)
         ("regions_panel.db",        "_cmd/db/regions_panel.db"),

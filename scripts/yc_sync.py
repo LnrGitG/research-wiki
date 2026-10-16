@@ -51,7 +51,10 @@ DB_FILES = {
         # rosstat_construction.db снят 16.10.2026: лендинг деградировал (5 таблиц
         # вместо ~20) и выведен из контура вместе с гармонайзером 6.
         "regions_panel.db",
-        "fns_tochno_sectors.db", "rosreestr_deals.db", "developers_ifrs.db",
+        "fns_tochno_sectors.db", "rosreestr_deals.db",
+        # developers_ifrs.db снят 16.10.2026: панель МСФО девелоперов пишется
+        # в канон прямым загрузчиком direct_smartlab.py (сырьё — raw/smartlab/ifrs),
+        # лендинг и сборщик developers_ifrs_collect.py выведены из контура.
         # cbr_lending.db снят 16.10.2026: данные ЦБ пишутся в канон напрямую
         # (cbr_banking_canon.py / cbr_monitoring_canon.py), лендинг больше не нужен.
     )

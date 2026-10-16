@@ -255,7 +255,17 @@ class Writer:
         # входит sub_dimension, а Postgres считает NULL-ы различными — при пустом
         # подразрезе уникальный индекс дубликат НЕ отсекает.
         releases = sorted({t[9] for t in prepared})
-        if prune:
+        if prune == 'period':
+            # снятие по периоду: источник отдаёт скользящее окно, сплошное снятие
+            # пары «метрика — релиз» снесло бы периоды, которых в окне уже нет
+            tri = sorted({(t[0], t[9], t[3]) for t in prepared})
+            self.cur.execute("""DELETE FROM data.observation
+                WHERE (metric_id, release_id, period_start) IN
+                      (SELECT * FROM unnest(%s::bigint[], %s::bigint[], %s::date[]))""",
+                             ([p[0] for p in tri], [p[1] for p in tri],
+                              [p[2] for p in tri]))
+            self.conn.commit()
+        elif prune:
             pairs = sorted({(t[0], t[9]) for t in prepared})
             self.cur.execute("""DELETE FROM data.observation
                 WHERE (metric_id, release_id) IN
@@ -285,14 +295,21 @@ class Writer:
         d = dict(self.cur.fetchall())
         return {r: d.get(r, 0) for r in releases}
 
-    def dump_group(self, metric_names, path):
-        """Дамп наблюдений перечисленных метрик в CSV.gz, затем их удаление.
+    def dump_group(self, metric_names, path, delete=True):
+        """Дамп наблюдений перечисленных метрик в CSV.gz.
 
         Точка возврата для режима REPLACE: старые строки (включая битые имена
-        регионов) сохраняются до записи новых. Возвращает число снятых строк.
+        регионов) сохраняются до записи новых. При delete=False только дамп —
+        для групп, где прежние строки не сносятся, а дополняются (скользящее
+        окно источника). Возвращает число снятых в дамп строк.
         """
         import csv
         import gzip
+        import time as _time
+        if os.path.exists(path) and os.path.getsize(path) > 0:
+            # точка возврата не перезаписывается: повторный REPLACE сохраняется рядом
+            root = path[:-len('.csv.gz')] if path.endswith('.csv.gz') else os.path.splitext(path)[0]
+            path = '%s_%s.csv.gz' % (root, _time.strftime('%Y%m%d-%H%M'))
         norms = {norm(str(nm)[:200]) for nm in metric_names}
         ids = sorted({mid for k, mid in self.by_name.items() if k in norms})
         if not ids:
@@ -320,8 +337,9 @@ class Writer:
                          'period_start', 'period_end', 'value', 'assessment_type',
                          'observation_status', 'source_id', 'release_id', 'sub_dimension'])
             wr.writerows(rows)
-        self.cur.execute("DELETE FROM data.observation WHERE metric_id = ANY(%s)", (ids,))
-        self.conn.commit()
+        if delete:
+            self.cur.execute("DELETE FROM data.observation WHERE metric_id = ANY(%s)", (ids,))
+            self.conn.commit()
         return len(rows)
 
     def close(self):

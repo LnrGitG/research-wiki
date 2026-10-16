@@ -28,7 +28,7 @@ DATA = os.path.join(REPO, "data")
 # лендингами: cbr_lending.db — ЦБ пишет канон напрямую, rosstat_construction.db —
 # деградировал (5 таблиц вместо ~20) и выведен из контура.
 TAGS = (
-    "rosreestr_deals", "developers_ifrs",
+    "rosreestr_deals",
     "regions_panel", "fns_tochno_sectors",
 )
 _REF = re.compile(r"staging\.(%s)__([A-Za-z0-9_]+)" % "|".join(TAGS))

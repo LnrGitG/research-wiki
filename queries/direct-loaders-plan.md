@@ -73,10 +73,10 @@
 ### ФНС, ДОМ.РФ, Росреестр, Smart-Lab
 | группа | сырьё | состояние |
 |---|---|---|
-| ФНС 1-НОМ по ОКВЭД (квартал) | `raw/fns/` | ✅ есть канон-путь `parse_fns_1nom_canon.py` |
-| ФНС годовые (формы, РФ и регионы) | `raw/fns/*.csv` | 🟠 `fns_annual_rebuild.py`, `rebuild_fns_annual_regional.py`, `fns_rf_annual_build.py` |
-| ФНС ключ прибыльных организаций | `raw/fns/` | 🟠 `repair_fns_profitorg.py` |
-| НДФЛ по регионам | `raw/ndfl/` | 🟠 |
+| ФНС 1-НОМ по ОКВЭД (квартал) | `raw/fns/` | ✅ канон-путь `parse_fns_1nom_canon.py` + прямой `direct_fns.py 1nom_okved_f` |
+| ФНС годовые (формы, РФ и регионы) | `raw/fns/*.csv` | ✅ РФ-итоги прямым `direct_fns.py rf_annual`; региональные годовые (группа `fns_annual_regional`, 967 строк) — ждут спеки сборки |
+| ФНС ключ прибыльных организаций | `raw/fns/` | ✅ прямой `direct_fns.py profitorg` (5-П, 5 рядов) |
+| НДФЛ по регионам | `raw/ndfl/` | ⛔ сырья в бакете нет (только свод `ndfl_explore_result.json`); группа остаётся на старых 340 строках |
 | ДОМ.РФ индекс цен | API ДОМ.РФ, `raw/domrf_v2/` | 🟠 `transfer_domrf_price.py`, `domrf_fetch_monthly.py` |
 | МСФО девелоперов | `raw/smartlab/*.json` | 🟠 `developers_ifrs_collect.py` |
 | сделки и аренда по регионам/РФ (квартал) | Росреестр | ⛔ сырья в бакете нет |

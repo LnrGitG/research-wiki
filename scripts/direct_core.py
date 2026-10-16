@@ -222,7 +222,7 @@ class Writer:
         return rid, parts
 
     # --- запись ---
-    def ingest(self, rows, group='', verbose=True):
+    def ingest(self, rows, group='', verbose=True, prune=True):
         """rows: список dict(metric_name, value, ps, region, sub, freq, source,
         release, unit). Возвращает (подготовлено, вставлено, конфликтов, метрик)."""
         prepared = []
@@ -250,8 +250,18 @@ class Writer:
             return len(prepared), 0, 0, len(self.new_metrics)
 
         # построчные INSERT через SSH-тоннель — тысячи round-trip (урок этапа 1.2);
-        # вставляем пачками, а число вставленных считаем по приросту строк релиза
+        # вставляем пачками, а число вставленных считаем по приросту строк релиза.
+        # Снятие прежних строк пары (метрика, релиз) обязательно: в ux_observation
+        # входит sub_dimension, а Postgres считает NULL-ы различными — при пустом
+        # подразрезе уникальный индекс дубликат НЕ отсекает.
         releases = sorted({t[9] for t in prepared})
+        if prune:
+            pairs = sorted({(t[0], t[9]) for t in prepared})
+            self.cur.execute("""DELETE FROM data.observation
+                WHERE (metric_id, release_id) IN
+                      (SELECT * FROM unnest(%s::bigint[], %s::bigint[]))""",
+                             ([p[0] for p in pairs], [p[1] for p in pairs]))
+            self.conn.commit()
         before = self._rel_counts(releases)
         sql = """INSERT INTO %s
             (metric_id, region_id, frequency_id, period_start, period_end, value,
@@ -274,6 +284,45 @@ class Writer:
                          (list(releases),))
         d = dict(self.cur.fetchall())
         return {r: d.get(r, 0) for r in releases}
+
+    def dump_group(self, metric_names, path):
+        """Дамп наблюдений перечисленных метрик в CSV.gz, затем их удаление.
+
+        Точка возврата для режима REPLACE: старые строки (включая битые имена
+        регионов) сохраняются до записи новых. Возвращает число снятых строк.
+        """
+        import csv
+        import gzip
+        norms = {norm(str(nm)[:200]) for nm in metric_names}
+        ids = sorted({mid for k, mid in self.by_name.items() if k in norms})
+        if not ids:
+            return 0
+        self.cur.execute("""SELECT release_id, count(*) FROM data.observation
+                            WHERE metric_id = ANY(%s) GROUP BY 1 ORDER BY 1""", (ids,))
+        print('   старые строки по релизам: %s' % self.cur.fetchall())
+        self.cur.execute("""SELECT observation_id, metric_id, region_id, frequency_id,
+              period_start, period_end, value, assessment_type, observation_status,
+              source_id, release_id, sub_dimension
+            FROM data.observation WHERE metric_id = ANY(%s) ORDER BY 1""", (ids,))
+        rows = self.cur.fetchall()
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        # не перезаписываем существующий дамп: пустой второй прогон затёр бы
+        # точку возврата с реальными строками
+        if os.path.exists(path):
+            base, ext = path[:-len('.csv.gz')], '.csv.gz'
+            i = 2
+            while os.path.exists('%s_%d%s' % (base, i, ext)):
+                i += 1
+            path = '%s_%d%s' % (base, i, ext)
+        with gzip.open(path, 'wt', newline='', encoding='utf-8') as f:
+            wr = csv.writer(f)
+            wr.writerow(['observation_id', 'metric_id', 'region_id', 'frequency_id',
+                         'period_start', 'period_end', 'value', 'assessment_type',
+                         'observation_status', 'source_id', 'release_id', 'sub_dimension'])
+            wr.writerows(rows)
+        self.cur.execute("DELETE FROM data.observation WHERE metric_id = ANY(%s)", (ids,))
+        self.conn.commit()
+        return len(rows)
 
     def close(self):
         self.conn.close()

@@ -39,13 +39,15 @@ ALIAS = {
 }
 
 RUN_FILE_REMOTE = "/home/ubuntu/sandbox_datasets/raw_domrf_price_index/domrf_priceindex_all_regions.csv"
-LOCAL_COPY = "/tmp/domrf_priceindex_all_regions.csv"
+LOCAL_COPY = "/home/lnr/research-wiki-private/raw/domrf/price_index/domrf_priceindex_all_regions.csv"
+# старый адрес ВМ (89.169.168.214) выведен из строя после переезда 14.10.2026;
+# domrf_fetch_monthly.py уже пишет CSV локально — читаем его, к ВМ не ходим.
 
 
 def fetch_file():
-    SSH = "ssh -o BatchMode=yes -i /home/lnr/.ssh/id_yc ubuntu@89.169.168.214"
-    rc = os.system(f'{SSH} "cat {RUN_FILE_REMOTE}" > {LOCAL_COPY} 2>/dev/null')
-    assert rc == 0 and os.path.getsize(LOCAL_COPY) > 100000, f"не скачался: rc={rc}, size={os.path.getsize(LOCAL_COPY) if os.path.exists(LOCAL_COPY) else 0}"
+    if os.path.exists(LOCAL_COPY) and os.path.getsize(LOCAL_COPY) > 100000:
+        return
+    raise SystemExit("нет локального CSV ДОМ.РФ: %s — сначала запустите domrf_fetch_monthly.py" % LOCAL_COPY)
 
 
 def main():
@@ -120,7 +122,12 @@ def main():
             conn.commit()
             print(f"строк parsed={len(rows):,} вставлено={inserted:,} reject={sum(rejects.values()):,}; регионы-отказы: {list(rejects)[:6]}")
 
-            # сверка с v2-эталоном (5025 по каждой? — фактически v2 count)
+            # сверка с v2-эталоном — только если схема v2 существует (заморожена/удалена с 06.10)
+            if cur.execute("SELECT to_regclass('v2.observation')").fetchone()[0] is None:
+                print('v2 недоступна — сверка пропущена; canon:',
+                      {mc: cur.execute('SELECT count(*) FROM data.observation WHERE metric_id=%s',
+                                       (mid,)).fetchone()[0] for mc, mid in metrics.items()})
+                return
             for mc, mid in metrics.items():
                 ref=cur.execute("""SELECT count(*) FROM v2.observation o JOIN v2.metric m
                     ON m.metric_id=o.metric_id WHERE m.metric_code=%s AND o.is_current""",(mc,)).fetchone()[0]

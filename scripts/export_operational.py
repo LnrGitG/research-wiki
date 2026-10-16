@@ -2,13 +2,8 @@
 """Экспорт оперативных рядов в docs/data/operational_dashboard.json
 для GitHub Pages (docs/operational.html).
 
-Источники — канон PostgreSQL (`data.observation` + `catalog.metric`), плюс
-SQLite-файл только для мониторинга ЦБ: прежние таблицы
-`housing_input_operational_monthly`, `construction_volume_monthly_rf`,
-`construction_contracts_monthly_rf`, `cbr_escrow_monthly`,
-`average_wage_monthly_regional` в `data/rosstat_construction.db` исчезли при
-замене схемы файла 05.10.2026 (осталась лишь `cbr_monitoring_construction`),
-из-за чего дашборд застыл на снимке 19.09.
+Источник — только канон PostgreSQL (`data.observation` + `catalog.metric`),
+SQLite не используется вовсе.
 
 Соответствие рядов (канон):
   rosstat_housing_total_m / rosstat_housing_pop_m → housing_input (всего / ИЖС)
@@ -17,6 +12,8 @@ SQLite-файл только для мониторинга ЦБ: прежние 
   zdspmr + odpm                                   → contracts
   kvse + osse                                     → escrow (счета / остаток)
   snz                                             → wage (РФ, руб/мес)
+  cbrmon__stroitelstvo__ekonomika_vsego__{ishodnye,sezonno_skorrektirovannye}_dannye__*
+                                                  → cbr_monitoring (вопрос в коде метрики)
 
 Запуск: python3 scripts/export_operational.py
 """
@@ -152,54 +149,53 @@ D['contracts'] = {
     'monthly': {key(ym): {'value': con[ym], 'backlog': back.get(ym)} for ym in sorted(con)},
 }
 
-# ---------- 4. Мониторинг ЦБ (SQLite: таблица cbr_monitoring_construction) ----------
-if ensure_db is not None:
-    import sqlite3
-    cur = sqlite3.connect(str(ensure_db('rosstat_construction.db'))).cursor()
-    QMAP = {}
-    for (q,) in cur.execute("SELECT DISTINCT question FROM cbr_monitoring_construction"):
-        if '(ожид.)' in q:
-            QMAP[q] = 'ibk_expected'
-        elif '(факт.)' in q:
-            QMAP[q] = 'ibk_actual'
-        elif q.startswith('Индикатор'):
-            QMAP[q] = 'ibk'
-        elif 'объем производства' in q and 'ближайшие' not in q:
-            QMAP[q] = 'production'
-        elif 'спрос на' in q and 'ближайшие' not in q:
-            QMAP[q] = 'demand'
-        elif 'цены на готовую' in q:
-            QMAP[q] = 'prices'
-        elif 'Ценовые ожидания' in q:
-            QMAP[q] = 'price_expectations'
-        elif 'издержки' in q:
-            QMAP[q] = 'costs'
-        elif 'условия кредитования' in q:
-            QMAP[q] = 'credit_conditions'
-    mon = {}
-    for d, q, adj, v in cur.execute(
-            "SELECT date, question, adjustment, value FROM cbr_monitoring_construction"):
-        k = QMAP.get(q)
-        if not k or v is None:
-            continue
-        adj_key = 'raw' if adj == 'Исходные данные' else 'sa'
-        mon.setdefault('%s|%s' % (k, adj_key), {})[d[:7]] = round(v, 2)
-    # отдельный вопрос «средний ожидаемый темп прироста цен», %
-    exp = {}
-    for d, v in cur.execute(
-            "SELECT date, value FROM cbr_monitoring_construction "
-            "WHERE adjustment='Исходные данные' AND question LIKE '%Средний ожидаемый%'"):
-        if v is not None:
-            exp[d[:7]] = round(v, 2)
-    if exp:
-        mon['price_inflation_exp|raw'] = exp
-    D['monitoring_legend'] = {
-        'ibk': 'ИБК сводный', 'ibk_actual': 'ИБК фактический', 'ibk_expected': 'ИБК ожидания',
-        'production': 'Производство (факт)', 'demand': 'Спрос (факт)',
-        'prices': 'Цены на продукцию', 'price_expectations': 'Ценовые ожидания 3м',
-        'costs': 'Издержки', 'credit_conditions': 'Условия кредитования',
-    }
-    D['cbr_monitoring'] = mon
+# ---------- 4. Мониторинг ЦБ (канон: cbrmon__stroitelstvo__ekonomika_vsego__…, вопрос — в коде) ----------
+mon = {}
+for code, per, v in query(
+        """
+        SELECT m.metric_code, o.period_start, o.value
+        FROM data.observation o
+        JOIN catalog.metric m ON m.metric_id = o.metric_id
+        WHERE m.metric_code LIKE 'cbrmon__stroitelstvo__ekonomika_vsego__%%'
+        """):
+    if v is None:
+        continue
+    tail = code.split('__')[-1]
+    if tail.endswith('indikator_biznes_klimata_banka_rossii_ozhid'):
+        k = 'ibk_expected'
+    elif tail.endswith('indikator_biznes_klimata_banka_rossii_fakt'):
+        k = 'ibk_actual'
+    elif tail == 'indikator_biznes_klimata_banka_rossii':
+        k = 'ibk'
+    elif 'kak_izmenitsya_v_blizhayshie' in tail:
+        k = None  # ожидания на 3 мес. — отдельная ветка, в дашборд не выводится
+    elif tail.startswith('kak_izmenilsya_obem_proizvodstva'):
+        k = 'production'
+    elif tail.startswith('kak_izmenilsya_spros'):
+        k = 'demand'
+    elif tail.startswith('kak_izmenilis_tseny_na_gotovuyu'):
+        k = 'prices'
+    elif tail.startswith('tsenovye_ozhidaniya'):
+        k = 'price_expectations'
+    elif tail.startswith('kak_izmenilis_izderzhki'):
+        k = 'costs'
+    elif tail.startswith('kak_izmenilis_usloviya_kreditovaniya'):
+        k = 'credit_conditions'
+    elif tail.startswith('sredniy_ozhidaemyy'):
+        k = 'price_inflation_exp'
+    else:
+        k = None
+    if not k:
+        continue
+    adj_key = 'sa' if '__sezonno_skorrektirovannye_dannye__' in code else 'raw'
+    mon.setdefault('%s|%s' % (k, adj_key), {})[str(per)[:7]] = round(float(v), 2)
+D['monitoring_legend'] = {
+    'ibk': 'ИБК сводный', 'ibk_actual': 'ИБК фактический', 'ibk_expected': 'ИБК ожидания',
+    'production': 'Производство (факт)', 'demand': 'Спрос (факт)',
+    'prices': 'Цены на продукцию', 'price_expectations': 'Ценовые ожидания 3м',
+    'costs': 'Издержки', 'credit_conditions': 'Условия кредитования',
+}
+D['cbr_monitoring'] = mon
 
 # ---------- 5. Эскроу (канон: kvse счетов + osse остаток, сумма по регионам) ----------
 esc = defaultdict(dict)

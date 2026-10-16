@@ -48,7 +48,9 @@ YC_MOUNT = Path(os.environ.get("YC_MOUNT", os.path.expanduser("~/yc-wiki")))
 DB_FILES = {
     name: {"local": DATA_DIR / name, "remote": f"{DB_PREFIX}/{name}"}
     for name in (
-        "rosstat_construction.db", "regions_panel.db",
+        # rosstat_construction.db снят 16.10.2026: лендинг деградировал (5 таблиц
+        # вместо ~20) и выведен из контура вместе с гармонайзером 6.
+        "regions_panel.db",
         "fns_tochno_sectors.db", "rosreestr_deals.db", "developers_ifrs.db",
         # cbr_lending.db снят 16.10.2026: данные ЦБ пишутся в канон напрямую
         # (cbr_banking_canon.py / cbr_monitoring_canon.py), лендинг больше не нужен.

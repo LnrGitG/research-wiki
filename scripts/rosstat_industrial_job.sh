@@ -1,12 +1,14 @@
 #!/bin/bash
-# rosstat_industrial_job.sh — cron-обёртка: промышленные индексы Росстата.
-# Цепочка: prom_files_update → sezon_parse → harmonize_6
-# Шаг refresh_staging убран 16.10.2026 (пункт 2 аудита): гармонайзер читает
-# лендинги напрямую (staging_direct.py), схема staging больше не нужна.
+# rosstat_industrial_job.sh — выведен из эксплуатации 16.10.2026.
+#
+# Была цепочка: prom_files_update → sezon_parse → refresh_staging → harmonize_6.
+# Пункт 2 аудита убрал staging; 16.10.2026 удалены лендинг rosstat_construction.db
+# и гармонайзер 6 — последний шаг, который доводил ряды до канона. Оставшиеся шаги
+# писали бы в rosreestr_deals.db, который после удаления гармонайзера никто не
+# читает: данные копились бы мимо канона. Поэтому джоб остановлен.
+#
+# Возврат: тег pre-del-construction-h6 (git), attic/harmonize_6_rosstat_extra.py.bak,
+# attic/rosstat_construction_landing_tables.csv.gz.
 set -u
-PY=/home/lnr/.hermes/hermes-agent/venv/bin/python3
-cd /home/lnr/research-wiki-private
-"$PY" scripts/rosstat_prom_files_update.py || exit 1
-"$PY" scripts/rosstat_sezon_parse.py || exit 2
-"$PY" scripts/harmonize_6_rosstat_extra.py || exit 3
-echo "rosstat_industrial: цепочка завершена"
+echo "rosstat_industrial_job: выведен из эксплуатации 16.10.2026 — шаг к канону удалён" >&2
+exit 0

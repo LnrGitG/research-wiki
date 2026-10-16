@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Этап 2.1: Доклад Росстата 08-2026 (SQLite data/rosstat_construction.db) → catalog + data.observation.
+"""[ОСИРОТЕЛ 16.10.2026] Лендинг data/rosstat_construction.db удалён вместе с
+гармонайзером 6, поэтому у этого скрипта больше нет потребителя/источника.
+Оставлен как справка. Возврат: тег pre-del-construction-h6.
+
+Этап 2.1: Доклад Росстата 08-2026 (SQLite data/rosstat_construction.db) → catalog + data.observation.
 
 Вход локальный, 3 таблицы (175 строк): doklad_housing_input (74),
 doklad_construction_volume (69), doklad_construction_dynamics (32).

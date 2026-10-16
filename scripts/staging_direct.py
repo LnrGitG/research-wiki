@@ -24,9 +24,12 @@ REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(REPO, "data")
 
 # Тег базы — тот же, что в имени таблицы staging (<tag>__<таблица>).
+# rosstat_construction и cbr_lending сняты 16.10.2026 вместе со своими
+# лендингами: cbr_lending.db — ЦБ пишет канон напрямую, rosstat_construction.db —
+# деградировал (5 таблиц вместо ~20) и выведен из контура.
 TAGS = (
-    "rosstat_construction", "rosreestr_deals", "developers_ifrs",
-    "regions_panel", "fns_tochno_sectors", "cbr_lending",
+    "rosreestr_deals", "developers_ifrs",
+    "regions_panel", "fns_tochno_sectors",
 )
 _REF = re.compile(r"staging\.(%s)__([A-Za-z0-9_]+)" % "|".join(TAGS))
 
@@ -124,7 +127,7 @@ if __name__ == "__main__":
         sys.stdout.write("  %-40s колонок=%d строк=%s\n"
                          % (tbl, len(cols), format(len(rows), ",")))
     cols, rows = run_sql(
-        "SELECT count(*) FROM staging.rosstat_construction__observations o "
-        "LEFT JOIN staging.rosstat_construction__indicators i "
-        "ON i.id = o.indicator_id")
+        "SELECT count(*) FROM staging.rosreestr_deals__deals_by_region_quarter d "
+        "LEFT JOIN staging.rosreestr_deals__rents_by_region_quarter r "
+        "ON r.region = d.region AND r.year = d.year AND r.quarter = d.quarter")
     sys.stdout.write("  JOIN-проверка: %s\n" % rows)

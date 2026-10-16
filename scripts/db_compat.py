@@ -39,7 +39,7 @@ except ImportError:  # pragma: no cover
 # ── какие базы известны (для разрешения имён таблиц) ─────────────────
 DB_FILES = [
     'developers_ifrs.db', 'rosreestr_deals.db',
-    'regions_panel.db', 'fns_tochno_sectors.db', 'rosstat_construction.db',
+    'regions_panel.db', 'fns_tochno_sectors.db',
 ]
 
 # ── классы исключений в стиле sqlite3 ────────────────────────────────

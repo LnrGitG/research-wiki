@@ -2597,3 +2597,45 @@ materials_*, machinery_*, construction_* и др.). 13 групп гармона
 
 **Восстановлены cron-обёртки** (11 лаунчеров, `install_cron_wrappers.sh`): 4 джоба
 были в статусе error «Script not found».
+
+## Вывод из контура лендинга rosstat_construction.db и гармонайзера 6 (16.10.2026)
+
+Решение владельца. Лендинг деградировал до 5 таблиц (doklad_* — 175 строк,
+prom_products_monthly — 4 257 строк) и раздут пустотой до 99,5 МБ; гармонайзер 6
+был его основным потребителем.
+
+**Точка возврата.** Тег `pre-del-construction-h6`; дамп таблиц лендинга
+`attic/rosstat_construction_landing_tables.csv.gz` (4 432 строки, 162 КБ);
+копия гармонайзера `attic/harmonize_6_rosstat_extra.py.bak` (он же в git-истории,
+коммит до `16a8e02`).
+
+**Удалено.** `scripts/harmonize_6_rosstat_extra.py` (git rm) и
+`data/rosstat_construction.db` (локально + объект в бакете `wiki-research`).
+Файл убран из реестров `yc_sync.DB_FILES`, `db_compat.DB_FILES`,
+`mirror_to_staging`, из `staging_direct.TAGS`; функция самопроверки модуля
+переведена на таблицы `rosreestr_deals` (JOIN-проверка: 854).
+
+**Зависимости, которые пришлось развязать** (иначе данные копились бы мимо канона):
+- `~/.hermes/scripts/rosstat_industrial_job.sh` — был tombstone: цепочка
+  `prom_files_update → sezon_parse → harmonize_6` теряла последний шаг к канону,
+  а `sezon_parse` пишет в `rosreestr_deals.db`, которого больше никто не читает.
+- Остановлены (paused) три джоба: `4499ed3c70ee` (Rosstat industrial indices),
+  `f3b1eae9b042` (Rosstat operational publications — читал первые три таблицы
+  лендинга через `transfer_doklad_08.py`), `099649da6095` (rosstat-monthly-parse —
+  писал `prom_products_monthly` через `ensure_db()`, то есть ВОССОЗДАЛ бы лендинг
+  из бакета). Возврат: `cronjob_manage action=resume`.
+- Помечены осиротевшими: `transfer_doklad_08.py`, `rosstat_prom_monthly_parse.py`,
+  `update_rosstat.py`, `cleanup_rosstat_db.py`, `fix_prom_product_units.py`,
+  `rosstat_prom_products_xlsx.py`, `rosstat_sezon_parse.py`.
+
+**Что это стоило.** Гармонайзер 6 был единственным путём обновления примерно 30
+групп канона (deals/rents по регионам, SAAR промпроизводства, ДОМ.РФ, МСФО
+девелоперов, промпродукция, ФНС 1-НОМ/НДФЛ, ГДП-ИФО и др.). Данные в каноне
+остаются, но перестают обновляться до появления прямых загрузчиков «сырьё →
+канон». Отдельно остановлен путь докладов Росстата (`transfer_doklad_08.py`):
+там канон-ряды `doklad_construction_*` тоже перестают обновляться.
+
+**Дефект, попутно исправленный.** Прежняя вставка шапки в `mirror_to_staging.py`
+и `refresh_staging_tables.py` (коммит 76df106) оставила тело docstring вне
+строковой литерала — файлы не компилировались. Восстановлены из коммита 8334c29
+со слиянием пометки внутрь docstring; проверено `py_compile` по всему `scripts/`.

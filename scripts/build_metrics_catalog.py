@@ -102,8 +102,17 @@ def score_research(freqs, y0, y1, nyears, nreg, total):
     return s
 
 
-def fetch_batch(cur, codes):
-    """Все агрегаты по одному батчу метрик."""
+def fetch_batch(cur, codes=None):
+    """Все агрегаты каталога одним проходом.
+
+    Раньше функция вызывалась на каждый батч из 25 метрик (690 батчей × 5
+    запросов) и пересчитывала оконные функции по всей таблице 6,5 млн строк
+    каждый раз — сборка занимала часы. Теперь те же пять запросов выполняются
+    по одному разу без фильтра, а метрики разбираются из результата в памяти.
+    Параметр `codes` оставлен для разовых прогонов по части справочника.
+    """
+    flt = " AND metric_code = ANY(%s)" if codes else ""
+    args = (codes,) if codes else ()
     # 1. основная статистика
     cur.execute(f"""
         SELECT metric_code, metric_name, min(source_name), min(unit_name),
@@ -113,9 +122,9 @@ def fetch_batch(cur, codes):
                string_agg(DISTINCT frequency_code, ','),
                count(DISTINCT release_label), count(DISTINCT sub_dimension)
         FROM core.v_datalens_observations
-        WHERE {VAL_OK} AND metric_code = ANY(%s)
+        WHERE {VAL_OK}{flt}
         GROUP BY metric_code, metric_name
-    """, (codes,))
+    """, args)
     stats = {r[0]: r for r in cur.fetchall()}
 
     # 2. метки релизов (топ-8 на пару метрика+источник)
@@ -125,9 +134,9 @@ def fetch_batch(cur, codes):
                  row_number() OVER (PARTITION BY metric_code, source_name
                                     ORDER BY count(*) DESC) rn
           FROM core.v_datalens_observations
-          WHERE {VAL_OK} AND metric_code = ANY(%s) AND release_label IS NOT NULL
+          WHERE {VAL_OK} AND release_label IS NOT NULL{flt}
           GROUP BY 1,2,3) x WHERE rn <= 8
-    """, (codes,))
+    """, args)
     rels = defaultdict(lambda: defaultdict(list))
     for code, src, rel, _n in cur.fetchall():
         rels[code][src].append(rel)
@@ -138,9 +147,9 @@ def fetch_batch(cur, codes):
                (regexp_match(sub_dimension, 'ед\\.:\\s*([^|]+)'))[1] AS u,
                count(*) n
         FROM core.v_datalens_observations
-        WHERE {VAL_OK} AND metric_code = ANY(%s) AND sub_dimension LIKE '%%ед.:%%'
+        WHERE {VAL_OK} AND sub_dimension LIKE '%%ед.:%%'{flt}
         GROUP BY 1,2 ORDER BY 1, 3 DESC
-    """, (codes,))
+    """, args)
     units = defaultdict(Counter)
     for code, u, n in cur.fetchall():
         if u:
@@ -152,17 +161,17 @@ def fetch_batch(cur, codes):
           SELECT metric_code, sub_dimension, count(*) n,
                  row_number() OVER (PARTITION BY metric_code ORDER BY count(*) DESC) rn
           FROM core.v_datalens_observations
-          WHERE {VAL_OK} AND metric_code = ANY(%s)
-            AND coalesce(sub_dimension,'') <> ''
+          WHERE {VAL_OK}
+            AND coalesce(sub_dimension,'') <> ''{flt}
           GROUP BY 1,2) x WHERE rn <= 3
-    """, (codes,))
+    """, args)
     subs = defaultdict(list)
     for code, sd in cur.fetchall():
         subs[code].append(sd)
 
     # 5. теги гармонизации
     cur.execute("SELECT metric_code, tags FROM core.metric "
-                "WHERE tags IS NOT NULL AND metric_code = ANY(%s)", (codes,))
+                "WHERE tags IS NOT NULL" + flt, args)
     tags = defaultdict(set)
     for code, t in cur.fetchall():
         tags[code].update(t or [])
@@ -175,17 +184,16 @@ def main():
     cur = conn.cursor()
     cur.execute("SELECT metric_code FROM core.metric ORDER BY metric_code")
     all_codes = [r[0] for r in cur.fetchall()]
-    print("метрик в справочнике: %s, батч: %d" % (format(len(all_codes), ","), BATCH))
+    print("метрик в справочнике: %s" % format(len(all_codes), ","))
 
     if os.path.exists(STATE):
         os.remove(STATE)
-    nbatch = (len(all_codes) + BATCH - 1) // BATCH
     total_recs = 0
+    stats, rels, units, subs, tags = fetch_batch(cur)
+    print("агрегаты собраны: метрик со статистикой %s" % format(len(stats), ","))
     with open(STATE, "w", encoding="utf-8") as st:
-        for i in range(nbatch):
-            codes = all_codes[i * BATCH:(i + 1) * BATCH]
-            stats, rels, units, subs, tags = fetch_batch(cur, codes)
-            for code in codes:
+        if True:
+            for code in all_codes:
                 r = stats.get(code)
                 if not r:
                     continue
@@ -220,7 +228,7 @@ def main():
                     }
                 st.write(json.dumps({"rec": rec, "det": det}, ensure_ascii=False) + "\n")
                 total_recs += 1
-            print("  батч %d/%d: %d метрик, всего %d" % (i + 1, nbatch, len(codes), total_recs))
+            print("  записано метрик: %d" % total_recs)
     conn.close()
 
     # сборка из состояния

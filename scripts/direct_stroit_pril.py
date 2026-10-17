@@ -85,6 +85,18 @@ FILES_23 = [
      'Строительство в России 2024', 2023),
 ]
 
+NAME_DAS = 'Индекс предпринимательской уверенности в строительстве'
+UNIT_DAS = 'ед.: В процентах'
+
+FILES_25 = [
+    (os.path.join(YB, 'Stroit_Pril_2022',
+                  'Приложение к сборнику (информация в разрезе субъектов '
+                  'Российской Федерации) 2022', 'R_10_2_1_pril.xlsx'),
+     'Строительство в России 2022', 2021),
+    (os.path.join(YB, 'Stroit_Pril_2024', 'R_10_2_1_pril.xlsx'),
+     'Строительство в России 2024', 2023),
+]
+
 NAME_EMP = ('Среднегодовая численность работников организаций, занятых '
             'в строительстве')
 NAME_WAGE = ('Средняя начисленная заработная плата работников строительных '
@@ -224,7 +236,7 @@ def years_in_header(rows):
     return None, {}
 
 
-def year_owner_map():
+def year_owner_map(files=None, prefix='2.6'):
     """Какие годы таблицы 2.6 берём из какого сборника.
 
     Сборники пересекаются (в приложении 2024 года есть и 2005-2021), поэтому год
@@ -233,12 +245,12 @@ def year_owner_map():
     Значения из более позднего сборника сверяем и печатаем расхождения.
     """
     owner = {}
-    for idx, (path, _, _) in enumerate(FILES_23):
+    for idx, (path, _, _) in enumerate(files or FILES_23):
         if not os.path.exists(path):
             continue
         wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
         for ws in wb.worksheets:
-            if ws.title.startswith('2.6'):
+            if ws.title.startswith(prefix):
                 _, years = years_in_header(list(ws.iter_rows(values_only=True)))
                 for y in set(years.values()):
                     owner.setdefault(y, idx)
@@ -246,8 +258,8 @@ def year_owner_map():
     return owner
 
 
-def table_2_6(ws, label, idx, owner, taken, rev):
-    """2.6 — среднегодовая численность работников: годы идут колонками."""
+def table_years(ws, label, idx, owner, taken, rev, metric_name, unit, unit_label):
+    """Таблица, где годы идут колонками (2.5 — ДАС, 2.6 — численность)."""
     rows = list(ws.iter_rows(values_only=True))
     _, years = years_in_header(rows)
     start = row_of_first_region(rows)
@@ -267,9 +279,9 @@ def table_2_6(ws, label, idx, owner, taken, rev):
                 if prev is not None and abs(prev - val) > 1e-9:
                     rev.append((y, rid, prev, val))
                 continue
-            sub = UNIT_EMP + ('' if not parts else ' | ' + ' | '.join(parts))
-            out.append(dict(metric_name=NAME_EMP, value=val, ps=(y, 0), region=rid,
-                            sub=sub, freq=FREQ, source=SOURCE, unit='persons',
+            sub = unit_label + ('' if not parts else ' | ' + ' | '.join(parts))
+            out.append(dict(metric_name=metric_name, value=val, ps=(y, 0), region=rid,
+                            sub=sub, freq=FREQ, source=SOURCE, unit=unit,
                             release=label))
             taken.setdefault(y, {})[key] = val
     return out
@@ -385,18 +397,23 @@ def table_2_8(ws, label, year):
 
 
 def parse_23(w):
-    """Записи таблиц 2.6, 2.7, 2.8, 2.9 из приложения (занятость и оплата труда)."""
+    """Записи таблиц 2.5-2.9 из приложения (ДАС, занятость, оплата труда)."""
     seen, rev, recs, report = {}, [], [], []
-    owner = year_owner_map()
-    for path, label, year in FILES_23:
+    owner = year_owner_map(FILES_23, '2.6')
+    owner25 = year_owner_map(FILES_25, '2.5')
+    for path, label, year in FILES_25 + FILES_23:
         if not os.path.exists(path):
             report.append('нет файла: %s' % path)
             continue
         wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
         for ws in wb.worksheets:
             title = ws.title
-            if title.startswith('2.6'):
-                part = table_2_6(ws, label, FILES_23.index((path, label, year)), owner, seen, rev)
+            if title.startswith('2.5'):
+                part = table_years(ws, label, FILES_25.index((path, label, year)),
+                                   owner25, {}, [], NAME_DAS, 'pct', UNIT_DAS)
+            elif title.startswith('2.6'):
+                part = table_years(ws, label, FILES_23.index((path, label, year)),
+                                   owner, seen, rev, NAME_EMP, 'persons', UNIT_EMP)
             elif title.startswith('2.9'):
                 part = table_2_9(ws, label, year)
             elif title.startswith('2.7'):
@@ -476,7 +493,8 @@ def name_codes():
     """{имя метрики: код} по тем метрикам группы, что уже есть в каноне."""
     import db_tunnel as tunnel
     global ALL_NAMES
-    ALL_NAMES = [NAME_PARK, NAME_AGE, NAME_EMP, NAME_WAGE, NAME_HAZ, NAME_WDIST]
+    ALL_NAMES = [NAME_PARK, NAME_AGE, NAME_EMP, NAME_WAGE, NAME_HAZ,
+                 NAME_WDIST, NAME_DAS]
     rows = tunnel.query('SELECT metric_code, name_ru FROM core.metric WHERE name_ru = ANY(%s)',
                         (ALL_NAMES,))
     return dict((r[1], r[0]) for r in rows)
@@ -508,7 +526,8 @@ def legacy_keys():
                            JOIN core.release r USING(release_id)
                            WHERE m.name_ru = ANY(%s)
                              AND r.release_label = ANY(%s)""",
-                        ([NAME_EMP, NAME_WAGE], [rel for _, rel, _ in FILES_23]))
+                        ([NAME_EMP, NAME_WAGE, NAME_DAS],
+                         [rel for _, rel, _ in FILES_23] + [rel for _, rel, _ in FILES_25]))
     out |= set((r[0], r[1], r[2]) for r in rows)
     return out
 

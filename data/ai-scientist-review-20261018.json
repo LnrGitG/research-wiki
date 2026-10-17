@@ -1,0 +1,313 @@
+{
+  "source": "SakanaAI/AI-Scientist perform_review (NeurIPS form), адаптер к Nous",
+  "pdf": "papers/draft-export-project-macro-screen/export-project-macro-screen-draft.pdf",
+  "model": "deepseek/deepseek-v4.1-flash",
+  "n_reviews": 5,
+  "ensemble_mean": {
+    "Originality": 1.4,
+    "Quality": 1.0,
+    "Clarity": 2.0,
+    "Significance": 1.0,
+    "Soundness": 1.0,
+    "Presentation": 2.0,
+    "Contribution": 1.0,
+    "Overall": 1.8,
+    "Confidence": 4.4
+  },
+  "votes": {
+    "Reject": 5
+  },
+  "meta": {
+    "Summary": "The paper proposes a conceptual protocol for a conditional computational stress test of financial and macroeconomic compatibility of a synthetic export infrastructure project. It outlines scenarios comparing market-rate versus concessional debt and export-oriented versus domestic resource profiles, using a supplied 2021 Rosstat input-output aggregate and disclosed Bank of Russia quarterly projection model equations solved by an author-built linear algorithm. The authors explicitly state that no calculations have been performed and present no numerical results. Its contribution is therefore a research design or protocol rather than a completed empirical or methodological study.",
+    "Strengths": [
+      "The authors are unusually transparent about the draft status, the absence of calculations, and the limits of interpretation.",
+      "The protocol separates published data, supplied materials, expert assumptions, and scenario assumptions.",
+      "It pre-specifies scenarios, hypotheses, admissibility criteria, sensitivity checks, and stopping rules in a pre-registration-like manner.",
+      "It explicitly avoids causal overclaiming about government programs, credit additionality, social returns, and welfare effects.",
+      "The limitations section acknowledges key issues such as synthetic project data, supplied input-output aggregates, and the non-official nature of the author-built solver."
+    ],
+    "Weaknesses": [
+      "The submission contains no calculations, no results, no figures, and no empirical or simulation evidence; it is a proposal rather than a completed research paper.",
+      "The central hypotheses and claims about joint financial and macroeconomic admissibility are entirely untested and unsupported.",
+      "The work has no clear machine-learning methodological or empirical contribution and appears out of scope for a premier ML venue.",
+      "Methodological details are insufficient: exact equations, parameter values, calibration procedure, input-output aggregation steps, solver implementation, convergence checks, and numerical settings are not fully provided.",
+      "The author-built linear solver for the Bank of Russia DDKP/DIP quarterly projection models is not validated against official implementations or benchmark outputs.",
+      "The supplied 2021 Rosstat input-output aggregate has not been independently reconstructed or verified, limiting confidence in the interindustry block.",
+      "The synthetic project limits external validity and cannot support conclusions about real infrastructure projects or policy effectiveness.",
+      "Reproducibility cannot be assessed because no executed code, data audit, seeds, environment specifications, or machine-readable registry are provided.",
+      "The related-work discussion is thin and does not establish a clear novel contribution beyond combining known stress-testing and input-output tools.",
+      "The presentation is repetitive, partly bilingual, and includes duplicated abstract/section material, making it difficult to evaluate as a finished submission."
+    ],
+    "Originality": 1,
+    "Quality": 1,
+    "Clarity": 2,
+    "Significance": 1,
+    "Questions": [
+      "Can the authors provide the actual calculations, numerical results, and sensitivity analyses that the paper currently only proposes?",
+      "What is the specific machine-learning contribution of this work, and why is it appropriate for an ML venue rather than an economics or policy venue?",
+      "What are the exact equations, parameter values, initial conditions, calibration sources, and solver implementation details for the DDKP/DIP models?",
+      "How is the author-built linear solver validated against official Bank of Russia model implementations or published benchmark outputs?",
+      "How is the supplied 2021 Rosstat input-output aggregate verified against the primary source, and what errors or biases might it contain?",
+      "What are the precise financial and macroeconomic admissibility thresholds, formulas, units, and justification, and were they fixed before seeing results?",
+      "What marginal distributions, dependence structures, thresholds, seeds, simulation counts, convergence diagnostics, and stopping rules will be used in the Monte Carlo analysis?",
+      "How is the synthetic project parameterized, and why should any conclusions from it be informative beyond the specific scenario?",
+      "Will the authors provide a complete replication package with code, data provenance, checksums, random seeds, versioned inputs, and environment specifications?",
+      "How do the authors ensure that conditional simulation frequencies are not misinterpreted as real-world probabilities of project or program success?"
+    ],
+    "Limitations": [
+      "The paper explicitly lacks results and calculations, so it cannot support any substantive empirical or quantitative conclusion.",
+      "The synthetic project and supplied input-output aggregate limit external validity and independent verification.",
+      "The author-built solver may not replicate the official Bank of Russia model, and no validation is presented.",
+      "The study cannot identify causal effects of concessional finance, credit additionality, crowding out, or social returns.",
+      "Potential negative societal impact includes misuse of conditional simulation frequencies as real-world probabilities or policy evidence; the authors partly address this but should reinforce disclaimers.",
+      "The paper is written largely in Russian, which may limit accessibility for the international ML community.",
+      "No computational reproducibility can be assessed because no executed code, audited data, or saved results are included."
+    ],
+    "Ethical Concerns": false,
+    "Soundness": 1,
+    "Presentation": 2,
+    "Contribution": 1,
+    "Overall": 2,
+    "Confidence": 5,
+    "Decision": "Reject"
+  },
+  "reviews": [
+    {
+      "Summary": "The paper proposes a conceptual protocol for a computational stress test of financial and macroeconomic compatibility of a synthetic export infrastructure project. It outlines scenarios comparing market-rate versus concessional debt and export-oriented versus domestic resource profiles, using a supplied 2021 Rosstat input-output aggregate and disclosed Bank of Russia quarterly projection model equations solved by an author-built linear algorithm. The paper explicitly states that no calculations have been performed and presents no results. It emphasizes pre-specified admissibility criteria, sensitivity analysis, data provenance, and limitations, and it avoids causal claims about government programs, credit additionality, or social returns.",
+      "Strengths": [
+        "The authors are unusually transparent about the draft status and the absence of calculations.",
+        "The protocol carefully separates published data, supplied materials, expert assumptions, and scenario assumptions.",
+        "It explicitly avoids overclaiming causal effects, additionality, or social welfare implications.",
+        "It proposes pre-specification of hypotheses, thresholds, sensitivity analyses, and stopping rules.",
+        "It acknowledges key limitations such as synthetic project data, supplied input-output aggregate, and an author-built solver that is not an official central bank model."
+      ],
+      "Weaknesses": [
+        "The paper contains no calculations, no results, and no empirical validation; it is a proposal rather than a completed research paper.",
+        "It is not a machine learning paper and makes no ML methodological or empirical contribution; it is out of scope for a premier ML venue.",
+        "The central hypotheses are not tested, so the main claims about joint financial and macroeconomic admissibility remain unsupported.",
+        "The author-built linear solver for the Bank of Russia quarterly projection models is not validated against official implementations or known benchmarks.",
+        "The input-output block relies on a supplied aggregate that has not been independently reconstructed or verified.",
+        "The synthetic project is not representative of real projects, limiting external validity and practical significance.",
+        "The paper does not provide code, data, seeds, exact equations, parameter values, or a machine-readable registry, so reproducibility cannot be assessed.",
+        "The bibliography is explicitly described as unverified, and related work is not deeply integrated.",
+        "The presentation is verbose, repetitive, partly in Russian, and includes duplicated abstract and section material.",
+        "The contribution is essentially a research plan; there is no demonstrable advance in state of the art."
+      ],
+      "Originality": 2,
+      "Quality": 1,
+      "Clarity": 2,
+      "Significance": 1,
+      "Questions": [
+        "Can the authors provide the actual calculations, results, and sensitivity analyses that the paper currently only proposes?",
+        "What is the machine learning contribution of this work, and why is it appropriate for an ML venue?",
+        "How is the author-built linear solver validated against the official Bank of Russia DDKP and DIP model implementations?",
+        "What exact equations, coefficients, initial conditions, and version information are used for the quarterly projection models?",
+        "How is the supplied 2021 Rosstat input-output aggregate verified against the primary source, and what errors or biases might it contain?",
+        "What are the exact financial metrics, formulas, units, and admissibility thresholds, and how are they justified before seeing results?",
+        "How do the authors handle currency conversion, revenue repatriation, and institutional constraints in the synthetic export project?",
+        "What are the Monte Carlo simulation details, including number of runs, seeds, convergence diagnostics, and treatment of non-convergent cases?",
+        "How do the authors ensure that simulation shares are not misinterpreted as real-world probabilities of project or program success?",
+        "If the paper is completed, what would be the main quantitative finding, and how would it change policy or research practice?"
+      ],
+      "Limitations": [
+        "The work is a draft protocol with no calculations, so no empirical or quantitative limitations can be assessed from results.",
+        "The synthetic project limits external validity and cannot support claims about actual infrastructure projects or government programs.",
+        "The supplied input-output aggregate is not independently verified, which limits confidence in the interindustry block.",
+        "The author-built solver is not an official Bank of Russia model and may not reproduce official forecasts or model properties.",
+        "The study cannot identify causal effects of concessional finance, credit additionality, crowding out, or social returns.",
+        "Potential negative societal impact includes misuse of conditional simulation frequencies as real-world probabilities or policy evidence; the authors partly address this but should reinforce disclaimers.",
+        "The paper is written largely in Russian, which may limit accessibility for the international ML community."
+      ],
+      "Ethical Concerns": false,
+      "Soundness": 1,
+      "Presentation": 2,
+      "Contribution": 1,
+      "Overall": 2,
+      "Confidence": 4,
+      "Decision": "Reject"
+    },
+    {
+      "Summary": "The paper proposes a conceptual protocol for a conditional stress test of financial and macroeconomic compatibility for a synthetic export infrastructure project. It outlines scenarios comparing market-rate versus concessional debt and export-oriented versus domestic resource profiles, using a supplied 2021 Rosstat input-output aggregate and disclosed Bank of Russia quarterly projection model equations solved by an author-built linear solver. The authors explicitly state that no calculations have been performed and that results are not included.",
+      "Strengths": [
+        "The authors are unusually transparent about the limitations and avoid causal overclaiming.",
+        "The protocol has a clear pre-registration-like structure, with scenarios, hypotheses, and admissibility criteria specified in advance.",
+        "The paper distinguishes published data, supplied materials, and scenario assumptions, which is good practice.",
+        "Ethical and interpretive boundaries are discussed extensively."
+      ],
+      "Weaknesses": [
+        "The paper contains no calculations, no results, no figures, and no empirical or simulation evidence.",
+        "The central claims cannot be evaluated because the study is incomplete.",
+        "The work is not a machine learning paper and does not advance ML methodology or theory.",
+        "The model implementation is not provided or validated; the custom solver for published equations is not reproducible from the submission.",
+        "The synthetic project and supplied input-output aggregate limit external validity and independent verification.",
+        "The related work is thin and not integrated into a concrete methodological contribution.",
+        "The submission reads as a research proposal or draft protocol rather than a finished paper suitable for publication."
+      ],
+      "Originality": 1,
+      "Quality": 1,
+      "Clarity": 2,
+      "Significance": 1,
+      "Questions": [
+        "Can the authors provide the actual calculations and results that the paper currently omits?",
+        "What exactly is the machine learning contribution, if any, and why is this work appropriate for an ML venue?",
+        "Can the authors provide the full code, data, and exact model equations needed to reproduce the stress test?",
+        "How is the author-built linear solver validated against the official Bank of Russia model implementation?",
+        "What evidence supports the choice of distributions, dependence structures, and thresholds used in the Monte Carlo sensitivity analysis?",
+        "How does the synthetic project relate to real export infrastructure projects, and what are the consequences for interpreting the results?"
+      ],
+      "Limitations": [
+        "The paper itself acknowledges major limitations: no causal identification, no credit additionality, no social return estimation, synthetic project, supplied input-output aggregate, and an unvalidated custom solver.",
+        "There is no discussion of computational reproducibility because no code or results are included.",
+        "Potential negative societal impacts are not a central issue here, but the paper could better discuss how conditional stress-test results might be misused in policy debates."
+      ],
+      "Ethical Concerns": false,
+      "Soundness": 1,
+      "Presentation": 2,
+      "Contribution": 1,
+      "Overall": 1,
+      "Confidence": 4,
+      "Decision": "Reject"
+    },
+    {
+      "Summary": "The paper proposes a conceptual protocol for a conditional computational stress test of the financial and macroeconomic compatibility of a synthetic export infrastructure project. It outlines scenarios comparing market-rate versus concessional debt and export-oriented versus domestic resource profiles, using a supplied 2021 Rosstat input-output aggregate and published Bank of Russia DDKP/DIP quarterly projection model equations solved with an author-built linear solver. The authors explicitly state that no calculations have been performed and no results are reported.",
+      "Strengths": [
+        "The authors are unusually explicit and honest that this is a draft protocol and that no calculations were performed.",
+        "The proposed design carefully separates published data, supplied materials, expert assumptions, and purely scenario-based values.",
+        "The protocol pre-specifies admissibility criteria, sensitivity checks, and rules for interpreting Monte Carlo shares as conditional frequencies rather than empirical probabilities.",
+        "The paper addresses a policy-relevant question about concessional financing, infrastructure exports, inflation, and exchange-rate compatibility.",
+        "The limitations section correctly warns against causal overinterpretation, credit additionality claims, and welfare conclusions."
+      ],
+      "Weaknesses": [
+        "The submission contains no calculations, no experimental results, and no empirical or theoretical findings; it is a proposal rather than a complete paper.",
+        "The central hypotheses H1-H3 are not tested, so the main scientific claims are entirely unsupported.",
+        "Methodological details are insufficient: model equations, solver implementation, calibration procedure, input-output aggregation steps, and numerical settings are not fully provided.",
+        "The reproducibility package is not audited or executed; the archive is not downloaded or run, so reproducibility cannot be assessed.",
+        "There is very little machine-learning content or methodological novelty for a premier ML venue: no new learning algorithm, benchmark, dataset, or ML theory is contributed.",
+        "The literature review is brief and not tightly integrated with the proposed design; comparison to existing stress-testing or macro-financial simulation methods is minimal.",
+        "Key implementation choices, such as distributions, dependence structures, thresholds, simulation count, seeds, and stopping rules, are described only at a high level and not instantiated.",
+        "The input-output table is a supplied aggregate and not independently reconstructed or verified, limiting confidence in the interindustry block.",
+        "The synthetic project cannot support general conclusions about real projects, policy effectiveness, or social returns.",
+        "The presentation is repetitive and partly bilingual, with many placeholder sections, making the paper difficult to evaluate as a finished submission."
+      ],
+      "Originality": 1,
+      "Quality": 1,
+      "Clarity": 2,
+      "Significance": 1,
+      "Questions": [
+        "Can the authors provide the actual calculations and results of the proposed stress test rather than a protocol for future work?",
+        "What are the exact equations, parameter values, initial conditions, and solver validation checks for the author-built DDKP/DIP implementation?",
+        "How does the author-built solver compare with official Bank of Russia model outputs or standard solution methods?",
+        "What specific marginal distributions, copula/dependence assumptions, thresholds, seeds, and simulation counts will be used, and how were they chosen before seeing results?",
+        "Will the full source archive, input data, code, and saved results be released and independently audited, with checksums and environment specifications?",
+        "Why is this work suitable for a machine-learning venue, and what ML methodology, learning algorithm, or computational contribution does it make?",
+        "How do the authors justify the admissibility thresholds as normative or scenario-based rather than arbitrary?",
+        "How do the authors validate the supplied input-output aggregate against the original Rosstat table or alternative sources?"
+      ],
+      "Limitations": [
+        "The authors acknowledge many scientific limitations, including lack of causal identification, synthetic project data, supplied input-output aggregate, and non-official model solver status.",
+        "However, the paper does not provide a broader societal-impact discussion beyond noting that causal and welfare conclusions are unsupported.",
+        "The absence of executed code and audited data prevents assessment of computational reproducibility.",
+        "The reliance on a synthetic project and supplied aggregate means the results, even if later computed, would not directly support real-world policy conclusions."
+      ],
+      "Ethical Concerns": false,
+      "Soundness": 1,
+      "Presentation": 2,
+      "Contribution": 1,
+      "Overall": 2,
+      "Confidence": 5,
+      "Decision": "Reject"
+    },
+    {
+      "Summary": "The paper is a Russian-language draft/protocol for a computational stress test of a synthetic export infrastructure project. It proposes comparing market-rate versus concessional debt for the same project, with a secondary comparison between export-oriented and domestic resource profiles. The intended framework combines a supplied 2021 Rosstat input-output aggregate with published Bank of Russia quarterly projection model equations solved by an author-built linear algorithm. The paper pre-specifies scenarios, hypotheses, admissibility criteria, sensitivity analyses, and limitations, but explicitly states that no calculations have been performed and no results are reported.",
+      "Strengths": [
+        "The authors are unusually transparent about the status of the work and explicitly state that no calculations were performed.",
+        "The research question is narrow and clearly delimited, and the paper avoids causal overclaiming about subsidies, credit additionality, or social returns.",
+        "The proposed protocol emphasizes pre-specification of scenarios, thresholds, sensitivity checks, and data provenance, which is good methodological practice.",
+        "The paper carefully distinguishes conditional simulation frequencies from empirical probabilities and official forecasts."
+      ],
+      "Weaknesses": [
+        "The submission is incomplete: it contains no calculations, no results, and no empirical or computational evidence for any of its hypotheses.",
+        "The central methodological components are not specified in enough detail: model equations, parameter values, solver implementation, convergence checks, and calibration choices are missing.",
+        "The project is synthetic and the input-output table is a supplied aggregate that has not been independently reconstructed or audited, severely limiting reproducibility and external validity.",
+        "The author-built solver for the Bank of Russia quarterly projection models is not validated against official outputs or independent implementations.",
+        "There is no meaningful machine-learning contribution, and the paper's relevance to a prestigious ML venue is unclear.",
+        "The related-work discussion is thin and does not establish a clear novel contribution beyond combining known stress-testing and input-output tools.",
+        "The manuscript contains duplicated abstract/section material and reads as a project plan rather than a finished paper."
+      ],
+      "Originality": 2,
+      "Quality": 1,
+      "Clarity": 2,
+      "Significance": 1,
+      "Questions": [
+        "Can the authors provide the actual completed calculations and results? Without them, the paper's central claims cannot be evaluated.",
+        "What are the exact equations, parameter values, calibration sources, and solver implementation details for both the financial and macroeconomic blocks?",
+        "How is the synthetic project parameterized, and why should any conclusions from it be informative beyond the specific scenario?",
+        "Can the authors independently audit or reconstruct the supplied Rosstat input-output aggregate rather than relying on a transferred aggregate?",
+        "How does the author-built linear solver compare with the official Bank of Russia model implementation or published outputs on benchmark shocks?",
+        "What are the precise financial and macroeconomic admissibility thresholds, and how were they chosen before seeing results?",
+        "What is the intended machine-learning contribution, and why is this work appropriate for an ML venue rather than an economics/policy venue?",
+        "Will the authors provide a complete replication package with code, data provenance, checksums, random seeds, convergence diagnostics, and versioned inputs?"
+      ],
+      "Limitations": [
+        "The paper explicitly lacks results and calculations, so it cannot support any substantive conclusion.",
+        "The synthetic project and supplied input-output aggregate limit external validity and independent verification.",
+        "The author-built solver may not replicate the official Bank of Russia model, and no validation is presented.",
+        "The authors correctly note that causal effects, credit additionality, social returns, and welfare implications are not identified.",
+        "Potential negative societal impacts and broader policy implications are not discussed beyond limitations on interpretation."
+      ],
+      "Ethical Concerns": false,
+      "Soundness": 1,
+      "Presentation": 2,
+      "Contribution": 1,
+      "Overall": 2,
+      "Confidence": 4,
+      "Decision": "Reject"
+    },
+    {
+      "Summary": "The paper is a Russian-language draft/protocol for a computational stress test of financial and macroeconomic compatibility of a synthetic export infrastructure project under market versus concessional financing. It proposes scenarios A-E, hypotheses H1-H3, and a protocol using a supplied 2021 Rosstat input-output aggregate and published Bank of Russia DDKP/DIP quarterly projection model equations solved by an author-built linear solver. The paper explicitly states that no calculations have been performed and presents no numerical results. Its contribution is therefore a conceptual experimental design rather than an executed study.",
+      "Strengths": [
+        "The authors are unusually transparent about the draft status, lack of calculations, and the limits of interpretation.",
+        "The paper carefully separates published data, supplied materials, expert assumptions, and purely scenario-based values.",
+        "It explicitly avoids causal claims about government programs, credit additionality, or social returns.",
+        "The proposed scenario contrasts and hypotheses are described in a pre-registration-like manner, which is good practice.",
+        "It acknowledges many limitations, including synthetic project data, supplied input-output aggregation, and the non-official nature of the author-built solver."
+      ],
+      "Weaknesses": [
+        "No calculations, no results, and no empirical or numerical evidence are presented; the paper is a research proposal, not a completed research paper.",
+        "The central claims about financial and macroeconomic compatibility are entirely unverified and cannot be assessed.",
+        "The work has no clear machine learning contribution and appears out of scope for a prestigious ML venue.",
+        "The synthetic project and supplied input-output aggregate limit external validity and reproducibility.",
+        "The author-built solver for published Bank of Russia model equations is not validated against official implementations or documented in sufficient detail.",
+        "The literature review is thin and does not establish a strong methodological or empirical gap for this venue.",
+        "The full paper is in Russian, with only an English abstract, which limits accessibility for the international review community.",
+        "No code, data audit, or reproducible computational artifacts are provided beyond links whose contents were not verified."
+      ],
+      "Originality": 1,
+      "Quality": 1,
+      "Clarity": 2,
+      "Significance": 1,
+      "Questions": [
+        "Can the authors provide the actual calculations, numerical results, and reproducible code for the proposed stress test?",
+        "What is the specific machine learning contribution of this work, and why is it appropriate for an ML venue?",
+        "How exactly is the author-built linear solver implemented, validated, and compared against the official Bank of Russia DDKP/DIP model implementations?",
+        "What are the precise equations, calibration values, and data provenance for the synthetic project and the supplied input-output aggregate?",
+        "How do the authors justify the chosen financial and macroeconomic thresholds, and were they fixed before seeing results?",
+        "What sensitivity analyses were actually performed, and what were the outcomes?",
+        "How do the authors ensure reproducibility if the source archive and GitHub repository were not audited or executed?"
+      ],
+      "Limitations": [
+        "The authors have adequately discussed many limitations, including causal non-identification, synthetic project data, supplied input-output data, and the non-official solver.",
+        "However, because no calculations were performed, there are no empirical limitations to evaluate and no demonstrated robustness.",
+        "Potential negative societal impact: policy users might overinterpret conditional simulation frequencies as real probabilities of project success; the authors explicitly warn against this, which is good, but the lack of results means this risk remains untested."
+      ],
+      "Ethical Concerns": false,
+      "Soundness": 1,
+      "Presentation": 2,
+      "Contribution": 1,
+      "Overall": 2,
+      "Confidence": 5,
+      "Decision": "Reject"
+    }
+  ],
+  "raw_meta": "THOUGHT:\nAll five reviewers converge on rejection. The paper is a Russian-language draft/protocol with no calculations, no results, and no empirical or computational validation. It proposes a stress-test design for a synthetic export infrastructure project using a supplied Rosstat input-output aggregate and published Bank of Russia quarterly projection equations solved by an author-built linear solver. The reviewers consistently find no machine-learning contribution, insufficient methodological detail, unvalidated components, limited reproducibility, and poor fit for an ML venue. Strengths are mostly about transparency, pre-specification, and avoiding causal overclaiming, but these cannot compensate for the absence of executed research. I therefore assign low soundness, quality, significance, and contribution ratings, with a strong-reject overall score of 2, and a final decision of Reject.\n\nREVIEW JSON:\n```json\n{\n  \"Summary\": \"The paper proposes a conceptual protocol for a conditional computational stress test of financial and macroeconomic compatibility of a synthetic export infrastructure project. It outlines scenarios comparing market-rate versus concessional debt and export-oriented versus domestic resource profiles, using a supplied 2021 Rosstat input-output aggregate and disclosed Bank of Russia quarterly projection model equations solved by an author-built linear algorithm. The authors explicitly state that no calculations have been performed and present no numerical results. Its contribution is therefore a research design or protocol rather than a completed empirical or methodological study.\",\n  \"Strengths\": [\n    \"The authors are unusually transparent about the draft status, the absence of calculations, and the limits of interpretation.\",\n    \"The protocol separates published data, supplied materials, expert assumptions, and scenario assumptions.\",\n    \"It pre-specifies scenarios, hypotheses, admissibility criteria, sensitivity checks, and stopping rules in a pre-registration-like manner.\",\n    \"It explicitly avoids causal overclaiming about government programs, credit additionality, social returns, and welfare effects.\",\n    \"The limitations section acknowledges key issues such as synthetic project data, supplied input-output aggregates, and the non-official nature of the author-built solver.\"\n  ],\n  \"Weaknesses\": [\n    \"The submission contains no calculations, no results, no figures, and no empirical or simulation evidence; it is a proposal rather than a completed research paper.\",\n    \"The central hypotheses and claims about joint financial and macroeconomic admissibility are entirely untested and unsupported.\",\n    \"The work has no clear machine-learning methodological or empirical contribution and appears out of scope for a premier ML venue.\",\n    \"Methodological details are insufficient: exact equations, parameter values, calibration procedure, input-output aggregation steps, solver implementation, convergence checks, and numerical settings are not fully provided.\",\n    \"The author-built linear solver for the Bank of Russia DDKP/DIP quarterly projection models is not validated against official implementations or benchmark outputs.\",\n    \"The supplied 2021 Rosstat input-output aggregate has not been independently reconstructed or verified, limiting confidence in the interindustry block.\",\n    \"The synthetic project limits external validity and cannot support conclusions about real infrastructure projects or policy effectiveness.\",\n    \"Reproducibility cannot be assessed because no executed code, data audit, seeds, environment specifications, or machine-readable registry are provided.\",\n    \"The related-work discussion is thin and does not establish a clear novel contribution beyond combining known stress-testing and input-output tools.\",\n    \"The presentation is repetitive, partly bilingual, and includes duplicated abstract/section material, making it difficult to evaluate as a finished submission.\"\n  ],\n  \"Originality\": 1,\n  \"Quality\": 1,\n  \"Clarity\": 2,\n  \"Significance\": 1,\n  \"Questions\": [\n    \"Can the authors provide the actual calculations, numerical results, and sensitivity analyses that the paper currently only proposes?\",\n    \"What is the specific machine-learning contribution of this work, and why is it appropriate for an ML venue rather than an economics or policy venue?\",\n    \"What are the exact equations, parameter values, initial conditions, calibration sources, and solver implementation details for the DDKP/DIP models?\",\n    \"How is the author-built linear solver validated against official Bank of Russia model implementations or published benchmark outputs?\",\n    \"How is the supplied 2021 Rosstat input-output aggregate verified against the primary source, and what errors or biases might it contain?\",\n    \"What are the precise financial and macroeconomic admissibility thresholds, formulas, units, and justification, and were they fixed before seeing results?\",\n    \"What marginal distributions, dependence structures, thresholds, seeds, simulation counts, convergence diagnostics, and stopping rules will be used in the Monte Carlo analysis?\",\n    \"How is the synthetic project parameterized, and why should any conclusions from it be informative beyond the specific scenario?\",\n    \"Will the authors provide a complete replication package with code, data provenance, checksums, random seeds, versioned inputs, and environment specifications?\",\n    \"How do the authors ensure that conditional simulation frequencies are not misinterpreted as real-world probabilities of project or program success?\"\n  ],\n  \"Limitations\": [\n    \"The paper explicitly lacks results and calculations, so it cannot support any substantive empirical or quantitative conclusion.\",\n    \"The synthetic project and supplied input-output aggregate limit external validity and independent verification.\",\n    \"The author-built solver may not replicate the official Bank of Russia model, and no validation is presented.\",\n    \"The study cannot identify causal effects of concessional finance, credit additionality, crowding out, or social returns.\",\n    \"Potential negative societal impact includes misuse of conditional simulation frequencies as real-world probabilities or policy evidence; the authors partly address this but should reinforce disclaimers.\",\n    \"The paper is written largely in Russian, which may limit accessibility for the international ML community.\",\n    \"No computational reproducibility can be assessed because no executed code, audited data, or saved results are included.\"\n  ],\n  \"Ethical Concerns\": false,\n  \"Soundness\": 1,\n  \"Presentation\": 2,\n  \"Contribution\": 1,\n  \"Overall\": 2,\n  \"Confidence\": 5,\n  \"Decision\": \"Reject\"\n}\n```"
+}

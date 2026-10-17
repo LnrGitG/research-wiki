@@ -3405,3 +3405,17 @@ migrated: 2026-07-26
 - doi: "10.59576/lse.20261007"
 - used_in: [[reviews/drechisel-lewis-melcangi-pilossoph-2026-rimp]]
 - notes: пост по Staff Report; Compustat-ограничение: прямая реплика на непубличных девелоперах РФ невозможна
+
+### Murtin, Muroya, Linden 2026 — nowcasting распределения располагаемого дохода (OECD)
+- title: Nowcasting the distribution of disposable income: A microsimulation framework enhanced by machine learning
+- authors: Murtin F., Muroya T., Linden J.
+- year: 2026 (13.10)
+- method: ML-прогноз дециль-специфичных коэффициентов пересчёта рыночного дохода (OLS, LASSO, Ridge, Elastic Net, GBM, RF) + повторный прогон EUROMOD; рекурсивная псевдо-вневыборочная валидация; модуль корректировки рынка труда (LMA) по переходам EU-LFS
+- data: EUROMOD/EU-SILC 2006–2024 (не более 18–19 годовых наблюдений на страну); предикторы OECD Economic Outlook 117 (июнь 2025)
+- key_result: MAE Джини на h=1 0,006–0,007 (LASSO/EN) против 0,011–0,013 у OLS; на h=3 0,008–0,009 против 0,032; DA 63–70 % на h=1–2; наивный прогноз «без изменений» даёт 0,007/0,009/0,010; выигрыш ML смещён в направленную точность, по MAE без децильной поправки не хуже (0,006/0,008/0,008)
+- relevance: методологический образец архитектуры «ML по компонентам → структурная модель → агрегирование» и валидации на короткой панели для H-001 (nowcasting СМР/ввод); аргумент в пользу отбора переменных, а не нелинейности, при малом T
+- status: used
+- class: A
+- doi: "10.1787/b02cdd40-en"
+- used_in: [[reviews/oecd-murtin-2026-nowcasting-disposable-income]]
+- notes: код и репликационный пакет не опубликованы; PDF издателя CC BY 4.0, 35 с., текст извлечён полностью

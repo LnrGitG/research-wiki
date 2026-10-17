@@ -22,6 +22,7 @@
 Запуск: python3 scripts/fix_datalens_view_live.py [APPLY=1]
 """
 
+import argparse
 import os
 import sys
 
@@ -82,7 +83,17 @@ def diagnostics():
 
 
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--check', action='store_true',
+                    help='сторож: молчит, если пустых ярлыков нет')
+    args = ap.parse_args()
     total, noname, probe = diagnostics()
+    if args.check:
+        if noname:
+            print('ВИТРИНА: %s строк без кода метрики из %s'
+                  % (format(noname, ','), format(total, ',')))
+            return 1
+        return 0
     print('до правки: строк %s, без кода метрики %s, новых метрик видно %s'
           % (format(total, ','), format(noname, ','), probe))
     if os.environ.get('APPLY') != '1':

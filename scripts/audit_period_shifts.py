@@ -119,7 +119,8 @@ def write_report(items, path, top):
         months = it['months']
         mstr = '%d–%d (%d)' % (min(months), max(months), len(months)) if months else '—'
         if it['quarterly_grid']:
-            verdict = 'сетка квартальная при объявленной месячной частоте — описание частоты, не сдвиг'
+            verdict = ('сетка квартальная (%s) при объявленной месячной частоте — конвенция '
+                       'источника, не сдвиг' % '/'.join(str(x) for x in sorted(it['months'])))
         elif it['lag_months'] is not None and 0 <= it['lag_months'] <= 3:
             verdict = 'свидетельств сдвига нет (сетка месячная, лаг %d мес); источник недоступен — не трогать' % it['lag_months']
         else:
@@ -188,7 +189,10 @@ def main():
         item['max_gap_months'] = max(gaps) if gaps else 0
         item['regions_min'] = min(r[1] for r in grid) if grid else 0
         item['regions_max'] = max(r[1] for r in grid) if grid else 0
-        quarterly = set(months) <= {1, 4, 7, 10}
+        # квартальная сетка узнаётся по двум конвенциям: начало квартала
+        # (1/4/7/10) и конец квартала (3/6/9/12, декабрь часто заменён годовой цифрой)
+        ms = set(months)
+        quarterly = bool(ms) and (ms <= {1, 4, 7, 10} or ms <= {3, 6, 9})
         item['quarterly_grid'] = quarterly
 
         ingested = tunnel.query(LAG_SQL, (mid,))[0][0]

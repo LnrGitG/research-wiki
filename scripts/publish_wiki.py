@@ -88,7 +88,8 @@ KEEP_FILES = [
 # --- Служебное: остаётся только в приватном ---
 # queries в DROP_DIRS нет: он обрабатывается отдельной ветвью —
 # публикуется выборочно по KEEP_QUERY_FILES.
-DROP_DIRS = ["scripts", "db", "templates", "db_docs", "raw", "backups", "loader", "specs"]
+DROP_DIRS = ["scripts", "db", "templates", "db_docs", "raw", "backups", "loader", "specs",
+             "attic"]   # attic — дампы и точки возврата БД, машине/оператору, не читателю
 DROP_FILES = [
     "AGENTS.md", "MEMORY.md", "USER.md",
     "log-tech.md",

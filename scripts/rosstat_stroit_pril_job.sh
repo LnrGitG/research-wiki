@@ -34,4 +34,6 @@ APPLY=1 PRUNE=period "$PY" scripts/direct_stroit_pril.py || exit 2
 
 APPLY=1 PRUNE=period "$PY" scripts/direct_stroit_r1.py || exit 3
 
+APPLY=1 PRUNE=period "$PY" scripts/direct_vvd_rf_roschart.py || exit 4
+
 echo "rosstat_stroit_pril: парк техники и занятость загружены; здания по РФ (R-1) загружены"

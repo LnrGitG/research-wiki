@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
-"""Финальная загрузка: 4 датасета ввода жилья + незавершёнка → SQLite (rosreestr_deals.db).
-Таблица: housing_input_annual (region, year, value) + housing_backlog_ratio."""
+"""ВЫВЕДЕН ИЗ РАБОТЫ 17.10.2026. Не запускать: писал в лендинг data/rosreestr_deals.db,
+контур лендингов снят. Канонический загрузчик того же источника —
+scripts/direct_vvd_rf_roschart.py (пишет в catalog.metric + data.observation).
+Прежнее назначение: 4 датасета ввода жилья + незавершёнка → SQLite (rosreestr_deals.db).
+
+Отдельно: региональный датасет roschart (pril-invest-2025-7-5) отдаёт не всю
+страну, а 7 рядов — г. Москва, Воронежская, Белгородская, Липецкая, Владимирская,
+Калужская, Тульская области. Как региональный источник он неполон, поэтому в канон
+не берётся: региональный разрез ввода жилья остаётся за Росстатом (y477110016).
+"""
 import json, sqlite3, urllib.request, ssl, pandas as pd
 ctx = ssl.create_default_context(); ctx.check_hostname=False; ctx.verify_mode=ssl.CERT_NONE
 UA = {'User-Agent': 'Mozilla/5.0'}

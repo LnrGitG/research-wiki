@@ -55,7 +55,7 @@
 | промпродукция (3 метрики на продукт) | `raw/prom/Prom_MM_YYYY.xlsx` | ✅ `scripts/direct_rosstat_prom.py`, частота M; приёмка — ниже |
 | СС-индексы промпроизводства (SAAR) | `raw/rosstat/data/sezon_2023_MM-YYYY.xlsx` | ✅ прямой `direct_sezon.py` + докачка в `rosstat_prom_files_update.py`; частота исправлена на M; `rosstat_sezon_parse.py` выведен |
 | индексы промпроизводства по регионам | `raw/rosstat/data/ind_sub_2023_MM-YYYY.xlsx` | ✅ прямой `direct_ind_prod.py` (лист 4) в обёртке `rosstat_industrial_job.sh`, частота исправлена на M; см. находку про смысл метрики ниже |
-| годовые показатели зданий | `raw/rosstat/yearbooks/Pril_Stroit_2022.rar`, `Stroit_Pril_2024` | ⛔ |
+| годовые показатели зданий | `Stroit_2024/R-1.docx` (таблица 1.3) | ✅ транш 7: метрика `vdzrfg`, 17 наблюдений (2010, 2019–2023) |
 | ввод нежилых зданий, ввод зданий | `raw/rosstat/data/vv-zd-sub_MM-YYYY.xlsx`, `vv-zd-oper_Qkv-YYYY.xlsx` | ✅ прямой `direct_vv_zd.py` + докачка `rosstat_vv_zd_files_update.py`; обёртка `rosstat_housing_job.sh`, джоб `a544605aa3cc`; приёмка — ниже |
 | ввод мощностей | `raw/rosstat/data/vv-mosh-oper_Qkv-YYYY.xlsx`, `vv-mosh-sub_Qkv-YYYY.xlsx` | ✅ прямые `direct_mosh.py` (РФ, ярлык-раздел исправлен, единица в подразрезе) и `direct_mosh_sub.py` (субъекты и округа); шаги 3–4 обёртки `rosstat_housing_job.sh`, джоб `a544605aa3cc`; см. ниже |
 | ИКВ по регионам (уровень и %) | `raw/rosstat/data/Inv_reg_kv_2020-2026.xlsx` | ✅ прямой `direct_ikv_reg.py` (2 400 + 2 400 строк, накопительная метка в подразрезе, ряд процентов дополнен); см. ниже |

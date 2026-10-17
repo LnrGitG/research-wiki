@@ -23,14 +23,20 @@
 вставляются обратно с сохранением `observation_id` — всё одной транзакцией.
 
 Запуск: python3 scripts/shift_observation_periods.py [--metric X | --prefix Y]
-       [--years N | --months N] [--check] [--apply]
+       [--years N | --months N] [--freq 3|5|6] [--period YYYY-MM-DD ...]
+       [--check] [--apply]
 Без --apply — сухой прогон с дампом и печатью до/после.
+
+`--period` ограничивает выборку одним периодом (повторяемый) — нужен там, где
+сдвинута не вся метрика, а одна её колонка-год (пример: `vdzrfg`, где первая
+колонка сборника помечена 2010, а данные в ней за 2015).
 """
 
 import argparse
 import csv
 import gzip
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +44,20 @@ import db_tunnel as tunnel                                  # noqa: E402
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ATTC = os.path.join(REPO, 'attic')
+
+
+def period_list(args):
+    """Значения --period: только даты вида YYYY-MM-DD (иначе — стоп).
+
+    Список подставляется в текст SQL (в shift() он собирается строкой), поэтому
+    формат проверяется здесь, а не «доверяем аргументу».
+    """
+    out = []
+    for p in (args.period or []):
+        if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', p):
+            raise SystemExit('--period ждёт дату вида YYYY-MM-DD, получено %r' % p)
+        out.append(p)
+    return out
 
 
 def where(args):
@@ -48,6 +68,9 @@ def where(args):
     if args.freq:
         cond += ' AND o.frequency_id = %s'
         params.append(args.freq)
+    if period_list(args):
+        cond += ' AND o.period_start = ANY(%s::date[])'
+        params.append(period_list(args))
     return cond, params
 
 
@@ -93,6 +116,9 @@ def shift(args, months):
         else ("m.metric_code LIKE '%s%%'" % args.prefix.replace("'", "''"))
     if args.freq:
         cond += ' AND o.frequency_id = %d' % args.freq
+    if period_list(args):
+        cond += " AND o.period_start = ANY(ARRAY[%s]::date[])" % ', '.join(
+            "'%s'" % p for p in period_list(args))
     cols = ('observation_id, metric_id, region_id, period_start, period_end, value, '
             'observation_status, assessment_type, release_id, value_str, frequency_id, '
             'source_id, quality_flags, sub_dimension, notes, created_at')
@@ -122,6 +148,10 @@ def main():
     ap.add_argument('--years', type=int, default=0)
     ap.add_argument('--months', type=int, default=0)
     ap.add_argument('--freq', type=int, help='только эта частота (3=год, 5=мес, 6=кв)')
+    ap.add_argument('--period', action='append',
+                    help='только строки с этим period_start (YYYY-MM-DD), можно '
+                         'повторять — для точечной правки (например, переклеить '
+                         'только колонку-год, не трогая остальные)')
     ap.add_argument('--check', action='store_true')
     ap.add_argument('--apply', action='store_true')
     a = ap.parse_args()

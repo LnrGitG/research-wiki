@@ -3629,3 +3629,19 @@ elementy-ispolzovaniya-vvp-2` (элементы использования ВВ�
 слушается. Бакет-канал `agent-vm-exchange` тоже мёртв: последняя запись в `_out/`
 датирована 02.10.2026, отправленная проба не дала ответа. SSH и PostgreSQL на ВМ
 работают. Заведено как B-10.
+
+## 17.10.2026 — Модель VPS-профилей переведена на deepseek-v4.1-flash-1017
+
+Решение владельца по находке `~/personal/findings/deepseek-v41-flash-1017-20261017.md`:
+все четыре профиля VPS, стоявшие на `deepseek/deepseek-v4.1-flash`, переведены на
+`deepseek/deepseek-v4.1-flash-1017` (правка `model.default` в `~/.hermes/config.yaml`
+и `profiles/{legal,macroeconomist,personal}/config.yaml`; точка возврата —
+`config.yaml.bak-20261017-1017` рядом с каждым конфигом). Замер до правки: -1017
+дороже на ≈10 % на нашем кэш-тяжёлом объёме (кэш-ставка 0,008 против 0,004), но
+примерно вдвое быстрее и с меньшим расходом reasoning-токенов на тех же промптах;
+tool-calling и растровый вход работают. Пины четырёх cron-джобов (default 5f753e3c83e6,
+cfb79a948639; macroeconomist 0ff55953f924; research d8201fd266cf) переведены тем же
+значением через `hermes cron edit`. Шлюзы default, legal, macroeconomist перезапущены
+и подтверждены по логу (`model=deepseek/deepseek-v4.1-flash-1017 provider=nous`);
+шлюз personal подхватит правку при следующем перезапуске — процесс жив, конфиг
+прочитан при старте.

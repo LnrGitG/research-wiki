@@ -86,13 +86,20 @@ def get_json(url):
 
 
 def period_str(r):
-    """Период как в SQLite-лендинге: месячные 'YYYY-MM-01' (сдвиг -2), квартальные 'YYYYQn'."""
+    """Период публикации: месячные 'YYYY-MM-01', квартальные 'YYYYQn'.
+
+    В ответе ЦБ `date` — первый день месяца, следующего за отчётным (dt), поэтому
+    отчётный месяц = date − 1 месяц. До 17.10.2026 здесь вычиталось два месяца
+    («как в SQLite-лендинге»), и вся семья ложилась в канон месяцем раньше: данные
+    за октябрь 2026 хранились на 2026-09-01. Сдвиг исправлен задним числом
+    (scripts/shift_observation_periods.py --prefix cbrmon --months 1).
+    """
     dtt = (r.get('dt') or '').strip()
     mq = QUART_RE.match(dtt)
     if mq:
         return '%sQ%d' % (mq.group(2), QUART_NUM[mq.group(1)])
     y, m = int(r['date'][:4]), int(r['date'][5:7])
-    m2, y2 = (m - 2, y) if m > 2 else (m + 10, y - 1)
+    m2, y2 = (m - 1, y) if m > 1 else (12, y - 1)
     return '%04d-%02d-01' % (y2, m2)
 
 

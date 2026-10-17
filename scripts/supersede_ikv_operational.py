@@ -80,6 +80,9 @@ def main():
     print("\nвалидация пройдена: все строки дублей найдены в КЭП с тем же значением")
 
     # ---------- 3. дамп-точка возврата ----------
+    if all(c["status"] == "inactive" for c in cards):
+        print("\nкарточки уже сняты — дамп и запись не нужны (идемпотентный повтор)")
+        return
     attic = os.path.join(REPO, "attic")
     os.makedirs(attic, exist_ok=True)
     ts = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
@@ -96,7 +99,8 @@ def main():
             w.writerow(["observation", r["metric_id"], r["metric_code"], "", "", "",
                         r["observation_id"], r["region_id"], r["period_start"], r["frequency_id"],
                         r["value"], r["assessment_type"], r["release_id"], r["sub_dimension"]])
-    print("дамп: %s (%d строк)" % (dump, os.path.getsize(dump)))
+    print("дамп: %s (%d байт, %d строк данных)" % (dump, os.path.getsize(dump),
+                                                  1 + len(cards) + len(rows)))
 
     # ---------- 4. деактивация карточек ----------
     for dup_id, canon_id in pairs:

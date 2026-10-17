@@ -2,7 +2,7 @@
 
 > Content catalog. Every wiki page listed under its type with a one-line summary.
 > Read this first to find relevant pages for any query.
-> Last updated: 2026-10-14 | Total pages: 23 | Papers: ~60 (34 PDF+MD pairs + workpapers)
+> Last updated: 2026-10-18 | Total pages: 23 | Papers: ~60 (34 PDF+MD pairs + workpapers)
 
 ## Entities
 
@@ -24,6 +24,7 @@
 - [[macroprudentialnaya-politika-rynok-zhilya|Макропруденциальная политика на рынке жилья]] — Kuttner & Shim 2013 (BIS), ЦБ РФ (2025), Лаптева (2025), Bank of Spain ABM (Bardoscia et al., 2025): DSTI limits, МПЛ, LTI caps, capital requirements
 - [[construction-productivity-regulation|Производительность строительства и регуляция]] — D'Amico, Glaeser, Gyourko, Kerr, Ponzetto (2023): land-use regulation → smaller builders → less tech investment; АКРА (2024): российские девелоперы; НРА (2024): рынок после отмены льготной ипотеки
 - [[econometric-models-housing-market|Эконометрические модели жилищного рынка]] — 12 классов: Stock-flow, User cost, Tobin's Q, ECM/VECM, VAR/SVAR/BVAR, DSGE, Panel FE, Spatial, DFM, Hedonic, Sentiment (LLM), **ABM** (Bank of Spain 2025), тренды 1980s→2020s, применение к РФ; BVAR со знаковыми ограничениями (Ломиворотов 2015, Лысенко 2025)
+- [[annotations/sakana-ai-scientist-2026-nature-ru|Sakana AI «The AI Scientist» — сквозная автоматизация исследования (Nature 2026, 651, 914–919)]] — LLM-пайплайн: идеи → литература → код → эксперименты (tree search) → LaTeX → автоматический рецензент (balanced accuracy ≈69 %, ≈66 % на данных после cutoff, F1 выше межчеловеческого согласия); работает только в вычислительных экспериментах; обязательное раскрытие ИИ по лицензии; для нас применим рецензент как внешняя проверка рукописи, прогон пока заблокирован отсутствием ключа OpenAI/Anthropic
 
 ## Comparisons
 

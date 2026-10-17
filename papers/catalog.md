@@ -3419,3 +3419,17 @@ migrated: 2026-07-26
 - doi: "10.1787/b02cdd40-en"
 - used_in: [[reviews/oecd-murtin-2026-nowcasting-disposable-income]]
 - notes: код и репликационный пакет не опубликованы; PDF издателя CC BY 4.0, 35 с., текст извлечён полностью
+
+### Sakana AI — «The AI Scientist»: сквозная автоматизация исследования (v1/v2, Nature 2026)
+- title: The AI Scientist: Towards Fully End-to-end Automation of AI Research / Towards Fully Automated Open-Ended Scientific Discovery
+- authors: Lu C., Lu C., Lange R.T., Foerster J., Clune J. и др. (Sakana AI, UBC, Oxford)
+- year: 2026 (Nature 651, 914–919)
+- method: LLM-агентный пайплайн: генерация идей → поиск литературы (Semantic Scholar) → планирование и написание кода → эксперименты (агентный tree search в v2) → графики → рукопись в LaTeX → автоматический рецензент (ансамбль 5 рецензий + мета-ревью в роли area chair)
+- data: вычислительные эксперименты на кодовых шаблонах (focused: nanoGPT-lite и др.) либо без шаблона (open-ended)
+- key_result: рукопись прошла первый раунд рецензирования воркшопа при ICLR (acceptance rate воркшопа 70 %); Automated Reviewer — balanced accuracy ≈69 % против человеческих решений, на данных после training cutoff ≈66 %; F1 выше межчеловеческого согласия NeurIPS 2021; качество растёт с compute на статью (P<0,00001); независимая оценка arXiv 2502.14297: $6–15/статья, 3,5 ч человека, медиана 5 ссылок, из 34 только 5 — 2020+; система ставит только вычислительные эксперименты
+- relevance: компонент «автоматический рецензент» применим к нашей рукописи как внешняя проверка до отправки; проверка новизны идей дублирует работу в queries/literature-gap-map.md; генерация идей/кода/экспериментов к нашему макропанельному дизайну неприменима
+- status: indexed
+- class: A
+- doi: "10.1038/s41586-026-10265-5"
+- used_in: [[annotations/sakana-ai-scientist-2026-nature-ru]]
+- notes: лицензия — The AI Scientist Source Code License (производная Responsible AI License) с обязательным раскрытием использования ИИ в рукописи; репозиторий 14,8k звёзд / 2,1k форков, последний коммит 19.12.2025; запуск рецензента требует ключа OpenAI/Anthropic (в нашем окружении нет) — прогон заблокирован; репозиторий локально не склонирован

@@ -32,6 +32,22 @@ DEFAULT_BASE = os.environ.get("NOUS_BASE_URL", "https://inference-api.nousresear
 DEFAULT_MODEL = os.environ.get("NOUS_MODEL", "deepseek/deepseek-v4.1-flash")
 MAX_TOKENS = 4096
 
+# Системная роль и мета-ревью для доменной рубрики (когда --rubric задан вручную).
+GENERIC_SYSTEM = (
+    "Ты — рефери экономического журнала. Отвечай строго объектом JSON в блоке "
+    "```json, без текста вокруг. Не выдумывай числа, ссылки и результаты; если "
+    "чего-то нет в тексте — пиши «в тексте не установлено»."
+)
+GENERIC_META = (
+    "Ты — area chair. Ниже {reviewer_count} независимых рецензий на одну работу, "
+    "каждая разбирает заявленный вклад и его подтверждение. Сведи их: выдели "
+    "повторяющиеся содержательные замечания, отметь единичные, оцени итог. "
+    "Не добавляй новых фактов. Ответь ТОЛЬКО объектом JSON в блоке ```json со "
+    "полями Summary, ClaimedContribution, ContributionEstablished, EvidenceGap, "
+    "EstablishedVsAssumed, NoveltyVsLiterature, FramingVsContent, MacroValue, "
+    "WhatWouldEstablish, Verdict, Confidence, Overall."
+)
+
 SCORE_FIELDS = [
     ("Originality", 4), ("Quality", 4), ("Clarity", 4), ("Significance", 4),
     ("Soundness", 4), ("Presentation", 4), ("Contribution", 4),
@@ -107,12 +123,12 @@ def salvage_meta(s: str) -> dict:
     return out
 
 
-def call(client, model, system, user, temperature):
+def call(client, model, system, user, temperature, max_tokens=MAX_TOKENS):
     r = client.chat.completions.create(
         model=model,
         messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
         temperature=temperature,
-        max_tokens=MAX_TOKENS,
+        max_tokens=max_tokens,
     )
     return r.choices[0].message.content
 
@@ -125,6 +141,10 @@ def main():
     ap.add_argument("--n", type=int, default=5)
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--temperature", type=float, default=0.75)
+    ap.add_argument("--rubric", help="файл с доменной рубрикой вместо NeurIPS-формы")
+    ap.add_argument("--system", help="файл с системной ролью (необязательно)")
+    ap.add_argument("--max-tokens", type=int, default=MAX_TOKENS,
+                    help="лимит вывода; доменные рубрики с длинным JSON требуют больше")
     a = ap.parse_args()
 
     key = os.environ.get("NOUS_API_KEY")
@@ -134,16 +154,22 @@ def main():
     p = load_prompts(a.repo)
 
     text = pdf_text(a.pdf)
-    form = p["neurips_form"]
-    system = p["reviewer_system_prompt_neg"]
-    prompt = form + "\nHere is the paper you are asked to review:\n```\n" + text + "\n```"
+    if a.rubric:
+        form = open(a.rubric, encoding="utf-8").read()
+        system = open(a.system, encoding="utf-8").read() if a.system else GENERIC_SYSTEM
+        meta_tpl = GENERIC_META
+    else:
+        form = p["neurips_form"]
+        system = p["reviewer_system_prompt_neg"]
+        meta_tpl = p["meta_reviewer_system_prompt"]
+    prompt = form + "\nВот работа, которую надо разобрать:\n```\n" + text + "\n```"
 
     print(f"PDF: {len(text)} знаков; модель {a.model}; рецензий {a.n}", flush=True)
 
     def one(i):
         """Одна рецензия с добором при неудачном разборе JSON."""
         for attempt, temp in enumerate((a.temperature, max(0.2, a.temperature - 0.45))):
-            raw = call(client, a.model, system, prompt, temp)
+            raw = call(client, a.model, system, prompt, temp, a.max_tokens)
             j = extract_json(raw or "")
             if j is not None:
                 if attempt:
@@ -163,10 +189,10 @@ def main():
         f"\nReview {i+1}/{len(reviews)}:\n```\n{json.dumps(r, ensure_ascii=False)}\n```\n"
         for i, r in enumerate(reviews)
     )
-    meta_sys = p["meta_reviewer_system_prompt"].format(reviewer_count=len(reviews))
+    meta_sys = meta_tpl.format(reviewer_count=len(reviews))
     meta, meta_raw = {}, ""
     for temp in (a.temperature, max(0.2, a.temperature - 0.45)):
-        meta_raw = call(client, a.model, meta_sys, meta_text, temp)
+        meta_raw = call(client, a.model, meta_sys, meta_text, temp, a.max_tokens)
         meta = extract_json(meta_raw or "") or salvage_meta(meta_raw or "")
         if meta:
             break
@@ -174,16 +200,19 @@ def main():
         print("мета-ревью: JSON не разобран, поля извлечены частично", flush=True)
 
     agg = {}
-    for f, hi in SCORE_FIELDS:
-        vals = [r.get(f) for r in reviews if isinstance(r.get(f), (int, float))]
-        if vals:
-            agg[f] = round(sum(vals) / len(vals), 2)
-        elif isinstance(meta.get(f), (int, float)):
+    keys = {k for r in reviews for k, v in r.items()
+            if isinstance(v, (int, float)) and not isinstance(v, bool)}
+    for k in sorted(keys):
+        vals = [r[k] for r in reviews if isinstance(r.get(k), (int, float))]
+        agg[k] = round(sum(vals) / len(vals), 2)
+    for f, _ in SCORE_FIELDS:
+        if f not in agg and isinstance(meta.get(f), (int, float)):
             agg[f] = meta[f]
 
     decisions = [r.get("Decision") for r in reviews if r.get("Decision")]
     out = {
-        "source": "SakanaAI/AI-Scientist perform_review (NeurIPS form), адаптер к Nous",
+        "source": ("SakanaAI/AI-Scientist perform_review, адаптер к Nous; рубрика: "
+                   + (a.rubric or "NeurIPS form")),
         "pdf": a.pdf,
         "model": a.model,
         "n_reviews": len(reviews),
@@ -198,8 +227,8 @@ def main():
         json.dump(out, f, ensure_ascii=False, indent=2)
 
     print("\n=== сводка ===")
-    for f, _ in SCORE_FIELDS:
-        print(f"{f:13s} {agg.get(f)}")
+    for f in agg:
+        print(f"{f:22s} {agg[f]}")
     print("голоса:", out["votes"])
     print("решение (мета):", meta.get("Decision"))
     print("сохранено:", a.out)

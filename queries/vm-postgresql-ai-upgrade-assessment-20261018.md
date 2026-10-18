@@ -98,3 +98,38 @@ read-your-writes на стендбае, параллельный autovacuum — 
 [[4]] pgvector CHANGELOG (0.8.7 от 01.10.2026; 0.6.0 от 29.01.2024) — https://github.com/pgvector/pgvector/blob/master/CHANGELOG.md
 [[5]] Замеры ВМ 18.10.2026: `SELECT version()`, `pg_extension`, `pg_database_size`, `pg_indexes`,
 `pg_settings`, `df -h`, `free -g`, `apt-cache policy` (pg-tunnel 15432, ssh ubuntu@153.51.117.18).
+
+## Результат выполнения (18.10.2026)
+
+Расширение обновлено: `vector` 0.6.0 → **0.8.7**. Порядок и замеры:
+
+1. Точка возврата: `pg_dump -Fc` полной БД — 250 МБ, снят на ВМ и скопирован на VPS
+   в `~/backups/pgvector-20261018/sw_full.dump` (sha256
+   `c20822c8…46d9af`, сверен совпадающим), плюс `sw_schema.sql.gz` (47 КБ) и
+   `sw_derived.sql.gz` (3,4 МБ) — быстрый откат схемы `derived`, где лежат векторы.
+   Старые файлы расширения 0.6.0 — `/tmp/pgvector-0.6.0-files.tar.gz` (52 КБ) на ВМ.
+2. `apt` на ВМ в нерабочем состоянии: `postgresql-server-dev-16` и `build-essential`
+   не ставятся из-за расхождения пакетов systemd (`libsystemd0 255.4-1ubuntu8.17`
+   против `…8.18` в кандидате). Сборка из исходников и apt-установка PGDG отпали.
+3. Взят готовый бинарный пакет PGDG `postgresql-16-pgvector 0.8.7-1.pgdg24.04+1`
+   (269 КБ, sha256 сверен), `dpkg -i` отказал («installing … would break
+   postgresql-16»), `dpkg --unpack` — тем же отказом. Пакет распакован
+   (`dpkg-deb -x`) и файлы положены на место вручную: `vector.so` (194 632 байта,
+   02.10.2026) и 43 SQL-скрипта обновлений в `/usr/share/postgresql/16/extension/`.
+   Пакет `postgresql-16-pgvector` переведён в `apt-mark hold`, чтобы apt не вернул
+   0.6.0; состояние dpkg по-прежнему показывает 0.6.0-1 — расхождение осознанное.
+4. `ALTER EXTENSION vector UPDATE TO '0.8.7'` выполнено без перезапуска сервера.
+
+Проверки после обновления: `pg_extension.extversion = 0.8.7`; типы `vector`,
+`halfvec`, `sparsevec` доступны; все пять индексов `derived.metric_card` валидны
+(`indisvalid`), индекс `metric_card_embedding_idx` — 4184 кБ; KNN-запрос выдаёт
+корректные расстояния (ближайший к эталону — 0,0000); появились GUC
+`ivfflat.iterative_scan`, `ivfflat.max_probes`, `hnsw.iterative_scan`,
+`hnsw.max_scan_tuples`; прикладной `scripts/metric_search.py "ставка по ипотеке"`
+возвращает три релевантные карточки (cbr_izhk_rate_m, nikfr, cbr_izhk_volume_m).
+В журнале PostgreSQL ошибок обновления нет (только две синтаксические от ca. 07:59
+от неудачной попытки передать SQL через ssh — на данные не влияют).
+
+Осталось не сделанным сознательно: `ivfflat.iterative_scan` и `probes` держатся
+по умолчанию (`off`, `1`), перестройка индекса на HNSW/halfvec не выполнялась —
+это отдельное решение с изменением поведения поиска.

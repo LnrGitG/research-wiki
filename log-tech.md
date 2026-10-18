@@ -3776,3 +3776,14 @@ A-4 после правки проходит с нулём расхождени�
 канона, отсутствие PGDG и агентского контура на ВМ); полезное действие — обновление
 pgvector и настройка shared_buffers/work_mem. Записка:
 queries/vm-postgresql-ai-upgrade-assessment-20261018.md.
+
+## 18.10.2026 — pgvector 0.6.0 → 0.8.7 на ВМ research-db-2
+Обновление расширения (AI-слой БД) выполнено без смены мажорной версии PostgreSQL.
+Перед работами снят полный дамп 250 МБ (sha256 сверен) в ~/backups/pgvector-20261018.
+apt на ВМ сломан (systemd), поэтому взят бинарный пакет PGDG 0.8.7-1.pgdg24.04+1;
+dpkg -i и dpkg --unpack отказали, файлы (vector.so, 43 SQL-скрипта) установлены
+распаковкой deb, пакет pkg-версии 0.6.0 переведён на apt-mark hold.
+ALTER EXTENSION vector UPDATE TO 0.8.7 прошёл без рестарта; проверено: extversion
+0.8.7, halfvec/sparsevec, валидность пяти индексов metric_card, KNN-запрос,
+metric_search.py на реальном запросе, новые GUC iterative_scan. Записка:
+queries/vm-postgresql-ai-upgrade-assessment-20261018.md.

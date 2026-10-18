@@ -15,6 +15,7 @@ import json
 import os
 import subprocess
 import sys
+from datetime import datetime, timezone
 
 REPO = "/home/lnr/research-wiki-private"
 TARGET = os.path.join(REPO, "scripts", "db_freshness_check.py")
@@ -49,10 +50,22 @@ sent = subprocess.run([PY, os.path.join(REPO, "scripts", "reject_sentinels.py"),
                        "--check"], cwd=REPO, capture_output=True, text=True, env=env)
 sent_alarm = sent.stdout.strip() if sent.returncode != 0 else ""
 
+# Раз в месяц — сводка по активным карточкам без наблюдений (A-6): карточка есть,
+# ряда нет. Это план, а не мусор, поэтому не тревога, а раз в месяц одна строка
+# с разбивкой по тегам (stage6 — промпродукция и т. д.).
+orphan_line = ""
+if datetime.now(timezone.utc).day == 1 or os.environ.get("ORPHAN_FORCE") == "1":
+    oc = subprocess.run([PY, os.path.join(REPO, "scripts", "orphan_cards_report.py"), "--check"],
+                        cwd=REPO, capture_output=True, text=True, env=env)
+    if oc.returncode == 0 and oc.stdout.strip():
+        orphan_line = oc.stdout.strip()
+
 summary = data.get("_summary", {})
 if summary.get("status") == "ok":
     if sent_alarm:
         print(sent_alarm)
+    if orphan_line:
+        print(orphan_line)
     raise SystemExit(0)  # watchdog: всё свежее — молчим
 
 lines = ["Свежесть БД: проблемных источников %s" % summary.get("problem_sources", "?")]
@@ -69,4 +82,6 @@ for src, v in data.items():
         )
 if sent_alarm:
     lines.append(sent_alarm)
+if orphan_line:
+    lines.append(orphan_line)
 print("\n".join(lines))

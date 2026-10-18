@@ -2,115 +2,264 @@
   "source": "SakanaAI/AI-Scientist perform_review (NeurIPS form), адаптер к Nous",
   "pdf": "/home/lnr/.hermes/profiles/research/cache/documents/doc_3af149f0488e_Research_note.pdf",
   "model": "deepseek/deepseek-v4.1-flash",
-  "n_reviews": 2,
+  "n_reviews": 4,
   "ensemble_mean": {
-    "Originality": 1.5,
+    "Originality": 2.0,
     "Quality": 2.0,
     "Clarity": 2.0,
-    "Significance": 1.5,
+    "Significance": 1.25,
     "Soundness": 2.0,
     "Presentation": 2.0,
-    "Contribution": 1.5,
-    "Overall": 3.0,
-    "Confidence": 3.5
+    "Contribution": 1.25,
+    "Overall": 2.75,
+    "Confidence": 3.0
   },
   "votes": {
-    "Reject": 2
+    "Reject": 4
   },
-  "meta": {},
+  "meta": {
+    "Summary": "The paper studies whether concessional (0% interest) financing of Russian technological infrastructure exports, instantiated as synthetic 100 MW wind-project resource profiles, can achieve project viability and LCOE competitiveness while limiting domestic inflation and exchange-rate effects. It maps project cash flows into shocks for two published Bank of Russia quarterly projection models via a 12-sector Rosstat 2021 input-output aggregate, runs 50,000 paired Monte Carlo draws with a Student copula across nine calibrations, and adds a separate 10,000-draw 30-year return-flow experiment. Headline results: at a programme size of 0.1% of annual GDP, the engineering-intensive profile passes the joint profitability/competitiveness/macro screen in 69.47% of draws (47.63% with a DSCR >= 1.2 constraint), with a mean individual peak inflation increment of 0.02645 p.p. The authors explicitly state that these are conditional frequencies under synthetic assumptions, not empirical success probabilities or official forecasts.",
+    "Strengths": [
+      "Unusually transparent and self-critical framing: the authors repeatedly state that headline frequencies are conditional on synthetic, unestimated distributions and are not empirical success probabilities.",
+      "Extensive internal consistency checks, including resource identity, zero-impulse tests, seed reproducibility, IRR invariance to financing, and debt repayment checks.",
+      "Detailed computational pipeline with code, seeds, saved NPZ/JSON artifacts, and a documented reproduction sequence.",
+      "Multiple sensitivity analyses over capacity constraints, cost elasticities, reuse fractions, and sectoral scope.",
+      "Careful accounting distinctions: peak inflation versus whole-trajectory dominance, project IRR versus WACC, profitability versus national welfare, and repatriation versus no-project baseline.",
+      "Clear scenario separation (A-E) to isolate financing price and resource geography, with explicit acknowledgment that one contrast confounds both.",
+      "Some findings are directionally non-trivial and policy-relevant, such as cheaper debt raising near-term inflation pressure and return flows supporting currency only late and only in a subset of profitable scenarios."
+    ],
+    "Weaknesses": [
+      "Fundamental venue mismatch: the paper contains no machine-learning method, model, learning algorithm, or ML evaluation. The techniques used are standard Monte Carlo simulation, copulas, input-output algebra, and linear rational-expectations solving.",
+      "The central results are conditional on unestimated parameters, including synthetic factor distributions, the cost-channel elasticity eta, competent-capacity share phi, FX coverage, and behavioural parameters. The headline frequencies therefore have no identified empirical content.",
+      "The newly introduced continuous TEB cost interface changes individual inflation peaks in all 50,000 draws but leaves the joint-filter frequencies numerically unchanged, undermining the claimed methodological contribution.",
+      "Equal weighting across nine calibrations is an arbitrary convention rather than an estimated model probability, and it drives the reported frequencies; inter-model structural uncertainty is not propagated.",
+      "Empirical grounding is thin: no real wind projects, no observed contractor or behavioural data, no independent reconstruction of the Rosstat source book, and no native verification against MATLAB/IRIS or the Bank of Russia's own forecast.",
+      "Reproducibility is limited by owner-granted repository access, missing source input-output workbook, and reliance on internal materials, despite the paper's reproducibility claims.",
+      "The 30-year horizon assumes stationary coefficients and model structure, and the return-flow experiment selects on ex-post profitability (NPV >= 0), biasing the reported conditional frequencies.",
+      "Key assumptions such as the 0.1% GDP programme size, 80/20 debt-equity split, secured currency funding, and PPA/tender win are asserted rather than derived or validated.",
+      "The paper is dense, long, and written in Russian with only an English abstract, reducing accessibility for a general venue audience; future-dated artifacts and a separate browser calculator add confusion.",
+      "The policy-adjacent framing around digital ruble, EKSAR, and concessional export financing risks over-interpretation of conditional frequencies as policy justification."
+    ],
+    "Originality": 2,
+    "Quality": 2,
+    "Clarity": 2,
+    "Significance": 1,
+    "Questions": [
+      "What is the concrete machine-learning contribution of this work to the venue's scope? If none, why is it submitted to an ML conference?",
+      "Can the authors provide any empirical identification or externally justified bounded ranges for the key unestimated parameters, including eta, phi, FX sensitivity, behavioural parameters, and the 26 factor distributions?",
+      "Why does the new continuous cost interface change individual inflation peaks in all 50,000 draws yet leave the joint-filter frequencies (69.47% and 47.63%) numerically unchanged? Does this not imply the headline frequency is driven by thresholds unrelated to the claimed mechanism?",
+      "How can independent researchers verify the reported figures when the repository requires owner-granted access and the source Rosstat workbook is absent from the branch?",
+      "What justifies equal weighting of the nine calibrations as a representation of model uncertainty, and how sensitive are the headline frequencies to alternative weighting schemes?",
+      "Why was native MATLAB/IRIS verification not performed, and how confident can the authors be that their custom Python solver reproduces the published Bank of Russia model dynamics? Please provide a quantitative comparison against the official baseline.",
+      "How robust are the results to relaxing the assumed FX coverage and the stationary-coefficient assumption over the 30-year horizon?",
+      "Given that the strict no-inflation condition yields zero successes out of 50,000, what is the substantive conclusion beyond 'effects are bounded but nonzero'?",
+      "How does the paper address the opportunity cost of the budget subsidy and the displacement of alternative investments by the 20% equity requirement?",
+      "What evidence supports the claim that the new cost interface makes the resource-constraint mechanism numerically observable rather than simply adding an unvalidated channel?"
+    ],
+    "Limitations": [
+      "The authors acknowledge many limitations candidly, but several are disqualifying for the headline claims: synthetic and unestimated distributions, unmeasured competent capacity, unestimated cost elasticity, assumed currency coverage, and a stationary 30-year model structure.",
+      "No independent reconstruction of the Rosstat source book is provided, and the 12-sector input-output aggregation cannot be independently rebuilt from the available materials.",
+      "No native verification against the Bank of Russia's IRIS/MATLAB environment is performed; the reproduced solver is a re-implementation, not the official forecast.",
+      "Behavioural, FX pass-through, and long-horizon parameters are set by the researcher without empirical estimation.",
+      "The 30-year return-flow experiment selects on ex-post profitability, which biases the reported conditional frequencies.",
+      "The paper does not model displacement of alternative investments by the 20% equity or the opportunity cost of the budget subsidy.",
+      "Potential negative societal impact: results could be cited out of context to justify large concessional export-financing programmes or 'zero-inflation' claims despite the authors' disclaimers. The policy-adjacent framing increases this risk.",
+      "No out-of-sample or empirical validation is attempted, and there is no clear statement of what the results would imply if the assumed distributions are wrong."
+    ],
+    "Ethical Concerns": false,
+    "Soundness": 2,
+    "Presentation": 2,
+    "Contribution": 1,
+    "Overall": 3,
+    "Confidence": 3,
+    "Decision": "Reject"
+  },
   "reviews": [
     {
-      "Summary": "The paper studies whether concessional financing of Russian technological infrastructure exports can improve project viability and competitiveness while limiting domestic inflation and exchange-rate effects. It links three synthetic 100 MW wind-project resource profiles to a 12-sector Rosstat 2021 input-output aggregate and two published Bank of Russia quarterly projection models. Using 50,000 paired Monte Carlo draws across nine calibrations, a Student copula, and a joint financial-macroeconomic screen, it reports that at a programme size of 0.1% of annual GDP the engineering-intensive profile passes the joint profitability/competitiveness/macro screen in 69.47% of draws, falling to 47.63% when a DSCR floor of 1.2 is imposed. The mean individual peak inflation increment is 0.02645 percentage points. A separate return-flow experiment finds that profit repatriation can later support the ruble and reduce inflation relative to the no-project baseline in some profitable scenarios, but does not eliminate the initial inflationary impulse. The paper frames its contribution as a reproducible computational integration of project finance, input-output structure, and published macro models, not as an empirical forecast.",
+      "Summary": "The paper is a computational experiment examining whether concessional (0% interest) financing of Russian technological infrastructure exports — instantiated as three synthetic 100 MW wind-project resource profiles — can achieve project viability and competitive LCOE while limiting domestic inflation and exchange-rate effects. Project cash flows are mapped into shocks for two published Bank of Russia quarterly projection models via a 12-sector Rosstat 2021 input-output aggregate. 50,000 paired Monte Carlo draws (Student copula, seed 20261007) are distributed across nine model calibrations, plus a separate 10,000-draw 30-year return-flow experiment. The headline results: at a programme size of 0.1% of annual GDP, the engineering-intensive profile P1 passes the joint profitability/competitiveness/macro screen in 69.47% of draws, falling to 47.63% when a DSCR≥1.2 constraint is added; mean individual peak inflation increment is 0.02645 p.p. Profit repatriation can improve late-horizon FX/inflation outcomes in a subset of scenarios but does not eliminate the initial inflationary impulse.",
       "Strengths": [
-        "The paper is candid about its limitations: synthetic project profiles, unestimated elasticities, non-native model runs, equal calibration weights, and conditional rather than empirical probabilities are all explicitly acknowledged.",
-        "The computational pipeline is described in considerable detail, including distributions, seeds, solver settings, consistency checks, and reproduction commands.",
-        "The joint financial-macroeconomic screening is a sensible way to avoid treating project viability and inflation effects as independent problems.",
-        "The paper separates financing effects from resource-geography effects through scenarios B, C, D, and E, and it warns against interpreting C–D as a clean single-factor estimate.",
-        "Internal checks such as resource identities, zero-impulse tests, seed reproducibility, IRR invariance to financing, and debt repayment are reported."
+        "Unusual transparency: the authors explicitly state that headline frequencies are conditional on synthetic, unestimated distributions and are not empirical success probabilities.",
+        "Extensive internal consistency checks (resource identity to <5e-16, zero-impulse test, seed reproducibility, IRR invariance to financing).",
+        "Multiple sensitivity grids over φ (competent capacity), η (cost elasticity), reuse fraction, and sectoral scope.",
+        "Careful conceptual distinctions: peak inflation vs. whole-trajectory dominance; project IRR vs. WACC; profitability vs. national welfare; repatriation vs. no-project baseline.",
+        "Clear separation of scenarios A–E to isolate financing price (C–B) and resource geography (B–D), with an honest note that C–D confounds both.",
+        "Code, seeds, kernels, and intermediate NPZ/JSON artifacts are described as shipped, with a documented reproduction sequence."
       ],
       "Weaknesses": [
-        "The work has little to no ML methodological contribution. It is a Monte Carlo simulation using existing macroeconomic models, input-output accounting, and a copula; the methods are not new to ML and are not evaluated as ML methods.",
-        "The central quantitative claims are entirely conditional on synthetic resource profiles, hand-specified distributions, arbitrary equal weights across nine calibrations, and an unestimated cost interface. The headline frequencies should not be interpreted as empirical probabilities, and the paper itself says so.",
-        "The Bank of Russia models are not run natively in MATLAB/IRIS and are not compared against the Bank’s internal forecast. A custom Python solver is used, but its numerical equivalence is not established.",
-        "The Rosstat 2021 input-output aggregate is not independently rebuilt from the original workbook in the reported environment. This weakens reproducibility and empirical grounding.",
-        "The repository is access-restricted, so the claimed reproducibility package cannot be independently checked from the submission alone.",
-        "The “TEB cost interface” has unestimated parameters for competent capacity and cost elasticities; resource neutrality is not established. The new price channel is therefore a scenario device, not an identified mechanism.",
-        "The Wilson intervals quantify only Monte Carlo noise under a fixed synthetic probability model, not structural uncertainty, model uncertainty, or data uncertainty.",
-        "The paper is dense, in Russian, and not clearly positioned for an ML audience. The significance for the NeurIPS community is unclear.",
-        "There is no real project data, no expert elicitation, no external validation of the threshold, and no empirical calibration of the exchange-rate or inflation channels.",
-        "The 30-year return-flow experiment assumes stationary model structure and fixed coefficients over a very long horizon, making those results especially speculative."
+        "Out of scope for an ML venue: no machine-learning method, model, or evaluation is contributed. The techniques (Monte Carlo, t-copula, input-output algebra, linear rational-expectations solving) are standard and pre-existing.",
+        "The central result (69.47%/47.63%) is admittedly conditional on unestimated parameters — synthetic distributions, unestimated η, unmeasured φ, assumed FX coverage, assumed stationary model structure — so the headline number is not an identified quantity.",
+        "The authors concede 'resource neutrality is not established' and 'competent capacity and cost elasticities remain unestimated,' which directly undercuts the claimed novelty of the continuous cost interface.",
+        "The new cost interface changes individual inflation peaks in all 50,000 draws but leaves the joint-filter frequency unchanged, suggesting the headline frequency is insensitive to the mechanism being added — the very mechanism the paper highlights as its methodological contribution.",
+        "Equal weights across nine calibrations are an arbitrary convention ('an agreement of the experiment'), yet they drive the reported frequencies; inter-model structural uncertainty is not propagated.",
+        "No empirical grounding: no real wind projects, no observed contractor/behavioural data (behavioural module parameters explicitly not estimated), no native IRIS/DSGE verification, no independent Rosstat book reconstruction.",
+        "Provenance/reproducibility concerns: the repository 'requires access granted by the owner,' conflicting with the reproducibility claims; future-dated snapshots (October 2026) and self-referential team/branch references suggest a non-standard or possibly auto-generated artifact.",
+        "The 30-year horizon with fixed coefficients, the assumed PPA/tender win, and the assumed secured currency funding are all unvalidated; long-horizon results are especially fragile.",
+        "The paper reads as policy-adjacent advocacy (digital ruble, EKSAR, concessional export financing) without the empirical identification needed to support policy conclusions."
       ],
-      "Originality": 1,
+      "Originality": 2,
       "Quality": 2,
       "Clarity": 2,
       "Significance": 1,
       "Questions": [
-        "Can the authors provide a native MATLAB/IRIS replication of the Bank of Russia models, or at least a careful numerical comparison between their custom solver and the official model outputs?",
-        "How sensitive are the headline 69.47% and 47.63% frequencies to the equal weighting of the nine calibrations? Would a different plausible weighting materially change the conclusions?",
-        "Can the authors make the repository publicly available for review, or provide the exact code, data, and configuration needed to reproduce the main tables without access restrictions?",
-        "How were the synthetic distributions in Table 1 chosen? Were they elicited from experts, taken from literature, or set for illustrative purposes? Please justify each key distribution.",
-        "What is the precise ML contribution of this paper? If the intended contribution is computational economics, why is this appropriate for an ML venue?",
-        "Can the authors provide an independent rebuild of the Rosstat input-output aggregate from the original workbook, and verify that the 12-sector aggregation is correct?",
-        "How do the authors rule out double counting between the project’s export demand, input-output resource requirements, and the macro-model shocks?",
-        "What would change if the project were evaluated under realistic sanctions, financing, and currency-convertibility constraints for Russian infrastructure exports?"
+        "What is the concrete machine-learning contribution of this work to the venue's scope? If none, why is it submitted here?",
+        "The paper states resource neutrality is not established and η, φ are unestimated. Can the authors provide any empirical identification of these parameters, or at minimum a bounded range justified by external data?",
+        "Why does the new continuous cost interface change individual inflation peaks in all 50,000 draws yet leave the joint-filter frequency unchanged? Does this not imply the headline frequency is driven by thresholds unrelated to the claimed mechanism?",
+        "What justifies equal weighting of the nine calibrations as a representation of model uncertainty, and how sensitive are the headline frequencies to alternative weightings?",
+        "Given that the repository access is owner-restricted, how can independent researchers verify the reported 69.47%/47.63% figures?",
+        "The paper reports 0.02645 p.p. mean peak inflation increment — how does this compare to the model's own baseline inflation uncertainty, and is the increment statistically or economically distinguishable from zero given the synthetic prior?",
+        "The behavioural module (detection probability 0.2→0.7 reducing violation frequency 83.2%→1.2%) uses unestimated parameters — can the authors justify these values or provide sensitivity bounds?",
+        "How robust is the 69.47% figure to the assumed FX coverage and to relaxing the stationary-coefficient assumption over the 30-year horizon?"
       ],
       "Limitations": [
-        "All headline frequencies are conditional on synthetic project assumptions, hand-chosen distributions, equal model weights, and stationary model structure.",
-        "The Bank of Russia models are not natively run, and the custom solver is not externally validated against official outputs.",
-        "The input-output aggregate is not independently rebuilt from the original Rosstat workbook in the reported environment.",
-        "The competent-capacity and cost-elasticity parameters of the TEB cost interface are unestimated; resource neutrality is not established.",
-        "No real wind-project data, PPA contracts, site measurements, or expert-elicited project distributions are used.",
-        "The long-horizon return-flow experiment assumes fixed coefficients over 30 years and is therefore highly speculative.",
-        "The paper does not evaluate alternative uses of the subsidized budget funds, which is central to any policy conclusion.",
-        "Potential geopolitical, sanctions, and institutional risks of financing Russian technological exports are not analyzed.",
-        "The work may be misread as a policy endorsement or official forecast, although the authors explicitly deny this."
+        "The authors acknowledge many limitations but several are disqualifying for the headline claims: synthetic/unestimated distributions, unmeasured competent capacity, unestimated cost elasticity, assumed currency coverage, and stationary model structure.",
+        "No independent reconstruction of the Rosstat source book; the aggregate is taken as given.",
+        "No native verification against the Bank of Russia's IRIS/MATLAB environment; the reproduced solver is a re-implementation, not the official forecast.",
+        "Behavioural, FX-pass-through, and long-horizon parameters are set by the researcher without empirical estimation.",
+        "Potential negative societal impact: results could be cited out of context to justify large concessional export-financing programmes or 'zero-inflation' claims, despite the authors' disclaimers. The policy-adjacent framing (digital ruble, EKSAR, export subsidies) increases this risk.",
+        "The 30-year return-flow experiment selects on ex-post profitability (NPV≥0), which biases the reported conditional frequencies."
+      ],
+      "Ethical Concerns": false,
+      "Soundness": 2,
+      "Presentation": 2,
+      "Contribution": 1,
+      "Overall": 2,
+      "Confidence": 3,
+      "Decision": "Reject"
+    },
+    {
+      "Summary": "The paper is a computational experiment studying whether concessional (0% interest) financing of Russian technological infrastructure exports — specifically a 100 MW wind project — can achieve project viability and competitive LCOE while limiting domestic inflation and exchange-rate effects. Three synthetic resource profiles (P1 engineering-intensive, P2 mixed, P3 domestic-production) are linked to two published Bank of Russia quarterly projection models (KPM DDKP and DIP) through a 12-sector Rosstat 2021 input-output satellite. 50,000 paired Monte Carlo draws (with a Student-t copula over 26 factors) are allocated across nine model calibrations; a separate 10,000-draw, 30-year experiment studies profit repatriation. Headline results: at a program size of 0.1% of annual GDP, the engineering profile passes the joint profitability/competitiveness/macroeconomic screen in 69.47% of draws (47.63% when adding DSCR >= 1.2), with a mean individual peak inflation increment of 0.02645 pp. The authors introduce a 'continuous TEB cost interface' linking capacity utilization to primary cost shocks. The paper is explicit that all distributions are synthetic scenario assumptions, not empirically estimated parameters.",
+      "Strengths": [
+        "Unusually transparent and self-critical: the authors repeatedly and clearly state that results are conditional frequencies under assumed distributions, not forecasts or empirically identified probabilities.",
+        "Strong internal consistency checks (resource identity to <5e-16, seed reproducibility, IRR invariance to financing, debt repayment checks).",
+        "Reproducible pipeline with code, saved NPZ/JSON outputs, and a documented command sequence; explicit seed and environment details.",
+        "Careful about double-counting (export account vs. domestic value added, avoiding double-adding gross output to GDP, separating debt principal from interest/dividends).",
+        "Multiple sensitivity analyses (cost-channel elasticities, capacity constraints, reuse rates, model calibrations) and honest reporting of Wilson intervals.",
+        "Clear separation of scenarios A-E and explicit acknowledgment that contrast C-D confounds geography and financing."
+      ],
+      "Weaknesses": [
+        "No empirical grounding: all parameter distributions, the cost-channel elasticity eta, and competent-capacity share phi are unestimated. The headline frequencies therefore describe an assumed model, not reality.",
+        "The newly introduced 'continuous TEB cost interface' changes individual inflation peaks in all 50,000 draws but leaves the joint filter frequencies (69.47%/47.63%) numerically identical, undermining the claimed methodological advance.",
+        "The 12-sector IO aggregate cannot be independently rebuilt — the source Rosstat workbook is absent from the branch — so the central data artifact is unverified.",
+        "No native verification against MATLAB/IRIS or the Bank of Russia's own forecast; the authors only reproduce published equations in a custom Python solver.",
+        "Equal weights across nine calibrations are an arbitrary convention, not estimated model probabilities; inter-model structural uncertainty is not covered.",
+        "The paper does not fit an ML venue: it uses Monte Carlo, copulas, and input-output economics with no machine-learning methodology or contribution.",
+        "Reliance on non-public internal materials (project 200.TEB branch, satellite.py, kernel_metadata.json) and a repository requiring owner-granted access limits independent reproducibility.",
+        "Some results are near-tautological (zero-cost debt improves NPV/LCOE); the strict no-inflation hypothesis yields zero successes out of 50,000, which is a boundary result rather than a substantive finding.",
+        "The 30-year horizon with stationary coefficients and the ex-post selection of profitable draws for the repatriation analysis are acknowledged but weaken interpretability.",
+        "Future-dated materials (October 2026) and a separate 'browser calculator' whose results are disclaimed add confusion about what is actually being claimed."
+      ],
+      "Originality": 2,
+      "Quality": 2,
+      "Clarity": 2,
+      "Significance": 1,
+      "Questions": [
+        "Can any of the 26 factor distributions, the cost-channel elasticity eta, or the competent-capacity share phi be estimated from real data rather than assumed? Without this, what is the scientific content of the reported frequencies?",
+        "Why does the new continuous cost interface leave the joint filter frequencies exactly unchanged (69.472% and 47.634%)? Does this not indicate the mechanism is irrelevant to the headline result?",
+        "How can the results be independently reproduced when the source Rosstat workbook is missing from the branch and the repository requires owner-granted access?",
+        "What is the intended venue fit? The paper contains no machine-learning methodology; how does it advance an ML audience?",
+        "Given that the strict no-inflation condition yields 0/50,000 successes, what is the substantive conclusion beyond 'effects are bounded but nonzero'?",
+        "How sensitive are the headline numbers to the arbitrary equal weighting of the nine calibrations?",
+        "The contrast C-D confounds geography and financing — what does it actually identify, and why is it reported as a headline comparison?",
+        "How are the 'competent capacity' and engineering-hours assumptions justified, given the paper states they are not measured?"
+      ],
+      "Limitations": [
+        "The authors acknowledge most limitations candidly: synthetic distributions, unestimated elasticities, missing source data, no native model verification, stationary 30-year structure, and ex-post selection in the repatriation experiment.",
+        "Missing: a clear statement of what the results would imply if the assumed distributions are wrong, and any attempt at out-of-sample or empirical validation.",
+        "Potential societal/policy impact: the paper concerns Russian state concessional export financing; results could be misread as supporting a policy despite the authors' disclaimers. The paper does flag that these are not official forecasts.",
+        "No discussion of how the assumed 'secured currency funding' and PPA availability would be achieved in practice, which are central to the claimed feasibility."
       ],
       "Ethical Concerns": false,
       "Soundness": 2,
       "Presentation": 2,
       "Contribution": 1,
       "Overall": 3,
-      "Confidence": 4,
+      "Confidence": 3,
       "Decision": "Reject"
     },
     {
-      "Summary": "The paper is a computational (Monte Carlo) experiment assessing whether concessional financing (0% debt) of a Russian technological infrastructure export — a 100 MW wind project — can simultaneously deliver project viability, competitive LCOE, and limited domestic inflation/exchange-rate effects. Three synthetic resource profiles (P1 engineering-intensive, P2 mixed, P3 domestic-manufacturing) are mapped through a 12-sector Rosstat 2021 input-output satellite into shocks for two published Bank of Russia quarterly projection models (DIП and DDКП). 50,000 paired draws across nine calibrations are used, with a Student-t copula for dependence and a joint financial-macroeconomic screen; a separate 10,000-draw, 30-year return-flow experiment examines profit repatriation. Headline results: at a program size of 0.1% of annual GDP, P1 passes the joint screen in 69.47% of draws (47.63% with DSCR≥1.2), with a mean peak inflation increment of +0.02645 pp. The authors conclude bounded rather than zero inflation effects, and stress that all frequencies are conditional on synthetic, unestimated assumptions.",
+      "Summary": "The paper is a computational experiment examining whether concessional (0% debt) financing of Russian technological infrastructure exports (a synthetic 100 MW wind project) can achieve project viability and LCOE competitiveness while limiting domestic inflation and exchange-rate effects. Three synthetic resource profiles are linked to two published Bank of Russia quarterly projection models through a 12-sector Rosstat 2021 input-output satellite. The authors run 50,000 paired Monte Carlo draws across nine calibrations, plus a separate 10,000-draw, 30-year return-flow experiment. Headline results: at a programme size of 0.1% of annual GDP, the engineering-intensive profile passes a joint profitability/competitiveness/macro screen in 69.47% of draws (47.63% when adding DSCR >= 1.2); mean individual peak inflation increment is 0.02645 pp. The authors conclude that effects are bounded but not strictly inflation-neutral, and explicitly state the frequencies are conditional on synthetic assumptions and should not be read as official forecasts or empirically identified success probabilities.",
       "Strengths": [
-        "Unusually candid and thorough disclosure of limitations: the authors repeatedly state that distributions are synthetic, that φ (competent capacity) and η (cost elasticity) are unestimated, and that results are not forecasts or empirical success probabilities.",
-        "Careful internal-consistency verification: resource identity (VA+M=1), zero-impulse checks, seed reproducibility, IRR-invariance to financing, and Wilson confidence intervals for Monte Carlo frequencies.",
-        "Explicit, well-defined scenario contrasts (A–E; C–B, B–D, C–D) with honest warnings that C–D conflates geography and financing and cannot be read as a single-factor effect.",
-        "Reproducibility package: code, seeds, kernels, NPZ outputs, JSON aggregates, and a full command sequence; runtime and environment documented.",
-        "Sensible treatment of double counting (export credit not counted as a second FX source; turbine shipped China→Africa not entered as RF imports) and separation of debt principal vs. interest/dividends in the balance of payments.",
-        "The 'bounded effects, not strict neutrality' framing is scientifically appropriate and avoids the common overclaiming in policy-adjacent simulation work."
+        "Unusually candid about limitations: the authors repeatedly state that key parameters (competent capacity, cost elasticities, FX interface) are unestimated and that results are conditional on synthetic distributions.",
+        "Detailed, reproducible pipeline: code, seeds, kernels, NPZ/JSON outputs, and a step-by-step reproduction script are provided; internal consistency checks (resource identity, zero-impulse, seed reproducibility) are reported.",
+        "Methodological care in the experimental design: explicit contrast definitions (C-B, B-D), warnings against multiplying probabilities, distinction between median-of-maxima and max-of-median, Wilson intervals for Monte Carlo precision.",
+        "Thoughtful separation of accounting identities (resource balance, debt repayment on financial account, interest/dividends on current account) and avoidance of double counting.",
+        "Explicit acknowledgment that repatriation improves late FX/inflation outcomes in only a subset of profitable scenarios without eliminating the initial inflationary impulse."
       ],
       "Weaknesses": [
-        "The headline quantitative results (69.47%, 47.63%, +0.02645 pp) are properties of assumed synthetic input distributions, not of any observed system. The authors concede this, which undermines the paper's central contribution as a scientific finding.",
-        "The pivotal parameters — η, φ, FX pass-through, behavioral breach parameters, and the cost-shock interface — are researcher-set without empirical identification. The sensitivity table shows results swing materially with φ and η, precisely the unestimated quantities, so the headline number is fragile in an unquantified way.",
-        "The connection to Bank of Russia models is a 'proxy' interface, not a reproduction: no native IRIS/MATLAB run, no official forecast reconciliation, no DSGE execution, and the native price channel (R/17_price_channel.R) was not obtained. The macro link is therefore not validated.",
-        "The 12-sector IO aggregate cannot be independently rebuilt (source xlsx absent), so the 'empirical' anchor distinguishing this from pure simulation is weakened.",
-        "The paper is extremely long, dense, and hard to read; excessive numeric precision (e.g., 0.02644016 vs 0.02645071) conveys false precision given input uncertainty.",
-        "Many results are ex-post conditional (e.g., return-flow shares computed among NPV≥0 draws), which the authors acknowledge but still present prominently.",
-        "Significance is questionable: by the authors' own admission the numbers are non-actionable without independent data collection, raising the question of what the paper establishes beyond a demonstration pipeline."
+        "Out of scope for a machine learning venue: there is no ML method, learning, or novel algorithm. All components (input-output analysis, t-copula, Bank of Russia QPMs, Monte Carlo) are established tools.",
+        "All central inputs are synthetic/scenario assumptions rather than estimated quantities. The paper itself concedes that competent capacity and cost elasticities remain unestimated and resource neutrality is not established, so the headline pass rates have no identified empirical content.",
+        "Verification gaps: the official MATLAB/IRIS toolchain and Bank of Russia forecast reconciliation were not run; the authors implemented their own linear solver; the IO aggregation cannot be independently rebuilt because the source book is absent; the cost interface is a 'proxy,' not a reproduction of the closed stand.",
+        "The contribution is essentially the connection of existing tools; the authors concede the inter-industry method, copula, and central-bank models are not new. The claimed novelty (a specific wiring with two counterfactuals) is incremental.",
+        "Headline numbers are highly sensitive to arbitrary choices (equal calibration weights, assumed FX coverage, stationary structure over 30 years) and the paper admits the frequencies are not model-averaged or empirically validated.",
+        "Presentation is extremely dense, long, and cluttered with internal code/file references; written in Russian with only an English abstract, reducing accessibility. The 'future' dating (October 2026) and framing as a redaction document are unusual.",
+        "The 0.1% GDP programme size, the 80/20 debt/equity split, and the 'zero-rate' framing are asserted rather than derived; the paper does not evaluate the opportunity cost of the subsidy or alternative budget uses.",
+        "The threshold refinement (0.149-0.152% of GDP) is not jointly verified with demand, budget cost, and financial stability conditions, so its policy relevance is limited."
+      ],
+      "Originality": 2,
+      "Quality": 2,
+      "Clarity": 2,
+      "Significance": 1,
+      "Questions": [
+        "What is the concrete, defensible scientific or methodological contribution relative to existing work that already links input-output tables to central-bank QPMs? Please state precisely what is new and why it matters.",
+        "Given that all key distributions and elasticities are unestimated, what would change in the headline results (69.47%, 47.63%, +0.02645 pp) if the parameters were instead estimated from real project data? Can the authors provide any bounding argument?",
+        "Why were the official Bank of Russia QPM toolchains (MATLAB/IRIS) not used, and how do the authors know their custom solver reproduces the published model dynamics? Please provide a quantitative comparison against the official baseline.",
+        "The IO satellite cannot be independently rebuilt because the source book is missing. How can a reviewer or reader verify the 12-sector aggregation and the resulting coefficients?",
+        "The equal weighting of the nine calibrations is described as a convention, not an estimated probability. How sensitive are the joint pass rates to alternative weighting schemes?",
+        "The 30-year return-flow experiment assumes stationary coefficients. Given that this is the horizon on which the repatriation conclusion depends, how robust is the late-horizon improvement to structural drift?",
+        "Is this work intended for an ML audience? If so, what is the ML content? If not, why is it submitted to an ML venue?"
+      ],
+      "Limitations": [
+        "The authors are explicit that distributions are synthetic scenario assumptions, not empirically estimated, and that the results are not official forecasts or identified success probabilities.",
+        "The IO source book is absent and the aggregation is not independently verifiable; the cost interface is a proxy for a closed stand.",
+        "Native model verification, full banking DSGE, empirical FX-interface estimation, and alternative budget-use analysis were not performed.",
+        "The 30-year horizon with fixed coefficients is highly conditional; the ex-post selection of the profitable subsample in the return-flow experiment limits inference.",
+        "Potential societal/policy impact: results could be misread as endorsing a credit pilot despite the authors' disclaimers; the paper notes this risk but the framing (headline pass rates) may invite over-interpretation.",
+        "No ethical concerns of the human-subjects or data-privacy type arise, but the policy sensitivity of the topic warrants careful framing."
+      ],
+      "Ethical Concerns": false,
+      "Soundness": 2,
+      "Presentation": 2,
+      "Contribution": 1,
+      "Overall": 3,
+      "Confidence": 3,
+      "Decision": "Reject"
+    },
+    {
+      "Summary": "The paper is a computational experiment assessing whether concessional (0% interest) financing of Russian technological infrastructure exports can improve project competitiveness while limiting domestic inflation and exchange-rate effects. It constructs three synthetic resource profiles of a 100 MW wind project (differing in Russian content, international procurement, and engineering share), maps project flows into shocks for two published Bank of Russia quarterly projection models (ДДКП and ДИП) via a 12-sector Rosstat 2021 input-output satellite, and runs 50,000 paired Monte Carlo draws across nine calibrations using a Student copula. A separate 10,000-draw, 30-year return-flow experiment studies profit repatriation. Headline results: the engineering-intensive profile passes the joint profitability/competitiveness/macroeconomic screen in 69.47% of draws (47.63% with DSCR≥1.2), with a mean peak inflation increment of 0.02645 p.p. The authors repeatedly emphasize that these are conditional frequencies under synthetic assumptions, not empirical probabilities or official forecasts.",
+      "Strengths": [
+        "Detailed, reproducible computational pipeline with code, saved kernels, NPZ/JSON outputs, and explicit run commands.",
+        "Unusually candid about limitations: synthetic distributions, unestimated elasticities, non-established resource neutrality, and lack of native model verification are all stated up front.",
+        "Internal consistency checks are thorough (resource identity, zero-impulse test, seed reproducibility, IRR invariance to financing, debt repayment).",
+        "The joint financial-macroeconomic filter and the explicit contrast design (A–E, C–B, B–D) are methodologically sensible and avoid naive probability multiplication.",
+        "Some findings are non-trivial and policy-relevant in direction: cheaper debt raises near-term inflation pressure (C–B), peak advantage does not imply trajectory dominance, and return flows support the currency only late and only in a subset of profitable scenarios."
+      ],
+      "Weaknesses": [
+        "Weak fit for an ML venue: the methods are Monte Carlo simulation, copulas, and input-output linear algebra; there is no learning, training, or ML contribution.",
+        "Central results are conditional on unestimated parameters. The cost-interface elasticities (η, φ), FX sensitivity, and behavioral parameters are researcher-set, not estimated; the authors concede this.",
+        "Empirical grounding is thin: the Rosstat 2021 book was not independently rebuilt, project hours/specifications are absent, and the 'cost interface' is a proxy for a closed stand that was not transferred.",
+        "No native MATLAB/IRIS verification and no comparison with the Bank of Russia's internal forecast; the paper reproduces published equations rather than validating a model.",
+        "The headline frequencies (69.47%, 47.63%) are conditional on assumed distributions and equal-weight calibrations; they cannot be read as programme success probabilities.",
+        "The paper is essentially a work-in-progress prototype; the authors themselves frame it as such and list many required follow-ups (independent IO rebuild, project hours, empirical risk calibration, out-of-sample threshold validation).",
+        "Presentation is dense and in Russian (only the abstract is English), making it hard to follow for a general venue audience."
       ],
       "Originality": 2,
       "Quality": 2,
       "Clarity": 2,
       "Significance": 2,
       "Questions": [
-        "What is the paper's central scientific claim that does not depend on unestimated parameters? Can the authors state a result that would survive replacement of synthetic distributions with plausible empirical ones?",
-        "Given that results are highly sensitive to φ and η (Table 3), can the authors bound the headline 69.47% under a reasonable range of these unestimated parameters rather than a single central specification?",
-        "How does the 'proxy' cost interface differ quantitatively from the native Bank of Russia price channel? Without access to R/17_price_channel.R, how can readers assess whether the proxy biases inflation upward or downward?",
-        "Why present 69.47% and 47.63% to two decimals when the underlying distributions are admittedly synthetic and the Monte Carlo interval (69.07–69.87%) is far narrower than the input uncertainty? Should these be reported as illustrative rather than as estimates?",
-        "The strict hypothesis 'Δπ≤0 in all quarters' yields zero successes; is this a meaningful result or simply a restatement that any positive spending shock raises inflation in these models?",
-        "Can the authors clarify what an independent replication would need to change to move this from a demonstration to a validated result, and whether the missing source data (tzv_rf_all_years.xlsx) is available anywhere?"
+        "Can the authors provide any empirically estimated (rather than assumed) distributions for the key project parameters (CAPEX, capacity factor, tariff, O&M, FX sensitivity)?",
+        "How sensitive are the headline pass rates (69.47%, 47.63%) to the equal-weight assumption across the nine calibrations? What happens with model-probability weights?",
+        "What is the justification for the specific FX feedback coefficients and the asymmetric price residual, and how would results change under plausible alternative values?",
+        "Why was native MATLAB/IRIS verification not performed, and how confident can we be that the re-implemented equations match the published Bank of Russia models?",
+        "The paper states that no trajectory C dominates A on inflation across all 120 quarters — does this undermine the policy framing of 'bounded effects,' and how should readers weigh the peak vs. trajectory distinction?",
+        "Given that the cost interface is a proxy for a closed stand, what evidence supports the claim that the new interface makes the resource-constraint mechanism 'numerically observable' rather than simply adding an unvalidated channel?"
       ],
       "Limitations": [
-        "No empirically estimated distributions, real project specifications, or measured competent capacity; all frequencies are conditional on synthetic assumptions.",
-        "No native IRIS/MATLAB verification, no full banking DSGE, no empirical estimation of the FX interface, and no alternative budget-use calculation.",
-        "The 30-year horizon assumes stationary coefficients; results are especially conditional there.",
-        "The IO aggregate's origin and the new labor-price channel are not at the same level of verification as the identity checks.",
-        "Equal calibration weights are a convention, not estimated model probabilities; inter-model differences do not span structural uncertainty.",
-        "Potential societal/policy context: the paper models a Russian state concessional export-financing instrument; readers should note that the analysis is not an endorsement and does not address sanctions/geopolitical feasibility."
+        "All results are conditional on synthetic scenario distributions and unestimated parameters; they are not empirical probabilities.",
+        "Resource neutrality is not established, and the competent-capacity/cost elasticities are not identified from data.",
+        "The 30-year horizon assumes stationary model structure and coefficients, which is a strong and likely unrealistic assumption.",
+        "The paper does not model displacement of alternative investments by the 20% equity, nor the opportunity cost of the budget subsidy.",
+        "Potential negative societal impacts are not discussed in depth: the analysis concerns a specific national export-financing policy, and the framing could be read as advocacy for a particular credit instrument; the authors should more explicitly address misuse of the conditional frequencies as policy justification."
       ],
       "Ethical Concerns": false,
       "Soundness": 2,
@@ -121,5 +270,5 @@
       "Decision": "Reject"
     }
   ],
-  "raw_meta": "THOUGHT:\nBoth reviewers independently recommend rejection and converge on the same core assessment: the paper is a carefully documented computational simulation with unusually candid limitations, but it lacks an ML methodological contribution and its headline quantitative results are entirely conditional on synthetic distributions, unestimated key parameters, non-native macro-model runs, and incomplete independent reproducibility. The main strengths are the joint financial-macro screening, scenario separation, and internal-consistency checks. The main weaknesses are that the empirical anchor is weak, the macro link is not validated against the Bank of Russia models, key source data and native files are unavailable or access-restricted, and the reported frequencies convey false precision given input uncertainty. I will aggregate to a Reject, with soundness/quality/presentation/contribution ratings around fair/poor and overall score 3.\n\nREVIEW JSON:\n```json\n{\n  \"Summary\": \"The paper studies whether concessional financing of Russian technological infrastructure exports can improve project viability and competitiveness while limiting domestic inflation and exchange-rate effects. It links three synthetic 100 MW wind-project resource profiles to a 12-sector Rosstat 2021 input-output aggregate and two published Bank of Russia quarterly projection models. Using 50,000 paired Monte Carlo draws across nine calibrations, a Student copula, and a joint financial-macroeconomic screen, it reports that at a programme size of 0.1% of annual GDP the engineering-intensive profile passes the joint profitability/competitiveness/macro screen in 69.47% of draws, falling to 47.63% when a DSCR floor of 1.2 is imposed. The mean individual peak inflation increment is 0.02645 percentage points. A separate return-flow experiment finds that profit repatriation can later support the ruble and reduce inflation relative to the no-project baseline in some profitable scenarios, but does not eliminate the initial inflationary impulse. The paper frames its contribution as a reproducible computational integration of project finance, input-output structure, and published macro models, not as an empirical forecast.\",\n  \"Strengths\": [\n    \"The paper is unusually candid about its limitations: synthetic project profiles, unestimated elasticities, non-native model runs, equal calibration weights, and conditional rather than empirical probabilities are explicitly acknowledged.\",\n    \"The computational pipeline is described in considerable detail, including distributions, seeds, solver settings, consistency checks, and reproduction commands.\",\n    \"The joint financial-macroeconomic screening is a sensible way to avoid treating project viability and inflation effects as independent problems.\",\n    \"The paper separates financing effects from resource-geography effects through scenarios B, C, D, and E, and warns against interpreting C-D as a clean single-factor estimate.\",\n    \"Internal checks such as resource identities, zero-impulse tests, seed reproducibility, IRR invariance to financing, and debt repayment are reported.\",\n    \"The 'bounded effects, not strict neutrality' framing is scientifically appropriate and avoids common overclaiming in policy-adjacent simulation work.\"\n  ],\n  \"Weaknesses\": [\n    \"The work has little to no ML methodological contribution. It is a Monte Carlo simulation using existing macroeconomic models, input-output accounting, and a copula; the methods are not new to ML and are not evaluated as ML methods.\",\n    \"The central quantitative claims are entirely conditional on synthetic resource profiles, hand-specified distributions, arbitrary equal weights across nine calibrations, and an unestimated cost interface. The headline frequencies should not be interpreted as empirical probabilities.\",\n    \"The Bank of Russia models are not run natively in MATLAB/IRIS and are"
+  "raw_meta": "THOUGHT:\nAll four reviewers recommend rejection, with consensus on the core problems. The paper is a computational economics/policy simulation of concessional financing for Russian infrastructure exports, not a machine-learning contribution. Reviewers agree the authors are unusually transparent and the internal pipeline has consistency checks, but the headline results are conditional on synthetic, unestimated parameters; the new continuous cost interface does not change the joint-filter frequencies; equal weighting across nine calibrations is arbitrary; source input-output data and repository access limit reproducibility; and native Bank of Russia model verification is absent. These weaknesses are fatal for an ML venue and for the paper's empirical claims. I aggregate to Reject with Overall 3, Soundness 2, Presentation 2, Contribution 1, and Confidence 3. There are no formal ethical concerns, but the policy-adjacent framing carries misuse risk.\n\nREVIEW JSON:\n```json\n{\n  \"Summary\": \"The paper studies whether concessional (0% interest) financing of Russian technological infrastructure exports, instantiated as synthetic 100 MW wind-project resource profiles, can achieve project viability and LCOE competitiveness while limiting domestic inflation and exchange-rate effects. It maps project cash flows into shocks for two published Bank of Russia quarterly projection models via a 12-sector Rosstat 2021 input-output aggregate, runs 50,000 paired Monte Carlo draws with a Student copula across nine calibrations, and adds a separate 10,000-draw 30-year return-flow experiment. Headline results: at a programme size of 0.1% of annual GDP, the engineering-intensive profile passes the joint profitability/competitiveness/macro screen in 69.47% of draws (47.63% with a DSCR >= 1.2 constraint), with a mean individual peak inflation increment of 0.02645 p.p. The authors explicitly state that these are conditional frequencies under synthetic assumptions, not empirical success probabilities or official forecasts.\",\n  \"Strengths\": [\n    \"Unusually transparent and self-critical framing: the authors repeatedly state that headline frequencies are conditional on synthetic, unestimated distributions and are not empirical success probabilities.\",\n    \"Extensive internal consistency checks, including resource identity, zero-impulse tests, seed reproducibility, IRR invariance to financing, and debt repayment checks.\",\n    \"Detailed computational pipeline with code, seeds, saved NPZ/JSON artifacts, and a documented reproduction sequence.\",\n    \"Multiple sensitivity analyses over capacity constraints, cost elasticities, reuse fractions, and sectoral scope.\",\n    \"Careful accounting distinctions: peak inflation versus whole-trajectory dominance, project IRR versus WACC, profitability versus national welfare, and repatriation versus no-project baseline.\",\n    \"Clear scenario separation (A-E) to isolate financing price and resource geography, with explicit acknowledgment that one contrast confounds both.\",\n    \"Some findings are directionally non-trivial and policy-relevant, such as cheaper debt raising near-term inflation pressure and return flows supporting currency only late and only in a subset of profitable scenarios.\"\n  ],\n  \"Weaknesses\": [\n    \"Fundamental venue mismatch: the paper contains no machine-learning method, model, learning algorithm, or ML evaluation. The techniques used are standard Monte Carlo simulation, copulas, input-output algebra, and linear rational-expectations solving.\",\n    \"The central results are conditional on unestimated parameters, including synthetic factor distributions, the cost-channel elasticity eta, competent-capacity share phi, FX coverage, and behavioural parameters. The headline frequencies therefore have no identified empirical content.\",\n    \"The newly introduced continuous TEB cost interface changes individual inflation peaks in all 50,000 draws but leaves the joint-filter frequencies numerically unchanged, undermining the claimed methodological contribution.\",\n    \"Equal weighting across nine calibrations is an arbitrary convention rather than an estimated model probability, and it drives the reported frequencies; inter-model structural uncertainty is not propagated.\",\n    \"Empirical grounding is thin: no real wind projects, no observed contractor or behavioural data, no independent reconstruction of the Rosstat source book, and no native verification against MATLAB/IRIS or the Bank of Russia's own forecast.\",\n    \"Reproducibility is limited by owner-granted repository access, missing source input-output workbook, and reliance on internal materials, despite the paper's reproducibility claims.\",\n    \"The 30-year horizon assumes stationary coefficients and model structure, and the return-flow experiment selects on ex-post profitability (NPV >= 0), biasing the reported conditional frequencies.\",\n    \"Key assumptions such as the 0.1% GDP programme size, 80/20 debt-equity split, secured currency funding, and PPA/tender win are asserted rather than derived or validated.\",\n    \"The paper is dense, long, and written in Russian with only an English abstract, reducing accessibility for a general venue audience; future-dated artifacts and a separate browser calculator add confusion.\",\n    \"The policy-adjacent framing around digital ruble, EKSAR, and concessional export financing risks over-interpretation of conditional frequencies as policy justification.\"\n  ],\n  \"Originality\": 2,\n  \"Quality\": 2,\n  \"Clarity\": 2,\n  \"Significance\": 1,\n  \"Questions\": [\n    \"What is the concrete machine-learning contribution of this work to the venue's scope? If none, why is it submitted to an ML conference?\",\n    \"Can the authors provide any empirical identification or externally justified bounded ranges for the key unestimated parameters, including eta, phi, FX sensitivity, behavioural parameters, and the 26 factor distributions?\",\n    \"Why does the new continuous cost interface change individual inflation peaks in all 50,000 draws yet leave the joint-filter frequencies (69.47% and 47.63%) numerically unchanged? Does this not imply the headline frequency is driven by thresholds unrelated to the claimed mechanism?\",\n    \"How can independent researchers verify the reported figures when the repository requires owner-granted access and the source Rosstat workbook is absent from the branch?\",\n    \"What justifies equal weighting of the nine calibrations as a representation of model uncertainty, and how sensitive are the headline frequencies to alternative weighting schemes?\",\n    \"Why was native MATLAB/IRIS verification not performed, and how confident can the authors be that their custom Python solver reproduces the published Bank of Russia model dynamics? Please provide a quantitative comparison against the official baseline.\",\n    \"How robust are the results to relaxing the assumed FX coverage and the stationary-coefficient assumption over the 30-year horizon?\",\n    \"Given that the strict no-inflation condition yields zero successes out of 50,000, what is the substantive conclusion beyond 'effects are bounded but nonzero'?\",\n    \"How does the paper address the opportunity cost of the budget subsidy and the displacement of alternative investments by the 20% equity requirement?\",\n    \"What evidence supports the claim that the new cost interface makes the resource-constraint mechanism numerically observable rather than simply adding an unvalidated channel?\"\n  ],\n  \"Limitations\": [\n    \"The authors acknowledge many limitations candidly, but several are disqualifying for the headline claims: synthetic and unestimated distributions, unmeasured competent capacity, unestimated cost elasticity, assumed currency coverage, and a stationary 30-year model structure.\",\n    \"No independent reconstruction of the Rosstat source book is provided, and the 12-sector input-output aggregation cannot be independently rebuilt from the available materials.\",\n    \"No native verification against the Bank of Russia's IRIS/MATLAB environment is performed; the reproduced solver is a re-implementation, not the official forecast.\",\n    \"Behavioural, FX pass-through, and long-horizon parameters are set by the researcher without empirical estimation.\",\n    \"The 30-year return-flow experiment selects on ex-post profitability, which biases the reported conditional frequencies.\",\n    \"The paper does not model displacement of alternative investments by the 20% equity or the opportunity cost of the budget subsidy.\",\n    \"Potential negative societal impact: results could be cited out of context to justify large concessional export-financing programmes or 'zero-inflation' claims despite the authors' disclaimers. The policy-adjacent framing increases this risk.\",\n    \"No out-of-sample or empirical validation is attempted, and there is no clear statement of what the results would imply if the assumed distributions are wrong.\"\n  ],\n  \"Ethical Concerns\": false,\n  \"Soundness\": 2,\n  \"Presentation\": 2,\n  \"Contribution\": 1,\n  \"Overall\": 3,\n  \"Confidence\": 3,\n  \"Decision\": \"Reject\"\n}\n```"
 }

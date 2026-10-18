@@ -84,6 +84,29 @@ def extract_json(s: str):
         return None
 
 
+def salvage_meta(s: str) -> dict:
+    """Спасает поля мета-ревью, когда модель не дала корректный JSON."""
+    out = {}
+    for key in ("Summary", "Decision", "Overall", "Confidence", "Originality",
+                "Quality", "Clarity", "Significance", "Soundness", "Presentation",
+                "Contribution"):
+        m = re.search(rf'"{key}"\s*:\s*(\d+(?:\.\d+)?|"[^"]*"|\{{)', s)
+        if not m:
+            continue
+        v = m.group(1)
+        if v.startswith('"'):
+            out[key] = v.strip('"')
+        elif v == "{":
+            # массив строк в квадратных скобках либо объект — берём до закрытия блока
+            blk = s[m.end():]
+            items = re.findall(r'"([^"]{10,400})"', blk[:4000])
+            if items:
+                out[key] = items
+        else:
+            out[key] = float(v) if "." in v else int(v)
+    return out
+
+
 def call(client, model, system, user, temperature):
     r = client.chat.completions.create(
         model=model,
@@ -116,16 +139,22 @@ def main():
     prompt = form + "\nHere is the paper you are asked to review:\n```\n" + text + "\n```"
 
     print(f"PDF: {len(text)} знаков; модель {a.model}; рецензий {a.n}", flush=True)
-    with ThreadPoolExecutor(max_workers=a.n) as ex:
-        raws = list(ex.map(lambda _: call(client, a.model, system, prompt, a.temperature),
-                           range(a.n)))
-    reviews = []
-    for i, r in enumerate(raws):
-        j = extract_json(r or "")
-        if j is None:
-            print(f"рецензия {i+1}: JSON не разобран", flush=True)
-        else:
-            reviews.append(j)
+
+    def one(i):
+        """Одна рецензия с добором при неудачном разборе JSON."""
+        for attempt, temp in enumerate((a.temperature, max(0.2, a.temperature - 0.45))):
+            raw = call(client, a.model, system, prompt, temp)
+            j = extract_json(raw or "")
+            if j is not None:
+                if attempt:
+                    print(f"рецензия {i+1}: разобрана со 2-й попытки", flush=True)
+                return j
+        print(f"рецензия {i+1}: JSON не разобран (2 попытки)", flush=True)
+        return None
+
+    with ThreadPoolExecutor(max_workers=min(a.n, 3)) as ex:
+        parsed = list(ex.map(one, range(a.n)))
+    reviews = [r for r in parsed if r is not None]
     print(f"разобрано рецензий: {len(reviews)}/{a.n}", flush=True)
     if not reviews:
         sys.exit("ни одна рецензия не разобрана")
@@ -135,8 +164,14 @@ def main():
         for i, r in enumerate(reviews)
     )
     meta_sys = p["meta_reviewer_system_prompt"].format(reviewer_count=len(reviews))
-    meta_raw = call(client, a.model, meta_sys, meta_text, a.temperature)
-    meta = extract_json(meta_raw or "") or {}
+    meta, meta_raw = {}, ""
+    for temp in (a.temperature, max(0.2, a.temperature - 0.45)):
+        meta_raw = call(client, a.model, meta_sys, meta_text, temp)
+        meta = extract_json(meta_raw or "") or salvage_meta(meta_raw or "")
+        if meta:
+            break
+    if not meta:
+        print("мета-ревью: JSON не разобран, поля извлечены частично", flush=True)
 
     agg = {}
     for f, hi in SCORE_FIELDS:

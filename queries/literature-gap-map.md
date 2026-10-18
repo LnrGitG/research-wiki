@@ -1,7 +1,7 @@
 ---
 title: Literature Gap Map — карта пробелов литературы для РФ-кейса
 created: 2026-09-08
-updated: 2026-10-17
+updated: 2026-10-18
 type: query
 tags: [gap-analysis, research-design, housing-supply, monetary-policy, developer-finance, nowcasting]
 sources: [wiki-concepts, papers/catalog.md]
@@ -20,14 +20,15 @@ confidence: medium
 | Вопрос | Международная литература | Российская литература | Статус для РФ | Источники |
 |--------|--------------------------|----------------------|---------------|-----------|
 | Эластичность предложения жилья | Saiz 2010 (2.6→1.3 US), Baum-Snow & Han 2024 (0.5–0.74 tract) | CMWP: 0.62–0.91 SR регионально | **Открыто**: firm-level эластичность conditional на финансовые ограничения — нет аналога в литературе | [[Saiz 2010]], [[Baum-Snow & Han 2024]] |
-| Трансмиссия ДКП → цены жилья | Mishkin 2007, Iacoviello 2005, Wang 2024 (асимметрия) | Sinyakov 2025 (1.5–2.3% на 1 п.п.), Demidova 2025 (dual system 8% vs 20%+) | **Частично открыто**: асимметрия ужесточение/смягчение в РФ не оценена; Wang (2024) показывает, что сдерживающая политика сильнее — тест на данных РФ невозможен из-за одного эпизода ужесточения | [[Mishkin 2007]], [[Wang 2024]], [[Sinyakov 2025]] |
+| Трансмиссия ДКП → цены жилья | Mishkin 2007, Iacoviello 2005, Wang 2024 (асимметрия), Battistini и др. 2025 (EER 171: в регионах ЕС эффект сильнее при низком трудовом доходе; LTV значим, задолженность нет), Canizares и др. 2026 (нелинейность: нет контракционной реакции в рецессиях), ChaMP OP 390 (2026) | Sinyakov 2025 (1.5–2.3% на 1 п.п.), Demidova 2025 (dual system 8% vs 20%+) | **Частично открыто**: асимметрия ужесточение/смягчение в РФ не оценена; региональная неоднородность внутри РФ (аналог Battistini и др. 2025) не проверена; Wang (2024) показывает, что сдерживающая политика сильнее — тест на данных РФ невозможен из-за одного эпизода ужесточения | [[Mishkin 2007]], [[Wang 2024]], [[Sinyakov 2025]], [[queries/mp-transmission-housing-credit-dossier-20261018]] |
 | Финансовое здоровье девелоперов → предложение | MACON 2023-2025 (descriptive), China: VeB 2026 (структурный бенчмарк) | **Пусто**: нет peer-reviewed работ по РФ | **Ключевой пробел** — панель SPARK+ЕИСЖС уникальна (2000+ дев, escrow-балансы) | [[MACON]], [[Bernanke-Gertler-Gilchrist 1996]] |
 | Эффект замещения льготной ипотеки | Международный аналог — оценка субсидий (мета: 60-80% substitution) | Оценено (wiki): 60–80% | **Закрыто в статике, открыто в динамике**: контрциклическая гипотеза (эффект↓ при высоких ставках) не проверена панельно | [[effekt-zamescheniya]] |
 | Макропруденциальные инструменты | Kuttner & Shim 2013 (DSTI эффективнее), ЦБ 2025 (МПЛ: 46%→3% высокорисковых) | Лаптева 2025 (лаг 2 квартала, ~6 мес длительность) | **Частично открыто**: интеракция МПЛ × эластичность предложения не исследована (Andaloussi et al. 2024 — только рамочно) | [[Kuttner & Shim 2013]], [[Лаптева 2025]] |
 | Nowcasting СМР/ввод | MIDAS, FAVAR (Bernanke 2003, Bork 2012, Koop 2019); ML-микросимуляционный nowcasting распределения дохода — OECD WP 41 (2026) | Wordstat-композит: corr 0.618 на 2025-01..2026-07, при полной выборке 0.07 — **опровергнуто** наивным бенчмарком (2026-10-17) | **Открыто, маршрут сужен**: поисковый композит на yoy-темпе сигнала не даёт (OOS не лучше переноса последнего значения); остаются GDELT/ЕИСЖС/опендата и смена целевого показателя на уровень/прирост | [[Koop 2019]], H-001, [[reviews/oecd-murtin-2026-nowcasting-disposable-income]] |
 | Ожидания цен жилья | Case-Shiller tradition, "irrational exuberance" | Smirnova 2025 (двойная функция жилья), hedge-мотив | **Открыто**: РФ-обследования ожиданий (ЦБ inFOM) не связаны с ценовой динамикой в одном фреймворке | [[ozhidaniya-ceny-zhilya]] |
 | Cost pass-through стройматериалы → цены | Лит. разрозненна (контрактная структура) | MAX ЖБИ 2026: труд +35-38%/3гр | **Открыто**: асимметрия pass-through по типу контракта (fixed vs cost-plus) не тестировалась нигде | [[concepts/construction-productivity-regulation]] |
-| Shelter inflation и optimal policy | Chodorow-Reich 2025 (ignore shelter) | Ласкин/Пупенцова 1.37%, Ко-Инвест 1.1% vs Росстат 4.1% | **Противоречие данных** (см. X-записи): расхождение индексов в 3-4 раза само по себе research question | [[shelter-inflation-optimal-monetary-policy]] |
+| Shelter inflation и optimal policy | Chodorow-Reich 2025 (ignore shelter), ChaMP OP 390 (2026) и BoE SWP 1 115: в Великобритании аренда стабильна 1,5-2 года после шока, затем снижается; при шоке предложения жилья оптимально смотреть сквозь него | Ласкин/Пупенцова 1.37%, Ко-Инвест 1.1% vs Росстат 4.1% | **Противоречие данных** (см. X-записи): расхождение индексов в 3-4 раза само по себе research question | [[shelter-inflation-optimal-monetary-policy]] |
+| Присвоение выгоды субсидии посредниками (утечка стимула) | Benetton-Gavazza-Surico 2025 (AER 115(3): комиссии выросли при снижении ставок), Berger и др. 2021 (AER 111(9): зависимость от пути), Adelino и др. 2026 (NBER WP 34824: ~17 % компенсации за счёт поведения заёмщика) | **Пусто**: нет работ по РФ | **Открыто (proposed)**: кто присваивает выгоду от льготного кредита — банк (маржа, комиссии), застройщик (капитализация в цену) или заёмщик | [[queries/mp-transmission-housing-credit-dossier-20261018]], H-038 |
 
 ## Приоритизированные пробелы (по ценности × доступности данных)
 
@@ -36,6 +37,7 @@ confidence: medium
 3. **Mixed-frequency nowcasting с поисковыми и GDELT-данными** — приоритет понижен 2026-10-17: H-001 отклонена, уровень yoy-темпа композитом не предсказывается (полная выборка r=0.07, OOS не лучше наивного). Пробел сохраняется, но требует смены целевого показателя (уровень или прирост в сопоставимых ценах) и другого набора предикторов; методологический ориентир — OECD WP 41 (2026), где ML-выигрыш идёт от отбора переменных, а не от нелинейности.
 4. **Двойная система ставок (льготная vs рыночная) и pass-through** — Demidova 2025 фиксирует dual system, но нет оценки, как это меняет эффективность макропруденциальных лимитов.
 5. **Асимметрия ДКП на жильё РФ** — идентификация ограничена (один эпизод ужесточения 2023–2025); возможен proxy-подход через региональную вариацию (Zvereva 2025 spillovers).
+6. **Присвоение выгоды субсидии посредниками (H-038)** — международная литература даёт три установленных механизма утечки (комиссии, зависимость от пути, поведение заёмщика); для РФ оценок нет, а данные для них — уже собираемые ряды выдач и раскрываемые XLSX ЦБ.
 
 ## Выводы для research-wiki
 
@@ -50,4 +52,4 @@ confidence: medium
 - [[queries/sintez-monetarnaya-politika-i-rynok-zhilya]] — закрытая часть карты (ДКП)
 - [[hypotheses.yaml]] — реестр, порождённый этой картой
 
-^[Синтез концептов wiki: transmisionnyi-mehanizm-dkp-zhile, macroprudentialnaya-politika-rynok-zhilya, effekt-zamescheniya, regionalnaya-differenciaciya, research-ideas-russia-housing; queries/sintez-monetarnaya-politika-i-rynok-zhilya, supply-elasticity-estimation-design]
+^[Синтез концептов wiki: transmisionnyi-mehanizm-dkp-zhile, macroprudentialnaya-politika-rynok-zhilya, effekt-zamescheniya, regionalnaya-differenciaciya, research-ideas-russia-housing; queries/sintez-monetarnaya-politika-i-rynok-zhilya, supply-elasticity-estimation-design, queries/mp-transmission-housing-credit-dossier-20261018]

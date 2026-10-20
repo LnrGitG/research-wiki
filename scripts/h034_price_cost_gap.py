@@ -151,10 +151,39 @@ def adf(x, max_lag=1):
     return {"t_adf": float(beta[1] / se[1]), "n": int(len(y)), "lag": int(max_lag)}
 
 
+def pick_code(dsn, frags):
+    """Код метрики по фрагментам имени, с непустыми наблюдениями.
+
+    Нужен, потому что harmonize переименовывает коды (например, размерная
+    группа «все» стала «ekonomika_vsego»), и жёстко прописанный код молча
+    отдаёт пустой ряд. Если точное сочетание фрагментов не найдено, берётся
+    код с наибольшим числом наблюдений среди совпавших по первому фрагменту.
+    """
+    sql = ("select m.metric_code, count(o.*) c from catalog.metric m "
+           "join data.observation o using(metric_id) where "
+           + " and ".join(["m.metric_code like %s"] * len(frags))
+           + " group by 1 order by c desc limit 1")
+    with psycopg2.connect(dsn) as conn:
+        with conn.cursor() as cur:
+            cur.execute(sql, tuple("%" + f + "%" for f in frags))
+            row = cur.fetchone()
+            if row:
+                return row[0]
+            cur.execute("select m.metric_code, count(o.*) c from catalog.metric m "
+                        "join data.observation o using(metric_id) "
+                        "where m.metric_code like %s group by 1 order by c desc limit 1",
+                        ("%" + frags[0] + "%",))
+            row = cur.fetchone()
+    if not row:
+        raise RuntimeError("метрика не найдена по фрагментам %s" % (frags,))
+    return row[0]
+
+
 def build_dataset(dsn, start="2021-01"):
-    price = fetch(dsn, SERIES["price"])
-    icpp = chain_icpp(fetch(dsn, SERIES["icpp"]))
-    bal = fetch(dsn, SERIES["balance"])
+    price = fetch(dsn, pick_code(dsn, ["domrf_price_index"]))
+    icpp = chain_icpp(fetch(dsn, pick_code(dsn, ["kep3_34"])))
+    bal = fetch(dsn, pick_code(dsn, ["stroitelstvo", "kak_izmenilis_usloviya_kreditovaniya_balans_otvetov",
+                                     "ekonomika_vsego"]))
     kr = fetch_key_rate(dsn)
     keys, maps = align(price, icpp, bal, kr)
     keys = [k for k in keys if k >= start]
@@ -164,6 +193,51 @@ def build_dataset(dsn, start="2021-01"):
     R = np.array([maps[3][k] for k in keys], float)
     G = np.log(P / P[0]) - np.log(C / C[0])
     return {"months": keys, "P": P, "C": C, "G": G, "B": B, "R": R}
+
+
+def build_dataset_pf(dsn, start="2022-01"):
+    """Вариант с фактической ставкой проектного финансирования.
+
+    R — средневзвешенная ставка по кредитным договорам ПФ по России
+    (cbr_pf_rate_ru_m), K — ключевая ставка (для совместной спецификации).
+    Ряд ПФ начинается с 2022-01, поэтому выборка короче базовой.
+    """
+    price = fetch(dsn, pick_code(dsn, ["domrf_price_index"]))
+    icpp = chain_icpp(fetch(dsn, pick_code(dsn, ["kep3_34"])))
+    bal = fetch(dsn, pick_code(dsn, ["stroitelstvo", "kak_izmenilis_usloviya_kreditovaniya_balans_otvetov",
+                                     "ekonomika_vsego"]))
+    kr = fetch_key_rate(dsn)
+    pf = fetch(dsn, "cbr_pf_rate_ru_m")
+    keys, maps = align(price, icpp, bal, kr, pf)
+    keys = [k for k in keys if k >= start]
+    P = np.array([maps[0][k] for k in keys], float)
+    C = np.array([maps[1][k] for k in keys], float)
+    B = np.array([maps[2][k] for k in keys], float)
+    K = np.array([maps[3][k] for k in keys], float)
+    R = np.array([maps[4][k] for k in keys], float)
+    G = np.log(P / P[0]) - np.log(C / C[0])
+    return {"months": keys, "P": P, "C": C, "G": G, "B": B, "R": R, "K": K}
+
+
+def ecm_joint(ds, hac_lags=6, maxlag=2):
+    """dG_t = a + rho*G_{t-1} + phi*dG_{t-1} + theta_pf*dRP + theta_k*dK (+ лаги)."""
+    G, R, K = ds["G"], ds["R"], ds["K"]
+    dG, dR, dK = np.diff(G), np.diff(R), np.diff(K)
+    idx = np.arange(maxlag, len(dG))
+    y = dG[idx]
+    cols = [np.ones(len(idx)), G[idx]]
+    for i in range(1, maxlag + 1):
+        cols.append(dG[idx - i])
+    for v in (dR, dK):
+        cols.append(v[idx])
+        cols.append(v[idx - 1])
+    X = np.column_stack(cols)
+    res = ols_hac(y, X, hac_lags)
+    res["names"] = (["const", "G_lag1"]
+                    + ["dG_lag%d" % i for i in range(1, maxlag + 1)]
+                    + ["dRP", "dRP_lag1", "dK", "dK_lag1"])
+    res["months"] = [ds["months"][i + 1] for i in idx]
+    return res
 
 
 def ecm(ds, fin="both", hac_lags=6, maxlag=2, mask=None):
@@ -251,6 +325,47 @@ def main():
         out["hac_sensitivity"]["hac_%d" % L] = {
             "theta_dR": r["beta"][i], "t_dR": r["t"][i],
         }
+    # --- блок с фактической ставкой проектного финансирования (с 2022-01) ---
+    ds2 = build_dataset_pf(dsn, max(args.start, "2022-01"))
+    out["sample_pf"] = {
+        "n": len(ds2["months"]), "first": ds2["months"][0], "last": ds2["months"][-1],
+        "pf_first": float(ds2["R"][0]), "pf_last": float(ds2["R"][-1]),
+        "pf_mean": float(ds2["R"].mean()),
+    }
+    out["adf_pf"] = {"RP": adf(ds2["R"]), "dRP": adf(np.diff(ds2["R"]))}
+    out["models_pf"] = {
+        "P1_pf_rate": ecm(ds2, "rate"),
+        "P2_pf_balance": ecm(ds2, "balance"),
+        "P3_pf_both": ecm(ds2, "both"),
+        "P4_pf_key_joint": ecm_joint(ds2),
+    }
+    t2 = np.arange(len(ds2["G"]), dtype=float)
+    X2 = np.column_stack([np.ones(len(ds2["G"])), t2, ds2["R"], ds2["B"]])
+    out["models_pf"]["P5_pf_levels"] = ols_hac(ds2["G"], X2, 6)
+    out["models_pf"]["P5_pf_levels"]["names"] = ["const", "trend", "RP", "B"]
+    out["hac_sensitivity_pf"] = {}
+    for L in (3, 6, 9, 12):
+        r = ecm(ds2, "both", hac_lags=L)
+        i = r["names"].index("dR")
+        out["hac_sensitivity_pf"]["hac_%d" % L] = {
+            "theta_dRP": r["beta"][i], "t_dRP": r["t"][i],
+        }
+    # подпериоды с фактической ставкой ПФ
+    dates2 = np.array([x + "-01" for x in ds2["months"]])
+    for a, b, tag in (("2022-01", "2023-12", "pf_sub_2022_2023"),
+                      ("2024-01", "2026-12", "pf_sub_2024_2026")):
+        mk = np.array([(a + "-01" <= x <= b + "-01") for x in dates2])
+        try:
+            out["models_pf"][tag] = ecm(ds2, "both", mask=mk)
+        except Exception as exc:  # noqa: BLE001
+            out["models_pf"][tag] = {"error": str(exc)}
+    # обратная связь: dRP_t на лагах разрыва (проверка эндогенности)
+    dRP, dGap = np.diff(ds2["R"]), np.diff(ds2["G"])
+    idx = np.arange(2, len(dRP))
+    Xr = np.column_stack([np.ones(len(idx)), dGap[idx - 1], dGap[idx - 2]])
+    rr = ols_hac(dRP[idx], Xr, 6)
+    rr["names"] = ["const", "dG_lag1", "dG_lag2"]
+    out["reverse_dRP_on_dG"] = rr
     txt = json.dumps(out, ensure_ascii=False, indent=2, default=float)
     if args.out:
         with open(args.out, "w", encoding="utf-8") as fh:

@@ -101,7 +101,7 @@ METRICS = [
      'pct', True, 'derived_control', DERIVED_SOURCE_CODE),
 ]
 
-PROXY_VERSION = 'v2_money_income_2026-10-20'
+PROXY_VERSION = 'v3_arch_alias_fix_2026-10-20'
 
 PROXY_FORMULA = (
     'proxy_pdn = 100 × (a_ипо × Д_ипотека + a_проч × Д_прочее) / (ДД × 12 × Н), '
@@ -233,7 +233,10 @@ def proto_key(name):
         'чувашскаяреспубликачувашия': 'чувашскаяреспублика',
         'кемеровскаяобластькузбасс': 'кемеровскаяобласть',
         'тюменскаяобластьбезавтономныхокругов': 'тюменскаяобласть',
-        'архангельскаяобластьбезнанецкогоавтономногоокруга': 'архангельскаяобласть',
+        # форма приходит из файла населения Росстата («…без Ненецкого автономного
+        # округа», 947 192 чел.), в бюллетене субъект назван «…без автономного округа»;
+        # без этого ключа в население попадал агрегат с НАО (989 021 чел.)
+        'архангельскаяобластьбезненецкогоавтономногоокруга': 'архангельскаяобласть',
         'архангельскаяобластьбезавтономногоокруга': 'архангельскаяобласть',
     }
     return alias.get(s, s)
@@ -480,6 +483,13 @@ def build_catalog(cur):
                             "VALUES (%s,%s,'ru','synonym',1,'ingest_obdh')", (mid, al))
         cur.execute('INSERT INTO catalog.metric_topic (metric_id, topic_id, weight) VALUES (%s,%s,1) '
                     'ON CONFLICT DO NOTHING', (mid, child))
+        # охват территории: наблюдения содержат и РФ, и субъекты — scope='all'
+        has_scope = cur.execute('SELECT 1 FROM catalog.metric_region_scope WHERE metric_id=%s',
+                                (mid,)).fetchone()
+        if not has_scope:
+            cur.execute('INSERT INTO catalog.metric_region_scope (metric_id, scope, region_id, note) '
+                        "VALUES (%s,'all',NULL,%s)",
+                        (mid, 'выведено из состава наблюдений: есть и РФ, и субъекты'))
 
     # шаблон адреса выпуска
     has_ep = cur.execute('SELECT 1 FROM catalog.source_endpoint WHERE source_id=%s AND url=%s',
@@ -841,16 +851,22 @@ def main():
                 dhash = dh.hexdigest()
                 # Прежние строки производной (знаменатель — располагаемые ресурсы)
                 # переводим в контрольную метрику, значения не переписываем.
+                # Миграция нужна только для релизов, где контрольной метрики ещё нет:
+                # начиная с релиза 363 контрольный ряд пишется сразу, и повторный
+                # перенос упёрся бы в уникальный ключ наблюдения.
                 cur.execute(
                     'UPDATE data.observation o SET metric_id=%s, '
                     "quality_flags=ARRAY['incl_borrowed_funds','control_variant'], "
                     'notes=%s '
                     'WHERE o.metric_id=%s AND o.release_id IN '
-                    '(SELECT release_id FROM catalog.release WHERE source_id=%s AND content_hash <> %s)',
+                    '(SELECT release_id FROM catalog.release WHERE source_id=%s AND content_hash <> %s) '
+                    'AND o.release_id NOT IN '
+                    '(SELECT release_id FROM data.observation WHERE metric_id=%s)',
                     (metric_ids['proxy_pdn_resources_control'],
                      'Контрольный вариант: знаменатель — располагаемые ресурсы, включающие '
                      'привлечённые средства и израсходованные сбережения (круговой знаменатель)',
-                     metric_ids['proxy_pdn_debt_service'], src_ids[DERIVED_SOURCE_CODE], dhash))
+                     metric_ids['proxy_pdn_debt_service'], src_ids[DERIVED_SOURCE_CODE], dhash,
+                     metric_ids['proxy_pdn_resources_control']))
                 moved = cur.rowcount
                 cur.execute(
                     "UPDATE catalog.release SET label='ОБДХ прокси ПДН по ресурсам "

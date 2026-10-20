@@ -227,6 +227,15 @@ def main():
                     continue
                 rows.append((metrics[code], rid, per, val))
 
+            # Бюллетени пересекаются по кварталам (каждый несёт всю историю),
+            # поэтому один и тот же (метрика, регион, период) приходит несколько
+            # раз. Уникальный индекс ux_observation создан ON ONLY и в партициях
+            # не срабатывает — ON CONFLICT дубликат НЕ отсекает. Дедуп в памяти
+            # плюс снятие прошлых строк этого релиза делают прогон идемпотентным.
+            rows = sorted(set(rows))
+            cur.execute('DELETE FROM data.observation WHERE release_id=%s', (release_id,))
+            conn.commit()
+
             inserted = 0
             B = 2000
             for i in range(0, len(rows), B):

@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Витрины контекстного слоя.
+"""УСТАРЕЛО (20.10.2026): плоская логика свежести 45/120.
+
+Не запускать. Живое определение derived.v_metric_context собирается скриптом
+scripts/fix_context_freshness.py — там допуски зависят от частоты ряда
+(A=550, M=75, Q=160 дней). Этот файл оставлен только для истории: его прогон
+перезапишет витрину плоскими порогами и объявит «устаревшими» все годовые ряды.
+Использование блокируется без FORCE_BUILD_CONTEXT_VIEWS=1.
+
+Витрины контекстного слоя.
 
 derived.v_metric_context — одна строка на показатель: код, имя, единица,
 источник, частота, тема, синонимы, последнее наблюдение, число наблюдений
@@ -9,9 +17,16 @@ derived.v_metric_context — одна строка на показатель: к
 derived.v_observation_recent — последние значения по региону за окно, для
 быстрого ответа без обращения ко всей истории.
 """
+import os
 import sys
 sys.path.insert(0, "/home/lnr/research-wiki-private/scripts")
 from db_tunnel import execute, query
+
+if os.environ.get("FORCE_BUILD_CONTEXT_VIEWS") != "1":
+    raise SystemExit(
+        "build_context_views.py устарел: плоская свежесть 45/120 перезапишет "
+        "частотно-зависимую витрину. Используйте scripts/fix_context_freshness.py "
+        "(или FORCE_BUILD_CONTEXT_VIEWS=1, если это осознанное решение).")
 
 CTX = """
 CREATE OR REPLACE VIEW derived.v_metric_context AS

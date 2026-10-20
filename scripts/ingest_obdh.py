@@ -4,10 +4,16 @@
 
 Источник — бюллетень Росстата «Доходы, расходы и потребление домашних хозяйств»
 (внутри ведомства «ДРП»), обследование бюджетов домашних хозяйств (ОБДХ).
-  Прил. 1, лист 1.1 — располагаемые ресурсы домохозяйств, руб. на члена в месяц;
+  Прил. 1, лист 1.1 — располагаемые ресурсы домохозяйств, руб. на члена в месяц,
+    структура ресурсов (доля денежного дохода, натуральных поступлений,
+    привлечённых средств и израсходованных сбережений);
   Прил. 3, лист 3.2 — доля домохозяйств с финансовыми трудностями по платежам;
   Прил. 3, лист 3.3 — условная доля трудностей среди имеющих такой платёж.
 Производная proxy_pdn_debt_service (ОБДХ + ЦБ) считается здесь же.
+Знаменатель прокси — ДЕНЕЖНЫЙ ДОХОД (ресурсы × доля денежного дохода), а не
+располагаемые ресурсы: последние включают привлечённые средства, из-за чего
+мера круговая. Ресурсный вариант считается контрольным и лежит отдельной
+метрикой proxy_pdn_resources_control с пометкой в quality_flags.
 
 Загрузка идёт с VPS через тоннель db_tunnel.py (порт 15432), схема catalog/data.
 Идемпотентность — по sha256 архива в catalog.release.content_hash: повторный
@@ -63,6 +69,15 @@ METRICS = [
     ('obdh_resources_pc_month',
      'Располагаемые ресурсы домашних хозяйств (ОБДХ), руб. на члена домохозяйства в месяц',
      'rub_per_person_month', False, 'primary', SOURCE_CODE),
+    ('obdh_money_income_pc_month',
+     'Денежный доход домашних хозяйств (ОБДХ), руб. на члена домохозяйства в месяц',
+     'rub_per_person_month', False, 'primary', SOURCE_CODE),
+    ('obdh_borrowed_share',
+     'Доля привлечённых средств и израсходованных сбережений в располагаемых ресурсах (ОБДХ), %',
+     'pct', False, 'primary', SOURCE_CODE),
+    ('obdh_inkind_share',
+     'Доля стоимости натуральных поступлений в располагаемых ресурсах (ОБДХ), %',
+     'pct', False, 'primary', SOURCE_CODE),
     ('obdh_paydiff_consumer',
      'Доля домохозяйств с финансовыми трудностями по платежу за потребительский кредит (ОБДХ), %',
      'pct', False, 'primary', SOURCE_CODE),
@@ -79,25 +94,49 @@ METRICS = [
      'Доля домохозяйств с трудностями среди имеющих соответствующий платёж (ОБДХ), %',
      'pct', False, 'primary', SOURCE_CODE),
     ('proxy_pdn_debt_service',
-     'Платёжная нагрузка: прокси долговой нагрузки (поток платежей по кредитам к располагаемым ресурсам домохозяйств, ОБДХ+ЦБ), %',
+     'Платёжная нагрузка: прокси долговой нагрузки (поток платежей по кредитам к денежному доходу домохозяйств, ОБДХ+ЦБ), %',
      'pct', True, 'derived', DERIVED_SOURCE_CODE),
+    ('proxy_pdn_resources_control',
+     'Прокси долговой нагрузки, контрольный вариант: к располагаемым ресурсам, включающим привлечённые средства (ОБДХ+ЦБ), %',
+     'pct', True, 'derived_control', DERIVED_SOURCE_CODE),
 ]
 
+PROXY_VERSION = 'v2_money_income_2026-10-20'
+
 PROXY_FORMULA = (
-    'proxy_pdn = 100 × (a_ипо × Д_ипотека + a_проч × Д_прочее) / (Р × 12 × Н), '
+    'proxy_pdn = 100 × (a_ипо × Д_ипотека + a_проч × Д_прочее) / (ДД × 12 × Н), '
     'где a(r,T) = r / (1 − (1+r)^(−T)); Д_ипотека, Д_прочее — задолженность '
     'физических лиц по ипотечным и прочим кредитам на 01.08.2026 (ЦБ), '
-    'Р — располагаемые ресурсы на члена домохозяйства в месяц (ОБДХ, Прил.1.1), '
+    'ДД — денежный доход на члена домохозяйства в месяц (ОБДХ, Прил.1.1: '
+    'располагаемые ресурсы × доля денежного дохода / 100), '
     'Н — численность населения на 01.01.2025 (Росстат); базовые допущения '
     'r_ипо = 10 %, T_ипо = 20 лет, r_проч = 22 %, T_проч = 2,5 года '
-    '(коэффициенты аннуитета 0,1175 и 0,5616). Прокси популяционный: делится на всё '
-    'население, поэтому систематически ниже публикуемого ПДН заёмщика (НБКИ/ЦБ ≈ 25–26 %) '
-    'и сопоставим между регионами, а не с публикуемым ПДН.'
+    '(коэффициенты аннуитета 0,1175 и 0,5616). Знаменатель — только денежный доход: '
+    'располагаемые ресурсы включают привлечённые средства и израсходованные сбережения, '
+    'что делает меру круговой. Контрольный вариант на ресурсах — метрика '
+    'proxy_pdn_resources_control (quality_flags: incl_borrowed_funds). '
+    'Прокси популяционный: делится на всё население, поэтому систематически ниже '
+    'публикуемого ПДН заёмщика (НБКИ/ЦБ ≈ 25–26 %) и сопоставим между регионами, '
+    'а не с публикуемым ПДН.'
+)
+
+PROXY_FORMULA_CONTROL = (
+    'Контрольный вариант: proxy_pdn_resources = 100 × (a_ипо × Д_ипотека + a_проч × Д_прочее) / '
+    '(Р × 12 × Н), где Р — располагаемые ресурсы на члена домохозяйства в месяц (ОБДХ, Прил.1.1). '
+    'Ресурсы включают привлечённые средства и израсходованные сбережения, поэтому знаменатель '
+    'круговой: чем сильнее регион занимает, тем ниже измеренная нагрузка. Основной показатель — '
+    'proxy_pdn_debt_service (к денежному доходу); этот ряд приводится только как контрольный '
+    'и помечен quality_flags = {incl_borrowed_funds, control_variant}.'
 )
 
 METRIC_ALIASES = {
     'obdh_resources_pc_month': ['располагаемые ресурсы', 'располагаемые ресурсы домохозяйств',
                                 'ресурсы домохозяйств', 'доходы домохозяйств (ОБДХ)'],
+    'obdh_money_income_pc_month': ['денежный доход домохозяйств', 'денежные доходы (ОБДХ)',
+                                   'денежный доход на члена домохозяйства'],
+    'obdh_borrowed_share': ['доля привлечённых средств', 'привлечённые средства и сбережения',
+                            'доля заёмных средств в ресурсах'],
+    'obdh_inkind_share': ['доля натуральных поступлений', 'натуральные поступления домохозяйств'],
     'obdh_paydiff_consumer': ['трудности по потребительскому кредиту',
                               'платёжные трудности потребкредит', 'закредитованность потребительский кредит'],
     'obdh_paydiff_mortgage': ['трудности по ипотеке', 'платёжные трудности ипотека',
@@ -109,6 +148,7 @@ METRIC_ALIASES = {
                                    'условная доля трудностей'],
     'proxy_pdn_debt_service': ['платёжная нагрузка', 'платёжная нагрузка населения',
                                'долговая нагрузка', 'закредитованность', 'прокси ПДН', 'ПДН регионы'],
+    'proxy_pdn_resources_control': ['прокси ПДН по ресурсам', 'контрольный вариант платёжной нагрузки'],
 }
 
 TOPIC_PARENT = ('income', 'Доходы и уровень жизни')
@@ -286,22 +326,48 @@ def year_from_label(val):
     return int(m.group(1)) if m else None
 
 
-def parse_pr1_resources(path):
-    """Прил.1, лист 1.1: (регион, {год: руб/член/мес}) — колонки 1 и 2."""
+def parse_pr1(path):
+    """Прил.1, лист 1.1: (регион, {metric_code: {год: значение}}).
+
+    Колонки идут парами (2023, 2024 в выпуске 2024; 2024, 2025 в выпуске 2025):
+    1–2 располагаемые ресурсы (руб./член/мес), 3–4 доля денежного дохода (%),
+    5–6 натуральные поступления продукты (%), 7–8 натуральные непродовольственные (%),
+    9–10 привлечённые средства и израсходованные сбережения (%).
+    Денежный доход в рублях считается как ресурсы × доля / 100 — в бюллетене
+    он в рублях не публикуется; это фиксируется в notes наблюдения.
+    """
     df = pd.read_excel(path, sheet_name='1.1', header=None)
-    y1, y2 = year_from_label(df.iloc[5, 1]), year_from_label(df.iloc[5, 2])
+    years = [year_from_label(df.iloc[5, j]) for j in range(df.shape[1])]
     out = []
     for i in range(6, len(df)):
-        name = str(df.iloc[i, 0]).strip()
+        name = re.sub(r'\s+', ' ', str(df.iloc[i, 0])).strip()
         if not name or name == 'nan':
             continue
-        vals = {}
-        for col, yr in ((1, y1), (2, y2)):
-            v = df.iloc[i, col]
-            if yr and isinstance(v, (int, float)):
-                vals[yr] = float(v)
-        if vals:
-            out.append((name, vals))
+        rec = {}
+        for base in (1, 3, 5, 7, 9):
+            for j in (base, base + 1):
+                if j >= df.shape[1]:
+                    continue
+                yr, v = years[j], df.iloc[i, j]
+                if not yr or not isinstance(v, (int, float)):
+                    continue
+                key = {1: '_res', 3: '_moneyshare', 5: '_ink_f', 7: '_ink_n', 9: '_borrow'}[base]
+                rec.setdefault(key, {})[yr] = float(v)
+        res = rec.get('_res', {})
+        if not res:
+            continue
+        metrics = {'obdh_resources_pc_month': dict(res)}
+        money = {y: res[y] * rec['_moneyshare'][y] / 100.0
+                 for y in res if y in rec.get('_moneyshare', {})}
+        if money:
+            metrics['obdh_money_income_pc_month'] = money
+        if rec.get('_borrow'):
+            metrics['obdh_borrowed_share'] = dict(rec['_borrow'])
+        inkind = {y: rec.get('_ink_f', {}).get(y, 0.0) + rec.get('_ink_n', {}).get(y, 0.0)
+                  for y in res if y in rec.get('_ink_f', {}) or y in rec.get('_ink_n', {})}
+        if inkind:
+            metrics['obdh_inkind_share'] = inkind
+        out.append((name, metrics))
     return out
 
 
@@ -401,7 +467,8 @@ def build_catalog(cur):
 
     metric_ids = {}
     for code, name_ru, unit_code, is_derived, mtype, src_code in METRICS:
-        formula = PROXY_FORMULA if code == 'proxy_pdn_debt_service' else None
+        formula = {'proxy_pdn_debt_service': PROXY_FORMULA,
+                   'proxy_pdn_resources_control': PROXY_FORMULA_CONTROL}.get(code)
         mid = ensure_metric(cur, code, name_ru, unit_ids[unit_code], src_ids[src_code],
                             freq_a, is_derived, mtype, formula)
         metric_ids[code] = mid
@@ -499,7 +566,10 @@ def _collect(path, sheet, name_col, val_col, start):
 
 
 def compute_proxy(key_to_region):
-    """proxy_pdn по регионам из локальных входов ЦБ/населения и ОБДХ (Прил.1.1, 2025)."""
+    """proxy_pdn по регионам: основной (к денежному доходу) и контрольный (к ресурсам).
+
+    Возвращает список (region_id, значение, вариант), вариант — 'money' | 'resources'.
+    """
     base = PROXY_IN
     debt_mort = os.path.join(base, 'debt_mort.xlsx')
     debt_tot = os.path.join(base, 'lo_20260801.xlsx')
@@ -511,26 +581,33 @@ def compute_proxy(key_to_region):
     mort = _collect(debt_mort, 'итого', 0, -1, 2)
     tot = _collect(debt_tot, 'Данные', 0, 4, 6)
     pop = _collect(popf, 'Численность-человек', 0, 1, 5)
-    # ресурсы — из уже разобранного Прил.1.1 последнего выпуска
-    res = {}
+    # знаменатели — из уже разобранного Прил.1.1 последнего выпуска
+    res, inc = {}, {}
     pr1 = find_sheet_file(os.path.join(EXTRACT, 'DRP_%d' % max(RELEASES)), '4_ПРИЛОЖЕНИЕ 1')
     if pr1:
-        for name, vals in parse_pr1_resources(pr1):
-            if vals:
-                yr = max(vals)
-                res[proto_key(name)] = vals[yr]
+        for name, metrics in parse_pr1(pr1):
+            k = proto_key(name)
+            for code, target in (('obdh_resources_pc_month', res),
+                                 ('obdh_money_income_pc_month', inc)):
+                vals = metrics.get(code) or {}
+                if vals:
+                    target[k] = vals[max(vals)]
     a_m, a_c = annuity(0.10, 20), annuity(0.22, 2.5)
     rows = []
-    for k, (name, d_tot) in ((k, (k, v)) for k, v in tot.items()):
-        if k not in mort or k not in pop or k not in res or k not in key_to_region:
+    for k, d_tot in tot.items():
+        if k not in mort or k not in pop or k not in key_to_region:
             continue
         d_m = mort[k]
         n_pop = pop[k]
         flow = a_m * d_m + a_c * (d_tot - d_m)
-        resources = res[k] * 12 * n_pop / 1e6
-        if resources <= 0:
-            continue
-        rows.append((key_to_region[k], 100.0 * flow / resources))
+        for variant, src in (('money', inc), ('resources', res)):
+            per_person = src.get(k)
+            if not per_person or per_person <= 0:
+                continue
+            denom = per_person * 12 * n_pop / 1e6
+            if denom <= 0:
+                continue
+            rows.append((key_to_region[k], 100.0 * flow / denom, variant))
     return rows
 
 
@@ -538,12 +615,16 @@ def compute_proxy(key_to_region):
 def refresh_metric_cards(cur, metric_ids):
     themes = {
         'obdh_resources_pc_month': ['уровень жизни'],
+        'obdh_money_income_pc_month': ['уровень жизни', 'доходы населения'],
+        'obdh_borrowed_share': ['долговая нагрузка', 'уровень жизни'],
+        'obdh_inkind_share': ['уровень жизни'],
         'obdh_paydiff_consumer': ['потребительский спрос'],
         'obdh_paydiff_mortgage': ['потребительский спрос'],
         'obdh_paydiff_any': ['потребительский спрос'],
         'obdh_paydiff_none': ['потребительский спрос'],
         'obdh_paydiff_within_payers': ['потребительский спрос'],
         'proxy_pdn_debt_service': ['кредит и денежная политика', 'региональная экономика'],
+        'proxy_pdn_resources_control': ['кредит и денежная политика', 'региональная экономика'],
     }
     from datetime import date
     for code, mid in metric_ids.items():
@@ -613,21 +694,24 @@ def main():
             chash = sha256_file(archive)
             rel = cur.execute('SELECT release_id, status FROM catalog.release WHERE source_id=%s AND content_hash=%s',
                               (src_ids[SOURCE_CODE], chash)).fetchone()
-            if rel and rel[1] == 'loaded':
-                print('выпуск %d: хеш %s… уже загружен (release_id=%s) — пропуск' % (year, chash[:12], rel[0]))
-                continue
+            already = bool(rel and rel[1] == 'loaded')
+            if already:
+                # Выпуск уже загружен: не переписываем его, но дозаполняем ряды,
+                # которых в нём ещё нет (новые метрики, добавленные позже).
+                print('выпуск %d: хеш %s… уже загружен (release_id=%s) — дозаполнение рядов'
+                      % (year, chash[:12], rel[0]))
             ex = extract_archive(archive, year)
             pr1 = find_sheet_file(ex, '4_ПРИЛОЖЕНИЕ 1')
             pr3 = find_sheet_file(ex, '6_ПРИЛОЖЕНИЕ 3')
             if not pr1 or not pr3:
                 print('выпуск %d: не найдены приложения в %s' % (year, ex))
                 continue
-            res_rows = parse_pr1_resources(pr1)
+            res_rows = parse_pr1(pr1)
             pd32 = parse_pr3(pr3, '3.2')
             pd33 = parse_pr3(pr3, '3.3')
 
             rows, quarantine, years = [], {}, set()
-            for name, vals in res_rows:
+            for name, metrics in res_rows:
                 all_labels.add(name)
                 rid, how = resolve(name)
                 if rid is None:
@@ -635,9 +719,14 @@ def main():
                         quarantine[name] = quarantine.get(name, 0) + 1
                     continue
                 key_to_region.setdefault(proto_key(name), rid)
-                for yr, v in vals.items():
-                    rows.append((metric_ids['obdh_resources_pc_month'], rid, yr, v, ''))
-                    years.add(yr)
+                for code, vals in metrics.items():
+                    note = ('рассчитано как располагаемые ресурсы × доля денежного дохода / 100; '
+                            'в бюллетене денежный доход в рублях не публикуется'
+                            if code == 'obdh_money_income_pc_month' else None)
+                    for yr, v in vals.items():
+                        rows.append(dict(mid=metric_ids[code], rid=rid, yr=yr, v=v, sub='',
+                                         notes=note))
+                        years.add(yr)
             # 3.2 — ко всем домохозяйствам
             map32 = {'потребкредит': 'obdh_paydiff_consumer', 'ипотека': 'obdh_paydiff_mortgage',
                      'хотябы1': 'obdh_paydiff_any', 'ни_одного': 'obdh_paydiff_none'}
@@ -650,7 +739,8 @@ def main():
                     continue
                 for code_key, code in map32.items():
                     for yr, v in rec.get(code_key, {}).items():
-                        rows.append((metric_ids[code], rid, yr, v, ''))
+                        rows.append(dict(mid=metric_ids[code], rid=rid, yr=yr, v=v, sub='',
+                                         notes=None))
                         years.add(yr)
             # 3.3 — условные доли среди имеющих платёж
             map33 = {'потребкредит': 'потребительский кредит', 'ипотека': 'ипотека'}
@@ -663,20 +753,23 @@ def main():
                     continue
                 for code_key, sub in map33.items():
                     for yr, v in rec.get(code_key, {}).items():
-                        rows.append((metric_ids['obdh_paydiff_within_payers'], rid, yr, v, sub))
+                        rows.append(dict(mid=metric_ids['obdh_paydiff_within_payers'], rid=rid,
+                                         yr=yr, v=v, sub=sub, notes=None))
                         years.add(yr)
 
             # проверки перед регистрацией релиза и вставкой
             max_year = max(years)
-            region_span = {r for (_m, r, _y, _v, _s) in rows}
+            region_span = {row['rid'] for row in rows}
             pct_ids = {metric_ids[c] for c in ('obdh_paydiff_consumer', 'obdh_paydiff_mortgage',
                                                'obdh_paydiff_any', 'obdh_paydiff_none',
-                                               'obdh_paydiff_within_payers')}
+                                               'obdh_paydiff_within_payers',
+                                               'obdh_borrowed_share', 'obdh_inkind_share')}
             bad = []
-            for mid, r, y, v, _sub in rows:
-                ok = (0 <= v <= 100) if mid in pct_ids else (v > 0)
+            for row in rows:
+                v, y = row['v'], row['yr']
+                ok = (0 <= v <= 100) if row['mid'] in pct_ids else (v > 0)
                 if not ok or y < 2000:
-                    bad.append((mid, r, y, v))
+                    bad.append((row['mid'], row['rid'], y, v))
             if not rows or len(region_span) < 86 or len(years) < 2 or bad:
                 print('выпуск %d: ПРОВЕРКИ НЕ ПРОЙДЕНЫ — регионов %d, лет %s, брак %d; стоп'
                       % (year, len(region_span), sorted(years), len(bad)))
@@ -685,7 +778,9 @@ def main():
             # релиз регистрируется только после успешных проверок
             label = 'ОБДХ, ДРП, выпуск %d' % year
             pub = archive_published_at(ex)
-            if rel:
+            if already:
+                release_id = rel[0]
+            elif rel:
                 release_id = rel[0]
                 cur.execute("UPDATE catalog.release SET status='loaded', ingested_at=now(), label=%s, "
                             'published_at=%s, url=%s, content_hash=%s WHERE release_id=%s',
@@ -698,16 +793,18 @@ def main():
             conn.commit()
 
             ins = 0
-            for mid, rid, yr, v, sub in rows:
+            for row in rows:
+                yr = row['yr']
                 status = 'preliminary' if yr == max_year else 'final'
                 cur.execute(
                     'INSERT INTO data.observation (metric_id, region_id, period_start, period_end, value, '
-                    'frequency_id, source_id, release_id, assessment_type, observation_status, sub_dimension) '
-                    "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) "
+                    'frequency_id, source_id, release_id, assessment_type, observation_status, sub_dimension, '
+                    'notes) '
+                    "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) "
                     'ON CONFLICT (metric_id, region_id, period_start, frequency_id, assessment_type, '
                     'sub_dimension, release_id) DO NOTHING',
-                    (mid, rid, dt.date(yr, 1, 1), dt.date(yr, 12, 31), v, freq_a, src_ids[SOURCE_CODE],
-                     release_id, status, 'validated', sub))
+                    (row['mid'], row['rid'], dt.date(yr, 1, 1), dt.date(yr, 12, 31), row['v'], freq_a,
+                     src_ids[SOURCE_CODE], release_id, status, 'validated', row['sub'], row['notes']))
                 ins += cur.rowcount
             # ревизия: перекрытые прошлыми выпусками годы помечаем superseded (без DELETE)
             cur.execute(
@@ -740,7 +837,30 @@ def main():
                           os.path.join(PROXY_IN, 'PrPopul2025_Site.xlsx')):
                     if os.path.exists(p):
                         dh.update(sha256_file(p).encode())
+                dh.update(PROXY_VERSION.encode())   # смена формулы — новый релиз
                 dhash = dh.hexdigest()
+                # Прежние строки производной (знаменатель — располагаемые ресурсы)
+                # переводим в контрольную метрику, значения не переписываем.
+                cur.execute(
+                    'UPDATE data.observation o SET metric_id=%s, '
+                    "quality_flags=ARRAY['incl_borrowed_funds','control_variant'], "
+                    'notes=%s '
+                    'WHERE o.metric_id=%s AND o.release_id IN '
+                    '(SELECT release_id FROM catalog.release WHERE source_id=%s AND content_hash <> %s)',
+                    (metric_ids['proxy_pdn_resources_control'],
+                     'Контрольный вариант: знаменатель — располагаемые ресурсы, включающие '
+                     'привлечённые средства и израсходованные сбережения (круговой знаменатель)',
+                     metric_ids['proxy_pdn_debt_service'], src_ids[DERIVED_SOURCE_CODE], dhash))
+                moved = cur.rowcount
+                cur.execute(
+                    "UPDATE catalog.release SET label='ОБДХ прокси ПДН по ресурсам "
+                    "(контрольный вариант, расчёт 01.08.2026)' "
+                    'WHERE release_id IN (SELECT release_id FROM catalog.release '
+                    "WHERE source_id=%s AND label LIKE %s)",
+                    (src_ids[DERIVED_SOURCE_CODE], 'ОБДХ прокси ПДН (расчёт%'))
+                conn.commit()
+                if moved:
+                    print('производная: %d прежних строк переведены в контрольную метрику' % moved)
                 rel = cur.execute('SELECT release_id FROM catalog.release WHERE source_id=%s AND content_hash=%s',
                                   (src_ids[DERIVED_SOURCE_CODE], dhash)).fetchone()
                 if rel:
@@ -750,24 +870,49 @@ def main():
                         "INSERT INTO catalog.release (source_id, label, published_at, content_hash, status, "
                         "ingested_at) VALUES (%s,%s,%s,%s,'loaded', now()) RETURNING release_id",
                         (src_ids[DERIVED_SOURCE_CODE],
-                         'ОБДХ прокси ПДН (расчёт: ОБДХ 2025 + ЦБ 01.08.2026)', dt.date(2026, 8, 1),
+                         'ОБДХ прокси ПДН к денежному доходу + контроль по ресурсам '
+                         '(ОБДХ 2025 + ЦБ 01.08.2026)', dt.date(2026, 8, 1),
                          dhash)).fetchone()[0]
-                    ins = 0
+                    ins, n_main, n_ctrl = 0, 0, 0
                     max_y = 2025
-                    for rid, val in prows:
+                    for rid, val, variant in prows:
                         if not (0 <= val <= 100):
                             continue
+                        main = variant == 'money'
+                        mid = metric_ids['proxy_pdn_debt_service'] if main else \
+                            metric_ids['proxy_pdn_resources_control']
+                        flags = None if main else ['incl_borrowed_funds', 'control_variant']
+                        note = None if main else \
+                            'Контрольный вариант: знаменатель — располагаемые ресурсы (включают привлечённые средства)'
                         cur.execute(
                             'INSERT INTO data.observation (metric_id, region_id, period_start, period_end, value, '
-                            'frequency_id, source_id, release_id, assessment_type, observation_status, sub_dimension) '
-                            "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,'final','validated','') "
+                            'frequency_id, source_id, release_id, assessment_type, observation_status, sub_dimension, '
+                            'quality_flags, notes) '
+                            "VALUES (%s,%s,%s,%s,%s,%s,%s,%s,'final','validated','',%s,%s) "
                             'ON CONFLICT (metric_id, region_id, period_start, frequency_id, assessment_type, '
                             'sub_dimension, release_id) DO NOTHING',
-                            (metric_ids['proxy_pdn_debt_service'], rid, dt.date(max_y, 1, 1),
-                             dt.date(max_y, 12, 31), val, freq_a, src_ids[DERIVED_SOURCE_CODE], drel))
+                            (mid, rid, dt.date(max_y, 1, 1),
+                             dt.date(max_y, 12, 31), val, freq_a, src_ids[DERIVED_SOURCE_CODE], drel,
+                             flags, note))
                         ins += cur.rowcount
+                        if main:
+                            n_main += cur.rowcount
+                        else:
+                            n_ctrl += cur.rowcount
+                    # ревизия производной: прежние строки того же региона/периода
+                    # помечаем superseded, значения не переписываем
+                    cur.execute(
+                        "UPDATE data.observation o SET observation_status='superseded' "
+                        'WHERE o.metric_id = ANY(%s) AND o.release_id <> %s '
+                        "AND o.observation_status = 'validated' "
+                        'AND EXISTS (SELECT 1 FROM data.observation n WHERE n.metric_id=o.metric_id '
+                        'AND n.region_id=o.region_id AND n.period_start=o.period_start '
+                        'AND n.sub_dimension=o.sub_dimension AND n.release_id=%s '
+                        'AND n.release_id > o.release_id)',
+                        (list(metric_ids.values()), drel, drel))
                     conn.commit()
-                    print('производная proxy_pdn: release_id=%s, вставлено %d регионов' % (drel, ins))
+                    print('производная proxy_pdn: release_id=%s, основной %d регионов, контрольный %d'
+                          % (drel, n_main, n_ctrl))
 
         # --- карточки метрик и свежесть ---
         refresh_metric_cards(cur, metric_ids)

@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import time
 import json
 import os
 import re
@@ -49,6 +50,8 @@ METRIC_CODE = 'vbved_reg_m'
 METRIC_NAME = ('Индекс выпуска товаров и услуг по базовым видам экономической '
                'деятельности, % к соответствующему периоду предыдущего года (регионы)')
 RELEASE = 'ЕМИСС 62024, зеркало nsEDC, снимок 2026-10-20'
+RELEASE_FEDSTAT = 'ЕМИСС 62024, fedstat.ru (первоисточник), снимок 2026-10-21'
+XLS_PATH = os.path.join(RAW_DIR, '62024_fedstat_20261021.xls')
 UNIT = 'pct'
 FREQ = 'M'
 
@@ -86,6 +89,51 @@ def fetch_raw() -> None:
 def clean_region(s: str) -> str:
     s = re.sub(r'^\s*\d{3,11}\s+', '', str(s))
     return re.sub(r'\s+', ' ', s).strip()
+
+
+def period_of(per: str):
+    """'115 январь' → ('январь', None); 'M01_02 январь-февраль' → (…, 'накопительно: …')."""
+    m = re.match(r'^[A-Za-z0-9_]+\s+(.+)$', str(per).strip())
+    label = (m.group(1) if m else str(per)).strip()
+    if label in MONTHS:
+        return label, None
+    if re.match(r'^январь-', label):
+        return label, 'накопительно: %s' % label
+    return None, None
+
+
+def parse_xls(path: str) -> tuple[list[dict], dict]:
+    """Первоисточник: выгрузка ЕМИСС (кнопка «Скачать», формат excel).
+
+    Лист «Данные»: строки — вид показателя, регион, единица, период; годы — колонками.
+    """
+    import xlrd
+    wb = xlrd.open_workbook(path)
+    sh = wb.sheet_by_index(0)
+    hdr = sh.row_values(2)
+    year_cols = {int(h): i for i, h in enumerate(hdr) if re.fullmatch(r'\d{4}', str(h).strip())}
+    stats = {'строк в файле': sh.nrows - 3, 'месячных': 0, 'накопительных': 0,
+             'значений': 0, 'пустых': 0, 'годы': sorted(year_cols)}
+    rows = []
+    for i in range(3, sh.nrows):
+        v = sh.row_values(i)
+        label, sub = period_of(v[3])
+        if label is None:
+            continue
+        stats['месячных' if sub is None else 'накопительных'] += 1
+        reg = clean_region(v[1])
+        for y, col in year_cols.items():
+            raw = v[col]
+            if raw is None or str(raw).strip() in ('', '-'):
+                stats['пустых'] += 1
+                continue
+            val = raw if isinstance(raw, float) else float(str(raw).replace(',', '.').strip())
+            rows.append({'регион': reg, 'год': y,
+                         'месяц': MONTHS.get(label) if sub is None else None,
+                         'метка': label, 'sub': sub, 'значение': float(val),
+                         'единица': str(v[2])})
+            stats['значений'] += 1
+    return rows, stats
 
 
 def parse() -> tuple[list[dict], dict]:
@@ -131,7 +179,7 @@ def parse() -> tuple[list[dict], dict]:
     return rows, stats
 
 
-def build(rows, w: Writer) -> tuple[list[dict], dict]:
+def build(rows, w: Writer, release: str = RELEASE) -> tuple[list[dict], dict]:
     """Строки под Writer.ingest + счётчики распознавания регионов."""
     names = {}
     # варианты состава различаем подразрезом ТОЛЬКО когда на один регион в источнике
@@ -161,7 +209,7 @@ def build(rows, w: Writer) -> tuple[list[dict], dict]:
         out.append({'metric_name': METRIC_NAME, 'value': r['значение'],
                     'ps': (r['год'], r['месяц'] if r['месяц'] else 1),
                     'region': rid, 'sub': sub, 'freq': FREQ,
-                    'source': SOURCE, 'release': RELEASE, 'unit': UNIT,
+                    'source': SOURCE, 'release': release, 'unit': UNIT,
                     '_label': r['метка']})
     # накопительные периоды ставим началом периода: (год, 1), месяц 1
     return out, {'не распознано': sorted(set(lost))}
@@ -188,19 +236,33 @@ def main() -> int:
     ap.add_argument('--check', action='store_true')
     ap.add_argument('--apply', action='store_true')
     ap.add_argument('--refresh', action='store_true', help='перекачать сырьё из зеркала')
+    ap.add_argument('--xls', nargs='?', const=XLS_PATH, default=None,
+                    help='читать выгрузку первоисточника (fedstat) вместо зеркала')
+    ap.add_argument('--drop-mirror', action='store_true',
+                    help='после записи снять строки зеркального релиза (первоисточник их замещает)')
     a = ap.parse_args()
     if not (a.check or a.apply):
         ap.error('нужен --check или --apply')
     if a.refresh:
         fetch_raw()
-    rows, stats = parse()
+    if a.xls:
+        if not os.path.exists(a.xls):
+            print('ОСТАНОВ: нет файла %s' % a.xls)
+            return 2
+        rows, stats = parse_xls(a.xls)
+        release = RELEASE_FEDSTAT
+        print('источник: первоисточник fedstat (%s)' % os.path.basename(a.xls))
+    else:
+        rows, stats = parse()
+        release = RELEASE
+        print('источник: зеркало nsEDC (%s)' % os.path.basename(CSV_PATH))
     print('разбор: строк %d, месячных %d, накопительных %d, значений %d, пусто %d'
           % (stats['строк в файле'], stats['месячных'], stats['накопительных'],
              stats['значений'], stats['пустых']))
     print('единицы в источнике: %s' % sorted({r['единица'] for r in rows}))
 
     w = Writer(tag='vbved', simulate=a.check)
-    prep, info = build(rows, w)
+    prep, info = build(rows, w, release=release)
     print('подготовлено наблюдений: %d | регион не распознан: %s'
           % (len(prep), info['не распознано'] or 'нет'))
     if info['не распознано']:
@@ -214,7 +276,7 @@ def main() -> int:
 
     mid, created = ensure_metric(w)
     os.makedirs(ATTIC, exist_ok=True)
-    dump = os.path.join(ATTIC, 'vbved_reg_m_before_%s.csv.gz' % '20261020')
+    dump = os.path.join(ATTIC, 'vbved_reg_m_before_%s.csv.gz' % time.strftime('%Y%m%d_%H%M%S'))
     n_old = w.dump_group([METRIC_NAME], dump, delete=False) if not created else 0
     print('метрика %s (новая: %s), прежних строк в дампе: %d' % (METRIC_CODE, created, n_old))
 
@@ -222,6 +284,12 @@ def main() -> int:
     n_prep, n_ins, n_conf, n_new = w.ingest(prep_clean, group='emiss_vbved')
     print('итог: подготовлено %d, вставлено %d, конфликтов %d, новых метрик %d'
           % (n_prep, n_ins, n_conf, n_new))
+    if a.drop_mirror and release == RELEASE_FEDSTAT:
+        w.cur.execute("""DELETE FROM data.observation o USING core.release r
+                         WHERE o.release_id = r.release_id AND o.metric_id = %s
+                           AND r.release_label = %s""", (mid, RELEASE))
+        print('снято строк зеркального релиза: %d' % w.cur.rowcount)
+        w.conn.commit()
     w.close()
     return 0
 

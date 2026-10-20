@@ -261,10 +261,22 @@ def main():
             conn.commit()
             n = cur.execute('SELECT count(*) FROM data.observation WHERE release_id=%s', (release_id,)).fetchone()[0]
             print('release_id=%s | наблюдений в релизе: %d' % (release_id, n))
-            chk = cur.execute("""SELECT o.value FROM data.observation o JOIN catalog.metric m ON m.metric_id=o.metric_id
-                WHERE m.metric_code='cbrmon__stroitelstvo__ekonomika_vsego__ishodnye_dannye__indikator_biznes_klimata_banka_rossii'
-                  AND o.period_start='2026-04-01'""").fetchone()
-            print('контроль ИБК Строительство 2026-04 (ожид. 11.1019):', chk[0] if chk else 'НЕТ')
+            # Самопроверка датировки: контрольная величина привязана к месяцу, а не к
+            # «последнему периоду» — иначе после каждой волны проверка врёт (так было
+            # 20.10.2026: константа ждала 11.1019 в 2026-04, а после сдвига 17.10 она
+            # стоит в 2026-05). Проверяем три вещи: где лежит контрольное значение,
+            # каков последний период и не залез ли ряд в будущее.
+            code_ibk = 'cbrmon__stroitelstvo__ekonomika_vsego__ishodnye_dannye__indikator_biznes_klimata_banka_rossii'
+            chk = cur.execute("""SELECT o.period_start FROM data.observation o JOIN catalog.metric m ON m.metric_id=o.metric_id
+                WHERE m.metric_code=%s AND abs(o.value-11.1019)<0.0001""", (code_ibk,)).fetchone()
+            print('контроль датировки: 11.1019 стоит на', chk[0] if chk else 'НЕТ', '(ожид. 2026-05-01)')
+            tail = cur.execute("""SELECT o.period_start, o.value FROM data.observation o JOIN catalog.metric m ON m.metric_id=o.metric_id
+                WHERE m.metric_code=%s ORDER BY o.period_start DESC LIMIT 1""", (code_ibk,)).fetchone()
+            print('последний период ИБК Строительство:', tail)
+            if tail and tail[0] and tail[0] > dt.date.today():
+                print('ВНИМАНИЕ: период в будущем — проверить датировку')
+            if not chk or chk[0] != dt.date(2026, 5, 1):
+                print('ВНИМАНИЕ: контроль датировки не сошёлся — разобрать до следующей волны')
             json.dump({'release_id': release_id}, open('/tmp/cbrmon_direct_state.json', 'w'))
 
 

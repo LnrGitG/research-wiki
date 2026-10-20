@@ -72,3 +72,22 @@
 - observation_v2 INSERT: period_end NOT NULL (для дневных = period_start); CHECK (assessment_type, observation_status) → ('final','validated').
 - Батч-вставка через SSH-тоннель обязательна (построчный → timeout); db_tunnel.connect() → psycopg.Connection.
 - Спеки: specs/ + spec_cli.py + derived.spec_runs/spec_diagnostics (diag.py авто); шаг 2 LLM-разметки не начата.
+## Промноменклатура Росстата (медиабанк бюллетеней)
+- Источник: `https://rosstat.gov.ru/storage/mediabank/<имя>`; имена за разные годы
+  пишутся по-разному: `prom_MM-2023.xlsx`, `prom_MM-2024.xlsx`, `Prom_MM-2025.xlsx`,
+  `prom_MM_YYYY.xlsx` (2026, подчёркивание), разовые — `Prom_07_2024.xlsx`,
+  `Prom_12_2023.xlsx`, `Prom_12-2024.xlsx`, `Prom_12_2025.xlsx`.
+- `Prom_12_2025.xlsx` отдаётся только с заголовком `Referer: https://rosstat.gov.ru/enterprise_industrial`;
+  без него 404 (ловушка: выглядит как снятый файл).
+- Перечень актуальных ссылок — на странице `https://rosstat.gov.ru/enterprise_industrial`
+  (grep по `href="/storage/mediabank/.*[Pp]rom.*xlsx"`); часть ссылок ведёт на 2021 год
+  (`Prom-january.xlsx` и др.) — период всегда проверять по шапке файла, а не по имени.
+- Период бюллетеня: лист «Содержание», строка вида «…за январь 2024 года».
+- Сопоставление продуктов: имя в каталоге обрезано до 200 символов
+  (`direct_core.ensure_metric`), поэтому ключ сравнения — `('Промпродукция, месяц: '+product)[:200]`;
+  переименования ловятся картой код ОКПД2 (графа B) → имя из текущего бюллетеня.
+- Загрузчики: `scripts/direct_rosstat_prom.py` (текущий месяц, cron 13-го),
+  `scripts/backfill_prom_history.py` (архив, окно `--from/--to`),
+  `scripts/backfill_prom_2023.py` (резерв через сводный `Proizvodstvo_mes_2023.xlsx`).
+- Состояние на 20.10.2026: 36 месяцев подряд (2023-09…2026-08), 130 839 наблюдений
+  варианта «месяц», 0 дублей; «накопленным итогом» — производные (is_derived).

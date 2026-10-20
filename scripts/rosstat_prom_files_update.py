@@ -25,6 +25,11 @@ BASE = 'https://rosstat.gov.ru/storage/mediabank/'
 PATTERNS = ['Prom_{mm}_{yyyy}.xlsx',
             'ind_baza_2023_{mm}-{yyyy}.xlsx', 'ind_sub_2023_{mm}-{yyyy}.xlsx',
             'sezon_2023_{mm}-{yyyy}.xlsx']
+# Росстат меняет написание имени бюллетеня от года к году: 2023–2024 —
+# prom_MM-YYYY.xlsx, 2025 — Prom_MM-YYYY.xlsx, 2026 — prom_MM_YYYY.xlsx.
+# Поэтому для Prom пробуются оба разделителя и оба регистра: иначе джоб решает,
+# что выпуска «нет на портале», и группа копит разрыв молча.
+REFERER = 'https://rosstat.gov.ru/enterprise_industrial'  # без него часть файлов отдаёт 404
 
 
 def month_seq(today, back_max=4):
@@ -39,25 +44,53 @@ def month_seq(today, back_max=4):
     return seq
 
 
+def candidates(name):
+    """Варианты написания имени файла (для Prom — оба разделителя и регистра)."""
+    variants = [name]
+    if name.startswith('Prom_'):
+        for alt in (name.replace('_', '-', 1), name.lower(),
+                    name.lower().replace('_', '-', 1)):
+            if alt not in variants:
+                variants.append(alt)
+    return variants
+
+
 def exists_local(name):
     for d in TARGET_DIRS:
-        p = os.path.join(d, name)
-        if os.path.exists(p) and os.path.getsize(p) > 10_000:
-            return p
+        for alt in candidates(name):
+            p = os.path.join(d, alt)
+            if os.path.exists(p) and os.path.getsize(p) > 10_000:
+                return p
     return None
 
 
 def fetch(name, dest_dir, check_only=False):
-    url = BASE + name
-    if check_only:
-        r = subprocess.run(['curl', '-k', '-s', '-o', '/dev/null', '-w', '%{http_code}',
-                            '-L', '--max-time', '60', url], capture_output=True, text=True)
-        return r.stdout.strip()
-    os.makedirs(dest_dir, exist_ok=True)
-    dest = os.path.join(dest_dir, name)
-    r = subprocess.run(['curl', '-k', '-s', '-L', '--max-time', '180',
-                        '-w', '%{http_code}', '-o', dest, url],
-                       capture_output=True, text=True)
+    """Скачать файл, перебирая варианты написания; возвращает путь или None.
+
+    Итоговый файл сохраняется под каноническим именем `name`, даже если на портале
+    он лежал под другим вариантом: загрузчики ищут файл по умолчанию
+    (Prom_MM_YYYY.xlsx), и переименование здесь избавляет их от знания вариантов.
+    """
+    for alt in candidates(name):
+        url = BASE + alt
+        if check_only:
+            r = subprocess.run(['curl', '-k', '-s', '-o', '/dev/null', '-w', '%{http_code}',
+                                '-L', '-e', REFERER, '--max-time', '60', url],
+                               capture_output=True, text=True)
+            if r.stdout.strip() == '200':
+                return '200'
+            continue
+        os.makedirs(dest_dir, exist_ok=True)
+        dest = os.path.join(dest_dir, name)
+        r = subprocess.run(['curl', '-k', '-s', '-L', '-e', REFERER, '--max-time', '180',
+                            '-w', '%{http_code}', '-o', dest, url],
+                           capture_output=True, text=True)
+        if (r.stdout or '').strip()[-3:] == '200':
+            break
+    else:
+        if not check_only and os.path.exists(os.path.join(dest_dir, name)):
+            os.remove(os.path.join(dest_dir, name))
+        return None
     code = (r.stdout or '').strip()[-3:]
     ok = code == '200' and os.path.exists(dest) and os.path.getsize(dest) > 10_000
     if ok:

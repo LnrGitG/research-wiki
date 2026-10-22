@@ -4204,3 +4204,13 @@ node at the same time`, потому что VPS сам рекламирует 0.
 
 Отдельно зафиксировано дублирование `reasoning`/`reasoning_content` (12 462 из 15 694 строк побайтово равны,
 ~16,7 МБ) — кандидат в upstream. Записка: `queries/state-db-growth-20261022.md`.
+
+Дополнение к записи выше — исполнено в тот же день. Точка возврата: `~/.hermes/backups/state-20261022-preoptimize/state.db`
+(971 649 024 Б, integrity ok) и `config.yaml.bak-state-db-20261022`. Пять gateway остановлены, выполнен
+`hermes sessions optimize-storage --yes` (~8 минут), gateway подняты, все active, ошибок нет.
+Результат: 971,6 → 346,7 МБ (−64 %, 640 МБ), состав: messages 221,5, fts_data 51,2, trigram_data 33,2,
+system_prompts 5,9 МБ; fts_storage_version=2, integrity ok, 78 024 сообщения, триггеры на месте, свежие
+записи индексируются. Усиление записи замерено заново: 1,53 против 3,09 на смеси сообщений и 4,76 против
+7,22 на мелких (то есть 4–7 МБ/сутки вместо 9–13). В конфиг внесены journal_size_limit 16 МБ,
+wal_autocheckpoint 500, retention_days 30, min_interval_hours 12. Ограничение, которое осталось: триграммный
+подстрочный поиск больше не покрывает tool-выводы и транскрипты cron/subagent (предусмотренная граница upstream).

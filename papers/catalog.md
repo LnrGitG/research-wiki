@@ -3420,6 +3420,20 @@ migrated: 2026-07-26
 - used_in: [[reviews/oecd-murtin-2026-nowcasting-disposable-income]]
 - notes: код и репликационный пакет не опубликованы; PDF издателя CC BY 4.0, 35 с., текст извлечён полностью
 
+## causa-nguyen-schreyer-tanaka-2026-public-sector-productivity.md
+- title: Measuring public sector productivity: concepts, challenges and international practices
+- authors: Causa, Orsetta; Nguyen, Maxime; Schreyer, Paul; Tanaka, Tomomi
+- year: 2026
+- method: концептуальный обзор измерения производительности: inputs, output, quality-adjusted output, вклад в outcomes; анализ национальных счетов и международных практик
+- data: обзор методик и практик OECD; собственного эмпирического датасета нет
+- key_result: прямое измерение выпуска и качества содержательнее затратного, но качество, границы услуг и сопоставимость остаются сложными; для производственной мотивации — только методологическая аналогия, не исследование премий
+- relevance: средняя для проектирования многомерной оценки выпуска и качества; непрямая для схем распределения бонусов
+- status: used
+- class: A
+- doi: "10.1787/ac8d7932-en"
+- used_in: [[annotations/causa-nguyen-schreyer-tanaka-2026-public-sector-productivity-ru]]
+- notes: OECD Economics Department Working Papers No. 1878; издательский PDF доступен; working paper не является нормативным стандартом
+
 ### Sakana AI — «The AI Scientist»: сквозная автоматизация исследования (v1/v2, Nature 2026)
 - title: The AI Scientist: Towards Fully End-to-end Automation of AI Research / Towards Fully Automated Open-Ended Scientific Discovery
 - authors: Lu C., Lu C., Lange R.T., Foerster J., Clune J. и др. (Sakana AI, UBC, Oxford)

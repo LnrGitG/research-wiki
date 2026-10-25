@@ -789,3 +789,99 @@ hypotheses:
     relates_to: ["queries/vbved-cross-correlation-20261021"]
     next_check: "Оценить с контролем на стоимость стройматериалов и ставку; проверить лаг на панели регионов"
     created: 2026-10-21
+
+  - id: H-A
+    kind: hypothesis
+    title: "Селективная ДКП: дополнительность поддержки (ITT по капитальным затратам)"
+    status: proposed
+    statement: "Предложение поддержки в рамках селективного инструмента увеличивает реальные капитальные затраты фирм-заявителей (ITT > 0), а вытеснение рыночного кредита не превышает 25%: верхняя граница 95%-го доверительного интервала доли вытеснения ≤ 25%."
+    test: "Панель фирма-заявитель × квартал: ITT по всем полным заявкам, включая отклонённые; динамические эффекты относительно даты решения; сравнение заявок около балла/очереди допуска при валидном пороге; оценка доли вытеснения рыночного кредита; FE фирмы и квартала, кластеризация на уровне назначения поддержки."
+    data: "R1/R1b (реестр заявок и отказов ЭКСАР-РЭЦ), R2 (договорная/долговая информация кредитного контура Банка России), отчётность фирм; поля и матрица «поле - гипотеза» в queries/microdata-requests-selective-dkp-20261025.md"
+    evidence_for: []
+    evidence_against: []
+    sources: [eksar-rec, cbr-credit-registry, fns-reporting]
+    tags: [selective-monetary-policy, subsidized-credit, additionality, crowding-out, itt]
+    relates_to: ["queries/research-design-selective-dkp", "queries/prereg-selective-dkp-20261025", "queries/protocol-selective-dkp", "queries/computational-plan-selective-dkp-20261025", "hypothesis:H-037", "hypothesis:H-038"]
+    next_check: "Зарегистрирована до расчётов 25.10.2026 (порог 25% вытеснения принят владельцем как предложенный). Микродоступ не оформлен, обращения не отправлялись: до отправки R1/R2 проверка невозможна, статус остается proposed"
+    created: 2026-10-25
+    methodology_ref: "queries/protocol-selective-dkp"
+
+  - id: H-B
+    kind: hypothesis
+    title: "Селективная ДКП: передача снижения стоимости фондирования в ставку заёмщика"
+    status: proposed
+    statement: "Не менее 50% снижения стоимости фондирования передаётся в эффективную ставку заёмщика в течение двух кварталов, при этом 95%-й доверительный интервал коэффициента передачи исключает ноль."
+    test: "Договор × месяц: регрессия эффективной ставки (с комиссиями) на стоимость фондирования с FE заёмщика и периода; отдельно передача в срок, объём и маржу; сопоставимые незатронутые кредиты как контроль."
+    data: "R2: псевдонимизированные firm_id, bank_id, loan_id, даты решения/выдачи/пересмотра, сумма и остаток, ставка и комиссии, срок, обеспечение, цена фондирования и условия инструмента"
+    evidence_for: []
+    evidence_against: []
+    sources: [cbr-credit-registry, eksar-rec]
+    tags: [selective-monetary-policy, pass-through, interest-rate, loan-level]
+    relates_to: ["queries/research-design-selective-dkp", "queries/prereg-selective-dkp-20261025", "queries/protocol-selective-dkp", "queries/computational-plan-selective-dkp-20261025"]
+    next_check: "Зарегистрирована до расчётов 25.10.2026 (порог 50% передачи за 2 квартала). Без договорных наблюдений агрегированные ставки дают только частичное покрытие: не выдавать агрегат за договорную оценку"
+    created: 2026-10-25
+    methodology_ref: "queries/protocol-selective-dkp"
+
+  - id: H-C
+    kind: hypothesis
+    title: "Селективная ДКП: устойчивость эффекта расширения лимита"
+    status: proposed
+    statement: "Накопленный ITT на реальные капитальные затраты или выпуск к восьмому кварталу положителен, а эффект кварталов 5-8 составляет не менее 50% эффекта кварталов 1-4, то есть эффект лимита не затухает."
+    test: "Динамический ITT на горизонте 8 кварталов с предсобытийной траекторией; отношение позднего эффекта (кварталы 5-8) к раннему (1-4) ≥ 0,5; фирменная панель плюс агрегатный контроль по R3a."
+    data: "R1 (полный поток заявок), фирменная панель капитальных затрат и выпуска по кварталам, R3a (агрегаты ФТС как дополнительная проверка)"
+    evidence_for: []
+    evidence_against: []
+    sources: [eksar-rec, fns-reporting, fts-aggregates]
+    tags: [selective-monetary-policy, persistence, event-study, credit-impulse]
+    relates_to: ["queries/research-design-selective-dkp", "queries/prereg-selective-dkp-20261025", "queries/protocol-selective-dkp", "queries/computational-plan-selective-dkp-20261025"]
+    next_check: "Зарегистрирована до расчётов 25.10.2026 (порог 50% позднего эффекта к раннему, горизонт 8 кварталов). В исполнении применять операционное определение предрегистрации, динамические коэффициенты приводить как оценочную реализацию"
+    created: 2026-10-25
+    methodology_ref: "queries/protocol-selective-dkp"
+
+  - id: H-D
+    kind: hypothesis
+    title: "Селективная ДКП: внешние эффекты сложности и обучения"
+    status: proposed
+    statement: "Поддержка даёт положительный эффект хотя бы по одному заранее выбранному показателю обучения, связей или сложности продукции, и допуск к инструменту не сводится к экспортному статусу."
+    test: "ITT по заранее зафиксированному набору показателей (обучение, квалификации, НИОКР, связи поставщиков, ассортимент); отдельный тест состава бенефициаров и связи допуска с экспортным статусом; R3b только при законном доступе к фирменным данным ФТС."
+    data: "R1 (критерии и баллы допуска, связанные поля фирмы), фирменные показатели обучения и связей, R3b при наличии законного доступа"
+    evidence_for: []
+    evidence_against: []
+    sources: [eksar-rec, fns-reporting, fts-microdata]
+    tags: [selective-monetary-policy, spillovers, learning, product-complexity]
+    relates_to: ["queries/research-design-selective-dkp", "queries/prereg-selective-dkp-20261025", "queries/protocol-selective-dkp", "queries/computational-plan-selective-dkp-20261025"]
+    next_check: "Зарегистрирована до расчётов 25.10.2026. Агрегат R3a не заменяет фирменную проверку: при отсутствии валидных показателей или связанных идентификаторов статус - «не установлено»"
+    created: 2026-10-25
+    methodology_ref: "queries/protocol-selective-dkp"
+
+  - id: H-E
+    kind: hypothesis
+    title: "Селективная ДКП: оправданность отвязки ставки от ключевой"
+    status: proposed
+    statement: "Разность общественной приведённой стоимости «отвязка минус привязка» положительна в базовом сценарии и неотрицательна минимум в 80% заранее заданных стресс-сценариев при консолидированной стоимости без двойного счёта трансфертов."
+    test: "Сценарный счёт в КПМ (S1 действующая привязка, S2 увеличенный лимит при привязке, S3 увеличенный лимит с селективным клином); ΔNPV_soc, ожидаемые потери и CVaR 95% по компонентам ЦБ/бюджет/банки; проверки согласованности C1-C5."
+    data: "R1/R2 (инвестиции, долг, ставки, остатки, дефолты, гарантии), трансферты и потери по ЦБ/бюджету/банкам, сценарные входы, горизонт дисконтирования и seed"
+    evidence_for: []
+    evidence_against: []
+    sources: [cbr-ondkp-2027-2029, eksar-rec, cbr-credit-registry]
+    tags: [selective-monetary-policy, quasi-fiscal-cost, npv, cvar, scenarios]
+    relates_to: ["queries/research-design-selective-dkp", "queries/prereg-selective-dkp-20261025", "queries/protocol-selective-dkp", "queries/computational-plan-selective-dkp-20261025", "hypothesis:H-038"]
+    next_check: "Зарегистрирована до расчётов 25.10.2026 (порог 80% стресс-сценариев - правило приёмки, не вероятность благоприятного исхода). Без микроданных допустим только условный сценарный результат, не причинный вывод"
+    created: 2026-10-25
+    methodology_ref: "queries/protocol-selective-dkp"
+
+  - id: H-F
+    kind: hypothesis
+    title: "Селективная ДКП: отсутствие чрезмерного ущерба передаче ДКП в остальных сегментах"
+    status: proposed
+    statement: "Селективный инструмент не ухудшает передачу ключевой ставки в остальные сегменты более чем на 10% базового коэффициента передачи (верхняя 95%-я граница) и не отклоняет инфляционные ожидания более чем на 0,25 п.п. на горизонте четырёх кварталов."
+    test: "Односторонняя проверка неухудшения: верхняя 95%-я граница относительного ухудшения передачи < 10%; передача по сегментам через взаимодействие сегмента с высокочастотным монетарным сюрпризом; отклонение опросных ожиданий в пределах ±0,25 п.п. через 4 квартала."
+    data: "Сегмент × месяц: ставки по целевому и прочим сегментам, стабильная классификация сегментов, высокочастотные сюрпризы ДКП, опросные ожидания с датой, горизонтом и методикой"
+    evidence_for: []
+    evidence_against: []
+    sources: [cbr, cbr-expectations, emiss-62024]
+    tags: [selective-monetary-policy, transmission, expectations, non-inferiority]
+    relates_to: ["queries/research-design-selective-dkp", "queries/prereg-selective-dkp-20261025", "queries/protocol-selective-dkp", "queries/computational-plan-selective-dkp-20261025", "queries/selective-monetary-policy-growth"]
+    next_check: "Зарегистрирована до расчётов 25.10.2026 (порог 10% ухудшения и 0,25 п.п. ожиданий). Отсутствие значимого вреда не доказывает безопасность: если интервал не исключает ущерб за пределом, статус - «не установлено», не «безопасно»"
+    created: 2026-10-25
+    methodology_ref: "queries/protocol-selective-dkp"

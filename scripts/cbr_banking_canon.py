@@ -7,8 +7,10 @@
 Что загружается (только ряды, которых нет в каноне под другими путями):
   raw/cbr/bulletin/mortgage_lending_market_*.xlsx, лист Т_34 (квартальные цены)
       → cbr_housing_price_primary_reg_m, cbr_housing_price_secondary_reg_m
-  raw/cbr/escrow/DDMMYYYY.xlsx, колонки «Задолженность» и «Средневзвешенная ставка»
-      → cbr_pf_debt_reg_m, cbr_pf_rate_reg_m
+  raw/cbr/escrow/DDMMYYYY.xlsx, колонки «Задолженность» и «Остатки средств»
+      → cbr_pf_debt_reg_m, cbr_pf_escrow_balance_reg_m
+      (ставка в этих файлах есть только по федеральным округам —
+       cbr_pf_rate_fo_m, scripts/ingest_cbr_pf_fo.py)
 
 Остальные ряды банковского бюллетеня (ИЖК по регионам, корпоративные кредиты,
 эскроу-счета) в канон попадают из VFS-файлов ЦБ через transfer_cbr_vfs.py —
@@ -48,13 +50,36 @@ METRICS = {
     'cbr_housing_price_secondary_reg_m': ('ЦБ: средняя цена 1 кв.м жилья, вторичный рынок (рег.)', 14),
     'cbr_pf_debt_reg_m': ('ЦБ: задолженность по действующим кредитным договорам проектного '
                           'финансирования (рег.)', 11),
+    # ставка публикуется ТОЛЬКО по федеральным округам (cbr_pf_rate_fo_m,
+    # scripts/ingest_cbr_pf_fo.py); регионального ряда не существует —
+    # карточка оставлена неактивной, чтобы не плодить пустой ряд.
     'cbr_pf_rate_reg_m': ('ЦБ: средневзвешенная ставка по кредитным договорам проектного '
                           'финансирования (рег.)', 12),
+    'cbr_pf_escrow_balance_reg_m': ('ЦБ: остатки средств на счетах эскроу (рег.)', 11),
 }
-# escrow: индекс колонки в файле (0-based; заголовок строки 4: 0=№,1=Субъект,
-# 2=Кол-во действ. кред. договоров, 3=Сумма … договоров, 4=Задолженность,
-# 5=Кол-во счетов эскроу, 6=Остатки …, 7=Средневзвешенная ставка, 8/9=раскрытые)
-ESCROW_COLS = {4: 'cbr_pf_debt_reg_m', 7: 'cbr_pf_rate_reg_m'}
+# escrow: колонки ищем ПО ЗАГОЛОВКУ, а не по фиксированному индексу.
+# Формат файла менялся: до 01.08.2026 — 11 колонок (5=все счета эскроу,
+# 6=счета с остатком, 7=остатки средств, 8=ставка), с 01.08.2026 — 10
+# колонок (5=счета с остатком, 6=остатки, 7=ставка). Фиксированный индекс 7
+# в старом формате указывал на «Остатки средств, млн руб.» — под метрикой
+# ставки лежали миллионы рублей (дефект найден 27.10.2026: Москва 3 080 690,66).
+ESCROW_KEYWORDS = (
+    ('задолженность', 'cbr_pf_debt_reg_m'),
+    ('остатки средств', 'cbr_pf_escrow_balance_reg_m'),
+)
+
+
+def escrow_col_map(header_row):
+    """Индексы колонок эскроу-файла по тексту заголовка (устойчиво к смене формата)."""
+    col_map = {}
+    for idx, cell in enumerate(header_row or ()):
+        if cell is None:
+            continue
+        text = norm(str(cell))
+        for kw, code in ESCROW_KEYWORDS:
+            if kw in text:
+                col_map.setdefault(idx, code)
+    return col_map
 
 
 def norm(s):
@@ -131,6 +156,9 @@ def parse_escrow_file(path):
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
     rows = list(wb.active.iter_rows(min_row=1, values_only=True))
     wb.close()
+    col_map = escrow_col_map(rows[3] if len(rows) > 3 else None)
+    if not col_map:
+        return out
     for row in rows[4:]:                       # данные с 5-й строки (1-based)
         if len(row) < 3:
             continue
@@ -140,7 +168,7 @@ def parse_escrow_file(path):
         name = str(name).strip()
         if is_fo(name) and 'РОССИЙСКАЯ' not in name.upper():
             continue
-        for col, code in ESCROW_COLS.items():
+        for col, code in col_map.items():
             if col >= len(row):
                 continue
             val = row[col]

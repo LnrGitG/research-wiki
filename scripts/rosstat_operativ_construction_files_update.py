@@ -41,8 +41,7 @@ def main():
                 if updated: break
             if not updated or not re.search(r'\b2026\b',updated):
                 raise ValueError(f'missing/incorrect source update stamp: {updated!r}')
-            rows=wb['1'].iter_rows(min_row=1,max_row=1,values_only=True)
-            header=next(rows,None)
+            header=next(wb['1'].iter_rows(min_row=1,max_row=1,values_only=True),None)
             if not header or not any(isinstance(v,str) and 'строительств' in v.lower() for v in header):
                 raise ValueError('table 1 header does not identify construction')
             wb.close()

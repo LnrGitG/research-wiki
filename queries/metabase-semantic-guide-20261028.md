@@ -307,7 +307,23 @@ Metabase различает **Measures** (сохранённые агрегат�
 
 ## 9. Рецепты для Metabase (проверены ролью `metabase_ro`)
 
-### 9.1 Модель фактов (базовый слой, один раз)
+### 9.1 Модель фактов: `derived.v_bi_observation` (уже создана)
+
+С 28.10.2026 денормализованная витрина существует: `derived.v_bi_observation`,
+6 856 188 строк (срез без `observation_status = 'rejected'`), 29 колонок —
+`metric_code`/`metric_name`/`metric_short_name`, `freq_code`/`freq_name`,
+`period_start`/`period_end`/`year`/`month`/`quarter`, `region_code`/
+`region_name`/`region_level`/`region_id`, `unit_code`/`unit_name`,
+`source_code`/`source_name`, `release_label`/`published_at`, `value`/`value_str`,
+`sub_dimension`, `assessment_type`, `observation_status`, `quality_flags`,
+`release_id`, `observation_id`. В Metabase это готовая таблица — Model строить
+не нужно, достаточно ограничить видимость колонок.
+
+Замеры под ролью BI: `count(*)` — 2,54 с; выборка по `metric_code` + уровень
+региона — 0,14 с; агрегат по метрике — 0,08 с.
+
+Эквивалентный SQL (оставлен для случая, когда нужна своя модель с
+дополнительными полями, например `months_per_period`):
 
 ```sql
 SELECT o.metric_id, m.metric_code, m.name_ru, mu.unit_code, mu.name_ru AS unit_name,
@@ -429,16 +445,20 @@ WHERE m.metric_code = '<код>';
 
 ### 11.2 Три препятствия (каждое — одна строка, но это права/схема)
 
-| # | Препятствие | Следствие сейчас | Минимальное решение |
+| # | Препятствие | Следствие сейчас | Статус на 28.10.2026 |
 |---|---|---|---|
-| B1 | нет `USAGE` на схему `core` → `v_datalens_observations` недоступна | витрина DataLens не переиспользуется; `year/month/quarter` считаем в модели | либо `GRANT USAGE ON SCHEMA core TO metabase_ro; GRANT SELECT ON core.v_datalens_observations TO metabase_ro;` либо живём на `derived` (рекомендую второе) |
-| B2 | нет `USAGE` на схему `meta` | разрывы сопоставимости (`series_comparability`), классификаторы и политики в дашборд не попадают | `GRANT USAGE ON SCHEMA meta TO metabase_ro; GRANT SELECT ON ALL TABLES IN SCHEMA meta TO metabase_ro;` либо перенос нужных полей в `derived` |
-| B3 | нет тонкой денормализованной витрины под BI | модель 9.1 — это 7 JOIN'ов на 6,9 млн строк; на широких срезах `statement_timeout = 2 min` сработает | создать `derived.v_bi_observation` (или materialized view с индексами) и дать грант |
+| B1 | нет `USAGE` на схему `core` → `v_datalens_observations` недоступна | витрина DataLens не переиспользуется; `year/month/quarter` считаем в модели | **оставлено как есть** по рекомендации: BI живёт на `derived`, витрина DataLens — снимок под другую задачу |
+| B2 | нет `USAGE` на схему `meta` | разрывы сопоставимости, классификаторы и политики в дашборд не попадали | **снято**: `GRANT USAGE ON SCHEMA meta` + `GRANT SELECT ON ALL TABLES IN SCHEMA meta` роли `metabase_ro`. Важно: `meta.series_comparability` и `meta.classifier` сейчас **пусты** (0 строк) — грант открывает путь, но наполнять их надо отдельной задачей |
+| B3 | нет тонкой денормализованной витрины под BI | модель 9.1 — 7 JOIN'ов на 6,9 млн строк, риск упереться в `statement_timeout = 2 min` | **снято**: создано представление `derived.v_bi_observation` (6 856 188 строк, срез без `rejected`), грант `SELECT` роли выдан; скрипт `scripts/build_bi_observation_view.py` идемпотентен |
 
-B1 и B2 — расширение прав существующей роли, обратимое одним `REVOKE`; B3 —
-новый объект в `derived`. По регламенту изменение схемы/прав выполняется только
-по явной команде владельца, поэтому эти три пункта вынесены в решения, а не
-сделаны «заодно».
+Замеры под ролью `metabase_ro` после снятия B2/B3: `count(*)` по витрине — 2,54 с,
+выборка по метрике и региону — 0,14 с, агрегат по метрике — 0,08 с. То есть
+двухминутный таймаут перестаёт быть ограничением: фильтр по `metric_code`
+отрабатывает за десятые доли секунды.
+
+Откат (одной транзакцией, если понадобится): `DROP VIEW derived.v_bi_observation;`
+`REVOKE ALL ON ALL TABLES IN SCHEMA meta FROM metabase_ro;`
+`REVOKE USAGE ON SCHEMA meta FROM metabase_ro;`
 
 ### 11.3 Чего не хватает в самих данных (не в правах)
 
@@ -463,11 +483,13 @@ B1 и B2 — расширение прав существующей роли, о
 ## 12. Требует подтверждения владельца
 
 1. **B1** — переиспользовать ли витрину `core.v_datalens_observations` (грант) или
-   строить модель только на `derived`.
-2. **B2** — грант на `meta` или перенос трёх полей `series_comparability` в
-   `derived`.
-3. **B3** — создавать ли `derived.v_bi_observation` (обычное или материализованное
-   представление; материализованное требует cron-обновления).
+   строить модель только на `derived`. Решение по умолчанию уже действует:
+   живём на `derived`, `core` не открываем.
+2. **B2, B3** — закрыты 28.10.2026 (грант на `meta` выдан, `derived.v_bi_observation`
+   создана и доступна роли). Подтверждения не требуют, откат описан в 11.2.
+3. **Наполнение `meta.series_comparability` и `meta.classifier`** — таблицы пусты;
+   без наполнения примечания о разрывах сопоставимости в дашборде появятся
+   только после отдельной задачи.
 4. **Спорная агрегация**: для `index` по умолчанию Average или Last — влияет на
    все индексные чарты; предлагаю Average с подписью «среднее по периоду».
 5. **Порог ядра витрины**: 1 138 метрик (≥10 наблюдений) или расширить до 1 796

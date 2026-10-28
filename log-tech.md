@@ -4299,3 +4299,12 @@ data/catalog/derived/ops работает, `core` и `meta` — permission denie
 на derived. Рецепты гайда прогнаны под ролью BI (модель фактов 0,2 с на метрике,
 87 регионов по безработице, 2 319 наблюдений ввода жилья). Найден дефект
 каталога: 1 427 активных метрик с unit_code=unknown (368 402 наблюдения).
+
+### 28.10.2026 — BI-витрина и гранты роли metabase_ro
+
+Создано представление `derived.v_bi_observation` (6 856 188 строк без rejected,
+29 колонок) скриптом `scripts/build_bi_observation_view.py` (идемпотентен, откат —
+DROP VIEW). Роли `metabase_ro` выданы гранты: SELECT на витрину, USAGE на схему
+meta и SELECT на её таблицы. Замеры под ролью BI: count 2,54 с, выборка по
+metric_code 0,14 с, агрегат 0,08 с — таймаут 2 мин перестал быть ограничением.
+Дефект для очереди: `meta.series_comparability` и `meta.classifier` пусты (0 строк).

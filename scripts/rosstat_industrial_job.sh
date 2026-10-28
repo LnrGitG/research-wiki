@@ -45,4 +45,8 @@ APPLY=1 PRUNE=period "$PY" scripts/direct_sezon.py || exit 3
 
 APPLY=1 PRUNE=period "$PY" scripts/direct_ind_prod.py || exit 4
 
-echo "rosstat_industrial: промпродукция, СС-индексы и индексы по субъектам загружены в канон"
+# Проверяем и сохраняем оперативный месячный срез СМР отдельным выпуском.
+"$PY" scripts/rosstat_operativ_construction_files_update.py || exit 5
+APPLY=1 "$PY" scripts/direct_rosstat_operativ_construction.py || exit 6
+
+echo "rosstat_industrial: промпродукция, СС-индексы, индексы субъектов и оперативные СМР загружены в канон"

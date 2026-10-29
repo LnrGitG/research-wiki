@@ -31,7 +31,6 @@ REPO = Path(__file__).resolve().parent.parent
 JOBS = REPO / "scripts" / "ingest_jobs.json"
 STAMP = Path("/home/lnr/personal/tasks/.freshness_digest_last")
 
-SILENT_HOURS = 72        # загрузчик считается молчащим
 ARCHIVE_DAYS = 548       # 18 месяцев без нового периода — кандидат в архив
 MIN_OBS = 12             # ряд короче 12 наблюдений не судим
 TOP = 8                  # сколько примеров показывать в отчёте
@@ -77,15 +76,19 @@ def loaders(cur) -> tuple[list[str], int, int]:
                 if status == "failed"][:5]
 
     for job, meta in load_jobs().items():
+        if not meta.get("in_schedule", True):
+            continue  # обёртка есть, расписания нет: не судим, но и не забываем
         endpoint_id = meta.get("endpoint_id")
+        gap_limit = float(meta.get("max_gap_days", 3)) * 24
         last = last_by_job.get(job) or (last_by_endpoint.get(endpoint_id)
                                        if endpoint_id else None)
         if last is None:
-            problems.append(f"нет ни одного прогона в журнале: {job}")
+            problems.append(f"журнал не видел ни одного прогона: {job}")
             continue
         hours = (datetime.now(last.tzinfo) - last).total_seconds() / 3600
-        if hours > SILENT_HOURS:
-            problems.append(f"молчит {hours:.0f} ч: {job} (последний {last:%d.%m %H:%M})")
+        if hours > gap_limit:
+            problems.append(f"молчит {hours:.0f} ч при ожидаемых ≤{gap_limit:.0f}: "
+                            f"{job} (последний {last:%d.%m %H:%M})")
     return problems, runs_24h, failed_24h
 
 

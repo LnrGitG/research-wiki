@@ -1,242 +1,210 @@
 #!/usr/bin/env python3
 """freshness_digest.py — сторож контура данных (линия B).
 
-Три класса сигналов вместо одного:
-  1) загрузчик упал или молчит (ops.ingest_run);
-  2) ряд отстал против норматива публикации источника, а не против
-     произвольного допуска в днях (derived.v_observation_latest + лаг из
-     derived.v_publication_lag_trusted);
-  3) сам сторож не отработал дольше ожидаемого (файл-отметка).
+Отвечает на три вопроса и молчит, когда отвечать нечего:
+  1) какой загрузчик упал или молчит (ops.ingest_run);
+  2) какой ряд отстал против норматива публикации своего источника
+     (derived.metric_progress + catalog.source_sla);
+  3) какие алерты никто не подтвердил и сколько рядов пора свести в архив.
 
-Тихий режим: при норме не печатает ничего и выходит с кодом 0. Любое
-отклонение — печать отчёта и код 1, чтобы cron-джоба была помечена сбойной.
+Тяжёлых запросов внутри нет: агрегат прогресса лежит в материализованном
+представлении derived.metric_progress (обновляется за полчаса до прогона),
+нормативы — в catalog.source_sla. Оба объекта читаются за миллисекунды,
+поэтому сторож можно ставить дважды в день без нагрузки на базу.
 
-Только чтение. Никаких записей в БД, кроме файла-отметки рядом со скриптом.
-
-Запуск: python3 scripts/freshness_digest.py [--verbose]
+Правила вывода:
+  * при норме печатает пустую строку, код 0 (тихий cron);
+  * при отклонении печатает отчёт, код 1 (видно в истории джоба);
+  * --verbose печатает состояние и при норме (для ручного запуска).
 """
 from __future__ import annotations
 
 import argparse
 import json
-import os
 import sys
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime
 from pathlib import Path
 
 DSN = dict(host="127.0.0.1", port=15432, dbname="research_wiki", user="wiki",
            connect_timeout=15)
 REPO = Path(__file__).resolve().parent.parent
-MARK = REPO / "logs" / ".freshness_digest_last"
-JOBS_MAP = REPO / "scripts" / "ingest_jobs.json"
+JOBS = REPO / "scripts" / "ingest_jobs.json"
+STAMP = Path("/home/lnr/personal/tasks/.freshness_digest_last")
 
-# Норматив публикации по источнику, дни: p90 наблюдённого лага там, где он есть,
-# иначе — запасное значение по частоте (используется только до накопления данных).
-FALLBACK_NORM = {
-    "rosstat": 45, "fedstat_emiss": 45, "cbr": 30, "fns": 45, "domrf": 40,
-    "reestr": 40, "minfin": 30, "iminfin": 40, "smartlab": 45, "moex": 5,
-    "yandex": 30, "trudvsem": 30, "hh": 30, "kep": 10, "worldbank": 365,
-    "derived_internal": 0,
-}
-SCHEDULED_JOB_MAX_SILENCE_H = 72          # джоб считается молчащим после 72 ч
-STALE_METRIC_MIN_OBS = 12                 # мелкие ряды в отчёт не берём
-TOP = 15
+SILENT_HOURS = 72        # загрузчик считается молчащим
+ARCHIVE_DAYS = 548       # 18 месяцев без нового периода — кандидат в архив
+MIN_OBS = 12             # ряд короче 12 наблюдений не судим
+TOP = 8                  # сколько примеров показывать в отчёте
 
 
-def connect():
-    import psycopg
-    return psycopg.connect(**DSN)
+def load_jobs() -> dict:
+    return {k: v for k, v in json.loads(JOBS.read_text(encoding="utf-8")).items()
+            if not k.startswith("_")}
 
 
-def load_jobs_map() -> dict:
-    try:
-        return {k: v for k, v in json.loads(JOBS_MAP.read_text(encoding="utf-8")).items()
-                if not k.startswith("_")}
-    except Exception:  # noqa: BLE001
-        return {}
-
-
-def norms(cur) -> dict:
-    """Норматив = p90 лага, посчитанного по данным, пришедшим после 01.10.2026."""
+def loaders(cur) -> tuple[list[str], int, int]:
+    """Упавшие и молчащие загрузчики. Возвращает (проблемы, прогонов, упало)."""
     cur.execute("""
-        select s.source_code,
-               percentile_cont(0.9) within group (order by l.lag_days)
-        from derived.v_publication_lag_trusted l
-        join catalog.source s on s.source_id = l.source_id
-        where l.published_from_ingest and l.lag_days is not null
-        group by 1
-        having count(*) >= 20
+        select parser_script, max(started_at)
+        from ops.ingest_run group by 1
     """)
-    measured = {code: int(round(v)) for code, v in cur.fetchall()}
-    out = {}
-    for code, fb in FALLBACK_NORM.items():
-        out[code] = max(measured.get(code, fb), 0)
-    out["_measured"] = measured
-    return out
+    last_by_job = {r[0]: r[1] for r in cur.fetchall()}
 
-
-def loaders(cur, jobs_map) -> list[str]:
-    problems = []
     cur.execute("""
-        select parser_script, status, exit_code, started_at::date, left(coalesce(output_tail,''), 160)
+        select endpoint_id, max(started_at) from ops.ingest_run
+        where endpoint_id is not null group by 1
+    """)
+    last_by_endpoint = {r[0]: r[1] for r in cur.fetchall()}
+
+    cur.execute("""
+        select count(*), count(*) filter (where status = 'failed')
         from ops.ingest_run
-        where started_at > now() - interval '48 hours' and status = 'failed'
-        order by started_at desc
+        where started_at > now() - interval '24 hours'
     """)
-    for parser, status, code, day, tail in cur.fetchall():
-        first = (tail or "").strip().splitlines()
-        problems.append(f"загрузчик упал: {parser} ({day}), код {code}"
-                        + (f", вывод: {first[-1][:120]}" if first else ""))
+    runs_24h, failed_24h = cur.fetchone()
 
-    cur.execute("select parser_script, max(started_at) from ops.ingest_run group by 1")
-    last_by_parser = {p: t for p, t in cur.fetchall()}
-    cur.execute("""select endpoint_id, max(started_at) from ops.ingest_run
-                    where endpoint_id is not null group by 1""")
-    last_by_endpoint = {e: t for e, t in cur.fetchall()}
-
-    now = datetime.now(timezone.utc)
-    for job, meta in jobs_map.items():
-        seen = last_by_parser.get(job)
-        if seen is None and meta.get("endpoint_id") is not None:
-            seen = last_by_endpoint.get(meta["endpoint_id"])
-        if seen is None:
-            problems.append(f"загрузчик не журналирует ни одного прогона: {job}")
-        elif now - seen > timedelta(hours=SCHEDULED_JOB_MAX_SILENCE_H):
-            hrs = int((now - seen).total_seconds() // 3600)
-            problems.append(f"загрузчик молчит {hrs} ч: {job} (последний {seen:%d.%m %H:%M})")
-    return problems
-
-
-def stale_rows(cur, norms_by_source) -> list[str]:
-    """Ряд отстал: ожидаемый следующий период плюс норматив источника уже прошёл."""
     cur.execute("""
-        with last as (
-            select o.metric_id,
-                   count(*) as n,
-                   max(o.period_end) as last_end,
-                   max(o.period_start) as last_start,
-                   max(o.frequency_id) as freq,
-                   max(o.source_id) as source_id
-            from data.observation o
-            where o.observation_status <> 'rejected'
-            group by o.metric_id
-        )
-        select m.metric_code, left(m.name_ru, 60), c.freq_code,
-               (c.months_per_period * 30) as step, s.source_code,
-               l.last_start, l.last_end, l.n
-        from last l
-        join catalog.metric m on m.metric_id = l.metric_id
-        join catalog.source s on s.source_id = l.source_id
-        left join catalog.frequency c on c.frequency_id = l.freq
-        where l.n >= %s and c.months_per_period > 0 and l.last_end is not null
-          and m.status = 'active'
-          and l.last_end >= current_date - interval '18 months'
-        """, (STALE_METRIC_MIN_OBS,))
-    today = date.today()
-    out = []
-    for code, name, fcode, step, source_code, last_start, last_end, n in cur.fetchall():
-        norm = norms_by_source.get(source_code, FALLBACK_NORM.get(source_code, 45))
-        step = step or 1
-        nxt_end = last_end + timedelta(days=step)
-        overdue = (today - (nxt_end + timedelta(days=norm))).days
-        if overdue > 0:
-            out.append((overdue, code, name, fcode, source_code, last_end, n))
-    out.sort(reverse=True)
-    return out
+        select parser_script, exit_code, started_at
+        from ops.ingest_run
+        where status = 'failed' and started_at > now() - interval '24 hours'
+        order by started_at desc limit 5
+    """)
+    problems = [f"упал {r[0]} (код {r[1]}, {r[2]:%d.%m %H:%M})" for r in cur.fetchall()]
+
+    for job, meta in load_jobs().items():
+        endpoint_id = meta.get("endpoint_id")
+        last = last_by_job.get(job) or (last_by_endpoint.get(endpoint_id)
+                                       if endpoint_id else None)
+        if last is None:
+            problems.append(f"нет ни одного прогона в журнале: {job}")
+            continue
+        hours = (datetime.now(last.tzinfo) - last).total_seconds() / 3600
+        if hours > SILENT_HOURS:
+            problems.append(f"молчит {hours:.0f} ч: {job} (последний {last:%d.%m %H:%M})")
+    return problems, runs_24h, failed_24h
+
+
+def rows_health(cur) -> tuple[dict, dict]:
+    """Отставание и архив по данным derived.metric_progress + catalog.source_sla."""
+    cur.execute("""
+        select coalesce(s.source_code, 'unknown') as src,
+               count(*) filter (where overdue_days > 0) as n_late,
+               count(*) as n_total
+        from (
+            select p.source_id,
+                   (current_date - (p.last_period_end
+                       + (f.months_per_period * 30)
+                       + coalesce(sla.lag_p90_days, 45))) as overdue_days
+            from derived.metric_progress p
+            left join catalog.frequency f on f.frequency_id = p.frequency_id
+            left join catalog.source_sla sla on sla.source_id = p.source_id
+            where p.n_obs >= %s
+              and p.status = 'active'
+              and p.last_period_end >= current_date - %s
+        ) t
+        left join catalog.source s on s.source_id = t.source_id
+        group by 1 order by 2 desc
+    """, (MIN_OBS, ARCHIVE_DAYS))
+    by_source = [r for r in cur.fetchall() if r[1]]
+
+    cur.execute("""
+        select distinct on (t.name_ru) t.name_ru, t.last_period_end, t.overdue_days
+        from (
+            select p.name_ru, p.last_period_end,
+                   current_date - (p.last_period_end
+                       + (f.months_per_period * 30)
+                       + coalesce(sla.lag_p90_days, 45)) as overdue_days
+            from derived.metric_progress p
+            left join catalog.frequency f on f.frequency_id = p.frequency_id
+            left join catalog.source_sla sla on sla.source_id = p.source_id
+            where p.n_obs >= %s and p.status = 'active'
+              and p.last_period_end >= current_date - %s
+        ) t
+        where t.overdue_days > 0
+        order by t.name_ru, t.overdue_days desc
+    """, (MIN_OBS, ARCHIVE_DAYS))
+    examples = sorted(cur.fetchall(), key=lambda r: r[2], reverse=True)[:TOP]
+
+    cur.execute("""
+        select count(*) from derived.metric_progress
+        where status = 'active' and last_period_end < current_date - %s
+    """, (ARCHIVE_DAYS,))
+    archive = cur.fetchone()[0]
+
+    cur.execute("""
+        select count(*) from ops.alert
+        where delivered_at is null and acknowledged_at is null
+          and raised_at < now() - interval '1 day'
+    """)
+    undelivered = cur.fetchone()[0]
+    return dict(by_source=by_source, examples=examples, archive=archive,
+                undelivered=undelivered), {}
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--verbose", action="store_true", help="печатать сводку даже при норме")
+    ap.add_argument("--verbose", action="store_true")
     args = ap.parse_args()
 
-    jobs_map = load_jobs_map()
-    conn = connect()
-    cur = conn.cursor()
+    import psycopg
 
-    try:
-        norms_by_source = norms(cur)
-        loader_problems = loaders(cur, jobs_map)
-        stale = stale_rows(cur, norms_by_source)
+    conn = psycopg.connect(**DSN)
+    with conn.cursor() as cur:
+        cur.execute("set statement_timeout = '60s'")
+        loader_problems, runs_24h, failed_24h = loaders(cur)
+        health, _ = rows_health(cur)
 
-        cur.execute("""
-            with last as (
-                select metric_id, count(*) n, max(period_end) last_end
-                from data.observation where observation_status <> 'rejected'
-                group by 1
-            )
-            select count(*) from last l join catalog.metric m using(metric_id)
-            where l.n >= %s and m.status = 'active'
-              and l.last_end < current_date - interval '18 months'
-        """, (STALE_METRIC_MIN_OBS,))
-        closed_series = cur.fetchone()[0]
+    total = sum(r[2] for r in health["by_source"])
+    late = sum(r[1] for r in health["by_source"])
+    fresh_share = 100.0 * (total - late) / total if total else 100.0
 
-        cur.execute("""select count(*) from ops.alert
-                        where delivered_at is null
-                          and acknowledged_at is null
-                          and raised_at < now() - interval '1 day'""")
-        pending_alerts = cur.fetchone()[0]
+    problems = list(loader_problems)
+    if late:
+        problems.append(f"отстают {late} рядов из {total} "
+                        f"(свежих {fresh_share:.1f} %)")
+    if health["undelivered"]:
+        problems.append(f"алертов без доставки и подтверждения: {health['undelivered']}")
 
-        cur.execute("select count(*) from ops.ingest_run where started_at > now() - interval '24 hours'")
-        runs_24h = cur.fetchone()[0]
-    finally:
-        conn.close()
+    stamp_ok = True
+    if STAMP.exists():
+        prev = date.fromisoformat(STAMP.read_text().strip())
+        gap = (date.today() - prev).days
+        if gap > 2:
+            problems.append(f"сторож не запускался {gap} дн (отметка {prev})")
 
-    lines = []
-    if loader_problems:
-        lines.append("Загрузчики:")
-        lines += [f"  - {p}" for p in loader_problems[:TOP]]
-
-    if stale:
-        groups = {}
-        for overdue, code, name, fcode, source_code, last_end, n in stale:
-            groups.setdefault(source_code, []).append((overdue, code, name, last_end, n))
-        lines.append(f"Ряды отстали против норматива ({len(stale)} метрик):")
-        for source_code, items in sorted(groups.items(), key=lambda kv: -len(kv[1])):
-            norm = norms_by_source.get(source_code, 45)
-            sample = items[:3]
-            tail = "; ".join(f"{c} «{nm}» до {le:%m.%Y} (+{od} дн)" for od, c, nm, le, _ in sample)
-            lines.append(f"  - {source_code} (норматив {norm} дн): {len(items)} метрик; {tail}")
-
-    if closed_series:
-        lines.append(f"Рядов без движения более 18 месяцев (кандидаты в архив): {closed_series}")
-
-    if pending_alerts:
-        lines.append(f"Алерты без доставки старше суток: {pending_alerts}")
-
-    if runs_24h == 0:
-        lines.append("Журнал загрузок пуст за сутки: ни один загрузчик не отработал")
-
-    mark_ok = True
-    try:
-        if MARK.exists():
-            prev = datetime.fromisoformat(MARK.read_text().strip())
-            gap = (datetime.now(timezone.utc) - prev).total_seconds() / 3600
-            if gap > 36:
-                lines.append(f"Сторож не отрабатывал {gap:.0f} ч (пропущены прогоны)")
-        MARK.parent.mkdir(parents=True, exist_ok=True)
-        MARK.write_text(datetime.now(timezone.utc).isoformat())
-    except Exception:  # noqa: BLE001
-        mark_ok = False
-
-    measured = norms_by_source.get("_measured", {})
-    if not lines:
+    if not problems:
         if args.verbose:
-            tail = ", ".join(f"{k} {v} дн" for k, v in sorted(measured.items())) or "нет замеров"
-            print(f"Сторож: норма. Прогонов за сутки {runs_24h}, алертов без доставки 0. "
-                  f"Нормативы: {tail}.")
-        return 0
+            print(f"Сторож: норма. Прогонов за сутки {runs_24h}, "
+                  f"свежих рядов {fresh_share:.1f} % из {total}.")
         return 0
 
-    header = (f"Сторож контура данных, {datetime.now(timezone.utc):%d.%m.%Y %H:%M} UTC. "
-              f"Прогонов за сутки: {runs_24h}.")
-    print(header)
-    print("\n".join(lines))
-    if measured:
-        print("Нормативы (p90 наблюдённого лага, дни): "
-              + ", ".join(f"{k} {v}" for k, v in sorted(measured.items())))
-    if not mark_ok:
-        print("Отметка о прогоне не записана — проверьте права на logs/")
+    out = [f"Сторож контура данных, {date.today():%d.%m.%Y}. "
+           f"Прогонов за сутки: {runs_24h}" + (f", упало: {failed_24h}" if failed_24h else "")]
+    if loader_problems:
+        out.append("Загрузчики:")
+        out += [f"  - {p}" for p in loader_problems]
+    if late:
+        out.append(f"Ряды против норматива публикации (отстают {late} из {total}, "
+                   f"свежих {fresh_share:.1f} %):")
+        for src, n_late, n_total in health["by_source"]:
+            out.append(f"  - {src}: {n_late} из {n_total}")
+        out.append("  примеры:")
+        for name, last_end, overdue in health["examples"]:
+            label = (name or "")[:70]
+            out.append(f"    {label} — последний период {last_end:%m.%Y}, "
+                       f"просрочка {overdue} дн")
+    if health["archive"]:
+        out.append(f"Кандидатов в архив (нет нового периода >18 мес): {health['archive']} "
+                   f"— разбирать в этапе 3, не авария.")
+    if health["undelivered"]:
+        out.append(f"Алертов без доставки и подтверждения: {health['undelivered']}.")
+
+    print("\n".join(out))
+    try:
+        STAMP.parent.mkdir(parents=True, exist_ok=True)
+        STAMP.write_text(date.today().isoformat())
+    except OSError:
+        pass
     return 1
 
 

@@ -24,7 +24,7 @@ fi
 set -uo pipefail
 
 PY="$HOME/.hermes/hermes-agent/venv/bin/python3"
-WIKI="$HOME/research-wiki"
+WIKI="$HOME/research-wiki-private"
 cd "$WIKI" || { echo "СБОЙ: нет каталога $WIKI"; exit 1; }
 
 # --- 1. сбор свежего выпуска ---

@@ -63,13 +63,18 @@ def loaders(cur) -> tuple[list[str], int, int]:
     """)
     runs_24h, failed_24h = cur.fetchone()
 
+    # Важен последний прогон, а не любая неудача за сутки: загрузчик, который
+    # упал и через час отработал, не должен числиться сломанным.
     cur.execute("""
-        select parser_script, exit_code, started_at
+        select distinct on (parser_script)
+               parser_script, status, exit_code, started_at
         from ops.ingest_run
-        where status = 'failed' and started_at > now() - interval '24 hours'
-        order by started_at desc limit 5
+        where started_at > now() - interval '24 hours'
+        order by parser_script, started_at desc
     """)
-    problems = [f"упал {r[0]} (код {r[1]}, {r[2]:%d.%m %H:%M})" for r in cur.fetchall()]
+    problems = [f"упал {name} (код {code}, {when:%d.%m %H:%M})"
+                for name, status, code, when in cur.fetchall()
+                if status == "failed"][:5]
 
     for job, meta in load_jobs().items():
         endpoint_id = meta.get("endpoint_id")

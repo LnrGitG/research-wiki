@@ -64,6 +64,18 @@ def exists_local(name):
     return None
 
 
+def dest_for(name):
+    """Каталог по типу файла.
+
+    Промбюллетень читает только `direct_rosstat_prom.py` и только из `raw/prom`,
+    а индексы — загрузчики из `raw/rosstat/data`. Раньше скачивание всегда шло в
+    TARGET_DIRS[0]: файл Prom ложился в `raw/rosstat/data`, `exists_local()`
+    находил его там и больше не копировал, а загрузчик промпродукции его не видел
+    — группа копила разрыв при формально успешном джобе.
+    """
+    return TARGET_DIRS[1] if name.startswith('Prom_') else TARGET_DIRS[0]
+
+
 def fetch(name, dest_dir, check_only=False):
     """Скачать файл, перебирая варианты написания; возвращает путь или None.
 
@@ -149,7 +161,7 @@ def main():
         for n in names:
             if exists_local(n):
                 continue
-            d = fetch(n, TARGET_DIRS[0])
+            d = fetch(n, dest_for(n))
             (downloaded if d else failed).append(n)
         if failed and not downloaded:
             print(f'период {m:02d}.{y}: файлов нет на портале ({", ".join(failed)}) — смотрим предыдущий месяц')

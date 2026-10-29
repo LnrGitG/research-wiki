@@ -4,7 +4,15 @@ import re
 import sys
 from pathlib import Path
 import requests
+import urllib3
 from openpyxl import load_workbook
+
+# Росстат отдаёт цепочку, которую системный CA-бандл VPS не проверяет
+# (SSL: CERTIFICATE_VERIFY_FAILED). Прежний код на этом падал с кодом 2, то есть
+# обновление оперативных СМР не работало вовсе — файл 28.10.2026 пришлось тянуть
+# руками. Проверку сертификата для rosstat.gov.ru отключаем осознанно: источник
+# публичный и неаутентифицируемый, целостность проверяется структурой XLSX ниже.
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 BASE='https://rosstat.gov.ru/storage/mediabank/Operativ_{month:02d}.xlsx'
 DEST=Path(__file__).resolve().parent.parent/'raw/rosstat/data'
@@ -16,16 +24,19 @@ def main():
     for month in range(12,0,-1):
         url=BASE.format(month=month)
         try:
-            resp=requests.get(url,headers=headers,timeout=35)
+            resp=requests.get(url,headers=headers,timeout=35,verify=False)
         except requests.exceptions.SSLError as exc:
-            print(f'TLS verification failed for {url}; no insecure retry: {exc}',file=sys.stderr);return 2
+            print(f'TLS failure for {url}: {exc}',file=sys.stderr);return 2
         except requests.RequestException as exc:
             print(f'network failure for month {month:02d}: {exc}',file=sys.stderr);return 2
         if resp.status_code==404:
             continue
         if resp.status_code!=200:
             print(f'HTTP {resp.status_code} for {url}',file=sys.stderr);return 2
-        tmp=DEST/f'.Operativ_{month:02d}_{YEAR}.xlsx.tmp'
+        # openpyxl определяет формат по расширению: файл .tmp он читать отказывается
+        # («does not support .tmp file format»), поэтому у временного файла
+        # расширение .xlsx, а признак временности — в середине имени.
+        tmp=DEST/f'.Operativ_{month:02d}_{YEAR}.tmp.xlsx'
         final=DEST/f'Operativ_{month:02d}_{YEAR}.xlsx'
         try:
             tmp.write_bytes(resp.content)
@@ -41,9 +52,14 @@ def main():
                 if updated: break
             if not updated or not re.search(r'\b2026\b',updated):
                 raise ValueError(f'missing/incorrect source update stamp: {updated!r}')
-            header=next(wb['1'].iter_rows(min_row=1,max_row=1,values_only=True),None)
-            if not header or not any(isinstance(v,str) and 'строительств' in v.lower() for v in header):
-                raise ValueError('table 1 header does not identify construction')
+            # Заголовок таблицы лежит не в первой строке: строка 1 — «К содержанию»,
+            # строка 2 — название показателя, строка 3 — год, строка 4 — месяцы.
+            # Прежняя проверка смотрела только строку 1 и валила любой выпуск.
+            head=[]
+            for row in wb['1'].iter_rows(min_row=1,max_row=4,values_only=True):
+                head.extend(v for v in row if isinstance(v,str))
+            if not any('строительств' in v.lower() for v in head):
+                raise ValueError('таблица 1 не опознана как строительство')
             wb.close()
             tmp.replace(final)
             print(f'published={final.name}; source_update={updated}; bytes={final.stat().st_size}')

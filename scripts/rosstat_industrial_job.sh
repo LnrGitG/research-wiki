@@ -1,56 +1,76 @@
 #!/bin/bash
-# rosstat_industrial_job.sh — cron-обёртка: промышленная статистика Росстата, прямой контур.
+# rosstat_industrial_job.sh — cron-обёртка: оперативная статистика Росстата, прямой контур.
 #
-# 1) rosstat_prom_files_update.py — докачка месячных файлов с портала Росстата:
-#    Prom_MM_YYYY.xlsx (бюллетень «Производство важнейших видов продукции») плюс
-#    индексы ind_baza/ind_sub/sezon. Prom в список добавлен 16.10.2026: раньше
-#    его скачивали руками, и прямой загрузчик месяцами мог не видеть нового
-#    выпуска — то есть группа копила бы разрыв даже при живом джобе.
-# 2) APPLY=1 direct_rosstat_prom.py — промпродукция в канон: три метрики на
-#    продукт (отчётный месяц, предыдущий месяц, накопленным итогом), частота M.
-# 3) APPLY=1 PRUNE=period direct_sezon.py — СС-индексы промпроизводства (SAAR)
-#    в канон: две серии на секцию (к предыдущему месяцу, к базовому периоду),
-#    частота M, подразрез 'section: <SEC>'. Режим PRUNE=period, потому что файл
-#    Росстата кумулятивный и ревизуемый: снимаем ровно периоды из разбора и
-#    пишем заново, иначе правка исторических значений не подхватилась бы
-#    (ON CONFLICT DO NOTHING).
-# 3) APPLY=1 PRUNE=period direct_ind_prod.py — индексы производства по субъектам
-#    РФ из ind_sub_MM-YYYY.xlsx: все 15 серийных листов (5 видов деятельности ×
-#    3 единицы: к соответствующему месяцу, к соответствующему периоду, к
-#    предыдущему месяцу), частота M. Файл СКОЛЬЗЯЩИЙ: окно — последние 20
-#    месяцев, а ряд по добыче канон держит с 2020-01, поэтому PRUNE=period
-#    снимает только периоды окна; периоды вне окна остаются как есть.
-#    Разовая правка (RENAME=1) уже сделана 16.10.2026: карточка 1141
-#    переименована под добычу, код ippsm отдан настоящему ИПП.
-# 4) Загрузчик оперативных СМР по регионам `direct_rosstat_operativ_construction.py`:
-#    обновитель ищет последний доступный `Operativ_MM.xlsx`, проверяет XLSX,
-#    листы и отметку публикации, затем `APPLY=1` сохраняет месячные накопительные
-#    итоги отдельным релизом без PRUNE. Это отдельная метрика, не годовой ряд.
+# Что грузится (порядок важен):
+# 1) rosstat_prom_files_update.py — докачка месячных файлов с портала: Prom_MM_YYYY.xlsx
+#    (бюллетень «Производство важнейших видов продукции»), ind_baza/ind_sub/sezon.
+#    Prom сохраняется в raw/prom (его читает только direct_rosstat_prom.py), индексы —
+#    в raw/rosstat/data. До 29.10.2026 скачивание всегда шло в raw/rosstat/data, и
+#    загрузчик промпродукции нового выпуска не видел.
+# 2) APPLY=1 direct_rosstat_prom.py — промпродукция в канон (месяц и накопленный итог).
+# 3) APPLY=1 PRUNE=period direct_sezon.py — СС-индексы (SAAR): файл кумулятивный и
+#    ревизуемый, поэтому периоды из разбора снимаются и пишутся заново.
+# 4) APPLY=1 PRUNE=period direct_ind_prod.py — индексы производства по субъектам
+#    (15 серийных листов). Файл скользящий (окно 20 месяцев), PRUNE=period снимает
+#    только периоды окна, остальная история канона не трогается.
+# 5) rosstat_operativ_construction_files_update.py + APPLY=1
+#    direct_rosstat_operativ_construction.py — оперативные СМР по регионам
+#    (Operativ_MM.xlsx, публикуется в конце месяца): уровень накопительно, индекс
+#    накопительно г/г, индекс месяц г/г, индекс м/м — четыре отдельные метрики.
 #
-# История обёртки: 16.10.2026 при снятии гармонайзера 6 она была обращена в
-# заглушку (шага к канону тогда не существовало), джоб 4499ed3c70ee поставлен на
-# паузу. В тот же день цепочка восстановлена на прямых загрузчиках (сначала
-# промпродукция), затем добавлены СС-индексы.
+# Расписание в cron: 0 10 26-31,1-3 * * — окно публикаций Росстата (27–28 число:
+# Prom и индексы 27.10, Operativ 28.10). Прежнее расписание «13-е число» данные не
+# ловило: джоб отрабатывал через две недели после публикации, а сентябрьский выпуск
+# 27–28.10.2026 не забрал вовсе.
 #
-# Оба загрузчика идемпотентны: повторный прогон не плодит строк и не теряет
-# периоды. Числа «вставлено» в логе загрузчиков — счётчик строк к отправке после
-# схлопывания внутри группы, а не прирост базы.
+# Тишина при отсутствии нового: обёртка снимает хеш-снимок сырья до и после докачки
+# и, если ничего не изменилось, выходит молча (no_agent-джоб доставляет stdout как
+# есть, поэтому ежедневный прогон в окне не должен давать ежедневный отчёт).
+#
+# История: 16.10.2026 при снятии гармонайзера 6 обёртка была обращена в заглушку,
+# в тот же день восстановлена на прямых загрузчиках. 29.10.2026 добавлены индексы
+# оперативных СМР и тихий режим, расписание переведено с 13-го числа на окно
+# публикаций.
 set -u
 PY=/home/lnr/.hermes/hermes-agent/venv/bin/python3
 REPO=/home/lnr/research-wiki-private
 cd "$REPO" || exit 1
 
-"$PY" scripts/rosstat_prom_files_update.py \
-  || echo "предупреждение: докачка файлов Росстата завершилась с ошибкой"
+snapshot() {
+  { ls -1 raw/prom/Prom_*.xlsx 2>/dev/null
+    ls -1 raw/rosstat/data/ind_baza_2023_*.xlsx raw/rosstat/data/ind_sub_2023_*.xlsx \
+          raw/rosstat/data/sezon_2023_*.xlsx raw/rosstat/data/Operativ_*.xlsx 2>/dev/null
+  } | sort | xargs -r sha256sum 2>/dev/null | sha256sum | cut -c1-32
+}
 
-APPLY=1 "$PY" scripts/direct_rosstat_prom.py || exit 2
+before=$(snapshot)
 
-APPLY=1 PRUNE=period "$PY" scripts/direct_sezon.py || exit 3
+if ! prom_out=$("$PY" scripts/rosstat_prom_files_update.py 2>&1); then
+  echo "rosstat_industrial: докачка файлов промышленной статистики не удалась"
+  echo "$prom_out"
+  exit 2
+fi
 
-APPLY=1 PRUNE=period "$PY" scripts/direct_ind_prod.py || exit 4
+if ! oper_out=$("$PY" scripts/rosstat_operativ_construction_files_update.py 2>&1); then
+  echo "rosstat_industrial: докачка оперативных СМР не удалась"
+  echo "$oper_out"
+  exit 5
+fi
 
-# Проверяем и сохраняем оперативный месячный срез СМР отдельным выпуском.
-"$PY" scripts/rosstat_operativ_construction_files_update.py || exit 5
-APPLY=1 "$PY" scripts/direct_rosstat_operativ_construction.py || exit 6
+after=$(snapshot)
+if [ "$before" = "$after" ]; then
+  exit 0            # нового выпуска нет — молчим
+fi
+
+new_files=$({ echo "$prom_out"; echo "$oper_out"; } | grep -E 'скачано|published=' || true)
+echo "$new_files"
+
+APPLY=1 "$PY" scripts/direct_rosstat_prom.py || exit 3
+
+APPLY=1 PRUNE=period "$PY" scripts/direct_sezon.py || exit 4
+
+APPLY=1 PRUNE=period "$PY" scripts/direct_ind_prod.py || exit 6
+
+APPLY=1 "$PY" scripts/direct_rosstat_operativ_construction.py || exit 7
 
 echo "rosstat_industrial: промпродукция, СС-индексы, индексы субъектов и оперативные СМР загружены в канон"

@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+
+# --- журнал загрузок (ops.ingest_run), см. scripts/run_logged.py ---
+if [ -z "${INGEST_LOGGED:-}" ]; then
+  exec env INGEST_LOGGED=1 /home/lnr/.hermes/hermes-agent/venv/bin/python3 \
+       /home/lnr/research-wiki-private/scripts/run_logged.py --job "$(basename "$0")" -- bash "$0" "$@"
+fi
+
 # Cron-обёртка группы «парк строительной техники» (сборник «Строительство в России»).
 #
 # 1) rosstat_stroit_pril_files_update.py — докачка и распаковка приложения к

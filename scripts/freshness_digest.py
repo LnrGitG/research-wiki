@@ -78,6 +78,8 @@ def loaders(cur) -> tuple[list[str], int, int]:
     for job, meta in load_jobs().items():
         if not meta.get("in_schedule", True):
             continue  # обёртка есть, расписания нет: не судим, но и не забываем
+        if meta.get("manual"):
+            continue  # ручной канал: нет выгрузки — не отказ загрузчика
         endpoint_id = meta.get("endpoint_id")
         gap_limit = float(meta.get("max_gap_days", 3)) * 24
         last = last_by_job.get(job) or (last_by_endpoint.get(endpoint_id)

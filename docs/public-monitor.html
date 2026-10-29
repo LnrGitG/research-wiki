@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0">
+<title>📈 Публичный монитор жилья | Research Wiki</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f1117;color:#e0e0e0;padding:12px;max-width:900px;margin:0 auto}
+h1{font-size:1.3rem;margin-bottom:4px;background:linear-gradient(90deg,#4fc3f7,#81c784);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#888;font-size:0.78rem;margin-bottom:10px}
+nav{font-size:0.78rem;margin-bottom:10px;line-height:1.7}
+nav a{color:#4fc3f7;text-decoration:none}
+.controls{margin-bottom:12px;position:sticky;top:0;background:#0f1117;padding:8px 0;z-index:10}
+select{width:100%;padding:11px;background:#1a1d29;color:#e0e0e0;border:1px solid #2a2d3a;border-radius:10px;font-size:0.9rem;appearance:none}
+select:focus{outline:none;border-color:#4fc3f7}
+label{display:block;font-size:0.68rem;color:#888;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px}
+.datebadge{font-size:0.7rem;color:#888;text-align:center;margin-bottom:12px;padding:7px;background:#1a1d29;border-radius:8px;line-height:1.5}
+.datebadge b{color:#81c784}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.kpi{background:#1a1d29;border:1px solid #2a2d3a;border-radius:12px;padding:10px}
+.kpi .k{font-size:0.66rem;color:#888;line-height:1.3;min-height:2.1em}
+.kpi .v{font-size:1.12rem;font-weight:700;color:#4fc3f7;margin-top:4px}
+.kpi .v small{font-size:0.6rem;color:#888;font-weight:400;margin-left:2px}
+.kpi .d{font-size:0.66rem;margin-top:2px;color:#888}
+.block>h2{font-size:0.85rem;color:#81c784;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid #2a2d3a}
+.card{background:#1a1d29;border:1px solid #2a2d3a;border-radius:12px;padding:12px;margin-bottom:10px}
+.card .head{display:flex;justify-content:space-between;align-items:baseline;gap:6px;margin-bottom:2px}
+.card .name{font-size:0.82rem;font-weight:600}
+.card .val{font-size:0.95rem;font-weight:700;color:#4fc3f7;white-space:nowrap}
+.card .val small{font-size:0.6rem;color:#888;font-weight:400}
+.card .note{font-size:0.63rem;color:#777;margin:2px 0 8px;line-height:1.35}
+.wrap{position:relative;height:170px}
+footer{color:#666;font-size:0.65rem;margin:18px 0 6px;text-align:center;line-height:1.6}
+@media(max-width:600px){.kpis{grid-template-columns:1fr 1fr}.kpi .v{font-size:1rem}}
+</style>
+</head>
+<body>
+<nav><a href="index.html">Главная</a> · <a href="passport.html">Паспорт региона</a> · <a href="data.html">Статистика</a> · <a href="operational.html">Оперативные</a> · <a href="metrics-catalog.html">Каталог метрик</a></nav>
+<h1>📈 Публичный монитор жилья</h1>
+<div class="subtitle">Строительство, ввод, ипотека и спрос по субъектам РФ · статический срез</div>
+
+<div class="controls">
+  <label for="region">Регион</label>
+  <select id="region"></select>
+</div>
+<div class="datebadge" id="gen">загрузка среза…</div>
+<div class="kpis" id="kpis"></div>
+<div id="content"></div>
+
+<footer>
+Источники: Росстат, Банк России, ЕИСЖС (дом.рф) через БД research_wiki. Срез: <span id="stamp">—</span>.<br>
+Статическая витрина: обновляется раз в сутки, доступ к базе у неё отсутствует. Независимый расчёт, не официальная публикация.
+</footer>
+
+<script>
+const RF='__RF__';
+let D=null, cur=RF;
+const KPI=['orvdssmpg','vzszopmrvzs','cbr_izhk_rate_m','cbr_izhk_volume_m','cbr_izhk_debt_m','rkop_3'];
+
+const fmt=(v,unit)=>{
+  if(v==null||isNaN(v))return'—';
+  if(unit==='млн руб.')return v>=1e6?(v/1e6).toFixed(2)+' трлн':v>=1000?(v/1000).toFixed(1)+' млрд':Math.round(v)+' млн';
+  if(unit==='м²')return v>=1e6?(v/1e6).toFixed(2)+' млн':Math.round(v/1000)+' тыс.';
+  if(unit==='тыс. м²')return v>=1000?(v/1000).toFixed(2)+' млн':Math.round(v)+' тыс.';
+  if(unit==='% годовых')return v.toFixed(2);
+  return v.toFixed(v<10?2:1);
+};
+const mon=p=>p.slice(0,7);
+const pctUnit=u=>u.indexOf('%')===0;
+
+function seriesOf(code){
+  const m=D.series[code]; if(!m) return {reg:[],rf:m?m.rf:[]};
+  return {reg:(cur!==RF&&m.by_region[cur])||[], rf:m.rf||m.by_region[RF]||[]};
+}
+function lastOf(pts){return pts.length?pts[pts.length-1]:null}
+function yearAgo(pts,period){
+  // ближайшая точка не позже того же месяца годом ранее
+  const target=(+period.slice(0,4)-1)+period.slice(4);
+  let found=null;
+  for(const p of pts){ if(p[0]<=target) found=p; else break }
+  return found;
+}
+
+function renderKpis(){
+  const box=document.getElementById('kpis'); box.innerHTML='';
+  for(const code of KPI){
+    const meta=D.metrics.find(m=>m.code===code); if(!meta) continue;
+    const {reg,rf}=seriesOf(code);
+    const pts=reg.length?reg:rf;
+    const last=lastOf(pts); const prev=last?yearAgo(pts,last[0]):null;
+    let delta='';
+    if(last&&prev&&prev[1]){
+      if(pctUnit(meta.unit)&&meta.unit==='%'){const d=last[1]-prev[1];delta=(d>0?'+':'')+d.toFixed(1)+' п.п. г/г'}
+      else if(pctUnit(meta.unit)){const d=last[1]-prev[1];delta=(d>0?'+':'')+d.toFixed(2)+' п.п. г/г'}
+      else{const d=(last[1]/prev[1]-1)*100;delta=(d>0?'+':'')+d.toFixed(1)+'% г/г'}
+    }
+    const el=document.createElement('div');el.className='kpi';
+    el.innerHTML='<div class="k">'+meta.title+'</div>'+
+      '<div class="v">'+fmt(last?last[1]:null,meta.unit)+'<small> '+meta.unit+'</small></div>'+
+      '<div class="d">'+(last?mon(last[0])+(reg.length?'':' · свод РФ'):'нет данных')+(delta?' · '+delta:'')+'</div>';
+    box.appendChild(el);
+  }
+}
+
+function chartCard(meta){
+  const {reg,rf}=seriesOf(meta.code);
+  const prim=reg.length?reg:rf, other=reg.length?rf:(rf.length?[]:null);
+  const card=document.createElement('div');card.className='card';
+  const last=lastOf(prim);
+  card.innerHTML='<div class="head"><span class="name">'+meta.title+'</span>'+
+    '<span class="val">'+fmt(last?last[1]:null,meta.unit)+'<small> '+meta.unit+'</small></span></div>'+
+    '<div class="note">'+meta.note+' · регионов в срезе: '+meta.regions+'</div>';
+  const wrap=document.createElement('div');wrap.className='wrap';
+  const cv=document.createElement('canvas');wrap.appendChild(cv);card.appendChild(wrap);
+  if(!prim.length&&!other){
+    wrap.innerHTML='<div class="note">данных нет</div>';return card;
+  }
+  const keys=[...new Set([...prim,...(other||[])].map(p=>p[0]))].sort();
+  const map=a=>new Map(a.map(p=>[p[0],p[1]]));
+  const mp=map(prim), mo=map(other||[]);
+  const ds=[{label:reg.length?(D.regions.find(r=>r.code===cur)||{}).name||'регион':'свод РФ',
+             data:keys.map(k=>mp.has(k)?mp.get(k):null),borderColor:'#4fc3f7',backgroundColor:'rgba(79,195,247,0.15)',
+             borderWidth:2,pointRadius:1.5,tension:0.3,fill:true}];
+  if(reg.length&&rf.length){
+    const mr=map(rf);
+    ds.push({label:'РФ',data:keys.map(k=>mr.has(k)?mr.get(k):null),borderColor:'#81c784',borderDash:[4,3],
+             borderWidth:1.5,pointRadius:0,tension:0.3,fill:false});
+  }
+  new Chart(cv,{type:'line',data:{labels:keys.map(mon),datasets:ds},
+    options:{maintainAspectRatio:false,interaction:{mode:'index',intersect:false},
+      plugins:{legend:{display:ds.length>1,labels:{color:'#888',boxWidth:8,font:{size:9}}},
+               tooltip:{callbacks:{label:i=>i.dataset.label+': '+fmt(i.parsed.y,meta.unit)+' '+meta.unit}}},
+      scales:{x:{ticks:{color:'#666',font:{size:9},maxTicksLimit:7},grid:{display:false}},
+              y:{ticks:{color:'#666',font:{size:9}},grid:{color:'#222'}}}}});
+  return card;
+}
+
+function render(){
+  renderKpis();
+  const box=document.getElementById('content');box.innerHTML='';
+  for(const m of D.metrics) box.appendChild(chartCard(m));
+}
+
+fetch('public-monitor.json').then(r=>r.json()).then(d=>{
+  D=d;
+  const gen=d.generated_at.replace('T',' ').slice(0,16)+' UTC';
+  document.getElementById('gen').innerHTML='Срез от <b>'+gen+'</b> · регионов в справочнике: '+d.regions.length;
+  document.getElementById('stamp').textContent=gen;
+  const sel=document.getElementById('region');
+  sel.innerHTML='<option value="'+RF+'">Россия (свод по регионам)</option>'+
+    d.regions.map(r=>'<option value="'+r.code+'">'+r.name+'</option>').join('');
+  const bashk=d.regions.find(r=>r.name.indexOf('Башкортостан')>=0);
+  sel.value=bashk?bashk.code:RF;
+  cur=sel.value;
+  sel.onchange=()=>{cur=sel.value;render()};
+  render();
+}).catch(e=>{
+  document.getElementById('gen').textContent='не удалось загрузить срез: '+e;
+});
+</script>
+</body>
+</html>

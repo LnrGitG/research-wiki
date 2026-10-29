@@ -1,0 +1,89 @@
+{
+  "_комментарий": "Соответствие cron-обёртка → catalog.source_endpoint. endpoint_id=null — у загрузчика нет записи в реестре источников (долг этапа 2). max_gap_days — через сколько часов без прогонов сторож считает загрузчик молчащим: месячное расписание не должно выглядеть сломанным на четвёртый день. in_schedule=false — обёртка есть, в расписании её нет: сторож такие не судит, но и не забывает.\nmanual=true — ручной канал: сторож не считает отсутствие прогона отказом, пока выгрузку не принесли. Список очищен 29.10.2026: удалены обёртки, которых нет в scripts/ и нет в cron (cbr_infom_weekly.sh, cbr_mo_weekly.sh, moex_zcyc_daily.sh).",
+  "rosstat_industrial_job.sh": {
+    "endpoint_id": 2,
+    "parser": "rosstat_prom_monthly_parse.py + direct_rosstat_prom/sezon/ind_prod/operativ_construction",
+    "max_gap_days": 40,
+    "in_schedule": true
+  },
+  "rosstat_housing_job.sh": {
+    "endpoint_id": null,
+    "parser": "direct_vv_zd.py",
+    "max_gap_days": 40,
+    "in_schedule": true
+  },
+  "rosstat_invest_job.sh": {
+    "endpoint_id": null,
+    "parser": "direct_ikv_reg.py",
+    "max_gap_days": 40,
+    "in_schedule": true
+  },
+  "rosstat_stroit_pril_job.sh": {
+    "endpoint_id": null,
+    "parser": "direct_stroit_pril.py",
+    "max_gap_days": 45,
+    "in_schedule": true
+  },
+  "rosstat_monitoring_job.sh": {
+    "endpoint_id": null,
+    "parser": "rosstat_monitoring_files_update.py",
+    "max_gap_days": 40,
+    "in_schedule": true
+  },
+  "rosstat_monthly_job.sh": {
+    "endpoint_id": null,
+    "parser": "rosstat_monthly.py",
+    "max_gap_days": 40,
+    "in_schedule": false
+  },
+  "rosstat_doklad_job.sh": {
+    "endpoint_id": 22,
+    "parser": "transfer_doklad_08.py",
+    "max_gap_days": 365,
+    "in_schedule": false
+  },
+  "domrf_price_job.sh": {
+    "endpoint_id": 7,
+    "parser": "ingest_domrf.py",
+    "max_gap_days": 40,
+    "in_schedule": true,
+    "manual": true,
+    "manual_note": "источник отдаёт выгрузки только вручную: csv кладут в data/raw/domrf; отсутствие файла — норма, а не отказ"
+  },
+  "cbr_api_monthly_job.sh": {
+    "endpoint_id": null,
+    "parser": "cbr_api_v2_ingest.py",
+    "max_gap_days": 40,
+    "in_schedule": true
+  },
+  "fns_1nom_job.sh": {
+    "endpoint_id": 23,
+    "parser": "update_fns_1nom.py + direct_fns.py",
+    "max_gap_days": 40,
+    "in_schedule": true
+  },
+  "smartlab_ifrs_job.sh": {
+    "endpoint_id": 13,
+    "parser": "collect_smartlab.py",
+    "max_gap_days": 40,
+    "in_schedule": true
+  },
+  "trudvsem_weekly_job.sh": {
+    "endpoint_id": 11,
+    "parser": "trudvsem_collect.py",
+    "max_gap_days": 10,
+    "in_schedule": false
+  },
+  "wordstat_weekly_job.sh": {
+    "endpoint_id": 12,
+    "parser": "wordstat_construction_collect.py",
+    "max_gap_days": 10,
+    "in_schedule": false
+  },
+  "kep_refresh.sh": {
+    "endpoint_id": 1,
+    "parser": "kep_collect.py",
+    "max_gap_days": 40,
+    "in_schedule": true
+  }
+}

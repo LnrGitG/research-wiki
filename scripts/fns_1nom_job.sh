@@ -1,4 +1,11 @@
 #!/bin/bash
+
+# --- журнал загрузок (ops.ingest_run), см. scripts/run_logged.py ---
+if [ -z "${INGEST_LOGGED:-}" ]; then
+  exec env INGEST_LOGGED=1 /home/lnr/.hermes/hermes-agent/venv/bin/python3 \
+       /home/lnr/research-wiki-private/scripts/run_logged.py --job "$(basename "$0")" -- bash "$0" "$@"
+fi
+
 # fns_1nom_job.sh — cron-обёртка: обновление ФНС.
 # 1) update_fns_1nom.py — докачка новых версий 1-НОМ в raw/fns и инжест по кодам ОКВЭД;
 # 2) direct_fns.py — прямые загрузчики «сырьё → канон»: выручка по ОКВЭД F (G53),

@@ -1,4 +1,11 @@
 #!/bin/bash
+
+# --- журнал загрузок (ops.ingest_run), см. scripts/run_logged.py ---
+if [ -z "${INGEST_LOGGED:-}" ]; then
+  exec env INGEST_LOGGED=1 /home/lnr/.hermes/hermes-agent/venv/bin/python3 \
+       /home/lnr/research-wiki-private/scripts/run_logged.py --job "$(basename "$0")" -- bash "$0" "$@"
+fi
+
 # rosstat_housing_job.sh — cron-обёртка: ввод в действие зданий (Росстат), прямой контур.
 #
 # 1) rosstat_vv_zd_files_update.py — докачка файлов с портала Росстата:

@@ -72,12 +72,12 @@ WITH src AS (
 ),
 base AS (
   SELECT DISTINCT ON (metric_code, period_start)
-         metric_code, metric_name, unit_name, freq_code, period_start, value
+         metric_code, metric_name, unit_name, unit_code, freq_code, period_start, value
   FROM src
   ORDER BY metric_code, period_start, release_id DESC
 ),
 last AS (
-  SELECT DISTINCT ON (metric_code) metric_code, metric_name, unit_name, freq_code,
+  SELECT DISTINCT ON (metric_code) metric_code, metric_name, unit_name, unit_code, freq_code,
          period_start AS last_period, value AS last_value
   FROM base
   ORDER BY metric_code, period_start DESC
@@ -88,10 +88,11 @@ prev AS (
   JOIN base b ON b.metric_code = l.metric_code
              AND b.period_start = (l.last_period - INTERVAL '1 year')::date
 )
-SELECT l.metric_name, l.unit_name AS unit, l.freq_code, l.last_period,
+SELECT l.metric_code, l.metric_name, l.unit_name AS unit, l.freq_code, l.last_period,
        l.last_value,
        p.year_ago,
-       ROUND(100 * (l.last_value - p.year_ago) / NULLIF(abs(p.year_ago), 0), 1) AS chg_yoy_pct
+       ROUND(100 * (l.last_value - p.year_ago) / NULLIF(abs(p.year_ago), 0), 1) AS chg_yoy_pct,
+       ROUND(l.last_value - p.year_ago, 2) AS chg_yoy_pp
 FROM last l LEFT JOIN prev p USING (metric_code)
 ORDER BY l.metric_name
 """,

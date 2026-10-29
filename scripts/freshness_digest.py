@@ -181,8 +181,10 @@ def main() -> int:
     out = [f"Сторож контура данных, {date.today():%d.%m.%Y}. "
            f"Прогонов за сутки: {runs_24h}" + (f", упало: {failed_24h}" if failed_24h else "")]
     if loader_problems:
-        out.append("Загрузчики:")
-        out += [f"  - {p}" for p in loader_problems]
+        out.append(f"Загрузчики (проблем {len(loader_problems)}):")
+        out += [f"  - {p}" for p in loader_problems[:10]]
+        if len(loader_problems) > 10:
+            out.append(f"  ... и ещё {len(loader_problems) - 10}")
     if late:
         out.append(f"Ряды против норматива публикации (отстают {late} из {total}, "
                    f"свежих {fresh_share:.1f} %):")

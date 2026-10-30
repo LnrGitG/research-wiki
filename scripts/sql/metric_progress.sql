@@ -25,13 +25,13 @@ with base as (
            mode() within group (order by o.source_id) as source_id,
            max(o.created_at) as last_ingest_at
     from data.observation o
-    where o.observation_status not in ('rejected', 'superseded')
+    where o.observation_status <> 'rejected'
     group by o.metric_id
 ),
 latest as (
     select metric_id, max(period_start) as lp
     from data.observation
-    where observation_status not in ('rejected', 'superseded')
+    where observation_status <> 'rejected'
     group by metric_id
 ),
 per_region as (
@@ -43,7 +43,7 @@ per_region as (
                as n_regions_latest
     from data.observation o
     join latest l on l.metric_id = o.metric_id
-    where o.observation_status not in ('rejected', 'superseded')
+    where o.observation_status <> 'rejected'
     group by o.metric_id
 )
 select b.metric_id,

@@ -5,4 +5,7 @@
 # Полный ребилд с эмбеддингами — вручную: python3 scripts/build_metric_cards.py
 set -euo pipefail
 cd ~/research-wiki-private
-~/.hermes/hermes-agent/venv/bin/python3 scripts/build_metric_cards.py --skip-embed 2>&1 | tail -5
+# Без --skip-embed: карточки вставляются, а эмбеддинги запрашиваются только для
+# текстов, которых нет в кэше по content_hash. Иначе новые метрики навсегда
+# остаются без карточки (30.10: 246 активных рядов, включая cbr_pf_* и orvds*).
+~/.hermes/hermes-agent/venv/bin/python3 scripts/build_metric_cards.py 2>&1 | tail -5

@@ -46,7 +46,10 @@ LEFT JOIN catalog.region  r   ON r.region_id   = o.region_id
 LEFT JOIN catalog.unit    u   ON u.unit_id     = m.unit_id
 LEFT JOIN catalog.source  s   ON s.source_id   = o.source_id
 LEFT JOIN catalog.release rel ON rel.release_id = o.release_id
-WHERE o.observation_status <> 'rejected'
+-- 'superseded' — исторические версии точек, перезаписанных новым релизом:
+-- уникальный ключ включает release_id, поэтому перезаливка оставляет старые
+-- строки живыми, и без этого фильтра суммы удваивались.
+WHERE o.observation_status NOT IN ('rejected', 'superseded')
 """
 
 

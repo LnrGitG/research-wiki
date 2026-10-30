@@ -217,31 +217,27 @@ def main():
             eff = f'{grp} → {label}' if (grp and norm(grp) != norm(label)) else label
             labeled += 1
 
+        # Разрез собирается БЕЗ координат источника: номер строки и имя листа
+        # уходят в notes. Иначе sub_dimension уникален для каждой записи и
+        # ряд перестаёт быть временным (30.10.2026).
+        cnt = 0
+        marker = ''
         if eff:
             cnt = seen.get((fn, sn, eff), 0) + 1
             seen[(fn, sn, eff)] = cnt
             marker = '' if cnt == 1 else f' #{cnt}'
-            sub_parts.append(f'разрез: {eff[:200]}{marker}')
 
-        # Ряд-защита от схлопывания. Подпись строки повторяется в листе
-        # законно (регион указан в нескольких секциях, показатель — дважды),
-        # и различить такие строки штатными полями нельзя: значения в них
-        # совпадают. Порядковый номер строки гарантирует уникальность и
-        # сохраняет все данные; он же остаётся стабильным при повторном
-        # прогоне на том же снимке.
         rowseq[key_fs] = rowseq.get(key_fs, 0) + 1
-        sub_parts.append(f'строка {rowseq[key_fs]}')
+        prov = f'строка {rowseq[key_fs]} | лист: {sn}'
 
-        # тип ряда различает варианты одного показателя (stock/flow/…)
+        dim_parts = []
         if dtype:
-            sub_parts.append(f'ряд: {dtype}')
-        # Имя листа обязательно: нумерация строк внутри листа своя, поэтому
-        # строки из разных листов одного файла дают одинаковый ключ и
-        # схлопываются. Без листа терялось 9 421 строка (проверено
-        # симуляцией), с листом — ноль коллизий.
+            dim_parts.append(f'ряд: {dtype}')
         if sn:
-            sub_parts.append(f'лист: {sn}')
-        subdim = ' | '.join(sub_parts)
+            dim_parts.append(f'секция: {sn}')
+        if eff:
+            dim_parts.append(f'{eff[:200]}{marker}')
+        subdim = ' | '.join(dim_parts) or None
 
         k = norm(iname)
         mid = by_name.get(k)
@@ -265,13 +261,14 @@ def main():
         fid = freq_ids.get(fcode) or freq_ids.get('M')
         atype = 'final' if ps.year < CUR_YEAR else 'preliminary'
         batch.append((mid, rid, fid, ps, pe, value, atype, 'validated',
-                      sid, rel_id, subdim))
+                      sid, rel_id, subdim, prov))
         ins += 1
         if len(batch) >= 50000:
             cur.executemany("""INSERT INTO core.observation_v2
                 (metric_id, region_id, frequency_id, period_start, period_end, value,
-                 assessment_type, observation_status, source_id, release_id, sub_dimension)
-                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+                 assessment_type, observation_status, source_id, release_id,
+                 sub_dimension, notes)
+                VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
                 ON CONFLICT (metric_id, region_id, frequency_id, period_start,
                              source_id, release_id, assessment_type, sub_dimension)
                 DO NOTHING""", batch)
@@ -282,8 +279,9 @@ def main():
     if batch:
         cur.executemany("""INSERT INTO core.observation_v2
             (metric_id, region_id, frequency_id, period_start, period_end, value,
-             assessment_type, observation_status, source_id, release_id, sub_dimension)
-            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+             assessment_type, observation_status, source_id, release_id,
+             sub_dimension, notes)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
             ON CONFLICT (metric_id, region_id, frequency_id, period_start,
                          source_id, release_id, assessment_type, sub_dimension)
             DO NOTHING""", batch)

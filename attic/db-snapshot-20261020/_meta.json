@@ -1,0 +1,35 @@
+{
+ "created_at": "2026-10-20T00:57:04.786243+00:00",
+ "tables": [
+  {
+   "table": "catalog.source_endpoint",
+   "rows": 15,
+   "file": "catalog.source_endpoint.json"
+  },
+  {
+   "table": "ops.ingest_endpoint",
+   "rows": 8,
+   "file": "ops.ingest_endpoint.json"
+  },
+  {
+   "table": "catalog.frequency",
+   "rows": 5,
+   "file": "catalog.frequency.json"
+  },
+  {
+   "table": "catalog.metric_region_scope",
+   "rows": 0,
+   "file": "catalog.metric_region_scope.json"
+  },
+  {
+   "table": "derived.v_catalog_active",
+   "rows": 1570,
+   "file": "derived.v_catalog_active.json"
+  },
+  {
+   "table": "derived.v_metric_context",
+   "rows": 16807,
+   "file": "derived.v_metric_context.json"
+  }
+ ]
+}

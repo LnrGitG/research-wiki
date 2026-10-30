@@ -1,0 +1,105 @@
+{
+ "table": "ops.ingest_endpoint",
+ "columns": [
+  "endpoint_id",
+  "name",
+  "source_id",
+  "url",
+  "parser_script",
+  "cron_schedule",
+  "enabled",
+  "note"
+ ],
+ "types": [
+  "integer",
+  "text",
+  "integer",
+  "text",
+  "text",
+  "text",
+  "boolean",
+  "text"
+ ],
+ "rows": [
+  [
+   1,
+   "rosstat_kep",
+   11,
+   "https://rosstat.gov.ru/compendium/document/50802",
+   "kep_collect.py",
+   "5 4 * * *",
+   true,
+   "КЭП — краткосрочные экономические показатели"
+  ],
+  [
+   2,
+   "rosstat_doklad",
+   11,
+   "https://rosstat.gov.ru/storage/mediabank/DOKLAD_2026.htm",
+   "transfer_doklad_08.py",
+   "0 6 * * 1",
+   true,
+   "Доклад социально-экономическое положение"
+  ],
+  [
+   3,
+   "rosstat_prom",
+   11,
+   "https://rosstat.gov.ru/storage/mediabank/",
+   "rosstat_prom_monthly_parse.py",
+   "0 8 * * 1",
+   true,
+   "Промышленные индексы, месячные файлы"
+  ],
+  [
+   4,
+   "cbr_keyrate",
+   7,
+   "https://www.cbr.ru/hbase-theme/",
+   "load_cbr_key_rate.py",
+   "0 7 * * 2",
+   true,
+   "Ставка ЦБ (ключевая) — фактическое имя скрипта load_cbr_key_rate.py"
+  ],
+  [
+   5,
+   "cbr_lending",
+   7,
+   "https://www.cbr.ru/banking_sector/statistics/?CF.TagId=211",
+   "parse_cbr_lending.py",
+   "0 7 * * 2",
+   true,
+   "Банковская статистика: ипотека, проектное финансирование"
+  ],
+  [
+   6,
+   "fns_1nom",
+   9,
+   "https://www.nalog.ru/opendata/",
+   "update_fns_1nom.py",
+   "20 6 12 * *",
+   true,
+   "ФНС 1-НОМ — данные по налогам"
+  ],
+  [
+   7,
+   "domrf",
+   8,
+   "https://наш.дом.рф/аналитика/",
+   "ingest_domrf.py",
+   "0 11 25 * *",
+   true,
+   "ДОМ.РФ — показатели жилищного строительства"
+  ],
+  [
+   8,
+   "wordstat",
+   30,
+   "https://api.wordstat.ru/",
+   "wordstat_construction_collect.py",
+   "0 5 7 * *",
+   true,
+   "Wordstat — поисковые запросы стройка"
+  ]
+ ]
+}

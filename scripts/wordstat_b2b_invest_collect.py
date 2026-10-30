@@ -5,10 +5,10 @@ Output: data/wordstat_weekly_b2b_invest.csv (date, phrase, group, count, share)
 Rate limit: 100 req/hour → 6 phrases fits easily.
 """
 import sys, os, csv, time
+from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 os.chdir('/home/lnr/research-wiki')
 from wordstat_api import dynamics
-from pathlib import Path
 
 
 PHRASES = [
@@ -25,17 +25,23 @@ PHRASES = [
 rows = []
 for i, (ph, grp) in enumerate(PHRASES, 1):
     try:
-        res = dynamics(ph, 'PERIOD_WEEKLY', '2018-01-01', '2026-09-06')  # date_to must be Sunday
+        res = dynamics(ph, 'PERIOD_WEEKLY', '2018-01-01', '2026-10-25')  # date_to must be Sunday
         print(f"[{i}/{len(PHRASES)}] {ph!r}: {len(res)} pts", flush=True)
         for r in res:
             rows.append({"date": r["date"], "phrase": ph, "group": grp,
                          "count": int(r["count"]), "share": float(r["share"])})
     except Exception as e:
         print(f"[{i}] {ph!r}: FAILED {str(e)[:70]}", flush=True)
+        raise
     time.sleep(3)
 
-with open('data/wordstat_weekly_b2b_invest.csv', 'w', newline='', encoding='utf-8') as f:
+path = Path('/home/lnr/research-wiki/data/wordstat_weekly_b2b_invest.csv')
+if not path.parent.exists():
+    raise FileNotFoundError(f'Expected public mirror is missing: {path.parent}')
+if len(rows) != 6*len({r['date'] for r in rows}):
+    raise RuntimeError('Unexpected incomplete or duplicate Wordstat response')
+with path.open('w', newline='', encoding='utf-8') as f:
     w = csv.DictWriter(f, fieldnames=["date", "phrase", "group", "count", "share"])
     w.writeheader()
     w.writerows(rows)
-print("saved:", len(rows), "-> data/wordstat_weekly_b2b_invest.csv")
+print("saved:", len(rows), "->", path)

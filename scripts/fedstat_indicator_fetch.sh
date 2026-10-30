@@ -49,4 +49,12 @@ curl -s -m 180 -L -c "$JAR" -b "$JAR" -o "$OUT" \
   --data-urlencode "id=${ID}" --data-urlencode "format=excel" \
   "https://www.fedstat.ru/indicator/${ID}/download"
 
-file "$OUT"
+# `file` на этом хосте отсутствует — проверяем сигнатуру сами
+if [ -s "$OUT" ]; then
+  SIG="$(head -c 8 "$OUT" | od -An -tx1 | tr -d ' \n')"
+  case "$SIG" in
+    d0cf11e0a1b11ae1) echo "формат: OLE2/xls ✓" ;;
+    504b0304*)        echo "формат: xlsx (zip) — xlrd не прочтёт, нужен openpyxl" ;;
+    *)                echo "формат неизвестен (сигнатура $SIG) — вероятно HTML-ошибка, проверить $JAR" ;;
+  esac
+fi

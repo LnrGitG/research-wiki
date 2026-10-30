@@ -19,6 +19,7 @@
 """
 import argparse
 import json
+import uuid
 import os
 import sys
 
@@ -27,8 +28,9 @@ import requests
 BASE = os.environ.get("MB_URL", "http://127.0.0.1:13000")
 ENV = os.path.expanduser("~/.hermes/.env")
 DB_ID = 2
-TABLE_ID = 348          # derived.v_bi_observation
-F_CODE, F_PERIOD, F_REGION, F_LEVEL, F_VALUE, F_SUB = 5280, 5285, 5290, 5292, 5300, 5302
+SOURCE_VIEW = "v_bi_dedup"   # дедуплицированная витрина (одна точка = метрика/регион/период/подразрез)
+TABLE_ID = 348               # заполняется resolve_source() по имени вью
+F_CODE = F_PERIOD = F_REGION = F_LEVEL = F_VALUE = F_SUB = None
 
 COLLECTION_ID = 7        # Жильё, стройка и ипотека (research)
 CANON_SOLD = "охват: регионы | статус: Всего"
@@ -44,6 +46,19 @@ def _eq(fid, value):
 
 def _neq(fid, value):
     return ["!=", {}, _f(fid), value]
+
+
+def _with_uuid(clause):
+    """Metabase требует lib/uuid на каждой клаузе lib-запроса (сегменты — строго)."""
+    if isinstance(clause, list) and clause:
+        op, rest = clause[0], list(clause[1:])
+        if rest and isinstance(rest[0], dict) and "lib/uuid" not in rest[0]:
+            rest[0] = dict(rest[0], **{"lib/uuid": str(uuid.uuid4())})
+        elif not rest or not isinstance(rest[0], dict):
+            rest = [{"lib/uuid": str(uuid.uuid4())}] + rest
+        rest = [_with_uuid(x) if isinstance(x, list) and x and isinstance(x[0], str) else x for x in rest]
+        return [op] + rest
+    return clause
 
 
 def metric_query(agg, code, level, sub=None, exclude=(), breakout=None, window=None):
@@ -71,6 +86,9 @@ def metric_query(agg, code, level, sub=None, exclude=(), breakout=None, window=N
     elif breakout == "region":
         stage["breakout"] = [_f(F_REGION)]
         stage["order-by"] = [["asc", {}, _f(F_REGION)]]
+    for key in ("filters", "breakout", "order-by", "aggregation"):
+        if key in stage:
+            stage[key] = [_with_uuid(c) for c in stage[key]]
     return {"lib/type": "mbql/query", "database": DB_ID, "stages": [stage]}
 
 
@@ -121,42 +139,19 @@ METRICS = [
      (), "region", "Продажи в каноническом срезе, сумма за 3 месяца — поток."),
 ]
 
+# Сегменты описываются символьно: id полей известны только после resolve_source(),
+# поэтому клаузы собираются внутри main().
 SEGMENTS = [
-    ("Субъекты РФ", [["=", {}, _f(F_LEVEL), "region"]]),
-    ("Россия в целом", [["=", {}, _f(F_LEVEL), "country"]]),
-    ("Реализация квартир: канонический срез", [["=", {}, _f(F_SUB), CANON_SOLD]]),
+    ("Субъекты РФ", ("level", "region")),
+    ("Россия в целом", ("level", "country")),
+    ("Реализация квартир: канонический срез", ("sub", CANON_SOLD)),
 ]
 
 
-
-def _ref_legacy(ref):
-    """lib-форма ["field", opts, id] -> классическая ["field", id, opts]."""
-    if isinstance(ref, list) and ref and ref[0] == "field" and len(ref) == 3:
-        opts, fid = ref[1], ref[2]
-        return ["field", fid, opts if opts else None]
-    return ref
-
-
-def _clause_legacy(cl):
-    """Клауза фильтра/сортировки: ["op", {}, ...аргументы] -> ["op", ...аргументы]."""
-    if isinstance(cl, list) and len(cl) >= 2 and isinstance(cl[1], dict) and not cl[1]:
-        return [cl[0]] + [_ref_legacy(x) if isinstance(x, list) else x for x in cl[2:]]
-    return cl
-
-
-def to_legacy(query):
-    """Запрос в классической форме MBQL — её принимает POST /api/dataset."""
-    stage = dict(query["stages"][0])
-    stage.pop("lib/type", None)
-    if "filters" in stage:
-        stage["filter"] = [_clause_legacy(c) for c in stage.pop("filters")]
-    if "aggregation" in stage:
-        stage["aggregation"] = [_clause_legacy(a) for a in stage["aggregation"]]
-    if "breakout" in stage:
-        stage["breakout"] = [_ref_legacy(b) for b in stage["breakout"]]
-    if "order-by" in stage:
-        stage["order-by"] = [_clause_legacy(o) for o in stage["order-by"]]
-    return {"database": DB_ID, "type": "query", "query": stage}
+def segment_filters(spec):
+    kind, value = spec
+    fid = F_LEVEL if kind == "level" else F_SUB
+    return [_eq(fid, value)]
 
 
 class Api:
@@ -190,6 +185,29 @@ class Api:
         return out.get("status"), (data.get("rows") or [])
 
 
+def resolve_source(api, view_name=SOURCE_VIEW):
+    """Найти id таблицы и полей по имени вью: id различаются между инстансами."""
+    global TABLE_ID, F_CODE, F_PERIOD, F_REGION, F_LEVEL, F_VALUE, F_SUB
+    meta = api.get(f"/api/database/{DB_ID}/metadata") or {}
+    table = next((t for t in meta.get("tables", []) if t.get("name") == view_name), None)
+    if not table:
+        api.post(f"/api/database/{DB_ID}/sync_schema", {})
+        raise SystemExit(f"вью {view_name} не видна Metabase — нужен sync_schema и пауза")
+    table_id = table["id"]
+    fm = api.get(f"/api/table/{table_id}/query_metadata") or {}
+    ids = {f["name"]: f["id"] for f in fm.get("fields", [])}
+    if not ids:
+        api.post(f"/api/table/{table_id}/sync_schema", {})
+        raise SystemExit(f"поля {view_name} ещё не синхронизированы — повторить прогон через полминуты")
+    TABLE_ID = table_id
+    F_CODE, F_PERIOD = ids["metric_code"], ids["period_start"]
+    F_REGION, F_LEVEL = ids["region_code"], ids["region_level"]
+    F_VALUE, F_SUB = ids["value"], ids["sub_dimension"]
+    print(f"источник: {view_name} table_id={table_id}, поля: " +
+          ", ".join(f"{k}={v}" for k, v in ids.items()))
+    return ids
+
+
 def existing_metrics(api):
     """id существующих метрик коллекции по имени."""
     out = api.get(f"/api/collection/{COLLECTION_ID}/items?models=metric&limit=200")
@@ -204,6 +222,7 @@ def main() -> int:
     args = ap.parse_args()
 
     api = Api()
+    resolve_source(api)
     known = existing_metrics(api)
     print(f"существующих метрик: {len(known)}")
 
@@ -240,11 +259,13 @@ def main() -> int:
             continue
 
     if not (args.dry_run or args.verify):
-        for seg_name, filters in SEGMENTS:
+        for seg_name, spec in SEGMENTS:
+            filters = segment_filters(spec)
             try:
                 definition = {"lib/type": "mbql/query", "database": DB_ID,
                               "stages": [{"lib/type": "mbql.stage/mbql",
-                                          "source-table": TABLE_ID, "filters": filters}]}
+                                          "source-table": TABLE_ID,
+                                          "filters": [_with_uuid(f) for f in filters]}]}
                 out = api.post("/api/segment", {"name": seg_name, "table_id": TABLE_ID,
                                                 "definition": definition,
                                                 "description": "Сегмент семантического слоя: общий фильтр для метрик и вопросов."})

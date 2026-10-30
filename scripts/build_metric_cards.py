@@ -168,7 +168,17 @@ def main():
     HAVING count(*) FILTER (WHERE o.observation_status <> 'rejected') > 0
     ORDER BY 2
     """
-    rows = db_tunnel.query(sql)
+    # Тяжёлый агрегат: 7,9 млн наблюдений, DISTINCT-массивы по 3387 метрикам.
+    # При work_mem по умолчанию (4 МБ) PostgreSQL уходил в сортировку на диск
+    # и падал с DiskFull, заполнив весь свободный раздел ВМ (30.10.2026).
+    # Поэтому лимит поднимается на сессию, а не глобально.
+    conn = db_tunnel.connect(options='-c work_mem=1GB')
+    try:
+        with conn.cursor() as cur:
+            cur.execute(sql)
+            rows = cur.fetchall()
+    finally:
+        conn.close()
     if args.limit:
         rows = rows[:args.limit]
     print(f'метрик с наблюдениями: {len(rows)}')

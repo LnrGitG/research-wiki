@@ -146,8 +146,14 @@ def available(verbose=False):
         return False
 
 
-def connect():
-    """Соединение с БД. Понятная ошибка, если тоннель не поднят."""
+def connect(options=None):
+    """Соединение с БД. Понятная ошибка, если тоннель не поднят.
+
+    `options` — строка параметров сессии libpq (например
+    `-c work_mem=1GB`). Нужна для тяжёлых агрегатов: лимит work_mem
+    задаётся на сессию, а не глобально, чтобы не раздувать память
+    всем остальным запросам.
+    """
     if psycopg is None:
         raise RuntimeError("psycopg не установлен")
     if not tunnel_up():
@@ -155,8 +161,11 @@ def connect():
             "Тоннель к БД не поднят (порт %d не слушается).\n"
             "Поднять: systemctl --user start pg-tunnel.service\n"
             "Проверить: systemctl --user status pg-tunnel.service" % PORT)
+    kwargs = {}
+    if options:
+        kwargs["options"] = options
     return psycopg.connect(host=HOST, port=PORT, dbname=DB, user=USER,
-                           connect_timeout=10)
+                           connect_timeout=10, **kwargs)
 
 
 def query(sql, params=None):

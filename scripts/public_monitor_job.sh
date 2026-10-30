@@ -28,7 +28,20 @@ if git diff --cached --quiet; then
   PRIVATE_CHANGED=0
 else
   git commit -q -m "Публичный монитор: автообновление среза $(date -u +%Y-%m-%d)"
-  git push private main
+  # Пуш может отбиться non-fast-forward, если за ночь ветку ушла вперёд другая
+  # сессия (инцидент 30.10.2026: джоб падал каждую ночь). Поэтому сперва
+  # подтягиваем private и, только при отказе, аккуратно перебазируем свой коммит.
+  git fetch -q private || true
+  if ! git push -q private main; then
+    echo "  пуш отбит — перебазирую на private/main"
+    if git pull --rebase --autostash -q private main; then
+      git push -q private main
+    else
+      git rebase --abort 2>/dev/null || true
+      echo "  ОШИБКА: конфликт при перебазировании, публикация остановлена"
+      exit 9
+    fi
+  fi
   PRIVATE_CHANGED=1
   echo "  приватный обновлён"
 fi

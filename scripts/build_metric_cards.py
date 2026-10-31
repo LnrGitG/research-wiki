@@ -143,6 +143,8 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--skip-embed', action='store_true')
     ap.add_argument('--limit', type=int, default=0)
+    ap.add_argument('--like', default='',
+                    help="фильтр по metric_code (LIKE-шаблон), напр. 'rosstat_cpi_cmp_%%'")
     args = ap.parse_args()
 
     conn = db_tunnel.connect()
@@ -164,6 +166,7 @@ def main():
     LEFT JOIN data.observation o ON o.metric_id = m.metric_id
     LEFT JOIN catalog.source s ON s.source_id = o.source_id
     WHERE m.status = 'active' AND m.is_active
+      AND (%s = '' OR m.metric_code LIKE %s)
     GROUP BY 1,2,3,4,5,6,7,8,14,15
     HAVING count(*) FILTER (WHERE o.observation_status <> 'rejected') > 0
     ORDER BY 2
@@ -175,7 +178,7 @@ def main():
     conn = db_tunnel.connect(options='-c work_mem=1GB')
     try:
         with conn.cursor() as cur:
-            cur.execute(sql)
+            cur.execute(sql, (args.like, args.like))
             rows = cur.fetchall()
     finally:
         conn.close()

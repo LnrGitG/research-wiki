@@ -33,12 +33,28 @@ SQLite-лендинг (rosreestr_deals.db, таблица rosstat_ind_prod_saar)
     APPLY=1 PRUNE=period python3 scripts/direct_sezon.py # месячный прогон (режим cron)
     APPLY=1 REPLACE=1 python3 scripts/direct_sezon.py    # разовая миграция: точка возврата плюс снятие
 """
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
 import glob
 import os
 import re
 import sys
 
-import openpyxl
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from direct_core import Writer  # noqa: E402
@@ -84,7 +100,7 @@ def num(v):
 
 def parse(path):
     """[(год, месяц, секция, mom_saar, base_saar)] из листа с данными."""
-    wb = openpyxl.load_workbook(path, data_only=True)
+    wb = open_workbook(path, engine=ENGINE)
     name = wb.sheetnames[1] if wb.sheetnames[0] == 'Содержание' else wb.sheetnames[0]
     ws = wb[name]
     year, out = None, []

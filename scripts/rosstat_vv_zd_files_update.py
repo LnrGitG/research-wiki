@@ -14,6 +14,23 @@
 
 Запуск: python3 scripts/rosstat_vv_zd_files_update.py [--check]
 """
+try:
+    from xlsx_engine import add_engine_arg, engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import add_engine_arg, engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
 import argparse
 import datetime as dt
 import os
@@ -83,8 +100,7 @@ def fetch(name, check_only=False):
 
 def sheets(path):
     try:
-        import openpyxl
-        wb = openpyxl.load_workbook(path, read_only=True)
+        wb = open_workbook(path, engine=ENGINE)
         names = wb.sheetnames
         wb.close()
         return 'листов %d (%s .. %s)' % (len(names), names[0], names[-1])

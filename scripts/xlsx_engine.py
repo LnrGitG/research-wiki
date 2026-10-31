@@ -66,6 +66,22 @@ def add_engine_arg(parser, default: str | None = None):
     return parser
 
 
+def engine_from_argv(argv: list[str] | None = None) -> str:
+    """Движок из `--xlsx-engine` в командной строке (резерв — XLSX_ENGINE).
+
+    Нужен скриптам, которые не строят argparse-парсер: флаг читается прямо из
+    sys.argv, поэтому откат `--xlsx-engine openpyxl` работает единообразно.
+    """
+    args = list(sys.argv[1:] if argv is None else argv)
+    value = None
+    for i, a in enumerate(args):
+        if a == "--xlsx-engine" and i + 1 < len(args):
+            value = args[i + 1]
+        elif a.startswith("--xlsx-engine="):
+            value = a.split("=", 1)[1]
+    return resolve_engine(value)
+
+
 def resolve_engine(engine: str | None = None) -> str:
     eng = (engine or DEFAULT_ENGINE or "fastexcel").lower()
     if eng not in ENGINES:
@@ -148,16 +164,25 @@ class Sheet:
         self._dtypes = dtypes
 
     @property
+    def title(self):
+        """как ws.title у openpyxl (нужен отбору листов по префиксу названия)"""
+        return self.name
+
+    @property
     def rows(self):
         if self._rows is None:
             self._rows = self._loader(self._dtypes)
         return self._rows
 
-    def iter_rows(self, min_row: int = 1, max_row=None, values_only: bool = True):
+    def iter_rows(self, min_row: int = 1, max_row=None, values_only: bool = True,
+                  min_col: int = 1, max_col=None):
         rows = self.rows
         hi = len(rows) if max_row is None else min(max_row, len(rows))
         for i in range(max(1, min_row) - 1, hi):
             row = rows[i]
+            if min_col > 1 or max_col is not None:
+                lo = max(0, min_col - 1)
+                row = row[lo:max_col if max_col is not None else None]
             yield tuple(row) if values_only else row
 
     def close(self):
@@ -235,37 +260,92 @@ def xml_sheet_offsets(path, sheet_name: str, name_map=None):
     m = re.search(rb'<dimension ref="([A-Z]*)(\d+)', head)
     row_lead = max(0, int(m.group(2)) - 1) if m else 0
     col_lead = _col_index(m.group(1).decode()) if m and m.group(1) else 0
-    row_pat = re.compile(rb'<row r="(\d+)"[^>]*>(.*?)</row>', re.S)
-    cell_pat = re.compile(rb'<c r="([A-Z]+)\d+"[^>]*>(?:<f[^>]*>[^<]*</f>)?<(?:v|is)>')
+    # Первая непустая ячейка: calamine начинает лист с неё, а openpyxl — с A1.
+    # Ищем по <c r="A1">...</c> со значением, а не по <row r="1">: строка без
+    # атрибута r или самозакрывающаяся <row r="1"/> ломает разбор по <row>.
+    cell_re = re.compile(rb'<c r="([A-Z]+)(\d+)"([^>]*?)(/>|>(.{0,120}))', re.S)
     first_row = None
-    seen = 0
-    for mrow in row_pat.finditer(head):
-        inner = mrow.group(2)
+    cols: list[int] = []
+    seen_rows: set[int] = set()
+    for mc in cell_re.finditer(head):
+        if mc.group(4) == b"/>":
+            continue
+        inner = mc.group(5) or b""
         if b"<v>" not in inner and b"<is>" not in inner:
             continue
+        rnum = int(mc.group(2))
         if first_row is None:
-            first_row = int(mrow.group(1))
-        # колонка отсчёта calamine — минимальная колонка со значением;
-        # смотрим первые строки, дальше диапазон листа уже определён
-        cols = [_col_index(mc.group(1).decode())
-                for mc in cell_pat.finditer(inner)]
-        if cols:
-            col_lead = min(cols) if first_row is None or seen == 0 else min(col_lead, min(cols))
-        seen += 1
-        if seen >= 20:
-            break
+            first_row = rnum
+        if rnum - (first_row or rnum) < 20:
+            cols.append(_col_index(mc.group(1).decode()))
+            seen_rows.add(rnum)
+            if len(seen_rows) >= 20:
+                break
+    if cols:
+        col_lead = min(cols) if first_row else col_lead
     if first_row:
         return max(row_lead, first_row - 1), max(0, col_lead)
     return row_lead, max(0, col_lead)
+
+
+def xml_sheet_columns(path, sheet_name: str, ncols: int, name_map=None):
+    """Абсолютные номера колонок XLSX, которые вернул calamine (эксперимент).
+
+    Не используется: сопоставление колонок по разметке не удалось сделать
+    надёжным — calamine то сохраняет пустые колонки диапазона, то выбрасывает,
+    и однозначного признака нет. Оставлено как заготовка для отдельной задачи;
+    файлы, где пустая колонка внутри диапазона сдвигает значения, пока
+    остаются на openpyxl (см. findings/fastexcel-migration-20261031.md).
+    """
+    import zipfile
+    try:
+        with zipfile.ZipFile(path) as zf:
+            names = name_map if name_map is not None else _sheet_xml_names(zf)
+            xml_name = names.get(sheet_name)
+            if not xml_name or xml_name not in zf.namelist():
+                return None
+            data = zf.read(xml_name)
+    except (OSError, KeyError):
+        return None
+    m = re.search(rb'<dimension ref="([A-Z]+)\d+:([A-Z]+)\d+"', data)
+    if not m:
+        return None
+    c0, c1 = _col_index(m.group(1).decode()), _col_index(m.group(2).decode())
+    present: set[int] = set()
+    # окно 120 байт вместо `(.*?)</c>` с re.S: ленивый захват до закрывающего
+    # тега на многомегабайтном листе уходит в катастрофический бэктрекинг
+    cell_re = re.compile(rb'<c r="([A-Z]+)\d+"([^>]*?)(/>|>(.{0,120}))', re.S)
+    for mc in cell_re.finditer(data):
+        if mc.group(3) == b"/>":
+            continue
+        inner = mc.group(4) or b""
+        if b"<v>" in inner or b"<is>" in inner:
+            present.add(_col_index(mc.group(1).decode()))
+    if not present:
+        return None
+    cols = sorted(present)
+    if len(cols) == ncols:
+        return cols
+    if c1 - c0 + 1 == ncols:
+        # calamine отдаёт пустые колонки внутри диапазона как пустые столбцы
+        # Arrow — значит, его колонки уже совпадают с абсолютными номерами
+        return list(range(c0, c1 + 1))
+    return None
 
 
 class _OpenpyxlWorkbook:
     engine = "openpyxl"
 
     def __init__(self, path, text_columns=None):
+        import io as _io
         import openpyxl
+        if isinstance(path, (bytes, bytearray)):
+            # fastexcel принимает bytes, openpyxl — только путь или файловый объект;
+            # приводим к общему виду, чтобы откат движка не требовал правки парсера
+            path = _io.BytesIO(bytes(path))
         self._wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
         self.sheetnames = list(self._wb.sheetnames)
+
 
     def __getitem__(self, name):
         ws = self._wb[name]
@@ -280,6 +360,16 @@ class _OpenpyxlWorkbook:
             self._wb.close()
         except Exception:
             pass
+
+    @property
+    def worksheets(self):
+        """как wb.worksheets у openpyxl — список листов по порядку"""
+        return [self[n] for n in self.sheetnames]
+
+    @property
+    def active(self):
+        """как wb.active — лист по умолчанию (первый; openpyxl отдаёт активный)"""
+        return self[self.sheetnames[0]]
 
 
 class _FastexcelWorkbook:
@@ -315,9 +405,9 @@ class _FastexcelWorkbook:
             for i in range(height)
         ]
         if self._exact:
+            row_lead, col_lead = self._sheet_offsets(name)
             str_cols = {i for i in range(table.num_columns)
                         if str(table.schema.field(i).type) == "string"}
-            row_lead, col_lead = self._sheet_offsets(name) if str_cols else (0, 0)
             if str_cols:
                 self._repair_precision(name, rows, table, str_cols,
                                        row_lead, col_lead)
@@ -333,16 +423,19 @@ class _FastexcelWorkbook:
     def _sheet_offsets(self, name):
         """Пустые строки сверху и колонки слева, которые calamine отбросил."""
         if name not in self._xml_meta:
-            if self._xml_names is None:
-                try:
-                    import zipfile
-                    with zipfile.ZipFile(self._path) as zf:
-                        self._xml_names = _sheet_xml_names(zf)
-                except (OSError, KeyError):
-                    self._xml_names = {}
             self._xml_meta[name] = xml_sheet_offsets(self._path, name,
-                                                     name_map=self._xml_names)
+                                                     name_map=self._xml_names_ref())
         return self._xml_meta[name]
+
+    def _xml_names_ref(self):
+        if self._xml_names is None:
+            try:
+                import zipfile
+                with zipfile.ZipFile(self._path) as zf:
+                    self._xml_names = _sheet_xml_names(zf)
+            except (OSError, KeyError):
+                self._xml_names = {}
+        return self._xml_names
 
     def _repair_precision(self, name, rows, table, str_cols, lead=0, col_lead=0):
         """Вернуть числам полную точность в колонках, типизированных строкой.
@@ -375,8 +468,14 @@ class _FastexcelWorkbook:
         )
         ptab = probe.to_arrow()
         for k, ci in enumerate(cand):
-            vals = ptab.column(ci + col_lead).to_pylist()
-            main_col = rows_column = [r[ci] if ci < len(r) else None for r in rows]
+            row_col = ci
+            probe_col = ci + col_lead
+            # calamine отбрасывает хвостовые пустые колонки: во втором проходе
+            # колонки может не оказаться, тогда точность уже полная — пропускаем
+            if probe_col >= ptab.num_columns:
+                continue
+            vals = ptab.column(probe_col).to_pylist()
+            main_col = [r[row_col] if row_col < len(r) else None for r in rows]
             # второй проход может начать лист на другую строку (dtypes меняют
             # то, какие строки считаются непустыми), поэтому выравниваем по
             # совпадению текста, а не по номеру строки
@@ -404,12 +503,12 @@ class _FastexcelWorkbook:
                 continue
             for idx, v in enumerate(vals):
                 i = idx + best
-                if v is None or i >= len(rows) or ci >= len(rows[i]):
+                if v is None or i >= len(rows) or row_col >= len(rows[i]):
                     continue
-                cur = rows[i][ci]
+                cur = rows[i][row_col]
                 if (isinstance(cur, str) and _is_plain_number(cur)
                         and cell_text(cur) != cell_text(v)):
-                    rows[i][ci] = to_python(v)
+                    rows[i][row_col] = to_python(v)
 
     def __getitem__(self, name):
         if name not in self.sheetnames:
@@ -418,6 +517,16 @@ class _FastexcelWorkbook:
 
     def close(self):
         self._cache.clear()
+
+    @property
+    def worksheets(self):
+        """как wb.worksheets у openpyxl — список листов по порядку"""
+        return [self[n] for n in self.sheetnames]
+
+    @property
+    def active(self):
+        """как wb.active — лист по умолчанию (первый; openpyxl отдаёт активный)"""
+        return self[self.sheetnames[0]]
 
 
 def open_workbook(path, engine: str | None = None, text_columns=None, exact=True):

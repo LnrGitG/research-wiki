@@ -42,10 +42,26 @@
 
 Запуск: [MODE=fix|legacy] APPLY=1 PRUNE=period [RETIRE=1] scripts/direct_mosh.py [файл]
 """
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
 import os
 import sys
 
-import openpyxl
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from direct_core import Writer, norm  # noqa: E402
@@ -102,7 +118,7 @@ def parse(path):
     `section` — имя строки-раздела, если над продуктом в книге есть заголовок
     вида деятельности (тогда прежний путь назвал метрику этим заголовком).
     """
-    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    wb = open_workbook(path, engine=ENGINE)
     out = []
     for sheet in wb.sheetnames:
         if sheet.strip().lower().startswith('содержание'):

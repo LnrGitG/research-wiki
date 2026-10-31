@@ -27,6 +27,23 @@ https://cbr.ru/statistics/bank_sector/equity_const_financing/).
 
 Идемпотентно: строки предыдущего прогона этого релиза удаляются перед вставкой.
 """
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
 import datetime as dt
 import os
 import re
@@ -34,11 +51,6 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import db_tunnel  # noqa: E402
-
-try:
-    import openpyxl
-except ImportError:  # pragma: no cover
-    raise SystemExit('нужен openpyxl: %s -m pip install openpyxl' % sys.executable)
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ESCROW_DIR = os.path.join(BASE, 'raw', 'cbr', 'escrow')
@@ -98,7 +110,7 @@ def fname_to_date(fname):
 
 def parse_file(path):
     """Возвращает {имя_округа: {поле: значение}} + номер строки шапки."""
-    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    wb = open_workbook(path, engine=ENGINE)
     # read_only-лист отдаёт строки однократно: читаем всё одним проходом
     all_rows = list(wb.active.iter_rows(values_only=True))
     wb.close()

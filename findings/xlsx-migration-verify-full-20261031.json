@@ -1,0 +1,1055 @@
+[
+ {
+  "script": "scripts/b3_vintage_revision.py",
+  "files": []
+ },
+ {
+  "script": "scripts/backfill_prom_2023.py",
+  "files": [
+   {
+    "file": "../yc-wiki/raw/rosstat/operational/Proizvodstvo_mes_2023.xlsx",
+    "ok": false,
+    "rows_openpyxl": 4166,
+    "rows_fastexcel": 4166,
+    "sha_openpyxl": "cc2d5b8af8e667c6",
+    "sha_fastexcel": "f01431629530ecd6",
+    "sheets": 30
+   }
+  ]
+ },
+ {
+  "script": "scripts/backfill_prom_history.py",
+  "files": [
+   {
+    "file": "raw/prom/Prom_07_2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 37606,
+    "rows_fastexcel": 37606,
+    "sha_openpyxl": "c7d35fead2ddca69",
+    "sha_fastexcel": "53a9be447c4d0554",
+    "sheets": 33
+   },
+   {
+    "file": "raw/prom/Prom_08_2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 37709,
+    "rows_fastexcel": 37709,
+    "sha_openpyxl": "cf4a4d2881f470e7",
+    "sha_fastexcel": "d533cd3b8f8a9b3e",
+    "sheets": 33
+   },
+   {
+    "file": "raw/prom/Prom_09_2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 37866,
+    "rows_fastexcel": 37866,
+    "sha_openpyxl": "8d411ffa4fa846e3",
+    "sha_fastexcel": "9f6749da0e7e53a6",
+    "sheets": 33
+   }
+  ],
+  "parse": {
+   "openpyxl": {
+    "sha": "4220d40e9f612b20",
+    "n": 3,
+    "bytes": 1347323,
+    "engine": "openpyxl"
+   },
+   "fastexcel": {
+    "sha": "de68f37cf558ae51",
+    "n": 3,
+    "bytes": 1345397,
+    "engine": "fastexcel"
+   },
+   "ok": false
+  }
+ },
+ {
+  "script": "scripts/bashkortostan_smr_story.py",
+  "files": []
+ },
+ {
+  "script": "scripts/bud1.py",
+  "files": [
+   {
+    "file": "raw/minfin/vr_kosgu_2024_2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 3238,
+    "rows_fastexcel": 3238,
+    "sha_openpyxl": "b91758e6c0febebe",
+    "sha_fastexcel": "b91758e6c0febebe",
+    "sheets": 3
+   }
+  ]
+ },
+ {
+  "script": "scripts/bud2.py",
+  "files": [
+   {
+    "file": "raw/minfin/vr_kosgu_2024_2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 3238,
+    "rows_fastexcel": 3238,
+    "sha_openpyxl": "b91758e6c0febebe",
+    "sha_fastexcel": "b91758e6c0febebe",
+    "sheets": 3
+   }
+  ]
+ },
+ {
+  "script": "scripts/cbr_banking_canon.py",
+  "files": [
+   {
+    "file": "raw/cbr/bulletin/mortgage_lending_market_2606_74.xlsx",
+    "ok": true,
+    "rows_openpyxl": 2640,
+    "rows_fastexcel": 2640,
+    "sha_openpyxl": "50e44e9d9a2f1801",
+    "sha_fastexcel": "50e44e9d9a2f1801",
+    "sheets": 38
+   },
+   {
+    "file": "raw/cbr/bulletin/mortgage_lending_market_2607_75.xlsx",
+    "ok": true,
+    "rows_openpyxl": 2652,
+    "rows_fastexcel": 2652,
+    "sha_openpyxl": "e0ac40d300c10b07",
+    "sha_fastexcel": "e0ac40d300c10b07",
+    "sheets": 38
+   },
+   {
+    "file": "raw/cbr/bulletin/mortgage_lending_market_2608_76.xlsx",
+    "ok": true,
+    "rows_openpyxl": 2668,
+    "rows_fastexcel": 2668,
+    "sha_openpyxl": "da50779879b9c427",
+    "sha_fastexcel": "da50779879b9c427",
+    "sheets": 38
+   },
+   {
+    "file": "raw/cbr/escrow/01012022.xlsx",
+    "ok": true,
+    "rows_openpyxl": 103,
+    "rows_fastexcel": 103,
+    "sha_openpyxl": "37fa643311a7be7e",
+    "sha_fastexcel": "37fa643311a7be7e",
+    "sheets": 1
+   },
+   {
+    "file": "raw/cbr/escrow/01012023.xlsx",
+    "ok": true,
+    "rows_openpyxl": 105,
+    "rows_fastexcel": 105,
+    "sha_openpyxl": "cd6cd18c3de66ec4",
+    "sha_fastexcel": "cd6cd18c3de66ec4",
+    "sheets": 1
+   },
+   {
+    "file": "raw/cbr/escrow/01012024.xlsx",
+    "ok": true,
+    "rows_openpyxl": 107,
+    "rows_fastexcel": 107,
+    "sha_openpyxl": "68b1a35346f7b7ed",
+    "sha_fastexcel": "68b1a35346f7b7ed",
+    "sheets": 1
+   }
+  ]
+ },
+ {
+  "script": "scripts/cbr_infom_canon.py",
+  "files": [
+   {
+    "file": "raw/cbr/infom/Infl_exp_26-09.xlsx",
+    "ok": false,
+    "rows_openpyxl": 3095,
+    "rows_fastexcel": 3095,
+    "sha_openpyxl": "5fd0bc43d3a33a1a",
+    "sha_fastexcel": "89124d7af3fb0cba",
+    "sheets": 12
+   }
+  ]
+ },
+ {
+  "script": "scripts/cbr_lending_update.py",
+  "files": [
+   {
+    "file": "raw/cbr/bulletin/mortgage_lending_market_2606_74.xlsx",
+    "ok": true,
+    "rows_openpyxl": 2640,
+    "rows_fastexcel": 2640,
+    "sha_openpyxl": "50e44e9d9a2f1801",
+    "sha_fastexcel": "50e44e9d9a2f1801",
+    "sheets": 38
+   },
+   {
+    "file": "raw/cbr/bulletin/mortgage_lending_market_2607_75.xlsx",
+    "ok": true,
+    "rows_openpyxl": 2652,
+    "rows_fastexcel": 2652,
+    "sha_openpyxl": "e0ac40d300c10b07",
+    "sha_fastexcel": "e0ac40d300c10b07",
+    "sheets": 38
+   },
+   {
+    "file": "raw/cbr/bulletin/mortgage_lending_market_2608_76.xlsx",
+    "ok": true,
+    "rows_openpyxl": 2668,
+    "rows_fastexcel": 2668,
+    "sha_openpyxl": "da50779879b9c427",
+    "sha_fastexcel": "da50779879b9c427",
+    "sheets": 38
+   },
+   {
+    "file": "raw/cbr/escrow/01012022.xlsx",
+    "ok": true,
+    "rows_openpyxl": 103,
+    "rows_fastexcel": 103,
+    "sha_openpyxl": "37fa643311a7be7e",
+    "sha_fastexcel": "37fa643311a7be7e",
+    "sheets": 1
+   },
+   {
+    "file": "raw/cbr/escrow/01012023.xlsx",
+    "ok": true,
+    "rows_openpyxl": 105,
+    "rows_fastexcel": 105,
+    "sha_openpyxl": "cd6cd18c3de66ec4",
+    "sha_fastexcel": "cd6cd18c3de66ec4",
+    "sheets": 1
+   },
+   {
+    "file": "raw/cbr/escrow/01012024.xlsx",
+    "ok": true,
+    "rows_openpyxl": 107,
+    "rows_fastexcel": 107,
+    "sha_openpyxl": "68b1a35346f7b7ed",
+    "sha_fastexcel": "68b1a35346f7b7ed",
+    "sheets": 1
+   }
+  ]
+ },
+ {
+  "script": "scripts/cbr_mo_canon.py",
+  "files": [
+   {
+    "file": "raw/cbr/mo/full.xlsx",
+    "ok": false,
+    "rows_openpyxl": 1271,
+    "rows_fastexcel": 1271,
+    "sha_openpyxl": "d218e9249674b10c",
+    "sha_fastexcel": "f1ae941f1aad1cdf",
+    "sheets": 18
+   }
+  ]
+ },
+ {
+  "script": "scripts/cbr_monitoring_canon.py",
+  "files": []
+ },
+ {
+  "script": "scripts/cbr_mortgage_vfs_sync.py",
+  "files": []
+ },
+ {
+  "script": "scripts/check_gdp_units.py",
+  "files": []
+ },
+ {
+  "script": "scripts/direct_domrf_sales.py",
+  "files": [
+   {
+    "file": "raw/domrf/01_05_stockvariables_sales.xlsx",
+    "ok": false,
+    "rows_openpyxl": 1368,
+    "rows_fastexcel": 1368,
+    "sha_openpyxl": "94c5f54ed0c5f612",
+    "sha_fastexcel": "9c8fba1d39dbe4c5",
+    "sheets": 12
+   }
+  ]
+ },
+ {
+  "script": "scripts/direct_ikv_reg.py",
+  "files": [
+   {
+    "file": "raw/rosstat/data/Inv_reg_kv_2020-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 224,
+    "rows_fastexcel": 224,
+    "sha_openpyxl": "f9882ceba2b07d63",
+    "sha_fastexcel": "f9882ceba2b07d63",
+    "sheets": 3
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_06.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "ab943e6962703971",
+    "sha_fastexcel": "ab943e6962703971",
+    "sheets": 5
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_08_2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "38d5743ec82ced47",
+    "sha_fastexcel": "38d5743ec82ced47",
+    "sheets": 5
+   }
+  ],
+  "parse": {
+   "openpyxl": {
+    "error": [
+     "KeyError: 'Worksheet None does not exist.'"
+    ]
+   },
+   "fastexcel": {
+    "error": [
+     "KeyError: 'нет листа None'"
+    ]
+   },
+   "ok": false
+  }
+ },
+ {
+  "script": "scripts/direct_ind_prod.py",
+  "files": [
+   {
+    "file": "raw/rosstat/data/Inv_reg_kv_2020-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 224,
+    "rows_fastexcel": 224,
+    "sha_openpyxl": "f9882ceba2b07d63",
+    "sha_fastexcel": "f9882ceba2b07d63",
+    "sheets": 3
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_06.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "ab943e6962703971",
+    "sha_fastexcel": "ab943e6962703971",
+    "sheets": 5
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_08_2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "38d5743ec82ced47",
+    "sha_fastexcel": "38d5743ec82ced47",
+    "sheets": 5
+   }
+  ]
+ },
+ {
+  "script": "scripts/direct_mosh.py",
+  "files": [
+   {
+    "file": "raw/rosstat/data/Inv_reg_kv_2020-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 224,
+    "rows_fastexcel": 224,
+    "sha_openpyxl": "f9882ceba2b07d63",
+    "sha_fastexcel": "f9882ceba2b07d63",
+    "sheets": 3
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_06.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "ab943e6962703971",
+    "sha_fastexcel": "ab943e6962703971",
+    "sheets": 5
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_08_2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "38d5743ec82ced47",
+    "sha_fastexcel": "38d5743ec82ced47",
+    "sheets": 5
+   }
+  ]
+ },
+ {
+  "script": "scripts/direct_mosh_sub.py",
+  "files": []
+ },
+ {
+  "script": "scripts/direct_rosstat_monitoring.py",
+  "files": []
+ },
+ {
+  "script": "scripts/direct_rosstat_operativ_construction.py",
+  "files": []
+ },
+ {
+  "script": "scripts/direct_rosstat_prom.py",
+  "files": [
+   {
+    "file": "raw/prom/Prom_07_2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 37606,
+    "rows_fastexcel": 37606,
+    "sha_openpyxl": "c7d35fead2ddca69",
+    "sha_fastexcel": "53a9be447c4d0554",
+    "sheets": 33
+   },
+   {
+    "file": "raw/prom/Prom_08_2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 37709,
+    "rows_fastexcel": 37709,
+    "sha_openpyxl": "cf4a4d2881f470e7",
+    "sha_fastexcel": "d533cd3b8f8a9b3e",
+    "sheets": 33
+   },
+   {
+    "file": "raw/prom/Prom_09_2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 37866,
+    "rows_fastexcel": 37866,
+    "sha_openpyxl": "8d411ffa4fa846e3",
+    "sha_fastexcel": "9f6749da0e7e53a6",
+    "sheets": 33
+   }
+  ]
+ },
+ {
+  "script": "scripts/direct_sezon.py",
+  "files": [
+   {
+    "file": "raw/rosstat/data/Inv_reg_kv_2020-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 224,
+    "rows_fastexcel": 224,
+    "sha_openpyxl": "f9882ceba2b07d63",
+    "sha_fastexcel": "f9882ceba2b07d63",
+    "sheets": 3
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_06.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "ab943e6962703971",
+    "sha_fastexcel": "ab943e6962703971",
+    "sheets": 5
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_08_2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "38d5743ec82ced47",
+    "sha_fastexcel": "38d5743ec82ced47",
+    "sheets": 5
+   },
+   {
+    "file": "raw/rosstat/data/sezon_2023_07-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 104,
+    "rows_fastexcel": 104,
+    "sha_openpyxl": "ad4183f049acdc6e",
+    "sha_fastexcel": "ad4183f049acdc6e",
+    "sheets": 2
+   },
+   {
+    "file": "raw/rosstat/data/sezon_2023_08-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 105,
+    "rows_fastexcel": 105,
+    "sha_openpyxl": "ebc27b6974abc8ca",
+    "sha_fastexcel": "ebc27b6974abc8ca",
+    "sheets": 2
+   },
+   {
+    "file": "raw/rosstat/data/sezon_2023_09-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 106,
+    "rows_fastexcel": 106,
+    "sha_openpyxl": "af33b89d85d9d1a4",
+    "sha_fastexcel": "af33b89d85d9d1a4",
+    "sheets": 2
+   }
+  ],
+  "parse": {
+   "openpyxl": {
+    "sha": "e9d2e041c446f0cd",
+    "n": 6,
+    "bytes": 44350,
+    "engine": "openpyxl"
+   },
+   "fastexcel": {
+    "sha": "e9d2e041c446f0cd",
+    "n": 6,
+    "bytes": 44350,
+    "engine": "fastexcel"
+   },
+   "ok": true
+  }
+ },
+ {
+  "script": "scripts/direct_stroit_pril.py",
+  "files": []
+ },
+ {
+  "script": "scripts/direct_vv_zd.py",
+  "files": [
+   {
+    "file": "raw/rosstat/data/Inv_reg_kv_2020-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 224,
+    "rows_fastexcel": 224,
+    "sha_openpyxl": "f9882ceba2b07d63",
+    "sha_fastexcel": "f9882ceba2b07d63",
+    "sheets": 3
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_06.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "ab943e6962703971",
+    "sha_fastexcel": "ab943e6962703971",
+    "sheets": 5
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_08_2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "38d5743ec82ced47",
+    "sha_fastexcel": "38d5743ec82ced47",
+    "sheets": 5
+   }
+  ],
+  "parse": {
+   "openpyxl": {
+    "sha": "4fff7a93c0ade37c",
+    "n": 3,
+    "bytes": 15702,
+    "engine": "openpyxl"
+   },
+   "fastexcel": {
+    "sha": "4fff7a93c0ade37c",
+    "n": 3,
+    "bytes": 15702,
+    "engine": "fastexcel"
+   },
+   "ok": true
+  }
+ },
+ {
+  "script": "scripts/emiss_34118_canon.py",
+  "files": []
+ },
+ {
+  "script": "scripts/ingest_cbr_pf_fo.py",
+  "files": [
+   {
+    "file": "raw/cbr/escrow/01012022.xlsx",
+    "ok": true,
+    "rows_openpyxl": 103,
+    "rows_fastexcel": 103,
+    "sha_openpyxl": "37fa643311a7be7e",
+    "sha_fastexcel": "37fa643311a7be7e",
+    "sheets": 1
+   },
+   {
+    "file": "raw/cbr/escrow/01012023.xlsx",
+    "ok": true,
+    "rows_openpyxl": 105,
+    "rows_fastexcel": 105,
+    "sha_openpyxl": "cd6cd18c3de66ec4",
+    "sha_fastexcel": "cd6cd18c3de66ec4",
+    "sheets": 1
+   },
+   {
+    "file": "raw/cbr/escrow/01012024.xlsx",
+    "ok": true,
+    "rows_openpyxl": 107,
+    "rows_fastexcel": 107,
+    "sha_openpyxl": "68b1a35346f7b7ed",
+    "sha_fastexcel": "68b1a35346f7b7ed",
+    "sheets": 1
+   }
+  ]
+ },
+ {
+  "script": "scripts/ingest_expectations.py",
+  "files": [
+   {
+    "file": "raw/cbr/Infl_exp_26-08.xlsx",
+    "ok": true,
+    "rows_openpyxl": 2960,
+    "rows_fastexcel": 2960,
+    "sha_openpyxl": "6e7a23427a0cdc58",
+    "sha_fastexcel": "6e7a23427a0cdc58",
+    "sheets": 15
+   },
+   {
+    "file": "raw/cbr/macro_survey_full.xlsx",
+    "ok": false,
+    "rows_openpyxl": 1271,
+    "rows_fastexcel": 1271,
+    "sha_openpyxl": "7b0d422ad9c9b50e",
+    "sha_fastexcel": "e503303cced6fd7a",
+    "sheets": 18
+   }
+  ]
+ },
+ {
+  "script": "scripts/ingest_grp.py",
+  "files": []
+ },
+ {
+  "script": "scripts/kep_collect.py",
+  "files": []
+ },
+ {
+  "script": "scripts/load_cbr_primary_market.py",
+  "files": []
+ },
+ {
+  "script": "scripts/parse_cbr_lending.py",
+  "files": [
+   {
+    "file": "raw/cbr/Infl_exp_26-07.xlsx",
+    "ok": true,
+    "rows_openpyxl": 3002,
+    "rows_fastexcel": 3002,
+    "sha_openpyxl": "873bc533533dc2f6",
+    "sha_fastexcel": "873bc533533dc2f6",
+    "sheets": 16
+   },
+   {
+    "file": "raw/cbr/Infl_exp_26-08.xlsx",
+    "ok": true,
+    "rows_openpyxl": 2960,
+    "rows_fastexcel": 2960,
+    "sha_openpyxl": "6e7a23427a0cdc58",
+    "sha_fastexcel": "6e7a23427a0cdc58",
+    "sheets": 15
+   },
+   {
+    "file": "raw/cbr/macro_survey_full.xlsx",
+    "ok": false,
+    "rows_openpyxl": 1271,
+    "rows_fastexcel": 1271,
+    "sha_openpyxl": "7b0d422ad9c9b50e",
+    "sha_fastexcel": "e503303cced6fd7a",
+    "sheets": 18
+   },
+   {
+    "file": "/home/lnr/research-wiki-private/raw/cbr/bulletin",
+    "ok": false,
+    "error": "InvalidFileException: openpyxl does not support  file format, please check you can open it with Excel first. Supported formats are: .xlsx,.xlsm,.xltx,.xltm"
+   },
+   {
+    "file": "/home/lnr/research-wiki-private/raw/cbr/escrow",
+    "ok": false,
+    "error": "InvalidFileException: openpyxl does not support  file format, please check you can open it with Excel first. Supported formats are: .xlsx,.xlsm,.xltx,.xltm"
+   }
+  ]
+ },
+ {
+  "script": "scripts/parse_fns_1nom_canon.py",
+  "files": []
+ },
+ {
+  "script": "scripts/rosstat_cpi_mom_ingest.py",
+  "files": []
+ },
+ {
+  "script": "scripts/rosstat_inv_files_update.py",
+  "files": [
+   {
+    "file": "raw/rosstat/data/Inv_reg_kv_2020-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 224,
+    "rows_fastexcel": 224,
+    "sha_openpyxl": "f9882ceba2b07d63",
+    "sha_fastexcel": "f9882ceba2b07d63",
+    "sheets": 3
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_06.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "ab943e6962703971",
+    "sha_fastexcel": "ab943e6962703971",
+    "sheets": 5
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_08_2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "38d5743ec82ced47",
+    "sha_fastexcel": "38d5743ec82ced47",
+    "sheets": 5
+   }
+  ]
+ },
+ {
+  "script": "scripts/rosstat_monitoring_profile.py",
+  "files": []
+ },
+ {
+  "script": "scripts/rosstat_operativ_construction_files_update.py",
+  "files": [
+   {
+    "file": "raw/rosstat/data/Inv_reg_kv_2020-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 224,
+    "rows_fastexcel": 224,
+    "sha_openpyxl": "f9882ceba2b07d63",
+    "sha_fastexcel": "f9882ceba2b07d63",
+    "sheets": 3
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_06.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "ab943e6962703971",
+    "sha_fastexcel": "ab943e6962703971",
+    "sheets": 5
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_08_2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "38d5743ec82ced47",
+    "sha_fastexcel": "38d5743ec82ced47",
+    "sheets": 5
+   }
+  ]
+ },
+ {
+  "script": "scripts/rosstat_prom_files_update.py",
+  "files": [
+   {
+    "file": "raw/prom/Prom_07_2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 37606,
+    "rows_fastexcel": 37606,
+    "sha_openpyxl": "c7d35fead2ddca69",
+    "sha_fastexcel": "53a9be447c4d0554",
+    "sheets": 33
+   },
+   {
+    "file": "raw/prom/Prom_08_2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 37709,
+    "rows_fastexcel": 37709,
+    "sha_openpyxl": "cf4a4d2881f470e7",
+    "sha_fastexcel": "d533cd3b8f8a9b3e",
+    "sheets": 33
+   },
+   {
+    "file": "raw/prom/Prom_09_2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 37866,
+    "rows_fastexcel": 37866,
+    "sha_openpyxl": "8d411ffa4fa846e3",
+    "sha_fastexcel": "9f6749da0e7e53a6",
+    "sheets": 33
+   },
+   {
+    "file": "raw/rosstat/data/Inv_reg_kv_2020-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 224,
+    "rows_fastexcel": 224,
+    "sha_openpyxl": "f9882ceba2b07d63",
+    "sha_fastexcel": "f9882ceba2b07d63",
+    "sheets": 3
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_06.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "ab943e6962703971",
+    "sha_fastexcel": "ab943e6962703971",
+    "sheets": 5
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_08_2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "38d5743ec82ced47",
+    "sha_fastexcel": "38d5743ec82ced47",
+    "sheets": 5
+   }
+  ]
+ },
+ {
+  "script": "scripts/rosstat_prom_products_xlsx.py",
+  "files": [
+   {
+    "file": "raw/prom/Prom_07_2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 37606,
+    "rows_fastexcel": 37606,
+    "sha_openpyxl": "c7d35fead2ddca69",
+    "sha_fastexcel": "53a9be447c4d0554",
+    "sheets": 33
+   },
+   {
+    "file": "raw/prom/Prom_08_2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 37709,
+    "rows_fastexcel": 37709,
+    "sha_openpyxl": "cf4a4d2881f470e7",
+    "sha_fastexcel": "d533cd3b8f8a9b3e",
+    "sheets": 33
+   },
+   {
+    "file": "raw/prom/Prom_09_2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 37866,
+    "rows_fastexcel": 37866,
+    "sha_openpyxl": "8d411ffa4fa846e3",
+    "sha_fastexcel": "9f6749da0e7e53a6",
+    "sheets": 33
+   },
+   {
+    "file": "raw/rosstat/operational/Proizvodstvo_mes_2023.xlsx",
+    "ok": false,
+    "rows_openpyxl": 4166,
+    "rows_fastexcel": 4166,
+    "sha_openpyxl": "cc2d5b8af8e667c6",
+    "sha_fastexcel": "f01431629530ecd6",
+    "sheets": 30
+   },
+   {
+    "file": "raw/rosstat/operational/VDS_kvartal_OKVED2_s_2011-2026.xlsx",
+    "ok": false,
+    "rows_openpyxl": 270,
+    "rows_fastexcel": 270,
+    "sha_openpyxl": "f1b6bc60580fd590",
+    "sha_fastexcel": "9862fe1f290448ac",
+    "sheets": 10
+   },
+   {
+    "file": "raw/rosstat/operational/ind_07-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 8690,
+    "rows_fastexcel": 8690,
+    "sha_openpyxl": "625cb9430733d3ff",
+    "sha_fastexcel": "625cb9430733d3ff",
+    "sheets": 43
+   }
+  ]
+ },
+ {
+  "script": "scripts/rosstat_sezon_parse.py",
+  "files": []
+ },
+ {
+  "script": "scripts/rosstat_vv_zd_files_update.py",
+  "files": [
+   {
+    "file": "raw/rosstat/data/Inv_reg_kv_2020-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 224,
+    "rows_fastexcel": 224,
+    "sha_openpyxl": "f9882ceba2b07d63",
+    "sha_fastexcel": "f9882ceba2b07d63",
+    "sheets": 3
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_06.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "ab943e6962703971",
+    "sha_fastexcel": "ab943e6962703971",
+    "sheets": 5
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_08_2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "38d5743ec82ced47",
+    "sha_fastexcel": "38d5743ec82ced47",
+    "sheets": 5
+   }
+  ]
+ },
+ {
+  "script": "scripts/transfer_cbr_vfs.py",
+  "files": [
+   {
+    "file": "raw/cbr/vfs/01_04_D_New_loans_subj.xlsx",
+    "ok": true,
+    "rows_openpyxl": 294,
+    "rows_fastexcel": 294,
+    "sha_openpyxl": "6a9636f0e30de8f2",
+    "sha_fastexcel": "6a9636f0e30de8f2",
+    "sheets": 3
+   },
+   {
+    "file": "raw/cbr/vfs/01_05_D_Debt_subj.xlsx",
+    "ok": true,
+    "rows_openpyxl": 588,
+    "rows_fastexcel": 588,
+    "sha_openpyxl": "d99371b317d9b410",
+    "sha_fastexcel": "d99371b317d9b410",
+    "sheets": 6
+   },
+   {
+    "file": "raw/cbr/vfs/02_04_New_loans_ind.xlsx",
+    "ok": true,
+    "rows_openpyxl": 297,
+    "rows_fastexcel": 297,
+    "sha_openpyxl": "4123c6eccad87971",
+    "sha_fastexcel": "4123c6eccad87971",
+    "sheets": 3
+   }
+  ]
+ },
+ {
+  "script": "scripts/update_cbr_lending.py",
+  "files": [
+   {
+    "file": "raw/cbr/bulletin/mortgage_lending_market_2606_74.xlsx",
+    "ok": true,
+    "rows_openpyxl": 2640,
+    "rows_fastexcel": 2640,
+    "sha_openpyxl": "50e44e9d9a2f1801",
+    "sha_fastexcel": "50e44e9d9a2f1801",
+    "sheets": 38
+   },
+   {
+    "file": "raw/cbr/bulletin/mortgage_lending_market_2607_75.xlsx",
+    "ok": true,
+    "rows_openpyxl": 2652,
+    "rows_fastexcel": 2652,
+    "sha_openpyxl": "e0ac40d300c10b07",
+    "sha_fastexcel": "e0ac40d300c10b07",
+    "sheets": 38
+   },
+   {
+    "file": "raw/cbr/bulletin/mortgage_lending_market_2608_76.xlsx",
+    "ok": true,
+    "rows_openpyxl": 2668,
+    "rows_fastexcel": 2668,
+    "sha_openpyxl": "da50779879b9c427",
+    "sha_fastexcel": "da50779879b9c427",
+    "sheets": 38
+   },
+   {
+    "file": "raw/cbr/escrow/01012022.xlsx",
+    "ok": true,
+    "rows_openpyxl": 103,
+    "rows_fastexcel": 103,
+    "sha_openpyxl": "37fa643311a7be7e",
+    "sha_fastexcel": "37fa643311a7be7e",
+    "sheets": 1
+   },
+   {
+    "file": "raw/cbr/escrow/01012023.xlsx",
+    "ok": true,
+    "rows_openpyxl": 105,
+    "rows_fastexcel": 105,
+    "sha_openpyxl": "cd6cd18c3de66ec4",
+    "sha_fastexcel": "cd6cd18c3de66ec4",
+    "sheets": 1
+   },
+   {
+    "file": "raw/cbr/escrow/01012024.xlsx",
+    "ok": true,
+    "rows_openpyxl": 107,
+    "rows_fastexcel": 107,
+    "sha_openpyxl": "68b1a35346f7b7ed",
+    "sha_fastexcel": "68b1a35346f7b7ed",
+    "sheets": 1
+   }
+  ]
+ },
+ {
+  "script": "scripts/update_rosstat.py",
+  "files": [
+   {
+    "file": "raw/rosstat/data/Inv_reg_kv_2020-2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 224,
+    "rows_fastexcel": 224,
+    "sha_openpyxl": "f9882ceba2b07d63",
+    "sha_fastexcel": "f9882ceba2b07d63",
+    "sheets": 3
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_06.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "ab943e6962703971",
+    "sha_fastexcel": "ab943e6962703971",
+    "sheets": 5
+   },
+   {
+    "file": "raw/rosstat/data/Operativ_08_2026.xlsx",
+    "ok": true,
+    "rows_openpyxl": 430,
+    "rows_fastexcel": 430,
+    "sha_openpyxl": "38d5743ec82ced47",
+    "sha_fastexcel": "38d5743ec82ced47",
+    "sheets": 5
+   }
+  ]
+ },
+ {
+  "script": "scripts/vbved_reg_canon.py",
+  "files": []
+ },
+ {
+  "script": "scripts/verify_cbr_izhk_definitions.py",
+  "files": []
+ },
+ {
+  "script": "loader/parse_cbr_vfs.py",
+  "files": [
+   {
+    "file": "raw/cbr/vfs/02_04_New_loans_ind.xlsx",
+    "ok": true,
+    "rows_openpyxl": 297,
+    "rows_fastexcel": 297,
+    "sha_openpyxl": "4123c6eccad87971",
+    "sha_fastexcel": "4123c6eccad87971",
+    "sheets": 3
+   },
+   {
+    "file": "raw/cbr/vfs/02_05_Debt_ind.xlsx",
+    "ok": true,
+    "rows_openpyxl": 594,
+    "rows_fastexcel": 594,
+    "sha_openpyxl": "a13e3f4e5bbaae01",
+    "sha_fastexcel": "a13e3f4e5bbaae01",
+    "sheets": 6
+   },
+   {
+    "file": "raw/cbr/vfs/02_06_Quantity_housing.xlsx",
+    "ok": true,
+    "rows_openpyxl": 297,
+    "rows_fastexcel": 297,
+    "sha_openpyxl": "504f02cc7c5b9af0",
+    "sha_fastexcel": "504f02cc7c5b9af0",
+    "sheets": 3
+   }
+  ]
+ }
+]

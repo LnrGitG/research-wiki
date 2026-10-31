@@ -27,11 +27,27 @@
 
 Запуск: APPLY=1 [PRUNE=period] scripts/direct_vv_zd.py
 """
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
 import os
 import re
 import sys
 
-import openpyxl
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from direct_core import Writer, norm  # noqa: E402
@@ -99,7 +115,7 @@ def latest(pattern):
 
 def parse_oper(path):
     """[(период (год, месяц), категория, количество, площадь)] из vv-zd-oper."""
-    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    wb = open_workbook(path, engine=ENGINE)
     out = []
     for sheet in wb.sheetnames:
         if sheet.strip().lower() in ('содержание', 'содержание '):
@@ -132,7 +148,7 @@ def parse_sub(path):
     нежилые здания», «Жилые здания», «Нежилые здания»; подпись блока — строка
     без значений, она задаёт разрез, а не территорию.
     """
-    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    wb = open_workbook(path, engine=ENGINE)
     out = []
     block = BLOCKS[DEFAULT_BLOCK]
     for sheet in wb.sheetnames:

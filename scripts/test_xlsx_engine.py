@@ -35,6 +35,43 @@ def _strip_tail(rows):
     return [r[:max((i + 1 for i, v in enumerate(r) if v), default=0)] for r in rows]
 
 
+def test_engine_selection():
+    """Откат --xlsx-engine и XLSX_ENGINE читается одинаково во всех скриптах."""
+    from xlsx_engine import engine_from_argv
+    problems = []
+    if engine_from_argv(["--xlsx-engine", "openpyxl"]) != "openpyxl":
+        problems.append("--xlsx-engine openpyxl не распознан")
+    if engine_from_argv(["--xlsx-engine=openpyxl"]) != "openpyxl":
+        problems.append("--xlsx-engine=openpyxl не распознан")
+    if engine_from_argv(["--xlsx-engine", "fastexcel", "--xlsx-engine", "openpyxl"]) != "openpyxl":
+        problems.append("последний --xlsx-engine не победил")
+    os.environ["XLSX_ENGINE"] = "openpyxl"
+    try:
+        import importlib
+        import xlsx_engine
+        importlib.reload(xlsx_engine)
+        if xlsx_engine.engine_from_argv([]) != "openpyxl":
+            problems.append("XLSX_ENGINE не подхвачен")
+    finally:
+        os.environ.pop("XLSX_ENGINE", None)
+        import importlib
+        import xlsx_engine
+        importlib.reload(xlsx_engine)
+    # живая проверка на боевом парсере: флаг из командной строки доходит до
+    # module-level ENGINE (импорт парсера без запуска main)
+    import subprocess
+    here = os.path.dirname(os.path.abspath(__file__))
+    code = ("import sys; sys.path.insert(0, r'%s'); sys.argv = ['x', "
+            "'--xlsx-engine', 'openpyxl']; import direct_mosh as m; "
+            "print(m.ENGINE)" % here)
+    cp = subprocess.run([sys.executable, "-c", code], capture_output=True,
+                        text=True)
+    if cp.stdout.strip() != "openpyxl":
+        problems.append(f"ENGINE парсера при --xlsx-engine openpyxl: "
+                        f"{cp.stdout.strip() or cp.stderr.strip()[-120:]}")
+    return problems
+
+
 def main():
     import openpyxl
     from openpyxl import Workbook
@@ -61,6 +98,10 @@ def main():
 
     if not has_fastexcel():
         print("WARN: fastexcel не установлен — сверка вырождена")
+    sel = test_engine_selection()
+    if sel:
+        print("РАСХОЖДЕНИЕ в выборе движка: " + "; ".join(sel))
+        return 1
     if problems:
         for sheet, a, b in problems:
             print(f"РАСХОЖДЕНИЕ на листе {sheet!r}:\n  openpyxl: {a}\n  fastexcel: {b}")

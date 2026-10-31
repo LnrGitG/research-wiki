@@ -35,7 +35,15 @@ import os
 import re
 import sys
 
-import openpyxl
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from direct_core import Writer, norm                    # noqa: E402
@@ -95,7 +103,7 @@ def grid(ws):
 
 def parse(path, all_pct=False):
     """[(ps, cum_label, territory, value_mln, pct)] из двух листов файла."""
-    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    wb = open_workbook(path, engine=ENGINE)
     by_name = wb.sheetnames
     mln = next((s for s in by_name if 'млн' in s.lower()), None)
     pct = next((s for s in by_name if 'соотв' in s.lower()), None)

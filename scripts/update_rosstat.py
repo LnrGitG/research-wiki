@@ -16,9 +16,26 @@
     python scripts/update_rosstat.py --download-only # только скачать, не парсить
 """
 
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
 import os, sys, re, sqlite3, subprocess, argparse
 from datetime import datetime
-import openpyxl, xlrd
+import xlrd
+try:
+    from xlsx_engine import add_engine_arg, engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import add_engine_arg, engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
 
 # Paths
 REPO_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -137,7 +154,7 @@ def clean_text(s):
 
 def get_rows(path, ext, sheet_name):
     if ext == 'xlsx':
-        wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+        wb = open_workbook(path, engine=ENGINE)
         ws = wb[sheet_name]
         rows = list(ws.iter_rows(values_only=True))
         wb.close()
@@ -152,7 +169,7 @@ def get_rows(path, ext, sheet_name):
 
 def get_sheet_names(path, ext):
     if ext == 'xlsx':
-        wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+        wb = open_workbook(path, engine=ENGINE)
         names = wb.sheetnames
         wb.close()
         return names

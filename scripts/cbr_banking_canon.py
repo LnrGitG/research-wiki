@@ -20,6 +20,23 @@
 Идемпотентно: ON CONFLICT DO NOTHING по бизнес-ключу наблюдения.
 Точка возврата: DELETE FROM data.observation WHERE release_id=<новый>.
 """
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
 import datetime as dt
 import os
 import re
@@ -27,12 +44,6 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import db_tunnel  # noqa: E402
-
-try:
-    import openpyxl
-except ImportError:  # pragma: no cover
-    raise SystemExit('нужен openpyxl: %s -m pip install openpyxl'
-                     % sys.executable)
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BULLETIN_DIR = os.path.join(BASE, 'raw', 'cbr', 'bulletin')
@@ -107,7 +118,7 @@ def rdate_str(y, m):
 def parse_bulletin_prices(path):
     """Т_34: квартальные средние цены 1 кв.м (первичный/вторичный) по регионам."""
     out = []
-    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    wb = open_workbook(path, engine=ENGINE)
     if 'Т_34' not in wb.sheetnames:
         wb.close()
         return out
@@ -153,7 +164,7 @@ def parse_escrow_file(path):
     _, month, year = int(m.group(1)), int(m.group(2)), int(m.group(3))
     rdate = rdate_str(year, month)
     out = []
-    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    wb = open_workbook(path, engine=ENGINE)
     rows = list(wb.active.iter_rows(min_row=1, values_only=True))
     wb.close()
     col_map = escrow_col_map(rows[3] if len(rows) > 3 else None)

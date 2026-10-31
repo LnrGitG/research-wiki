@@ -4,9 +4,26 @@
 (2) таблица budget_vr_important — флаги интересов: subsidy_ks(632), subsidy_noks(633),
     grants(321/323), budinvest(814/815), soc_neformal(811/812/813);
 (3) CSV зеркало справочника в data/ для wiki."""
-import openpyxl, sqlite3, csv
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
 
-wb = openpyxl.load_workbook('raw/minfin/vr_kosgu_2024_2026.xlsx')
+import sqlite3, csv
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
+
+wb = open_workbook('raw/minfin/vr_kosgu_2024_2026.xlsx', engine=ENGINE)
 ws = wb['Лист1']
 rows = list(ws.iter_rows(min_row=1, values_only=True))
 recs, sections, order = [], {}, []

@@ -9,12 +9,28 @@ with escrow, and corporate lending by region.
 Optimized version using iter_rows for fast bulk reads.
 """
 
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
 import os
 import re
 import sqlite3
 import datetime
 
-import openpyxl
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
 
 BASE = "/home/lnr/research-wiki-private"
 VFS_DIR = os.path.join(BASE, "raw/cbr/vfs")
@@ -124,7 +140,7 @@ def parse_vfs_file(conn, path, config):
     unit = config["unit"]
     indicators = config["indicators"]
     
-    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    wb = open_workbook(path, engine=ENGINE)
     inserted = 0
     
     for sheet_name in wb.sheetnames:
@@ -206,7 +222,7 @@ BULLETIN_SHEETS = {
 }
 
 def parse_bulletin(conn, path):
-    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    wb = open_workbook(path, engine=ENGINE)
     source = f"Bulletin {os.path.basename(path)}"
     inserted = 0
     
@@ -327,7 +343,7 @@ def parse_escrow_file(conn, path):
     rdate = rdate_str(year, month)
     source = f"Escrow {fname}"
     
-    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    wb = open_workbook(path, engine=ENGINE)
     ws = wb.active
     all_rows = list(ws.iter_rows(min_row=1, values_only=True))
     wb.close()

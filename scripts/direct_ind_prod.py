@@ -35,13 +35,29 @@ rosstat_ind_prod_regions) → гармонайзер 6». Прежний пут�
 
 Запуск: APPLY=1 [PRUNE=period] [MIGRATE_FREQ=1] [RENAME=1] scripts/direct_ind_prod.py
 """
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
 import gzip
 import os
 import re
 import sys
 import csv
 
-import openpyxl
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from direct_core import Writer, norm  # noqa: E402
@@ -97,7 +113,7 @@ def latest_file():
 
 def parse(path, sheet):
     """[(имя строки, год, месяц, значение), …] с одного листа."""
-    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    wb = open_workbook(path, engine=ENGINE)
     if sheet not in wb.sheetnames:
         wb.close()
         sys.exit('нет листа %s в %s' % (sheet, path))

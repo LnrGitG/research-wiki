@@ -5,7 +5,9 @@ import sys
 from pathlib import Path
 import requests
 import urllib3
-from openpyxl import load_workbook
+from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
 
 # Росстат отдаёт цепочку, которую системный CA-бандл VPS не проверяет
 # (SSL: CERTIFICATE_VERIFY_FAILED). Прежний код на этом падал с кодом 2, то есть
@@ -40,7 +42,7 @@ def main():
         final=DEST/f'Operativ_{month:02d}_{YEAR}.xlsx'
         try:
             tmp.write_bytes(resp.content)
-            wb=load_workbook(tmp,read_only=True,data_only=True)
+            wb=open_workbook(tmp, engine=ENGINE)
             if 'Содержание' not in wb.sheetnames or '1' not in wb.sheetnames:
                 raise ValueError(f'unexpected sheets: {wb.sheetnames}')
             updated=None

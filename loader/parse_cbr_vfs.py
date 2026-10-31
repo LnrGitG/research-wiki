@@ -1,7 +1,23 @@
 #!/usr/bin/env python3
 """Загрузчик ЦБ VFS 0420218 в v2 (staging → observation)."""
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
 import hashlib, json, re, sys, glob, datetime, unicodedata
-import openpyxl
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
 import psycopg
 
 SHEET_MAP = {
@@ -40,7 +56,7 @@ def parse_file(path, run_id):
     for f in sorted(glob.glob("/home/ubuntu/research-wiki-private/raw/cbr/vfs/02_*.xlsx")):
         prefix = f.split("/")[-1][:5]
         if prefix not in ("02_04","02_05","02_06","02_07","02_08","02_09","02_15","02_42","02_43","02_44","02_45"): continue
-        wb = openpyxl.load_workbook(f, read_only=True, data_only=True)
+        wb = open_workbook(f, engine=ENGINE)
         for sn in wb.sheetnames:
             key = (prefix, sn)
             if key not in SHEET_MAP: continue

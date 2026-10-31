@@ -15,7 +15,23 @@ Target DB: data/cbr_lending.db
 Tables: mortgage_monthly, escrow_monthly, corporate_monthly
 """
 
-import openpyxl
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
 import sqlite3
 import os
 import re
@@ -112,7 +128,7 @@ def parse_vfs_file(fpath, file_type):
     
     Returns list of (region_name, report_date, indicator, value, unit)
     """
-    wb = openpyxl.load_workbook(fpath, read_only=True, data_only=True)
+    wb = open_workbook(fpath, engine=ENGINE)
     records = []
     
     # Determine indicator prefixes based on file_type
@@ -230,7 +246,7 @@ BULLETIN_SHEETS = {
 
 def parse_bulletin(fpath):
     """Parse mortgage lending market bulletin Section II sheets."""
-    wb = openpyxl.load_workbook(fpath, read_only=True, data_only=True)
+    wb = open_workbook(fpath, engine=ENGINE)
     records = []
     
     for sheet_name, (indicator, unit) in BULLETIN_SHEETS.items():
@@ -376,7 +392,7 @@ ESCROW_UNITS = {
 
 def parse_escrow_file(fpath, report_date):
     """Parse a single escrow XLSX snapshot."""
-    wb = openpyxl.load_workbook(fpath, read_only=True, data_only=True)
+    wb = open_workbook(fpath, engine=ENGINE)
     ws = wb["по регионам"]
     records = []
     

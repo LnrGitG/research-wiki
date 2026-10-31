@@ -3,10 +3,27 @@
 Источник: таблица соответствия разделов/подразделов и видов расходов (Минфин, приказ 139н,
 бюджеты субъектов 2024-2026). Разбор XLSX (Лист1) → таблица budget_vr_dict.
 Дополнительно: свод по интересным ВР (субсидии 632/633/811/851, капвложения 814, ипотека-ЦСР не в этой таблице)."""
-import openpyxl, sqlite3, re
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
+import sqlite3, re
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
 
 SRC = 'raw/minfin/vr_kosgu_2024_2026.xlsx'
-wb = openpyxl.load_workbook(SRC)
+wb = open_workbook(SRC, engine=ENGINE)
 ws = wb['Лист1']
 
 rows = list(ws.iter_rows(min_row=1, values_only=True))

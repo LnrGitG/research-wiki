@@ -17,6 +17,14 @@
 
 Запуск: python3 scripts/transfer_cbr_vfs.py
 """
+try:
+    from xlsx_engine import open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import open_workbook  # noqa: E402
+
 import datetime as dt
 import os
 import re
@@ -25,7 +33,15 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import db_tunnel  # noqa: E402
 
-import openpyxl  # noqa: E402
+try:
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+except ImportError:  # запуск из другого каталога
+    import os as _os
+    import sys as _sys
+    _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+    from xlsx_engine import engine_from_argv, open_workbook  # noqa: E402
+ENGINE = engine_from_argv()  # --xlsx-engine openpyxl|fastexcel, резерв — XLSX_ENGINE
+
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VFS_DIR = os.path.join(BASE, "raw", "cbr", "vfs")
@@ -160,7 +176,7 @@ def main():
                 path = os.path.join(VFS_DIR, fname)
                 if not os.path.exists(path):
                     raise SystemExit(f"нет файла: {path}")
-                wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+                wb = open_workbook(path, engine=ENGINE)
                 if sheet not in wb.sheetnames:
                     raise SystemExit(f"{fname}: нет листа {sheet!r} ({wb.sheetnames})")
                 rows = list(wb[sheet].iter_rows(values_only=True))

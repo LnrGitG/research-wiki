@@ -43,10 +43,12 @@ s_vozr — возраст), в Attributes — единица измерения 
 import argparse
 import csv
 import http.cookiejar
+import io
 import json
 import os
 import re
 import sys
+import tempfile
 import time
 import urllib.error
 import urllib.parse
@@ -255,7 +257,11 @@ class Emiss:
         return out
 
     # --- шаг 3: загрузка
-    def download(self, meta, selected, fmt="sdmx"):
+    def download(self, meta, selected, fmt="sdmx", sink=None):
+        """Скачивает ответ. При sink=<путь> пишет потоком в файл (не держит XML в памяти).
+
+        Возвращает blob (bytes) либо, при sink, None — размер берёт вызывающий.
+        """
         f = meta["filters"]
         ind_field = next((k for k, v in f.items() if v.get("indicator")), "0")
         ind_title = list(f[ind_field]["values"].values())[0].get("title", "")
@@ -275,7 +281,16 @@ class Emiss:
             "Origin": self.base, "User-Agent": UA})
         with self.opener.open(req, timeout=max(self.timeout, 300)) as r:
             ctype = r.headers.get("Content-Type", "")
-            blob = r.read()
+            if sink:
+                with open(sink, "wb") as fh:
+                    while True:
+                        chunk = r.read(1 << 20)
+                        if not chunk:
+                            break
+                        fh.write(chunk)
+                blob = None
+            else:
+                blob = r.read()
         if fmt == "excel" and "ms-excel" not in ctype:
             raise RuntimeError("ЕМИСС вернул %s вместо таблицы; вероятно, пустая выборка" % ctype)
         if fmt == "sdmx" and "xml" not in ctype:
@@ -284,58 +299,81 @@ class Emiss:
 
     # --- шаг 4: разбор ответа
     @staticmethod
-    def parse_sdmx(blob):
+    def parse_sdmx(source):
         """Из sdmx делает список словарей: одна строка на точку.
+
+        source — путь к файлу ответа (или файловый объект). Разбор потоковый:
+        ET.iterparse по закрытию элементов; ряд собирается по закрытию Series,
+        после чего элемент очищается, поэтому дерево целиком в памяти не
+        строится. На ответе 470 МБ (показатель 31074 по одной территории)
+        построение дерева уходило в OOM, потоковый разбор такой ответ проходит.
 
         Разбор идёт по локальным именам тегов без учёта пространств имён:
         в ответе ЕМИСС часть элементов (Series, Obs и другие) идёт вообще
         без namespace, поэтому поиск по полному имени с namespace не находит
         ни одного ряда. Это была первая ошибка разбора — учитывать её при
         правках.
-        """
-        def local(el):
-            return el.tag.split("}")[-1]
 
-        root = ET.fromstring(blob)
-        # справочники: код -> название
+        Справочник CodeLists в фикстуре идёт до DataSets, но это не гарантия
+        для живого ответа: если Code встретится после ряда, названия
+        s_OKATO/s_vozr дополняются вторым проходом по уже собранным строкам
+        (память при этом не растёт — дерево не строится).
+        """
+        if isinstance(source, (bytes, bytearray)):
+            source = io.BytesIO(source)
         names = {}
-        for el in root.iter():
-            if local(el) != "Code":
-                continue
-            desc = next((c for c in el if local(c) == "Description"), None)
-            names[str(el.attrib.get("value"))] = (desc.text or "").strip() if desc is not None else ""
         rows = []
-        for el in root.iter():
-            if local(el) != "Series":
-                continue
-            row = {}
-            for child in el:
-                tag = local(child)
-                if tag == "SeriesKey":
-                    for v in child:
-                        if local(v) == "Value":
-                            row[v.attrib.get("concept")] = v.attrib.get("value")
-                elif tag == "Attributes":
-                    for v in child:
-                        if local(v) == "Value":
-                            c = v.attrib.get("concept")
-                            row[c] = v.attrib.get("value") or (v.text or "").strip()
-                elif tag == "Obs":
-                    t = next((x for x in child if local(x) == "Time"), None)
-                    val = next((x for x in child if local(x) == "ObsValue"), None)
-                    row["time"] = (t.text or "").strip() if t is not None else ""
-                    raw = (val.attrib.get("value") if val is not None else "") or ""
-                    row["value_raw"] = raw
-                    try:
-                        row["value"] = float(raw.replace(",", ".").replace(" ", ""))
-                    except ValueError:
+        deferred_names = False
+        for event, el in ET.iterparse(source, events=("end",)):
+            tag = el.tag
+            # быстрая отбраковка по окончанию имени: split/rpartition делается
+            # только для нужных элементов, иначе на 4 млн тегов разбор вдвое медленнее
+            if tag.endswith("Series"):
+                row = {}
+                for child in el:
+                    ctag = child.tag.rpartition("}")[2]
+                    if ctag == "SeriesKey":
+                        for v in child:
+                            if v.tag.endswith("Value"):
+                                row[v.attrib.get("concept")] = v.attrib.get("value")
+                    elif ctag == "Attributes":
+                        for v in child:
+                            if v.tag.endswith("Value"):
+                                c = v.attrib.get("concept")
+                                row[c] = v.attrib.get("value") or (v.text or "").strip()
+                    elif ctag == "Obs":
+                        row["time"] = ""
+                        row["value_raw"] = ""
                         row["value"] = None
-            if not row:
-                continue
-            for code_key in ("s_OKATO", "s_vozr"):
-                if code_key in row:
-                    row[code_key + "_name"] = names.get(str(row[code_key]), "")
-            rows.append(row)
+                        for x in child:
+                            xtag = x.tag.rpartition("}")[2]
+                            if xtag == "Time":
+                                row["time"] = (x.text or "").strip()
+                            elif xtag == "ObsValue":
+                                raw = x.attrib.get("value") or ""
+                                row["value_raw"] = raw
+                                try:
+                                    row["value"] = float(raw.replace(",", ".").replace(" ", ""))
+                                except ValueError:
+                                    row["value"] = None
+                if row:
+                    for code_key in ("s_OKATO", "s_vozr"):
+                        if code_key in row:
+                            if names:
+                                row[code_key + "_name"] = names.get(str(row[code_key]), "")
+                            else:
+                                deferred_names = True
+                    rows.append(row)
+                el.clear()
+            elif tag.endswith("Code"):
+                desc = next((c for c in el if c.tag.endswith("Description")), None)
+                names[str(el.attrib.get("value"))] = (desc.text or "").strip() if desc is not None else ""
+                el.clear()
+        if deferred_names:
+            for row in rows:
+                for code_key in ("s_OKATO", "s_vozr"):
+                    if code_key in row and code_key + "_name" not in row:
+                        row[code_key + "_name"] = names.get(str(row[code_key]), "")
         return {"rows": rows, "names": names}
 
     def load(self, indicator_id, wanted=None, fmt="sdmx", retries=3, pause=20, save_raw=None):
@@ -343,21 +381,32 @@ class Emiss:
 
         Поэтому на каждой попытке берётся свежая страница (новый токен и сессия),
         а между попытками выдерживается пауза.
+
+        Ответ sdmx качается сразу в файл (save_raw или временный) и разбирается
+        потоково — сам XML в памяти не держится и не удваивается.
         """
         last = None
         for attempt in range(1, retries + 1):
             try:
                 meta = self.meta(indicator_id)
                 selected = self.select(meta, wanted)
-                blob = self.download(meta, selected, fmt=fmt)
                 if fmt == "sdmx":
                     if save_raw:
-                        with open(save_raw, "wb") as fh:
-                            fh.write(blob)
-                    data = self.parse_sdmx(blob)
-                    data.update({"meta": meta, "selected": selected,
-                                 "bytes": len(blob), "attempts": attempt})
+                        target, tmp = save_raw, None
+                    else:
+                        fd, target = tempfile.mkstemp(prefix="emiss_", suffix=".xml")
+                        os.close(fd)
+                        tmp = target
+                    try:
+                        self.download(meta, selected, fmt=fmt, sink=target)
+                        data = self.parse_sdmx(target)
+                        data.update({"meta": meta, "selected": selected,
+                                     "bytes": os.path.getsize(target), "attempts": attempt})
+                    finally:
+                        if tmp and os.path.exists(tmp):
+                            os.remove(tmp)
                     return data
+                blob = self.download(meta, selected, fmt=fmt)
                 return {"blob": blob, "meta": meta, "selected": selected,
                         "bytes": len(blob), "attempts": attempt}
             except (urllib.error.HTTPError, urllib.error.URLError, RuntimeError) as e:

@@ -4726,3 +4726,24 @@ XLSX (файл Минфина давал 151 строку вместо 153); (2)
 `scripts/bench_xlsx_engine.py`, регрессия — `scripts/test_xlsx_engine.py`.
 Отчёт: `findings/fastexcel-pilot-20261030.md`. Откат — тег `pre-fastexcel-20261030`
 и `--xlsx-engine openpyxl`.
+
+### ЕМИСС: потоковый разбор SDMX (`scripts/emiss_loader.py`)
+
+`Emiss.parse_sdmx` переведён с `ET.fromstring` + двух `root.iter()` на
+`ET.iterparse(events=("end",))`: ряд собирается по закрытию `Series` и сразу
+очищается, дерево ответа не строится. `Emiss.download` умеет писать ответ
+кусками в файл (`sink=`), `load()` для sdmx качает сразу в `save_raw` или во
+временный файл и разбирает оттуда — XML в памяти не держится и не удваивается.
+Семантика не изменилась: локальные имена тегов без namespace, `concept` из
+`SeriesKey` и `Attributes`, `value` через `float` с заменой запятой,
+`value_raw`, `time` из `Time`, названия `s_OKATO`/`s_vozr`. Если `CodeLists`
+придут после `DataSets`, названия дополняются вторым проходом по уже собранным
+строкам (дерево не возвращается).
+
+Замеры (Python 3.12, фикстуры `scripts/emiss_sdmx_fixture.py`): 30 тыс. рядов ×
+5 точек (16 МБ) — 5,57 с / 237 МБ у прежнего кода против 1,82 с / 63 МБ,
+sha строк тот же (`6fe256d6f2e4269e`); 200 тыс. рядов (104 МБ) — прежний код
+уходил в OOM, новый разбирает за 19,9 с при пике 289 МБ. Стенд —
+`scripts/emiss_sdmx_bench.py` (`--impl new|old`), откат — тег `pre-emiss-stream`.
+Живой прогон на ответе fedstat.ru не выполнен: с VPS и с ВМ источник отдаёт
+403 (блокировка датацентр-адресов), нужен туннель с домашнего канала.

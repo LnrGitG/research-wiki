@@ -23,10 +23,9 @@ import re
 import sys
 from pathlib import Path
 
-import openpyxl
-
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import db_tunnel as dbt
+import db_tunnel as dbt  # noqa: E402
+import xlsx_engine  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 P = ROOT / "raw" / "rosstat" / "prices"
@@ -75,8 +74,8 @@ def classify(label):
     return "region"
 
 
-def parse_prices(path, year, market):
-    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+def parse_prices(path, year, market, engine=None):
+    wb = xlsx_engine.open_workbook(path, engine=engine)
     data_sheets = [s for s in wb.sheetnames if s != "Содержание"]
     ws = wb[data_sheets[0]]
     grid = list(ws.iter_rows(values_only=True))
@@ -118,11 +117,11 @@ def parse_prices(path, year, market):
     return out, len(qcols)
 
 
-def build():
+def build(engine=None):
     parsed = {}
     file_meta = []
     for market, path, year in FILES:
-        rows, nq = parse_prices(path, year, market)
+        rows, nq = parse_prices(path, year, market, engine=engine)
         qs = sorted({r[3] for r in rows})
         parsed.setdefault((market, path.name), []).extend(rows)
         file_meta.append((market, path, year, nq))
@@ -270,7 +269,13 @@ def rf_print():
 
 
 if __name__ == "__main__":
-    parsed, file_meta = build()
+    import argparse
+    ap = argparse.ArgumentParser(description="Средние цены жилья Росстата по субъектам")
+    xlsx_engine.add_engine_arg(ap)
+    args = ap.parse_args()
+    engine = xlsx_engine.resolve_engine(args.xlsx_engine)
+    print("движок чтения xlsx:", engine)
+    parsed, file_meta = build(engine)
     rows = load(parsed)
     print("\nвсего строк в таблице:", len(rows))
     ds_id, run_ids = register_v2(file_meta)

@@ -89,10 +89,12 @@ KEEP_FILES = [
 # queries в DROP_DIRS нет: он обрабатывается отдельной ветвью —
 # публикуется выборочно по KEEP_QUERY_FILES.
 DROP_DIRS = ["scripts", "db", "templates", "db_docs", "raw", "backups", "loader", "specs",
-             "attic"]   # attic — дампы и точки возврата БД, машине/оператору, не читателю
+             "attic",   # attic — дампы и точки возврата БД, машине/оператору, не читателю
+             "docx",    # рабочие версии статей: публикуются только после решения владельца
+             "findings"]  # технические отчёты по миграциям (xlsx, fastexcel) — внутреннее
 DROP_FILES = [
     "AGENTS.md", "MEMORY.md", "USER.md",
-    "log-tech.md",
+    "log-tech.md", "tmp_calc.py", "logs/.freshness_digest_last",
     "latest.zip", "nowcast_investments_housing_sep2026.pdf",
     "gdelt_fetch_final.py", "gdelt_fetch_fixed.py", "gdelt_fetch_hourly.py",
     "gdelt_fetch_latest.py", "gdelt_fetch_robust.py", "gdelt_fetch_yesterday.py",

@@ -314,6 +314,19 @@ migrated: 2026-07-26
 - relevance: low
 - status: new
 
+## Vovchenko-Ivanova-Litvinova-2026-Sustainable-Mortgage.md
+- title: Институциональная архитектура устойчивого ипотечного финансирования в России / Institutional Architecture of Sustainable Mortgage Financing in Russia
+- authors: Vovchenko, Natalia G.; Ivanova, Olga B.; Litvinova, Svetlana A.
+- year: 2026
+- method: conceptual institutional framework; descriptive aggregate indicators
+- data: Bank of Russia and DOM.RF aggregates, mainly 2024–2026
+- key_result: proposes three-pillar mortgage architecture; IRHA remains uncalibrated and non-reproducible as an operational index; descriptive aggregate evidence only, no causal test
+- relevance: high
+- status: triaged
+- doi: "10.31107/2075-1990-2026-5-43-59"
+- doi_status: publisher-listed; Crossref article-level record not found in direct DOI and bibliographic queries
+- used_in: [[reviews/vovchenko-ivanova-litvinova-2026-sustainable-mortgage]], [[annotations/vovchenko-ivanova-litvinova-2026-sustainable-mortgage-ru]]
+
 ## NBER-CRIW-2026-Ch7-Loewenstein-CPI-Shelter-Nonresponse.md
 - title: Nonresponse Imputations and Related Measurement Issues in the CPI for Shelter
 - authors: Loewenstein, Montag, Verbrugge

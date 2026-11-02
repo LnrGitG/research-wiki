@@ -249,8 +249,11 @@ class Emiss:
                 out += [(fid, vid) for vid in values]
             else:
                 titles = [w.strip().lower() for w in want]
+                ids = {w.strip().lstrip('#') for w in want
+                       if w.strip().startswith('#')}
                 chosen = [(fid, vid) for vid, v in values.items()
-                          if (v.get("title") or "").strip().lower() in titles]
+                          if (v.get("title") or "").strip().lower() in titles
+                          or str(vid) in ids]
                 if not chosen:
                     raise ValueError("значения не найдены в поле «%s»: %s" % (title, want))
                 out += chosen

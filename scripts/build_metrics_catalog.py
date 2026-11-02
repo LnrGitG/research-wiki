@@ -103,75 +103,152 @@ def score_research(freqs, y0, y1, nyears, nreg, total):
 
 
 def fetch_batch(cur, codes=None):
-    """Все агрегаты каталога одним проходом.
+    """Все агрегаты каталога без тяжёлых DISTINCT по широкой view.
 
-    Раньше функция вызывалась на каждый батч из 25 метрик (690 батчей × 5
-    запросов) и пересчитывала оконные функции по всей таблице 6,5 млн строк
-    каждый раз — сборка занимала часы. Теперь те же пять запросов выполняются
-    по одному разу без фильтра, а метрики разбираются из результата в памяти.
+    Прежняя версия считала min/max/count(DISTINCT ...) прямо по
+    core.v_datalens_observations: это 6,5 млн строк на 30 колонок, и на ВМ
+    (work_mem 4 МБ, temp_file_limit 1,5 ГБ, диск 10 ГБ) сортировка уходила в
+    base/pgsql_tmp и упиралась сначала в лимит, потом в «No space left on
+    device» (инцидент 02.11.2026). Теперь узкие DISTINCT идут вместе с
+    основными числами, а число уникальных подразрезов считается отдельно по
+    парам «метрика — подразрез»: промежуточных данных на порядок меньше.
     Параметр `codes` оставлен для разовых прогонов по части справочника.
     """
-    flt = " AND metric_code = ANY(%s)" if codes else ""
+    flt = " AND o.metric_id = ANY(%s)" if codes else ""
     args = (codes,) if codes else ()
-    # 1. основная статистика
-    cur.execute(f"""
-        SELECT metric_code, metric_name, min(source_name), min(unit_name),
-               min(year), max(year), count(*),
-               count(*) FILTER (WHERE year >= 2025),
-               count(DISTINCT year), count(DISTINCT region_code),
-               string_agg(DISTINCT frequency_code, ','),
-               count(DISTINCT release_label), count(DISTINCT sub_dimension)
-        FROM core.v_datalens_observations
-        WHERE {VAL_OK}{flt}
-        GROUP BY metric_code, metric_name
-    """, args)
-    stats = {r[0]: r for r in cur.fetchall()}
+    ok = VAL_OK.replace("value", "o.value")
+    # параллельные воркеры множат временные файлы — на этой ВМ их лучше выключить
+    cur.execute("SET max_parallel_workers_per_gather = 0")
+    cur.execute("SET work_mem = '1GB'")
 
-    # 2. метки релизов (топ-8 на пару метрика+источник)
+    # 1. основные числа — без DISTINCT: count(DISTINCT ...) по 6,5 млн строк
+    #    Postgres считает сортировкой и снова упирается в temp_file_limit.
+    cur.execute(f"""
+        SELECT m.metric_code, m.name_ru, m.unit_id,
+               min(extract(year from o.period_start))::int,
+               max(extract(year from o.period_start))::int,
+               count(*),
+               count(*) FILTER (WHERE extract(year from o.period_start) >= 2025)
+        FROM core.observation_v2 o
+        JOIN core.metric m ON m.metric_id = o.metric_id
+        WHERE {ok}{flt}
+        GROUP BY 1,2,3
+    """, args)
+    base = {r[0]: list(r) for r in cur.fetchall()}
+
+    # 1б. уникальные годы, регионы, релизы и частоты — по схлопнутым парам
+    pairs = {
+        "years": "extract(year from o.period_start)::int",
+        "regions": "o.region_id",
+        "releases": "o.release_id",
+    }
+    extra = {}
+    for key, expr in pairs.items():
+        cur.execute(f"""
+            SELECT x.metric_code, count(*) FROM (
+                SELECT m.metric_code AS metric_code, {expr} AS v
+                FROM core.observation_v2 o
+                JOIN core.metric m ON m.metric_id = o.metric_id
+                WHERE {ok}{flt}
+                GROUP BY 1,2) x
+            GROUP BY 1
+        """, args)
+        extra[key] = {c: n for c, n in cur.fetchall()}
+
+    cur.execute(f"""
+        SELECT x.metric_code, string_agg(x.code, ',' ORDER BY x.code) FROM (
+            SELECT m.metric_code AS metric_code, f.frequency_code AS code
+            FROM core.observation_v2 o
+            JOIN core.metric m ON m.metric_id = o.metric_id
+            JOIN core.frequency f ON f.frequency_id = o.frequency_id
+            WHERE {ok}{flt}
+            GROUP BY 1,2) x
+        GROUP BY 1
+    """, args)
+    freqs = {c: v for c, v in cur.fetchall()}
+
+    # 2. число уникальных подразрезов — по схлопнутым парам
+    cur.execute(f"""
+        SELECT x.metric_code, count(*) FROM (
+            SELECT m.metric_code AS metric_code, o.sub_dimension
+            FROM core.observation_v2 o
+            JOIN core.metric m ON m.metric_id = o.metric_id
+            WHERE {ok}{flt}
+            GROUP BY 1,2) x
+        GROUP BY 1
+    """, args)
+    nsubd = {c: n for c, n in cur.fetchall()}
+
+    # 3. источник и единица (справочники, по одной строке на метрику)
+    cur.execute(f"""
+        SELECT m.metric_code, min(s.name_ru), min(u.name_ru)
+        FROM core.observation_v2 o
+        JOIN core.metric m ON m.metric_id = o.metric_id
+        LEFT JOIN core.source s ON s.source_id = o.source_id
+        LEFT JOIN core.unit u ON u.unit_id = m.unit_id
+        WHERE {ok}{flt}
+        GROUP BY 1
+    """, args)
+    lookup = {c: (sname, uname) for c, sname, uname in cur.fetchall()}
+
+    stats = {}
+    for code, r in base.items():
+        sname, uname = lookup.get(code, (None, None))
+        stats[code] = (code, r[1], sname, uname, r[3], r[4], r[5], r[6],
+                       extra["years"].get(code, 0), extra["regions"].get(code, 0),
+                       freqs.get(code, ""), extra["releases"].get(code, 0),
+                       nsubd.get(code, 0))
+
+    # 4. метки релизов (топ-8 на пару метрика+источник)
     cur.execute(f"""
         SELECT metric_code, source_name, release_label, n FROM (
-          SELECT metric_code, source_name, release_label, count(*) n,
-                 row_number() OVER (PARTITION BY metric_code, source_name
+          SELECT m.metric_code, s.name_ru AS source_name, rl.release_label, count(*) n,
+                 row_number() OVER (PARTITION BY m.metric_code, s.name_ru
                                     ORDER BY count(*) DESC) rn
-          FROM core.v_datalens_observations
-          WHERE {VAL_OK} AND release_label IS NOT NULL{flt}
+          FROM core.observation_v2 o
+          JOIN core.metric m ON m.metric_id = o.metric_id
+          LEFT JOIN core.source s ON s.source_id = o.source_id
+          LEFT JOIN core.release rl ON rl.release_id = o.release_id
+          WHERE {ok} AND rl.release_label IS NOT NULL{flt}
           GROUP BY 1,2,3) x WHERE rn <= 8
     """, args)
     rels = defaultdict(lambda: defaultdict(list))
     for code, src, rel, _n in cur.fetchall():
         rels[code][src].append(rel)
 
-    # 3. единица из разрезов (сразу извлекаем — кардинальность падает)
+    # 5. единица из разрезов (сразу извлекаем — кардинальность падает)
     cur.execute(f"""
-        SELECT metric_code,
-               (regexp_match(sub_dimension, 'ед\\.:\\s*([^|]+)'))[1] AS u,
-               count(*) n
-        FROM core.v_datalens_observations
-        WHERE {VAL_OK} AND sub_dimension LIKE '%%ед.:%%'{flt}
-        GROUP BY 1,2 ORDER BY 1, 3 DESC
+        SELECT y.metric_code, y.u, count(*) FROM (
+            SELECT m.metric_code AS metric_code,
+                   (regexp_match(o.sub_dimension, 'ед\\.:\\s*([^|]+)'))[1] AS u
+            FROM core.observation_v2 o
+            JOIN core.metric m ON m.metric_id = o.metric_id
+            WHERE {ok} AND o.sub_dimension LIKE '%%ед.:%%'{flt}
+            GROUP BY 1,2) y
+        WHERE y.u IS NOT NULL
+        GROUP BY 1,2
     """, args)
     units = defaultdict(Counter)
     for code, u, n in cur.fetchall():
-        if u:
-            units[code][u.strip()] += n
+        units[code][u.strip()] += n
 
-    # 4. примеры разрезов (топ-3 на метрику)
+    # 6. примеры разрезов (топ-3 на метрику)
     cur.execute(f"""
         SELECT metric_code, sub_dimension FROM (
-          SELECT metric_code, sub_dimension, count(*) n,
-                 row_number() OVER (PARTITION BY metric_code ORDER BY count(*) DESC) rn
-          FROM core.v_datalens_observations
-          WHERE {VAL_OK}
-            AND coalesce(sub_dimension,'') <> ''{flt}
-          GROUP BY 1,2) x WHERE rn <= 3
+          SELECT m.metric_code AS metric_code, o.sub_dimension, count(*) n,
+                 row_number() OVER (PARTITION BY m.metric_code ORDER BY count(*) DESC) rn
+          FROM core.observation_v2 o
+          JOIN core.metric m ON m.metric_id = o.metric_id
+          WHERE {ok} AND coalesce(o.sub_dimension,'') <> ''{flt}
+          GROUP BY 1,2) z WHERE rn <= 3
     """, args)
     subs = defaultdict(list)
     for code, sd in cur.fetchall():
         subs[code].append(sd)
 
-    # 5. теги гармонизации
+    # 7. теги гармонизации
     cur.execute("SELECT metric_code, tags FROM core.metric "
-                "WHERE tags IS NOT NULL" + flt, args)
+                "WHERE tags IS NOT NULL", ())
     tags = defaultdict(set)
     for code, t in cur.fetchall():
         tags[code].update(t or [])
@@ -182,6 +259,12 @@ def fetch_batch(cur, codes=None):
 def main():
     conn = psycopg.connect(DSN)
     cur = conn.cursor()
+    # Агрегат идёт по 6,5 млн строк view. При work_mem=4 МБ (умолчание сервера)
+    # планировщик выбирает сортировочную агрегацию и сливает её на диск: на ВМ
+    # с 10 ГБ это упирается в «No space left on device» (инцидент 02.11.2026).
+    # 256 МБ хватает, чтобы хеш-агрегация и оконные сортировки шли в памяти.
+    cur.execute("SET work_mem = '256MB'")
+    cur.execute("SET temp_file_limit = '1GB'")
     cur.execute("SELECT metric_code FROM core.metric ORDER BY metric_code")
     all_codes = [r[0] for r in cur.fetchall()]
     print("метрик в справочнике: %s" % format(len(all_codes), ","))
